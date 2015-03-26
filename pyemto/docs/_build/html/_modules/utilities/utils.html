@@ -1,0 +1,571 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>utilities.utils &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for utilities.utils</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">Created on Wed Dec  3 14:25:06 2014</span>
+
+<span class="sd">@author: Matti Ropo</span>
+<span class="sd">@author: Henrik Levämäki</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="run_emto"><a class="viewcode-back" href="../../utilities.html#utilities.utils.run_emto">[docs]</a><span class="k">def</span> <span class="nf">run_emto</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s">&quot;./&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Submits a batch script to the queue.</span>
+
+<span class="sd">    Finds all the files in a folder that start with the name</span>
+
+
+<span class="sd">    :param name:</span>
+<span class="sd">    :type name:</span>
+<span class="sd">    :param folder:  (Default value = &quot;./&quot;)</span>
+<span class="sd">    :type folder:</span>
+<span class="sd">    :returns:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># filetype = &#39;sh&#39;</span>
+    <span class="n">filetype</span> <span class="o">=</span> <span class="s">&#39;cmd&#39;</span>
+    <span class="n">namelist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">jobids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">fltest</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">fltest</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;.&#39;</span> <span class="o">+</span> <span class="n">filetype</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fltest</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="n">namelist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">fltest</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">jobname</span> <span class="ow">in</span> <span class="n">namelist</span><span class="p">:</span>
+        <span class="n">run_job</span> <span class="o">=</span> <span class="s">&#39;cd {0};sbatch {1}.{2}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">jobname</span><span class="p">,</span> <span class="n">filetype</span><span class="p">)</span>
+        <span class="n">jobid</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">jobid_raw</span> <span class="o">=</span> <span class="n">run_bash</span><span class="p">(</span><span class="n">run_job</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">jobid_raw</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">jobid_raw</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">jobid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="n">jobids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jobids</span>
+
+</div>
+<div class="viewcode-block" id="run_bash"><a class="viewcode-back" href="../../utilities.html#utilities.utils.run_bash">[docs]</a><span class="k">def</span> <span class="nf">run_bash</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param cmd:</span>
+<span class="sd">    :type cmd:</span>
+<span class="sd">    :returns:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># Runs a bash command and returns the output</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">out</span>  <span class="c"># This is the stdout from the shell command</span>
+
+</div>
+<div class="viewcode-block" id="write_batch"><a class="viewcode-back" href="../../utilities.html#utilities.utils.write_batch">[docs]</a><span class="k">def</span> <span class="nf">write_batch</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">jobname</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param folder:</span>
+<span class="sd">    :type folder:</span>
+<span class="sd">    :param jobname:</span>
+<span class="sd">    :type jobname:</span>
+<span class="sd">    :returns:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># Writes a SLURM batch script for the job</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;#!/bin/bash&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;#SBATCH -J {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;#SBATCH -t 01:00:00&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;#SBATCH -o {0}.output&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;#SBATCH -e {0}.error&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;python -u {0}.py&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+
+    <span class="n">fln</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;{0}/{1}.cmd&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">jobname</span><span class="p">),</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">fln</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">fln</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span>
+
+</div>
+<div class="viewcode-block" id="write_job"><a class="viewcode-back" href="../../utilities.html#utilities.utils.write_job">[docs]</a><span class="k">def</span> <span class="nf">write_job</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">jobname</span><span class="p">,</span> <span class="n">atom</span><span class="p">,</span> <span class="n">conc</span><span class="p">,</span> <span class="n">sws</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param folder:</span>
+<span class="sd">    :type folder:</span>
+<span class="sd">    :param jobname:</span>
+<span class="sd">    :type jobname:</span>
+<span class="sd">    :param atom:</span>
+<span class="sd">    :type atom:</span>
+<span class="sd">    :param conc:</span>
+<span class="sd">    :type conc:</span>
+<span class="sd">    :param sws:</span>
+<span class="sd">    :type sws:</span>
+<span class="sd">    :returns:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;import pyemto&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;test=pyemto.System()&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;test.bulk(latpath=</span><span class="se">\&#39;</span><span class="s">../</span><span class="se">\&#39;</span><span class="s">,lat=</span><span class="se">\&#39;</span><span class="s">fcc</span><span class="se">\&#39;</span><span class="s">,atoms={0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;,concs=[{1},{2}],sws={0},amix=0.02,efmix=0.9&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sws</span><span class="p">,</span> <span class="o">*</span><span class="n">conc</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;,expan=</span><span class="se">\&#39;</span><span class="s">M</span><span class="se">\&#39;</span><span class="s">,sofc=</span><span class="se">\&#39;</span><span class="s">Y</span><span class="se">\&#39;</span><span class="s">)&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+    <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;test.latticeconstant(sws0={0})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sws</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+
+    <span class="n">fln</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;{0}/{1}.py&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">jobname</span><span class="p">),</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">fln</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">fln</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span>
+
+</div>
+<div class="viewcode-block" id="submit_to_batch"><a class="viewcode-back" href="../../utilities.html#utilities.utils.submit_to_batch">[docs]</a><span class="k">def</span> <span class="nf">submit_to_batch</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">jobname</span><span class="p">,</span> <span class="n">system</span><span class="o">=</span><span class="s">&#39;slurm&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param folder:</span>
+<span class="sd">    :type folder:</span>
+<span class="sd">    :param jobname:</span>
+<span class="sd">    :type jobname:</span>
+<span class="sd">    :param system:  (Default value = &#39;slurm&#39;)</span>
+<span class="sd">    :type system:</span>
+<span class="sd">    :returns:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">system</span> <span class="o">==</span> <span class="s">&#39;slurm&#39;</span><span class="p">:</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="s">&quot;cd {0};sbatch {0}/{1}.cmd&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">jobname</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s">&#39;Only SLURM has been implemented so far! Exiting.&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span>
+
+</div>
+<div class="viewcode-block" id="wsrad_to_latparam"><a class="viewcode-back" href="../../utilities.html#utilities.utils.wsrad_to_latparam">[docs]</a><span class="k">def</span> <span class="nf">wsrad_to_latparam</span><span class="p">(</span><span class="n">sws</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">ca</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param sws:</span>
+<span class="sd">    :type sws:</span>
+<span class="sd">    :param lat:</span>
+<span class="sd">    :type lat:</span>
+<span class="sd">    :param ca:  (Default value = None)</span>
+<span class="sd">    :type ca:</span>
+<span class="sd">    :param c:  (Default value = None)</span>
+<span class="sd">    :type c:</span>
+<span class="sd">    :returns:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># Converts Wigner-Seitz radius (in bohr) to</span>
+    <span class="c"># a lattice parameter a (in Angstroms) (and</span>
+    <span class="c"># also c/a for hcp)</span>
+    <span class="n">bohr2angstrom</span> <span class="o">=</span> <span class="mf">0.52917721092</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;sc&#39;</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">3.0</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">sws</span> <span class="o">*</span> <span class="n">bohr2angstrom</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;bcc&#39;</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="mf">3.0</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">sws</span> <span class="o">*</span> <span class="n">bohr2angstrom</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;fcc&#39;</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">4.0</span> <span class="o">/</span> <span class="mf">3.0</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">sws</span> <span class="o">*</span> <span class="n">bohr2angstrom</span>
+        <span class="k">return</span> <span class="n">a</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">ca</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s">&#39;wsrad_to_latparam: Either </span><span class="se">\&#39;</span><span class="s">c</span><span class="se">\&#39;</span><span class="s"> (in angstrom) or &#39;</span> <span class="o">+</span>\
+                     <span class="s">&#39;</span><span class="se">\&#39;</span><span class="s">ca</span><span class="se">\&#39;</span><span class="s"> (c/a) has to be given for hcp structure!&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span>
+                            <span class="mf">6.0</span> <span class="o">*</span>
+                            <span class="mf">4.0</span> <span class="o">*</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span>
+                            <span class="mf">3.0</span> <span class="o">/</span>
+                            <span class="mf">3.0</span> <span class="o">/</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">/</span>
+                            <span class="n">c</span> <span class="o">*</span>
+                            <span class="p">(</span><span class="n">sws</span> <span class="o">*</span>
+                             <span class="n">bohr2angstrom</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">a</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">vol</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">sws</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">vol</span> <span class="o">/</span> <span class="n">ca</span> <span class="o">/</span> <span class="mf">0.8660254</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">bohr2angstrom</span>
+                <span class="k">return</span> <span class="n">a</span>
+
+</div>
+<div class="viewcode-block" id="latparam_to_wsrad"><a class="viewcode-back" href="../../utilities.html#utilities.utils.latparam_to_wsrad">[docs]</a><span class="k">def</span> <span class="nf">latparam_to_wsrad</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ca</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param a:  (Default value = None)</span>
+<span class="sd">    :type a:</span>
+<span class="sd">    :param lat:  (Default value = None)</span>
+<span class="sd">    :type lat:</span>
+<span class="sd">    :param ca:  (Default value = None)</span>
+<span class="sd">    :type ca:</span>
+<span class="sd">    :param c:  (Default value = None)</span>
+<span class="sd">    :type c:</span>
+<span class="sd">    :returns:</span>
+<span class="sd">    :rtype:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># Converts lattice parameters (in Angstroms) to Wigner-Seitz radius (in</span>
+    <span class="c"># bohr).</span>
+    <span class="n">bohr2angstrom</span> <span class="o">=</span> <span class="mf">0.52917721092</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;sc&#39;</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">wsradius</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">/</span> <span class="n">tmp</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span> <span class="o">/</span> <span class="n">bohr2angstrom</span>
+        <span class="k">return</span> <span class="n">wsradius</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;bcc&#39;</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">2.0</span>
+        <span class="n">wsradius</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">/</span> <span class="n">tmp</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span> <span class="o">/</span> <span class="n">bohr2angstrom</span>
+        <span class="k">return</span> <span class="n">wsradius</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;fcc&#39;</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">4.0</span>
+        <span class="n">wsradius</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">/</span> <span class="n">tmp</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span> <span class="o">/</span> <span class="n">bohr2angstrom</span>
+        <span class="k">return</span> <span class="n">wsradius</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">ca</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s">&#39;latparam_to_wsrad: Either </span><span class="se">\&#39;</span><span class="s">c</span><span class="se">\&#39;</span><span class="s"> (in angstrom) or ,&#39;</span> <span class="o">+</span>\
+                     <span class="s">&#39;</span><span class="se">\&#39;</span><span class="s">ca</span><span class="se">\&#39;</span><span class="s"> (c/a) has to be given for hcp structure!&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">wsradius</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span> <span class="o">/</span>
+                            <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="mf">6.0</span> <span class="o">*</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">bohr2angstrom</span>
+                <span class="k">return</span> <span class="n">wsradius</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">wsradius</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">ca</span> <span class="o">/</span>
+                            <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="mf">6.0</span> <span class="o">*</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">bohr2angstrom</span>
+                <span class="k">return</span> <span class="n">wsradius</span>
+
+</div>
+<div class="viewcode-block" id="extrapolate_0k"><a class="viewcode-back" href="../../utilities.html#utilities.utils.extrapolate_0k">[docs]</a><span class="k">def</span> <span class="nf">extrapolate_0k</span><span class="p">(</span>
+        <span class="n">a</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">Ta</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">bmod</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">TB</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">lat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">TD</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">Talpha</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">B1</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">T0</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">ca</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+        <span class="n">ZP</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extrapolates experimental data to zero Kelvin.</span>
+
+<span class="sd">    A function to extrapolate experimental room temperature lattice constants and</span>
+<span class="sd">    bulk moduli to zero Kelvin. Zero point effects are also taken into account.</span>
+
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | **Input parameter**   | **Description**                                          |</span>
+<span class="sd">    +=======================+==========================================================+</span>
+<span class="sd">    | a                     | Experimental lattice constant measured at                |</span>
+<span class="sd">    |                       | temperature Ta (in Angstroms)                            |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | Ta                    | The temperature at which a was measured (in Kelvin)      |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | bmod                  | Experimental bulk modulus measured at temperature        |</span>
+<span class="sd">    |                       | TB (in GPa)                                              |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | TB                    | The temperature at which bmod was measured (in Kelvin)   |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | lat                   | Lattice structure                                        |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | TD                    | Experimental Debye temperature of the substance          |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | alpha                 | VOLUMETRIC!!! thermal expansion coefficient at           |</span>
+<span class="sd">    |                       | temperature T (in 10⁻6 1/K)                              |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | Talpha                | The temperature at which alpha was measured (in Kelvin)  |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | B1                    | Pressure derivative of the bulk modulus                  |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | T0                    | The temperature to which we want to extrapolate          |</span>
+<span class="sd">    |                       | (Optional argument, if not given assume 0K)              |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | ca                    | c/a lattice parameter for hcp structures                 |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+<span class="sd">    | ZP                    | Whether or not zero-point (ZP) corrections are performed.|</span>
+<span class="sd">    |                       | If one only wants to calculate the fractional volume     |</span>
+<span class="sd">    |                       | change due to dropping temperature, ZP=False.            |</span>
+<span class="sd">    +-----------------------+----------------------------------------------------------+</span>
+
+<span class="sd">    :param a:  (Default value = None)</span>
+<span class="sd">    :type a:</span>
+<span class="sd">    :param Ta:  (Default value = None)</span>
+<span class="sd">    :type Ta:</span>
+<span class="sd">    :param bmod:  (Default value = None)</span>
+<span class="sd">    :type bmod:</span>
+<span class="sd">    :param TB:  (Default value = None)</span>
+<span class="sd">    :type TB:</span>
+<span class="sd">    :param lat:  (Default value = None)</span>
+<span class="sd">    :type lat:</span>
+<span class="sd">    :param TD:  (Default value = None)</span>
+<span class="sd">    :type TD:</span>
+<span class="sd">    :param alpha:  (Default value = None)</span>
+<span class="sd">    :type alpha:</span>
+<span class="sd">    :param Talpha:  (Default value = None)</span>
+<span class="sd">    :type Talpha:</span>
+<span class="sd">    :param B1:  (Default value = None)</span>
+<span class="sd">    :type B1:</span>
+<span class="sd">    :param T0:  (Default value = None)</span>
+<span class="sd">    :type T0:</span>
+<span class="sd">    :param ca:  (Default value = None)</span>
+<span class="sd">    :type ca:</span>
+<span class="sd">    :param ZP:  (Default value = True)</span>
+<span class="sd">    :type ZP:</span>
+<span class="sd">    :returns: ZPAE corrected 0K lattice constant (in Angstrom),</span>
+<span class="sd">              ZPPE corrected 0K bulk modulus (in GPa)</span>
+<span class="sd">    :rtype: float,float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+    <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span><span class="p">,</span> <span class="n">dblquad</span>
+
+    <span class="k">def</span> <span class="nf">debye_integrand</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the value of the Debye function at a</span>
+<span class="sd">        point x.</span>
+
+<span class="sd">        :param x: Point on the x-axis where the function should</span>
+<span class="sd">                  be evaluated</span>
+<span class="sd">        :type x: float</span>
+<span class="sd">        :returns: value of the function at point x</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="o">**</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="o">**</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="n">bohr</span> <span class="o">=</span> <span class="mf">0.52917721092</span>  <span class="c"># Bohr to Angstrom conversion factor</span>
+    <span class="n">kb</span> <span class="o">=</span> <span class="mf">1.3806488E-23</span>   <span class="c"># Boltzmann constant</span>
+
+    <span class="c"># Make sure all the input parameters are floats. This is because</span>
+    <span class="c"># if e.g. T and TD are given as integers you get integer division</span>
+    <span class="c"># (Python 2.7) which ruins the results: TD/Ta = 470/300 = 1.</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">bmod</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">bmod</span><span class="p">)</span>
+    <span class="n">Ta</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">Ta</span><span class="p">)</span>
+    <span class="n">TB</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">TB</span><span class="p">)</span>
+    <span class="n">TD</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">TD</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">Talpha</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">Talpha</span><span class="p">)</span>
+    <span class="n">B1</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">B1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ca</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">ca</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ca</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">lat</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s">&#39;extrapolate_0K: </span><span class="se">\&#39;</span><span class="s">lat</span><span class="se">\&#39;</span><span class="s"> has to be given!&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">T0</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">T0</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="k">elif</span> <span class="n">T0</span> <span class="o">&lt;</span> <span class="mf">2.0</span><span class="p">:</span>
+        <span class="c"># Stop a bit above 0K to prevent an overflow in the second integral.</span>
+        <span class="n">T0</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">T0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">T0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">Ta</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s">&#39;extrapolate_0K: </span><span class="se">\&#39;</span><span class="s">Ta</span><span class="se">\&#39;</span><span class="s"> has to be given!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">Ta</span> <span class="o">&lt;</span> <span class="mf">2.0</span><span class="p">:</span>
+        <span class="c"># Stop a bit above 0K to prevent an overflow in the second integral.</span>
+        <span class="n">Ta</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="k">if</span> <span class="n">TB</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s">&#39;extrapolate_0K: </span><span class="se">\&#39;</span><span class="s">TB</span><span class="se">\&#39;</span><span class="s"> has to be given!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">TB</span> <span class="o">&lt;</span> <span class="mf">2.0</span><span class="p">:</span>
+        <span class="c"># Stop a bit above 0K to prevent an overflow in the second integral.</span>
+        <span class="n">TB</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="c">#</span>
+    <span class="c">#</span>
+    <span class="c">##########################################################</span>
+    <span class="c">#                                                        #</span>
+    <span class="c"># Compute the fractional volume change                   #</span>
+    <span class="c"># when temperature drops from T1 to T2                   #</span>
+    <span class="c"># as explained in:                                       #</span>
+    <span class="c">#                                                        #</span>
+    <span class="c"># Calphad                                                #</span>
+    <span class="c"># Volume 30, Issue 3, September 2006, Pages 354–356      #</span>
+    <span class="c">#                                                        #</span>
+    <span class="c">##########################################################</span>
+    <span class="c">#</span>
+    <span class="c">#</span>
+    <span class="c"># Calculate the unit cell volume</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;sc&#39;</span><span class="p">,</span> <span class="s">&#39;bcc&#39;</span><span class="p">,</span> <span class="s">&#39;fcc&#39;</span><span class="p">]:</span>
+        <span class="n">vol</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span>  <span class="c"># Holds true for cubic lattices</span>
+
+    <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ca</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+                <span class="s">&#39;extrapolate_0K: </span><span class="se">\&#39;</span><span class="s">ca</span><span class="se">\&#39;</span><span class="s"> (c/a) has to be given for hcp structures!&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">vol</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">ca</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="mf">1.0E-10</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span>
+
+    <span class="c"># Fractional Expansion Coefficient = FEC</span>
+
+    <span class="n">FECa</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="mf">1.0E-6</span> <span class="o">/</span> <span class="n">Talpha</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="n">quad</span><span class="p">(</span><span class="n">debye_integrand</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                             <span class="n">TD</span> <span class="o">/</span> <span class="n">Talpha</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">dblquad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span>
+                                                                       <span class="n">T</span><span class="p">:</span> <span class="n">T</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="o">**</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span>
+                                                                       <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="o">**</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+                                                                       <span class="n">Ta</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span>
+                                                                       <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                                       <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TD</span> <span class="o">/</span> <span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">FECB</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="mf">1.0E-6</span> <span class="o">/</span> <span class="n">Talpha</span><span class="o">**</span><span class="mi">3</span> <span class="o">/</span> <span class="n">quad</span><span class="p">(</span><span class="n">debye_integrand</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                             <span class="n">TD</span> <span class="o">/</span> <span class="n">Talpha</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">dblquad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span>
+                                                                       <span class="n">T</span><span class="p">:</span> <span class="n">T</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="o">**</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span>
+                                                                       <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="o">**</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+                                                                       <span class="n">TB</span><span class="p">,</span> <span class="n">T0</span><span class="p">,</span>
+                                                                       <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                                                                       <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TD</span> <span class="o">/</span> <span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c"># Thermal change in lattice parameter</span>
+    <span class="n">vol0</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">FECa</span><span class="p">)</span> <span class="o">*</span> <span class="n">vol</span>
+    <span class="c"># Thermal change in bulk modulus</span>
+    <span class="n">P_T</span> <span class="o">=</span> <span class="n">bmod</span> <span class="o">*</span> <span class="n">FECB</span>
+    <span class="n">dB_thermal</span> <span class="o">=</span> <span class="n">B1</span> <span class="o">*</span> <span class="n">P_T</span>
+    <span class="n">bmod0</span> <span class="o">=</span> <span class="n">bmod</span> <span class="o">-</span> <span class="n">dB_thermal</span>
+
+    <span class="k">if</span> <span class="n">lat</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;sc&#39;</span><span class="p">,</span> <span class="s">&#39;bcc&#39;</span><span class="p">,</span> <span class="s">&#39;fcc&#39;</span><span class="p">]:</span>
+        <span class="n">a0</span> <span class="o">=</span> <span class="n">vol0</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+        <span class="n">a0</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">vol0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">ca</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ZP</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">a0</span><span class="p">,</span> <span class="n">bmod0</span>
+
+    <span class="k">elif</span> <span class="n">ZP</span><span class="p">:</span>
+        <span class="c"># Volume per atom is needed for the ZPAE !!!!!!</span>
+        <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;sc&#39;</span><span class="p">:</span>
+            <span class="n">unit_vol0</span> <span class="o">=</span> <span class="n">vol0</span>
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;bcc&#39;</span><span class="p">:</span>
+            <span class="n">unit_vol0</span> <span class="o">=</span> <span class="n">vol0</span> <span class="o">/</span> <span class="mf">2.0</span>
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;fcc&#39;</span><span class="p">:</span>
+            <span class="n">unit_vol0</span> <span class="o">=</span> <span class="n">vol0</span> <span class="o">/</span> <span class="mf">4.0</span>
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+            <span class="n">unit_vol0</span> <span class="o">=</span> <span class="n">vol0</span> <span class="o">/</span> <span class="mf">6.0</span>
+        <span class="c">#</span>
+        <span class="c">#</span>
+        <span class="c">#########################################################################</span>
+        <span class="c">#                                                                       #</span>
+        <span class="c"># Next, compute ZPAE for the lattice constant and ZPPE for bulk modulus #</span>
+        <span class="c"># as explained in PHYSICAL REVIEW B 66, 052104 (2002)                   #</span>
+        <span class="c">#                                                                       #</span>
+        <span class="c">#########################################################################</span>
+        <span class="c">#</span>
+        <span class="c">#</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="mf">9.0</span> <span class="o">/</span> <span class="mf">8.0</span> <span class="o">*</span> <span class="n">kb</span>
+        <span class="n">zeta</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">TD</span>
+
+        <span class="n">P_Z</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">6.0</span> <span class="o">*</span> <span class="n">zeta</span> <span class="o">*</span> <span class="p">(</span><span class="n">B1</span> <span class="o">-</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">unit_vol0</span>
+        <span class="n">dB_ZPPE</span> <span class="o">=</span> <span class="n">B1</span> <span class="o">*</span> <span class="n">P_Z</span> <span class="o">*</span> <span class="mf">1.0E21</span>
+        <span class="n">bmod0_ZPPE</span> <span class="o">=</span> <span class="n">bmod0</span> <span class="o">-</span> <span class="n">dB_ZPPE</span>
+        <span class="n">FECa_ZPAE</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">6.0</span> <span class="o">*</span> <span class="n">zeta</span> <span class="o">*</span> <span class="p">(</span><span class="n">B1</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">bmod0</span> <span class="o">*</span> <span class="n">unit_vol0</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.0E21</span>
+        <span class="n">a0_ZPAE</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">FECa_ZPAE</span><span class="p">)</span> <span class="o">*</span> <span class="n">a0</span>
+
+        <span class="k">return</span> <span class="n">a0_ZPAE</span><span class="p">,</span> <span class="n">bmod0_ZPPE</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

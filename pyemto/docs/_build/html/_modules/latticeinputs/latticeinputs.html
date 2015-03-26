@@ -1,0 +1,394 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>latticeinputs.latticeinputs &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for latticeinputs.latticeinputs</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">Created on Wed Dec  3 14:25:06 2014</span>
+
+<span class="sd">@author: Matti Ropo</span>
+<span class="sd">@author: Henrik Levämäki</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="Latticeinputs"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.latticeinputs.Latticeinputs">[docs]</a><span class="k">class</span> <span class="nc">Latticeinputs</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Class which is used to communicate with the Bmdl, Kstr and Shape classes.</span>
+
+<span class="sd">    :returns: None</span>
+<span class="sd">    :rtype: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="c"># Import necessary packages</span>
+        <span class="kn">from</span> <span class="nn">pyemto.latticeinputs.bmdl</span> <span class="kn">import</span> <span class="n">Bmdl</span>
+        <span class="kn">from</span> <span class="nn">pyemto.latticeinputs.kstr</span> <span class="kn">import</span> <span class="n">Kstr</span>
+        <span class="kn">from</span> <span class="nn">pyemto.latticeinputs.shape</span> <span class="kn">import</span> <span class="n">Shape</span>
+        <span class="kn">from</span> <span class="nn">pyemto.latticeinputs.batch</span> <span class="kn">import</span> <span class="n">Batch</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bmdl</span> <span class="o">=</span> <span class="n">Bmdl</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kstr</span> <span class="o">=</span> <span class="n">Kstr</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">Shape</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">()</span>
+
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="Latticeinputs.set_values"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.latticeinputs.Latticeinputs.set_values">[docs]</a>    <span class="k">def</span> <span class="nf">set_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Passes various input parameters down to the Kgrn and Kfcd classes.</span>
+
+<span class="sd">        :param **kwargs:</span>
+<span class="sd">        :type **kwargs:</span>
+<span class="sd">        :returns:</span>
+<span class="sd">        :rtype:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">attr_found</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bmdl</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bmdl</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                <span class="n">attr_found</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kstr</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">kstr</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                <span class="n">attr_found</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                <span class="n">attr_found</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                <span class="n">attr_found</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="n">attr_found</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span>
+                    <span class="s">&#39;WARNING: Neither Bmdl(), Kstr(), Shape() nor Batch_lattice()&#39;</span> <span class="o">+</span>\
+                    <span class="s">&#39; classes have the attribute </span><span class="se">\&#39;</span><span class="s">{0}</span><span class="se">\&#39;</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span>
+</div>
+<div class="viewcode-block" id="Latticeinputs.distortion"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.latticeinputs.Latticeinputs.distortion">[docs]</a>    <span class="k">def</span> <span class="nf">distortion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ca</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">deltas</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dmaxs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A function which sets various class data to create distorted lattice structures.</span>
+
+<span class="sd">        Distorted lattices are used to calculate elastic constants.        </span>
+<span class="sd">        An integer *index* is used to specify for which delta and dmax value we</span>
+<span class="sd">        want to generate the distortion input file data.</span>
+
+<span class="sd">        Default naming convention for the structure files:</span>
+
+<span class="sd">        ======= = ====</span>
+<span class="sd">        bcc bco = bcco</span>
+<span class="sd">        bcc fco = bccm</span>
+<span class="sd">        fcc bco = fccm</span>
+<span class="sd">        fcc fco = fcco</span>
+<span class="sd">        ======= = ====</span>
+
+<span class="sd">        ===== ==================================================================</span>
+<span class="sd">        lat   Original undistorted lattice</span>
+<span class="sd">        dist  Which distortion we want to calculate.</span>
+<span class="sd">              Possible values: &#39;ortho&#39; or &#39;mono&#39; for lat=&#39;bcc&#39;, &#39;fcc&#39; or &#39;hcp&#39;.</span>
+<span class="sd">        ca    c over a for hcp structures.</span>
+<span class="sd">        index Index specifying an element in the delta array.</span>
+<span class="sd">              Possible values: 0,1,2,3,4 or 5. 0 = No distortion.</span>
+<span class="sd">        delta Array of displacement values. Optional, default value</span>
+<span class="sd">              is good enough almost always (if not always).</span>
+<span class="sd">        dmax  Array of &#39;dmax&#39; values for KSTR. They have to be chosen in</span>
+<span class="sd">              such fashion so as to keep the number of lattice vectors</span>
+<span class="sd">              constant (or as close to a constant as possible) for all</span>
+<span class="sd">              of the distorted lattices. Optional, only needed when</span>
+<span class="sd">              a custom delta array is used.</span>
+<span class="sd">        ===== ==================================================================</span>
+
+<span class="sd">        :param lat: The original, undistorted lattice (Default value = None)</span>
+<span class="sd">        :type lat: str</span>
+<span class="sd">        :param dist: The type of distortion (Default value = None)</span>
+<span class="sd">        :type dist: str</span>
+<span class="sd">        :param ca: hcp c/a ratio (Default value = None)</span>
+<span class="sd">        :type ca: float</span>
+<span class="sd">        :param index: Index for selecting a delta and dmax from the arrays (Default value = None)</span>
+<span class="sd">        :type index: int</span>
+<span class="sd">        :param deltas: List of delta values (Default value = None)</span>
+<span class="sd">        :type deltas: np.array(float)</span>
+<span class="sd">        :param dmaxs: List of dmax values (Default value = None)</span>
+<span class="sd">        :type dmaxs: np.array(float)</span>
+<span class="sd">        :returns: None</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">default_deltas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="n">delta_tol</span> <span class="o">=</span> <span class="mf">1.0E-6</span>
+
+        <span class="c"># Mission critical parameters</span>
+        <span class="c"># if folder == None:</span>
+        <span class="c">#    folder = &quot;./&quot;</span>
+        <span class="k">if</span> <span class="n">lat</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s">&#39;latticeinputs.distortion(): </span><span class="se">\&#39;</span><span class="s">lat</span><span class="se">\&#39;</span><span class="s"> has to be given!&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span> <span class="ow">and</span> <span class="n">ca</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+                <span class="s">&#39;latticeinputs.distortion(): </span><span class="se">\&#39;</span><span class="s">ca</span><span class="se">\&#39;</span><span class="s"> (c over a) has to be given for hcp structures!&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dist</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+                <span class="s">&#39;latticeinputs.distortion(): </span><span class="se">\&#39;</span><span class="s">dist</span><span class="se">\&#39;</span><span class="s"> (distortion) has to be given!&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+                <span class="s">&#39;latticeinputs.distortion(): </span><span class="se">\&#39;</span><span class="s">index</span><span class="se">\&#39;</span><span class="s">&#39;</span> <span class="o">+</span>\
+                <span class="s">&#39; (delta = delta_array[index]) has to be given!&#39;</span><span class="p">)</span>
+
+        <span class="n">defaultDelta</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">defaultDmax</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">deltas</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">deltas</span> <span class="o">=</span> <span class="n">default_deltas</span>
+            <span class="n">defaultDelta</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># Check whether the input delta array is equivalent to the default</span>
+            <span class="n">same_delta_count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">deltas</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">default_deltas</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">deltas</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">deltas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">default_deltas</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">delta_tol</span><span class="p">:</span>
+                        <span class="n">same_delta_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">same_delta_count</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">deltas</span><span class="p">):</span>
+                    <span class="n">deltas</span> <span class="o">=</span> <span class="n">default_deltas</span>
+                    <span class="n">defaultDelta</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">deltas</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">defaultDelta</span> <span class="o">==</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">dmaxs</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+                <span class="s">&#39;latticeinputs.distortion(): </span><span class="se">\&#39;</span><span class="s">dmax</span><span class="se">\&#39;</span><span class="s"> has to be&#39;</span> <span class="o">+</span>\
+                <span class="s">&#39; given when custom </span><span class="se">\&#39;</span><span class="s">delta</span><span class="se">\&#39;</span><span class="s"> values are used!&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">defaultDelta</span> <span class="o">==</span> <span class="bp">False</span> <span class="ow">and</span> <span class="n">dmaxs</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">dmax</span> <span class="o">=</span> <span class="n">dmaxs</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+        <span class="k">elif</span> <span class="n">defaultDelta</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="n">dmaxs</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">dmax</span> <span class="o">=</span> <span class="n">dmaxs</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+        <span class="c"># Default dmax will be used</span>
+        <span class="k">elif</span> <span class="n">defaultDelta</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="n">dmaxs</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;bcc&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;ortho&#39;</span><span class="p">:</span>
+                    <span class="n">dmax_dict</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="mi">0</span><span class="p">:</span> <span class="mf">2.25</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">2.25</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">2.25</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">2.25</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mf">2.25</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mf">2.25</span><span class="p">}</span>
+                    <span class="n">dmax</span> <span class="o">=</span> <span class="n">dmax_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;mono&#39;</span><span class="p">:</span>
+                    <span class="n">dmax_dict</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="mi">0</span><span class="p">:</span> <span class="mf">1.59</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">1.59</span><span class="p">,</span> <span class="mi">0</span><span class="n">o2</span><span class="p">:</span> <span class="mf">1.59</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">1.59</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mf">1.59</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mf">1.59</span><span class="p">}</span>
+                    <span class="n">dmax</span> <span class="o">=</span> <span class="n">dmax_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+            <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;fcc&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;ortho&#39;</span><span class="p">:</span>
+                    <span class="c">#dmax_dict = {0:1.6,1:1.6,2:1.6,3:1.6,4:1.6,5:1.6}</span>
+                    <span class="c"># High-accuracy</span>
+                    <span class="n">dmax_dict</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="mi">0</span><span class="p">:</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mf">1.9</span><span class="p">}</span>
+                    <span class="n">dmax</span> <span class="o">=</span> <span class="n">dmax_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;mono&#39;</span><span class="p">:</span>
+                    <span class="c">#dmax_dict = {0:2.40,1:2.40,2:2.30,3:2.22,4:2.21,5:2.20}</span>
+                    <span class="c"># High-accuracy</span>
+                    <span class="n">dmax_dict</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="mi">0</span><span class="p">:</span> <span class="mf">2.70</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">2.70</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">2.70</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">2.70</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mf">2.70</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mf">2.65</span><span class="p">}</span>
+                    <span class="n">dmax</span> <span class="o">=</span> <span class="n">dmax_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+            <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;ortho&#39;</span><span class="p">:</span>
+                    <span class="n">dmax_dict</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="mi">0</span><span class="p">:</span> <span class="mf">2.52</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">2.49</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">2.455</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">2.43</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mf">2.4</span><span class="p">}</span>
+                    <span class="n">dmax</span> <span class="o">=</span> <span class="n">dmax_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;mono&#39;</span><span class="p">:</span>
+                    <span class="n">dmax_dict</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="mi">0</span><span class="p">:</span> <span class="mf">2.51</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">2.51</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">2.51</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">2.49</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mf">2.51</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="mf">2.49</span><span class="p">}</span>
+                    <span class="n">dmax</span> <span class="o">=</span> <span class="n">dmax_dict</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+        <span class="c"># Details can be found in Vitos&#39; book pages 104-110.</span>
+
+        <span class="k">if</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;bcc&#39;</span> <span class="ow">and</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;ortho&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="s">&#39;bcco{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s">&#39;bco&#39;</span><span class="p">,</span> <span class="n">dmax</span><span class="o">=</span><span class="n">dmax</span><span class="p">)</span>
+
+            <span class="n">latparams</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span>
+            <span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
+            <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span>
+                <span class="n">latparams</span><span class="o">=</span><span class="n">latparams</span><span class="p">,</span> <span class="n">latvectors</span><span class="o">=</span><span class="n">latvectors</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;bcc&#39;</span> <span class="ow">and</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;mono&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="s">&#39;bccm{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s">&#39;fco&#39;</span><span class="p">,</span> <span class="n">dmax</span><span class="o">=</span><span class="n">dmax</span><span class="p">)</span>
+
+            <span class="n">latparams</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">),</span>
+                         <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)]</span>
+            <span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
+            <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span>
+                <span class="n">latparams</span><span class="o">=</span><span class="n">latparams</span><span class="p">,</span> <span class="n">latvectors</span><span class="o">=</span><span class="n">latvectors</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;fcc&#39;</span> <span class="ow">and</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;ortho&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="s">&#39;fcco{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s">&#39;fco&#39;</span><span class="p">,</span> <span class="n">dmax</span><span class="o">=</span><span class="n">dmax</span><span class="p">)</span>
+
+            <span class="n">latparams</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">),</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span>
+            <span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
+            <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span>
+                <span class="n">latparams</span><span class="o">=</span><span class="n">latparams</span><span class="p">,</span> <span class="n">latvectors</span><span class="o">=</span><span class="n">latvectors</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;fcc&#39;</span> <span class="ow">and</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;mono&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="s">&#39;fccm{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s">&#39;bco&#39;</span><span class="p">,</span> <span class="n">dmax</span><span class="o">=</span><span class="n">dmax</span><span class="p">)</span>
+
+            <span class="n">latparams</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)]</span>
+            <span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
+            <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span>
+                <span class="n">latparams</span><span class="o">=</span><span class="n">latparams</span><span class="p">,</span> <span class="n">latvectors</span><span class="o">=</span><span class="n">latvectors</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span> <span class="ow">and</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;ortho&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="s">&#39;hcpo{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s">&#39;baco&#39;</span><span class="p">,</span> <span class="n">dmax</span><span class="o">=</span><span class="n">dmax</span><span class="p">)</span>
+
+            <span class="n">latparams</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">latparams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+            <span class="n">latparams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">))</span>
+            <span class="n">latparams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ca</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+            <span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span><span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">]</span>
+
+            <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">latparams</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">latparams</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">]]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span>
+                <span class="n">latparams</span><span class="o">=</span><span class="n">latparams</span><span class="p">,</span> <span class="n">latvectors</span><span class="o">=</span><span class="n">latvectors</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span> <span class="ow">and</span> <span class="n">dist</span> <span class="o">==</span> <span class="s">&#39;mono&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><span class="s">&#39;hcpm{0}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s">&#39;sm&#39;</span><span class="p">,</span> <span class="n">dmax</span><span class="o">=</span><span class="n">dmax</span><span class="p">)</span>
+
+            <span class="n">bam</span> <span class="o">=</span> <span class="n">ca</span>  <span class="c"># Distorted b over a</span>
+            <span class="n">cam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> \
+                <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c"># Distorted c over a</span>
+            <span class="n">latparams</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">bam</span><span class="p">,</span> <span class="n">cam</span><span class="p">]</span>
+
+            <span class="n">bs1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="n">bs2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">delta</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">ca</span><span class="p">,</span>
+                   <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">ca</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="n">bs3</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">cam</span><span class="p">]</span>
+            <span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span><span class="n">bs1</span><span class="p">,</span> <span class="n">bs2</span><span class="p">,</span> <span class="n">bs3</span><span class="p">]</span>
+
+            <span class="n">pos1</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+            <span class="n">pos2</span> <span class="o">=</span> <span class="p">[</span><span class="n">ca</span> <span class="o">*</span> <span class="n">delta</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">ca</span> <span class="o">*</span>
+                    <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">delta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="n">cam</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">]</span>
+            <span class="n">pos3</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="n">cam</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">]</span>
+            <span class="n">pos4</span> <span class="o">=</span> <span class="p">[</span><span class="n">pos2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">pos3</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pos2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">pos3</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pos2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">pos3</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+            <span class="n">basis</span> <span class="o">=</span> <span class="p">[</span><span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span><span class="p">,</span> <span class="n">pos3</span><span class="p">,</span> <span class="n">pos4</span><span class="p">]</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_values</span><span class="p">(</span>
+                <span class="n">latparams</span><span class="o">=</span><span class="n">latparams</span><span class="p">,</span> <span class="n">latvectors</span><span class="o">=</span><span class="n">latvectors</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="n">basis</span><span class="p">)</span>
+        <span class="k">return</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

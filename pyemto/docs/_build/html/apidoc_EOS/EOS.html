@@ -1,0 +1,857 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>EOS package &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">EOS package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-EOS.EOS">EOS.EOS module</a></li>
+<li><a class="reference internal" href="#module-EOS">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apidoc_EOS/EOS.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="eos-package">
+<h1>EOS package<a class="headerlink" href="#eos-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-EOS.EOS">
+<span id="eos-eos-module"></span><h2>EOS.EOS module<a class="headerlink" href="#module-EOS.EOS" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  9 10:51:00 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="EOS.EOS.EOS">
+<em class="property">class </em><code class="descclassname">EOS.EOS.</code><code class="descname">EOS</code><span class="sig-paren">(</span><em>name</em>, <em>xc='PBE'</em>, <em>method='morse'</em>, <em>units='bohr'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit equation of state for bulk systems.</p>
+<p>The following equations are available:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>morse</td>
+<td>PRB 37, 790 (1988)</td>
+</tr>
+<tr class="row-even"><td>sjeos</td>
+<td>PRB 63, 224115 (2001)</td>
+</tr>
+<tr class="row-odd"><td>taylor</td>
+<td>A third order Taylor series expansion about the minimum volume</td>
+</tr>
+<tr class="row-even"><td>murnaghan</td>
+<td>PRB 28, 5480 (1983)</td>
+</tr>
+<tr class="row-odd"><td>birch</td>
+<td>Intermetallic compounds: Principles and Practice,
+Vol I: Principles. pages 195-210</td>
+</tr>
+<tr class="row-even"><td>birchmurnaghan</td>
+<td>PRB 70, 224107</td>
+</tr>
+<tr class="row-odd"><td>pouriertarantola</td>
+<td>PRB 70, 224107</td>
+</tr>
+<tr class="row-even"><td>vinet</td>
+<td>PRB 70, 224107</td>
+</tr>
+<tr class="row-odd"><td>antonschmidt</td>
+<td>Intermetallics 11, 23-32 (2003)</td>
+</tr>
+<tr class="row-even"><td>oldpoly</td>
+<td>A third order polynomial fit (alternative implementation)</td>
+</tr>
+</tbody>
+</table>
+<p>Use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">eos</span> <span class="o">=</span> <span class="n">EquationOfState</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">eos</span><span class="o">=</span><span class="s">&#39;murnaghan&#39;</span><span class="p">)</span>
+<span class="n">v0</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">eos</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">eos</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> &#8211; </li>
+<li><strong>xc</strong> &#8211; (Default value = &#8216;PBE&#8217;)</li>
+<li><strong>method</strong> &#8211; (Default value = &#8216;morse&#8217;)</li>
+<li><strong>units</strong> &#8211; (Default value = &#8216;bohr&#8217;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="EOS.EOS.EOS.angstrom2bohr">
+<code class="descname">angstrom2bohr</code><span class="sig-paren">(</span><em>V</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.angstrom2bohr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.angstrom2bohr" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>V</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.antonschmidt">
+<code class="descname">antonschmidt</code><span class="sig-paren">(</span><em>V</em>, <em>Einf</em>, <em>B</em>, <em>n</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.antonschmidt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.antonschmidt" title="Permalink to this definition">¶</a></dt>
+<dd><p>From Intermetallics 11, 23-32 (2003)</p>
+<p>Einf should be E_infinity, i.e. infinite separation, but
+according to the paper it does not provide a good estimate
+of the cohesive energy. They derive this equation from an
+empirical formula for the volume dependence of pressure,</p>
+<p>E(vol) = E_inf + int(P dV) from V=vol to V=infinity</p>
+<p>but the equation breaks down at large volumes, so E_inf
+is not that meaningful</p>
+<p>n should be about -2 according to the paper.</p>
+<p>I find this equation does not fit volumetric data as well
+as the other equtions do.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>V</strong> &#8211; </li>
+<li><strong>Einf</strong> &#8211; </li>
+<li><strong>B</strong> &#8211; </li>
+<li><strong>n</strong> &#8211; </li>
+<li><strong>V0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Energy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.birch">
+<code class="descname">birch</code><span class="sig-paren">(</span><em>V</em>, <em>E0</em>, <em>B0</em>, <em>BP</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.birch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.birch" title="Permalink to this definition">¶</a></dt>
+<dd><p>From Intermetallic compounds: Principles and Practice, Vol. I: Principles
+Chapter 9 pages 195-210 by M. Mehl. B. Klein, D. Papaconstantopoulos
+paper downloaded from Web</p>
+<p>case where n=0</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>V</strong> &#8211; </li>
+<li><strong>E0</strong> &#8211; </li>
+<li><strong>B0</strong> &#8211; </li>
+<li><strong>BP</strong> &#8211; </li>
+<li><strong>V0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.birchmurnaghan">
+<code class="descname">birchmurnaghan</code><span class="sig-paren">(</span><em>V</em>, <em>E0</em>, <em>B0</em>, <em>BP</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.birchmurnaghan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.birchmurnaghan" title="Permalink to this definition">¶</a></dt>
+<dd><p>BirchMurnaghan equation from PRB 70, 224107</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>V</strong> &#8211; </li>
+<li><strong>E0</strong> &#8211; </li>
+<li><strong>B0</strong> &#8211; </li>
+<li><strong>BP</strong> &#8211; </li>
+<li><strong>V0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.bohr2angstrom">
+<code class="descname">bohr2angstrom</code><span class="sig-paren">(</span><em>WSrad</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.bohr2angstrom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.bohr2angstrom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>WSrad</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.ca_fit">
+<code class="descname">ca_fit</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.ca_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.ca_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits a polynomial to x vs. y data and calculates
+xmin and ymin from the curve.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>y</strong> &#8211; </li>
+<li><strong>n</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.distortion_fit">
+<code class="descname">distortion_fit</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>num=2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.distortion_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.distortion_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits the distortion_poly function to
+the distortion data.</p>
+<dl class="docutils">
+<dt>num <span class="classifier-delimiter">:</span> <span class="classifier">number of variables in the fitting function</span></dt>
+<dd>1 : E=a2*x**2
+2 : E=a2*x**2 + a0
+3 : E=a2*x**2 + a1*x + a0</dd>
+</dl>
+<p>The fit coefficient(s) and r-squared describing the accuracy of the fit are returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>y</strong> &#8211; </li>
+<li><strong>num</strong> &#8211; (Default value = 2)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.distortion_poly1">
+<code class="descname">distortion_poly1</code><span class="sig-paren">(</span><em>x</em>, <em>a2</em>, <em>a1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.distortion_poly1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.distortion_poly1" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>One variable form of the 2nd order polynomial</dt>
+<dd>which is used to fitting distortion vs. energy
+data in order to find elastic constants.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>a2</strong> &#8211; </li>
+<li><strong>a1</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.distortion_poly2">
+<code class="descname">distortion_poly2</code><span class="sig-paren">(</span><em>x</em>, <em>a2</em>, <em>a0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.distortion_poly2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.distortion_poly2" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Two variable form of the 2nd order polynomial</dt>
+<dd>which is used to fitting distortion vs. energy
+data in order to find elastic constants.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>a2</strong> &#8211; </li>
+<li><strong>a0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.distortion_poly3">
+<code class="descname">distortion_poly3</code><span class="sig-paren">(</span><em>x</em>, <em>a2</em>, <em>a1</em>, <em>a0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.distortion_poly3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.distortion_poly3" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Three variable form of the 2nd order polynomial</dt>
+<dd>which is used to fitting distortion vs. energy
+data in order to find elastic constants.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>a2</strong> &#8211; </li>
+<li><strong>a1</strong> &#8211; </li>
+<li><strong>a0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>swses</em>, <em>energies</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate volume, energy, and bulk modulus.</p>
+<p>A fitting input file is created in the &#8216;/fit&#8217; folder.
+Returns the optimal volume, the minumum energy, and the bulk
+modulus.  Notice that the units for the bulk modulus is
+eV/Angstrom^3 - to get the value in GPa, do this:</p>
+<p>v0, e0, B = eos.fit()
+print B*160.21773, &#8216;GPa&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>swses</strong> (<em>list(float)</em>) &#8211; List of WS-radii</li>
+<li><strong>energies</strong> (<em>list(float)</em>) &#8211; List of energies</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Eq. WS-rad, energy, bulk modulus, Gruneisen parameter</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, float, float, float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.fit2file">
+<code class="descname">fit2file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.fit2file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.fit2file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate volume, energy, and bulk modulus.</p>
+<p>Returns the optimal volume, the minumum energy, and the bulk
+modulus.  Notice that the units for the bulk modulus is
+eV/Angstrom^3 - to get the value in GPa, do this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">v0</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">eos</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">B</span><span class="o">*</span><span class="mf">160.21773</span><span class="p">,</span> <span class="s">&#39;GPa&#39;</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.fit_eval">
+<code class="descname">fit_eval</code><span class="sig-paren">(</span><em>sws</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.fit_eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.fit_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate the fitting function at given points</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sws</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.morse">
+<code class="descname">morse</code><span class="sig-paren">(</span><em>w</em>, <em>a0</em>, <em>b0</em>, <em>c0</em>, <em>l0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.morse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.morse" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>w</strong> &#8211; </li>
+<li><strong>a0</strong> &#8211; </li>
+<li><strong>b0</strong> &#8211; </li>
+<li><strong>c0</strong> &#8211; </li>
+<li><strong>l0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.murnaghan">
+<code class="descname">murnaghan</code><span class="sig-paren">(</span><em>V</em>, <em>E0</em>, <em>B0</em>, <em>BP</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.murnaghan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.murnaghan" title="Permalink to this definition">¶</a></dt>
+<dd><p>From PRB 28,5480 (1983)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>V</strong> &#8211; </li>
+<li><strong>E0</strong> &#8211; </li>
+<li><strong>B0</strong> &#8211; </li>
+<li><strong>BP</strong> &#8211; </li>
+<li><strong>V0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.oldpoly">
+<code class="descname">oldpoly</code><span class="sig-paren">(</span><em>V</em>, <em>c0</em>, <em>c1</em>, <em>c2</em>, <em>c3</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.oldpoly"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.oldpoly" title="Permalink to this definition">¶</a></dt>
+<dd><p>polynomial fit, 3rd order</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>V</strong> &#8211; </li>
+<li><strong>c0</strong> &#8211; </li>
+<li><strong>c1</strong> &#8211; </li>
+<li><strong>c2</strong> &#8211; </li>
+<li><strong>c3</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Energy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.parabola">
+<code class="descname">parabola</code><span class="sig-paren">(</span><em>x</em>, <em>a</em>, <em>b</em>, <em>c</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.parabola"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.parabola" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parabola polynomial function</p>
+<p>This function is used to fit the data to get good guesses for
+the equation of state fits.</p>
+<p>A 4th order polynomial fit to get good guesses for
+was not a good idea because for noisy data the fit is too wiggly
+2nd order seems to be sufficient, and guarentees a single minimum.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; </li>
+<li><strong>a</strong> &#8211; </li>
+<li><strong>b</strong> &#8211; </li>
+<li><strong>c</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Energy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><em>filename=None</em>, <em>show=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot fitted energy curve.</p>
+<p>Uses Matplotlib to plot the energy curve.  Use <em>show=True</em> to
+show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
+<em>filename=&#8217;abc.eps&#8217;</em> to save the figure to a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> &#8211; (Default value = None)</li>
+<li><strong>show</strong> &#8211; (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.pouriertarantola">
+<code class="descname">pouriertarantola</code><span class="sig-paren">(</span><em>V</em>, <em>E0</em>, <em>B0</em>, <em>BP</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.pouriertarantola"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.pouriertarantola" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pourier-Tarantola equation from PRB 70, 224107</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>V</strong> &#8211; </li>
+<li><strong>E0</strong> &#8211; </li>
+<li><strong>B0</strong> &#8211; </li>
+<li><strong>BP</strong> &#8211; </li>
+<li><strong>V0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.predicted">
+<code class="descname">predicted</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.predicted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.predicted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluates the EOS function using the calc. EOS params.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">EOS function</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">func</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.prepareData">
+<code class="descname">prepareData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.prepareData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.prepareData" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.taylor">
+<code class="descname">taylor</code><span class="sig-paren">(</span><em>V</em>, <em>E0</em>, <em>beta</em>, <em>alpha</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.taylor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.taylor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taylor Expansion up to 3rd order about V0</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>V</strong> &#8211; </li>
+<li><strong>E0</strong> &#8211; </li>
+<li><strong>beta</strong> &#8211; </li>
+<li><strong>alpha</strong> &#8211; </li>
+<li><strong>V0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.vinet">
+<code class="descname">vinet</code><span class="sig-paren">(</span><em>V</em>, <em>E0</em>, <em>B0</em>, <em>BP</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.vinet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.vinet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vinet equation from PRB 70, 224107</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>V</strong> &#8211; </li>
+<li><strong>E0</strong> &#8211; </li>
+<li><strong>B0</strong> &#8211; </li>
+<li><strong>BP</strong> &#8211; </li>
+<li><strong>V0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.vol2wsrad">
+<code class="descname">vol2wsrad</code><span class="sig-paren">(</span><em>V</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.vol2wsrad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.vol2wsrad" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>V</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.wsrad2vol">
+<code class="descname">wsrad2vol</code><span class="sig-paren">(</span><em>WSrad</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#EOS.wsrad2vol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.wsrad2vol" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>WSrad</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="EOS.EOS.curve_fit">
+<code class="descclassname">EOS.EOS.</code><code class="descname">curve_fit</code><span class="sig-paren">(</span><em>f</em>, <em>x</em>, <em>y</em>, <em>p0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/EOS/EOS.html#curve_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.curve_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits an arbitraty function to data (x,y).</p>
+<p>This part comes from:
+<a class="reference external" href="http://projects.scipy.org/scipy/browser/trunk/scipy/optimize/minpack.py">http://projects.scipy.org/scipy/browser/trunk/scipy/optimize/minpack.py</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>f</strong> &#8211; </li>
+<li><strong>x</strong> &#8211; </li>
+<li><strong>y</strong> &#8211; </li>
+<li><strong>p0</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-EOS">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-EOS" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 15:01:34 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

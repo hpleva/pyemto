@@ -1,0 +1,8 @@
+# Do not track pyc files
+*.pyc
+
+# Do not track emacs backupfiles
+*~
+
+# Do not track pyment patch files
+*.patch

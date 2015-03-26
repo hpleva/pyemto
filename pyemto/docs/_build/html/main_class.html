@@ -1,0 +1,1022 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Main class &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html" />
+    <link rel="up" title="pyEMTO Code Reference" href="code.html" />
+    <link rel="next" title="latticeinputs package" href="latticeinputs.html" />
+    <link rel="prev" title="pyEMTO Code Reference" href="code.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="latticeinputs.html" title="latticeinputs package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="pyEMTO Code Reference"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" accesskey="U">pyEMTO Code Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="code.html"
+                        title="previous chapter">pyEMTO Code Reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="latticeinputs.html"
+                        title="next chapter">latticeinputs package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/main_class.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="main-class">
+<h1>Main class<a class="headerlink" href="#main-class" title="Permalink to this headline">¶</a></h1>
+<p>Below is a description of the code found in the main part of the package, system.py.</p>
+<span class="target" id="module-system"></span><p>pyEmto v 0.9</p>
+<p>Created on Wed Dec  3 14:25:06 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="system.System">
+<em class="property">class </em><code class="descclassname">system.</code><code class="descname">System</code><span class="sig-paren">(</span><em>folder=None</em>, <em>EMTOdir=None</em>, <em>xc=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main class which provides the basis for the pyEMTO scripts.</p>
+<p>Somewhere in the beginning of a pyEMTO script a new instance of
+the system class should be created. All subsequent communication
+with the newly created system should be through the class methods,
+which are described below.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>folder</strong> (<em>str</em>) &#8211; Main folder where the input and output files will
+be stored. Use of absolute paths is recommended
+(Default value = current working directory)</li>
+<li><strong>EMTOdir</strong> (<em>str</em>) &#8211; Path to the folder of the EMTO installation.
+This entry can and should be modified by the user
+inside the System.__init__ function
+(Default value = /home/user/EMTO5.8)</li>
+<li><strong>xc</strong> (<em>str</em>) &#8211; Choice for the xc-functional can be set here.
+(Default value = PBE)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="system.System.bulk">
+<code class="descname">bulk</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>lat=None</em>, <em>atoms=None</em>, <em>concs=None</em>, <em>splts=None</em>, <em>sws=None</em>, <em>latname=None</em>, <em>latpath=None</em>, <em>emtopath=None</em>, <em>ibz=None</em>, <em>bmod=None</em>, <em>xc=None</em>, <em>ca=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.bulk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the basic parameters for bulk systems.</p>
+<p>Basic information concerning the system,
+such as the types of atoms and the crystal structure should be given to this function and
+it should be called right after the class instance has been created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> &#8211; Name of the system (Default value = None)</li>
+<li><strong>lat</strong> &#8211; The type of lattice structure (Default value = None)</li>
+<li><strong>atoms</strong> &#8211; List of atoms in the system (Default value = None)</li>
+<li><strong>concs</strong> &#8211; List of concentrations of the elements in the
+&#8216;atoms&#8217; list. This information is only used in CPA
+calculations (Default value = None)</li>
+<li><strong>splts</strong> &#8211; List of initial magnetic moments of the elements in the
+&#8216;atoms&#8217; list (Default value = None)</li>
+<li><strong>sws</strong> (<em>float</em>) &#8211; The Wigner-Seitz radius of the system (Default value = None)</li>
+<li><strong>latname</strong> &#8211; The &#8216;jobname&#8217; of the BMDL, KSTR and SHAPE output files. These
+structure output files have to be located in the &#8216;latpath&#8217;
+directory and they have to be named jobname.extention
+(Default value = None)</li>
+<li><strong>latpath</strong> &#8211; The absolute path to the folder where the &#8216;bmdl&#8217;, &#8216;kstr&#8217; and &#8216;shape&#8217;
+folders are located, which in turn contain the output files of the
+structure calculation (Default value = None)</li>
+<li><strong>emtopath</strong> &#8211; The absolute path to the folder where the EMTO installation is
+located (Default value = None)</li>
+<li><strong>ibz</strong> &#8211; The code number indicating the Bravais lattice that the crystal
+structure of the system has. For a list of possible values, please consult the
+EMTO manual (Default value = None)</li>
+<li><strong>bmod</strong> &#8211; The bulk modulus can be inputed here and if it is given,
+it will be used by the elastic modulus routines (Default value = None)</li>
+<li><strong>xc</strong> &#8211; The choice of the xc-functional. If None, PBE will be used as default
+(Default value = None)</li>
+<li><strong>ca</strong> &#8211; The c/a ratio of hcp structures can be inputed here and if it is given,
+it will be used by the elastic modulus routines (Default value = None)</li>
+<li><strong>**kwargs</strong> &#8211; <p>Arbitrary other KGRN and KFCD input parameters can be given here
+as keyword arguments. They will be passed down to the
+self.emto.set_values() function</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.check_conv">
+<code class="descname">check_conv</code><span class="sig-paren">(</span><em>jobname</em>, <em>folder='./'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.check_conv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.check_conv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the convergence of given KGRN and KFCD calculations by reading
+their output files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the output files</li>
+<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the output files are located (Default value = &#8221;./&#8221;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Convergence of KGRN (True/False), convergence of KFCD  (True/False)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">boolean, boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.check_folders">
+<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.check_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether or not given folders exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; <p>List of folders</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.check_str">
+<code class="descname">check_str</code><span class="sig-paren">(</span><em>jobname</em>, <em>folder='./'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.check_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.check_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a KSTR calculation file exists and has converged.</p>
+<p>Only KSTR file is checked because BMDL and SHAPE are fast to
+rerun in any case.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) &#8211; Filename of the structure output file</li>
+<li><strong>folder</strong> (<em>str</em>) &#8211; Folder where the output file is located (Default value = &#8221;./&#8221;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if KSTR has finished and False if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.create_jobname">
+<code class="descname">create_jobname</code><span class="sig-paren">(</span><em>jobname=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.create_jobname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.create_jobname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates jobnames based on system information.</p>
+<p>Creates a jobname based on the optional input prefix <em>jobname</em>.
+The format of the full jobname in this case will be:
+jobname_3.000000, where 3.000000 is the sws.</p>
+<p>If <em>jobname</em> prefix is not given, full jobname is generated automatically
+based on system data self.sws, self.atoms and self.concs.
+The format of the jobname is: au0.50pd0.50_3.000000, where 0.50 are the
+atomic concentrations and 3.000000 is the sws.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>jobname</strong> (<em>str</em>) &#8211; Optional prefix for the full jobname (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Newly created full jobname</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.elastic_constants_analyze">
+<code class="descname">elastic_constants_analyze</code><span class="sig-paren">(</span><em>sws=None</em>, <em>bmod=None</em>, <em>ca=None</em>, <em>R=None</em>, <em>cs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.elastic_constants_analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.elastic_constants_analyze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes the output files generated using the
+elastic_constants_batch_generate function.</p>
+<p>The results are printed on screen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius (Default value = None)</li>
+<li><strong>bmod</strong> (<em>float</em>) &#8211; Bulk modulus (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
+<li><strong>R</strong> (<em>float</em>) &#8211; Dimensionless quantity of hcp systems (Default value = None)</li>
+<li><strong>cs</strong> (<em>float</em>) &#8211; Second order c/a-derivative of the energy (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.elastic_constants_batch_calculate">
+<code class="descname">elastic_constants_batch_calculate</code><span class="sig-paren">(</span><em>sws=None</em>, <em>bmod=None</em>, <em>ca=None</em>, <em>R=None</em>, <em>cs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.elastic_constants_batch_calculate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.elastic_constants_batch_calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the elastic constants of a system using the parallelism
+of the batch system.</p>
+<p>This is a combination of the batch_generate and batch_analyze functions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius (Default value = None)</li>
+<li><strong>bmod</strong> (<em>float</em>) &#8211; Bulk modulus (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
+<li><strong>R</strong> (<em>float</em>) &#8211; The dimensionless quantity of hcp systems (Default value = None)</li>
+<li><strong>cs</strong> (<em>float</em>) &#8211; Second order c/a-derivative of the energy (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.elastic_constants_batch_generate">
+<code class="descname">elastic_constants_batch_generate</code><span class="sig-paren">(</span><em>sws=None</em>, <em>ca=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.elastic_constants_batch_generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.elastic_constants_batch_generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates all the necessary input files based on the class data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of jobnames</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list(str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.elastic_constants_serial_calculate">
+<code class="descname">elastic_constants_serial_calculate</code><span class="sig-paren">(</span><em>sws=None</em>, <em>bmod=None</em>, <em>ca=None</em>, <em>R=None</em>, <em>cs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.elastic_constants_serial_calculate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.elastic_constants_serial_calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates elastic constants on one CPU without using the batch system.</p>
+<p>At the end the results are printed on screen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius (Default value = None)</li>
+<li><strong>bmod</strong> (<em>float</em>) &#8211; Bulk modulus (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.find_lc">
+<code class="descname">find_lc</code><span class="sig-paren">(</span><em>delta=0.01</em>, <em>prn=True</em>, <em>xc='PBE'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.find_lc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.find_lc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes initial estimates for the ground state quantities for cubic systems.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>delta</strong> (<em>float</em>) &#8211; Step size for the volume vs. energy array (Default value = 0.01)</li>
+<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed, False if not (Default value = True)</li>
+<li><strong>xc</strong> (<em>str</em>) &#8211; Choice of the xc-functional (Default value = &#8216;PBE&#8217;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">WS-radius, bulk modulus, c/a and energy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, float, float, float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.find_lc_hcp">
+<code class="descname">find_lc_hcp</code><span class="sig-paren">(</span><em>delta=0.01</em>, <em>prn=True</em>, <em>xc='PBE'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.find_lc_hcp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.find_lc_hcp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes initial estimates for the ground state quantities for hcp systems.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>delta</strong> (<em>float</em>) &#8211; Step size for the volume vs. energy array (Default value = 0.01)</li>
+<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed, False if not (Default value = True)</li>
+<li><strong>xc</strong> (<em>str</em>) &#8211; Choice of the xc-functional (Default value = &#8216;PBE&#8217;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">WS-radius, bulk modulus, c/a and energy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, float, float, float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.get_energy">
+<code class="descname">get_energy</code><span class="sig-paren">(</span><em>jobname</em>, <em>func='PBE'</em>, <em>folder='./'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.get_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.get_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts total energy from the KFCD output file.</p>
+<p>Different total energies given by different xc-functionals can
+be selected using the <em>func</em> input parameter. Default value is 
+&#8216;PBE&#8217;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the KFCD output file</li>
+<li><strong>func</strong> (<em>str</em>) &#8211; Name of the xc-functional (Default value = &#8220;PBE&#8221;)</li>
+<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the output file is located (Default value = &#8221;./&#8221;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Total energy if it is found, otherwise return None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.get_jobs_status">
+<code class="descname">get_jobs_status</code><span class="sig-paren">(</span><em>jobids=None</em>, <em>toplevel=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.get_jobs_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.get_jobs_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns status of the jobs indicated
+(jobsdict or list of job ids) or all jobs if no jobids supplied.
+Set toplevel=False for job step data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobids</strong> (<em>dict or list</em>) &#8211; List of job IDs (Default value = None)</li>
+<li><strong>toplevel</strong> (<em>boolean</em>) &#8211; (Default value = True)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Job statuses</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list(str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.get_status_counts">
+<code class="descname">get_status_counts</code><span class="sig-paren">(</span><em>jobids=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.get_status_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.get_status_counts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the counts of all jobs by status category.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>jobids</strong> &#8211; (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.lat_to_ibz">
+<code class="descname">lat_to_ibz</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.lat_to_ibz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.lat_to_ibz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Bravais lattice ibz code based on the input
+string code, e.g. lat=&#8217;bcc&#8217; or lat=&#8217;fco&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lat</strong> (<em>str</em>) &#8211; lattice string code</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ibz code corresponding to the Bravais lattice
+given by the &#8216;lat&#8217; key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.lattice_constants_analyze">
+<code class="descname">lattice_constants_analyze</code><span class="sig-paren">(</span><em>sws=None</em>, <em>ca=None</em>, <em>prn=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.lattice_constants_analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.lattice_constants_analyze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyzes the output files generated using the
+lattice_constants_batch_generate function.</p>
+<p>The results are printed on screen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>list(float)</em>) &#8211; List of WS-radii (Default value = None)</li>
+<li><strong>ca</strong> (<em>list(float)</em>) &#8211; List hpc c/a ratios  (Default value = None)</li>
+<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed on screen, False if not (Default value = True)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Equilibrium WS-radius, c/a (only hcp), bulk modulus, energy,
+R (only hcp) and cs (only hcp)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, float (only hcp), float, float, float (only hcp), float (only hcp)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.lattice_constants_batch_calculate">
+<code class="descname">lattice_constants_batch_calculate</code><span class="sig-paren">(</span><em>sws=None</em>, <em>ca=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.lattice_constants_batch_calculate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.lattice_constants_batch_calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the ground state WS-radius using the parallelism of
+the batch system by submitting one job for each entry in the <em>sws</em> list.</p>
+<p>This is a combination of the batch_generate and batch_analyze functions.
+At the end results are printed on screen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>list(float)</em>) &#8211; List of WS-radii (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">WS-radius, c/a (only hcp), bulk modulus, energy,
+R (only hcp), cs (only hcp)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, float (only hcp), float, float,
+float (only hcp), float (only hcp)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.lattice_constants_batch_generate">
+<code class="descname">lattice_constants_batch_generate</code><span class="sig-paren">(</span><em>sws=None</em>, <em>ca=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.lattice_constants_batch_generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.lattice_constants_batch_generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates input files and writes them to disk.</p>
+<p>Based on the input <em>sws</em> and <em>ca</em> lists jobnames are created and
+then corresponding input files are generated and written
+on disk. List of jobnames are returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>list(float)</em>) &#8211; List of WS-radii (Default value = None)</li>
+<li><strong>ca</strong> (<em>list(float)</em>) &#8211; List of hcp c/a ratios (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of jobnames</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list(str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.lattice_constants_serial_calculate">
+<code class="descname">lattice_constants_serial_calculate</code><span class="sig-paren">(</span><em>sws=None</em>, <em>stype='simple'</em>, <em>rerun=False</em>, <em>skip=False</em>, <em>delta=0.01</em>, <em>refine=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.lattice_constants_serial_calculate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.lattice_constants_serial_calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the equilibrium lattice constants on one CPU <strong>WITHOUT</strong> the batch system.</p>
+<p>Also the eq. bulk modulus, c/a ratio and energy are returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>float</em>) &#8211; Initial guess for the eq. WS-radius (Default value = None)</li>
+<li><strong>stype</strong> (<em>str</em>) &#8211; Type of the energy minimisation algorithm (Default value = &#8220;simple&#8221;)</li>
+<li><strong>rerun</strong> (<em>boolean</em>) &#8211; True if  (Default value = False)</li>
+<li><strong>skip</strong> (<em>boolean</em>) &#8211; True if (Default value = False)</li>
+<li><strong>delta</strong> (<em>float</em>) &#8211; Step size (Default value = 0.01)</li>
+<li><strong>refine</strong> (<em>boolean</em>) &#8211; True if an optimized WS-radius vs. energy curve
+should be computed, False if not (Default value = True)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">WS-radius, c/a, bulk modulus, energy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, float, float, float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.predict_next_sws">
+<code class="descname">predict_next_sws</code><span class="sig-paren">(</span><em>swses</em>, <em>en</em>, <em>maxdelta=0.05</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.predict_next_sws"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.predict_next_sws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict next WS-radius based on a simple gradient descent algorithm.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>swses</strong> (<em>list(float)</em>) &#8211; List of current WS-radii</li>
+<li><strong>en</strong> (<em>list(float)</em>) &#8211; List of current energies</li>
+<li><strong>maxdelta</strong> (<em>float</em>) &#8211; Maximum step size (Default value = 0.05)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Next WS-radii and True if energy minimum has been found,
+False if not yet found</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.print_sws_ens">
+<code class="descname">print_sws_ens</code><span class="sig-paren">(</span><em>string</em>, <em>swses</em>, <em>energies</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.print_sws_ens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.print_sws_ens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the WS-radii and calculated energies of cubic systems</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> (<em>str</em>) &#8211; Header for the printout</li>
+<li><strong>swses</strong> (<em>list(float)</em>) &#8211; List of WS-radii</li>
+<li><strong>energies</strong> (<em>list(float)</em>) &#8211; List of energies</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.print_sws_ens_hcp">
+<code class="descname">print_sws_ens_hcp</code><span class="sig-paren">(</span><em>string</em>, <em>swses</em>, <em>energies</em>, <em>cas</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.print_sws_ens_hcp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.print_sws_ens_hcp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the WS-radii, ca/a ratios and calculated energies of hcp systems</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> (<em>str</em>) &#8211; Header for the printout</li>
+<li><strong>swses</strong> (<em>list(float)</em>) &#8211; List of WS-radii</li>
+<li><strong>energies</strong> (<em>list(float)</em>) &#8211; List of energies</li>
+<li><strong>cas</strong> (<em>list(float)</em>) &#8211; List of c/a ratios</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.refine_lc">
+<code class="descname">refine_lc</code><span class="sig-paren">(</span><em>sws</em>, <em>delta=0.01</em>, <em>prn=True</em>, <em>xc='PBE'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.refine_lc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.refine_lc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates a more accurate equilibrium volume for cubic systems.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius</li>
+<li><strong>delta</strong> (<em>float</em>) &#8211; Step size for the volume vs. energy array (Default value = 0.01)</li>
+<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed, False if not (Default value = True)</li>
+<li><strong>xc</strong> (<em>str</em>) &#8211; Choice of the xc-functional (Default value = &#8216;PBE&#8217;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Ws-radius, bulk modulus, c/a and energy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, float, float, float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.refine_lc_hcp">
+<code class="descname">refine_lc_hcp</code><span class="sig-paren">(</span><em>sws</em>, <em>ca0</em>, <em>delta=0.01</em>, <em>prn=True</em>, <em>xc='PBE'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.refine_lc_hcp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.refine_lc_hcp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates a more accurate equilibrium volume for hcp systems.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius</li>
+<li><strong>ca0</strong> (<em>float</em>) &#8211; Previously computed eq. c/a ratio</li>
+<li><strong>delta</strong> (<em>float</em>) &#8211; Step size for the volume vs. energy array (Default value = 0.01)</li>
+<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed, False if not (Default value = True)</li>
+<li><strong>xc</strong> (<em>str</em>) &#8211; Choice of the xc-functional (Default value = &#8216;PBE&#8217;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Ws-radius, bulk modulus, c/a and energy</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float, float, float, float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.runemto">
+<code class="descname">runemto</code><span class="sig-paren">(</span><em>jobname</em>, <em>folder='./'</em>, <em>EMTODIR=None</em>, <em>onlyKFCD=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.runemto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.runemto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run KGRN and KFCD <strong>WITHOUT</strong> using the batch system and check convergence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the input files</li>
+<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the input files are located (Default value = &#8221;./&#8221;)</li>
+<li><strong>EMTODIR</strong> (<em>str</em>) &#8211; Path to the EMTO installation folder (Default value = None)</li>
+<li><strong>onlyKFCD</strong> (<em>boolean</em>) &#8211; True if only KFCD needs to calculated,
+False if also KGRN (Default value = False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if the calculations converged, False if not</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">boolean</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.runlattice">
+<code class="descname">runlattice</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>folder='./'</em>, <em>EMTODIR=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.runlattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.runlattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run BMDL, KSTR and SHAPE calculation <strong>WITHOUT</strong> using the batch system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the input files (Default value = None)</li>
+<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the input files are located (Default value = &#8221;./&#8221;)</li>
+<li><strong>EMTODIR</strong> (<em>str</em>) &#8211; Path to the EMTO installation folder (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.submit_jobs">
+<code class="descname">submit_jobs</code><span class="sig-paren">(</span><em>jobnames</em>, <em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.submit_jobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.submit_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a list of jobnames and submits the corresponding
+batch scripts to the batch system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobnames</strong> (<em>list(float)</em>) &#8211; List of jobnames</li>
+<li><strong>folder</strong> (<em>str</em>) &#8211; Folder where the batch scripts are located (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of job ID numbers</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list(str)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.wait_for_jobs">
+<code class="descname">wait_for_jobs</code><span class="sig-paren">(</span><em>jobsdict</em>, <em>restart_partition='general'</em>, <em>sleeptime=5</em>, <em>restart_z=None</em>, <em>restart_stragglers_after=0.75</em>, <em>kill_if_all_ssusp=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.wait_for_jobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.wait_for_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loops checking status until no jobs are waiting or running / all are finished.</p>
+<p>wait/run states:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="9%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Meaning</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td>CF</td>
+<td>CONFIGURING</td>
+<td>Job has been allocated resources, but are waiting for them to become ready for use (e.g. booting).</td>
+</tr>
+<tr class="row-odd"><td>CG</td>
+<td>COMPLETING</td>
+<td>Job is in the process of completing. Some processes on some nodes may still be active.</td>
+</tr>
+<tr class="row-even"><td>PD</td>
+<td>PENDING</td>
+<td>Job is awaiting resource allocation.</td>
+</tr>
+<tr class="row-odd"><td>R</td>
+<td>RUNNING</td>
+<td>Job currently has an allocation.</td>
+</tr>
+<tr class="row-even"><td>RS</td>
+<td>RESIZING</td>
+<td>Job is about to change size.</td>
+</tr>
+<tr class="row-odd"><td>S</td>
+<td>SUSPENDED</td>
+<td>Job has an allocation, but execution has been suspended.</td>
+</tr>
+</tbody>
+</table>
+<p>done states:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="9%" />
+<col width="86%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Meaning</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td>CA</td>
+<td>CANCELLED</td>
+<td>Job was explicitly cancelled by the user or system administrator.  The job may or may not have been initiated.</td>
+</tr>
+<tr class="row-odd"><td>CD</td>
+<td>COMPLETED</td>
+<td>Job has terminated all processes on all nodes.</td>
+</tr>
+<tr class="row-even"><td>F</td>
+<td>FAILED</td>
+<td>Job terminated with non-zero exit code or other failure condition.</td>
+</tr>
+<tr class="row-odd"><td>NF</td>
+<td>NODE_FAIL</td>
+<td>Job terminated due to failure of one or more allocated nodes.</td>
+</tr>
+<tr class="row-even"><td>PR</td>
+<td>PREEMPTED</td>
+<td>Job terminated due to preemption.</td>
+</tr>
+<tr class="row-odd"><td>TO</td>
+<td>TIMEOUT</td>
+<td>Job terminated upon reaching its time limit.</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobsdict</strong> &#8211; </li>
+<li><strong>restart_partition</strong> &#8211; (Default value = &#8216;general&#8217;)</li>
+<li><strong>sleeptime</strong> &#8211; (Default value = 5)</li>
+<li><strong>restart_z</strong> &#8211; (Default value = None)</li>
+<li><strong>restart_stragglers_after</strong> &#8211; (Default value = 0.75)</li>
+<li><strong>kill_if_all_ssusp</strong> &#8211; (Default value = False)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.which_error">
+<code class="descname">which_error</code><span class="sig-paren">(</span><em>jobname</em>, <em>folder='./'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.which_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.which_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to determine the reason why a given KGRN calculation did not converge.</p>
+<p>The reason for the crash will be printed on screen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the KGRN output file</li>
+<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the output file is located (Default value = &#8221;./&#8221;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="latticeinputs.html" title="latticeinputs package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="pyEMTO Code Reference"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" >pyEMTO Code Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

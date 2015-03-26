@@ -1,0 +1,138 @@
+Submitted batch job 1021848
+Submitted batch job 1021849
+Submitted batch job 1021850
+Submitted batch job 1021851
+Submitted batch job 1021852
+Submitted batch job 1021853
+Submitted batch job 1021854
+Submitted batch job 1021855
+Submitted batch job 1021856
+Submitted batch job 1021857
+Submitted batch job 1021858
+Submitted batch job 1021859
+
+wait_for_jobs: Submitted 12 jobs
+wait_for_jobs: Will be requesting job statuses every 60 seconds
+
+0:01:00 {'RUNNING': 12} (  0% completion)
+0:02:00 {'RUNNING': 12} (  0% completion)
+0:03:00 {'RUNNING': 12} (  0% completion)
+0:04:00 {'RUNNING': 12} (  0% completion)
+0:05:00 {'RUNNING': 12} (  0% completion)
+0:06:00 {'RUNNING': 12} (  0% completion)
+0:07:00 {'RUNNING': 12} (  0% completion)
+0:08:01 {'RUNNING': 12} (  0% completion)
+0:09:01 {'RUNNING': 12} (  0% completion)
+0:10:01 {'RUNNING': 12} (  0% completion)
+0:11:01 {'RUNNING': 12} (  0% completion)
+0:12:01 {'RUNNING': 12} (  0% completion)
+0:13:01 {'RUNNING': 12} (  0% completion)
+0:14:01 {'RUNNING': 12} (  0% completion)
+0:15:01 {'RUNNING': 12} (  0% completion)
+0:16:01 {'RUNNING': 12} (  0% completion)
+0:17:02 {'RUNNING': 12} (  0% completion)
+0:18:02 {'RUNNING': 12} (  0% completion)
+0:19:02 {'RUNNING': 12} (  0% completion)
+0:20:02 {'RUNNING': 12} (  0% completion)
+0:21:02 {'RUNNING': 12} (  0% completion)
+0:22:02 {'RUNNING': 12} (  0% completion)
+0:23:02 {'RUNNING': 12} (  0% completion)
+0:24:02 {'RUNNING': 12} (  0% completion)
+0:25:03 {'RUNNING': 12} (  0% completion)
+0:26:03 {'RUNNING': 12} (  0% completion)
+0:27:03 {'RUNNING': 12} (  0% completion)
+0:28:03 {'RUNNING': 12} (  0% completion)
+0:29:03 {'RUNNING': 12} (  0% completion)
+0:30:03 {'RUNNING': 12} (  0% completion)
+0:31:03 {'RUNNING': 12} (  0% completion)
+0:32:03 {'RUNNING': 12} (  0% completion)
+0:33:03 {'RUNNING': 12} (  0% completion)
+0:34:04 {'RUNNING': 12} (  0% completion)
+0:35:04 {'RUNNING': 12} (  0% completion)
+0:36:04 {'RUNNING': 12} (  0% completion)
+0:37:04 {'RUNNING': 12} (  0% completion)
+0:38:04 {'RUNNING': 12} (  0% completion)
+0:39:04 {'RUNNING': 12} (  0% completion)
+0:40:04 {'RUNNING': 12} (  0% completion)
+0:41:04 {'RUNNING': 12} (  0% completion)
+0:42:05 {'RUNNING': 12} (  0% completion)
+0:43:05 {'RUNNING': 12} (  0% completion)
+0:44:05 {'RUNNING': 12} (  0% completion)
+0:45:05 {'RUNNING': 12} (  0% completion)
+0:46:05 {'RUNNING': 12} (  0% completion)
+0:47:05 {'RUNNING': 12} (  0% completion)
+0:48:05 {'RUNNING': 12} (  0% completion)
+0:49:05 {'RUNNING': 12} (  0% completion)
+0:50:05 {'RUNNING': 12} (  0% completion)
+0:51:06 {'RUNNING': 12} (  0% completion)
+0:52:06 {'RUNNING': 12} (  0% completion)
+0:53:06 {'RUNNING': 12} (  0% completion)
+0:54:06 {'RUNNING': 12} (  0% completion)
+0:55:06 {'RUNNING': 12} (  0% completion)
+0:56:06 {'RUNNING': 12} (  0% completion)
+0:57:06 {'RUNNING': 12} (  0% completion)
+0:58:06 {'RUNNING': 12} (  0% completion)
+0:59:07 {'RUNNING': 11, 'COMPLETED': 1} (  8% completion)
+1:00:07 {'RUNNING': 10, 'COMPLETED': 2} ( 16% completion)
+1:01:07 {'RUNNING': 9, 'COMPLETED': 3} ( 25% completion)
+1:02:07 {'RUNNING': 9, 'COMPLETED': 3} ( 25% completion)
+1:03:07 {'RUNNING': 9, 'COMPLETED': 3} ( 25% completion)
+1:04:07 {'RUNNING': 9, 'COMPLETED': 3} ( 25% completion)
+1:05:07 {'RUNNING': 9, 'COMPLETED': 3} ( 25% completion)
+1:06:07 {'RUNNING': 9, 'COMPLETED': 3} ( 25% completion)
+1:07:08 {'RUNNING': 9, 'COMPLETED': 3} ( 25% completion)
+1:08:08 {'RUNNING': 8, 'COMPLETED': 4} ( 33% completion)
+1:09:08 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:10:08 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:11:08 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:12:08 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:13:08 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:14:08 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:15:09 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:16:09 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:17:09 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:18:09 {'COMPLETED': 6, 'RUNNING': 6} ( 50% completion)
+1:19:09 {'COMPLETED': 7, 'RUNNING': 5} ( 58% completion)
+1:20:09 {'COMPLETED': 7, 'RUNNING': 5} ( 58% completion)
+1:21:09 {'COMPLETED': 8, 'RUNNING': 4} ( 66% completion)
+1:22:09 {'COMPLETED': 10, 'RUNNING': 2} ( 83% completion)
+1:23:10 {'COMPLETED': 10, 'RUNNING': 2} ( 83% completion)
+1:24:10 {'COMPLETED': 10, 'RUNNING': 2} ( 83% completion)
+1:25:10 {'COMPLETED': 11, 'RUNNING': 1} ( 91% completion)
+1:26:10 {'COMPLETED': 12} (100% completion)
+completed 12 batch jobs in 1:26:10
+
+***cubic_elastic_constants***
+
+fe1.00
+
+c11(GPa) = 299.60
+c12(GPa) = 142.70
+c44(GPa) = 105.95
+c' (GPa) =  78.45
+B  (GPa) = 195.00
+
+Voigt average:
+
+BV(GPa)  = 195.00
+GV(GPa)  =  94.95
+EV(GPa)  = 245.07
+vV(GPa)  =   0.29
+
+Reuss average:
+
+BR(GPa)  = 195.00
+GR(GPa)  =  92.92
+ER(GPa)  = 240.55
+vR(GPa)  =   0.29
+
+Hill average:
+
+BH(GPa)  = 195.00
+GH(GPa)  =  93.93
+EH(GPa)  = 242.81
+vH(GPa)  =   0.29
+
+Elastic anisotropy:
+
+AVR(GPa)  =   0.01

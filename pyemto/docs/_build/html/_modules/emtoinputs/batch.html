@@ -1,0 +1,278 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>emtoinputs.batch &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for emtoinputs.batch</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Wed Dec  3 15:09:24 2014</span>
+
+<span class="sd">@author: Matti Ropo</span>
+<span class="sd">@author: Henrik Levämäki</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<div class="viewcode-block" id="Batch"><a class="viewcode-back" href="../../emtoinputs.html#emtoinputs.batch.Batch">[docs]</a><span class="k">class</span> <span class="nc">Batch</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Creates a batch script for running KGRN and KFCD calculations on a</span>
+<span class="sd">    supercomputer environment (EMTO 5.8).</span>
+
+<span class="sd">    !!! Currently only SLURM is supported. !!!</span>
+
+<span class="sd">    :param jobname: Name for the KGRN and KFCD jobs. This will become</span>
+<span class="sd">                    the first part of the input and output file names.</span>
+<span class="sd">    :type jobname: str</span>
+<span class="sd">    :param runtime: Maximum running time for the individual batch jobs.</span>
+<span class="sd">                    The format of this entry should be &#39;xx:yy:zz&#39;, where</span>
+<span class="sd">                    xx is hours, yy is minutes and zz is seconds.</span>
+<span class="sd">    :type runtime: str</span>
+<span class="sd">    :param EMTOdir: Path to the EMTO installation (Default value = &#39;$HOME/EMTO5.8&#39;)</span>
+<span class="sd">    :type EMTOdir: str</span>
+<span class="sd">    :param emtopath: Path to the folder where the KGRN and KFCD input files are</span>
+<span class="sd">                     located</span>
+<span class="sd">    :type emtopath: str</span>
+<span class="sd">    :param runKGRN: True if KGRN should be run, False if KGRN should not be run</span>
+<span class="sd">    :type runKGRN: boolean</span>
+<span class="sd">    :param runKFCD: True if KFCD should be run, False if KFCD should not be run</span>
+<span class="sd">    :type runKFCD: boolean</span>
+<span class="sd">    :returns: None</span>
+<span class="sd">    :rtype: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">runtime</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">EMTOdir</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">emtopath</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">runKGRN</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">runKFCD</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="c"># Batch script related parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">=</span> <span class="n">jobname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="n">runtime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="o">=</span> <span class="n">emtopath</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">=</span> <span class="n">EMTOdir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runKGRN</span> <span class="o">=</span> <span class="n">runKGRN</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runKFCD</span> <span class="o">=</span> <span class="n">runKFCD</span>
+
+        <span class="k">return</span>
+
+<div class="viewcode-block" id="Batch.output"><a class="viewcode-back" href="../../emtoinputs.html#emtoinputs.batch.Batch.output">[docs]</a>    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Output first part of the kgrn input file in formated string</span>
+
+<span class="sd">        :returns: Batch job script file in the form of a long string</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;#!/bin/bash&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;#SBATCH -J &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;#SBATCH -t &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;#SBATCH -o &quot;</span> <span class="o">+</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.output&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;#SBATCH -e &quot;</span> <span class="o">+</span> \
+            <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.error&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="c"># line += &quot;#SBATCH -x pl1,pl11&quot;+&quot;\n&quot;+&quot;\n&quot;</span>
+
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="s">&quot;/usr/bin/time &quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runKGRN</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s">&quot;/kgrn/source/kgrn_cpa &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
+                    <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.kgrn &gt; &quot;</span> <span class="o">+</span>\
+                    <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_kgrn.output&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runKFCD</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s">&quot;/kfcd/source/kfcd_cpa &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
+                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.kfcd &gt; &quot;</span> <span class="o">+</span>\
+                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_kfcd.output&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="n">line</span>
+</div>
+<div class="viewcode-block" id="Batch.write_input_file"><a class="viewcode-back" href="../../emtoinputs.html#emtoinputs.batch.Batch.write_input_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(self,str) -&gt;(None)</span>
+
+<span class="sd">            Save BMDL input data to file named filename</span>
+
+<span class="sd">        :param folder:  (Default value = None)</span>
+<span class="sd">        :type folder:</span>
+<span class="sd">        :returns:</span>
+<span class="sd">        :rtype:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># Check data integrity before anything is written on disk or run</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_input_file</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">folder</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c">#sys.exit(&#39;Batch_emto.write_input_file: \&#39;folder\&#39; has to be given!&#39;)</span>
+            <span class="n">folder</span> <span class="o">=</span> <span class="s">&quot;./&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_folders</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+        <span class="n">fl</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s">&#39;/{0}.cmd&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">),</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">fl</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">())</span>
+        <span class="n">fl</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Batch.set_values"><a class="viewcode-back" href="../../emtoinputs.html#emtoinputs.batch.Batch.set_values">[docs]</a>    <span class="k">def</span> <span class="nf">set_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param key:</span>
+<span class="sd">        :type key:</span>
+<span class="sd">        :param value:</span>
+<span class="sd">        :type value:</span>
+<span class="sd">        :returns:</span>
+<span class="sd">        :rtype:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span>
+                <span class="s">&#39;WARNING: Batch_emto() class has no attribute </span><span class="se">\&#39;</span><span class="s">{0}</span><span class="se">\&#39;</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="Batch.check_input_file"><a class="viewcode-back" href="../../emtoinputs.html#emtoinputs.batch.Batch.check_input_file">[docs]</a>    <span class="k">def</span> <span class="nf">check_input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform various checks on the class data to</span>
+<span class="sd">            make sure that all necessary data exists</span>
+<span class="sd">            before we attempt to write the input file to disk</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># Mission critical parameters</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
+                <span class="s">&#39;Batch_emto.check_input_file: </span><span class="se">\&#39;</span><span class="s">jobname</span><span class="se">\&#39;</span><span class="s"> has to be given!&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="s">&quot;02:00:00&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">emtopath</span> <span class="o">=</span> <span class="s">&quot;./&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">=</span> <span class="s">&quot;$HOME/EMTO5.8/&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runKGRN</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runKGRN</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runKFCD</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runKFCD</span> <span class="o">=</span> <span class="bp">True</span>
+</div>
+<div class="viewcode-block" id="Batch.check_folders"><a class="viewcode-back" href="../../emtoinputs.html#emtoinputs.batch.Batch.check_folders">[docs]</a>    <span class="k">def</span> <span class="nf">check_folders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Checks whether or not given folders exist.</span>
+
+<span class="sd">        :param *args: Folder name of a list of folder names</span>
+<span class="sd">        :type *args: str or list(str)</span>
+<span class="sd">        :returns: None</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="k">return</span>
+</div>
+<div class="viewcode-block" id="Batch.cleanup_path"><a class="viewcode-back" href="../../emtoinputs.html#emtoinputs.batch.Batch.cleanup_path">[docs]</a>    <span class="k">def</span> <span class="nf">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cleans up directory path strings from double forward slashes.</span>
+
+<span class="sd">        :param string: Path string</span>
+<span class="sd">        :type string: str</span>
+<span class="sd">        :returns: Cleaned up directory path string</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;\/+&#39;</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
+        <span class="c">#string = string.lstrip(&#39;/&#39;)</span>
+
+        <span class="k">return</span> <span class="n">string</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

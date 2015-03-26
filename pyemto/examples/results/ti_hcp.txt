@@ -1,0 +1,390 @@
+Submitted batch job 1021973
+Submitted batch job 1021974
+Submitted batch job 1021975
+Submitted batch job 1021976
+Submitted batch job 1021977
+Submitted batch job 1021978
+Submitted batch job 1021979
+Submitted batch job 1021980
+Submitted batch job 1021981
+Submitted batch job 1021982
+Submitted batch job 1021983
+Submitted batch job 1021984
+Submitted batch job 1021985
+Submitted batch job 1021986
+Submitted batch job 1021987
+Submitted batch job 1021988
+Submitted batch job 1021989
+Submitted batch job 1021990
+Submitted batch job 1021991
+Submitted batch job 1021992
+Submitted batch job 1021993
+Submitted batch job 1021994
+Submitted batch job 1021995
+Submitted batch job 1021996
+Submitted batch job 1021997
+Submitted batch job 1021998
+Submitted batch job 1021999
+Submitted batch job 1022000
+Submitted batch job 1022001
+Submitted batch job 1022002
+Submitted batch job 1022003
+Submitted batch job 1022004
+Submitted batch job 1022005
+Submitted batch job 1022006
+Submitted batch job 1022007
+Submitted batch job 1022008
+Submitted batch job 1022009
+Submitted batch job 1022010
+Submitted batch job 1022011
+Submitted batch job 1022012
+Submitted batch job 1022013
+Submitted batch job 1022014
+Submitted batch job 1022015
+Submitted batch job 1022016
+Submitted batch job 1022017
+Submitted batch job 1022018
+Submitted batch job 1022019
+Submitted batch job 1022020
+Submitted batch job 1022021
+()
+wait_for_jobs: Submitted 49 jobs
+wait_for_jobs: Will be requesting job statuses every 60 seconds
+
+0:01:00 {'RUNNING': 49} (  0% completion)
+0:02:00 {'RUNNING': 49} (  0% completion)
+0:03:00 {'RUNNING': 49} (  0% completion)
+0:04:00 {'RUNNING': 49} (  0% completion)
+0:05:01 {'RUNNING': 49} (  0% completion)
+0:06:01 {'RUNNING': 49} (  0% completion)
+0:07:01 {'RUNNING': 49} (  0% completion)
+0:08:01 {'RUNNING': 49} (  0% completion)
+0:09:02 {'RUNNING': 49} (  0% completion)
+0:10:02 {'RUNNING': 49} (  0% completion)
+0:11:02 {'RUNNING': 49} (  0% completion)
+0:12:02 {'RUNNING': 49} (  0% completion)
+0:13:02 {'RUNNING': 49} (  0% completion)
+0:14:02 {'RUNNING': 49} (  0% completion)
+0:15:02 {'RUNNING': 49} (  0% completion)
+0:16:03 {'RUNNING': 49} (  0% completion)
+0:17:03 {'RUNNING': 49} (  0% completion)
+0:18:03 {'RUNNING': 49} (  0% completion)
+0:19:03 {'RUNNING': 49} (  0% completion)
+0:20:03 {'RUNNING': 49} (  0% completion)
+0:21:03 {'RUNNING': 49} (  0% completion)
+0:22:03 {'RUNNING': 49} (  0% completion)
+0:23:03 {'RUNNING': 49} (  0% completion)
+0:24:04 {'RUNNING': 49} (  0% completion)
+0:25:04 {'RUNNING': 49} (  0% completion)
+0:26:04 {'RUNNING': 48, 'COMPLETED': 1} (  2% completion)
+0:27:04 {'RUNNING': 47, 'COMPLETED': 2} (  4% completion)
+0:28:04 {'RUNNING': 46, 'COMPLETED': 3} (  6% completion)
+0:29:04 {'RUNNING': 42, 'COMPLETED': 7} ( 14% completion)
+0:30:04 {'RUNNING': 40, 'COMPLETED': 9} ( 18% completion)
+0:31:05 {'COMPLETED': 12, 'RUNNING': 37} ( 24% completion)
+0:32:05 {'COMPLETED': 15, 'RUNNING': 34} ( 30% completion)
+0:33:05 {'COMPLETED': 15, 'RUNNING': 34} ( 30% completion)
+0:34:05 {'COMPLETED': 15, 'RUNNING': 34} ( 30% completion)
+0:35:05 {'COMPLETED': 18, 'RUNNING': 31} ( 36% completion)
+0:36:05 {'COMPLETED': 29, 'RUNNING': 20} ( 59% completion)
+0:37:05 {'COMPLETED': 44, 'RUNNING': 5} ( 89% completion)
+0:38:06 {'COMPLETED': 49} (100% completion)
+completed 49 batch jobs in 0:38:06
+
+*****lattice_constants_analyze*****
+
+
+
+******************************
+lattice_constants_analyze(hcp)
+******************************
+  SWS        Energy0        c'a0
+2.900000  -1705.733796  1.613939
+2.933333  -1705.736608  1.612527
+2.966667  -1705.738262  1.611196
+3.000000  -1705.738843  1.610175
+3.033333  -1705.738424  1.609326
+3.066667  -1705.737080  1.608336
+3.100000  -1705.734889  1.607505
+
+
+5.2.2015 -- 18:51:51
+JOBNAM = ti1.00 -- P07
+
+Using morse function
+
+Chi squared         = 1.16375610448e-11
+Reduced Chi squared = 3.87918701493e-12
+R squared           = 0.999999464309
+
+morse parameters:
+
+a      =     0.757678
+b      =   -15.168890
+c      =    75.921091
+lambda =     0.767287
+
+Ground state parameters:
+
+V0           =     3.002260 Bohr^3 (unit cell volume)
+             =     3.002260 Bohr   (WS-radius)
+E0           = -1705.738844 Ry
+Bmod         =   115.952318 GPa
+Grun. param. =     1.151798
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.900000  -1705.733796  -1705.733796      0.000000       -0.000275
+2.933333  -1705.736608  -1705.736609     -0.000001        0.000498
+2.966667  -1705.738262  -1705.738263     -0.000001        0.000376
+3.000000  -1705.738843  -1705.738842      0.000001       -0.000810
+3.033333  -1705.738424  -1705.738423      0.000001       -0.000680
+3.066667  -1705.737080  -1705.737082     -0.000002        0.001450
+3.100000  -1705.734889  -1705.734889      0.000001       -0.000558
+
+
+5.2.2015 -- 18:51:51
+JOBNAM = ti1.00 -- P07
+
+Using morse function
+
+Chi squared         = 1.06749728331e-10
+Reduced Chi squared = 3.5583242777e-11
+R squared           = 0.999995355882
+
+morse parameters:
+
+a      =     0.748045
+b      =   -15.100334
+c      =    76.203651
+lambda =     0.769114
+
+Ground state parameters:
+
+V0           =     3.005849 Bohr^3 (unit cell volume)
+             =     3.005849 Bohr   (WS-radius)
+E0           = -1705.736830 Ry
+Bmod         =   114.888885 GPa
+Grun. param. =     1.155920
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.900000  -1705.731449  -1705.731449     -0.000000        0.000021
+2.933333  -1705.734368  -1705.734369     -0.000001        0.000770
+2.966667  -1705.736134  -1705.736130      0.000004       -0.002260
+3.000000  -1705.736814  -1705.736815     -0.000001        0.000665
+3.033333  -1705.736497  -1705.736503     -0.000006        0.003550
+3.066667  -1705.735275  -1705.735268      0.000007       -0.004035
+3.100000  -1705.733178  -1705.733180     -0.000002        0.001288
+
+
+5.2.2015 -- 18:51:51
+JOBNAM = ti1.00 -- P07
+
+Using morse function
+
+Chi squared         = 3.64530335255e-11
+Reduced Chi squared = 1.21510111752e-11
+R squared           = 0.999998386204
+
+morse parameters:
+
+a      =     0.743238
+b      =   -15.271044
+c      =    78.441514
+lambda =     0.775451
+
+Ground state parameters:
+
+V0           =     3.004114 Bohr^3 (unit cell volume)
+             =     3.004114 Bohr   (WS-radius)
+E0           = -1705.737897 Ry
+Bmod         =   116.104730 GPa
+Grun. param. =     1.164771
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.900000  -1705.732644  -1705.732643      0.000001       -0.000875
+2.933333  -1705.735527  -1705.735531     -0.000004        0.002534
+2.966667  -1705.737255  -1705.737252      0.000003       -0.001704
+3.000000  -1705.737891  -1705.737890      0.000001       -0.000729
+3.033333  -1705.737524  -1705.737524     -0.000000        0.000183
+3.066667  -1705.736229  -1705.736231     -0.000002        0.001216
+3.100000  -1705.734082  -1705.734081      0.000001       -0.000625
+
+
+5.2.2015 -- 18:51:51
+JOBNAM = ti1.00 -- P07
+
+Using morse function
+
+Chi squared         = 1.18175890217e-11
+Reduced Chi squared = 3.93919634056e-12
+R squared           = 0.999999463488
+
+morse parameters:
+
+a      =     0.759517
+b      =   -15.168958
+c      =    75.737639
+lambda =     0.766269
+
+Ground state parameters:
+
+V0           =     3.003084 Bohr^3 (unit cell volume)
+             =     3.003084 Bohr   (WS-radius)
+E0           = -1705.738555 Ry
+Bmod         =   115.894284 GPa
+Grun. param. =     1.150586
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.900000  -1705.733423  -1705.733423     -0.000000        0.000259
+2.933333  -1705.736267  -1705.736265      0.000002       -0.001035
+2.966667  -1705.737944  -1705.737946     -0.000002        0.001386
+3.000000  -1705.738551  -1705.738550      0.000001       -0.000391
+3.033333  -1705.738157  -1705.738156      0.000001       -0.000679
+3.066667  -1705.736836  -1705.736837     -0.000001        0.000606
+3.100000  -1705.734664  -1705.734664      0.000000       -0.000147
+
+
+5.2.2015 -- 18:51:51
+JOBNAM = ti1.00 -- P07
+
+Using morse function
+
+Chi squared         = 5.45131762039e-12
+Reduced Chi squared = 1.81710587346e-12
+R squared           = 0.999999749818
+
+morse parameters:
+
+a      =     0.772765
+b      =   -15.129144
+c      =    74.049208
+lambda =     0.759794
+
+Ground state parameters:
+
+V0           =     3.002465 Bohr^3 (unit cell volume)
+             =     3.002465 Bohr   (WS-radius)
+E0           = -1705.738834 Ry
+Bmod         =   115.954728 GPa
+Grun. param. =     1.140627
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.900000  -1705.733769  -1705.733768      0.000001       -0.000320
+2.933333  -1705.736585  -1705.736586     -0.000001        0.000827
+2.966667  -1705.738247  -1705.738246      0.000001       -0.000325
+3.000000  -1705.738832  -1705.738831      0.000001       -0.000454
+3.033333  -1705.738419  -1705.738419      0.000000       -0.000175
+3.066667  -1705.737081  -1705.737082     -0.000001        0.000791
+3.100000  -1705.734892  -1705.734891      0.000001       -0.000345
+
+
+5.2.2015 -- 18:51:52
+JOBNAM = ti1.00 -- P07
+
+Using morse function
+
+Chi squared         = 1.19109949001e-11
+Reduced Chi squared = 3.97033163337e-12
+R squared           = 0.999999449336
+
+morse parameters:
+
+a      =     0.745414
+b      =   -15.182081
+c      =    77.304565
+lambda =     0.773045
+
+Ground state parameters:
+
+V0           =     3.002133 Bohr^3 (unit cell volume)
+             =     3.002133 Bohr   (WS-radius)
+E0           = -1705.738728 Ry
+Bmod         =   115.798751 GPa
+Grun. param. =     1.160392
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.900000  -1705.733697  -1705.733697      0.000000       -0.000064
+2.933333  -1705.736504  -1705.736504      0.000000       -0.000199
+2.966667  -1705.738150  -1705.738152     -0.000002        0.001152
+3.000000  -1705.738728  -1705.738726      0.000002       -0.001245
+3.033333  -1705.738305  -1705.738305      0.000000       -0.000241
+3.066667  -1705.736961  -1705.736963     -0.000002        0.000983
+3.100000  -1705.734771  -1705.734770      0.000001       -0.000387
+
+
+5.2.2015 -- 18:51:52
+JOBNAM = ti1.00 -- P07
+
+Using morse function
+
+Chi squared         = 1.38286217253e-11
+Reduced Chi squared = 4.60954057509e-12
+R squared           = 0.999999356009
+
+morse parameters:
+
+a      =     0.759904
+b      =   -15.070597
+c      =    74.720674
+lambda =     0.764158
+
+Ground state parameters:
+
+V0           =     3.002206 Bohr^3 (unit cell volume)
+             =     3.002206 Bohr   (WS-radius)
+E0           = -1705.738293 Ry
+Bmod         =   115.348605 GPa
+Grun. param. =     1.147079
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.900000  -1705.733279  -1705.733278      0.000001       -0.000462
+2.933333  -1705.736071  -1705.736073     -0.000002        0.001462
+2.966667  -1705.737719  -1705.737717      0.000002       -0.001374
+3.000000  -1705.738290  -1705.738290     -0.000000        0.000238
+3.033333  -1705.737873  -1705.737873      0.000000       -0.000175
+3.066667  -1705.736536  -1705.736537     -0.000001        0.000590
+3.100000  -1705.734353  -1705.734353      0.000000       -0.000280
+
+
+5.2.2015 -- 18:51:52
+JOBNAM = ti1.00 -- P07
+
+Using morse function
+
+Chi squared         = 2.17769833254e-11
+Reduced Chi squared = 7.25899444181e-12
+R squared           = 0.99999898819
+
+morse parameters:
+
+a      =     0.831171
+b      =   -14.866360
+c      =    66.474685
+lambda =     0.729592
+
+Ground state parameters:
+
+V0           =     3.002865 Bohr^3 (unit cell volume)
+             =     3.002865 Bohr   (WS-radius)
+E0           = -1705.737540 Ry
+Bmod         =   114.985899 GPa
+Grun. param. =     1.095434
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.900000  -1705.732490  -1705.732491     -0.000001        0.000576
+2.933333  -1705.735292  -1705.735289      0.000003       -0.001807
+2.966667  -1705.736942  -1705.736944     -0.000002        0.001443
+3.000000  -1705.737535  -1705.737536     -0.000001        0.000646
+3.033333  -1705.737140  -1705.737138      0.000002       -0.001159
+3.066667  -1705.735820  -1705.735820     -0.000000        0.000187
+3.100000  -1705.733649  -1705.733649     -0.000000        0.000114
+
+
+hcp_lattice_constants_analyze(hcp):
+sws0 =      3.002260
+c/a0 =      1.610122
+B0   =    115.952318
+E0   =  -1705.738844
+R    =      0.019532
+cs   =    498.360422
+

@@ -1,0 +1,36 @@
+***hcp_elastic_constants***
+
+ti1.00
+
+c11(GPa) = 225.64
+c12(GPa) =  57.40
+c13(GPa) =  61.70
+c33(GPa) = 231.07
+c44(GPa) =  48.84
+c66(GPa) =  84.12
+B  (GPa) = 115.95
+
+Voigt average:
+
+BV(GPa)  = 115.99
+GV(GPa)  =  69.80
+EV(GPa)  = 174.41
+vV(GPa)  =   0.25
+
+Reuss average:
+
+BR(GPa)  = 115.95
+GR(GPa)  =  65.13
+ER(GPa)  = 164.59
+vR(GPa)  =   0.26
+
+Hill average:
+
+BH(GPa)  = 115.97
+GH(GPa)  =  67.47
+EH(GPa)  = 169.53
+vH(GPa)  =   0.26
+
+Elastic anisotropy:
+
+AVR(GPa)  =   0.03

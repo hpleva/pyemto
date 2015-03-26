@@ -1,0 +1,468 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>latticeinputs.kstr &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.svg" alt="Logo"/>
+            </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for latticeinputs.kstr</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on Wed Dec  3 15:00:14 2014</span>
+
+<span class="sd">@author: Matti Ropo</span>
+<span class="sd">@author: Henrik Levämäki</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="Kstr"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.kstr.Kstr">[docs]</a><span class="k">class</span> <span class="nc">Kstr</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Contains information about KSTR input files for EMTO 5.8 program</span>
+
+<span class="sd">    :param jobname:  (Default value = None)</span>
+<span class="sd">    :type jobname:</span>
+<span class="sd">    :param lat:  (Default value = None)</span>
+<span class="sd">    :type lat:</span>
+<span class="sd">    :param latparams:  (Default value = None)</span>
+<span class="sd">    :type latparams:</span>
+<span class="sd">    :param ca:  (Default value = None)</span>
+<span class="sd">    :type ca:</span>
+<span class="sd">    :param latvectors:  (Default value = None)</span>
+<span class="sd">    :type latvectors:</span>
+<span class="sd">    :param basis:  (Default value = None)</span>
+<span class="sd">    :type basis:</span>
+<span class="sd">    :param kappaw:  (Default value = None)</span>
+<span class="sd">    :type kappaw:</span>
+<span class="sd">    :param dmax:  (Default value = None)</span>
+<span class="sd">    :type dmax:</span>
+<span class="sd">    :param msgl:  (Default value = None)</span>
+<span class="sd">    :type msgl:</span>
+<span class="sd">    :param nprn:  (Default value = None)</span>
+<span class="sd">    :type nprn:</span>
+<span class="sd">    :param lamda:  (Default value = None)</span>
+<span class="sd">    :type lamda:</span>
+<span class="sd">    :param amax:  (Default value = None)</span>
+<span class="sd">    :type amax:</span>
+<span class="sd">    :param bmax:  (Default value = None)</span>
+<span class="sd">    :type bmax:</span>
+<span class="sd">    :param nqr2:  (Default value = None)</span>
+<span class="sd">    :type nqr2:</span>
+<span class="sd">    :param mode:  (Default value = None)</span>
+<span class="sd">    :type mode:</span>
+<span class="sd">    :param store:  (Default value = None)</span>
+<span class="sd">    :type store:</span>
+<span class="sd">    :param high:  (Default value = None)</span>
+<span class="sd">    :type high:</span>
+<span class="sd">    :param kstr_nl:  (Default value = None)</span>
+<span class="sd">    :type kstr_nl:</span>
+<span class="sd">    :param nlh:  (Default value = None)</span>
+<span class="sd">    :type nlh:</span>
+<span class="sd">    :param nlw:  (Default value = None)</span>
+<span class="sd">    :type nlw:</span>
+<span class="sd">    :param nder:  (Default value = None)</span>
+<span class="sd">    :type nder:</span>
+<span class="sd">    :param itrans:  (Default value = None)</span>
+<span class="sd">    :type itrans:</span>
+<span class="sd">    :param rwats:  (Default value = None)</span>
+<span class="sd">    :type rwats:</span>
+<span class="sd">    :param nghbp:  (Default value = None)</span>
+<span class="sd">    :type nghbp:</span>
+<span class="sd">    :param awIQ:  (Default value = None)</span>
+<span class="sd">    :type awIQ:</span>
+<span class="sd">    :returns: None</span>
+<span class="sd">    :rtype: None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">latparams</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ca</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">latvectors</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">basis</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">kappaw</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">dmax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">msgl</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nprn</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lamda</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">amax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">bmax</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nqr2</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">store</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">kstr_nl</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nlh</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nlw</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nder</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">itrans</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">rwats</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">nghbp</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">awIQ</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+        <span class="c"># Argument checking and default values</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">=</span> <span class="n">lat</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">=</span> <span class="n">jobname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latparams</span> <span class="o">=</span> <span class="n">latparams</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span> <span class="o">=</span> <span class="n">latvectors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="n">basis</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span> <span class="o">=</span> <span class="n">kappaw</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dmax</span> <span class="o">=</span> <span class="n">dmax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">msgl</span> <span class="o">=</span> <span class="n">msgl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nprn</span> <span class="o">=</span> <span class="n">nprn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lamda</span> <span class="o">=</span> <span class="n">lamda</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amax</span> <span class="o">=</span> <span class="n">amax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bmax</span> <span class="o">=</span> <span class="n">bmax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nqr2</span> <span class="o">=</span> <span class="n">nqr2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">store</span> <span class="o">=</span> <span class="n">store</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kstr_nl</span> <span class="o">=</span> <span class="n">kstr_nl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nlh</span> <span class="o">=</span> <span class="n">nlh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nlw</span> <span class="o">=</span> <span class="n">nlw</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nder</span> <span class="o">=</span> <span class="n">nder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">itrans</span> <span class="o">=</span> <span class="n">itrans</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rwats</span> <span class="o">=</span> <span class="n">rwats</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nghbp</span> <span class="o">=</span> <span class="n">nghbp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ca</span> <span class="o">=</span> <span class="n">ca</span>  <span class="c"># hcp&#39;s c/a ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">awIQ</span> <span class="o">=</span> <span class="n">awIQ</span>
+
+<div class="viewcode-block" id="Kstr.output"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.kstr.Kstr.output">[docs]</a>    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Outputs KSTR input file as a formatted string.</span>
+
+<span class="sd">        :param index:</span>
+<span class="sd">        :type index:</span>
+<span class="sd">        :returns: KSTR input file string</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">slope</span> <span class="o">=</span> <span class="s">&#39;kstr/&#39;</span>
+        <span class="n">prn</span> <span class="o">=</span> <span class="s">&#39;kstr/&#39;</span>
+        <span class="n">boolean</span> <span class="o">=</span> <span class="p">{</span><span class="bp">True</span><span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="bp">False</span><span class="p">:</span> <span class="s">&quot;N&quot;</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">kappaw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">jobname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span>
+        <span class="k">elif</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">kappaw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">jobname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname2</span>
+
+        <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;KSTR      HP......=N                              &quot;</span>\
+            <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">day</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">month</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">JOBNAMline</span> <span class="o">=</span> <span class="s">&quot;JOBNAM...=&quot;</span> <span class="o">+</span> <span class="n">jobname</span>
+        <span class="n">MSGLline</span> <span class="o">=</span> <span class="s">&quot;MSGL.=  &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msgl</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;{0:21s}{1:9s}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">JOBNAMline</span><span class="p">,</span> <span class="n">MSGLline</span><span class="p">)</span> <span class="o">+</span>\
+            <span class="s">&quot; MODE...={0} STORE..={1} HIGH...={2}&quot;</span>\
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;DIR001=&quot;</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;DIR006=&quot;</span> <span class="o">+</span> <span class="n">prn</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;Slope matrices, {0:10}, (kappa*w)^2= {1:5.1f}&quot;</span>\
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">jobname</span><span class="p">,</span> <span class="n">kappaw</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;NL.....={0:2d} NLH...={1:2d} NLW...={2:2d} &quot;</span>\
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kstr_nl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlw</span><span class="p">)</span> <span class="o">+</span>\
+            <span class="s">&quot;NDER..={0:2d} ITRANS={1:2d} NPRN..={2:2d}&quot;</span>\
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">itrans</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nprn</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;(K*W)^2..={0:10.6f} DMAX....={1:10.4f} RWATS...={2:10.2f}&quot;</span>\
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kappaw</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dmax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rwats</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;NQ3...={0:3d} LAT...={1:2d} IPRIM.={2:2d} NGHBP.={3:2d} NQR2..={4:2d}&quot;</span>\
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat_to_ibz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lat</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">iprim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nghbp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nqr2</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;A........={0:10.8f} B.......={1:10.8f} C.......={2:10.8f}&quot;</span>\
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latparams</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latparams</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latparams</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iprim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;ALPHA....={0:10.6f} BETA....={1:10.6f} GAMMA...={2:10.6f}&quot;</span>\
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">iprim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}&quot;</span>\
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}&quot;</span>\
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}&quot;</span>\
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;QX.......={0:10.7f} QY......={1:10.7f} QZ......={2:10.7f}&quot;</span>\
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">):</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}&quot;</span>\
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">awIQ</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:])</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">+</span> <span class="s">&quot;LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}&quot;</span>\
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lamda</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">amax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bmax</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="n">line</span>
+</div>
+<div class="viewcode-block" id="Kstr.write_input_file"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.kstr.Kstr.write_input_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save KSTR input data to file named filename.</span>
+
+<span class="sd">        :param folder:  (Default value = None)</span>
+<span class="sd">        :type folder:</span>
+<span class="sd">        :returns: None</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># Check data integrity before anything is written on disk or run</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_input_file</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">folder</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c">#sys.exit(&#39;Kstr.create_input_file: \&#39;path\&#39; has to be given!&#39;)</span>
+            <span class="n">folder</span> <span class="o">=</span> <span class="s">&quot;./&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_folders</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+        <span class="n">fl</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s">&#39;/{0}.kstr&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">),</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">fl</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">fl</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">twocenter</span><span class="p">:</span>
+            <span class="n">fl</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s">&#39;/{0}2.kstr&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">),</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+            <span class="n">fl</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+            <span class="n">fl</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span>
+</div>
+<div class="viewcode-block" id="Kstr.set_values"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.kstr.Kstr.set_values">[docs]</a>    <span class="k">def</span> <span class="nf">set_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set input parameter values.</span>
+
+<span class="sd">        :param key:</span>
+<span class="sd">        :type key:</span>
+<span class="sd">        :param value:</span>
+<span class="sd">        :type value:</span>
+<span class="sd">        :returns: None</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s">&#39;ca&#39;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+                <span class="c"># c/a has changed =&gt; update lattice parameters</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latparams</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8660254</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span><span class="p">]]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.57735027</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&#39;WARNING: Kstr() class has no attribute </span><span class="se">\&#39;</span><span class="s">{0}</span><span class="se">\&#39;</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span>
+</div>
+<div class="viewcode-block" id="Kstr.lat_to_ibz"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.kstr.Kstr.lat_to_ibz">[docs]</a>    <span class="k">def</span> <span class="nf">lat_to_ibz</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the Bravais lattice ibz code based on the input</span>
+<span class="sd">        string code, e.g. lat=&#39;bcc&#39; or lat=&#39;fco&#39;</span>
+
+<span class="sd">        :param lat: lattice string code</span>
+<span class="sd">        :type lat: str</span>
+<span class="sd">        :returns: ibz code corresponding to the Bravais lattice</span>
+<span class="sd">                  given by the &#39;lat&#39; key</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># One should add some error hangling here and add rest of the ibz&#39;s</span>
+        <span class="c"># here.</span>
+        <span class="n">ltoi</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;sc&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;fcc&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;bcc&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;st&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#39;bct&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">&#39;trig&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s">&#39;so&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+                <span class="s">&#39;baco&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s">&#39;bco&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s">&#39;fco&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&#39;sm&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s">&#39;bcm&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="s">&#39;stric&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">ltoi</span><span class="p">[</span><span class="n">lat</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="Kstr.check_input_file"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.kstr.Kstr.check_input_file">[docs]</a>    <span class="k">def</span> <span class="nf">check_input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Perform various checks on the class data.</span>
+
+<span class="sd">        Checking function to make sure that all necessary data exists</span>
+<span class="sd">        before we attempt to write the input file to disk.</span>
+
+<span class="sd">        :returns: None</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ca</span> <span class="o">=</span> <span class="mf">1.632993</span>
+            <span class="c">#sys.exit(&#39;Kstr.check_input_file: for hcp \&#39;ca\&#39; = c/a has to be given!&#39;)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s">&#39;Kstr.check_input_file: </span><span class="se">\&#39;</span><span class="s">lat</span><span class="se">\&#39;</span><span class="s"> has to be given!&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">latparams</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latparams</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latparams</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;sc&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]]</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;bcc&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;fcc&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]]</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8660254</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">==</span> <span class="s">&#39;hcp&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.57735027</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ca</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">]]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nq</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nq</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latvectors</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">iprim</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">iprim</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iprim</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappalen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappalen</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twocenter</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">twocenter</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">twocenter</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jobname2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">+</span> <span class="s">&#39;2&#39;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dmax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat_to_ibz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dmax</span> <span class="o">=</span> <span class="mf">1.7</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat_to_ibz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dmax</span> <span class="o">=</span> <span class="mf">2.2</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat_to_ibz</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lat</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dmax</span> <span class="o">=</span> <span class="mf">2.4</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">msgl</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">msgl</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nprn</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nprn</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lamda</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lamda</span> <span class="o">=</span> <span class="mf">2.5</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">amax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">amax</span> <span class="o">=</span> <span class="mf">4.5</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bmax</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bmax</span> <span class="o">=</span> <span class="mf">4.5</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nqr2</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nqr2</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&#39;B&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">store</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">store</span> <span class="o">=</span> <span class="s">&#39;Y&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="s">&#39;Y&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kstr_nl</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kstr_nl</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlh</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nlh</span> <span class="o">=</span> <span class="mi">11</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nlw</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nlw</span> <span class="o">=</span> <span class="mi">9</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nder</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nder</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">itrans</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">itrans</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rwats</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rwats</span> <span class="o">=</span> <span class="mf">0.1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nghbp</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nghbp</span> <span class="o">=</span> <span class="mi">13</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">awIQ</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">awIQ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nq</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.7</span>
+</div>
+<div class="viewcode-block" id="Kstr.check_folders"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.kstr.Kstr.check_folders">[docs]</a>    <span class="k">def</span> <span class="nf">check_folders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Check whether or not given folders exist.</span>
+
+<span class="sd">        :param *args:</span>
+<span class="sd">        :type *args:</span>
+<span class="sd">        :returns: None</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="k">return</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

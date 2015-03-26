@@ -1,0 +1,70 @@
+Submitted batch job 1021841
+Submitted batch job 1021842
+Submitted batch job 1021843
+Submitted batch job 1021844
+Submitted batch job 1021845
+Submitted batch job 1021846
+
+wait_for_jobs: Submitted 6 jobs
+wait_for_jobs: Will be requesting job statuses every 60 seconds
+
+0:01:00 {'RUNNING': 6} (  0% completion)
+0:02:00 {'RUNNING': 6} (  0% completion)
+0:03:00 {'RUNNING': 6} (  0% completion)
+0:04:00 {'COMPLETED': 4, 'RUNNING': 2} ( 66% completion)
+0:05:00 {'COMPLETED': 6} (100% completion)
+completed 6 batch jobs in 0:05:00
+
+*****lattice_constants_analyze*****
+
+
+
+********************************
+lattice_constants_analyze(cubic)
+********************************
+  SWS        Energy
+2.600000  -2545.605517
+2.620000  -2545.606394
+2.640000  -2545.606680
+2.660000  -2545.606435
+2.680000  -2545.605705
+2.700000  -2545.604616
+
+
+5.2.2015 -- 16:21:13
+JOBNAM = fe1.00 -- PBE
+
+Using morse function
+
+Chi squared         = 2.7459052408e-10
+Reduced Chi squared = 1.3729526204e-10
+R squared           = 0.999907593903
+
+morse parameters:
+
+a      =     0.117551
+b      =  -122.663728
+c      = 32000.491593
+lambda =     2.370150
+
+Ground state parameters:
+
+V0           =     2.640005 Bohr^3 (unit cell volume)
+             =     2.640005 Bohr   (WS-radius)
+E0           = -2545.606678 Ry
+Bmod         =   195.204183 GPa
+Grun. param. =     3.128604
+
+sws            Einp           Eout          Residual       err (% * 10**6)
+2.600000  -2545.605517  -2545.605515      0.000002       -0.000870
+2.620000  -2545.606394  -2545.606400     -0.000006        0.002524
+2.640000  -2545.606680  -2545.606678      0.000002       -0.000950
+2.660000  -2545.606435  -2545.606426      0.000009       -0.003632
+2.680000  -2545.605705  -2545.605716     -0.000011        0.004368
+2.700000  -2545.604616  -2545.604612      0.000004       -0.001440
+
+
+lattice_constants_analyze(cubic):
+sws0 =      2.640005
+B0   =    195.204183
+E0   =  -2545.606678

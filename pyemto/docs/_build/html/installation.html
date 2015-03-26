@@ -1,0 +1,169 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html" />
+    <link rel="next" title="Example scripts" href="examples.html" />
+    <link rel="prev" title="Features" href="features.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example scripts"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="features.html" title="Features"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="features.html"
+                        title="previous chapter">Features</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="next chapter">Example scripts</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/installation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Python in an interpreted language, therefore nothing needs to be compiled.
+Follow these steps to install pyEMTO:</p>
+<ol class="arabic">
+<li><p class="first">Copy pyEMTO to a folder of your choice.</p>
+</li>
+<li><p class="first">Open ~/.bashrc in a text editor and add the following lines:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">PYTHONPATH</span><span class="si">}</span><span class="s2">:/path/to/pyEMTO&quot;</span>
+<span class="nb">export </span>PYTHONPATH
+</pre></div>
+</div>
+</li>
+<li><p class="first">Save and close.</p>
+</li>
+<li><p class="first"><strong>Optional</strong>: The new path can be activated without restarting your terminal session by executing:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
+</li>
+<li><p class="first"><strong>Optional</strong>: Check the installation process has succeeded by typing:</p>
+<div class="highlight-bash"><div class="highlight"><pre>python
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>&gt;&gt;&gt;import sys
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre>&gt;&gt;&gt;print<span class="o">(</span>sys.path<span class="o">)</span>
+</pre></div>
+</div>
+<p>If &#8216;/path/to/pyEMTO&#8217; can be found within the printout, PYTHONPATH has been succesfully set. Finally, type:</p>
+<div class="highlight-bash"><div class="highlight"><pre>&gt;&gt;&gt;import pyemto
+</pre></div>
+</div>
+<p>followed by</p>
+<div class="highlight-bash"><div class="highlight"><pre>&gt;&gt;&gt;help<span class="o">(</span>pyemto<span class="o">)</span>
+</pre></div>
+</div>
+<p>to verify that pyEMTO has been installed succesfully.</p>
+</li>
+<li><p class="first"><strong>Optional</strong>: Try running some of the scripts from the <a class="reference internal" href="examples.html#examples-page"><span>examples</span></a> page to verify the integrity of your pyEMTO installation.</p>
+</li>
+</ol>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example scripts"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="features.html" title="Features"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

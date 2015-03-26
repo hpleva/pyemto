@@ -1,0 +1,402 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>utilities package &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html" />
+    <link rel="up" title="pyEMTO Code Reference" href="code.html" />
+    <link rel="next" title="pyEMTO presentation" href="presentation.html" />
+    <link rel="prev" title="EOS package" href="EOS.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="presentation.html" title="pyEMTO presentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="EOS.html" title="EOS package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" accesskey="U">pyEMTO Code Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">utilities package</a><ul>
+<li><a class="reference internal" href="#module-utilities.utils">utilities.utils module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="EOS.html"
+                        title="previous chapter">EOS package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="presentation.html"
+                        title="next chapter">pyEMTO presentation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/utilities.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="utilities-package">
+<h1>utilities package<a class="headerlink" href="#utilities-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-utilities.utils">
+<span id="utilities-utils-module"></span><h2>utilities.utils module<a class="headerlink" href="#module-utilities.utils" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 14:25:06 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="function">
+<dt id="utilities.utils.extrapolate_0k">
+<code class="descclassname">utilities.utils.</code><code class="descname">extrapolate_0k</code><span class="sig-paren">(</span><em>a=None</em>, <em>Ta=None</em>, <em>bmod=None</em>, <em>TB=None</em>, <em>lat=None</em>, <em>TD=None</em>, <em>alpha=None</em>, <em>Talpha=None</em>, <em>B1=None</em>, <em>T0=None</em>, <em>ca=None</em>, <em>ZP=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#extrapolate_0k"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.extrapolate_0k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extrapolates experimental data to zero Kelvin.</p>
+<p>A function to extrapolate experimental room temperature lattice constants and
+bulk moduli to zero Kelvin. Zero point effects are also taken into account.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Input parameter</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>a</td>
+<td>Experimental lattice constant measured at
+temperature Ta (in Angstroms)</td>
+</tr>
+<tr class="row-odd"><td>Ta</td>
+<td>The temperature at which a was measured (in Kelvin)</td>
+</tr>
+<tr class="row-even"><td>bmod</td>
+<td>Experimental bulk modulus measured at temperature
+TB (in GPa)</td>
+</tr>
+<tr class="row-odd"><td>TB</td>
+<td>The temperature at which bmod was measured (in Kelvin)</td>
+</tr>
+<tr class="row-even"><td>lat</td>
+<td>Lattice structure</td>
+</tr>
+<tr class="row-odd"><td>TD</td>
+<td>Experimental Debye temperature of the substance</td>
+</tr>
+<tr class="row-even"><td>alpha</td>
+<td>VOLUMETRIC!!! thermal expansion coefficient at
+temperature T (in 10⁻6 1/K)</td>
+</tr>
+<tr class="row-odd"><td>Talpha</td>
+<td>The temperature at which alpha was measured (in Kelvin)</td>
+</tr>
+<tr class="row-even"><td>B1</td>
+<td>Pressure derivative of the bulk modulus</td>
+</tr>
+<tr class="row-odd"><td>T0</td>
+<td>The temperature to which we want to extrapolate
+(Optional argument, if not given assume 0K)</td>
+</tr>
+<tr class="row-even"><td>ca</td>
+<td>c/a lattice parameter for hcp structures</td>
+</tr>
+<tr class="row-odd"><td>ZP</td>
+<td>Whether or not zero-point (ZP) corrections are performed.
+If one only wants to calculate the fractional volume
+change due to dropping temperature, ZP=False.</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> &#8211; (Default value = None)</li>
+<li><strong>Ta</strong> &#8211; (Default value = None)</li>
+<li><strong>bmod</strong> &#8211; (Default value = None)</li>
+<li><strong>TB</strong> &#8211; (Default value = None)</li>
+<li><strong>lat</strong> &#8211; (Default value = None)</li>
+<li><strong>TD</strong> &#8211; (Default value = None)</li>
+<li><strong>alpha</strong> &#8211; (Default value = None)</li>
+<li><strong>Talpha</strong> &#8211; (Default value = None)</li>
+<li><strong>B1</strong> &#8211; (Default value = None)</li>
+<li><strong>T0</strong> &#8211; (Default value = None)</li>
+<li><strong>ca</strong> &#8211; (Default value = None)</li>
+<li><strong>ZP</strong> &#8211; (Default value = True)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">ZPAE corrected 0K lattice constant (in Angstrom),
+ZPPE corrected 0K bulk modulus (in GPa)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float,float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utilities.utils.latparam_to_wsrad">
+<code class="descclassname">utilities.utils.</code><code class="descname">latparam_to_wsrad</code><span class="sig-paren">(</span><em>a=None</em>, <em>lat=None</em>, <em>ca=None</em>, <em>c=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#latparam_to_wsrad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.latparam_to_wsrad" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> &#8211; (Default value = None)</li>
+<li><strong>lat</strong> &#8211; (Default value = None)</li>
+<li><strong>ca</strong> &#8211; (Default value = None)</li>
+<li><strong>c</strong> &#8211; (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utilities.utils.run_bash">
+<code class="descclassname">utilities.utils.</code><code class="descname">run_bash</code><span class="sig-paren">(</span><em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#run_bash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.run_bash" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cmd</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utilities.utils.run_emto">
+<code class="descclassname">utilities.utils.</code><code class="descname">run_emto</code><span class="sig-paren">(</span><em>name</em>, <em>folder='./'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#run_emto"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.run_emto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submits a batch script to the queue.</p>
+<p>Finds all the files in a folder that start with the name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> &#8211; </li>
+<li><strong>folder</strong> &#8211; (Default value = &#8221;./&#8221;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utilities.utils.submit_to_batch">
+<code class="descclassname">utilities.utils.</code><code class="descname">submit_to_batch</code><span class="sig-paren">(</span><em>folder</em>, <em>jobname</em>, <em>system='slurm'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#submit_to_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.submit_to_batch" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>folder</strong> &#8211; </li>
+<li><strong>jobname</strong> &#8211; </li>
+<li><strong>system</strong> &#8211; (Default value = &#8216;slurm&#8217;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utilities.utils.write_batch">
+<code class="descclassname">utilities.utils.</code><code class="descname">write_batch</code><span class="sig-paren">(</span><em>folder</em>, <em>jobname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#write_batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.write_batch" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>folder</strong> &#8211; </li>
+<li><strong>jobname</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utilities.utils.write_job">
+<code class="descclassname">utilities.utils.</code><code class="descname">write_job</code><span class="sig-paren">(</span><em>folder</em>, <em>jobname</em>, <em>atom</em>, <em>conc</em>, <em>sws</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#write_job"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.write_job" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>folder</strong> &#8211; </li>
+<li><strong>jobname</strong> &#8211; </li>
+<li><strong>atom</strong> &#8211; </li>
+<li><strong>conc</strong> &#8211; </li>
+<li><strong>sws</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="utilities.utils.wsrad_to_latparam">
+<code class="descclassname">utilities.utils.</code><code class="descname">wsrad_to_latparam</code><span class="sig-paren">(</span><em>sws</em>, <em>lat</em>, <em>ca=None</em>, <em>c=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#wsrad_to_latparam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.wsrad_to_latparam" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sws</strong> &#8211; </li>
+<li><strong>lat</strong> &#8211; </li>
+<li><strong>ca</strong> &#8211; (Default value = None)</li>
+<li><strong>c</strong> &#8211; (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="presentation.html" title="pyEMTO presentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="EOS.html" title="EOS package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="code.html" >pyEMTO Code Reference</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

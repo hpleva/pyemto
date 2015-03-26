@@ -1,0 +1,875 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>latticeinputs package &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">latticeinputs package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-latticeinputs.batch">latticeinputs.batch module</a></li>
+<li><a class="reference internal" href="#module-latticeinputs.bmdl">latticeinputs.bmdl module</a></li>
+<li><a class="reference internal" href="#module-latticeinputs.kstr">latticeinputs.kstr module</a></li>
+<li><a class="reference internal" href="#module-latticeinputs.latticeinputs">latticeinputs.latticeinputs module</a></li>
+<li><a class="reference internal" href="#module-latticeinputs.shape">latticeinputs.shape module</a></li>
+<li><a class="reference internal" href="#module-latticeinputs">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apidoc_latticeinputs/latticeinputs.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="latticeinputs-package">
+<h1>latticeinputs package<a class="headerlink" href="#latticeinputs-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-latticeinputs.batch">
+<span id="latticeinputs-batch-module"></span><h2>latticeinputs.batch module<a class="headerlink" href="#module-latticeinputs.batch" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 15:09:24 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="latticeinputs.batch.Batch">
+<em class="property">class </em><code class="descclassname">latticeinputs.batch.</code><code class="descname">Batch</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>lat=None</em>, <em>runtime=None</em>, <em>latpath=None</em>, <em>EMTOdir=None</em>, <em>runBMDL=None</em>, <em>runKSTR=None</em>, <em>runKSTR2=None</em>, <em>runSHAPE=None</em>, <em>kappaw=None</em>, <em>kappalen=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/batch.html#Batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.batch.Batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a batch script for running BMDL, KSTR and SHAPE calculations</p>
+<p>This class is used to to create batch scripts for a supercomputer environment (EMTO 5.8).
+!!! Currently only SLURM is supported. !!!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> &#8211; (Default value = None)</li>
+<li><strong>lat</strong> &#8211; (Default value = None)</li>
+<li><strong>runtime</strong> &#8211; (Default value = None)</li>
+<li><strong>latpath</strong> &#8211; (Default value = None)</li>
+<li><strong>EMTOdir</strong> &#8211; (Default value = None)</li>
+<li><strong>runBMDL</strong> &#8211; (Default value = None)</li>
+<li><strong>runKSTR</strong> &#8211; (Default value = None)</li>
+<li><strong>runKSTR2</strong> &#8211; (Default value = None)</li>
+<li><strong>runSHAPE</strong> &#8211; (Default value = None)</li>
+<li><strong>kappaw</strong> &#8211; (Default value = None)</li>
+<li><strong>kappalen</strong> &#8211; (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="latticeinputs.batch.Batch.check_folders">
+<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/batch.html#Batch.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.batch.Batch.check_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether or not given folders exist</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.batch.Batch.check_input_file">
+<code class="descname">check_input_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/batch.html#Batch.check_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.batch.Batch.check_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Perform various checks on the class data to</dt>
+<dd>make sure that all necessary data exists
+before we attempt to write the input file to disk</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.batch.Batch.cleanup_path">
+<code class="descname">cleanup_path</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/batch.html#Batch.cleanup_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.batch.Batch.cleanup_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleans up directory path strings from double forward slashes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Cleaned up directory path string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.batch.Batch.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/batch.html#Batch.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.batch.Batch.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>(self) -&gt; (str)</p>
+<blockquote>
+<div>Output first part of the kgrn input file in formated string</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.batch.Batch.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/batch.html#Batch.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.batch.Batch.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; </li>
+<li><strong>value</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.batch.Batch.write_input_file">
+<code class="descname">write_input_file</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/batch.html#Batch.write_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.batch.Batch.write_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>(self,str) -&gt;(None)</p>
+<blockquote>
+<div>Save batch input data to file named filename</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> &#8211; (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-latticeinputs.bmdl">
+<span id="latticeinputs-bmdl-module"></span><h2>latticeinputs.bmdl module<a class="headerlink" href="#module-latticeinputs.bmdl" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 15:09:24 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="latticeinputs.bmdl.Bmdl">
+<em class="property">class </em><code class="descclassname">latticeinputs.bmdl.</code><code class="descname">Bmdl</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>lat=None</em>, <em>latparams=None</em>, <em>latvectors=None</em>, <em>basis=None</em>, <em>msgl=None</em>, <em>nprn=None</em>, <em>bmdl_nl=None</em>, <em>lamda=None</em>, <em>amax=None</em>, <em>bmax=None</em>, <em>nqr2=None</em>, <em>ca=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/bmdl.html#Bmdl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.bmdl.Bmdl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains information about BMDL input files for EMTO 5.8 program.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> &#8211; (Default value = None)</li>
+<li><strong>lat</strong> &#8211; (Default value = None)</li>
+<li><strong>latparams</strong> &#8211; (Default value = None)</li>
+<li><strong>latvectors</strong> &#8211; (Default value = None)</li>
+<li><strong>basis</strong> &#8211; (Default value = None)</li>
+<li><strong>msgl</strong> &#8211; (Default value = None)</li>
+<li><strong>nprn</strong> &#8211; (Default value = None)</li>
+<li><strong>bmdl_nl</strong> &#8211; (Default value = None)</li>
+<li><strong>lamda</strong> &#8211; (Default value = None)</li>
+<li><strong>amax</strong> &#8211; (Default value = None)</li>
+<li><strong>bmax</strong> &#8211; (Default value = None)</li>
+<li><strong>nqr2</strong> &#8211; (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) &#8211; hcp c/a ratio (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="latticeinputs.bmdl.Bmdl.check_folders">
+<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/bmdl.html#Bmdl.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.bmdl.Bmdl.check_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether or not given folders exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.bmdl.Bmdl.check_input_file">
+<code class="descname">check_input_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/bmdl.html#Bmdl.check_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.bmdl.Bmdl.check_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform various checks on the class data.</p>
+<p>Makes sure that all necessary data exists
+before we attempt to write the input file to disk.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.bmdl.Bmdl.lat_to_ibz">
+<code class="descname">lat_to_ibz</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/bmdl.html#Bmdl.lat_to_ibz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.bmdl.Bmdl.lat_to_ibz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Bravais lattice ibz code based on the input
+string code, e.g. lat=&#8217;bcc&#8217; or lat=&#8217;fco&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lat</strong> (<em>str</em>) &#8211; lattice string code</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ibz code corresponding to the Bravais lattice
+given by the &#8216;lat&#8217; key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.bmdl.Bmdl.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/bmdl.html#Bmdl.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.bmdl.Bmdl.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outputs BMDL input file as a formatted string</p>
+<p>Creates a long string containing the batch
+job script which will later be written on disk.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">batch script input file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.bmdl.Bmdl.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/bmdl.html#Bmdl.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.bmdl.Bmdl.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; </li>
+<li><strong>value</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.bmdl.Bmdl.write_input_file">
+<code class="descname">write_input_file</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/bmdl.html#Bmdl.write_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.bmdl.Bmdl.write_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save BMDL input data to file named by self.jobname</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> &#8211; (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-latticeinputs.kstr">
+<span id="latticeinputs-kstr-module"></span><h2>latticeinputs.kstr module<a class="headerlink" href="#module-latticeinputs.kstr" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 15:00:14 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="latticeinputs.kstr.Kstr">
+<em class="property">class </em><code class="descclassname">latticeinputs.kstr.</code><code class="descname">Kstr</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>lat=None</em>, <em>latparams=None</em>, <em>ca=None</em>, <em>latvectors=None</em>, <em>basis=None</em>, <em>kappaw=None</em>, <em>dmax=None</em>, <em>msgl=None</em>, <em>nprn=None</em>, <em>lamda=None</em>, <em>amax=None</em>, <em>bmax=None</em>, <em>nqr2=None</em>, <em>mode=None</em>, <em>store=None</em>, <em>high=None</em>, <em>kstr_nl=None</em>, <em>nlh=None</em>, <em>nlw=None</em>, <em>nder=None</em>, <em>itrans=None</em>, <em>rwats=None</em>, <em>nghbp=None</em>, <em>awIQ=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/kstr.html#Kstr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.kstr.Kstr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains information about KSTR input files for EMTO 5.8 program</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> &#8211; (Default value = None)</li>
+<li><strong>lat</strong> &#8211; (Default value = None)</li>
+<li><strong>latparams</strong> &#8211; (Default value = None)</li>
+<li><strong>ca</strong> &#8211; (Default value = None)</li>
+<li><strong>latvectors</strong> &#8211; (Default value = None)</li>
+<li><strong>basis</strong> &#8211; (Default value = None)</li>
+<li><strong>kappaw</strong> &#8211; (Default value = None)</li>
+<li><strong>dmax</strong> &#8211; (Default value = None)</li>
+<li><strong>msgl</strong> &#8211; (Default value = None)</li>
+<li><strong>nprn</strong> &#8211; (Default value = None)</li>
+<li><strong>lamda</strong> &#8211; (Default value = None)</li>
+<li><strong>amax</strong> &#8211; (Default value = None)</li>
+<li><strong>bmax</strong> &#8211; (Default value = None)</li>
+<li><strong>nqr2</strong> &#8211; (Default value = None)</li>
+<li><strong>mode</strong> &#8211; (Default value = None)</li>
+<li><strong>store</strong> &#8211; (Default value = None)</li>
+<li><strong>high</strong> &#8211; (Default value = None)</li>
+<li><strong>kstr_nl</strong> &#8211; (Default value = None)</li>
+<li><strong>nlh</strong> &#8211; (Default value = None)</li>
+<li><strong>nlw</strong> &#8211; (Default value = None)</li>
+<li><strong>nder</strong> &#8211; (Default value = None)</li>
+<li><strong>itrans</strong> &#8211; (Default value = None)</li>
+<li><strong>rwats</strong> &#8211; (Default value = None)</li>
+<li><strong>nghbp</strong> &#8211; (Default value = None)</li>
+<li><strong>awIQ</strong> &#8211; (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="latticeinputs.kstr.Kstr.check_folders">
+<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/kstr.html#Kstr.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.kstr.Kstr.check_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether or not given folders exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.kstr.Kstr.check_input_file">
+<code class="descname">check_input_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/kstr.html#Kstr.check_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.kstr.Kstr.check_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform various checks on the class data.</p>
+<p>Checking function to make sure that all necessary data exists
+before we attempt to write the input file to disk.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.kstr.Kstr.lat_to_ibz">
+<code class="descname">lat_to_ibz</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/kstr.html#Kstr.lat_to_ibz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.kstr.Kstr.lat_to_ibz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Bravais lattice ibz code based on the input
+string code, e.g. lat=&#8217;bcc&#8217; or lat=&#8217;fco&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lat</strong> (<em>str</em>) &#8211; lattice string code</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ibz code corresponding to the Bravais lattice
+given by the &#8216;lat&#8217; key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.kstr.Kstr.output">
+<code class="descname">output</code><span class="sig-paren">(</span><em>index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/kstr.html#Kstr.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.kstr.Kstr.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outputs KSTR input file as a formatted string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">KSTR input file string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.kstr.Kstr.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/kstr.html#Kstr.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.kstr.Kstr.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set input parameter values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; </li>
+<li><strong>value</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.kstr.Kstr.write_input_file">
+<code class="descname">write_input_file</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/kstr.html#Kstr.write_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.kstr.Kstr.write_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save KSTR input data to file named filename.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> &#8211; (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-latticeinputs.latticeinputs">
+<span id="latticeinputs-latticeinputs-module"></span><h2>latticeinputs.latticeinputs module<a class="headerlink" href="#module-latticeinputs.latticeinputs" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 14:25:06 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="latticeinputs.latticeinputs.Latticeinputs">
+<em class="property">class </em><code class="descclassname">latticeinputs.latticeinputs.</code><code class="descname">Latticeinputs</code><a class="reference internal" href="../_modules/latticeinputs/latticeinputs.html#Latticeinputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.latticeinputs.Latticeinputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class which is used to communicate with the Bmdl, Kstr and Shape classes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="latticeinputs.latticeinputs.Latticeinputs.distortion">
+<code class="descname">distortion</code><span class="sig-paren">(</span><em>lat=None</em>, <em>dist=None</em>, <em>ca=None</em>, <em>index=None</em>, <em>deltas=None</em>, <em>dmaxs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/latticeinputs.html#Latticeinputs.distortion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.latticeinputs.Latticeinputs.distortion" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function which sets various class data to create distorted lattice structures.</p>
+<p>Distorted lattices are used to calculate elastic constants.        
+An integer <em>index</em> is used to specify for which delta and dmax value we
+want to generate the distortion input file data.</p>
+<p>Default naming convention for the structure files:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="58%" />
+<col width="8%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>bcc bco</td>
+<td>=</td>
+<td>bcco</td>
+</tr>
+<tr class="row-even"><td>bcc fco</td>
+<td>=</td>
+<td>bccm</td>
+</tr>
+<tr class="row-odd"><td>fcc bco</td>
+<td>=</td>
+<td>fccm</td>
+</tr>
+<tr class="row-even"><td>fcc fco</td>
+<td>=</td>
+<td>fcco</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="7%" />
+<col width="93%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>lat</td>
+<td>Original undistorted lattice</td>
+</tr>
+<tr class="row-even"><td>dist</td>
+<td>Which distortion we want to calculate.
+Possible values: &#8216;ortho&#8217; or &#8216;mono&#8217; for lat=&#8217;bcc&#8217;, &#8216;fcc&#8217; or &#8216;hcp&#8217;.</td>
+</tr>
+<tr class="row-odd"><td>ca</td>
+<td>c over a for hcp structures.</td>
+</tr>
+<tr class="row-even"><td>index</td>
+<td>Index specifying an element in the delta array.
+Possible values: 0,1,2,3,4 or 5. 0 = No distortion.</td>
+</tr>
+<tr class="row-odd"><td>delta</td>
+<td>Array of displacement values. Optional, default value
+is good enough almost always (if not always).</td>
+</tr>
+<tr class="row-even"><td>dmax</td>
+<td>Array of &#8216;dmax&#8217; values for KSTR. They have to be chosen in
+such fashion so as to keep the number of lattice vectors
+constant (or as close to a constant as possible) for all
+of the distorted lattices. Optional, only needed when
+a custom delta array is used.</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>lat</strong> (<em>str</em>) &#8211; The original, undistorted lattice (Default value = None)</li>
+<li><strong>dist</strong> (<em>str</em>) &#8211; The type of distortion (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) &#8211; hcp c/a ratio (Default value = None)</li>
+<li><strong>index</strong> (<em>int</em>) &#8211; Index for selecting a delta and dmax from the arrays (Default value = None)</li>
+<li><strong>deltas</strong> (<em>np.array(float)</em>) &#8211; List of delta values (Default value = None)</li>
+<li><strong>dmaxs</strong> (<em>np.array(float)</em>) &#8211; List of dmax values (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.latticeinputs.Latticeinputs.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/latticeinputs.html#Latticeinputs.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.latticeinputs.Latticeinputs.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Passes various input parameters down to the Kgrn and Kfcd classes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-latticeinputs.shape">
+<span id="latticeinputs-shape-module"></span><h2>latticeinputs.shape module<a class="headerlink" href="#module-latticeinputs.shape" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 15:10:00 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="latticeinputs.shape.Shape">
+<em class="property">class </em><code class="descclassname">latticeinputs.shape.</code><code class="descname">Shape</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>lat=None</em>, <em>lmax=None</em>, <em>nsr=None</em>, <em>nfi=None</em>, <em>ivef=None</em>, <em>msgl=None</em>, <em>nprn=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/shape.html#Shape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.shape.Shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains information about SHAPE input files for EMTO 5.8 program.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> &#8211; (Default value = None)</li>
+<li><strong>lat</strong> &#8211; (Default value = None)</li>
+<li><strong>lmax</strong> &#8211; (Default value = None)</li>
+<li><strong>nsr</strong> &#8211; (Default value = None)</li>
+<li><strong>nfi</strong> &#8211; (Default value = None)</li>
+<li><strong>ivef</strong> &#8211; (Default value = None)</li>
+<li><strong>msgl</strong> &#8211; (Default value = None)</li>
+<li><strong>nprn</strong> &#8211; (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="latticeinputs.shape.Shape.check_folders">
+<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/shape.html#Shape.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.shape.Shape.check_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether or not given folders exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.shape.Shape.check_input_file">
+<code class="descname">check_input_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/shape.html#Shape.check_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.shape.Shape.check_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Perform various checks on the class data to</dt>
+<dd>make sure that all necessary data exists
+before we attempt to write the input file to disk</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.shape.Shape.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/shape.html#Shape.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.shape.Shape.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output SHAPE input file in formatted string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">SHAPE input file as a string.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.shape.Shape.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/shape.html#Shape.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.shape.Shape.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; </li>
+<li><strong>value</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="latticeinputs.shape.Shape.write_input_file">
+<code class="descname">write_input_file</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/latticeinputs/shape.html#Shape.write_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#latticeinputs.shape.Shape.write_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save SHAPE input data to file named filename</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> &#8211; (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-latticeinputs">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-latticeinputs" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 15:01:34 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>

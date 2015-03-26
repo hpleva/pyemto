@@ -1,0 +1,839 @@
+
+
+<!doctype html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>emtoinputs package &mdash; pyEMTO 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/bizstyle.js"></script>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.svg" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">emtoinputs package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-emtoinputs.batch">emtoinputs.batch module</a></li>
+<li><a class="reference internal" href="#module-emtoinputs.emtoinputs">emtoinputs.emtoinputs module</a></li>
+<li><a class="reference internal" href="#module-emtoinputs.kfcd">emtoinputs.kfcd module</a></li>
+<li><a class="reference internal" href="#module-emtoinputs.kgrn">emtoinputs.kgrn module</a></li>
+<li><a class="reference internal" href="#module-emtoinputs">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/apidoc_emtoinputs/emtoinputs.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="emtoinputs-package">
+<h1>emtoinputs package<a class="headerlink" href="#emtoinputs-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-emtoinputs.batch">
+<span id="emtoinputs-batch-module"></span><h2>emtoinputs.batch module<a class="headerlink" href="#module-emtoinputs.batch" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 15:09:24 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="emtoinputs.batch.Batch">
+<em class="property">class </em><code class="descclassname">emtoinputs.batch.</code><code class="descname">Batch</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>runtime=None</em>, <em>EMTOdir=None</em>, <em>emtopath=None</em>, <em>runKGRN=None</em>, <em>runKFCD=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/batch.html#Batch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.batch.Batch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a batch script for running KGRN and KFCD calculations on a
+supercomputer environment (EMTO 5.8).</p>
+<p>!!! Currently only SLURM is supported. !!!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) &#8211; Name for the KGRN and KFCD jobs. This will become
+the first part of the input and output file names.</li>
+<li><strong>runtime</strong> (<em>str</em>) &#8211; Maximum running time for the individual batch jobs.
+The format of this entry should be &#8216;xx:yy:zz&#8217;, where
+xx is hours, yy is minutes and zz is seconds.</li>
+<li><strong>EMTOdir</strong> (<em>str</em>) &#8211; Path to the EMTO installation (Default value = &#8216;$HOME/EMTO5.8&#8217;)</li>
+<li><strong>emtopath</strong> (<em>str</em>) &#8211; Path to the folder where the KGRN and KFCD input files are
+located</li>
+<li><strong>runKGRN</strong> (<em>boolean</em>) &#8211; True if KGRN should be run, False if KGRN should not be run</li>
+<li><strong>runKFCD</strong> (<em>boolean</em>) &#8211; True if KFCD should be run, False if KFCD should not be run</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="emtoinputs.batch.Batch.check_folders">
+<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/batch.html#Batch.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.batch.Batch.check_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether or not given folders exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; <p>Folder name of a list of folder names</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.batch.Batch.check_input_file">
+<code class="descname">check_input_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/batch.html#Batch.check_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.batch.Batch.check_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform various checks on the class data to
+make sure that all necessary data exists
+before we attempt to write the input file to disk</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.batch.Batch.cleanup_path">
+<code class="descname">cleanup_path</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/batch.html#Batch.cleanup_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.batch.Batch.cleanup_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleans up directory path strings from double forward slashes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> (<em>str</em>) &#8211; Path string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Cleaned up directory path string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.batch.Batch.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/batch.html#Batch.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.batch.Batch.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output first part of the kgrn input file in formated string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Batch job script file in the form of a long string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.batch.Batch.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/batch.html#Batch.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.batch.Batch.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; </li>
+<li><strong>value</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.batch.Batch.write_input_file">
+<code class="descname">write_input_file</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/batch.html#Batch.write_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.batch.Batch.write_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>(self,str) -&gt;(None)</p>
+<blockquote>
+<div>Save BMDL input data to file named filename</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> &#8211; (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-emtoinputs.emtoinputs">
+<span id="emtoinputs-emtoinputs-module"></span><h2>emtoinputs.emtoinputs module<a class="headerlink" href="#module-emtoinputs.emtoinputs" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 14:25:06 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="emtoinputs.emtoinputs.Emtoinputs">
+<em class="property">class </em><code class="descclassname">emtoinputs.emtoinputs.</code><code class="descname">Emtoinputs</code><a class="reference internal" href="../_modules/emtoinputs/emtoinputs.html#Emtoinputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.emtoinputs.Emtoinputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class which is used to communicate with the Kgrn and Kfcd classes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="emtoinputs.emtoinputs.Emtoinputs.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/emtoinputs.html#Emtoinputs.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.emtoinputs.Emtoinputs.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Passes various input parameters down to the Kgrn and Kfcd classes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> &#8211; <p>Keyword arguments</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-emtoinputs.kfcd">
+<span id="emtoinputs-kfcd-module"></span><h2>emtoinputs.kfcd module<a class="headerlink" href="#module-emtoinputs.kfcd" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 15:05:43 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="emtoinputs.kfcd.Kfcd">
+<em class="property">class </em><code class="descclassname">emtoinputs.kfcd.</code><code class="descname">Kfcd</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>latname=None</em>, <em>latpath=None</em>, <em>msgl=None</em>, <em>nprn=None</em>, <em>lmaxs=None</em>, <em>nth=None</em>, <em>kfcd_nfi=None</em>, <em>fpot=None</em>, <em>ovcor=None</em>, <em>ubg=None</em>, <em>DIR001=None</em>, <em>DIR002=None</em>, <em>DIR003=None</em>, <em>DIR004=None</em>, <em>DIR006=None</em>, <em>sws=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kfcd.html#Kfcd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kfcd.Kfcd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the information and writing of kfcd file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> &#8211; (Default value = None)</li>
+<li><strong>latname</strong> &#8211; (Default value = None)</li>
+<li><strong>latpath</strong> &#8211; (Default value = None)</li>
+<li><strong>msgl</strong> &#8211; (Default value = None)</li>
+<li><strong>nprn</strong> &#8211; (Default value = None)</li>
+<li><strong>lmaxs</strong> &#8211; (Default value = None)</li>
+<li><strong>nth</strong> &#8211; (Default value = None)</li>
+<li><strong>kfcd_nfi</strong> &#8211; (Default value = None)</li>
+<li><strong>fpot</strong> &#8211; (Default value = None)</li>
+<li><strong>ovcor</strong> &#8211; (Default value = None)</li>
+<li><strong>ubg</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR001</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR002</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR003</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR004</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR006</strong> &#8211; (Default value = None)</li>
+<li><strong>sws</strong> &#8211; (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="emtoinputs.kfcd.Kfcd.check_folders">
+<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kfcd.html#Kfcd.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kfcd.Kfcd.check_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether or not given folders exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kfcd.Kfcd.check_input_file">
+<code class="descname">check_input_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kfcd.html#Kfcd.check_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kfcd.Kfcd.check_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform various checks on the class data.</p>
+<p>Makes sure that all necessary data exists
+before we attempt to write the input file to disk</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kfcd.Kfcd.cleanup_path">
+<code class="descname">cleanup_path</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kfcd.html#Kfcd.cleanup_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kfcd.Kfcd.cleanup_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleans up directory path strings from double forward slashes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> (<em>str</em>) &#8211; Cleaned up path string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Cleaned up directory path string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kfcd.Kfcd.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kfcd.html#Kfcd.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kfcd.Kfcd.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outputs KFCD input file as a formatted string.</p>
+<p>Outputs EMTO5.8 KFCD input file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Formatted string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kfcd.Kfcd.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kfcd.html#Kfcd.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kfcd.Kfcd.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes values of the class variables.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> (<em>str</em>) &#8211; name of the variable</li>
+<li><strong>value</strong> (<em>str, int or float</em>) &#8211; value of the variable</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kfcd.Kfcd.write_input_file">
+<code class="descname">write_input_file</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kfcd.html#Kfcd.write_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kfcd.Kfcd.write_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes input file to disk.</p>
+<p>Save KFCD input data to file named filename.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> (<em>str</em>) &#8211; Folder where the data will be written (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-emtoinputs.kgrn">
+<span id="emtoinputs-kgrn-module"></span><h2>emtoinputs.kgrn module<a class="headerlink" href="#module-emtoinputs.kgrn" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 14:48:25 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+<dl class="class">
+<dt id="emtoinputs.kgrn.Kgrn">
+<em class="property">class </em><code class="descclassname">emtoinputs.kgrn.</code><code class="descname">Kgrn</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>latname=None</em>, <em>latpath=None</em>, <em>ibz=None</em>, <em>atoms=None</em>, <em>concs=None</em>, <em>iqs=None</em>, <em>its=None</em>, <em>itas=None</em>, <em>qtrs=None</em>, <em>splts=None</em>, <em>fixs=None</em>, <em>sm_ss=None</em>, <em>s_wss=None</em>, <em>ws_wsts=None</em>, <em>atconf=None</em>, <em>sws=None</em>, <em>strt=None</em>, <em>msgl=None</em>, <em>expan=None</em>, <em>fcd=None</em>, <em>func=None</em>, <em>niter=None</em>, <em>nlin=None</em>, <em>nprn=None</em>, <em>ncpa=None</em>, <em>mode=None</em>, <em>frc=None</em>, <em>dos=None</em>, <em>ops=None</em>, <em>afm=None</em>, <em>crt=None</em>, <em>lmaxh=None</em>, <em>lmaxt=None</em>, <em>kgrn_nfi=None</em>, <em>fixg=None</em>, <em>shf=None</em>, <em>sofc=None</em>, <em>kmsh=None</em>, <em>nkx=None</em>, <em>nky=None</em>, <em>nkz=None</em>, <em>fbz=None</em>, <em>kmsh2=None</em>, <em>ibz2=None</em>, <em>nkx2=None</em>, <em>nky2=None</em>, <em>nkz2=None</em>, <em>zmsh=None</em>, <em>nz1=None</em>, <em>nz2=None</em>, <em>nz3=None</em>, <em>nres=None</em>, <em>nzd=None</em>, <em>depth=None</em>, <em>imagz=None</em>, <em>eps=None</em>, <em>elim=None</em>, <em>amix=None</em>, <em>efmix=None</em>, <em>vmtz=None</em>, <em>mmom=None</em>, <em>tole=None</em>, <em>tolef=None</em>, <em>tolcpa=None</em>, <em>tfermi=None</em>, <em>nsws=None</em>, <em>dsws=None</em>, <em>alpcpa=None</em>, <em>efgs=None</em>, <em>hx=None</em>, <em>nx=None</em>, <em>nz0=None</em>, <em>stmp=None</em>, <em>iex=None</em>, <em>dirac_np=None</em>, <em>nes=None</em>, <em>dirac_niter=None</em>, <em>iwat=None</em>, <em>nprna=None</em>, <em>vmix=None</em>, <em>rwat=None</em>, <em>rmax=None</em>, <em>dx=None</em>, <em>dr1=None</em>, <em>test=None</em>, <em>teste=None</em>, <em>testy=None</em>, <em>testv=None</em>, <em>FOR001=None</em>, <em>DIR002=None</em>, <em>DIR003=None</em>, <em>FOR004=None</em>, <em>DIR006=None</em>, <em>DIR009=None</em>, <em>DIR010=None</em>, <em>DIR011=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class which contains all the KGRN input file related information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> &#8211; (Default value = None)</li>
+<li><strong>latname</strong> &#8211; (Default value = None)</li>
+<li><strong>latpath</strong> &#8211; (Default value = None)</li>
+<li><strong>ibz</strong> &#8211; (Default value = None)</li>
+<li><strong>atoms</strong> &#8211; (Default value = None)</li>
+<li><strong>concs</strong> &#8211; (Default value = None)</li>
+<li><strong>iqs</strong> &#8211; (Default value = None)</li>
+<li><strong>its</strong> &#8211; (Default value = None)</li>
+<li><strong>itas</strong> &#8211; (Default value = None)</li>
+<li><strong>qtrs</strong> &#8211; (Default value = None)</li>
+<li><strong>splts</strong> &#8211; (Default value = None)</li>
+<li><strong>fixs</strong> &#8211; (Default value = None)</li>
+<li><strong>sm_ss</strong> &#8211; (Default value = None)</li>
+<li><strong>s_wss</strong> &#8211; (Default value = None)</li>
+<li><strong>ws_wsts</strong> &#8211; (Default value = None)</li>
+<li><strong>atconf</strong> &#8211; (Default value = None)</li>
+<li><strong>sws</strong> &#8211; (Default value = None)</li>
+<li><strong>strt</strong> &#8211; (Default value = None)</li>
+<li><strong>msgl</strong> &#8211; (Default value = None)</li>
+<li><strong>expan</strong> &#8211; (Default value = None)</li>
+<li><strong>fcd</strong> &#8211; (Default value = None)</li>
+<li><strong>func</strong> &#8211; (Default value = None)</li>
+<li><strong>niter</strong> &#8211; (Default value = None)</li>
+<li><strong>nlin</strong> &#8211; (Default value = None)</li>
+<li><strong>nprn</strong> &#8211; (Default value = None)</li>
+<li><strong>ncpa</strong> &#8211; (Default value = None)</li>
+<li><strong>mode</strong> &#8211; (Default value = None)</li>
+<li><strong>frc</strong> &#8211; (Default value = None)</li>
+<li><strong>dos</strong> &#8211; (Default value = None)</li>
+<li><strong>ops</strong> &#8211; (Default value = None)</li>
+<li><strong>afm</strong> &#8211; (Default value = None)</li>
+<li><strong>crt</strong> &#8211; (Default value = None)</li>
+<li><strong>lmaxh</strong> &#8211; (Default value = None)</li>
+<li><strong>lmaxt</strong> &#8211; (Default value = None)</li>
+<li><strong>kgrn_nfi</strong> &#8211; (Default value = None)</li>
+<li><strong>fixg</strong> &#8211; (Default value = None)</li>
+<li><strong>shf</strong> &#8211; (Default value = None)</li>
+<li><strong>sofc</strong> &#8211; (Default value = None)</li>
+<li><strong>kmsh</strong> &#8211; (Default value = None)</li>
+<li><strong>nkx</strong> &#8211; (Default value = None)</li>
+<li><strong>nky</strong> &#8211; (Default value = None)</li>
+<li><strong>nkz</strong> &#8211; (Default value = None)</li>
+<li><strong>fbz</strong> &#8211; (Default value = None)</li>
+<li><strong>kmsh2</strong> &#8211; (Default value = None)</li>
+<li><strong>ibz2</strong> &#8211; (Default value = None)</li>
+<li><strong>nkx2</strong> &#8211; (Default value = None)</li>
+<li><strong>nky2</strong> &#8211; (Default value = None)</li>
+<li><strong>nkz2</strong> &#8211; (Default value = None)</li>
+<li><strong>zmsh</strong> &#8211; (Default value = None)</li>
+<li><strong>nz1</strong> &#8211; (Default value = None)</li>
+<li><strong>nz2</strong> &#8211; (Default value = None)</li>
+<li><strong>nz3</strong> &#8211; (Default value = None)</li>
+<li><strong>nres</strong> &#8211; (Default value = None)</li>
+<li><strong>nzd</strong> &#8211; (Default value = None)</li>
+<li><strong>depth</strong> &#8211; (Default value = None)</li>
+<li><strong>imagz</strong> &#8211; (Default value = None)</li>
+<li><strong>eps</strong> &#8211; (Default value = None)</li>
+<li><strong>elim</strong> &#8211; (Default value = None)</li>
+<li><strong>amix</strong> &#8211; (Default value = None)</li>
+<li><strong>efmix</strong> &#8211; (Default value = None)</li>
+<li><strong>vmtz</strong> &#8211; (Default value = None)</li>
+<li><strong>mmom</strong> &#8211; (Default value = None)</li>
+<li><strong>tole</strong> &#8211; (Default value = None)</li>
+<li><strong>tolef</strong> &#8211; (Default value = None)</li>
+<li><strong>tolcpa</strong> &#8211; (Default value = None)</li>
+<li><strong>tfermi</strong> &#8211; (Default value = None)</li>
+<li><strong>nsws</strong> &#8211; (Default value = None)</li>
+<li><strong>dsws</strong> &#8211; (Default value = None)</li>
+<li><strong>alpcpa</strong> &#8211; (Default value = None)</li>
+<li><strong>efgs</strong> &#8211; (Default value = None)</li>
+<li><strong>hx</strong> &#8211; (Default value = None)</li>
+<li><strong>nx</strong> &#8211; (Default value = None)</li>
+<li><strong>nz0</strong> &#8211; (Default value = None)</li>
+<li><strong>stmp</strong> &#8211; (Default value = None)</li>
+<li><strong>iex</strong> &#8211; (Default value = None)</li>
+<li><strong>dirac_np</strong> &#8211; (Default value = None)</li>
+<li><strong>nes</strong> &#8211; (Default value = None)</li>
+<li><strong>dirac_niter</strong> &#8211; (Default value = None)</li>
+<li><strong>iwat</strong> &#8211; (Default value = None)</li>
+<li><strong>nprna</strong> &#8211; (Default value = None)</li>
+<li><strong>vmix</strong> &#8211; (Default value = None)</li>
+<li><strong>rwat</strong> &#8211; (Default value = None)</li>
+<li><strong>rmax</strong> &#8211; (Default value = None)</li>
+<li><strong>dx</strong> &#8211; (Default value = None)</li>
+<li><strong>dr1</strong> &#8211; (Default value = None)</li>
+<li><strong>test</strong> &#8211; (Default value = None)</li>
+<li><strong>teste</strong> &#8211; (Default value = None)</li>
+<li><strong>testy</strong> &#8211; (Default value = None)</li>
+<li><strong>testv</strong> &#8211; (Default value = None)</li>
+<li><strong>FOR001</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR002</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR003</strong> &#8211; (Default value = None)</li>
+<li><strong>FOR004</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR006</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR009</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR010</strong> &#8211; (Default value = None)</li>
+<li><strong>DIR011</strong> &#8211; (Default value = None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.AtomOutput">
+<code class="descname">AtomOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.AtomOutput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.AtomOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>(self) -&gt; str</p>
+<blockquote>
+<div>Output of atomic lines in kgrn format</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.Atomline">
+<code class="descname">Atomline</code><span class="sig-paren">(</span><em>atom</em>, <em>iq</em>, <em>it</em>, <em>ita</em>, <em>conc</em>, <em>Sm_s</em>, <em>S_ws</em>, <em>WS_wst</em>, <em>qtr</em>, <em>splt</em>, <em>fix</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.Atomline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.Atomline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints atomic line in kgrn format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>atom</strong> &#8211; </li>
+<li><strong>iq</strong> &#8211; </li>
+<li><strong>it</strong> &#8211; </li>
+<li><strong>ita</strong> &#8211; </li>
+<li><strong>conc</strong> &#8211; </li>
+<li><strong>Sm_s</strong> &#8211; </li>
+<li><strong>S_ws</strong> &#8211; </li>
+<li><strong>WS_wst</strong> &#8211; </li>
+<li><strong>qtr</strong> &#8211; </li>
+<li><strong>splt</strong> &#8211; </li>
+<li><strong>fix</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.aconflines">
+<code class="descname">aconflines</code><span class="sig-paren">(</span><em>atype</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.aconflines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.aconflines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns string containing electronic configuration lines</p>
+<p>Contains the database of atomic orbital configuration information
+which is present in atomic block of the KGRN input file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>atype</strong> (<em>str</em>) &#8211; Name of the element in the periodic table</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A formatted string corresponding to the parameter atype</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.check_folders">
+<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.check_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether or not given folders exist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; <p>The name of the folder or a list of names of folders</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.check_input_file">
+<code class="descname">check_input_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.check_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.check_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform various checks on the class data</p>
+<p>Makes sure that all necessary data exists
+before we attempt to write the input file to disk.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.cleanup_path">
+<code class="descname">cleanup_path</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.cleanup_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.cleanup_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleans up directory path strings from double forward slashes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> (<em>str</em>) &#8211; Cleaned up path string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Cleaned up directory path string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.create_atconf">
+<code class="descname">create_atconf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.create_atconf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.create_atconf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs the self.atconf list out of the atomic information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.create_atomblock">
+<code class="descname">create_atomblock</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.create_atomblock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.create_atomblock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs the KGRN input file atomblock if all
+the necessary parameters are present.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.lat_to_ibz">
+<code class="descname">lat_to_ibz</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.lat_to_ibz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.lat_to_ibz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Bravais lattice ibz code based on the input string code.</p>
+<p>e.g. lat=&#8217;bcc&#8217; or lat=&#8217;fco&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lat</strong> (<em>str</em>) &#8211; lattice string code</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ibz code corresponding to the Bravais lattice
+given by the &#8216;lat&#8217; key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.output">
+<code class="descname">output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>(self) -&gt; (str)</p>
+<blockquote>
+<div>Output first part of the kgrn input file in formated string</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.set_values">
+<code class="descname">set_values</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.set_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.set_values" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> &#8211; </li>
+<li><strong>value</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="emtoinputs.kgrn.Kgrn.write_input_file">
+<code class="descname">write_input_file</code><span class="sig-paren">(</span><em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/emtoinputs/kgrn.html#Kgrn.write_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#emtoinputs.kgrn.Kgrn.write_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>(self,str) -&gt;(None)</p>
+<blockquote>
+<div>Save KGRN input data to file named filename</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>folder</strong> &#8211; (Default value = None)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-emtoinputs">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-emtoinputs" title="Permalink to this headline">¶</a></h2>
+<p>Created on Wed Dec  3 14:59:02 2014</p>
+<p>&#64;author: Matti Ropo
+&#64;author: Henrik Levämäki</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
