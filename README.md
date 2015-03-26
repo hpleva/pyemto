@@ -1,6 +1,6 @@
 # README #
 
-Please open Documentation.html for installation instructions.
+Please open Documentation.html in the pyemto folder for installation instructions.
 
 ### What is this repository for? ###
 
