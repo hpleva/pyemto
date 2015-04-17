@@ -464,11 +464,12 @@ class System:
             for i in range(len(self.lc_batch_ca_range)):
                 for j in range(len(self.lc_batch_sws_range)):
 
+                    caname = "ca"+str(i+1)
                     self.sws = self.lc_batch_sws_range[j]
-                    job = self.create_jobname(self.jobname + "_" + "ca"+str(i+1))
+                    job = self.create_jobname(self.jobname + "_" + caname)
                     jobnames.append(job)
                     self.emto.set_values(sws=self.sws, jobname=job)
-                    self.emto.set_values(latname=latnames[i])
+                    self.emto.set_values(latname=caname)
 
                     self.check_folders(
                         self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")

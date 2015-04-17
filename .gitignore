@@ -6,3 +6,6 @@
 
 # Do not track pyment patch files
 *.patch
+
+# Do not track setup.py build directory
+build
