@@ -226,7 +226,7 @@ class System:
                                  EMTOdir=self.EMTOdir, **kwargs)
         return
 
-    def lattice_constants_analyze(self, sws=None, ca=None, prn=True):
+    def lattice_constants_analyze(self, sws=None, ca=None,prn=True):
         """Analyzes the output files generated using the
         lattice_constants_batch_generate function.
 
@@ -302,8 +302,8 @@ class System:
             # Fit an n'th order polynomial to the energy vs. c/a data.
             ca_fit_order = 2
 
-            latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
-                        'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
+#            latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
+#                        'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
 
             # For the energies a 2D-array [i,j], where i = c/a axis and j = sws
             # axis
@@ -318,7 +318,7 @@ class System:
                 for j in range(len(self.lc_analyze_sws_range)):
 
                     self.sws = self.lc_analyze_sws_range[j]
-                    job = self.create_jobname(self.jobname + "_" + latnames[i])
+                    job = self.create_jobname(self.jobname + "_" + "ca"+str(i+1))
                     en = self.get_energy(job, folder=self.folder, func=self.xc)
                     if isinstance(en, type(None)):
                         print('System.lattice_constants_analyze(): Warning:' +
@@ -458,14 +458,14 @@ class System:
             return jobnames
 
         elif self.lat == 'hcp':
-            latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
-                        'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
+            #latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
+            #            'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
 
             for i in range(len(self.lc_batch_ca_range)):
                 for j in range(len(self.lc_batch_sws_range)):
 
                     self.sws = self.lc_batch_sws_range[j]
-                    job = self.create_jobname(self.jobname + "_" + latnames[i])
+                    job = self.create_jobname(self.jobname + "_" + "ca"+str(i+1))
                     jobnames.append(job)
                     self.emto.set_values(sws=self.sws, jobname=job)
                     self.emto.set_values(latname=latnames[i])
