@@ -10,6 +10,7 @@ Created on Wed Dec  3 15:09:24 2014
 from __future__ import print_function
 import sys
 import os
+import datetime
 import re
 
 
@@ -69,7 +70,7 @@ class Batch:
         line += "#SBATCH -e " + \
             self.cleanup_path(
                 self.emtopath + "/" + self.jobname) + ".error" + "\n"
-        # line += "#SBATCH -x pl1,pl11"+"\n"+"\n"
+        #line += "#SBATCH -x pl1,pl11"+"\n"+"\n"
 
         elapsed_time = "/usr/bin/time "
         if self.runKGRN:
@@ -133,8 +134,7 @@ class Batch:
 
         # Mission critical parameters
         if self.jobname is None:
-            sys.exit(
-                'Batch_emto.check_input_file: \'jobname\' has to be given!')
+            sys.exit('Batch_emto.check_input_file: \'jobname\' has to be given!')
 
         if self.runtime is None:
             self.runtime = "02:00:00"

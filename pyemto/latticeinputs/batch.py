@@ -10,6 +10,7 @@ Created on Wed Dec  3 15:09:24 2014
 from __future__ import print_function
 import sys
 import os
+import datetime
 import re
 
 
@@ -146,8 +147,7 @@ class Batch:
         if hasattr(self, key):
             setattr(self, key, value)
         else:
-            print(
-                'WARNING: Batch_lattice() class has no attribute \'{0}\''.format(key))
+            print('WARNING: Batch_lattice() class has no attribute \'{0}\''.format(key))
 
     def check_input_file(self):
         """Perform various checks on the class data to

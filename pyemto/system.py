@@ -13,6 +13,7 @@ from __future__ import print_function
 import time
 import os
 import sys
+import re
 import numpy as np
 
 
@@ -723,8 +724,9 @@ class System:
 
             # All calculations have been done, now it's time to fit the results
             popt_cprime, cprime_rsq = eos.distortion_fit(
-                good_deltas_cprime, en_cprime)
-            popt_c44, c44_rsq = eos.distortion_fit(good_deltas_c44, en_c44)
+                good_deltas_cprime, en_cprime,title='cprime')
+            popt_c44, c44_rsq = eos.distortion_fit(
+				good_deltas_c44, en_c44,title='c44')
 
             volume = 4.0 / 3.0 * np.pi * self.sws**3
 
@@ -770,13 +772,14 @@ class System:
             print("")
             print(self.jobname)
             print("")
-            print('c11(GPa) = {0:6.2f}'.format(c11))
-            print('c12(GPa) = {0:6.2f}'.format(c12))
-            print(
-                'c44(GPa) = {0:6.2f}, R-squared = {1:8.6f}'.format(c44, c44_rsq))
-            print(
-                'c\' (GPa) = {0:6.2f}, R-squared = {1:8.6f}'.format(cprime, cprime_rsq))
-            print('B  (GPa) = {0:6.2f}'.format(self.bmod))
+            print('sws(bohr)      = {0:7.3f}'.format(self.sws))
+            print('B(GPa)         = {0:6.2f}'.format(self.bmod))
+            print('c11(GPa)       = {0:6.2f}'.format(c11))
+            print('c12(GPa)       = {0:6.2f}'.format(c12))
+            print('c\'(GPa)        = {0:6.2f}'.format(cprime))
+            print('c44(GPa)       = {0:6.2f}'.format(c44))
+            print('R-squared(c\')  = {0:8.6f}'.format(cprime_rsq))
+            print('R-squared(c44) = {0:8.6f}'.format(c44_rsq))
             print("")
             print('Voigt average:')
             print("")
@@ -885,8 +888,8 @@ class System:
             good_deltas_c44 = np.asarray(good_deltas_c44)
 
             # All calculations have been done, now it's time to fit the results
-            popt_c66, c66_rsq = eos.distortion_fit(good_deltas_c66, en_c66)
-            popt_c44, c44_rsq = eos.distortion_fit(good_deltas_c44, en_c44)
+            popt_c66, c66_rsq = eos.distortion_fit(good_deltas_c66, en_c66, title='c66')
+            popt_c44, c44_rsq = eos.distortion_fit(good_deltas_c44, en_c44, title='c44')
 
             volume = 4.0 / 3.0 * np.pi * self.sws**3
 
@@ -938,15 +941,16 @@ class System:
             print("")
             print(self.jobname)
             print("")
-            print('c11(GPa) = {0:6.2f}'.format(c11))
-            print('c12(GPa) = {0:6.2f}'.format(c12))
-            print('c13(GPa) = {0:6.2f}'.format(c13))
-            print('c33(GPa) = {0:6.2f}'.format(c33))
-            print(
-                'c44(GPa) = {0:6.2f}, R-squared = {1:8.6f}'.format(c44, c44_rsq))
-            print(
-                'c66(GPa) = {0:6.2f}, R-squared = {1:8.6f}'.format(c66, c66_rsq))
-            print('B  (GPa) = {0:6.2f}'.format(self.bmod))
+            print('sws(bohr)      = {0:7.3f}'.format(self.sws))
+            print('B(GPa)         = {0:6.2f}'.format(self.bmod))
+            print('c11(GPa)       = {0:6.2f}'.format(c11))
+            print('c12(GPa)       = {0:6.2f}'.format(c12))
+            print('c13(GPa)       = {0:6.2f}'.format(c13))
+            print('c33(GPa)       = {0:6.2f}'.format(c33))
+            print('c44(GPa)       = {0:6.2f}'.format(c44))
+            print('c66(GPa)       = {0:6.2f}'.format(c66))
+            print('R-squared(c44) = {0:8.6f}'.format(c44_rsq))
+            print('R-squared(c66) = {0:8.6f}'.format(c66_rsq))
             print("")
             print('Voigt average:')
             print("")
@@ -1005,21 +1009,16 @@ class System:
             # Orthorhombic distortion input files for c' first
 
             if self.lat == 'bcc':
-                jobname_dist = [
-                    '_bcco0', '_bcco1', '_bcco2', '_bcco3', '_bcco4', '_bcco5']
-                latname_dist = [
-                    'bcco0', 'bcco1', 'bcco2', 'bcco3', 'bcco4', 'bcco5']
-                # self.emto.set_values(ibz=10,nkx=27,nky=27,nkz=27) #
-                # High-accuracy
-                self.emto.set_values(ibz=10, nkx=15, nky=15, nkz=15)
+                jobname_dist = ['_bcco0','_bcco1','_bcco2','_bcco3','_bcco4','_bcco5']
+                latname_dist = ['bcco0','bcco1','bcco2','bcco3','bcco4','bcco5']
+                self.emto.set_values(ibz=10,nkx=31,nky=31,nkz=31) # High-quality
+                #self.emto.set_values(ibz=10,nkx=15,nky=15,nkz=15) # Normal quality
             elif self.lat == 'fcc':
-                jobname_dist = [
-                    '_fcco0', '_fcco1', '_fcco2', '_fcco3', '_fcco4', '_fcco5']
-                latname_dist = [
-                    'fcco0', 'fcco1', 'fcco2', 'fcco3', 'fcco4', 'fcco5']
-                # self.emto.set_values(ibz=11,nkx=27,nky=27,nkz=27) #
-                # High-accuracy
-                self.emto.set_values(ibz=11, nkx=17, nky=17, nkz=17)
+                jobname_dist = ['_fcco0','_fcco1','_fcco2','_fcco3','_fcco4','_fcco5']
+                latname_dist = ['fcco0','fcco1','fcco2','fcco3','fcco4','fcco5']
+                #self.emto.set_values(ibz=11,nkx=41,nky=41,nkz=41) # Super-high-quality
+                self.emto.set_values(ibz=11,nkx=31,nky=31,nkz=31) # High-quality
+                #self.emto.set_values(ibz=11,nkx=17,nky=17,nkz=17) # Normal-quality
 
             for i in range(len(jobname_dist)):
                 job = self.create_jobname(self.jobname + jobname_dist[i])
@@ -1038,19 +1037,16 @@ class System:
             # Next produce the input files of monoclinic distortion for c44
 
             if self.lat == 'bcc':
-                jobname_dist = [
-                    '_bccm0', '_bccm1', '_bccm2', '_bccm3', '_bccm4', '_bccm5']
-                latname_dist = [
-                    'bccm0', 'bccm1', 'bccm2', 'bccm3', 'bccm4', 'bccm5']
-                # self.emto.set_values(ibz=11,nkx=27,nky=27,nkz=37)
-                self.emto.set_values(ibz=11, nkx=15, nky=15, nkz=21)
+                jobname_dist = ['_bccm0','_bccm1','_bccm2','_bccm3','_bccm4','_bccm5']
+                latname_dist = ['bccm0','bccm1','bccm2','bccm3','bccm4','bccm5']
+                self.emto.set_values(ibz=11,nkx=27,nky=27,nkz=37) # High-quality
+                #self.emto.set_values(ibz=11,nkx=15,nky=15,nkz=21) # Normal quality
             elif self.lat == 'fcc':
-                jobname_dist = [
-                    '_fccm0', '_fccm1', '_fccm2', '_fccm3', '_fccm4', '_fccm5']
-                latname_dist = [
-                    'fccm0', 'fccm1', 'fccm2', 'fccm3', 'fccm4', 'fccm5']
-                # self.emto.set_values(ibz=10,nkx=27,nky=37,nkz=27)
-                self.emto.set_values(ibz=10, nkx=15, nky=21, nkz=15)
+                jobname_dist = ['_fccm0','_fccm1','_fccm2','_fccm3','_fccm4','_fccm5']
+                latname_dist = ['fccm0','fccm1','fccm2','fccm3','fccm4','fccm5']
+                #self.emto.set_values(ibz=10,nkx=37,nky=53,nkz=37) # Super-high-quality
+                self.emto.set_values(ibz=10,nkx=27,nky=37,nkz=27) # High-quality
+                #self.emto.set_values(ibz=10,nkx=15,nky=21,nkz=15) # Normal quality
 
             for i in range(len(jobname_dist)):
                 job = self.create_jobname(self.jobname + jobname_dist[i])

@@ -198,6 +198,14 @@ class Latticeinputs:
                         0: 2.51, 1: 2.51, 2: 2.51, 3: 2.49, 4: 2.51, 5: 2.49}
                     dmax = dmax_dict[index]
 
+            elif lat == 'sc':
+                if dist == 'ortho':
+                    dmax_dict = {0:2.3,1:2.3,2:2.3,3:2.3,4:2.4,5:2.35}
+                    dmax = dmax_dict[index]
+                elif dist == 'mono':
+                    dmax_dict = {0:2.3,1:2.3,2:2.3,3:2.3,4:2.35,5:2.35}
+                    dmax = dmax_dict[index]
+                
         # Details can be found in Vitos' book pages 104-110.
 
         if lat == 'bcc' and dist == 'ortho':
@@ -245,48 +253,131 @@ class Latticeinputs:
             latvectors = [90.0, 90.0, 90.0]
             basis = [0.0, 0.0, 0.0]
 
-            self.set_values(
-                latparams=latparams, latvectors=latvectors, basis=basis)
+            self.set_values(latparams=latparams, latvectors=latvectors, basis=basis)
 
         elif lat == 'hcp' and dist == 'ortho':
             self.set_values(jobname='hcpo{0}'.format(index))
-            self.set_values(lat='baco', dmax=dmax)
+            self.set_values(lat='baco',dmax=dmax)
 
             latparams = []
             latparams.append(1.0)
-            latparams.append(np.sqrt(3.0) * (1.0 - delta) / (1.0 + delta))
-            latparams.append(ca / (1.0 + delta) / (1.0 - delta**2))
+            latparams.append(np.sqrt(3.0)*(1.0-delta)/(1.0+delta))
+            latparams.append(ca/(1.0+delta)/(1.0-delta**2))
+            
+            latvectors = [90.0,90.0,90.0]
+            
+            basis = [[0.0,0.0,0.0],[0.0,latparams[1]/3.0,latparams[2]/2.0]]
 
-            latvectors = [90.0, 90.0, 90.0]
-
-            basis = [
-                [0.0, 0.0, 0.0], [0.0, latparams[1] / 3.0, latparams[2] / 2.0]]
-
-            self.set_values(
-                latparams=latparams, latvectors=latvectors, basis=basis)
+            self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
 
         elif lat == 'hcp' and dist == 'mono':
             self.set_values(jobname='hcpm{0}'.format(index))
-            self.set_values(lat='sm', dmax=dmax)
 
-            bam = ca  # Distorted b over a
-            cam = np.sqrt(3.0) / np.sqrt(1.0 + delta**2) / \
-                (1.0 - delta**2)  # Distorted c over a
-            latparams = [1.0, bam, cam]
+            # The following out-commented lines are valid when
+            # on wants to describe the distorted structure
+            # as a simple monoclinic with a four atom basis.
+            # Look Vitos' book page 110.
+            """
+            self.set_values(lat='sm',dmax=dmax)
 
-            bs1 = [1.0, 0.0, 0.0]
-            bs2 = [2.0 * delta / (1.0 + delta**2) * ca,
-                   (1.0 - delta**2) / (1.0 + delta**2) * ca, 0.0]
-            bs3 = [0.0, 0.0, cam]
-            latvectors = [bs1, bs2, bs3]
+            # WARNING!!
+            # gamma = the gamma angle = the beta angle in the standard/conventional definition.
+            gam = np.arccos(2*delta/(1+delta**2))/np.pi*180.0 
+            bam = ca # Distorted b over a
+            cam = np.sqrt(3.0)/np.sqrt(1.0+delta**2)/(1.0-delta**2) # Distorted c over a
+            latparams = [1.0,bam,cam]
 
-            pos1 = [0.0, 0.0, 0.0]
-            pos2 = [ca * delta / (1.0 + delta**2), ca *
-                    (1.0 - delta**2) / (1.0 + delta**2) / 2.0, -cam / 3.0]
-            pos3 = [0.5, 0.0, -cam / 2.0]
-            pos4 = [pos2[0] + pos3[0], pos2[1] + pos3[1], pos2[2] + pos3[2]]
-            basis = [pos1, pos2, pos3, pos4]
+            bs1 = [1.0,0.0,0.0]
+            bs2 = [2.0*delta/(1.0+delta**2)*ca,(1.0-delta**2)/(1.0+delta**2)*ca,0.0]
+            bs3 = [0.0,0.0,cam]
+            latvectors = [bs1,bs2,bs3]
+            #latvectors = [90,90,gam]
 
-            self.set_values(
-                latparams=latparams, latvectors=latvectors, basis=basis)
+            pos1 = [0.0,0.0,0.0]
+            pos2 = [ca*delta/(1.0+delta**2),ca*(1.0-delta**2)/(1.0+delta**2)/2.0,-cam/3.0]
+            pos3 = [0.5,0.0,-cam/2.0]
+            pos4 = [pos2[0]+pos3[0],pos2[1]+pos3[1],pos2[2]+pos3[2]]
+            basis = [pos1,pos2,pos3,pos4]
+            """
+            
+            # The following lines give the distorted structure
+            # as a base-centered monoclinic with a two-atom basis.
+            self.set_values(lat='bacm',dmax=dmax)
+
+            # WARNING!!
+            # gamma = the gamma angle = the beta angle in the standard/conventional definition.
+            gam = np.arccos(2*delta/(1+delta**2))/np.pi*180.0 
+            bam = ca # Distorted b over a
+            cam = np.sqrt(3.0)/np.sqrt(1.0+delta**2)/(1.0-delta**2) # Distorted c over a
+            latparams = [1.0,bam,cam]
+
+            latvectors = [90,90,gam]
+
+            pos1 = [0.0,0.0,0.0]
+            pos2 = [ca*delta/(1.0+delta**2),ca*(1.0-delta**2)/(1.0+delta**2)/2.0,-cam/3.0]
+            basis = [pos1,pos2]
+
+            self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
+
+        elif lat == 'sc' and dist == 'ortho':
+            self.set_values(jobname='sco{0}'.format(index))
+            self.set_values(lat='so',dmax=dmax)
+
+            bs1 = [1.0+delta,0.0,0.0]
+            bs2 = [0.0,1.0-delta,0.0]
+            bs3 = [0.0,0.0,1.0/(1.0-delta**2)]
+            latvectors = [bs1,bs2,bs3]
+            latparams = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
+                         np.linalg.norm(np.asarray(bs3))]
+            
+            if basis == None:
+                basis = [0.0,0.0,0.0]
+            else:
+                # Calculate basis transformation
+                tr_matrix = np.array([[1.0+delta,0.0,0.0],
+                                     [0.0,1.0+delta,0.0],
+                                     [0.0,0.0,1.0/(1.0-delta**2)]])
+
+                basis = self.basis_transform(basis,tr_matrix)
+
+            self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
+
+        elif lat == 'sc' and dist == 'mono':
+            self.set_values(jobname='scm{0}'.format(index))
+            self.set_values(lat='baco',dmax=dmax)
+
+            latparams = [1.0,(1.0-delta)/(1.0+delta),1.0/(1.0+delta)/(1.0-delta**2)]
+            bs1 = [1.0,delta,0.0]
+            bs2 = [delta,1.0,0.0]
+            bs3 = [0.0,0.0,1.0/(1.0-delta**2)]
+            latvectors = [bs1,bs2,bs3]
+            latparams = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
+                         np.linalg.norm(np.asarray(bs3))]
+            
+            if basis == None:
+                basis = [0.0,0.0,0.0]
+            else:
+                # Calculate basis transformation
+                tr_matrix = np.array([[1.0,delta,0.0],
+                                     [delta,1.0,0.0],
+                                     [0.0,0.0,1.0/(1.0-delta**2)]])
+
+                basis = self.basis_transform(basis,tr_matrix)
+
+            self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
+
         return
+
+    def basis_transform(self,basis,matrix):
+        """Calculates a basis vector transform given by the transformation matrix."""
+        
+        import numpy as np
+
+        tmp = np.asarray(basis)
+        # Calculate the transformation using
+        # matrix multiplication and then convert
+        # the new basis into a python list with the tolist method.
+        new_basis = np.dot(tmp,matrix).tolist()
+
+        return new_basis
+

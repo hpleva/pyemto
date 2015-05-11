@@ -194,6 +194,12 @@ class Kstr:
             fl = open(folder + '/{0}2.kstr'.format(self.jobname), "w")
             fl.write(self.output(2))
             fl.close()
+
+        # Re-initialize some of the input parameters
+        # to avoid situations, where an input parameter
+        # doesn't get updated correctly, because it already
+        # existed.
+        self.finalize()
         return
 
     def set_values(self, key, value):
@@ -351,6 +357,13 @@ class Kstr:
             self.nghbp = 13
         if self.awIQ is None:
             self.awIQ = np.ones((self.nq, 4)) * 0.7
+		return
+
+    def finalize(self):
+        """Re-initializes input parameters."""
+
+        self.awIQ = None
+        return
 
     def check_folders(self, *args):
         """ Check whether or not given folders exist.

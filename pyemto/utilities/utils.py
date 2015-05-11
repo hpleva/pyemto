@@ -9,6 +9,7 @@ Created on Wed Dec  3 14:25:06 2014
 """
 
 import os
+import datetime
 import subprocess
 import sys
 import numpy as np

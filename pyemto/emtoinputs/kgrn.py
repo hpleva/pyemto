@@ -614,11 +614,18 @@ class Kgrn:
                 + "Valen  0  0  0  0  0  0  0  1\n"
         elif atype == "Ca":
             results = "Ca\n" \
-                + "Iz=  20 Norb=  8 Ion=  0 Config= 4s2\n" \
-                + "n      1  2  2  2  3  3  3  4\n" \
-                + "Kappa -1 -1  1 -2 -1  1 -2 -1\n" \
-                + "Occup  2  2  2  4  2  2  4  2\n" \
-                + "Valen  0  0  0  0  0  0  0  1\n"
+                    + "Iz=  20 Norb=  8 Ion=  0 Config= 4s2\n" \
+                    + "n      1  2  2  2  3  3  3  4\n" \
+                    + "Kappa -1 -1  1 -2 -1  1 -2 -1\n" \
+                    + "Occup  2  2  2  4  2  2  4  2\n" \
+                    + "Valen  0  0  0  0  0  0  0  1\n"
+        #elif atype == "Ca":
+        #    results = "Ca\n" \
+        #            + "Iz=  20 Norb=  8 Ion=  0 Config= 3s2_3p6_4s2\n" \
+        #            + "n      1  2  2  2  3  3  3  4\n" \
+        #            + "Kappa -1 -1  1 -2 -1  1 -2 -1\n" \
+        #            + "Occup  2  2  2  4  2  2  4  2\n" \
+        #            + "Valen  0  0  0  0  1  1  1  1\n"
         elif atype == "Sc":
             results = "Sc\n" \
                 + "Iz=  21 Norb=  9 Ion=  0 Config= 3d1_4s2\n" \
@@ -670,11 +677,11 @@ class Kgrn:
                 + "Valen  0  0  0  0  0  0  0  1  1  1\n"
         elif atype == "Ni":
             results = "Ni\n" \
-                + "Iz=  28 Norb= 10 Ion=  0 Config= 3d8_4s2\n" \
-                + "n      1  2  2  2  3  3  3  3  3  4\n" \
-                + "Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n" \
-                + "Occup  2  2  2  4  2  2  4  4  4  2\n" \
-                + "Valen  0  0  0  0  0  0  0  1  1  1\n"
+                    + "Iz=  28 Norb= 10 Ion=  0 Config= 3d8_4s2\n" \
+                    + "n      1  2  2  2  3  3  3  3  3  4\n" \
+                    + "Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n" \
+                    + "Occup  2  2  2  4  2  2  4  4  4  2\n" \
+                    + "Valen  0  0  0  0  0  0  0  1  1  1\n"
         elif atype == "Cu":
             results = "Cu\n" \
                 + "Iz=  29 Norb= 10 Ion=  0 Config= 3d10_4s1\n" \
@@ -738,6 +745,7 @@ class Kgrn:
                 + "Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2 -1\n" \
                 + "Occup  2  2  2  4  2  2  4  4  6  2  2  4  1\n" \
                 + "Valen  0  0  0  0  0  0  0  0  0  0  0  0  1\n"
+
         elif atype == "Sr":
             results = "Sr\n" \
                 + "Iz=  38 Norb= 13 Ion=  0 Config= 5s2\n" \
@@ -745,6 +753,13 @@ class Kgrn:
                 + "Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2 -1\n" \
                 + "Occup  2  2  2  4  2  2  4  4  6  2  2  4  2\n" \
                 + "Valen  0  0  0  0  0  0  0  0  0  0  0  0  1\n"
+        #elif atype == "Sr":
+        #    results = "Sr\n" \
+        #            + "Iz=  38 Norb= 13 Ion=  0 Config= 4p6_5s2\n" \
+        #            + "n      1  2  2  2  3  3  3  3  3  4  4  4  5\n" \
+        #            + "Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2 -1\n" \
+        #            + "Occup  2  2  2  4  2  2  4  4  6  2  2  4  2\n" \
+        #            + "Valen  0  0  0  0  0  0  0  0  0  0  1  1  1\n"
         elif atype == "Y":
             results = "Y\n" \
                 + "Iz=  39 Norb= 14 Ion=  0 Config= 4d1_5s2\n" \
@@ -1614,9 +1629,8 @@ class Kgrn:
         :rtype: int
         """
 
-        # One should add some error hangling here and add rest of the ibz's
-        # here.
+        # One should add some error hangling here.
         ltoi = {'sc': 1, 'fcc': 2, 'bcc': 3, 'hcp': 4, 'st': 5, 'bct': 6, 'trig': 7, 'so': 8,
-                'baco': 9, 'bco': 10, 'fco': 11, 'sm': 12, 'bcm': 13, 'stric': 14}
+                'baco': 9, 'bco': 10, 'fco': 11, 'sm': 12, 'bacm': 13, 'bcm': 13, 'stric': 14}
 
         return ltoi[lat]

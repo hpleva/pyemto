@@ -539,7 +539,7 @@ class EOS:
                     self.v0 = t**-3
                     break
             if self.v0 is None:
-                raise ValueError('sjeos: No minimum!')
+                raise ValueError('SJEOS: No minimum!')
             self.e0 = fit0(t) + self.eMin
             self.B = t**5 * fit2(t) / 9
             self.sjeosfit0 = fit0
@@ -1293,7 +1293,7 @@ class EOS:
         E = a2 * x**2 + a1 * x + a0
         return E
 
-    def distortion_fit(self, x, y, num=2):
+    def distortion_fit(self,x,y,num=1,title='',ascii_art=True):
         """Fits the distortion_poly function to
         the distortion data.
 
@@ -1310,29 +1310,138 @@ class EOS:
         :type y:
         :param num:  (Default value = 2)
         :type num:
+		:param title:  (Default value = '')
+		:type title: str
+		:param ascii_art: True, if ascii figure of the fit should be drawn.
+		:type ascii_art: Boolean
         :returns:
         :rtype:
         """
 
+        if num == 1:
+            ydata = y-y[0]
+        else:
+            ydata = y
+        
         # Starting estimates for the actual fit
-        z = np.polyfit(x, y, 2)
-        p0 = []
-        for i in range(num):
-            p0.append(z[i])
+        z = np.polyfit(x,ydata,2)
 
-        popt, pcov, infodict, mesg, ier = curve_fit(
-            eval('self.distortion_poly{0}'.format(num)), x, y, p0)
+		"""
+        # TEST: simulate symmetric high-quality 6th order polynomial fit
+        eps = 1.0E-6
+        zero_included = False
+        for i in range(len(x)):
+            if x[i]<eps:
+                zero_included = True
+        if zero_included == True:
+            xsim = np.zeros(2*len(x)-1)
+            ysim = np.zeros(2*len(x)-1)
+        else:
+            xsim = np.zeros(2*len(x))
+            ysim = np.zeros(2*len(x))
+        if zero_included == True:
+            xsim[:len(x)-1] = -x[:0:-1]
+            xsim[len(x)-1:] = x[:]
+            ysim[:len(x)-1] = y[:0:-1]
+            ysim[len(x)-1:] = y[:]
+        else:
+            xsim[:len(x)] = -x[::-1]
+            xsim[len(x):] = x[:]
+            ysim[:len(x)] = y[::-1]
+            ysim[len(x):] = y[:]
+                                        
+        print(xsim)
+        print(ysim)
+
+        print(np.polyfit(xsim,ysim,2)[-3])
+        print(np.polyfit(xsim,ysim,3)[-3])
+        print(np.polyfit(xsim,ysim,4)[-3])
+        print(np.polyfit(xsim,ysim,5)[-3])
+        print(np.polyfit(xsim,ysim,6)[-3])
+        """
+
+        if num == 1:
+            p0 = [z[0]]
+        elif num == 2:
+            p0 = [z[0],z[2]]
+        elif num == 3:
+            p0 = [z[0],z[1],z[2]]
+
+        popt,pcov,infodict,mesg,ier=curve_fit(eval('self.distortion_poly{0}'.format(num)),x,ydata,p0)
 
         # Compute error estimate for the fit
         residuals = infodict['fvec']
         chisqr = np.sum(residuals**2)
-        redchi = chisqr / (len(y) - 4)
-        ss_tot = np.sum((y - np.mean(y))**2)
-        rsquared = 1.0 - chisqr / ss_tot
+        redchi = chisqr/(len(ydata)-4)
+        ss_tot = np.sum((ydata-np.mean(ydata))**2)
+        rsquared = 1.0-chisqr/ss_tot
         #fitE = self.predicted() + self.eMin
 
         # Make sure the return variable is always an array
-        if isinstance(popt, type(np.sqrt(1.0))):
+        if type(popt) is type(np.sqrt(1.0)):
             popt = np.array([popt])
 
-        return popt, rsquared
+        print(popt)
+
+        # Draw the curve
+        if ascii_art:
+            import time
+            
+            if num == 1:
+                fitti = eval('self.distortion_poly{0}'.format(num))(x,popt[0])
+            elif num == 2:
+                fitti = eval('self.distortion_poly{0}'.format(num))(x,popt[0],popt[1])
+            elif num == 3:
+                fitti = eval('self.distortion_poly{0}'.format(num))(x,popt[0],popt[1],popt[2])
+            self.ascii_plot(x,ydata,fitti,title)
+			
+            """
+            # Draw simulated high-quality fit:
+            fitti = np.poly1d(np.polyfit(xsim,ysim,6))(xsim)
+            self.ascii_plot(xsim,ysim,fitti,title)
+            """
+            # Allow some time to pass so that the gnuplot process finishes before
+            # python continues. Otherwise plots might get drawn into the same canvas.
+            time.sleep(0.1)
+            
+        # TEST
+        # TEST
+        # TEST: use symmetric fit as output
+        #return [np.polyfit(xsim,ysim,6)[-3]],rsquared
+        # TEST
+        # TEST
+
+        return popt,rsquared
+
+    def ascii_plot(self,x,y,z,title=''):
+        from pyemto.utilities.utils import run_bash
+        import numpy as np
+        import subprocess
+
+        gnuplot = subprocess.Popen(["/usr/bin/gnuplot"],stdin=subprocess.PIPE)
+
+        gnuplot.stdin.write("set term dumb 70 20\n")
+
+        # Adjust the legend location
+        gnuplot.stdin.write("set key left top\n")
+
+        #gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with lines\n".format(title))
+        #gnuplot.stdin.write("plot '-' using 1:2 title 'fit' with points\n")
+        gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with points, '-' using 1:2 title 'fit' with lines\n".format(title))
+
+        for i,j in zip(x,y):
+            gnuplot.stdin.write("%f %f\n" % (i,j))
+        gnuplot.stdin.write("e\n")
+
+        for i,j in zip(x,z):
+            gnuplot.stdin.write("%f %f\n" % (i,j))
+        gnuplot.stdin.write("e\n")
+
+        #for i,j,k in zip(x,y,z):
+        #    gnuplot.stdin.write("%f %f %f\n" % (i,j,k))
+        #gnuplot.stdin.write("e\n")
+
+        gnuplot.stdin.write("quit")
+        gnuplot.stdin.flush()
+
+        return
