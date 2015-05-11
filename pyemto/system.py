@@ -15,7 +15,7 @@ import os
 import sys
 import re
 import numpy as np
-
+import pyemto.common.common as common
 
 class System:
     """The main class which provides the basis for the pyEMTO scripts.
@@ -68,7 +68,7 @@ class System:
             self.xc = xc
 
         # Create working folders
-        self.check_folders(folder + '/kgrn', folder + '/kgrn/tmp',
+        common.check_folders(folder + '/kgrn', folder + '/kgrn/tmp',
                            folder + '/kfcd', folder + '/fit')
 
         # BMDL, KSTR, SHAPE, KGRN and KFCD class instances
@@ -175,7 +175,7 @@ class System:
             self.jobname = jobname
             self.fulljobname = self.create_jobname(jobname)
         if ibz is None:
-            self.ibz = self.lat_to_ibz(self.lat)
+            self.ibz = common.lat_to_ibz(self.lat)
         else:
             self.ibz = ibz
 
@@ -447,10 +447,10 @@ class System:
                 jobnames.append(job)
                 self.emto.set_values(sws=self.sws, jobname=job)
 
-                self.check_folders(
+                common.check_folders(
                     self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                self.check_folders(self.folder + "/kfcd")
-                self.check_folders(self.folder + "/fit")
+                common.check_folders(self.folder + "/kfcd")
+                common.check_folders(self.folder + "/fit")
 
                 self.emto.kgrn.write_input_file(folder=self.folder)
                 self.emto.kfcd.write_input_file(folder=self.folder)
@@ -472,10 +472,10 @@ class System:
                     self.emto.set_values(sws=self.sws, jobname=job)
                     self.emto.set_values(latname=caname)
 
-                    self.check_folders(
+                    common.check_folders(
                         self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                    self.check_folders(self.folder + "/kfcd")
-                    self.check_folders(self.folder + "/fit")
+                    common.check_folders(self.folder + "/kfcd")
+                    common.check_folders(self.folder + "/fit")
 
                     self.emto.kgrn.write_input_file(folder=self.folder)
                     self.emto.kfcd.write_input_file(folder=self.folder)
@@ -1026,10 +1026,10 @@ class System:
                 self.emto.set_values(
                     sws=self.sws, jobname=job, latname=latname_dist[i])
 
-                self.check_folders(
+                common.check_folders(
                     self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                self.check_folders(self.folder + "/kfcd")
-                self.check_folders(self.folder + "/fit")
+                common.check_folders(self.folder + "/kfcd")
+                common.check_folders(self.folder + "/fit")
                 self.emto.kgrn.write_input_file(folder=self.folder)
                 self.emto.kfcd.write_input_file(folder=self.folder)
                 self.emto.batch.write_input_file(folder=self.folder)
@@ -1077,10 +1077,10 @@ class System:
                 kappaw = self.kappaw_default
                 self.lattice.set_values(kappaw=kappaw)
 
-            self.check_folders(self.folder)
-            self.check_folders(self.folder + '/bmdl')
-            self.check_folders(self.folder + '/kstr')
-            self.check_folders(self.folder + '/shape')
+            common.check_folders(self.folder)
+            common.check_folders(self.folder + '/bmdl')
+            common.check_folders(self.folder + '/kstr')
+            common.check_folders(self.folder + '/shape')
 
             for i in range(len(self.elastic_constants_deltas)):
                 self.lattice.distortion(lat='hcp', dist='ortho', ca=self.ca, index=i,
@@ -1101,10 +1101,10 @@ class System:
                 self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i],
                                      latpath=self.folder)
 
-                self.check_folders(
+                common.check_folders(
                     self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                self.check_folders(self.folder + "/kfcd")
-                self.check_folders(self.folder + "/fit")
+                common.check_folders(self.folder + "/kfcd")
+                common.check_folders(self.folder + "/fit")
                 self.emto.kgrn.write_input_file(folder=self.folder)
                 self.emto.kfcd.write_input_file(folder=self.folder)
                 self.emto.batch.write_input_file(folder=self.folder)
@@ -1157,10 +1157,10 @@ class System:
                 self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i],
                                      latpath=self.folder)
 
-                self.check_folders(
+                common.check_folders(
                     self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                self.check_folders(self.folder + "/kfcd")
-                self.check_folders(self.folder + "/fit")
+                common.check_folders(self.folder + "/kfcd")
+                common.check_folders(self.folder + "/fit")
                 self.emto.kgrn.write_input_file(folder=self.folder)
                 self.emto.kfcd.write_input_file(folder=self.folder)
                 self.emto.batch.write_input_file(folder=self.folder)
@@ -1507,10 +1507,10 @@ class System:
 
             # Check whether we need to create some folders
             # for the structure output files.
-            self.check_folders(self.folder)
-            self.check_folders(self.folder + '/bmdl')
-            self.check_folders(self.folder + '/kstr')
-            self.check_folders(self.folder + '/shape')
+            common.check_folders(self.folder)
+            common.check_folders(self.folder + '/bmdl')
+            common.check_folders(self.folder + '/kstr')
+            common.check_folders(self.folder + '/shape')
 
             # Orthorhombic distortion for c66 first
             jobname_dist = ['_hcpo0_ca0', '_hcpo1_ca0',
@@ -2439,7 +2439,7 @@ class System:
         if jobname is None:
             sys.exit("System.runlattice: \'jobname\' has to be given!")
         # Make sure folders exist
-        self.check_folders(folder, folder + "/bmdl/")
+        common.check_folders(folder, folder + "/bmdl/")
         # Create input file
         self.lattice.bmdl.write_input_file(folder=folder)
         # Run BMDL
@@ -2458,7 +2458,7 @@ class System:
               .format(timehours, timeminutes, timeseconds) + '\n')
 
         # Make sure folders exist
-        self.check_folders(folder, folder + "/kstr/")
+        common.check_folders(folder, folder + "/kstr/")
         # Create input file
         self.lattice.kstr.write_input_file(folder=folder)
         # Run KSTR
@@ -2491,7 +2491,7 @@ class System:
                   .format(timehours, timeminutes, timeseconds) + '\n')
 
         # Make sure folders exist
-        self.check_folders(folder, folder + "/shape/")
+        common.check_folders(folder, folder + "/shape/")
         # Create input file
         self.lattice.shape.write_input_file(folder=folder)
         # Run SHAPE
@@ -2536,7 +2536,7 @@ class System:
 
         if onlyKFCD:
             # Make sure folders exist
-            self.check_folders(folder, folder + "/kfcd")
+            common.check_folders(folder, folder + "/kfcd")
             # Run KFCD
             self.emto.kfcd.write_input_file(folder=folder)
             job = os.path.join(folder, jobname)
@@ -2558,7 +2558,7 @@ class System:
 
         else:
             # Make sure folders exist
-            self.check_folders(folder, folder + "/kgrn", folder + "/kgrn/tmp")
+            common.check_folders(folder, folder + "/kgrn", folder + "/kgrn/tmp")
             # Run KGRN
             self.emto.kgrn.write_input_file(folder=folder)
             job = os.path.join(folder, jobname)
@@ -2580,7 +2580,7 @@ class System:
 
             if converged[0]:
                 # Make sure folders exist
-                self.check_folders(folder, folder + "/kfcd")
+                common.check_folders(folder, folder + "/kfcd")
                 # Run KFCD
                 self.emto.kfcd.write_input_file(folder=folder)
                 job = os.path.join(folder, jobname)
@@ -2685,25 +2685,6 @@ class System:
             print('System.get_energy(): {0} does not exist!'.format(fn))
             return
 
-    def lat_to_ibz(self, lat):
-        """
-        Returns the Bravais lattice ibz code based on the input
-        string code, e.g. lat='bcc' or lat='fco'
-
-        :param lat: lattice string code
-        :type lat: str
-        :returns: ibz code corresponding to the Bravais lattice
-                  given by the 'lat' key
-        :rtype: int
-        """
-
-        # One should add some error hangling here and add rest of the ibz's
-        # here.
-        ltoi = {'sc': 1, 'fcc': 2, 'bcc': 3, 'hcp': 4, 'st': 5, 'bct': 6, 'trig': 7, 'so': 8,
-                'baco': 9, 'bco': 10, 'fco': 11, 'sm': 12, 'bcm': 13, 'stric': 14}
-
-        return ltoi[lat]
-
     def create_jobname(self, jobname=None):
         """Creates jobnames based on system information.
 
@@ -2740,19 +2721,6 @@ class System:
             fulljobname = jobname + "_%8.6f" % (self.sws)
 
         return fulljobname
-
-    def check_folders(self, *args):
-        """Checks whether or not given folders exist.
-
-        :param *args: List of folders
-        :type *args: list(str)
-        :returns: None
-        :rtype: None
-        """
-        for arg in args:
-            if not os.path.exists(arg):
-                os.makedirs(arg)
-        return
 
     def check_str(self, jobname, folder="./"):
         """Checks if a KSTR calculation file exists and has converged.

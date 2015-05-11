@@ -1310,10 +1310,10 @@ class EOS:
         :type y:
         :param num:  (Default value = 2)
         :type num:
-		:param title:  (Default value = '')
-		:type title: str
-		:param ascii_art: True, if ascii figure of the fit should be drawn.
-		:type ascii_art: Boolean
+		  :param title:  (Default value = '')
+		  :type title: str
+		  :param ascii_art: True, if ascii figure of the fit should be drawn.
+		  :type ascii_art: Boolean
         :returns:
         :rtype:
         """
@@ -1378,7 +1378,7 @@ class EOS:
         #fitE = self.predicted() + self.eMin
 
         # Make sure the return variable is always an array
-        if type(popt) is type(np.sqrt(1.0)):
+        if isinstance(popt, type(np.sqrt(1.0))):
             popt = np.array([popt])
 
         print(popt)

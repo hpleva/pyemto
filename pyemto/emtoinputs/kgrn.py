@@ -12,7 +12,7 @@ import os
 import datetime
 import numpy as np
 import re
-
+import pyemto.common.common as common
 
 class Kgrn:
 
@@ -1248,7 +1248,7 @@ class Kgrn:
             #sys.exit('Kgrn.create_input_file: \'folder\' has to be given!')
             folder = './'
         else:
-            self.check_folders(folder)
+            common.check_folders(folder)
 
         fl = open(folder + '/{0}.kgrn'.format(self.jobname), "w")
         fl.write(self.output())
@@ -1285,10 +1285,10 @@ class Kgrn:
                 self.FOR001 = self.latpath + '/kstr/' + self.latname + '.tfh'
                 self.FOR001_2 = self.latpath + \
                     '/kstr/' + self.latname + '2.tfh'
-                self.FOR001 = self.cleanup_path(self.FOR001)
-                self.FOR001_2 = self.cleanup_path(self.FOR001_2)
+                self.FOR001 = common.cleanup_path(self.FOR001)
+                self.FOR001_2 = common.cleanup_path(self.FOR001_2)
                 self.FOR004 = self.latpath + '/bmdl/' + self.latname + '.mdl'
-                self.FOR004 = self.cleanup_path(self.FOR004)
+                self.FOR004 = common.cleanup_path(self.FOR004)
 
         else:
             setattr(self, key, value)
@@ -1377,20 +1377,6 @@ class Kgrn:
                               self.aconfig[i][9], self.aconfig[i][10]))
         return
 
-    def cleanup_path(self, string):
-        """Cleans up directory path strings from double forward slashes.
-
-        :param string: Cleaned up path string
-        :type string: str
-        :returns: Cleaned up directory path string
-        :rtype: str
-        """
-
-        string = re.sub('\/+', '/', string)
-        #string = string.lstrip('/')
-
-        return string
-
     def check_input_file(self):
         """Perform various checks on the class data
 
@@ -1408,7 +1394,7 @@ class Kgrn:
             sys.exit('Kgrn: \'latname\' has to be given!')
         if self.ibz is None:
             try:
-                self.ibz = self.lat_to_ibz(self.latname)
+                self.ibz = common.lat_to_ibz(self.latname)
             except KeyError:
                 sys.exit(
                     'Kgrn: \'ibz\' has to be given for \'latname\'={0}!'.format(self.latname))
@@ -1584,15 +1570,15 @@ class Kgrn:
         if self.FOR001 is None:
             self.FOR001 = self.latpath + '/kstr/' + self.latname + '.tfh'
             self.FOR001_2 = self.latpath + '/kstr/' + self.latname + '2.tfh'
-            self.FOR001 = self.cleanup_path(self.FOR001)
-            self.FOR001_2 = self.cleanup_path(self.FOR001_2)
+            self.FOR001 = common.cleanup_path(self.FOR001)
+            self.FOR001_2 = common.cleanup_path(self.FOR001_2)
         if self.DIR002 is None:
             self.DIR002 = 'kgrn/'
         if self.DIR003 is None:
             self.DIR003 = 'kgrn/'
         if self.FOR004 is None:
             self.FOR004 = self.latpath + '/bmdl/' + self.latname + '.mdl'
-            self.FOR004 = self.cleanup_path(self.FOR004)
+            self.FOR004 = common.cleanup_path(self.FOR004)
         if self.DIR006 is None:
             self.DIR006 = 'kgrn/'
         if self.DIR009 is None:
@@ -1603,34 +1589,3 @@ class Kgrn:
             self.DIR011 = 'kgrn/tmp/'
         return
 
-    def check_folders(self, *args):
-        """Checks whether or not given folders exist.
-
-        :param *args: The name of the folder or a list of names of folders
-        :type *args: str or list(str)
-        :returns: None
-        :rtype: None
-        """
-
-        for arg in args:
-            if not os.path.exists(arg):
-                os.makedirs(arg)
-        return
-
-    def lat_to_ibz(self, lat):
-        """Returns the Bravais lattice ibz code based on the input string code.
-
-        e.g. lat='bcc' or lat='fco'
-
-        :param lat: lattice string code
-        :type lat: str
-        :returns: ibz code corresponding to the Bravais lattice
-                  given by the 'lat' key
-        :rtype: int
-        """
-
-        # One should add some error hangling here.
-        ltoi = {'sc': 1, 'fcc': 2, 'bcc': 3, 'hcp': 4, 'st': 5, 'bct': 6, 'trig': 7, 'so': 8,
-                'baco': 9, 'bco': 10, 'fco': 11, 'sm': 12, 'bacm': 13, 'bcm': 13, 'stric': 14}
-
-        return ltoi[lat]

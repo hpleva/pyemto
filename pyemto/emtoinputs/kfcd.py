@@ -12,7 +12,7 @@ import sys
 import os
 import datetime
 import re
-
+import pyemto.common.common as common
 
 class Kfcd:
 
@@ -122,7 +122,7 @@ class Kfcd:
             #sys.exit('Kfcd.create_input_file: \'folder\' has to be given!')
             folder = './'
         else:
-            self.check_folders(folder)
+            common.check_folders(folder)
 
         fl = open(folder + '/{0}.kfcd'.format(self.jobname), "w")
         fl.write(self.output())
@@ -148,29 +148,15 @@ class Kfcd:
         elif key == 'latpath':
             setattr(self, key, value)
             self.DIR001 = self.latpath + '/kstr/'
-            self.DIR001 = self.cleanup_path(self.DIR001)
+            self.DIR001 = common.cleanup_path(self.DIR001)
             self.DIR003 = self.latpath + '/shape/'
-            self.DIR003 = self.cleanup_path(self.DIR003)
+            self.DIR003 = common.cleanup_path(self.DIR003)
             self.DIR004 = self.latpath + '/bmdl/'
-            self.DIR004 = self.cleanup_path(self.DIR004)
+            self.DIR004 = common.cleanup_path(self.DIR004)
 
         else:
             setattr(self, key, value)
         return
-
-    def cleanup_path(self, string):
-        """Cleans up directory path strings from double forward slashes.
-
-        :param string: Cleaned up path string
-        :type string: str
-        :returns: Cleaned up directory path string
-        :rtype: str
-        """
-
-        string = re.sub('\/+', '/', string)
-        #string = string.lstrip('/')
-
-        return string
 
     def check_input_file(self):
         """Perform various checks on the class data.
@@ -206,30 +192,18 @@ class Kfcd:
             self.ubg = 'N'
         if self.DIR001 is None:
             self.DIR001 = self.latpath + '/kstr/'
-            self.DIR001 = self.cleanup_path(self.DIR001)
+            self.DIR001 = common.cleanup_path(self.DIR001)
         if self.DIR002 is None:
             self.DIR002 = 'kgrn/'
-            self.DIR002 = self.cleanup_path(self.DIR002)
+            self.DIR002 = common.cleanup_path(self.DIR002)
         if self.DIR003 is None:
             self.DIR003 = self.latpath + '/shape/'
-            self.DIR003 = self.cleanup_path(self.DIR003)
+            self.DIR003 = common.cleanup_path(self.DIR003)
         if self.DIR004 is None:
             self.DIR004 = self.latpath + '/bmdl/'
-            self.DIR004 = self.cleanup_path(self.DIR004)
+            self.DIR004 = common.cleanup_path(self.DIR004)
         if self.DIR006 is None:
             self.DIR006 = 'kfcd/'
-            self.DIR006 = self.cleanup_path(self.DIR006)
+            self.DIR006 = common.cleanup_path(self.DIR006)
         return
 
-    def check_folders(self, *args):
-        """ Checks whether or not given folders exist.
-
-        :param *args:
-        :type *args:
-        :returns:
-        :rtype:
-        """
-        for arg in args:
-            if not os.path.exists(arg):
-                os.makedirs(arg)
-        return

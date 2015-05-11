@@ -13,5 +13,6 @@ setup(name='pyEmto',
                      'Intended Audience :: Science/Research'],
 #      url='https://www.python.org/sigs/distutils-sig/',
       packages=['pyemto','pyemto.EOS','pyemto.emtoinputs',
-                'pyemto.latticeinputs','pyemto.utilities'],
+                'pyemto.latticeinputs','pyemto.utilities',
+                'pyemto.common'],
      )

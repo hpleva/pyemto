@@ -12,7 +12,7 @@ import sys
 import os
 import datetime
 import numpy as np
-
+import pyemto.common.common as common
 
 class Kstr:
     """Contains information about KSTR input files for EMTO 5.8 program
@@ -145,7 +145,7 @@ class Kstr:
         line = line + "(K*W)^2..={0:10.6f} DMAX....={1:10.4f} RWATS...={2:10.2f}"\
             .format(kappaw, self.dmax, self.rwats) + "\n"
         line = line + "NQ3...={0:3d} LAT...={1:2d} IPRIM.={2:2d} NGHBP.={3:2d} NQR2..={4:2d}"\
-            .format(self.nq, self.lat_to_ibz(self.lat), self.iprim, self.nghbp, self.nqr2) + "\n"
+            .format(self.nq, common.lat_to_ibz(self.lat), self.iprim, self.nghbp, self.nqr2) + "\n"
         line = line + "A........={0:10.8f} B.......={1:10.8f} C.......={2:10.8f}"\
             .format(self.latparams[0], self.latparams[1], self.latparams[2]) + "\n"
         if self.iprim == 1:
@@ -185,7 +185,7 @@ class Kstr:
             #sys.exit('Kstr.create_input_file: \'path\' has to be given!')
             folder = "./"
         else:
-            self.check_folders(folder)
+            common.check_folders(folder)
 
         fl = open(folder + '/{0}.kstr'.format(self.jobname), "w")
         fl.write(self.output(1))
@@ -225,25 +225,6 @@ class Kstr:
         else:
             print('WARNING: Kstr() class has no attribute \'{0}\''.format(key))
         return
-
-    def lat_to_ibz(self, lat):
-        """
-        Returns the Bravais lattice ibz code based on the input
-        string code, e.g. lat='bcc' or lat='fco'
-
-        :param lat: lattice string code
-        :type lat: str
-        :returns: ibz code corresponding to the Bravais lattice
-                  given by the 'lat' key
-        :rtype: int
-        """
-
-        # One should add some error hangling here and add rest of the ibz's
-        # here.
-        ltoi = {'sc': 1, 'fcc': 2, 'bcc': 3, 'hcp': 4, 'st': 5, 'bct': 6, 'trig': 7, 'so': 8,
-                'baco': 9, 'bco': 10, 'fco': 11, 'sm': 12, 'bcm': 13, 'stric': 14}
-
-        return ltoi[lat]
 
     def check_input_file(self):
         """Perform various checks on the class data.
@@ -316,11 +297,11 @@ class Kstr:
             self.jobname2 = self.jobname + '2'
 
         if self.dmax is None:
-            if self.lat_to_ibz(self.lat) == 2:
+            if common.lat_to_ibz(self.lat) == 2:
                 self.dmax = 1.7
-            elif self.lat_to_ibz(self.lat) == 3:
+            elif common.lat_to_ibz(self.lat) == 3:
                 self.dmax = 2.2
-            elif self.lat_to_ibz(self.lat) == 4:
+            elif common.lat_to_ibz(self.lat) == 4:
                 self.dmax = 2.4
 
         if self.msgl is None:
@@ -365,15 +346,3 @@ class Kstr:
         self.awIQ = None
         return
 
-    def check_folders(self, *args):
-        """ Check whether or not given folders exist.
-
-        :param *args:
-        :type *args:
-        :returns: None
-        :rtype: None
-        """
-        for arg in args:
-            if not os.path.exists(arg):
-                os.makedirs(arg)
-        return

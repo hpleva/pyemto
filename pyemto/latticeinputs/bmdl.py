@@ -11,7 +11,7 @@ from __future__ import print_function
 import sys
 import os
 import datetime
-
+import pyemto.common.common as common
 
 class Bmdl:
     """Contains information about BMDL input files for EMTO 5.8 program.
@@ -93,7 +93,7 @@ class Bmdl:
         line = line + "LAMDA....=      {0:4.2f} AMAX....=      {1:4.2f} BMAX....=      {2:4.2f}"\
             .format(self.lamda, self.amax, self.bmax) + "\n"
         line = line + "NQ....={0:3d} LAT...={1:2d} IPRIM.= {2} NQR2..= {3}"\
-            .format(self.nq, self.lat_to_ibz(self.lat), self.iprim, self.nqr2) + "\n"
+            .format(self.nq, common.lat_to_ibz(self.lat), self.iprim, self.nqr2) + "\n"
         line = line + "A........={0:10.8f} B.......={1:10.8f} C.......={2:10.8f}"\
             .format(self.latparams[0], self.latparams[1], self.latparams[2]) + "\n"
         if self.iprim == 1:
@@ -128,7 +128,7 @@ class Bmdl:
             #sys.exit('Bmdl.write_input_file: \'folder\' has to be given!')
             folder = "./"
         else:
-            self.check_folders(folder)
+            common.check_folders(folder)
 
         fl = open(folder + '/{0}.bmdl'.format(self.jobname), "w")
         fl.write(self.output())
@@ -157,25 +157,6 @@ class Bmdl:
 
         else:
             print('WARNING: Bmdl() class has no attribute \'{0}\''.format(key))
-
-    def lat_to_ibz(self, lat):
-        """
-        Returns the Bravais lattice ibz code based on the input
-        string code, e.g. lat='bcc' or lat='fco'
-
-        :param lat: lattice string code
-        :type lat: str
-        :returns: ibz code corresponding to the Bravais lattice
-                  given by the 'lat' key
-        :rtype: int
-        """
-
-        # One should add some error hangling here and add rest of the ibz's
-        # here.
-        ltoi = {'sc': 1, 'fcc': 2, 'bcc': 3, 'hcp': 4, 'st': 5, 'bct': 6, 'trig': 7, 'so': 8,
-                'baco': 9, 'bco': 10, 'fco': 11, 'sm': 12, 'bcm': 13, 'stric': 14}
-
-        return ltoi[lat]
 
     def check_input_file(self):
         """Perform various checks on the class data.
@@ -252,15 +233,3 @@ class Bmdl:
             self.nqr2 = 0
         return
 
-    def check_folders(self, *args):
-        """ Checks whether or not given folders exist.
-
-        :param *args:
-        :type *args:
-        :returns: None
-        :rtype: None
-        """
-        for arg in args:
-            if not os.path.exists(arg):
-                os.makedirs(arg)
-        return

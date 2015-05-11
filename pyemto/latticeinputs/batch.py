@@ -12,7 +12,7 @@ import sys
 import os
 import datetime
 import re
-
+import pyemto.common.common as common
 
 class Batch:
     """Creates a batch script for running BMDL, KSTR and SHAPE calculations
@@ -78,33 +78,33 @@ class Batch:
         line += "#SBATCH -J " + self.jobname + "\n"
         line += "#SBATCH -t " + self.runtime + "\n"
         line += "#SBATCH -o " + \
-            self.cleanup_path(
+            common.cleanup_path(
                 self.latpath + "/" + self.jobname) + ".output" + "\n"
         line += "#SBATCH -e " + \
-            self.cleanup_path(
+            common.cleanup_path(
                 self.latpath + "/" + self.jobname) + ".error" + "\n"
         # line += "#SBATCH -x pl1,pl11"+"\n"+"\n"
 
         elapsed_time = "/usr/bin/time "
         if self.runBMDL:
-            line += elapsed_time + self.cleanup_path(self.EMTOdir + "/bmdl/source/bmdl < ") +\
-                self.cleanup_path(self.latpath + "/" + self.jobname) + ".bmdl > " +\
-                self.cleanup_path(
+            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/bmdl/source/bmdl < ") +\
+                common.cleanup_path(self.latpath + "/" + self.jobname) + ".bmdl > " +\
+                common.cleanup_path(
                     self.latpath + "/" + self.jobname) + "_bmdl.output" + "\n"
         if self.runKSTR:
-            line += elapsed_time + self.cleanup_path(self.EMTOdir + "/kstr/source/kstr < ") +\
-                self.cleanup_path(self.latpath + "/" + self.jobname) + ".kstr > " +\
-                self.cleanup_path(
+            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kstr/source/kstr < ") +\
+                common.cleanup_path(self.latpath + "/" + self.jobname) + ".kstr > " +\
+                common.cleanup_path(
                     self.latpath + "/" + self.jobname) + "_kstr.output" + "\n"
         if self.runKSTR2:
-            line += elapsed_time + self.cleanup_path(self.EMTOdir + "/kstr/source/kstr < ") +\
-                self.cleanup_path(self.latpath + "/" + self.jobname) + '2' + ".kstr > " +\
-                self.cleanup_path(
+            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kstr/source/kstr < ") +\
+                common.cleanup_path(self.latpath + "/" + self.jobname) + '2' + ".kstr > " +\
+                common.cleanup_path(
                     self.latpath + "/" + self.jobname) + '2' + "_kstr.output" + "\n"
         if self.runSHAPE:
-            line += elapsed_time + self.cleanup_path(self.EMTOdir + "/shape/source/shape < ") +\
-                self.cleanup_path(self.latpath + "/" + self.jobname) + ".shape > " +\
-                self.cleanup_path(
+            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/shape/source/shape < ") +\
+                common.cleanup_path(self.latpath + "/" + self.jobname) + ".shape > " +\
+                common.cleanup_path(
                     self.latpath + "/" + self.jobname) + "_shape.output" + "\n"
 
         return line
@@ -127,7 +127,7 @@ class Batch:
             #sys.exit('Batch_lattice.write_input_file: \'folder\' has to be given!')
             folder = "./"
         else:
-            self.check_folders(folder)
+            common.check_folders(folder)
 
         fl = open(folder + '/{0}.cmd'.format(self.jobname), "w")
         fl.write(self.output())
@@ -186,31 +186,4 @@ class Batch:
 
         if self.kappalen == 2:
             self.runKSTR2 = True
-
-    def check_folders(self, *args):
-        """ Checks whether or not given folders exist
-
-        :param *args:
-        :type *args:
-        :returns:
-        :rtype:
-        """
-
-        for arg in args:
-            if not os.path.exists(arg):
-                os.makedirs(arg)
         return
-
-    def cleanup_path(self, string):
-        """Cleans up directory path strings from double forward slashes.
-
-        :param string:
-        :type string:
-        :returns: Cleaned up directory path string
-        :rtype: str
-        """
-
-        string = re.sub('\/+', '/', string)
-        #string = string.lstrip('/')
-
-        return string

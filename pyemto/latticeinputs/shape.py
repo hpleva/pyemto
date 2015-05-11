@@ -12,7 +12,7 @@ import sys
 import os
 import datetime
 import numpy as np
-
+import pyemto.common.common as common
 
 class Shape:
 
@@ -93,7 +93,7 @@ class Shape:
             #sys.exit('Shape.create_input_file: \'path\' has to be given!')
             folder = "./"
         else:
-            self.check_folders(folder)
+            common.check_folders(folder)
 
         fl = open(folder + '/{0}.shape'.format(self.jobname), "w")
         fl.write(self.output())
@@ -147,16 +147,3 @@ class Shape:
             self.nprn = 0
         return
 
-    def check_folders(self, *args):
-        """ Checks whether or not given folders exist.
-
-        :param *args:
-        :type *args:
-        :returns:
-        :rtype:
-        """
-
-        for arg in args:
-            if not os.path.exists(arg):
-                os.makedirs(arg)
-        return
