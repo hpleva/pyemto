@@ -157,6 +157,7 @@ class Bmdl:
 
         else:
             print('WARNING: Bmdl() class has no attribute \'{0}\''.format(key))
+        return
 
     def check_input_file(self):
         """Perform various checks on the class data.

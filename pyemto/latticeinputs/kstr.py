@@ -338,7 +338,7 @@ class Kstr:
             self.nghbp = 13
         if self.awIQ is None:
             self.awIQ = np.ones((self.nq, 4)) * 0.7
-		return
+        return
 
     def finalize(self):
         """Re-initializes input parameters."""

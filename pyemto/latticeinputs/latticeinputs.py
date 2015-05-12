@@ -63,7 +63,8 @@ class Latticeinputs:
                     ' classes have the attribute \'{0}\''.format(key))
         return
 
-    def distortion(self, lat=None, dist=None, ca=None, index=None, deltas=None, dmaxs=None):
+    def distortion(self, lat=None, dist=None, ca=None, index=None, deltas=None, dmaxs=None,
+                   relax=True, relax_index=None):
         """A function which sets various class data to create distorted lattice structures.
 
         Distorted lattices are used to calculate elastic constants.        
@@ -205,6 +206,18 @@ class Latticeinputs:
                 elif dist == 'mono':
                     dmax_dict = {0:2.3,1:2.3,2:2.3,3:2.3,4:2.35,5:2.35}
                     dmax = dmax_dict[index]
+
+        # With hcp elastic constants, due to the two-atom basis, we have to
+        # relax the position of the second atom in order to get accurate results.
+        elif relax is True and relax_index is None:
+            sys.exit(
+                'latticeinputs.distortion(): \'relax_index\' has to be given, when relax=True!')
+
+        hcpo_disp = np.sqrt(3.0)/6.0*(1.0-delta)/(1.0+delta)
+        hcpo_relax = np.linspace(-hcpo_disp,hcpo_disp,5)
+        #
+        hcpm_disp = 2*np.sqrt(3.0)/np.sqrt(1+delta**2)/(1-delta**2)
+        hcpm_relax = np.linspace(-hcpm_disp,hcpm_disp,5)
                 
         # Details can be found in Vitos' book pages 104-110.
 
@@ -266,7 +279,11 @@ class Latticeinputs:
             
             latvectors = [90.0,90.0,90.0]
             
-            basis = [[0.0,0.0,0.0],[0.0,latparams[1]/3.0,latparams[2]/2.0]]
+            pos1 = [0.0,0.0,0.0]
+            pos2 = [0.0,latparams[1]/3.0,latparams[2]/2.0]
+            if relax:
+                pos2[1] += hcpo_relax[relax_index]
+            basis = [pos1,pos2]
 
             self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
 
@@ -306,15 +323,20 @@ class Latticeinputs:
 
             # WARNING!!
             # gamma = the gamma angle = the beta angle in the standard/conventional definition.
-            gam = np.arccos(2*delta/(1+delta**2))/np.pi*180.0 
+            gam = np.arccos(2*delta/(1+delta**2))
             bam = ca # Distorted b over a
             cam = np.sqrt(3.0)/np.sqrt(1.0+delta**2)/(1.0-delta**2) # Distorted c over a
+            theta = np.pi/2 - gam
             latparams = [1.0,bam,cam]
 
             latvectors = [90,90,gam]
 
             pos1 = [0.0,0.0,0.0]
-            pos2 = [ca*delta/(1.0+delta**2),ca*(1.0-delta**2)/(1.0+delta**2)/2.0,-cam/3.0]
+            pos2 = [bam*(2*delta*np.cos(theta)+(delta**2-1)*np.sin(theta))/(delta**2+1)/2.0,
+                    bam*((delta**2-1)*np.cos(theta)-2*delta*np.sin(theta))/(delta**2+1)/2.0,
+                    -cam/3.0]
+            if relax:
+                pos2[1] += hcpm_relax[relax_index]
             basis = [pos1,pos2]
 
             self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)

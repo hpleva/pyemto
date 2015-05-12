@@ -58,9 +58,13 @@ class System:
 
         # Initialize default parameters
         self.ca_range_default = np.linspace(1.50, 1.70, 7)
-        self.elastic_constants_deltas = np.linspace(0.0, 0.05, 6)
+        self.elastic_constants_points = 6
+        self.elastic_constants_deltas = np.linspace(0.0, 0.05,
+                                        self.elastic_constants_points)
         self.RyBohr3_to_GPa = 14710.5065722
         self.kappaw_default = [0.0, -20.0]
+        self.hpco_relax_points = 5
+        self.hpcm_relax_points = 5
 
         if xc is None:
             self.xc = 'PBE'
@@ -590,7 +594,7 @@ class System:
         return v, c_over_a, b, energy
 
     def elastic_constants_analyze(
-            self, sws=None, bmod=None, ca=None, R=None, cs=None):
+            self, sws=None, bmod=None, ca=None, R=None, cs=None, relax=True):
         """Analyzes the output files generated using the
         elastic_constants_batch_generate function.
 
@@ -811,33 +815,76 @@ class System:
         elif self.lat == 'hcp':
             # Orthorhombic distortion for c66 first
 
-            jobname_dist = ['_hcpo0_ca0',
-                            '_hcpo1_ca0',
-                            '_hcpo2_ca0',
-                            '_hcpo3_ca0',
-                            '_hcpo4_ca0',
-                            '_hcpo5_ca0']
-            latname_dist = ['hcpo0_ca0',
-                            'hcpo1_ca0',
-                            'hcpo2_ca0',
-                            'hcpo3_ca0',
-                            'hcpo4_ca0',
-                            'hcpo5_ca0']
+            if relax:
+                jobname_dist = []
+                latname_dist = []
+                for i in range(self.elastic_constants_points):
+                    tmp_array1 = []
+                    tmp_array2 = []
+                    for j in range(self.hcpo_relax_points):
+                        tmp_str1 = 'hcpo{0}_ca0_{1}'.format(i,j)
+                        tmp_str2 = '_hcpo{0}_ca0_{1}'.format(i,j)
+                        tmp_array1.append(tmp_str1)
+                        tmp_array2.append(tmp_str2)
+                    latname_dist.append(tmp_array1)
+                    jobname_dist.append(tmp_array2)
+
+            else:
+                jobname_dist = ['_hcpo0_ca0',
+                                '_hcpo1_ca0',
+                                '_hcpo2_ca0',
+                                '_hcpo3_ca0',
+                                '_hcpo4_ca0',
+                                '_hcpo5_ca0']
+                latname_dist = ['hcpo0_ca0',
+                                'hcpo1_ca0',
+                                'hcpo2_ca0',
+                                'hcpo3_ca0',
+                                'hcpo4_ca0',
+                                'hcpo5_ca0']
 
             en_c66 = []
             good_deltas_c66 = []
 
-            for i in range(len(jobname_dist)):
-                already = False
-                job = self.create_jobname(self.jobname + jobname_dist[i])
+            if relax:
+                # First we have to determine how relaxation affects
+                # the energy.
+                
+                for i in range(self.elastic_constants_points):
+                    ens_tmp = []
+                    xind_tmp = []
+                    for j in range(self.hcpo_relax_points):
+                        already = False
+                        job = self.create_jobname(self.jobname + jobname_dist[i][j])
+                        
+                        en = self.get_energy(job, folder=self.folder, func=self.xc)
+                        if isinstance(en, type(None)):
+                            print('System.elastic_constants_analyze(): Warning:' +
+                                  ' No output energy found for {0}'.format(job))
+                        else:
+                            ens_tmp.append(en)
+                            xind_tmp.append(j-2)
+                    # Now we should find the relaxed energy by fitting
+                    # a polynomial to the energy vs. atom coordinates data.
+                    # Leave out the point if not enough calculations have
+                    # converged.
+                    if len(ens_tmp) >= 3:
+                        relax_xmin, relax_emin = eos.relax_fit(xind_tmp,ens_tmp,2)
+                        en_c66.append(relax_emin)
+                        good_deltas_c66.append(deltas[i])
 
-                en = self.get_energy(job, folder=self.folder, func=self.xc)
-                if isinstance(en, type(None)):
-                    print('System.elastic_constants_analyze(): Warning:' +
-                          ' No output energy found for {0}'.format(job))
-                else:
-                    en_c66.append(en)
-                    good_deltas_c66.append(deltas[i])
+            else:
+                for i in range(self.elastic_constants_points):
+                    already = False
+                    job = self.create_jobname(self.jobname + jobname_dist[i])
+                    
+                    en = self.get_energy(job, folder=self.folder, func=self.xc)
+                    if isinstance(en, type(None)):
+                        print('System.elastic_constants_analyze(): Warning:' +
+                                  ' No output energy found for {0}'.format(job))
+                    else:
+                        en_c66.append(en)
+                        good_deltas_c66.append(deltas[i])
 
             # Exit if we don't have enough points to do the fit
             if len(en_c66) < 3:
@@ -850,33 +897,76 @@ class System:
 
             # Next the monoclinic distortion for c44
 
-            jobname_dist = ['_hcpm0_ca0',
-                            '_hcpm1_ca0',
-                            '_hcpm2_ca0',
-                            '_hcpm3_ca0',
-                            '_hcpm4_ca0',
-                            '_hcpm5_ca0']
-            latname_dist = ['hcpm0_ca0',
-                            'hcpm1_ca0',
-                            'hcpm2_ca0',
-                            'hcpm3_ca0',
-                            'hcpm4_ca0',
-                            'hcpm5_ca0']
+            if relax:
+                jobname_dist = []
+                latname_dist = []
+                for i in range(self.elastic_constants_points):
+                    tmp_array1 = []
+                    tmp_array2 = []
+                    for j in range(self.hcpo_relax_points):
+                        tmp_str1 = 'hcpm{0}_ca0_{1}'.format(i,j)
+                        tmp_str2 = '_hcpm{0}_ca0_{1}'.format(i,j)
+                        tmp_array1.append(tmp_str1)
+                        tmp_array2.append(tmp_str2)
+                    latname_dist.append(tmp_array1)
+                    jobname_dist.append(tmp_array2)
+
+            else:
+                jobname_dist = ['_hcpm0_ca0',
+                                '_hcpm1_ca0',
+                                '_hcpm2_ca0',
+                                '_hcpm3_ca0',
+                                '_hcpm4_ca0',
+                                '_hcpm5_ca0']
+                latname_dist = ['hcpm0_ca0',
+                                'hcpm1_ca0',
+                                'hcpm2_ca0',
+                                'hcpm3_ca0',
+                                'hcpm4_ca0',
+                                'hcpm5_ca0']
 
             en_c44 = []
             good_deltas_c44 = []
 
-            for i in range(len(jobname_dist)):
-                already = False
-                job = self.create_jobname(self.jobname + jobname_dist[i])
+            if relax:
+                # First we have to determine how relaxation affects
+                # the energy.
+                
+                for i in range(self.elastic_constants_points):
+                    ens_tmp = []
+                    xind_tmp = []
+                    for j in range(self.hcpo_relax_points):
+                        already = False
+                        job = self.create_jobname(self.jobname + jobname_dist[i][j])
+                        
+                        en = self.get_energy(job, folder=self.folder, func=self.xc)
+                        if isinstance(en, type(None)):
+                            print('System.elastic_constants_analyze(): Warning:' +
+                                  ' No output energy found for {0}'.format(job))
+                        else:
+                            ens_tmp.append(en)
+                            xind_tmp.append(j-2)
+                    # Now we should find the relaxed energy by fitting
+                    # a polynomial to the energy vs. atom coordinates data.
+                    # Leave out the point if not enough calculations have
+                    # converged.
+                    if len(ens_tmp) >= 3:
+                        relax_xmin, relax_emin = eos.relax_fit(xind_tmp,ens_tmp,2)
+                        en_c44.append(relax_emix)
+                        good_deltas_c44.append(deltas[i])
 
-                en = self.get_energy(job, folder=self.folder, func=self.xc)
-                if isinstance(en, type(None)):
-                    print('System.elastic_constants_analyze(): Warning:' +
-                          ' No output energy found for {0}'.format(job))
-                else:
-                    en_c44.append(en)
-                    good_deltas_c44.append(deltas[i])
+            else:
+                for i in range(self.elastic_constants_points):
+                    already = False
+                    job = self.create_jobname(self.jobname + jobname_dist[i])
+                    
+                    en = self.get_energy(job, folder=self.folder, func=self.xc)
+                    if isinstance(en, type(None)):
+                        print('System.elastic_constants_analyze(): Warning:' +
+                                  ' No output energy found for {0}'.format(job))
+                    else:
+                        en_c44.append(en)
+                        good_deltas_c44.append(deltas[i])
 
             # Exit if we don't have enough points to do the fit
             if len(en_c44) < 3:
@@ -979,7 +1069,7 @@ class System:
 
             return
 
-    def elastic_constants_batch_generate(self, sws=None, ca=None):
+    def elastic_constants_batch_generate(self, sws=None, ca=None, relax=True):
         """Generates all the necessary input files based on the class data.
 
         :param sws: WS-radius (Default value = None)
@@ -1064,13 +1154,27 @@ class System:
 
             # Orthorhombic distortion input files for c66 first
 
-            jobname_dist = ['_hcpo0_ca0', '_hcpo1_ca0',
-                            '_hcpo2_ca0', '_hcpo3_ca0', '_hcpo4_ca0', '_hcpo5_ca0']
-            latname_dist = ['hcpo0_ca0', 'hcpo1_ca0',
-                            'hcpo2_ca0', 'hcpo3_ca0', 'hcpo4_ca0', 'hcpo5_ca0']
-
             # With hcp the structure depends on the c/a ratio. Therefore we also have
             # to generate the corresponding structure files.
+
+            if relax:
+                jobname_dist = []
+                latname_dist = []
+                for i in range(self.elastic_constants_points):
+                    tmp_array1 = []
+                    tmp_array2 = []
+                    for j in range(self.hcpo_relax_points):
+                        tmp_str1 = 'hcpo{0}_ca0_{1}'.format(i,j)
+                        tmp_str2 = '_hcpo{0}_ca0_{1}'.format(i,j)
+                        tmp_array1.append(tmp_str1)
+                        tmp_array2.append(tmp_str2)
+                    latname_dist.append(tmp_array1)
+                    jobname_dist.append(tmp_array2)
+            else:
+                jobname_dist = ['_hcpo0_ca0', '_hcpo1_ca0',
+                                '_hcpo2_ca0', '_hcpo3_ca0', '_hcpo4_ca0', '_hcpo5_ca0']
+                latname_dist = ['hcpo0_ca0', 'hcpo1_ca0',
+                                'hcpo2_ca0', 'hcpo3_ca0', 'hcpo4_ca0', 'hcpo5_ca0']
 
             # Check whether Two-center Taylor expansion is on/off
             if self.emto.kgrn.expan == 'M':
@@ -1082,43 +1186,163 @@ class System:
             common.check_folders(self.folder + '/kstr')
             common.check_folders(self.folder + '/shape')
 
-            for i in range(len(self.elastic_constants_deltas)):
-                self.lattice.distortion(lat='hcp', dist='ortho', ca=self.ca, index=i,
-                                        deltas=self.elastic_constants_deltas)
+            if relax:
+                for i in range(self.elastic_constants_points):
+                    for j in range(self.hcpo_relax_points):
 
-                self.lattice.set_values(
-                    jobname=latname_dist[i], latpath=self.folder)
-                self.lattice.bmdl.write_input_file(folder=self.folder)
-                self.lattice.kstr.write_input_file(folder=self.folder)
-                self.lattice.shape.write_input_file(folder=self.folder)
-                self.lattice.batch.write_input_file(folder=self.folder)
+                        self.lattice.distortion(lat='hcp', dist='ortho', ca=self.ca, index=i,
+                                                deltas=self.elastic_constants_deltas,
+                                                relax=True,relax_index=j)
+                        
+                        self.lattice.set_values(jobname=latname_dist[i][j],latpath=self.folder)
+                        self.lattice.bmdl.write_input_file(folder=self.folder)
+                        self.lattice.kstr.write_input_file(folder=self.folder)
+                        self.lattice.shape.write_input_file(folder=self.folder)
+                        self.lattice.batch.write_input_file(folder=self.folder)
+
+            else:
+                for i in range(self.elastic_constants_points):
+                    self.lattice.distortion(lat='hcp', dist='ortho', ca=self.ca, index=i,
+                                            deltas=self.elastic_constants_deltas,
+                                            relax=False)
+                    
+                    self.lattice.set_values(jobname=latname_dist[i],latpath=self.folder)
+                    self.lattice.bmdl.write_input_file(folder=self.folder)
+                    self.lattice.kstr.write_input_file(folder=self.folder)
+                    self.lattice.shape.write_input_file(folder=self.folder)
+                    self.lattice.batch.write_input_file(folder=self.folder)
 
             self.emto.set_values(ibz=9, nkx=31, nky=19, nkz=19)
 
-            for i in range(len(jobname_dist)):
-                job = self.create_jobname(self.jobname + jobname_dist[i])
-                jobnames.append(job)
-                self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i],
-                                     latpath=self.folder)
+            if relax:
+                for i in range(self.elastic_constants_points):
+                    for j in range(self.hcpo_relax_points):
 
-                common.check_folders(
-                    self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                common.check_folders(self.folder + "/kfcd")
-                common.check_folders(self.folder + "/fit")
-                self.emto.kgrn.write_input_file(folder=self.folder)
-                self.emto.kfcd.write_input_file(folder=self.folder)
-                self.emto.batch.write_input_file(folder=self.folder)
+                        job = self.create_jobname(self.jobname + jobname_dist[i][j])
+                        jobnames.append(job)
+                        self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i][j],
+                                             latpath=self.folder)
+                        
+                        common.check_folders(self.folder, self.folder + "/kgrn")
+                        common.check_folders(self.folder + "/kgrn/tmp")
+                        common.check_folders(self.folder + "/kfcd")
+                        common.check_folders(self.folder + "/fit")
+                        self.emto.kgrn.write_input_file(folder=self.folder)
+                        self.emto.kfcd.write_input_file(folder=self.folder)
+                        self.emto.batch.write_input_file(folder=self.folder)
+                        
+            else:
+                for i in range(self.elastic_constants_points):
+                    job = self.create_jobname(self.jobname + jobname_dist[i])
+                    jobnames.append(job)
+                    self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i],
+                                         latpath=self.folder)
+                    
+                    common.check_folders(self.folder, self.folder + "/kgrn")
+                    common.check_folders(self.folder + "/kgrn/tmp")
+                    common.check_folders(self.folder + "/kfcd")
+                    common.check_folders(self.folder + "/fit")
+                    self.emto.kgrn.write_input_file(folder=self.folder)
+                    self.emto.kfcd.write_input_file(folder=self.folder)
+                    self.emto.batch.write_input_file(folder=self.folder)
+
 
             # Monoclinic distortion input files for c44 next
-
-            jobname_dist = ['_hcpm0_ca0', '_hcpm1_ca0',
-                            '_hcpm2_ca0', '_hcpm3_ca0', '_hcpm4_ca0', '_hcpm5_ca0']
-            latname_dist = ['hcpm0_ca0', 'hcpm1_ca0',
-                            'hcpm2_ca0', 'hcpm3_ca0', 'hcpm4_ca0', 'hcpm5_ca0']
 
             # With hcp the structure depends on the c/a ratio. Therefore we also have
             # to generate the corresponding structure files.
 
+            if relax:
+                jobname_dist = []
+                latname_dist = []
+                for i in range(self.elastic_constants_points):
+                    tmp_array1 = []
+                    tmp_array2 = []
+                    for j in range(self.hcpm_relax_points):
+                        tmp_str1 = 'hcpm{0}_ca0_{1}'.format(i,j)
+                        tmp_str2 = '_hcpm{0}_ca0_{1}'.format(i,j)
+                        tmp_array1.append(tmp_str1)
+                        tmp_array2.append(tmp_str2)
+                    latname_dist.append(tmp_array1)
+                    jobname_dist.append(tmp_array2)
+            else:
+                jobname_dist = ['_hcpm0_ca0', '_hcpm1_ca0',
+                                '_hcpm2_ca0', '_hcpm3_ca0', '_hcpm4_ca0', '_hcpm5_ca0']
+                latname_dist = ['hcpm0_ca0', 'hcpm1_ca0',
+                                'hcpm2_ca0', 'hcpm3_ca0', 'hcpm4_ca0', 'hcpm5_ca0']
+
+            # Check whether Two-center Taylor expansion is on/off
+            if self.emto.kgrn.expan == 'M':
+                kappaw = self.kappaw_default
+                self.lattice.set_values(kappaw=kappaw)
+
+            common.check_folders(self.folder)
+            common.check_folders(self.folder + '/bmdl')
+            common.check_folders(self.folder + '/kstr')
+            common.check_folders(self.folder + '/shape')
+
+            if relax:
+                for i in range(self.elastic_constants_points):
+                    for j in range(self.hcpm_relax_points):
+
+                        self.lattice.distortion(lat='hcp', dist='mono', ca=self.ca, index=i,
+                                                deltas=self.elastic_constants_deltas,
+                                                relax=True,relax_index=j)
+                        
+                        self.lattice.set_values(jobname=latname_dist[i][j],latpath=self.folder)
+                        self.lattice.bmdl.write_input_file(folder=self.folder)
+                        self.lattice.kstr.write_input_file(folder=self.folder)
+                        self.lattice.shape.write_input_file(folder=self.folder)
+                        self.lattice.batch.write_input_file(folder=self.folder)
+
+            else:
+                for i in range(self.elastic_constants_points):
+                    self.lattice.distortion(lat='hcp', dist='mono', ca=self.ca, index=i,
+                                            deltas=self.elastic_constants_deltas,
+                                            relax=False)
+                    
+                    self.lattice.set_values(jobname=latname_dist[i],latpath=self.folder)
+                    self.lattice.bmdl.write_input_file(folder=self.folder)
+                    self.lattice.kstr.write_input_file(folder=self.folder)
+                    self.lattice.shape.write_input_file(folder=self.folder)
+                    self.lattice.batch.write_input_file(folder=self.folder)
+
+            self.emto.set_values(ibz=13, nkx=31, nky=19, nkz=19)
+
+            if relax:
+                for i in range(self.elastic_constants_points):
+                    for j in range(self.hcpm_relax_points):
+
+                        job = self.create_jobname(self.jobname + jobname_dist[i][j])
+                        jobnames.append(job)
+                        self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i][j],
+                                             latpath=self.folder)
+                        
+                        common.check_folders(self.folder, self.folder + "/kgrn")
+                        common.check_folders(self.folder + "/kgrn/tmp")
+                        common.check_folders(self.folder + "/kfcd")
+                        common.check_folders(self.folder + "/fit")
+                        self.emto.kgrn.write_input_file(folder=self.folder)
+                        self.emto.kfcd.write_input_file(folder=self.folder)
+                        self.emto.batch.write_input_file(folder=self.folder)
+            else:
+                for i in range(self.elastic_constants_points):
+                    job = self.create_jobname(self.jobname + jobname_dist[i])
+                    jobnames.append(job)
+                    self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i],
+                                         latpath=self.folder)
+                    
+                    common.check_folders(self.folder, self.folder + "/kgrn")
+                    common.check_folders(self.folder + "/kgrn/tmp")
+                    common.check_folders(self.folder + "/kfcd")
+                    common.check_folders(self.folder + "/fit")
+                    self.emto.kgrn.write_input_file(folder=self.folder)
+                    self.emto.kfcd.write_input_file(folder=self.folder)
+                    self.emto.batch.write_input_file(folder=self.folder)
+
+            # These following lines are for the four-atom basis with
+            # simple monoclinic lattice.
+            """
             for i in range(len(self.elastic_constants_deltas)):
                 self.lattice.distortion(lat='hcp', dist='mono', ca=self.ca, index=i,
                                         deltas=self.elastic_constants_deltas)
@@ -1164,6 +1388,7 @@ class System:
                 self.emto.kgrn.write_input_file(folder=self.folder)
                 self.emto.kfcd.write_input_file(folder=self.folder)
                 self.emto.batch.write_input_file(folder=self.folder)
+            """
 
             return jobnames
 

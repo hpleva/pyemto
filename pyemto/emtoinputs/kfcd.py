@@ -141,7 +141,7 @@ class Kfcd:
         """
         if not hasattr(self, key):
             print('WARNING: Kfcd() class has no attribute \'{0}\''.format(key))
-        return
+            return
 
         # Lattice name or path has changed => we have to update the FOR and DIR
         # information

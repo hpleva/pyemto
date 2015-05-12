@@ -1237,6 +1237,27 @@ class EOS:
         ymin = fit(xmin)
         return xmin, ymin
 
+    def relax_fit(self, x, y, n):
+        """Fits a polynomial to x vs. y data and calculates
+        xmin and ymin from the curve.
+
+        :param x:
+        :type x:
+        :param y:
+        :type y:
+        :param n:
+        :type n:
+        :returns:
+        :rtype:
+        """
+
+        z = np.polyfit(x, y, n)
+        fit = np.poly1d(z)
+        xmin = -z[1] / (2.0 * z[0])
+        ymin = fit(xmin)
+        return xmin, ymin
+
+
     def distortion_poly1(self, x, a2, a1):
         """One variable form of the 2nd order polynomial
            which is used to fitting distortion vs. energy
@@ -1326,7 +1347,7 @@ class EOS:
         # Starting estimates for the actual fit
         z = np.polyfit(x,ydata,2)
 
-		"""
+        """
         # TEST: simulate symmetric high-quality 6th order polynomial fit
         eps = 1.0E-6
         zero_included = False
@@ -1427,7 +1448,8 @@ class EOS:
 
         #gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with lines\n".format(title))
         #gnuplot.stdin.write("plot '-' using 1:2 title 'fit' with points\n")
-        gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with points, '-' using 1:2 title 'fit' with lines\n".format(title))
+        gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with points, " +\
+                            "'-' using 1:2 title 'fit' with lines\n".format(title))
 
         for i,j in zip(x,y):
             gnuplot.stdin.write("%f %f\n" % (i,j))
