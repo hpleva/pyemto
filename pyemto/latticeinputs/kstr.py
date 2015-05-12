@@ -344,5 +344,11 @@ class Kstr:
         """Re-initializes input parameters."""
 
         self.awIQ = None
+        #self.dmax = None
+        #self.kappaw = None
+        #self.jobname = None
+        #self.latparams = None
+        #self.latvectors = None
+        #self.basis = None
         return
 

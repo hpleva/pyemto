@@ -307,9 +307,10 @@ class System:
             # Fit an n'th order polynomial to the energy vs. c/a data.
             ca_fit_order = 2
 
-#            latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
-#                        'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
+            #latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
+            #            'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
 
+            caname = 'hcp_ca'
             # For the energies a 2D-array [i,j], where i = c/a axis and j = sws
             # axis
             energies = np.zeros(
@@ -323,7 +324,7 @@ class System:
                 for j in range(len(self.lc_analyze_sws_range)):
 
                     self.sws = self.lc_analyze_sws_range[j]
-                    job = self.create_jobname(self.jobname + "_" + "ca"+str(i+1))
+                    job = self.create_jobname(self.jobname + "_" + caname +str(i+1))
                     en = self.get_energy(job, folder=self.folder, func=self.xc)
                     if isinstance(en, type(None)):
                         print('System.lattice_constants_analyze(): Warning:' +
@@ -469,7 +470,7 @@ class System:
             for i in range(len(self.lc_batch_ca_range)):
                 for j in range(len(self.lc_batch_sws_range)):
 
-                    caname = "ca"+str(i+1)
+                    caname = "hcp_ca"+str(i+1)
                     self.sws = self.lc_batch_sws_range[j]
                     job = self.create_jobname(self.jobname + "_" + caname)
                     jobnames.append(job)
@@ -2979,7 +2980,7 @@ class System:
 
         return convergedKSTR
 
-    def wait_for_jobs(self, jobsdict, restart_partition='general', sleeptime=5, restart_z=None,
+    def wait_for_jobs(self, jobsdict, restart_partition='general', sleeptime=60, restart_z=None,
                       restart_stragglers_after=0.75, kill_if_all_ssusp=False):
         """Loops checking status until no jobs are waiting or running / all are finished.
         
@@ -3013,7 +3014,7 @@ class System:
         :type jobsdict:
         :param restart_partition:  (Default value = 'general')
         :type restart_partition:
-        :param sleeptime:  (Default value = 5)
+        :param sleeptime:  (Default value = 60)
         :type sleeptime:
         :param restart_z:  (Default value = None)
         :type restart_z:

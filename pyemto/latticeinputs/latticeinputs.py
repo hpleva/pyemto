@@ -10,7 +10,7 @@ Created on Wed Dec  3 14:25:06 2014
 
 import sys
 import numpy as np
-
+import pyemto.common.common as common
 
 class Latticeinputs:
     """Class which is used to communicate with the Bmdl, Kstr and Shape classes.
@@ -373,8 +373,8 @@ class Latticeinputs:
             bs2 = [delta,1.0,0.0]
             bs3 = [0.0,0.0,1.0/(1.0-delta**2)]
             latvectors = [bs1,bs2,bs3]
-            latparams = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
-                         np.linalg.norm(np.asarray(bs3))]
+            latparams  = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
+                          np.linalg.norm(np.asarray(bs3))]
             
             if basis == None:
                 basis = [0.0,0.0,0.0]
@@ -403,3 +403,34 @@ class Latticeinputs:
 
         return new_basis
 
+    def write_structure_input_files(self,jobname=None,lat=None,folder=None,**kwargs):
+        """For a given lattice type, this function writes
+        the corresponding structure input files into a
+        given folder"""
+
+        # Mission critical parameters:
+        if folder is None:
+            folder = "./"
+        else:
+            common.check_folders(folder)
+
+        if lat is None:
+            sys.exit('Latticeinputs.write_structure_input_files: \'lat\' has to be given!')
+
+        if jobname is None:
+            #sys.exit('Latticeinputs.write_structure_input_files: \'jobname\' has to be given!')
+            jobname = lat
+
+        # Pass down necessary arguments:
+        self.set_values(jobname=jobname,latpath=folder,lat=lat)
+
+        # Pass down optional arguments:
+        self.set_values(**kwargs)
+
+        # Call the write functions of each subprogram
+        self.batch.write_input_file(folder=folder)
+        self.bmdl.write_input_file(folder=folder)
+        self.kstr.write_input_file(folder=folder)
+        self.shape.write_input_file(folder=folder)
+
+        return
