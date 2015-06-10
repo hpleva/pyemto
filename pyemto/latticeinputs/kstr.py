@@ -289,10 +289,14 @@ class Kstr:
             self.kappaw = [0.0]
 
         self.kappalen = len(self.kappaw)
+
         if self.kappalen == 2:
             self.twocenter = True
+        elif self.kappalen == 1:
+            self.twocenter = False    
         else:
-            self.twocenter = False
+            print("Kappa does not have correct number of values, please correct! : %s" % (str(self.kappaw)))
+            exit()
         if self.twocenter:
             self.jobname2 = self.jobname + '2'
 
