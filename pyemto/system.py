@@ -231,6 +231,17 @@ class System:
                                  EMTOdir=self.EMTOdir, **kwargs)
         return
 
+
+    def write_inputs(self,folder=None, batch=True):
+        """Write kgrn and kfcd inputs files and possible batch file """
+        if folder == None:
+            folder = self.folder
+        self.emto.kgrn.write_input_file(folder=folder)
+        self.emto.kfcd.write_input_file(folder=folder)
+        if batch:
+            self.emto.batch.write_input_file(folder=folder)
+
+    
     def lattice_constants_analyze(self, sws=None, ca=None,prn=True):
         """Analyzes the output files generated using the
         lattice_constants_batch_generate function.
