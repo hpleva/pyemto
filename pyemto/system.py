@@ -2884,7 +2884,7 @@ class System:
                   ' less common KGRN error. Check the output file.'.format(fn))
         return
 
-    def get_energy(self, jobname, func="PBE", folder="./"):
+    def get_energy(self, jobname=None, func="PBE", folder=None):
         """Extracts total energy from the KFCD output file.
 
         Different total energies given by different xc-functionals can
@@ -2901,6 +2901,11 @@ class System:
         :rtype: float or None
         """
 
+        if folder == None:
+            folder = self.folder
+        if jobname == None:
+            jobname = self.fulljobname
+        
         fn = os.path.join(folder, "kfcd/")
         fn = os.path.join(fn, jobname + ".prn")
         try:
