@@ -83,7 +83,7 @@ class EOS:
     oldpoly          A third order polynomial fit (alternative implementation)
     ================ ==============================================================
 
-    Use::
+    Usage::
 
        eos = EquationOfState(volumes, energies, eos='murnaghan')
        v0, e0, B = eos.fit()
@@ -115,18 +115,20 @@ class EOS:
         self.rsquared = 0.0
         self.e = np.zeros(1)
         self.v = np.zeros(1)
-        self.wsrad = 1.0
         self.nq = 1
         self.e0 = 0.0
+        self.sws0 = 0.0
         self.v0 = 0.0
-        self.B = 0.0
+        self.B0 = 0.0
+        self.B1 = 0.0
         self.grun = 0.0
         self.bohr2a = 0.52917721092
         self.ry2ev = 13.605692533
         self.ev2gpa = 160.21773
-        self.eMin = 0.0
         self.eos_parameters = None
-        self.sjeosfit0 = None
+        self.initial_guess = None
+        self.fit_infodict = None
+        self.fitted_ens = None
 
     def vol2wsrad(self, V):
         """
@@ -146,7 +148,6 @@ class EOS:
         :returns:
         :rtype:
         """
-        #print('debug:', WSrad)
         return 4.0 * np.pi / 3.0 * WSrad**3
 
     def angstrom2bohr(self, V):
@@ -169,7 +170,7 @@ class EOS:
         """
         return 4.0 * np.pi / 3.0 * (WSrad * 0.52917721092)**3
 
-    def morse(self, w, a0, b0, c0, l0):
+    def morse(self, sws, a0, b0, c0, l0):
         """
 
         :param w:
@@ -184,7 +185,8 @@ class EOS:
         :type l0:
 
         """
-        E = a0 + b0 * np.exp(-l0 * w) + c0 * np.exp(-2.0 * l0 * w)
+
+        E = a0 + b0 * np.exp(-l0 * sws) + c0 * np.exp(-2.0 * l0 * sws)
         return E
 
     def taylor(self, V, E0, beta, alpha, V0):
@@ -356,7 +358,7 @@ class EOS:
         :returns: Energy
         :rtype: float
         """
-
+        
         E = B * V0 / (n + 1.) * (V / V0)**(n + 1.) * \
             (np.log(V / V0) - (1. / (n + 1.))) + Einf
         return E
@@ -405,6 +407,20 @@ class EOS:
 
         return a + b * x + c * x**2
 
+    def sjeos(self, V, a, b, c, d):
+        """Stabilized jellium (SJEOS) fitting function from
+        PRB 63, 224115 (2001).
+
+        Note: EOS parameters here differ from the PRB definitions
+              by having V0 being included in them.
+              a(PRB) = a/V0
+              b(PRB) = b/V0**(2/3)
+              c(PRB) = c/V0**(1/3)
+        """
+        
+        return a/V + b/V**(2.0/3) + c/V**(1.0/3) + d
+
+
     def predicted(self):
         """Evaluates the EOS function using the calc. EOS params.
 
@@ -412,125 +428,156 @@ class EOS:
         :rtype: func
         """
 
+        if self.eos_string == 'morse':
+            vol_arg = self.sws
+        else:
+            vol_arg = self.v
         fity = eval('self.{0}'.format(self.eos_string))(
-            self.v,
+            vol_arg,
             self.eos_parameters[0],
             self.eos_parameters[1],
             self.eos_parameters[2],
             self.eos_parameters[3],)
         return fity
 
-    def prepareData(self):
+    
+    #def prepareData(self):
+    #    """
+    #    
+    #    :returns:
+    #    :rtype:
+    #    """
+    #    
+    #    fitpts = open('fit/' + self.name + '.fit', 'w')
+    #    now = datetime.datetime.now()
+    #    timeline = str(now.day) + "." + str(now.month) + "." + str(now.year) +\
+    #        " -- " + "{0:02}".format(now.hour) + ":" +\
+    #        "{0:02}".format(now.minute) + ":" + \
+    #        "{0:02}".format(now.second) + "\n"
+    #    fitpts.write(
+    #        timeline +
+    #        "JOBNAM = " +
+    #        self.name +
+    #        ' -- ' +
+    #        self.xc +
+    #        "\n")
+    #    
+    #    namelist = []
+    #    for file in os.listdir("kfcd/"):
+    #        if self.name in file:
+    #            namelist.append(file)
+    #    data = np.array([[0, 0]])
+    #    enTag = 'TOT-' + self.xc
+    #    volTag = 'VOL'
+    #    nqTag = 'NQ'
+    #    nq = 1
+    #    for n in namelist:
+    #        nqRead = False
+    #        lineIndex = 0
+    #        fl = open("kfcd/" + n)
+    #        lines = fl.readlines()
+    #        for line in lines:
+    #            if not nqRead:
+    #                if nqTag in line:
+    #                    nq = int(line.split()[2])
+    #                    nqRead = True
+    #            """
+    #            if volTag in line:
+    #                # cellVol = volume of the cell in unit
+    #                # of cellA**3
+    #                cellVol = float(line.split()[5])
+    #                #cellA = length of the lattice parameter A
+    #                # in unit of Bohr
+    #                cellA = float(lines[lineIndex+2].split()[2])
+    #                #
+    #                cellVol = cellVol*cellA**3
+    #                cellWSRad = (3.0*cellVol/(4*np.pi))**(1.0/3.0)
+    #            """
+    #            if enTag in line:
+    #                linesplit = line.split()
+    #                data = np.append(data, [[float(linesplit[6]),
+    #                                         float(linesplit[3])]], axis=0)
+    #            lineIndex += 1
+    #        fl.close()
+    #
+    #    data = np.delete(data, 0, 0)
+    #    # Make sure datapoints are in ascending order
+    #    data = data[data[:, 0].argsort()]
+    #
+    #    fitpts.write('NQ = {0}'.format(nq) + "\n")
+    #    fitpts.write("Sws.......Etot..........." + "\n")
+    #    for i in range(len(data[:, 0])):
+    #        fitpts.write('{0:.6f} {1:.6f}\n'.format(data[i, 0], data[i, 1]))
+    #    fitpts.close()
+
+
+    def compute_initial_guess(self):
+        """Calculates initial guessess for the fitting parameters."""
+        
+        if self.eos_string == 'sjeos':
+            # SJEOS fitting routine needs no initial guessess
+            return None
+
+        else:
+            p0 = [np.min(self.e), 1, 1]
+            
+            parabola_parameters, pcov, infodict0, mesg0, ier0 = curve_fit(
+                self.parabola, self.v, self.e, p0)
+            
+            # Here I just make sure the minimum is bracketed by the volumes.
+            # this if for the solver.
+            minvol = min(self.v)
+            maxvol = max(self.v)
+            
+            # the minimum of the parabola is at dE/dV = 0, or 2*c V +b =0
+            a = parabola_parameters[0]
+            b = parabola_parameters[1]
+            c = parabola_parameters[2]
+            
+            parabola_vmin = -b / 2 / c
+
+            if not (minvol < parabola_vmin and parabola_vmin < maxvol):
+                print('EOS.compute_initial_guess(): Warning the minimum volume of a fitted' +\
+                      ' parabola is not in your volumes.\n' +\
+                      '                             You may not have a minimum in your dataset.')
+            
+            # evaluate the parabola at the minimum to estimate the groundstate
+            # energy
+            E0 = self.parabola(parabola_vmin, a, b, c)
+            
+            # estimate the bulk modulus from Vo*E'',  E'' = 2*c
+            B0 = 2 * c * parabola_vmin
+            
+            if self.eos_string == 'antonschmidt':
+                BP = -2
+            else:
+                BP = 4
+            
+            if self.eos_string == 'morse':
+                B0 *= self.bohr2a**3 
+                w0 = self.vol2wsrad(parabola_vmin)/self.bohr2a
+                #l0 = 2.0 * (2.0 - 1.0 / 3.0) / w0
+                l0 = (BP - 1.0) / w0
+                x0 = np.exp(-l0 * w0)
+                print('x0 = ',x0)
+                c0 = -6.0 * np.pi * np.log(x0) * B0 / (x0**2 * l0**3)
+                b0 = -2.0 * c0 * x0
+                a0 = E0 - b0 * x0 - c0 * x0**2
+                initial_guess = [a0, b0, c0, l0]
+            else:
+                initial_guess = [E0, B0, BP, parabola_vmin]
+
+        return initial_guess
+
+
+    def compute_eos_fit(self):
+        """Performs the least-squares curve fitting for the chosen EOS function.
+        Ground state quantities are returned.
         """
-
-        :returns:
-        :rtype:
-        """
-
-        fitpts = open('fit/' + self.name + '.fit', 'w')
-        now = datetime.datetime.now()
-        timeline = str(now.day) + "." + str(now.month) + "." + str(now.year) +\
-            " -- " + "{0:02}".format(now.hour) + ":" +\
-            "{0:02}".format(now.minute) + ":" + \
-            "{0:02}".format(now.second) + "\n"
-        fitpts.write(
-            timeline +
-            "JOBNAM = " +
-            self.name +
-            ' -- ' +
-            self.xc +
-            "\n")
-
-        namelist = []
-        for file in os.listdir("kfcd/"):
-            if self.name in file:
-                namelist.append(file)
-        data = np.array([[0, 0]])
-        enTag = 'TOT-' + self.xc
-        volTag = 'VOL'
-        nqTag = 'NQ'
-        nq = 1
-        for n in namelist:
-            nqRead = False
-            lineIndex = 0
-            fl = open("kfcd/" + n)
-            lines = fl.readlines()
-            for line in lines:
-                if not nqRead:
-                    if nqTag in line:
-                        nq = int(line.split()[2])
-                        nqRead = True
-                """
-                if volTag in line:
-                    # cellVol = volume of the cell in unit
-                    # of cellA**3
-                    cellVol = float(line.split()[5])
-                    #cellA = length of the lattice parameter A
-                    # in unit of Bohr
-                    cellA = float(lines[lineIndex+2].split()[2])
-                    #
-                    cellVol = cellVol*cellA**3
-                    cellWSRad = (3.0*cellVol/(4*np.pi))**(1.0/3.0)
-                """
-                if enTag in line:
-                    linesplit = line.split()
-                    data = np.append(data, [[float(linesplit[6]),
-                                             float(linesplit[3])]], axis=0)
-                lineIndex += 1
-            fl.close()
-
-        data = np.delete(data, 0, 0)
-        # Make sure datapoints are in ascending order
-        data = data[data[:, 0].argsort()]
-
-        fitpts.write('NQ = {0}'.format(nq) + "\n")
-        fitpts.write("Sws.......Etot..........." + "\n")
-        for i in range(len(data[:, 0])):
-            fitpts.write('{0:.6f} {1:.6f}\n'.format(data[i, 0], data[i, 1]))
-        fitpts.close()
-
-    def fit(self, swses, energies):
-        """Calculate volume, energy, and bulk modulus.
-
-        A fitting input file is created in the '/fit' folder.
-        Returns the optimal volume, the minumum energy, and the bulk
-        modulus.  Notice that the units for the bulk modulus is
-        eV/Angstrom^3 - to get the value in GPa, do this::
-
-        v0, e0, B = eos.fit()
-        print B*160.21773, 'GPa'
-
-        :param swses: List of WS-radii
-        :type swses: list(float)
-        :param energies: List of energies
-        :type energies: list(float)
-        :returns: Eq. WS-rad, energy, bulk modulus, Gruneisen parameter
-        :rtype: float, float, float, float
-        """
-
-        self.v = np.asarray(swses)
-        self.e = np.asarray(energies)
-        # Remove duplicates and make sure the arrays are sorted
-        vLen0 = len(self.v)
-        self.v, uniqueInd = np.unique(self.v, return_index=True)
-        self.e = np.array(self.e)[uniqueInd]
-        if len(self.v) < vLen0:
-            print('EOS.fit(): WARNING! Duplicate volumes have been detected.' + '\n' +\
-                  'Duplicates have been removed in no particular fashion.' +
-                  '\n' +\
-                  'Check the integrity of the data!' + '\n')
-        if self.eos_string != 'morse':
-            # Convert WS-radius to Angstrom^3
-            self.v[:] = 4.0 * np.pi / 3.0 * (self.bohr2a * self.v[:])**3
-            # Convert Rydberg to eV (No need to do this unless one wants to
-            # print out in eVs)
-            # self.e[:] *= self.ry2ev
-        # Translate energies so that smallest value becomes zero
-        self.eMin = np.min(self.e)
-        self.e -= self.eMin
 
         if self.eos_string == 'sjeos':
-            fit0 = np.poly1d(np.polyfit(self.v**-(1.0 / 3), self.e, 3))
+            self.eos_parameters = np.polyfit(self.v**-(1.0 / 3), self.e, 3)
+            fit0 = np.poly1d(self.eos_parameters)
             fit1 = np.polyder(fit0, 1)
             fit2 = np.polyder(fit1, 1)
             self.v0 = None
@@ -540,90 +587,38 @@ class EOS:
                     break
             if self.v0 is None:
                 raise ValueError('SJEOS: No minimum!')
-            self.e0 = fit0(t) + self.eMin
-            self.B = t**5 * fit2(t) / 9
-            self.sjeosfit0 = fit0
+            self.sws0 = self.vol2wsrad(self.v0)/self.bohr2a
+            self.e0 = fit0(t)
+            self.B0 = t**5 * fit2(t) / 9.0
+            # Bmod pressure derivative and Gruneisen parameter
+            self.B1 = (108*self.eos_parameters[0]/self.v0 + 50*self.eos_parameters[1]/
+                       self.v0**(2.0/3.0) + 16*self.eos_parameters[2]/self.v0**(1.0/3.0))/\
+                       (27*self.B0*self.v0)
+            self.grun = -0.5 + self.B1/2
+
             # Convert B to GPa
-            self.B *= self.ry2ev * self.ev2gpa
-
+            self.B0 *= self.ry2ev * self.ev2gpa
+            
         else:
-            p0 = [min(self.e), 1, 1]
             if self.eos_string == 'morse':
-                popt, pcov, infodict0, mesg0, ier0 = curve_fit(
-                    self.parabola, self.wsrad2vol(
-                        self.v), self.e, p0)
+                self.eos_parameters, pcov, self.fit_infodict, mesg, ier = curve_fit(
+                    eval('self.{0}'.format(self.eos_string)), self.sws, self.e, self.initial_guess)
             else:
-                popt, pcov, infodict0, mesg0, ier0 = curve_fit(
-                    self.parabola, self.v, self.e, p0)
-
-            parabola_parameters = popt
-            # Here I just make sure the minimum is bracketed by the volumes
-            # this if for the solver
-            minvol = min(self.v)
-            maxvol = max(self.v)
-
-            # the minimum of the parabola is at dE/dV = 0, or 2*c V +b =0
-            c = parabola_parameters[2]
-            b = parabola_parameters[1]
-            a = parabola_parameters[0]
-            parabola_vmin = -b / 2 / c
-            if self.eos_string == 'morse':
-                parabola_vmin = self.vol2wsrad(parabola_vmin)
-            # print('parabola_vmin=',parabola_vmin)
-
-            if not (minvol < parabola_vmin and parabola_vmin < maxvol):
-                print('EOS.fit(): Warning the minimum volume of a fitted' +\
-                      ' parabola is not in your volumes.\n' +\
-                      '           You may not have a minimum in your dataset.')
-
-            # evaluate the parabola at the minimum to estimate the groundstate
-            # energy
-            E0 = self.parabola(parabola_vmin, a, b, c)
-            # print('parabola_E0=',E0)
-            # estimate the bulk modulus from Vo*E''.  E'' = 2*c
-            if self.eos_string == 'morse':
-                B0 = 2 * c * self.wsrad2vol(parabola_vmin)
-            else:
-                B0 = 2 * c * parabola_vmin
-            # print('parabola_B0=',B0)
-
-            if self.eos_string == 'antonschmidt':
-                BP = -2
-            else:
-                BP = 4
-
-            if self.eos_string == 'morse':
-                w0 = parabola_vmin
-                l0 = 2.0 * (2.0 - 1.0 / 3.0) / w0
-                x0 = np.exp(-l0 * w0)
-                c0 = -6.0 * np.pi * np.log(x0) * B0 / (x0**2 * l0**3)
-                b0 = -2.0 * c0 * x0
-                a0 = E0 - b0 * x0 - c0 * x0**2
-                initial_guess = [a0, b0, c0, l0]
-                # print('a0=',a0,'b0=',b0,'c0=',c0,'lambda0=',l0)
-            else:
-                initial_guess = [E0, B0, BP, parabola_vmin]
-
-            # now fit the equation of state
-            p0 = initial_guess
-            popt, pcov, infodict, mesg, ier = curve_fit(
-                eval('self.{0}'.format(self.eos_string)), self.v, self.e, p0)
-
-            self.eos_parameters = popt
-
-            self.e += self.eMin
+                self.eos_parameters, pcov, self.fit_infodict, mesg, ier = curve_fit(
+                    eval('self.{0}'.format(self.eos_string)), self.v, self.e, self.initial_guess)
 
             if self.eos_string == 'morse':
                 ma, mb, mc, ml = self.eos_parameters
-                # print('morse_a=',ma,'morse_b=',mb,'morse_c=',mc,'morse_lambda=',ml)
                 mx0 = -0.5 * mb / mc
-                # print('morse_x0=',mx0)
-                self.v0 = -np.log(mx0) / ml
-                self.e0 = ma + mb * mx0 + mc * mx0**2 + self.eMin
-                self.B = -(mc * mx0**2 * ml**3) / (6 * np.pi * np.log(mx0))
+                self.sws0 = -np.log(mx0) / ml
+                self.v0 = self.wsrad2vol(self.bohr2a*self.sws0)
+                self.e0 = ma + mb * mx0 + mc * mx0**2
+                self.B0 = -(mc * mx0**2 * ml**3) / (6 * np.pi * np.log(mx0))
                 # Convert B to GPa
-                self.B = self.ev2gpa * self.ry2ev / self.bohr2a**3 * self.B
-                self.grun = 0.5 * ml * self.v0
+                self.B0 = self.ev2gpa * self.ry2ev / self.bohr2a**3 * self.B0
+                self.grun = 0.5 * ml * self.sws0
+                # Pressure derivative of bmod
+                self.B1 = 2*self.grun + 1.0
             elif self.eos_string == 'oldpoly':
                 c0, c1, c2, c3 = self.eos_parameters
                 # find minimum E in E = c0 + c1*V + c2*V**2 + c3*V**3
@@ -634,437 +629,482 @@ class EOS:
                 b = 2 * c2
                 c = c1
 
-                self.v0 = (-b + np.sqrt(b**2 - 4 * a * c)) / (2 * a)
-                self.e0 = self.oldpoly(self.v0, c0, c1, c2, c3) + self.eMin
-                # Convert e0 to Rydbergs
-                #self.e0 /= self.ry2ev
-                self.B = (2 * c2 + 6 * c3 * self.v0) * self.v0
+                self.sws0 = (-b + np.sqrt(b**2 - 4 * a * c)) / (2 * a)
+                self.v0 = wsrad2vol(self.bohr2a*self.sws0)
+                self.e0 = self.oldpoly(self.v0, c0, c1, c2, c3)
+                self.B0 = (2 * c2 + 6 * c3 * self.v0) * self.v0
                 # Convert B to GPa
-                self.B *= self.ry2ev * self.ev2gpa
+                self.B0 *= self.ry2ev * self.ev2gpa
                 # Gruneisen parameter for oldpoly not implemented
                 self.grun = 0.0
             else:
-                self.e0 = self.eos_parameters[0] + self.eMin
-                self.v0 = self.eos_parameters[3]
-                self.B = self.eos_parameters[1]
-                self.grun = -0.5 + self.eos_parameters[2] / 2.0
-                # Convert e0 to Rydbergs
-                #self.e0 /= self.ry2ev
+                self.e0   = self.eos_parameters[0]
+                self.v0   = self.eos_parameters[3]
+                self.sws0 = self.vol2wsrad(self.v0)/self.bohr2a
+                self.B0   = self.eos_parameters[1]
+                self.B1   = self.eos_parameters[2]
+                self.grun = -0.5 + self.B1 / 2.0
                 # Convert B to GPa
-                self.B *= self.ry2ev * self.ev2gpa
+                self.B0 *= self.ry2ev * self.ev2gpa
+        return
 
-        if self.units == 'bohr':
-            if self.eos_string == 'morse':
-                pass
-            else:
-                self.v0 = self.angstrom2bohr(self.v0)
-
-        if self.units == 'angstrom':
-            if self.eos_string == 'morse':
-                self.v0 = self.bohr2angstrom(self.v0)
-            else:
-                pass
+    def compute_eos_quality(self):
+        """Compute different estimates for the quality of the fit."""
 
         if self.eos_string == 'sjeos':
-            sjeospredicted = self.sjeosfit0(self.v**-(1.0 / 3.0))
-            self.residuals = self.e - sjeospredicted
+            sjeospredicted = self.sjeos(self.v,self.eos_parameters[0],self.eos_parameters[1],
+                                               self.eos_parameters[2],self.eos_parameters[3])
+            self.residuals = sjeospredicted - self.e
             self.chisqr = np.sum(self.residuals**2)
             self.redchi = self.chisqr / (len(self.e) - 4)
             ss_tot = np.sum((self.e - np.mean(self.e))**2)
             self.rsquared = 1.0 - self.chisqr / ss_tot
-            fitE = sjeospredicted + self.eMin
-            self.e += self.eMin
+            self.fitted_ens = sjeospredicted
         else:
-            self.residuals = infodict['fvec']
+            self.residuals = self.fit_infodict['fvec']
             self.chisqr = np.sum(self.residuals**2)
             self.redchi = self.chisqr / (len(self.e) - 4)
             ss_tot = np.sum((self.e - np.mean(self.e))**2)
             self.rsquared = 1.0 - self.chisqr / ss_tot
-            fitE = self.predicted() + self.eMin
+            self.fitted_ens = self.predicted()
+        return
 
-        # Calculate WS-radius
-        self.wsrad = self.v0
+    def eos_output(self):
+        """Construct a string for the EOS output message."""
 
-        # Printouts
         now = datetime.datetime.now()
         timeline = str(now.day) + "." + str(now.month) + "." + str(now.year) +\
             " -- " + "{0:02}".format(now.hour) + ":" +\
             "{0:02}".format(now.minute) + ":" + \
             "{0:02}".format(now.second) + "\n"
-        print(timeline + "JOBNAM = " + self.name + ' -- ' + self.xc + "\n")
-        print('Using ' + self.eos_string + ' function' + "\n")
-        print('Chi squared         = ' + str(self.chisqr))
-        print('Reduced Chi squared = ' + str(self.redchi))
-        print('R squared           = ' + str(self.rsquared) + "\n")
-        print(self.eos_string + ' parameters:' + "\n")
+
+        line  = timeline + "JOBNAM = " + self.name + ' -- ' + self.xc + "\n" +"\n"
+        line += 'Using ' + self.eos_string + ' function' + "\n" + "\n"
+        line += 'Chi squared         = ' + str(self.chisqr) + "\n"
+        line += 'Reduced Chi squared = ' + str(self.redchi) + "\n"
+        line += 'R squared           = ' + str(self.rsquared) + "\n" + "\n"
+        self.eos_string + ' parameters:' + "\n" + "\n"
         if self.eos_string == 'morse':
-            print('a      = {0:12.6f}'.format(self.eos_parameters[0]))
-            print('b      = {0:12.6f}'.format(self.eos_parameters[1]))
-            print('c      = {0:12.6f}'.format(self.eos_parameters[2]))
-            print('lambda = {0:12.6f}'.format(self.eos_parameters[3]) + "\n")
+            line += 'a      = {0:12.6f}'.format(self.eos_parameters[0]) + "\n"
+            line += 'b      = {0:12.6f}'.format(self.eos_parameters[1]) + "\n"
+            line += 'c      = {0:12.6f}'.format(self.eos_parameters[2]) + "\n"
+            line += 'lambda = {0:12.6f}'.format(self.eos_parameters[3]) + "\n"
         elif self.eos_string == 'sjeos':
-            print('a = {0:12.6f}'.format(self.sjeosfit0.c[0]))
-            print('b = {0:12.6f}'.format(self.sjeosfit0.c[1]))
-            print('c = {0:12.6f}'.format(self.sjeosfit0.c[2]))
-            print('d = {0:12.6f}'.format(self.sjeosfit0.c[3]) + "\n")
+            line += 'a = {0:12.6f}'.format(self.eos_parameters[0]) + "\n"
+            line += 'b = {0:12.6f}'.format(self.eos_parameters[1]) + "\n"
+            line += 'c = {0:12.6f}'.format(self.eos_parameters[2]) + "\n"
+            line += 'd = {0:12.6f}'.format(self.eos_parameters[3]) + "\n"
         elif self.eos_string == 'oldpoly':
-            print('c0 = {0:12.6f}'.format(self.eos_parameters[0]))
-            print('c1 = {0:12.6f}'.format(self.eos_parameters[1]))
-            print('c2 = {0:12.6f}'.format(self.eos_parameters[2]))
-            print('c3 = {0:12.6f}'.format(self.eos_parameters[3]) + "\n")
+            line += 'c0 = {0:12.6f}'.format(self.eos_parameters[0]) + "\n"
+            line += 'c1 = {0:12.6f}'.format(self.eos_parameters[1]) + "\n"
+            line += 'c2 = {0:12.6f}'.format(self.eos_parameters[2]) + "\n"
+            line += 'c3 = {0:12.6f}'.format(self.eos_parameters[3]) + "\n"
         else:
-            print('E0    = {0:12.6f}'.format(self.eos_parameters[0]))
-            print('Bmod  = {0:12.6f}'.format(self.eos_parameters[1]))
-            print('Bmod\' = {0:12.6f}'.format(self.eos_parameters[2]))
-            print('V0    = {0:12.6f}'.format(self.eos_parameters[3]) + "\n")
-        print('Ground state parameters:' + "\n")
-        if self.units == 'bohr':
-            print('V0           = {0:12.6f} Bohr^3 (unit cell volume)'
-                  .format(self.v0))
-            print('             = {0:12.6f} Bohr   (WS-radius)'
-                  .format(self.wsrad))
-        elif self.units == 'angstrom':
-            print('V0           = {0:12.6f} Angstrom^3'.format(self.v0))
-        print('E0           = {0:12.6f} Ry'.format(self.e0 * self.nq))
-        print('Bmod         = {0:12.6f} GPa'.format(self.B))
-        print('Grun. param. = {0:12.6f}'.format(self.grun) + "\n")
-        print('sws            Einp           Eout          Residual       ' +
-              'err (% * 10**6)')
+            line += 'E0    = {0:12.6f}'.format(self.eos_parameters[0]) + "\n"
+            line += 'Bmod  = {0:12.6f}'.format(self.eos_parameters[1]) + "\n"
+            line += 'Bmod\' = {0:12.6f}'.format(self.eos_parameters[2]) + "\n"
+            line += 'V0    = {0:12.6f}'.format(self.eos_parameters[3]) + "\n" + "\n"
+        line += 'Ground state parameters:' + "\n" + "\n"
+        line += 'sws0         = {0:12.6f} Bohr        (WS-radius)'.format(self.sws0) + "\n"
+        line += 'V0           = {0:12.6f} Angstrom**3 (unit cell volume)'.format(self.v0) + "\n"
+        line += 'E0           = {0:12.6f} Ry'.format(self.e0 * self.nq) + "\n"
+        line += 'Bmod         = {0:12.6f} GPa'.format(self.B0) + "\n"
+        line += 'B\'           = {0:12.6f}'.format(self.B1) + "\n"
+        line += 'Grun. param. = {0:12.6f}'.format(self.grun) + "\n" + "\n"
+        line += 'sws            Einp          Eout          Residual       ' +\
+              ' err (% * 10**4)' + "\n"
         for i in range(len(self.e)):
-            print('{0:.6f} {1:13.6f} {2:13.6f} {3:13.6f} {4:15.6f}'
-                  .format(self.v[i], self.e[i], fitE[i], self.residuals[i],
-                          self.residuals[i] / np.abs(self.e[i]) * 1.0E6))
-        print('\n')
+            line += '{0:.6f} {1:13.6f} {2:13.6f} {3:13.6f} {4:15.6f}\n'\
+                  .format(self.sws[i], self.e[i], self.fitted_ens[i], self.residuals[i],
+                          self.residuals[i] / np.abs(self.e[i]) * 1.0E6)
+        line += "\n"
+        return line
 
-        # Save an image for quality checking
-        #self.plot(filename=self.name, show=None)
+    def print_eos_output(self):
+        print(self.eos_output())
+        return
 
-        return self.wsrad, self.e0, self.B, self.grun  # , self.error
-
-    def fit2file(self):
+    def fit(self, swses, energies):
         """Calculate volume, energy, and bulk modulus.
 
-        Returns the optimal volume, the minumum energy, and the bulk
-        modulus.  Notice that the units for the bulk modulus is
-        eV/Angstrom^3 - to get the value in GPa, do this::
+        About the units:
 
-          v0, e0, B = eos.fit()
-          print B*160.21773, 'GPa'
+        Input "swses" should be the WS-radii in bohr.
+        Input "energies" should be the energies in Ry.
 
-        :returns:
-        :rtype:
+        Volumes are always in Angstrom**3
+        Bulk moduli are always in GPa
+
+        :param swses: List of WS-radii
+        :type swses: list(float)
+        :param energies: List of energies
+        :type energies: list(float)
+        :returns: Eq. WS-rad, energy, bulk modulus, Gruneisen parameter
+        :rtype: float, float, float, float
         """
 
-        # Read data from the fit folder
-        file = open('fit/' + self.name + '.fit', mode='r')
-        lines = file.readlines()
-        self.nq = int(lines[2].split()[2])
-        file.close()
-        data = np.loadtxt('fit/' + self.name + '.fit', skiprows=4)
-        self.v = data[:, 0]
-        self.e = data[:, 1]
-        if self.eos_string != 'morse':
-            # Convert WS-radius to Angstrom^3
-            self.v[:] = 4.0 * np.pi / 3.0 * (self.bohr2a * self.v[:])**3
-            # Convert Rydberg to eV (No need to do this unless one wants to
-            # print out in eVs)
-            # self.e[:] *= self.ry2ev
-        # Translate energies so that smallest value becomes zero
-        self.eMin = np.min(self.e)
-        self.e -= self.eMin
+        self.sws = np.asarray(swses)
+        self.v = self.wsrad2vol(self.sws*self.bohr2a)
+        self.e = np.asarray(energies)
+        
+        # Remove duplicates and make sure the arrays are sorted
+        vLen0 = len(self.v)
+        self.v, uniqueInd = np.unique(self.v, return_index=True)
+        self.e = np.array(self.e)[uniqueInd]
+        if len(self.v) < vLen0:
+            print('EOS.fit(): WARNING! Duplicate volumes have been detected.' + '\n' +\
+                  'Duplicates have been removed in no particular fashion.' +
+                  '\n' + 'Check the integrity of the data!' + '\n')
 
-        if self.eos_string == 'sjeos':
-            fit0 = np.poly1d(np.polyfit(self.v**-(1.0 / 3), self.e, 3))
-            fit1 = np.polyder(fit0, 1)
-            fit2 = np.polyder(fit1, 1)
-            self.v0 = None
-            for t in np.roots(fit1):
-                if isinstance(t, float) and t > 0 and fit2(t) > 0:
-                    self.v0 = t**-3
-                    break
-            if self.v0 is None:
-                raise ValueError('sjeos: No minimum!')
-            self.e0 = fit0(t) + self.eMin
-            self.B = t**5 * fit2(t) / 9
-            self.sjeosfit0 = fit0
-            # Convert B to GPa
-            self.B *= self.ry2ev * self.ev2gpa
+        # Translate energies so that smallest value becomes zero.
+        # An optional operation, I think sometimes it might increase
+        # accuracy. Occasionally it also causes the fit to not converge
+        # properly due to some divide by zero problem.
+        #self.eMin = np.min(self.e)
+        #self.e -= self.eMin
 
-        else:
-            p0 = [min(self.e), 1, 1]
-            if self.eos_string == 'morse':
-                popt, pcov, infodict0, mesg0, ier0 = curve_fit(
-                    self.parabola, self.wsrad2vol(
-                        self.v), self.e, p0)
-            else:
-                popt, pcov, infodict0, mesg0, ier0 = curve_fit(
-                    self.parabola, self.v, self.e, p0)
+        # Construct initial guessess for the fitting parameters of the actual fit.
+        self.initial_guess = self.compute_initial_guess()
 
-            parabola_parameters = popt
-            # Here I just make sure the minimum is bracketed by the volumes
-            # this if for the solver
-            minvol = min(self.v)
-            maxvol = max(self.v)
+        # Now we can perform the actual fit itself:
+        # The ground state quantities are returned.
+        self.compute_eos_fit()
 
-            # the minimum of the parabola is at dE/dV = 0, or 2*c V +b =0
-            c = parabola_parameters[2]
-            b = parabola_parameters[1]
-            a = parabola_parameters[0]
-            parabola_vmin = -b / 2 / c
-            if self.eos_string == 'morse':
-                parabola_vmin = self.vol2wsrad(parabola_vmin)
-            # print('parabola_vmin=',parabola_vmin)
+        # Compute statistical error information
+        self.compute_eos_quality()
 
-            if not (minvol < parabola_vmin and parabola_vmin < maxvol):
-                print('EOS.fit2file(): Warning the minimum volume of a fitted' +\
-                      ' parabola is not in your volumes.\n' +\
-                      '                You may not have a minimum in your dataset.')
-
-            # evaluate the parabola at the minimum to estimate the groundstate
-            # energy
-            E0 = self.parabola(parabola_vmin, a, b, c)
-            # print('parabola_E0=',E0)
-            # estimate the bulk modulus from Vo*E''.  E'' = 2*c
-            if self.eos_string == 'morse':
-                B0 = 2 * c * self.wsrad2vol(parabola_vmin)
-            else:
-                B0 = 2 * c * parabola_vmin
-            # print('parabola_B0=',B0)
-
-            if self.eos_string == 'antonschmidt':
-                BP = -2
-            else:
-                BP = 4
-
-            if self.eos_string == 'morse':
-                w0 = parabola_vmin
-                l0 = 2.0 * (2.0 - 1.0 / 3.0) / w0
-                x0 = np.exp(-l0 * w0)
-                c0 = -6.0 * np.pi * np.log(x0) * B0 / (x0**2 * l0**3)
-                b0 = -2.0 * c0 * x0
-                a0 = E0 - b0 * x0 - c0 * x0**2
-                initial_guess = [a0, b0, c0, l0]
-                # print('a0=',a0,'b0=',b0,'c0=',c0,'lambda0=',l0)
-            else:
-                initial_guess = [E0, B0, BP, parabola_vmin]
-
-            # now fit the equation of state
-            p0 = initial_guess
-            popt, pcov, infodict, mesg, ier = curve_fit(
-                eval(
-                    'self.{0}'.format(
-                        self.eos_string)), self.v, self.e, p0)
-
-            self.eos_parameters = popt
-
-            self.e += self.eMin
-
-            if self.eos_string == 'morse':
-                ma, mb, mc, ml = self.eos_parameters
-                # print('morse_a=',ma,'morse_b=',mb,'morse_c=',mc,'morse_lambda=',ml)
-                mx0 = -0.5 * mb / mc
-                # print('morse_x0=',mx0)
-                self.v0 = -np.log(mx0) / ml
-                self.e0 = ma + mb * mx0 + mc * mx0**2 + self.eMin
-                self.B = -(mc * mx0**2 * ml**3) / (6 * np.pi * np.log(mx0))
-                # Convert B to GPa
-                self.B = self.ev2gpa * self.ry2ev / self.bohr2a**3 * self.B
-                self.grun = 0.5 * ml * self.v0
-            elif self.eos_string == 'oldpoly':
-                c0, c1, c2, c3 = self.eos_parameters
-                # find minimum E in E = c0 + c1*V + c2*V**2 + c3*V**3
-                # dE/dV = c1+ 2*c2*V + 3*c3*V**2 = 0
-                # solve by quadratic formula with the positive root
-
-                a = 3 * c3
-                b = 2 * c2
-                c = c1
-
-                self.v0 = (-b + np.sqrt(b**2 - 4 * a * c)) / (2 * a)
-                self.e0 = self.oldpoly(self.v0, c0, c1, c2, c3) + self.eMin
-                # Convert e0 to Rydbergs
-                #self.e0 /= self.ry2ev
-                self.B = (2 * c2 + 6 * c3 * self.v0) * self.v0
-                # Convert B to GPa
-                self.B *= self.ry2ev * self.ev2gpa
-                # Gruneisen parameter for oldpoly not implemented
-                self.grun = 0.0
-            else:
-                self.e0 = self.eos_parameters[0] + self.eMin
-                self.v0 = self.eos_parameters[3]
-                self.B = self.eos_parameters[1]
-                self.grun = -0.5 + self.eos_parameters[2] / 2.0
-                # Convert e0 to Rydbergs
-                #self.e0 /= self.ry2ev
-                # Convert B to GPa
-                self.B *= self.ry2ev * self.ev2gpa
-
-        if self.units == 'bohr':
-            if self.eos_string == 'morse':
-                pass
-            else:
-                self.v0 = self.angstrom2bohr(self.v0)
-
-        if self.units == 'angstrom':
-            if self.eos_string == 'morse':
-                self.v0 = self.bohr2angstrom(self.v0)
-            else:
-                pass
-
-        if self.eos_string == 'sjeos':
-            sjeospredicted = self.sjeosfit0(self.v**-(1.0 / 3.0))
-            self.residuals = self.e - sjeospredicted
-            self.chisqr = np.sum(self.residuals**2)
-            self.redchi = self.chisqr / (len(self.e) - 4)
-            ss_tot = np.sum((self.e - np.mean(self.e))**2)
-            self.rsquared = 1.0 - self.chisqr / ss_tot
-            fitE = sjeospredicted + self.eMin
-            self.e += self.eMin
-        else:
-            self.residuals = infodict['fvec']
-            self.chisqr = np.sum(self.residuals**2)
-            self.redchi = self.chisqr / (len(self.e) - 4)
-            ss_tot = np.sum((self.e - np.mean(self.e))**2)
-            self.rsquared = 1.0 - self.chisqr / ss_tot
-            fitE = self.predicted() + self.eMin
-
-        # Calculate WS-radius
-        self.wsrad = self.v0
-        # Calculate unit cell volume
-        self.v0 = 4.0 / 3.0 * np.pi * self.v0**3.0 * self.nq
-
-        # Write results to a text file
-        fitresult = open('fit/' + self.name + '.prn', 'w')
-        now = datetime.datetime.now()
-        timeline = str(now.day) + "." + str(now.month) + "." + str(now.year) +\
-            " -- " + "{0:02}".format(now.hour) + ":" +\
-            "{0:02}".format(now.minute) + ":" + \
-            "{0:02}".format(now.second) + "\n"
-        fitresult.write(
-            timeline +
-            "JOBNAM = " +
-            self.name +
-            ' -- ' +
-            self.xc +
-            "\n" +
-            "\n")
-        fitresult.write('Using ' + self.eos_string + ' function' + "\n" + "\n")
-        fitresult.write('Chi squared         = ' + str(self.chisqr) + "\n")
-        fitresult.write('Reduced Chi squared = ' + str(self.redchi) + "\n")
-        fitresult.write('R squared           = ' +
-                        str(self.rsquared) +
-                        "\n" +
-                        "\n")
-        fitresult.write(self.eos_string + ' parameters:' + "\n" + "\n")
-        if self.eos_string == 'morse':
-            fitresult.write(
-                'a      = {0:12.6f}'.format(
-                    self.eos_parameters[0]) +
-                "\n")
-            fitresult.write(
-                'b      = {0:12.6f}'.format(
-                    self.eos_parameters[1]) +
-                "\n")
-            fitresult.write(
-                'c      = {0:12.6f}'.format(
-                    self.eos_parameters[2]) +
-                "\n")
-            fitresult.write(
-                'lambda = {0:12.6f}'.format(
-                    self.eos_parameters[3]) +
-                "\n" +
-                "\n")
-        elif self.eos_string == 'sjeos':
-            fitresult.write('a = {0:12.6f}'.format(self.sjeosfit0.c[0]) + "\n")
-            fitresult.write('b = {0:12.6f}'.format(self.sjeosfit0.c[1]) + "\n")
-            fitresult.write('c = {0:12.6f}'.format(self.sjeosfit0.c[2]) + "\n")
-            fitresult.write(
-                'd = {0:12.6f}'.format(
-                    self.sjeosfit0.c[3]) +
-                "\n" +
-                "\n")
-        elif self.eos_string == 'oldpoly':
-            fitresult.write(
-                'c0 = {0:12.6f}'.format(
-                    self.eos_parameters[0]) +
-                "\n")
-            fitresult.write(
-                'c1 = {0:12.6f}'.format(
-                    self.eos_parameters[1]) +
-                "\n")
-            fitresult.write(
-                'c2 = {0:12.6f}'.format(
-                    self.eos_parameters[2]) +
-                "\n")
-            fitresult.write(
-                'c3 = {0:12.6f}'.format(
-                    self.eos_parameters[3]) +
-                "\n" +
-                "\n")
-        else:
-            fitresult.write(
-                'E0    = {0:12.6f}'.format(
-                    self.eos_parameters[0]) +
-                "\n")
-            fitresult.write(
-                'Bmod  = {0:12.6f}'.format(
-                    self.eos_parameters[1]) +
-                "\n")
-            fitresult.write(
-                'Bmod\' = {0:12.6f}'.format(
-                    self.eos_parameters[2]) +
-                "\n")
-            fitresult.write(
-                'V0    = {0:12.6f}'.format(
-                    self.eos_parameters[3]) +
-                "\n" +
-                "\n")
-        fitresult.write('Ground state parameters:' + "\n" + "\n")
-        if self.units == 'bohr':
-            fitresult.write(
-                'V0           = {0:12.6f} Bohr^3 (unit cell volume)' .format(
-                    self.v0) +
-                "\n")
-            fitresult.write('             = {0:12.6f} Bohr   (WS-radius)'
-                            .format(self.wsrad) + "\n")
-        elif self.units == 'angstrom':
-            fitresult.write(
-                'V0           = {0:12.6f} Angstrom^3'.format(
-                    self.v0) +
-                "\n")
-        fitresult.write(
-            'E0           = {0:12.6f} Ry'.format(
-                self.e0 *
-                self.nq) +
-            "\n")
-        fitresult.write('Bmod         = {0:12.6f} GPa'.format(self.B) + "\n")
-        fitresult.write(
-            'Grun. param. = {0:12.6f}'.format(
-                self.grun) +
-            "\n" +
-            "\n")
-        fitresult.write(
-            'sws            Einp           Eout          Residual       ' +
-            'err (% * 10**6)' +
-            "\n")
-        for i in range(len(self.e)):
-            fitresult.write(
-                '{0:.6f} {1:13.6f} {2:13.6f} {3:13.6f} {4:15.6f}' .format(
-                    self.v[i],
-                    self.e[i],
-                    fitE[i],
-                    self.residuals[i],
-                    self.residuals[i] /
-                    np.abs(
-                        self.e[i]) *
-                    1.0E6) +
-                "\n")
-        fitresult.close()
+        # Printouts
+        self.print_eos_output()
 
         # Save an image for quality checking
         #self.plot(filename=self.name, show=None)
 
-        return self.wsrad, self.e0, self.B, self.grun  # , self.error
+        return self.sws0, self.e0, self.B0, self.grun  # , self.error
+
+    #def fit2file(self):
+    #    """Calculate volume, energy, and bulk modulus.
+    #
+    #    Returns the optimal volume, the minumum energy, and the bulk
+    #    modulus.  Notice that the units for the bulk modulus is
+    #    eV/Angstrom^3 - to get the value in GPa, do this::
+    #
+    #      v0, e0, B = eos.fit()
+    #      print B*160.21773, 'GPa'
+    #
+    #    :returns:
+    #    :rtype:
+    #    """
+    #
+    #    # Read data from the fit folder
+    #    file = open('fit/' + self.name + '.fit', mode='r')
+    #    lines = file.readlines()
+    #    self.nq = int(lines[2].split()[2])
+    #    file.close()
+    #    data = np.loadtxt('fit/' + self.name + '.fit', skiprows=4)
+    #    self.v = data[:, 0]
+    #    self.e = data[:, 1]
+    #    if self.eos_string != 'morse':
+    #        # Convert WS-radius to Angstrom^3
+    #        self.v[:] = 4.0 * np.pi / 3.0 * (self.bohr2a * self.v[:])**3
+    #        # Convert Rydberg to eV (No need to do this unless one wants to
+    #        # print out in eVs)
+    #        # self.e[:] *= self.ry2ev
+    #    # Translate energies so that smallest value becomes zero
+    #    self.eMin = np.min(self.e)
+    #    self.e -= self.eMin
+    #
+    #    if self.eos_string == 'sjeos':
+    #        fit0 = np.poly1d(np.polyfit(self.v**-(1.0 / 3), self.e, 3))
+    #        fit1 = np.polyder(fit0, 1)
+    #        fit2 = np.polyder(fit1, 1)
+    #        self.v0 = None
+    #        for t in np.roots(fit1):
+    #            if isinstance(t, float) and t > 0 and fit2(t) > 0:
+    #                self.v0 = t**-3
+    #                break
+    #        if self.v0 is None:
+    #            raise ValueError('sjeos: No minimum!')
+    #        self.e0 = fit0(t) + self.eMin
+    #        self.B = t**5 * fit2(t) / 9
+    #        self.sjeosfit0 = fit0
+    #        # Convert B to GPa
+    #        self.B *= self.ry2ev * self.ev2gpa
+    #
+    #    else:
+    #        p0 = [min(self.e), 1, 1]
+    #        if self.eos_string == 'morse':
+    #            popt, pcov, infodict0, mesg0, ier0 = curve_fit(
+    #                self.parabola, self.wsrad2vol(
+    #                    self.v), self.e, p0)
+    #        else:
+    #            popt, pcov, infodict0, mesg0, ier0 = curve_fit(
+    #                self.parabola, self.v, self.e, p0)
+    #
+    #        parabola_parameters = popt
+    #        # Here I just make sure the minimum is bracketed by the volumes
+    #        # this if for the solver
+    #        minvol = min(self.v)
+    #        maxvol = max(self.v)
+    #
+    #        # the minimum of the parabola is at dE/dV = 0, or 2*c V +b =0
+    #        c = parabola_parameters[2]
+    #        b = parabola_parameters[1]
+    #        a = parabola_parameters[0]
+    #        parabola_vmin = -b / 2 / c
+    #        if self.eos_string == 'morse':
+    #            parabola_vmin = self.vol2wsrad(parabola_vmin)
+    #        # print('parabola_vmin=',parabola_vmin)
+    #
+    #        if not (minvol < parabola_vmin and parabola_vmin < maxvol):
+    #            print('EOS.fit2file(): Warning the minimum volume of a fitted' +\
+    #                  ' parabola is not in your volumes.\n' +\
+    #                  '                You may not have a minimum in your dataset.')
+    #
+    #        # evaluate the parabola at the minimum to estimate the groundstate
+    #        # energy
+    #        E0 = self.parabola(parabola_vmin, a, b, c)
+    #        # print('parabola_E0=',E0)
+    #        # estimate the bulk modulus from Vo*E''.  E'' = 2*c
+    #        if self.eos_string == 'morse':
+    #            B0 = 2 * c * self.wsrad2vol(parabola_vmin)
+    #        else:
+    #            B0 = 2 * c * parabola_vmin
+    #        # print('parabola_B0=',B0)
+    #
+    #        if self.eos_string == 'antonschmidt':
+    #            BP = -2
+    #        else:
+    #            BP = 4
+    #
+    #        if self.eos_string == 'morse':
+    #            w0 = parabola_vmin
+    #            l0 = 2.0 * (2.0 - 1.0 / 3.0) / w0
+    #            x0 = np.exp(-l0 * w0)
+    #            c0 = -6.0 * np.pi * np.log(x0) * B0 / (x0**2 * l0**3)
+    #            b0 = -2.0 * c0 * x0
+    #            a0 = E0 - b0 * x0 - c0 * x0**2
+    #            initial_guess = [a0, b0, c0, l0]
+    #            # print('a0=',a0,'b0=',b0,'c0=',c0,'lambda0=',l0)
+    #        else:
+    #            initial_guess = [E0, B0, BP, parabola_vmin]
+    #
+    #        # now fit the equation of state
+    #        p0 = initial_guess
+    #        popt, pcov, infodict, mesg, ier = curve_fit(
+    #            eval(
+    #                'self.{0}'.format(
+    #                    self.eos_string)), self.v, self.e, p0)
+    #
+    #        self.eos_parameters = popt
+    #
+    #        self.e += self.eMin
+    #
+    #        if self.eos_string == 'morse':
+    #            ma, mb, mc, ml = self.eos_parameters
+    #            # print('morse_a=',ma,'morse_b=',mb,'morse_c=',mc,'morse_lambda=',ml)
+    #            mx0 = -0.5 * mb / mc
+    #            # print('morse_x0=',mx0)
+    #            self.v0 = -np.log(mx0) / ml
+    #            self.e0 = ma + mb * mx0 + mc * mx0**2 + self.eMin
+    #            self.B = -(mc * mx0**2 * ml**3) / (6 * np.pi * np.log(mx0))
+    #            # Convert B to GPa
+    #            self.B = self.ev2gpa * self.ry2ev / self.bohr2a**3 * self.B
+    #            self.grun = 0.5 * ml * self.v0
+    #        elif self.eos_string == 'oldpoly':
+    #            c0, c1, c2, c3 = self.eos_parameters
+    #            # find minimum E in E = c0 + c1*V + c2*V**2 + c3*V**3
+    #            # dE/dV = c1+ 2*c2*V + 3*c3*V**2 = 0
+    #            # solve by quadratic formula with the positive root
+    #
+    #            a = 3 * c3
+    #            b = 2 * c2
+    #            c = c1
+    #
+    #            self.v0 = (-b + np.sqrt(b**2 - 4 * a * c)) / (2 * a)
+    #            self.e0 = self.oldpoly(self.v0, c0, c1, c2, c3) + self.eMin
+    #            # Convert e0 to Rydbergs
+    #            #self.e0 /= self.ry2ev
+    #            self.B = (2 * c2 + 6 * c3 * self.v0) * self.v0
+    #            # Convert B to GPa
+    #            self.B *= self.ry2ev * self.ev2gpa
+    #            # Gruneisen parameter for oldpoly not implemented
+    #            self.grun = 0.0
+    #        else:
+    #            self.e0 = self.eos_parameters[0] + self.eMin
+    #            self.v0 = self.eos_parameters[3]
+    #            self.B = self.eos_parameters[1]
+    #            self.grun = -0.5 + self.eos_parameters[2] / 2.0
+    #            # Convert e0 to Rydbergs
+    #            #self.e0 /= self.ry2ev
+    #            # Convert B to GPa
+    #            self.B *= self.ry2ev * self.ev2gpa
+    #
+    #    if self.units == 'bohr':
+    #        if self.eos_string == 'morse':
+    #            pass
+    #        else:
+    #            self.v0 = self.angstrom2bohr(self.v0)
+    #
+    #    if self.units == 'angstrom':
+    #        if self.eos_string == 'morse':
+    #            self.v0 = self.bohr2angstrom(self.v0)
+    #        else:
+    #            pass
+    #
+    #    if self.eos_string == 'sjeos':
+    #        sjeospredicted = self.sjeosfit0(self.v**-(1.0 / 3.0))
+    #        self.residuals = self.e - sjeospredicted
+    #        self.chisqr = np.sum(self.residuals**2)
+    #        self.redchi = self.chisqr / (len(self.e) - 4)
+    #        ss_tot = np.sum((self.e - np.mean(self.e))**2)
+    #        self.rsquared = 1.0 - self.chisqr / ss_tot
+    #        fitE = sjeospredicted + self.eMin
+    #        self.e += self.eMin
+    #    else:
+    #        self.residuals = infodict['fvec']
+    #        self.chisqr = np.sum(self.residuals**2)
+    #        self.redchi = self.chisqr / (len(self.e) - 4)
+    #        ss_tot = np.sum((self.e - np.mean(self.e))**2)
+    #        self.rsquared = 1.0 - self.chisqr / ss_tot
+    #        fitE = self.predicted() + self.eMin
+    #
+    #    # Calculate WS-radius
+    #    self.wsrad = self.v0
+    #    # Calculate unit cell volume
+    #    self.v0 = 4.0 / 3.0 * np.pi * self.v0**3.0 * self.nq
+    #
+    #    # Write results to a text file
+    #    fitresult = open('fit/' + self.name + '.prn', 'w')
+    #    now = datetime.datetime.now()
+    #    timeline = str(now.day) + "." + str(now.month) + "." + str(now.year) +\
+    #        " -- " + "{0:02}".format(now.hour) + ":" +\
+    #        "{0:02}".format(now.minute) + ":" + \
+    #        "{0:02}".format(now.second) + "\n"
+    #    fitresult.write(
+    #        timeline +
+    #        "JOBNAM = " +
+    #        self.name +
+    #        ' -- ' +
+    #        self.xc +
+    #        "\n" +
+    #        "\n")
+    #    fitresult.write('Using ' + self.eos_string + ' function' + "\n" + "\n")
+    #    fitresult.write('Chi squared         = ' + str(self.chisqr) + "\n")
+    #    fitresult.write('Reduced Chi squared = ' + str(self.redchi) + "\n")
+    #    fitresult.write('R squared           = ' +
+    #                    str(self.rsquared) +
+    #                    "\n" +
+    #                    "\n")
+    #    fitresult.write(self.eos_string + ' parameters:' + "\n" + "\n")
+    #    if self.eos_string == 'morse':
+    #        fitresult.write(
+    #            'a      = {0:12.6f}'.format(
+    #                self.eos_parameters[0]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'b      = {0:12.6f}'.format(
+    #                self.eos_parameters[1]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'c      = {0:12.6f}'.format(
+    #                self.eos_parameters[2]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'lambda = {0:12.6f}'.format(
+    #                self.eos_parameters[3]) +
+    #            "\n" +
+    #            "\n")
+    #    elif self.eos_string == 'sjeos':
+    #        fitresult.write('a = {0:12.6f}'.format(self.sjeosfit0.c[0]) + "\n")
+    #        fitresult.write('b = {0:12.6f}'.format(self.sjeosfit0.c[1]) + "\n")
+    #        fitresult.write('c = {0:12.6f}'.format(self.sjeosfit0.c[2]) + "\n")
+    #        fitresult.write(
+    #            'd = {0:12.6f}'.format(
+    #                self.sjeosfit0.c[3]) +
+    #            "\n" +
+    #            "\n")
+    #    elif self.eos_string == 'oldpoly':
+    #        fitresult.write(
+    #            'c0 = {0:12.6f}'.format(
+    #                self.eos_parameters[0]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'c1 = {0:12.6f}'.format(
+    #                self.eos_parameters[1]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'c2 = {0:12.6f}'.format(
+    #                self.eos_parameters[2]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'c3 = {0:12.6f}'.format(
+    #                self.eos_parameters[3]) +
+    #            "\n" +
+    #            "\n")
+    #    else:
+    #        fitresult.write(
+    #            'E0    = {0:12.6f}'.format(
+    #                self.eos_parameters[0]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'Bmod  = {0:12.6f}'.format(
+    #                self.eos_parameters[1]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'Bmod\' = {0:12.6f}'.format(
+    #                self.eos_parameters[2]) +
+    #            "\n")
+    #        fitresult.write(
+    #            'V0    = {0:12.6f}'.format(
+    #                self.eos_parameters[3]) +
+    #            "\n" +
+    #            "\n")
+    #    fitresult.write('Ground state parameters:' + "\n" + "\n")
+    #    if self.units == 'bohr':
+    #        fitresult.write(
+    #            'V0           = {0:12.6f} Bohr^3 (unit cell volume)' .format(
+    #                self.v0) +
+    #            "\n")
+    #        fitresult.write('             = {0:12.6f} Bohr   (WS-radius)'
+    #                        .format(self.wsrad) + "\n")
+    #    elif self.units == 'angstrom':
+    #        fitresult.write(
+    #            'V0           = {0:12.6f} Angstrom^3'.format(
+    #                self.v0) +
+    #            "\n")
+    #    fitresult.write(
+    #        'E0           = {0:12.6f} Ry'.format(
+    #            self.e0 *
+    #            self.nq) +
+    #        "\n")
+    #    fitresult.write('Bmod         = {0:12.6f} GPa'.format(self.B) + "\n")
+    #    fitresult.write(
+    #        'Grun. param. = {0:12.6f}'.format(
+    #            self.grun) +
+    #        "\n" +
+    #        "\n")
+    #    fitresult.write(
+    #        'sws            Einp           Eout          Residual       ' +
+    #        'err (% * 10**6)' +
+    #        "\n")
+    #    for i in range(len(self.e)):
+    #        fitresult.write(
+    #            '{0:.6f} {1:13.6f} {2:13.6f} {3:13.6f} {4:15.6f}' .format(
+    #                self.v[i],
+    #                self.e[i],
+    #                fitE[i],
+    #                self.residuals[i],
+    #                self.residuals[i] /
+    #                np.abs(
+    #                    self.e[i]) *
+    #                1.0E6) +
+    #            "\n")
+    #    fitresult.close()
+    #
+    #    # Save an image for quality checking
+    #    #self.plot(filename=self.name, show=None)
+    #
+    #    return self.wsrad, self.e0, self.B, self.grun  # , self.error
 
     def plot(self, filename=None, show=None):
         """Plot fitted energy curve.
@@ -1208,16 +1248,20 @@ class EOS:
         :rtype:
         """
 
+        if self.eos_string == 'morse':
+            vol_arg = sws
+        else:
+            vol_arg = self.wsrad2vol(sws*self.bohr2a)
         y = eval('self.{0}'.format(self.eos_string))(
-            sws,
-            self.eos_parameters[0] +
-            self.eMin,
+            vol_arg,
+            self.eos_parameters[0],
             self.eos_parameters[1],
             self.eos_parameters[2],
             self.eos_parameters[3],)
+
         return y
 
-    def ca_fit(self, x, y, n):
+    def ca_fit(self, x, y, n, debug=False,title=''):
         """Fits a polynomial to x vs. y data and calculates
         xmin and ymin from the curve.
 
@@ -1235,9 +1279,20 @@ class EOS:
         fit = np.poly1d(z)
         xmin = -z[1] / (2.0 * z[0])
         ymin = fit(xmin)
+
+        if debug:
+            import time
+            self.ascii_plot(x,y,fit(x),title)
+            time.sleep(0.1)
+            #
+            #import pylab
+            #pylab.plot(x,y,'o')
+            #pylab.plot(np.linspace(x[0],x[-1],100),fit(np.linspace(x[0],x[-1],100)))
+            #pylab.show()
+
         return xmin, ymin
 
-    def relax_fit(self, x, y, n):
+    def relax_fit(self, x, y, n, debug=False,title=''):
         """Fits a polynomial to x vs. y data and calculates
         xmin and ymin from the curve.
 
@@ -1253,12 +1308,36 @@ class EOS:
 
         z = np.polyfit(x, y, n)
         fit = np.poly1d(z)
-        xmin = -z[1] / (2.0 * z[0])
-        ymin = fit(xmin)
+        if n == 2:
+            xmin = -z[1] / (2.0 * z[0])
+            ymin = fit(xmin)
+        elif n == 3:
+            xmin1 = (-2*z[1]+np.sqrt(4*z[1]**2-4*3*z[0]*z[2]))/(6*z[0])
+            xmin2 = (-2*z[1]-np.sqrt(4*z[1]**2-4*3*z[0]*z[2]))/(6*z[0])
+            ymin1 = fit(xmin1)
+            ymin2 = fit(xmin2)
+            if ymin1 < ymin2:
+                xmin = xmin1
+                ymin = ymin1
+            else:
+                xmin = xmin2
+                ymin = ymin2
+
+        if debug:
+            import time
+            self.ascii_plot(x,y,fit(x),title)
+            time.sleep(0.1)
+            #
+            #import pylab
+            #pylab.plot(x,y,'o')
+            #pylab.plot(np.linspace(x[0],x[-1],100),fit(np.linspace(x[0],x[-1],100)))
+            #pylab.plot(x_range,dfitdx,'--')
+            #pylab.show()
+
         return xmin, ymin
 
 
-    def distortion_poly1(self, x, a2, a1):
+    def distortion_poly1(self, x, a2):
         """One variable form of the 2nd order polynomial
            which is used to fitting distortion vs. energy
            data in order to find elastic constants.
@@ -1314,7 +1393,7 @@ class EOS:
         E = a2 * x**2 + a1 * x + a0
         return E
 
-    def distortion_fit(self,x,y,num=1,title='',ascii_art=True):
+    def distortion_fit(self,x,y,num=2,title='',ascii_art=True):
         """Fits the distortion_poly function to
         the distortion data.
 
@@ -1402,7 +1481,7 @@ class EOS:
         if isinstance(popt, type(np.sqrt(1.0))):
             popt = np.array([popt])
 
-        print(popt)
+        #print(popt)
 
         # Draw the curve
         if ascii_art:
@@ -1438,6 +1517,7 @@ class EOS:
         from pyemto.utilities.utils import run_bash
         import numpy as np
         import subprocess
+        import time
 
         gnuplot = subprocess.Popen(["/usr/bin/gnuplot"],stdin=subprocess.PIPE)
 
@@ -1448,8 +1528,8 @@ class EOS:
 
         #gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with lines\n".format(title))
         #gnuplot.stdin.write("plot '-' using 1:2 title 'fit' with points\n")
-        gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with points, " +\
-                            "'-' using 1:2 title 'fit' with lines\n".format(title))
+        gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with points, ".format(title) +\
+                            "'-' using 1:2 title 'fit' with lines\n")
 
         for i,j in zip(x,y):
             gnuplot.stdin.write("%f %f\n" % (i,j))
@@ -1465,5 +1545,8 @@ class EOS:
 
         gnuplot.stdin.write("quit")
         gnuplot.stdin.flush()
-
+        
+        # Allow some time to pass so that the gnuplot process finishes before
+        # python continues. Otherwise plots might get drawn into the same canvas.
+        #time.sleep(0.1)
         return

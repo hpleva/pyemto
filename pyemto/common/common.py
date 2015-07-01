@@ -12,7 +12,8 @@ def lat_to_ibz(lat):
 
     # One should add some error hangling here.
     ltoi = {'sc': 1, 'fcc': 2, 'bcc': 3, 'hcp': 4, 'st': 5, 'bct': 6, 'trig': 7, 'so': 8,
-          'baco': 9, 'bco': 10, 'fco': 11, 'sm': 12, 'bacm': 13, 'bcm': 13, 'stric': 14}
+            'baco': 9, 'bco': 10, 'fco': 11, 'sm': 12, 'bacm': 13, 'bcm': 13, 'stric': 14,
+			'B2':1}
 
     return ltoi[lat]
 
