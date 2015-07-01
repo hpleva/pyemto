@@ -928,14 +928,23 @@ class Kgrn:
                 + "Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  1  2\n" \
                 + \
                 "Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n"
+        #elif atype == "Hf":
+        #    results = "Hf\n" \
+        #        + "Iz=  72 Norb= 21 Ion=  0 Config= 5d2_6s2\n" \
+        #        + "n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  6\n" \
+        #        + "Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -1\n" \
+        #        + "Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  2  2\n" \
+        #        + \
+        #        "Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n"
+		# Bulk Hf requires the following setup
         elif atype == "Hf":
             results = "Hf\n" \
-                + "Iz=  72 Norb= 21 Ion=  0 Config= 5d2_6s2\n" \
+                + "Iz=  72 Norb= 21 Ion=  0 Config= 4f14_5d2_6s2\n" \
                 + "n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  6\n" \
                 + "Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -1\n" \
                 + "Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  2  2\n" \
                 + \
-                "Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n"
+                "Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  0  0  0  1  1\n"
         elif atype == "Ta":
             results = "Ta\n" \
                 + "Iz=  73 Norb= 21 Ion=  0 Config= 5d3_6s2\n" \
@@ -1536,7 +1545,7 @@ class Kgrn:
         if self.nz0 is None:
             self.nz0 = 6
         if self.stmp is None:
-            self.stmp = 'Y'
+            self.stmp = 'N'
         if self.iex is None:
             self.iex = 4
         if self.dirac_np is None:

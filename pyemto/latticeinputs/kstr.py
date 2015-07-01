@@ -76,7 +76,7 @@ class Kstr:
                  msgl=None, nprn=None, lamda=None, amax=None,
                  bmax=None, nqr2=None, mode=None, store=None, high=None,
                  kstr_nl=None, nlh=None, nlw=None, nder=None, itrans=None,
-                 rwats=None, nghbp=None, awIQ=None):
+                 rwats=None, nghbp=None, awIQ=None, numvec_target=None):
 
         # Argument checking and default values
 
@@ -105,6 +105,7 @@ class Kstr:
         self.nghbp = nghbp
         self.ca = ca  # hcp's c/a ratio
         self.awIQ = awIQ
+        self.numvec_target = numvec_target
 
     def output(self, index):
         """Outputs KSTR input file as a formatted string.
@@ -300,13 +301,17 @@ class Kstr:
         if self.twocenter:
             self.jobname2 = self.jobname + '2'
 
-        if self.dmax is None:
-            if common.lat_to_ibz(self.lat) == 2:
-                self.dmax = 1.7
-            elif common.lat_to_ibz(self.lat) == 3:
-                self.dmax = 2.2
-            elif common.lat_to_ibz(self.lat) == 4:
-                self.dmax = 2.4
+        # Optimize dmax
+        if self.numvec_target is None:
+            self.numvec_target = 89
+        self.dmax,numvec_tmp = self.optimize_dmax(self.latvectors,self.basis)
+        #if self.dmax is None:
+        #    if common.lat_to_ibz(self.lat) == 2:
+        #        self.dmax = 1.7
+        #    elif common.lat_to_ibz(self.lat) == 3:
+        #        self.dmax = 2.2
+        #    elif common.lat_to_ibz(self.lat) == 4:
+        #        self.dmax = 2.4
 
         if self.msgl is None:
             self.msgl = 1
@@ -343,6 +348,158 @@ class Kstr:
         if self.awIQ is None:
             self.awIQ = np.ones((self.nq, 4)) * 0.7
         return
+
+
+    def generate_prims(self,angles):
+        """Generates the primitive lattice vectors from the angle and Bravais-lattice
+        type information.
+        """
+        deg_to_rad = np.pi/180.0
+        alpha = angles[0] * deg_to_rad
+        beta  = angles[1] * deg_to_rad
+        gamma = angles[2] * deg_to_rad
+        ibz = common.lat_to_ibz(self.lat)
+        boa = self.latparams[1]/self.latparams[0]
+        coa = self.latparams[2]/self.latparams[0]
+        #
+        if ibz == 1:
+            prims = np.array([[1.0,0.0,0.0],[0.0,1.0,0.0],[0.0,0.0,1.0]])
+        elif ibz == 2:
+            prims = np.array([[0.5,0.5,0.0],[0.0,0.5,0.5],[0.5,0.0,0.5]])
+        elif ibz == 3:
+            prims = np.array([[0.5,0.5,-0.5],[-0.5,0.5,0.5],[0.5,-0.5,0.5]])
+        elif ibz == 4:
+            prims = np.array([[1.0,0.0,0.0],[-0.5,0.5*np.sqrt(3.0),0.0],[0.0,0.0,coa]])
+        elif ibz == 5:
+            prims = np.array([[1.0,0.0,0.0],[0.0,1.0,0.0],[0.0,0.0,coa]])
+        elif ibz == 6:
+            prims = np.array([[-0.5,0.5,0.5*coa],[0.5,-0.5,0.5*coa],[0.5,0.5,-0.5*coa]])
+        elif ibz == 7:
+            prims = np.array([[0.0,1.0,coa],[-0.5*np.sqrt(3.0),-0.5,coa],[0.5*np.sqrt(3.0),-0.5,coa]])
+        elif ibz == 8:
+            prims = np.array([[1.0,0.0,0.0],[0.0,boa,0.0],[0.0,0.0,coa]])
+        elif ibz == 9:
+            prims = np.array([[0.5,-0.5*boa,0.0],[0.5,0.5*boa,0.0],[0.0,0.0,coa]])
+        elif ibz == 10:
+            prims = np.array([[0.5,-0.5*boa,0.5*coa],[0.5,0.5*boa,-0.5*coa],[-0.5,0.5*boa,0.5*coa]])
+        elif ibz == 11:
+            prims = np.array([[0.5,0.0,0.5*coa],[0.5,0.5*boa,0.0],[0.0,0.5*boa,0.5*coa]])
+        elif ibz == 12:
+            prims = np.array([[1.0,0.0,0.0],[boa*np.cos(gamma),boa*np.sin(gamma),0.0],
+                              [0.0,0.0,coa]])
+        elif ibz == 13:
+            prims = np.array([[0.0,-boa,0.0],[0.5*np.sin(gamma),-0.5*np.cos(gamma),-0.5*coa],
+                              [0.5*np.sin(gamma),-0.5*np.cos(gamma),0.5*coa]])
+        elif ibz == 14:
+            tmp1 = (np.cos(alpha)-np.cos(beta)*np.cos(gamma))/np.sin(gamma)
+            tmp2 = np.sqrt((1.0-np.cos(gamma)**2-np.cos(alpha)**2-np.cos(beta)**2
+                            +2.0*np.cos(alpha)*np.cos(beta)*np.cos(gamma)))/np.sin(gamma)
+            prims = np.array([[1.0,0.0,0.0],[boa*np.cos(gamma),boa*np.sin(gamma),0.0],
+                              [coa*np.cos(beta),coa*tmp1,coa*tmp2]])
+        #print('generated prims:')
+        #print(prims)
+        return prims
+
+    def compute_num_of_vecs(self,prims,basis,nghbp,dmax):
+        """Computes the number of vectors for a given dmax value."""
+        ncrq = 0
+        nq = self.nq
+        #
+        qix = basis[0,0]
+        qiy = basis[0,1]
+        qiz = basis[0,2]
+        #
+        for jq in range(nq):
+            qmqpx=basis[jq,0]-qix
+            qmqpy=basis[jq,1]-qiy
+            qmqpz=basis[jq,2]-qiz
+            for l in range(-nghbp,nghbp+1):
+                for m in range(-nghbp,nghbp+1):
+                    for n in range(-nghbp,nghbp+1):
+                        sx=qmqpx+l*prims[0,0]+m*prims[1,0]+n*prims[2,0]
+                        sy=qmqpy+l*prims[0,1]+m*prims[1,1]+n*prims[2,1]
+                        sz=qmqpz+l*prims[0,2]+m*prims[1,2]+n*prims[2,2]
+                        dx=np.sqrt(sx*sx+sy*sy+sz*sz)
+                        if dx <= dmax:
+                            ncrq += 1
+                            #print('DX,NCRQ = ',dx,ncrq)
+        return ncrq
+
+    def optimize_dmax(self,prims,basis):
+        """Calculates the best possible dmax value, which gives the closest number
+        of vectors given some target value (which is typically 80-90)."""
+        # Check if primitive vectors have been
+        # explicitly given (iprim = 0).
+        # If not (iprim = 1), we have to generate
+        # from the alpha, beta, and gamma + ibz
+        # information
+        #print('basis:')
+        #print(basis)
+        if self.iprim == 0:
+            prims = np.asarray(prims)
+            basis = np.asarray(basis)
+            # Take the first site as the origin
+            basis[:,0] -= basis[0,0]
+            basis[:,1] -= basis[0,1]
+            basis[:,2] -= basis[0,2]
+        elif self.iprim == 1:
+            prims = self.generate_prims(prims)
+            basis = np.asarray(basis)
+            # Take the first site as the origin
+            basis[:,0] -= basis[0,0]
+            basis[:,1] -= basis[0,1]
+            basis[:,2] -= basis[0,2]
+        #print(prims)
+        #print(basis)
+        #
+        nghbp = self.nghbp
+        dmax_min = 0.5
+        dmax_max = 8.0
+        ncrq_target = self.numvec_target
+        tol_target = 1.0e-4
+        # Initial dmax guess
+        dmax_mid_old = 1000.0
+        dmax_mid = np.round((dmax_max + dmax_min)/2,4)
+        f_closest = 1000
+        #
+        print('Latticeinputs.Kstr.optimize_dmax(): Optimizing dmax (target = {0:3d}) for {1}...'
+              .format(ncrq_target,self.jobname))
+        #
+        while np.abs(dmax_mid_old - dmax_mid) > tol_target:
+            # Compute the number of vectors that
+            # corresponds to the trial choice of dmax
+            # ncrq = Number of vectors for the first site
+            # in the basis, which has been shifted to lie
+            # in the origin.
+            f_mid = self.compute_num_of_vecs(prims,basis,nghbp,dmax_mid)
+            #
+            if f_mid == ncrq_target:
+                # Target number of vectors has been reached exactly
+                dmax_closest = dmax_mid
+                f_closest = f_mid
+                break
+            elif f_mid - ncrq_target < 0:
+                # Number of vectors too small
+                if np.abs(f_mid-ncrq_target) < np.abs(f_closest-ncrq_target):
+                    dmax_closest = dmax_mid
+                    f_closest = f_mid
+                dmax_min = dmax_mid
+            else:
+                # Number of vectors too large.
+                if np.abs(f_mid-ncrq_target) < np.abs(f_closest-ncrq_target):
+                    dmax_closest = dmax_mid
+                    f_closest = f_mid
+                elif np.abs(f_mid-ncrq_target) == np.abs(f_closest-ncrq_target):
+                    if f_mid > f_closest:
+                        dmax_closest = dmax_mid
+                        f_closest = f_mid
+                dmax_max = dmax_mid
+            #
+            dmax_mid_old = dmax_mid
+            dmax_mid = np.round((dmax_max + dmax_min)/2,4)
+            #print('dmax, Number of vectors: {0:6.4f}, {1}'.format(dmax_mid_old,f_mid))
+        print('dmax, Number of vectors: {0:6.4f}, {1}'.format(dmax_closest,f_closest))
+        return dmax_closest,f_closest
 
     def finalize(self):
         """Re-initializes input parameters."""

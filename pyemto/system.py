@@ -63,8 +63,8 @@ class System:
                                         self.elastic_constants_points)
         self.RyBohr3_to_GPa = 14710.5065722
         self.kappaw_default = [0.0, -20.0]
-        self.hpco_relax_points = 5
-        self.hpcm_relax_points = 5
+        self.hcpo_relax_points = 5
+        self.hcpm_relax_points = 5
 
         if xc is None:
             self.xc = 'PBE'
@@ -224,6 +224,18 @@ class System:
                                  ibz=self.ibz, latname=self.latname, latpath=self.latpath,
                                  emtopath=self.emtopath, EMTOdir=self.EMTOdir, **kwargs)
 
+        # Special settings for the B2 structure. CPA currently not supported!!!
+        elif self.lat == 'B2':
+            self.iqs   = np.array([1,2],dtype='int32')
+            self.concs = np.array([1.0,1.0])
+            self.its   = np.array([1,2],dtype='int32')
+            self.itas  = np.array([1,1],dtype='int32')
+            
+            self.emto.set_values(jobname=self.fulljobname, sws=self.sws, atoms=self.atoms,
+                                 iqs=self.iqs, its=self.its, itas=self.itas, concs=self.concs,
+                                 splts=self.splts, ibz=self.ibz, latname=self.latname, latpath=self.latpath,
+                                 emtopath=self.emtopath, EMTOdir=self.EMTOdir, **kwargs)
+
         else:
             self.emto.set_values(jobname=self.fulljobname, sws=self.sws, atoms=self.atoms,
                                  concs=self.concs, splts=self.splts, ibz=self.ibz,
@@ -242,7 +254,7 @@ class System:
             self.emto.batch.write_input_file(folder=folder)
 
     
-    def lattice_constants_analyze(self, sws=None, ca=None,prn=True):
+    def lattice_constants_analyze(self, sws=None, ca=None,prn=True,debug=False,method='morse'):
         """Analyzes the output files generated using the
         lattice_constants_batch_generate function.
 
@@ -261,7 +273,7 @@ class System:
 
         from pyemto.EOS.EOS import EOS
 
-        eos = EOS(name=self.jobname, xc=self.xc, method='morse', units='bohr')
+        eos = EOS(name=self.jobname, xc=self.xc, method=method, units='bohr')
 
         if prn:
             print('')
@@ -278,7 +290,7 @@ class System:
         else:
             self.lc_analyze_ca_range = np.asarray(ca)
 
-        if self.lat == 'bcc' or self.lat == 'fcc':
+        if self.lat == 'bcc' or self.lat == 'fcc' or self.lat == 'trig' or self.lat == 'stric':
             energies = []
             swses = []
 
@@ -343,6 +355,21 @@ class System:
                     else:
                         energies[i, j] = en
 
+            if debug:
+                print('Energy matrix (y axis = c/a axis, x axis = sws axis):'+"\n")
+
+                formaatti = "                   "
+                for i in range(len(self.lc_analyze_sws_range)):
+                    formaatti = formaatti + "{0}{1}{2}{3}      ".format("{",i,":8.6f","}")
+                print(formaatti.format(*self.lc_analyze_sws_range))
+
+                formaatti = ""
+                for i in range(len(self.lc_analyze_sws_range)+1):
+                    formaatti = formaatti + "{0}{1}{2}{3} ".format("{",i,":13.6f","}")
+                for i in range(len(energies[:,0])):
+                    print(formaatti.format(self.lc_analyze_ca_range[i],*energies[i,:]))
+                
+
             # Now we can start processing the 2D energy array.
             # There might be some calculations that didn't converge.
             # For those the energy will be zero in the 2D array so
@@ -354,16 +381,24 @@ class System:
                     if energies[i, j] < -1.0:
                         good_energies.append(energies[i, j])
                         good_cas.append(self.lc_analyze_ca_range[i])
-                ca0, en0 = eos.ca_fit(good_cas, good_energies, ca_fit_order)
-                cas0.append(ca0)
-                energies0.append(en0)
-                swses.append(self.lc_analyze_sws_range[j])
+                if len(good_energies) >= 3:
+                    ca0, en0 = eos.ca_fit(good_cas, good_energies, ca_fit_order,
+                                          debug=debug,title='sws{0}'.format(j+1))
+                    cas0.append(ca0)
+                    energies0.append(en0)
+                    swses.append(self.lc_analyze_sws_range[j])
 
             if prn:
                 self.print_sws_ens_hcp(
                     'lattice_constants_analyze(hcp)', swses, energies0, cas0)
 
+            print('#'*80)
+            print('# Ground state EOS fit:'+' '*56+'#')
+            print('#'*80)
             sws0, e0, B0, grun = eos.fit(swses, energies0)
+            print('*'*80)
+            print('*'*80)
+            print('*'*80+'\n')
 
             # These functions create files on disk about the data to be fitted
             # as well as the results of the fit.
@@ -383,7 +418,7 @@ class System:
             R0 = -sws0 / 3.0 / c_over_a0 * dca0dsws0
 
             # In order to calculate cs = c11 + c12 + 2c33 - 4c13
-            # we use Eq. (x.xx) p. xxx in Vitos' book.
+            # we use Eq. (6.68) p. 109 in Vitos' book.
             # We need the total energies as a function of c/a
             # where sws is fixed to sws0. These can be obtained
             # by doing a Morse fit for each c/a and evaluating
@@ -401,9 +436,19 @@ class System:
                     if energies[i, j] < -1.0:
                         good_energies.append(energies[i, j])
                         good_swses.append(self.lc_analyze_sws_range[j])
+                print('#'*80)
+                print('# c/a{0} EOS fit:'.format(i+1)+' '*64+'#')
+                print('#'*80)
+                # _tmp variables are just dummies, we only want to
+                # update the EOS parameters of the "eos" instance.
                 sws_tmp, e_tmp, B_tmp, grun_tmp = eos.fit(
                     good_swses, good_energies)
-                e_cs = eos.fit_eval(sws0)
+                print('*'*80)
+                print('*'*80)
+                print('*'*80+'\n')
+                #e_cs = eos.fit_eval(sws0)
+                #e_cs = eos.fit_eval(sws_tmp)
+                e_cs = e_tmp
                 energies_cs.append(e_cs)
 
             e_vs_ca_at_sws0 = np.polyfit(
@@ -457,6 +502,24 @@ class System:
         jobnames = []
 
         if self.lat == 'bcc' or self.lat == 'fcc':
+            for j in range(len(self.lc_batch_sws_range)):
+                self.sws = self.lc_batch_sws_range[j]
+                job = self.create_jobname(self.jobname)
+                jobnames.append(job)
+                self.emto.set_values(sws=self.sws, jobname=job)
+
+                common.check_folders(
+                    self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
+                common.check_folders(self.folder + "/kfcd")
+                common.check_folders(self.folder + "/fit")
+
+                self.emto.kgrn.write_input_file(folder=self.folder)
+                self.emto.kfcd.write_input_file(folder=self.folder)
+                self.emto.batch.write_input_file(folder=self.folder)
+
+            return jobnames
+
+        elif self.lat == 'trig' or self.lat == 'stric':
             for j in range(len(self.lc_batch_sws_range)):
                 self.sws = self.lc_batch_sws_range[j]
                 job = self.create_jobname(self.jobname)
@@ -606,7 +669,7 @@ class System:
         return v, c_over_a, b, energy
 
     def elastic_constants_analyze(
-            self, sws=None, bmod=None, ca=None, R=None, cs=None, relax=True):
+            self, sws=None, bmod=None, ca=None, R=None, cs=None, relax=True, debug=False):
         """Analyzes the output files generated using the
         elastic_constants_batch_generate function.
 
@@ -663,7 +726,7 @@ class System:
 
         deltas = self.elastic_constants_deltas
 
-        if self.lat == 'bcc' or self.lat == 'fcc':
+        if self.lat == 'bcc' or self.lat == 'fcc' or self.lat == 'B2':
             # Orthorhombic distortion for c' first
 
             if self.lat == 'bcc':
@@ -676,6 +739,11 @@ class System:
                     '_fcco0', '_fcco1', '_fcco2', '_fcco3', '_fcco4', '_fcco5']
                 latname_dist = [
                     'fcco0', 'fcco1', 'fcco2', 'fcco3', 'fcco4', 'fcco5']
+            elif self.lat == 'B2':
+                jobname_dist = [
+                    '_B2o0', '_B2o1', '_B2o2', '_B2o3', '_B2o4', '_B2o5']
+                latname_dist = [
+                    'B2o0', 'B2o1', 'B2o2', 'B2o3', 'B2o4', 'B2o5']
 
             en_cprime = []
             good_deltas_cprime = []
@@ -713,6 +781,11 @@ class System:
                     '_fccm0', '_fccm1', '_fccm2', '_fccm3', '_fccm4', '_fccm5']
                 latname_dist = [
                     'fccm0', 'fccm1', 'fccm2', 'fccm3', 'fccm4', 'fccm5']
+            elif self.lat == 'B2':
+                jobname_dist = [
+                    '_B2m0', '_B2m1', '_B2m2', '_B2m3', '_B2m4', '_B2m5']
+                latname_dist = [
+                    'B2m0', 'B2m1', 'B2m2', 'B2m3', 'B2m4', 'B2m5']
 
             en_c44 = []
             good_deltas_c44 = []
@@ -834,38 +907,56 @@ class System:
                     tmp_array1 = []
                     tmp_array2 = []
                     for j in range(self.hcpo_relax_points):
-                        tmp_str1 = 'hcpo{0}_ca0_{1}'.format(i,j)
-                        tmp_str2 = '_hcpo{0}_ca0_{1}'.format(i,j)
+                        tmp_str1 = 'hcpo{0}_r{1}'.format(i,j)
+                        tmp_str2 = '_hcpo{0}_r{1}'.format(i,j)
                         tmp_array1.append(tmp_str1)
                         tmp_array2.append(tmp_str2)
+                        # We don't need to relax the first structure
+                        # because it's undistorted
+                        if i == 0 and j == 0:
+                            break
                     latname_dist.append(tmp_array1)
                     jobname_dist.append(tmp_array2)
 
             else:
-                jobname_dist = ['_hcpo0_ca0',
-                                '_hcpo1_ca0',
-                                '_hcpo2_ca0',
-                                '_hcpo3_ca0',
-                                '_hcpo4_ca0',
-                                '_hcpo5_ca0']
-                latname_dist = ['hcpo0_ca0',
-                                'hcpo1_ca0',
-                                'hcpo2_ca0',
-                                'hcpo3_ca0',
-                                'hcpo4_ca0',
-                                'hcpo5_ca0']
+                jobname_dist = ['_hcpo0_ur',
+                                '_hcpo1_ur',
+                                '_hcpo2_ur',
+                                '_hcpo3_ur',
+                                '_hcpo4_ur',
+                                '_hcpo5_ur']
+                latname_dist = ['hcpo0_ur',
+                                'hcpo1_ur',
+                                'hcpo2_ur',
+                                'hcpo3_ur',
+                                'hcpo4_ur',
+                                'hcpo5_ur']
 
             en_c66 = []
             good_deltas_c66 = []
 
             if relax:
                 # First we have to determine how relaxation affects
-                # the energy.
+                # the energy. The first structure corresponds to the
+                # undistorted lattice, which means we don't need to
+                # relax it:
+                job = self.create_jobname(self.jobname + jobname_dist[0][0])
+                        
+                en_orig = self.get_energy(job, folder=self.folder, func=self.xc)
+                if isinstance(en_orig, type(None)):
+                    print('System.elastic_constants_analyze(): Warning:' +
+                          ' No output energy found for {0}'.format(job))
+                else:
+                    en_c66.append(en_orig)
+                    good_deltas_c66.append(deltas[0])
                 
-                for i in range(self.elastic_constants_points):
+                # For all the rest of the structures we compute the
+                # relaxed ground state energy by fitting a polynomial
+                # to the atomic pos. vs. energy data:
+                for i in range(1,self.elastic_constants_points):
                     ens_tmp = []
                     xind_tmp = []
-                    for j in range(self.hcpo_relax_points):
+                    for j in range(len(jobname_dist[i])):
                         already = False
                         job = self.create_jobname(self.jobname + jobname_dist[i][j])
                         
@@ -875,14 +966,17 @@ class System:
                                   ' No output energy found for {0}'.format(job))
                         else:
                             ens_tmp.append(en)
-                            xind_tmp.append(j-2)
+                            xind_tmp.append(j)
                     # Now we should find the relaxed energy by fitting
                     # a polynomial to the energy vs. atom coordinates data.
                     # Leave out the point if not enough calculations have
                     # converged.
                     if len(ens_tmp) >= 3:
-                        relax_xmin, relax_emin = eos.relax_fit(xind_tmp,ens_tmp,2)
+                        relax_xmin, relax_emin = eos.relax_fit(xind_tmp,ens_tmp,2,debug=debug,
+                                                               title='c66: hcpo{0}'.format(i))
                         en_c66.append(relax_emin)
+                        # TEST: Use unrelaxed energies
+                        #en_c66.append(ens_tmp[0])
                         good_deltas_c66.append(deltas[i])
 
             else:
@@ -909,6 +1003,9 @@ class System:
 
             # Next the monoclinic distortion for c44
 
+            # For the monoclinic distortion relaxation effects
+            # are negligible:
+            relax = False
             if relax:
                 jobname_dist = []
                 latname_dist = []
@@ -916,26 +1013,26 @@ class System:
                     tmp_array1 = []
                     tmp_array2 = []
                     for j in range(self.hcpo_relax_points):
-                        tmp_str1 = 'hcpm{0}_ca0_{1}'.format(i,j)
-                        tmp_str2 = '_hcpm{0}_ca0_{1}'.format(i,j)
+                        tmp_str1 = 'hcpm{0}_r{1}'.format(i,j)
+                        tmp_str2 = '_hcpm{0}_r{1}'.format(i,j)
                         tmp_array1.append(tmp_str1)
                         tmp_array2.append(tmp_str2)
                     latname_dist.append(tmp_array1)
                     jobname_dist.append(tmp_array2)
 
             else:
-                jobname_dist = ['_hcpm0_ca0',
-                                '_hcpm1_ca0',
-                                '_hcpm2_ca0',
-                                '_hcpm3_ca0',
-                                '_hcpm4_ca0',
-                                '_hcpm5_ca0']
-                latname_dist = ['hcpm0_ca0',
-                                'hcpm1_ca0',
-                                'hcpm2_ca0',
-                                'hcpm3_ca0',
-                                'hcpm4_ca0',
-                                'hcpm5_ca0']
+                jobname_dist = ['_hcpm0_ur',
+                                '_hcpm1_ur',
+                                '_hcpm2_ur',
+                                '_hcpm3_ur',
+                                '_hcpm4_ur',
+                                '_hcpm5_ur']
+                latname_dist = ['hcpm0_ur',
+                                'hcpm1_ur',
+                                'hcpm2_ur',
+                                'hcpm3_ur',
+                                'hcpm4_ur',
+                                'hcpm5_ur']
 
             en_c44 = []
             good_deltas_c44 = []
@@ -957,13 +1054,14 @@ class System:
                                   ' No output energy found for {0}'.format(job))
                         else:
                             ens_tmp.append(en)
-                            xind_tmp.append(j-2)
+                            xind_tmp.append(j)
                     # Now we should find the relaxed energy by fitting
                     # a polynomial to the energy vs. atom coordinates data.
                     # Leave out the point if not enough calculations have
                     # converged.
                     if len(ens_tmp) >= 3:
-                        relax_xmin, relax_emin = eos.relax_fit(xind_tmp,ens_tmp,2)
+                        relax_xmin, relax_emin = eos.relax_fit(xind_tmp,ens_tmp,3,debug=debug,
+                                                               title='c44: hcpm{0}'.format(i))
                         en_c44.append(relax_emix)
                         good_deltas_c44.append(deltas[i])
 
@@ -1106,6 +1204,46 @@ class System:
             self.ca = ca
 
         jobnames = []
+        if self.lat == 'B2':
+            # Orthorhombic distortion input files for c' first
+
+            jobname_dist = ['_B2o0','_B2o1','_B2o2','_B2o3','_B2o4','_B2o5']
+            latname_dist = ['B2o0','B2o1','B2o2','B2o3','B2o4','B2o5']
+            self.emto.set_values(ibz=8,nkx=17,nky=17,nkz=17) # High-quality
+            #self.emto.set_values(ibz=10,nkx=15,nky=15,nkz=15) # Normal quality
+
+            for i in range(len(jobname_dist)):
+                job = self.create_jobname(self.jobname + jobname_dist[i])
+                jobnames.append(job)
+                self.emto.set_values(
+                    sws=self.sws, jobname=job, latname=latname_dist[i])
+
+                common.check_folders(
+                    self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
+                common.check_folders(self.folder + "/kfcd")
+                common.check_folders(self.folder + "/fit")
+                self.emto.kgrn.write_input_file(folder=self.folder)
+                self.emto.kfcd.write_input_file(folder=self.folder)
+                self.emto.batch.write_input_file(folder=self.folder)
+
+            # Next produce the input files of monoclinic distortion for c44
+
+            jobname_dist = ['_B2m0','_B2m1','_B2m2','_B2m3','_B2m4','_B2m5']
+            latname_dist = ['B2m0','B2m1','B2m2','B2m3','B2m4','B2m5']
+            self.emto.set_values(ibz=9,nkx=17,nky=17,nkz=17) # High-quality
+            #self.emto.set_values(ibz=11,nkx=15,nky=15,nkz=21) # Normal quality
+
+            for i in range(len(jobname_dist)):
+                job = self.create_jobname(self.jobname + jobname_dist[i])
+                jobnames.append(job)
+                self.emto.set_values(
+                    sws=self.sws, jobname=job, latname=latname_dist[i])
+
+                self.emto.kgrn.write_input_file(folder=self.folder)
+                self.emto.kfcd.write_input_file(folder=self.folder)
+                self.emto.batch.write_input_file(folder=self.folder)
+
+            return jobnames
 
         if self.lat == 'bcc' or self.lat == 'fcc':
             # Orthorhombic distortion input files for c' first
@@ -1176,17 +1314,21 @@ class System:
                     tmp_array1 = []
                     tmp_array2 = []
                     for j in range(self.hcpo_relax_points):
-                        tmp_str1 = 'hcpo{0}_ca0_{1}'.format(i,j)
-                        tmp_str2 = '_hcpo{0}_ca0_{1}'.format(i,j)
+                        tmp_str1 = 'hcpo{0}_r{1}'.format(i,j)
+                        tmp_str2 = '_hcpo{0}_r{1}'.format(i,j)
                         tmp_array1.append(tmp_str1)
                         tmp_array2.append(tmp_str2)
+                        # We don't need to relax the first structure
+                        # because it's undistorted
+                        if i == 0 and j == 0:
+                            break
                     latname_dist.append(tmp_array1)
                     jobname_dist.append(tmp_array2)
             else:
-                jobname_dist = ['_hcpo0_ca0', '_hcpo1_ca0',
-                                '_hcpo2_ca0', '_hcpo3_ca0', '_hcpo4_ca0', '_hcpo5_ca0']
-                latname_dist = ['hcpo0_ca0', 'hcpo1_ca0',
-                                'hcpo2_ca0', 'hcpo3_ca0', 'hcpo4_ca0', 'hcpo5_ca0']
+                jobname_dist = ['_hcpo0_ur', '_hcpo1_ur',
+                                '_hcpo2_ur', '_hcpo3_ur', '_hcpo4_ur', '_hcpo5_ur']
+                latname_dist = ['hcpo0_ur', 'hcpo1_ur',
+                                'hcpo2_ur', 'hcpo3_ur', 'hcpo4_ur', 'hcpo5_ur']
 
             # Check whether Two-center Taylor expansion is on/off
             if self.emto.kgrn.expan == 'M':
@@ -1200,11 +1342,15 @@ class System:
 
             if relax:
                 for i in range(self.elastic_constants_points):
-                    for j in range(self.hcpo_relax_points):
+                    for j in range(len(jobname_dist[i])):
+                        if i == 0:
+                            do_i_relax = False
+                        else:
+                            do_i_relax = True
 
                         self.lattice.distortion(lat='hcp', dist='ortho', ca=self.ca, index=i,
                                                 deltas=self.elastic_constants_deltas,
-                                                relax=True,relax_index=j)
+                                                relax=do_i_relax,relax_index=j)
                         
                         self.lattice.set_values(jobname=latname_dist[i][j],latpath=self.folder)
                         self.lattice.bmdl.write_input_file(folder=self.folder)
@@ -1224,11 +1370,12 @@ class System:
                     self.lattice.shape.write_input_file(folder=self.folder)
                     self.lattice.batch.write_input_file(folder=self.folder)
 
-            self.emto.set_values(ibz=9, nkx=31, nky=19, nkz=19)
+            #self.emto.set_values(ibz=9, nkx=25, nky=25, nkz=21)
+            self.emto.set_values(ibz=9, nkx=31, nky=31, nkz=25)
 
             if relax:
                 for i in range(self.elastic_constants_points):
-                    for j in range(self.hcpo_relax_points):
+                    for j in range(len(jobname_dist[i])):
 
                         job = self.create_jobname(self.jobname + jobname_dist[i][j])
                         jobnames.append(job)
@@ -1260,6 +1407,9 @@ class System:
 
 
             # Monoclinic distortion input files for c44 next
+            # For the monoclinic distortion relaxation effects are
+            # negligibly small; therefore
+            relax = False
 
             # With hcp the structure depends on the c/a ratio. Therefore we also have
             # to generate the corresponding structure files.
@@ -1271,17 +1421,21 @@ class System:
                     tmp_array1 = []
                     tmp_array2 = []
                     for j in range(self.hcpm_relax_points):
-                        tmp_str1 = 'hcpm{0}_ca0_{1}'.format(i,j)
-                        tmp_str2 = '_hcpm{0}_ca0_{1}'.format(i,j)
+                        tmp_str1 = 'hcpm{0}_r{1}'.format(i,j)
+                        tmp_str2 = '_hcpm{0}_r{1}'.format(i,j)
                         tmp_array1.append(tmp_str1)
                         tmp_array2.append(tmp_str2)
+                        # We don't need to relax the first structure
+                        # because it's undistorted
+                        if i == 0 and j == 0:
+                            break
                     latname_dist.append(tmp_array1)
                     jobname_dist.append(tmp_array2)
             else:
-                jobname_dist = ['_hcpm0_ca0', '_hcpm1_ca0',
-                                '_hcpm2_ca0', '_hcpm3_ca0', '_hcpm4_ca0', '_hcpm5_ca0']
-                latname_dist = ['hcpm0_ca0', 'hcpm1_ca0',
-                                'hcpm2_ca0', 'hcpm3_ca0', 'hcpm4_ca0', 'hcpm5_ca0']
+                jobname_dist = ['_hcpm0_ur', '_hcpm1_ur',
+                                '_hcpm2_ur', '_hcpm3_ur', '_hcpm4_ur', '_hcpm5_ur']
+                latname_dist = ['hcpm0_ur', 'hcpm1_ur',
+                                'hcpm2_ur', 'hcpm3_ur', 'hcpm4_ur', 'hcpm5_ur']
 
             # Check whether Two-center Taylor expansion is on/off
             if self.emto.kgrn.expan == 'M':
@@ -1295,11 +1449,16 @@ class System:
 
             if relax:
                 for i in range(self.elastic_constants_points):
-                    for j in range(self.hcpm_relax_points):
+                    for j in range(len(jobname_dist[i])):
+
+                        if i == 0:
+                            do_i_relax = False
+                        else:
+                            do_i_relax = True
 
                         self.lattice.distortion(lat='hcp', dist='mono', ca=self.ca, index=i,
                                                 deltas=self.elastic_constants_deltas,
-                                                relax=True,relax_index=j)
+                                                relax=do_i_relax,relax_index=j)
                         
                         self.lattice.set_values(jobname=latname_dist[i][j],latpath=self.folder)
                         self.lattice.bmdl.write_input_file(folder=self.folder)
@@ -1319,11 +1478,12 @@ class System:
                     self.lattice.shape.write_input_file(folder=self.folder)
                     self.lattice.batch.write_input_file(folder=self.folder)
 
-            self.emto.set_values(ibz=13, nkx=31, nky=19, nkz=19)
+            # Two-atom basis
+            #self.emto.set_values(ibz=13, nkx=41, nky=41, nkz=41)
 
             if relax:
                 for i in range(self.elastic_constants_points):
-                    for j in range(self.hcpm_relax_points):
+                    for j in range(len(jobname_dist[i])):
 
                         job = self.create_jobname(self.jobname + jobname_dist[i][j])
                         jobnames.append(job)
@@ -1337,7 +1497,31 @@ class System:
                         self.emto.kgrn.write_input_file(folder=self.folder)
                         self.emto.kfcd.write_input_file(folder=self.folder)
                         self.emto.batch.write_input_file(folder=self.folder)
+
             else:
+                # Four-atom basis
+                #self.emto.set_values(ibz=12, nkx=18, nky=18, nkz=12)
+                self.emto.set_values(ibz=12, nkx=22, nky=22, nkz=14)
+                ###################################################################
+                # Atconf related arrays need to be modified because we now have   #
+                # a four atom basis.                                              #
+                ###################################################################
+
+                self.atoms = np.array([self.atoms, self.atoms]).flatten()
+                self.concs = np.array([self.concs, self.concs]).flatten()
+
+                self.iqs = np.zeros(len(self.atoms), dtype='int32')
+                len_div = len(self.iqs) // 4
+                for i in range(4):
+                    self.iqs[i * len_div:(i + 1) * len_div] = i + 1
+
+                self.splts = np.array([self.splts, self.splts]).flatten()
+                self.itas = np.array([self.itas, self.itas]).flatten()
+                
+                self.emto.set_values(atoms=self.atoms, iqs=self.iqs, itas=self.itas,
+                                     concs=self.concs, splts=self.splts)
+                ####################################################################
+                
                 for i in range(self.elastic_constants_points):
                     job = self.create_jobname(self.jobname + jobname_dist[i])
                     jobnames.append(job)
@@ -2604,7 +2788,7 @@ class System:
         print(str_len * '*')
         print(string)
         print(str_len * '*')
-        print('  SWS        Energy0        c\'a0')
+        print('  SWS        Energy0        c/a0')
         for i in range(len(swses)):
             print('{0:8.6f}  {1:12.6f}  {2:8.6f}'.format(
                 swses[i], energies[i], cas[i]))

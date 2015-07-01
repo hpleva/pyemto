@@ -64,7 +64,7 @@ class Latticeinputs:
         return
 
     def distortion(self, lat=None, dist=None, ca=None, index=None, deltas=None, dmaxs=None,
-                   relax=True, relax_index=None):
+                   relax=True, relax_index=None, basis=None):
         """A function which sets various class data to create distorted lattice structures.
 
         Distorted lattices are used to calculate elastic constants.        
@@ -194,9 +194,13 @@ class Latticeinputs:
                     dmax_dict = {
                         0: 2.52, 1: 2.49, 2: 2.455, 3: 2.43, 4: 2.4, 5: 2.4}
                     dmax = dmax_dict[index]
+                #elif dist == 'mono':
+                #    dmax_dict = {
+                #        0: 2.51, 1: 2.51, 2: 2.51, 3: 2.49, 4: 2.51, 5: 2.49}
+                #    dmax = dmax_dict[index]
                 elif dist == 'mono':
                     dmax_dict = {
-                        0: 2.51, 1: 2.51, 2: 2.51, 3: 2.49, 4: 2.51, 5: 2.49}
+                        0: 2.43, 1: 2.435, 2: 2.43, 3: 2.43, 4: 2.445, 5: 2.44}
                     dmax = dmax_dict[index]
 
             elif lat == 'sc':
@@ -213,11 +217,11 @@ class Latticeinputs:
             sys.exit(
                 'latticeinputs.distortion(): \'relax_index\' has to be given, when relax=True!')
 
-        hcpo_disp = np.sqrt(3.0)/6.0*(1.0-delta)/(1.0+delta)
-        hcpo_relax = np.linspace(-hcpo_disp,hcpo_disp,5)
+        #hcpo_disp = np.sqrt(3.0)/6.0*(1.0-delta)/(1.0+delta)
+        #hcpo_relax = np.linspace(-hcpo_disp,hcpo_disp,5)
         #
-        hcpm_disp = 2*np.sqrt(3.0)/np.sqrt(1+delta**2)/(1-delta**2)
-        hcpm_relax = np.linspace(-hcpm_disp,hcpm_disp,5)
+        #hcpm_disp = 2*np.sqrt(3.0)/np.sqrt(1+delta**2)/(1-delta**2)
+        #hcpm_relax = np.linspace(-hcpm_disp,hcpm_disp,5)
                 
         # Details can be found in Vitos' book pages 104-110.
 
@@ -272,16 +276,16 @@ class Latticeinputs:
             self.set_values(jobname='hcpo{0}'.format(index))
             self.set_values(lat='baco',dmax=dmax)
 
-            latparams = []
-            latparams.append(1.0)
-            latparams.append(np.sqrt(3.0)*(1.0-delta)/(1.0+delta))
-            latparams.append(ca/(1.0+delta)/(1.0-delta**2))
-            
+            bao = np.sqrt(3.0)*(1.0-delta)/(1.0+delta)
+            cao = ca/(1.0+delta)/(1.0-delta**2)
+            latparams = [1.0,bao,cao]
             latvectors = [90.0,90.0,90.0]
             
             pos1 = [0.0,0.0,0.0]
             pos2 = [0.0,latparams[1]/3.0,latparams[2]/2.0]
             if relax:
+                hcpo_disp = bao/6.0/2.0
+                hcpo_relax = np.linspace(0.0,hcpo_disp,5)
                 pos2[1] += hcpo_relax[relax_index]
             basis = [pos1,pos2]
 
@@ -294,7 +298,7 @@ class Latticeinputs:
             # on wants to describe the distorted structure
             # as a simple monoclinic with a four atom basis.
             # Look Vitos' book page 110.
-            """
+            
             self.set_values(lat='sm',dmax=dmax)
 
             # WARNING!!
@@ -304,21 +308,21 @@ class Latticeinputs:
             cam = np.sqrt(3.0)/np.sqrt(1.0+delta**2)/(1.0-delta**2) # Distorted c over a
             latparams = [1.0,bam,cam]
 
-            bs1 = [1.0,0.0,0.0]
-            bs2 = [2.0*delta/(1.0+delta**2)*ca,(1.0-delta**2)/(1.0+delta**2)*ca,0.0]
-            bs3 = [0.0,0.0,cam]
-            latvectors = [bs1,bs2,bs3]
-            #latvectors = [90,90,gam]
+            #bs1 = [1.0,0.0,0.0]
+            #bs2 = [2.0*delta/(1.0+delta**2)*ca,(1.0-delta**2)/(1.0+delta**2)*ca,0.0]
+            #bs3 = [0.0,0.0,cam]
+            #latvectors = [bs1,bs2,bs3]
+            latvectors = [90,90,gam]
 
             pos1 = [0.0,0.0,0.0]
             pos2 = [ca*delta/(1.0+delta**2),ca*(1.0-delta**2)/(1.0+delta**2)/2.0,-cam/3.0]
             pos3 = [0.5,0.0,-cam/2.0]
             pos4 = [pos2[0]+pos3[0],pos2[1]+pos3[1],pos2[2]+pos3[2]]
             basis = [pos1,pos2,pos3,pos4]
-            """
             
             # The following lines give the distorted structure
             # as a base-centered monoclinic with a two-atom basis.
+            """
             self.set_values(lat='bacm',dmax=dmax)
 
             # WARNING!!
@@ -329,15 +333,19 @@ class Latticeinputs:
             theta = np.pi/2 - gam
             latparams = [1.0,bam,cam]
 
-            latvectors = [90,90,gam]
+            latvectors = [90,90,gam/np.pi*180]
 
             pos1 = [0.0,0.0,0.0]
-            pos2 = [bam*(2*delta*np.cos(theta)+(delta**2-1)*np.sin(theta))/(delta**2+1)/2.0,
-                    bam*((delta**2-1)*np.cos(theta)-2*delta*np.sin(theta))/(delta**2+1)/2.0,
-                    -cam/3.0]
+            #pos2 = [bam*(2*delta*np.cos(theta)+(delta**2-1)*np.sin(theta))/(delta**2+1)/2.0,
+            #        bam*((delta**2-1)*np.cos(theta)-2*delta*np.sin(theta))/(delta**2+1)/2.0,
+            #        -cam/3.0]
+            pos2 = [0.0,-bam/2.0,-cam/3.0]
             if relax:
-                pos2[1] += hcpm_relax[relax_index]
+                hcpm_disp = cam/6.0/4.0
+                hcpm_relax = np.linspace(-hcpm_disp,hcpm_disp,21)
+                pos2[2] += hcpm_relax[relax_index]
             basis = [pos1,pos2]
+            """
 
             self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
 
@@ -357,7 +365,7 @@ class Latticeinputs:
             else:
                 # Calculate basis transformation
                 tr_matrix = np.array([[1.0+delta,0.0,0.0],
-                                     [0.0,1.0+delta,0.0],
+                                     [0.0,1.0-delta,0.0],
                                      [0.0,0.0,1.0/(1.0-delta**2)]])
 
                 basis = self.basis_transform(basis,tr_matrix)
@@ -366,6 +374,53 @@ class Latticeinputs:
 
         elif lat == 'sc' and dist == 'mono':
             self.set_values(jobname='scm{0}'.format(index))
+            self.set_values(lat='baco',dmax=dmax)
+
+            latparams = [1.0,(1.0-delta)/(1.0+delta),1.0/(1.0+delta)/(1.0-delta**2)]
+            bs1 = [1.0,delta,0.0]
+            bs2 = [delta,1.0,0.0]
+            bs3 = [0.0,0.0,1.0/(1.0-delta**2)]
+            latvectors = [bs1,bs2,bs3]
+            latparams  = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
+                          np.linalg.norm(np.asarray(bs3))]
+            
+            if basis == None:
+                basis = [0.0,0.0,0.0]
+            else:
+                # Calculate basis transformation
+                tr_matrix = np.array([[1.0,delta,0.0],
+                                     [delta,1.0,0.0],
+                                     [0.0,0.0,1.0/(1.0-delta**2)]])
+
+                basis = self.basis_transform(basis,tr_matrix)
+
+            self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
+
+        elif lat == 'B2' and dist == 'ortho':
+            self.set_values(jobname='B2o{0}'.format(index))
+            self.set_values(lat='so',dmax=dmax)
+
+            bs1 = [1.0+delta,0.0,0.0]
+            bs2 = [0.0,1.0-delta,0.0]
+            bs3 = [0.0,0.0,1.0/(1.0-delta**2)]
+            latvectors = [bs1,bs2,bs3]
+            latparams = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
+                         np.linalg.norm(np.asarray(bs3))]
+            
+            if basis == None:
+                basis = [0.0,0.0,0.0]
+            else:
+                # Calculate basis transformation
+                tr_matrix = np.array([[1.0+delta,0.0,0.0],
+                                     [0.0,1.0-delta,0.0],
+                                     [0.0,0.0,1.0/(1.0-delta**2)]])
+
+                basis = self.basis_transform(basis,tr_matrix)
+
+            self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
+
+        elif lat == 'B2' and dist == 'mono':
+            self.set_values(jobname='B2m{0}'.format(index))
             self.set_values(lat='baco',dmax=dmax)
 
             latparams = [1.0,(1.0-delta)/(1.0+delta),1.0/(1.0+delta)/(1.0-delta**2)]
@@ -414,8 +469,8 @@ class Latticeinputs:
         else:
             common.check_folders(folder)
 
-        if lat is None:
-            sys.exit('Latticeinputs.write_structure_input_files: \'lat\' has to be given!')
+        #if lat is None:
+        #    sys.exit('Latticeinputs.write_structure_input_files: \'lat\' has to be given!')
 
         if jobname is None:
             #sys.exit('Latticeinputs.write_structure_input_files: \'jobname\' has to be given!')
