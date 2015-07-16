@@ -302,6 +302,8 @@ class Kstr:
             self.jobname2 = self.jobname + '2'
 
         # Optimize dmax
+        if self.nghbp is None:
+            self.nghbp = 13
         if self.numvec_target is None:
             self.numvec_target = 89
         self.dmax,numvec_tmp = self.optimize_dmax(self.latvectors,self.basis)
@@ -343,8 +345,6 @@ class Kstr:
             self.itrans = 3
         if self.rwats is None:
             self.rwats = 0.1
-        if self.nghbp is None:
-            self.nghbp = 13
         if self.awIQ is None:
             self.awIQ = np.ones((self.nq, 4)) * 0.7
         return
