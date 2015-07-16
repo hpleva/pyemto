@@ -2,7 +2,7 @@ import pyemto
 import numpy as np
 import os
 
-latpath = "../../../../" # Path do bmdl, kstr and shape directories
+latpath = "../../../" # Path do bmdl, kstr and shape directories
 
 
 # each system need to have same number of alloy elements
