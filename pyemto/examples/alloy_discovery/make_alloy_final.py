@@ -163,7 +163,7 @@ for si in range(len(systems)):
                    atoms = s,
                    concs = c,
                    splts = split,
-                   afm = afm
+                   afm = afm,
                    amix=0.02,
                    efmix=0.9,
                    expan='M',
