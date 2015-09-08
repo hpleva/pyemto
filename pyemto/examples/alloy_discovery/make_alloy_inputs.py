@@ -1,9 +1,13 @@
 import pyemto
+from pyemto.utilities import latparam_to_wsrad
 import numpy as np
 import os
 
 latpath = "../../../" # Path do bmdl, kstr and shape directories
 
+
+
+lcdict = {'Al':4.0495,'Fe':2.8665}
 
 # each system need to have same number of alloy elements
 #systems = [['Fe','Al'],['Fe','Cr']]
@@ -14,16 +18,17 @@ concentrations = [[1.0]]
 magn = "FM" # Possible NM (Non-magnetic), FM (ferromagnetic) and 
             # DLM (Disordered local moments)
 
-initial_sws = 3.0
+
+initial_latpar = 2.86
+
+initial_sws = []
+
+initial_sws.append(latparam_to_wsrad(initial_latpar,"bcc"))
+initial_sws.append(latparam_to_wsrad(initial_latpar,"fcc"))
+initial_sws.append(latparam_to_wsrad(initial_latpar,"hcp",ca=1.633))
+                   
 
 # Check that initialsws is correct format
-if type(initial_sws) is float:
-    initial_sws = [initial_sws for x in range(3)]
-elif type(initial_sws) is list:
-    pass
-else:
-    print("ERROR: Initialsws should be float or list of 3 floats")
-    exit()
 if not len(initial_sws) == 3:
     print("ERROR: intialsws shoubd be a float or list of 3 floats!")
     exit()
