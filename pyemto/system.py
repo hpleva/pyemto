@@ -254,7 +254,7 @@ class System:
             self.emto.batch.write_input_file(folder=folder)
 
     
-    def lattice_constants_analyze(self, sws=None, ca=None,prn=True,debug=False,method='morse'):
+    def lattice_constants_analyze(self, sws=None, ca=None,prn=True,debug=False,method='morse',return_error=False):
         """Analyzes the output files generated using the
         lattice_constants_batch_generate function.
 
@@ -309,7 +309,7 @@ class System:
                 self.print_sws_ens(
                     'lattice_constants_analyze(cubic)', swses, energies)
 
-            sws0, e0, B0, grun = eos.fit(swses, energies)
+            sws0, e0, B0, grun, R_squared = eos.fit(swses, energies)
 
             # These functions create files on disk about the data to be fitted
             # as well as the results of the fit.
@@ -323,7 +323,10 @@ class System:
                 print('E0   = {0:13.6f}'.format(e0))
                 print('')
 
-            return sws0, B0, e0
+            if return_error:
+                return sws0, B0, e0, R_squared
+            else:
+                return sws0, B0, e0
 
         if self.lat == 'hcp':
 
@@ -395,7 +398,7 @@ class System:
             print('#'*80)
             print('# Ground state EOS fit:'+' '*56+'#')
             print('#'*80)
-            sws0, e0, B0, grun = eos.fit(swses, energies0)
+            sws0, e0, B0, grun, R_squared = eos.fit(swses, energies0)
             print('*'*80)
             print('*'*80)
             print('*'*80+'\n')
@@ -441,7 +444,7 @@ class System:
                 print('#'*80)
                 # _tmp variables are just dummies, we only want to
                 # update the EOS parameters of the "eos" instance.
-                sws_tmp, e_tmp, B_tmp, grun_tmp = eos.fit(
+                sws_tmp, e_tmp, B_tmp, grun_tmp, R_squared_tmp = eos.fit(
                     good_swses, good_energies)
                 print('*'*80)
                 print('*'*80)
@@ -472,7 +475,10 @@ class System:
                 print('cs   = {0:13.6f}'.format(cs0))
                 print('')
 
-            return sws0, c_over_a0, B0, e0, R0, cs0
+            if return_error:
+                return sws0, c_over_a0, B0, e0, R0, cs0, R_squared
+            else:
+                return sws0, c_over_a0, B0, e0, R0, cs0
 
     def lattice_constants_batch_generate(self, sws=None, ca=None):
         """Generates input files and writes them to disk.
