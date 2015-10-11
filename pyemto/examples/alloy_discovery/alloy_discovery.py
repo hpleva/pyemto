@@ -508,7 +508,7 @@ elif mode == 'analyze_results':
                        latpath=latpath,sws=initialsws, xc='PBE')
 
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
-            sws0, B0, e0 = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
+            sws0, B0, e0, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
 
             alloy.bulk(lat='bcc',
                        jobname=finalname+"_bcc",
@@ -522,7 +522,7 @@ elif mode == 'analyze_results':
             # Sanity check
             if e_dft == None:
                 e_dft = 0.0
-            sc_res.append([e_dft,sws0,B0,e0])
+            sc_res.append([e_dft,sws0,B0,e0,R_squared])
      
             # FCC second
             initialsws = initial_sws[1]
@@ -531,7 +531,7 @@ elif mode == 'analyze_results':
                        latpath=latpath,sws=initialsws, xc='PBE')
 
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
-            sws0, B0, e0 = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
+            sws0, B0, e0, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
 
             alloy.bulk(lat='fcc',
                        jobname=finalname+"_fcc",
@@ -545,7 +545,7 @@ elif mode == 'analyze_results':
             # Sanity check
             if e_dft == None:
                 e_dft = 0.0
-            sc_res.append([e_dft,sws0,B0,e0])
+            sc_res.append([e_dft,sws0,B0,e0,R_squared])
      
             """
             # HCP last
@@ -588,11 +588,11 @@ elif mode == 'analyze_results':
         output = output + "  Magn: " +magn+"\n"
         bcc = r[1][0]
         bcc_lc = wsrad_to_latparam(bcc[1],'bcc')
-        output = output+"# Strc.   dft E      lc       sws       B         fit E     (c/a)\n"
-        output = output+"   bcc: %f %f %f %f %f %f\n" %(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3],1.0)
+        output = output+"# Strc.    dft E      lc       sws        B          fit E     fit err    (c/a)\n"
+        output = output+"   bcc: %f %f %f %f %f %f %f\n" %(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3],bcc[4],1.0)
         fcc = r[1][1]
         fcc_lc = wsrad_to_latparam(fcc[1],'fcc')
-        output = output + "   fcc: %f %f %f %f %f %f\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],1.0)
+        output = output + "   fcc: %f %f %f %f %f %f %f\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],fcc[4],1.0)
         """
         hcp = r[1][2]
         hcp_lc = wsrad_to_latparam(hcp[1],'hcp',ca=hcp[4])
