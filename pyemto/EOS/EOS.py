@@ -779,7 +779,7 @@ class EOS:
         # Save an image for quality checking
         #self.plot(filename=self.name, show=None)
 
-        return self.sws0, self.e0, self.B0, self.grun  # , self.error
+        return self.sws0, self.e0, self.B0, self.grun, self.rsquared
 
     #def fit2file(self):
     #    """Calculate volume, energy, and bulk modulus.
