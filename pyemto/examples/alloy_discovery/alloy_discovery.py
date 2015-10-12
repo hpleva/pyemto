@@ -4,8 +4,8 @@ import numpy as np
 import os
 
 # Help python to find the pyemto folder
-import sys
-sys.path.insert(0, "/home/henrik/local_emto_stuff/pyemto")
+#import sys
+#sys.path.insert(0, "/home/henrik/local_emto_stuff/pyemto")
 
 import pyemto
 
