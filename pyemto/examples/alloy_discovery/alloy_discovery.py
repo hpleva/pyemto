@@ -614,7 +614,7 @@ elif mode == 'analyze_results':
         # Generate the output line for magnetic moments
         output = output + "fcc_moms:"
         for i in range(len(fcc[5])):
-            output = output + " {0:9.6f}".format(bcc[5][i])
+            output = output + " {0:9.6f}".format(fcc[5][i])
         output = output + "\n"
         """
         hcp = r[1][2]
