@@ -3117,6 +3117,54 @@ class System:
             print('System.get_energy(): {0} does not exist!'.format(fn))
             return
 
+    def get_moments(self, jobname=None, func="PBE", folder=None):
+        """Extracts magnetic moments from the KFCD output file.
+
+        :param jobname: Name of the KFCD output file
+        :type jobname: str
+        :param func: Name of the xc-functional (Default value = "PBE")
+        :type func: str
+        :param folder: Name of the folder where the output file is located (Default value = "./")
+        :type folder: str
+        :returns: Total energy if it is found, otherwise return None
+        :rtype: float or None
+        """
+
+        if folder == None:
+            folder = self.folder
+        if jobname == None:
+            jobname = self.fulljobname
+        
+        fn = os.path.join(folder, "kfcd/")
+        fn = os.path.join(fn, jobname + ".prn")
+
+        readyTag = "KFCD: Finished at:"
+        momTag = "Magnetic moment for IQ ="
+
+        try:
+            kfcdfile = open(fn, "r")
+            lines = kfcdfile.readlines()
+            kfcdfile.close()
+            moms = []
+            ready = False
+            for line in lines:
+                if readyTag in line:
+                    ready = True
+            if ready:
+                for line in lines:
+                    #if enTag in line:
+                    #    linesplit = line.split()
+                    #    sws = float(linesplit[6])
+                    if momTag in line:
+                        linesplit = line.split()
+                        moms.append(float(linesplit[7]))
+                return moms
+            else:
+                return None
+        except IOError:
+            print('System.get_moments(): {0} does not exist!'.format(fn))
+            return None
+
     def create_jobname(self, jobname=None):
         """Creates jobnames based on system information.
 
