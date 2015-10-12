@@ -4,8 +4,8 @@ import numpy as np
 import os
 
 # Help python to find the pyemto folder
-#import sys
-#sys.path.insert(0, "/home/henrik/local_emto_stuff/pyemto")
+import sys
+sys.path.insert(0, "/home/henrik/local_emto_stuff/pyemto")
 
 import pyemto
 
@@ -56,9 +56,9 @@ magn = "DLM"
 
 initial_sws = 2.61
 
-mode = 'create_inputs'
+#mode = 'create_inputs'
 #mode = 'compute_eq_energy'
-#mode = 'analyze_results'
+mode = 'analyze_results'
 
 ##################################################################
 ##################################################################
@@ -519,10 +519,14 @@ elif mode == 'analyze_results':
 
             # get energy of final
             e_dft = alloy.get_energy()
-            # Sanity check
+            # get magnetic moments
+            magn_moms = alloy.get_moments()
+            # Sanity checks
             if e_dft == None:
                 e_dft = 0.0
-            sc_res.append([e_dft,sws0,B0,e0,R_squared])
+            if magn_moms == None:
+                magn_moms = [0 for i in range(len(concs))]
+            sc_res.append([e_dft,sws0,B0,e0,R_squared,magn_moms])
      
             # FCC second
             initialsws = initial_sws[1]
@@ -542,10 +546,14 @@ elif mode == 'analyze_results':
 
             # get energy of final
             e_dft = alloy.get_energy()
+            # get magnetic moments
+            magn_moms = alloy.get_moments()
             # Sanity check
             if e_dft == None:
                 e_dft = 0.0
-            sc_res.append([e_dft,sws0,B0,e0,R_squared])
+            if magn_moms == None:
+                magn_moms = [0 for i in range(len(concs))]
+            sc_res.append([e_dft,sws0,B0,e0,R_squared,magn_moms])
      
             """
             # HCP last
@@ -578,21 +586,34 @@ elif mode == 'analyze_results':
     from pyemto.utilities.utils import wsrad_to_latparam
     
     for r in results:
-        # Generate system name
+        # Generate system name and concentrations line
         sname = ""
+        conc_line = ""
         for i in range(len(r[0][0])):
-            sname=sname+r[0][0][i]+'{0:07.4f}_'.format(100*r[0][1][i])
+            sname = sname + r[0][0][i] + '{0:07.4f}_'.format(100*r[0][1][i])
+            conc_line = conc_line + '{0:8.6f} '.format(r[0][1][i])
         # Delete the last unnecessary underscore
         sname = sname[:-1]
-        output = "System: "+sname+"\n"
-        output = output + "  Magn: " +magn+"\n"
+        output = "  System: "+sname+"\n"
+        output = output + "    Magn: " + magn + "\n"
+        output = output + "    Conc: " + conc_line + "\n"
         bcc = r[1][0]
         bcc_lc = wsrad_to_latparam(bcc[1],'bcc')
-        output = output+"# Strc.    dft E      lc       sws        B          fit E     fit err    (c/a)\n"
-        output = output+"   bcc: %f %f %f %f %f %f %f\n" %(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3],bcc[4],1.0)
+        output = output + "#   Strc.    dft E      lc       sws        B          fit E     fit err    (c/a)\n"
+        output = output + "     bcc: %f %f %f %f %f %f %f\n" %(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3],bcc[4],1.0)
+        # Generate the output line for magnetic moments
+        output = output + "bcc_moms:"
+        for i in range(len(bcc[5])):
+            output = output + " {0:9.6f}".format(bcc[5][i])
+        output = output + "\n"
         fcc = r[1][1]
         fcc_lc = wsrad_to_latparam(fcc[1],'fcc')
-        output = output + "   fcc: %f %f %f %f %f %f %f\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],fcc[4],1.0)
+        output = output + "     fcc: %f %f %f %f %f %f %f\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],fcc[4],1.0)
+        # Generate the output line for magnetic moments
+        output = output + "fcc_moms:"
+        for i in range(len(fcc[5])):
+            output = output + " {0:9.6f}".format(bcc[5][i])
+        output = output + "\n"
         """
         hcp = r[1][2]
         hcp_lc = wsrad_to_latparam(hcp[1],'hcp',ca=hcp[4])
