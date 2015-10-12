@@ -585,6 +585,8 @@ elif mode == 'analyze_results':
 
     from pyemto.utilities.utils import wsrad_to_latparam
     
+    output_all = ""
+
     for r in results:
         # Generate system name and concentrations line
         sname = ""
@@ -622,6 +624,10 @@ elif mode == 'analyze_results':
         if magn == "DLM" or magn == "FM":
             # Print magnetic states of system if available
             pass
-        
-        print(output)
+        #print(output)
+        output_all += output+"\n"
+
+    output_file = open('results','w')
+    output_file.write(output_all)
+    output_file.close()
     
