@@ -72,8 +72,8 @@ class System:
             self.xc = xc
 
         # Create working folders
-        common.check_folders(folder + '/kgrn', folder + '/kgrn/tmp',
-                           folder + '/kfcd', folder + '/fit')
+        common.check_folders(self.folder + '/kgrn', self.folder + '/kgrn/tmp',
+                           self.folder + '/kfcd', self.folder + '/fit')
 
         # BMDL, KSTR, SHAPE, KGRN and KFCD class instances
         self.lattice = Latticeinputs()
