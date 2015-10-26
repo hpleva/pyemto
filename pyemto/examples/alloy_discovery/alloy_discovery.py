@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 
 import numpy as np
@@ -17,8 +18,8 @@ import pyemto
 ##################################################################
 ##################################################################
 
-EMTOdir = "/home/henrik/local_emto_stuff/EMTO6.0"
-latpath = "/home/henrik/local_emto_stuff/structures" # Path to bmdl, kstr and shape directories
+EMTOdir = "/home/masaro/ohjelmat/EMTO6.0"
+latpath = "../../../../" # Path to bmdl, kstr and shape directories
 base_dir = os.getcwd()
 
 # CoCrFeMnNi
@@ -51,8 +52,8 @@ for i in range(len(systems[0])):
 # Possible NM (Non-magnetic), FM (ferromagnetic) and 
 # DLM (Disordered local moments).
 #magn = "NM"
-#magn = "FM"
-magn = "DLM" 
+magn = "FM"
+#magn = "DLM" 
 
 initial_sws = 2.61
 
@@ -231,7 +232,7 @@ if mode == 'create_inputs':
             alloy.bulk(lat='bcc',
                        jobname=jobname+"_bcc",
                        latpath=latpath,
-                       msgl=1,
+                       msgl=0,
                        sws=initialsws,
                        atoms = s,
                        concs = c,
@@ -255,7 +256,7 @@ if mode == 'create_inputs':
             alloy.bulk(lat='fcc',
                        jobname=jobname+"_fcc",
                        latpath=latpath,
-                       msgl=1,
+                       msgl=0,
                        sws=initialsws,
                        atoms = s,
                        concs = c,
@@ -273,11 +274,9 @@ if mode == 'create_inputs':
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
             alloy.lattice_constants_batch_generate(sws=swsrange)
 
-            """
             # HCP last
             alloy = pyemto.System(folder=apath,EMTOdir=EMTOdir)
             initialsws = initial_sws[2]
-
             alloy.bulk(lat='hcp',
                        #jobname=jobname+"_hcp",
                        jobname=jobname, # hcp add automatically hcp string to jobname
@@ -292,11 +291,12 @@ if mode == 'create_inputs':
                        expan='M',
                        sofc='Y',
                        xc='PBE',
-                       nky=21,
-                       nkz=17)
+                       nky=11,
+                       nkz=7,
+                       stmp='A',
+                       niter=300)#,
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
             alloy.lattice_constants_batch_generate(sws=swsrange)        
-            """
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -369,7 +369,7 @@ elif mode == 'compute_eq_energy':
             alloy.bulk(lat='bcc',
                        jobname=finalname+"_bcc",
                        latpath=latpath,
-                       msgl=1,
+                       msgl=0,
                        sws=sws0,
                        atoms = s,
                        concs = c,
@@ -398,7 +398,7 @@ elif mode == 'compute_eq_energy':
             alloy.bulk(lat='fcc',
                        jobname=finalname+"_fcc",
                        latpath=latpath,
-                       msgl=1,
+                       msgl=0,
                        sws=sws0,
                        atoms = s,
                        concs = c,
@@ -415,16 +415,17 @@ elif mode == 'compute_eq_energy':
                        #runKGRN=False)
             alloy.write_inputs()
 
-            """
             # HCP last
             initialsws = initial_sws[2]
             alloy = pyemto.System(folder=apath)
-            initialsws = 3.0 # We need some clever way to get this
             alloy.bulk(lat='hcp',
                        #jobname=jobname+"_hcp",
                        jobname=jobname, # hcp add automatically hcp string to jobname
-                       latpath=latpath, sws=initialsws, atoms = s,
-                       concs = c, xc='PBE')
+                       latpath=latpath,
+                       sws=initialsws,
+                       atoms = s,
+                       concs = c, 
+                       xc='PBE')
      
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
             #alloy.lattice_constants_batch_generate(sws=swsrange)        
@@ -432,15 +433,47 @@ elif mode == 'compute_eq_energy':
             alloy.sws = sws0 
             ca = round(c_over_a0,3)
             hcpname ="hcp_"+str(ca) # Structure name
-            alloy.bulk(lat='hcp', jobname=finalname+"_hcp",latpath=latpath, latname=hcpname,
-                       sws=sws0, ca= ca, atoms = s, concs = c)
+            structpath = "../"
+            # Check if input files are in place
+            if os.path.exists(os.path.join(structpath,hcpname+".bmdl")):
+                pass
+            else:
+                print("Making structures")
+                # make input files
+                alloy.lattice.set_values(jobname=hcpname,latpath="",
+                                         lat='hcp',kappaw=[0.0,-20.0],msgl=0,ca=ca,
+                                         dmax=2.2)
+                alloy.lattice.bmdl.write_input_file(folder=structpath)
+                alloy.lattice.kstr.write_input_file(folder=structpath)
+                alloy.lattice.shape.write_input_file(folder=structpath)
+                alloy.lattice.batch.write_input_file(folder=structpath)
+                
+
+            # Make kfcd and kgrn input files
+            print("hcp", afm)
+            alloy.bulk(lat='hcp',
+                       #jobname=jobname+"_hcp",
+                       jobname=finalname+"_hcp",
+                       latpath=latpath,
+                       latname=hcpname,
+                       sws=sws0,
+                       ca = ca,
+                       msgl = 0,
+                       atoms = s,
+                       concs = c,
+                       splts = split,
+                       afm = afm,
+                       amix=0.02,
+                       efmix=0.9,
+                       expan='M',
+                       sofc='Y',
+                       xc='PBE',
+                       nky=11,
+                       nkz=7)
+
             alloy.write_inputs()
             
-            # get energy of final
-            e_dft = alloy.get_energy()
-            sc_res.append([e_dft,sws0,B0,e0,ca])
-            """
-
+           
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -555,11 +588,9 @@ elif mode == 'analyze_results':
                 magn_moms = [0 for i in range(len(concs))]
             sc_res.append([e_dft,sws0,B0,e0,R_squared,magn_moms])
      
-            """
             # HCP last
             initialsws = initial_sws[2]
             alloy = pyemto.System(folder=apath,EMTOdir=EMTOdir)
-            initialsws = 3.0 # We need some clever way to get this
             alloy.bulk(lat='hcp',
                        #jobname=jobname+"_hcp",
                        jobname=jobname, # hcp add automatically hcp string to jobname
@@ -574,12 +605,20 @@ elif mode == 'analyze_results':
             hcpname ="hcp_"+str(ca) # Structure name
             alloy.bulk(lat='hcp', jobname=finalname+"_hcp",latpath=latpath, latname=hcpname,
                        sws=sws0, ca= ca, atoms = s, concs = c)
-            alloy.write_inputs()
             
+            print(finalname+"_hcp")
             # get energy of final
             e_dft = alloy.get_energy()
-            sc_res.append([e_dft,sws0,B0,e0,ca])
-            """
+            # get magnetic moments
+            magn_moms = alloy.get_moments()
+            # Sanity check
+            if e_dft == None:
+                e_dft = 0.0
+            if magn_moms == None:
+                magn_moms = [0 for i in range(len(concs))]
+            sc_res.append([e_dft,sws0,B0,e0,R_squared,magn_moms,ca])
+
+
             results.append([[s,c],sc_res])
 
 
@@ -599,6 +638,7 @@ elif mode == 'analyze_results':
         output = "  System: "+sname+"\n"
         output = output + "    Magn: " + magn + "\n"
         output = output + "    Conc: " + conc_line + "\n"
+        
         bcc = r[1][0]
         bcc_lc = wsrad_to_latparam(bcc[1],'bcc')
         output = output + "#   Strc.    dft E      lc       sws        B          fit E     fit err    (c/a)\n"
@@ -608,6 +648,7 @@ elif mode == 'analyze_results':
         for i in range(len(bcc[5])):
             output = output + " {0:9.6f}".format(bcc[5][i])
         output = output + "\n"
+        
         fcc = r[1][1]
         fcc_lc = wsrad_to_latparam(fcc[1],'fcc')
         output = output + "     fcc: %f %f %f %f %f %f %f\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],fcc[4],1.0)
@@ -616,17 +657,17 @@ elif mode == 'analyze_results':
         for i in range(len(fcc[5])):
             output = output + " {0:9.6f}".format(fcc[5][i])
         output = output + "\n"
-        """
+        
         hcp = r[1][2]
         hcp_lc = wsrad_to_latparam(hcp[1],'hcp',ca=hcp[4])
-        output = output +"   hpc: %f %f %f %f %f %f\n" %(hcp[0],hcp_lc,hcp[1],hcp[2],hcp[3],hcp[4])
-        """
-        if magn == "DLM" or magn == "FM":
-            # Print magnetic states of system if available
-            pass
-        #print(output)
-        output_all += output+"\n"
+        output = output +"     hpc: %f %f %f %f %f %f %f\n" %(hcp[0],hcp_lc,hcp[1],hcp[2],hcp[3],hcp[4],hcp[6])
+        # Generate the output line for magnetic moments
+        output = output + "fcc_moms:"
+        for i in range(len(hcp[5])):
+            output = output + " {0:9.6f}".format(hcp[5][i])
+        output = output + "\n"
 
+        output_all += output+"\n"
     output_file = open('results','w')
     output_file.write(output_all)
     output_file.close()
