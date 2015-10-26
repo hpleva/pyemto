@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 
 import numpy as np
@@ -18,8 +17,8 @@ import pyemto
 ##################################################################
 ##################################################################
 
-EMTOdir = "/home/masaro/ohjelmat/EMTO6.0"
-latpath = "../../../../" # Path to bmdl, kstr and shape directories
+EMTOdir = "/home/henrik/local_emto_stuff/EMTO6.0"
+latpath = "/home/henrik/local_emto_stuff/structures" # Path to bmdl, kstr and shape directories
 base_dir = os.getcwd()
 
 # CoCrFeMnNi
@@ -52,14 +51,14 @@ for i in range(len(systems[0])):
 # Possible NM (Non-magnetic), FM (ferromagnetic) and 
 # DLM (Disordered local moments).
 #magn = "NM"
-magn = "FM"
-#magn = "DLM" 
+#magn = "FM"
+magn = "DLM" 
 
 initial_sws = 2.61
 
-#mode = 'create_inputs'
+mode = 'create_inputs'
 #mode = 'compute_eq_energy'
-mode = 'analyze_results'
+#mode = 'analyze_results'
 
 ##################################################################
 ##################################################################
@@ -356,7 +355,7 @@ elif mode == 'compute_eq_energy':
                     jobname = jobname + "_"
                 jobname = jobname + nlist[i].lower() + "%4.2f" % (clist[i])
             finalname = jobname + "_final"
-
+            
             # BCC first
             initialsws = initial_sws[0]
             alloy = pyemto.System(folder=apath,EMTOdir=EMTOdir)
@@ -414,10 +413,10 @@ elif mode == 'compute_eq_energy':
                        niter=300)#,
                        #runKGRN=False)
             alloy.write_inputs()
-
+            
             # HCP last
             initialsws = initial_sws[2]
-            alloy = pyemto.System(folder=apath)
+            alloy = pyemto.System(folder=apath,EMTOdir=EMTOdir)
             alloy.bulk(lat='hcp',
                        #jobname=jobname+"_hcp",
                        jobname=jobname, # hcp add automatically hcp string to jobname
@@ -433,16 +432,16 @@ elif mode == 'compute_eq_energy':
             alloy.sws = sws0 
             ca = round(c_over_a0,3)
             hcpname ="hcp_"+str(ca) # Structure name
-            structpath = "../"
+            structpath = latpath
             # Check if input files are in place
             if os.path.exists(os.path.join(structpath,hcpname+".bmdl")):
                 pass
             else:
-                print("Making structures")
+                print("Making structures for {0}_hcp".format(jobname))
                 # make input files
-                alloy.lattice.set_values(jobname=hcpname,latpath="",
+                alloy.lattice.set_values(jobname=hcpname,latpath=latpath,
                                          lat='hcp',kappaw=[0.0,-20.0],msgl=0,ca=ca,
-                                         dmax=2.2)
+                                         dmax=2.2,EMTOdir=EMTOdir)
                 alloy.lattice.bmdl.write_input_file(folder=structpath)
                 alloy.lattice.kstr.write_input_file(folder=structpath)
                 alloy.lattice.shape.write_input_file(folder=structpath)
@@ -450,7 +449,7 @@ elif mode == 'compute_eq_energy':
                 
 
             # Make kfcd and kgrn input files
-            print("hcp", afm)
+            #print("hcp", afm)
             alloy.bulk(lat='hcp',
                        #jobname=jobname+"_hcp",
                        jobname=finalname+"_hcp",
@@ -599,7 +598,7 @@ elif mode == 'analyze_results':
      
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
             #alloy.lattice_constants_batch_generate(sws=swsrange)        
-            sws0, c_over_a0, B0, e0, R0, cs0 = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
+            sws0, c_over_a0, B0, e0, R0, cs0, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
             alloy.sws = sws0 
             ca = round(c_over_a0,3)
             hcpname ="hcp_"+str(ca) # Structure name
@@ -617,7 +616,6 @@ elif mode == 'analyze_results':
             if magn_moms == None:
                 magn_moms = [0 for i in range(len(concs))]
             sc_res.append([e_dft,sws0,B0,e0,R_squared,magn_moms,ca])
-
 
             results.append([[s,c],sc_res])
 
@@ -671,4 +669,3 @@ elif mode == 'analyze_results':
     output_file = open('results','w')
     output_file.write(output_all)
     output_file.close()
-    
