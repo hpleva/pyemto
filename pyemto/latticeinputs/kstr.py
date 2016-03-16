@@ -192,7 +192,7 @@ class Kstr:
         fl.write(self.output(1))
         fl.close()
         if self.twocenter:
-            fl = open(folder + '/{0}2.kstr'.format(self.jobname), "w")
+            fl = open(folder + '/{0}.kstr'.format(self.jobname2), "w")
             fl.write(self.output(2))
             fl.close()
 
