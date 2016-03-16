@@ -299,7 +299,7 @@ class Kstr:
             print("Kappa does not have correct number of values, please correct! : %s" % (str(self.kappaw)))
             exit()
         if self.twocenter:
-            self.jobname2 = self.jobname + '_2'
+            self.jobname2 = self.jobname + 'M'
 
         # Optimize dmax
         if self.nghbp is None:
