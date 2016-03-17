@@ -233,7 +233,8 @@ class Create_EMTO_input:
                                              latparams=[1.0,self.output_boa,self.output_coa],
                                              latvectors=[self.output_alpha,self.output_beta,self.output_gamma],
                                              basis=self.output_basis,
-                                             kappaw=[0.0])
+                                             kappaw=[0.0],
+                                             EMTOdir=self.EMTOdir)
         self.input_system.lattice.write_structure_input_files(folder=self.folder,jobname=self.latname)
         return
 
