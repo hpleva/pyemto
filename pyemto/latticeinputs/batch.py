@@ -99,9 +99,9 @@ class Batch:
                     self.latpath + "/" + self.jobname) + "_kstr.output" + "\n"
         if self.runKSTR2:
             line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kstr/source/kstr < ") +\
-                common.cleanup_path(self.latpath + "/" + self.jobname) + '2' + ".kstr > " +\
+                common.cleanup_path(self.latpath + "/" + self.jobname) + 'M' + ".kstr > " +\
                 common.cleanup_path(
-                    self.latpath + "/" + self.jobname) + '2' + "_kstr.output" + "\n"
+                    self.latpath + "/" + self.jobname) + 'M' + "_kstr.output" + "\n"
         if self.runSHAPE:
             line += elapsed_time + common.cleanup_path(self.EMTOdir + "/shape/source/shape < ") +\
                 common.cleanup_path(self.latpath + "/" + self.jobname) + ".shape > " +\
@@ -130,7 +130,7 @@ class Batch:
         else:
             common.check_folders(folder)
 
-        fl = open(folder + '/{0}.cmd'.format(self.jobname), "w")
+        fl = open(folder + '/{0}.sh'.format(self.jobname), "w")
         fl.write(self.output())
         fl.close()
 
