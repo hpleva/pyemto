@@ -1453,6 +1453,10 @@ class Kgrn:
             self.ops = 'N'
         if self.afm is None:
             self.afm = 'P'
+            for i in range(len(self.splts)):
+                if not self.splts[i] == 0.0:
+                    self.afm = 'F'
+                    break
         if self.crt is None:
             self.crt = 'M'
         if self.lmaxh is None:

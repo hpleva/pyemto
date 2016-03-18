@@ -14,7 +14,7 @@ sys.path.insert(0, "/home/henrik/local_emto_stuff/pyemto")
 import pyemto
 import pyemto.common.common as common
 
-class Create_EMTO_input:
+class EMTO:
     """This class can be used to create EMTO input files from
        an arbitrary structure. What is needed as input:
        -primitive lattice vectors,
@@ -22,18 +22,8 @@ class Create_EMTO_input:
        -list of atomic species that occupy the basis sites.
     """
 
-    def __init__(self,prims=None,basis=None,species=None,folder=None,EMTOdir=None,
-                 latpath=None,coords_are_cartesian=False,latname=None):
-        # Import necessary packages
-        #from pyemto.latticeinputs.latticeinputs import Latticeinputs
-        #from pyemto.emtoinputs.emtoinputs import Emtoinputs
-
-        if prims is None:
-            sys.exit('Create_EMTO_input.__init__(): \'prims\' has to be given!')
-        if basis is None:
-            sys.exit('Create_EMTO_input.__init__(): \'prims\' has to be given!')
-        if species is None:
-            sys.exit('Create_EMTO_input.__init__(): \'prims\' has to be given!')
+    def __init__(self,folder=None,EMTOdir=None):
+        """ """
         if folder is None:
             self.folder = os.getcwd()
         else:
@@ -42,20 +32,6 @@ class Create_EMTO_input:
             self.EMTOdir = '/home/henrik/local_emto_stuff/openmp-stable-cmake'    
         else:
             self.EMTOdir = EMTOdir
-        if latpath is None:
-            self.latpath = os.getcwd()
-        else:
-            self.latpath = latpath
-        if latname is None:
-            self.latname = 'structure'
-        else:
-            self.latname = latname
-
-        self.prims   = np.asarray(prims)
-        self.basis   = np.asarray(basis)
-        self.species = np.asarray(species)
-        self.coords_are_cartesian = coords_are_cartesian
-        self.ibz = None
 
         self.sg2ibz = {8:13,12:13,42:11,160:7,166:7,225:2}
         self.sg2bl  = {8:'base-centered monoclinic',12:'base-centered monoclinic',
@@ -64,13 +40,6 @@ class Create_EMTO_input:
 
         # BMDL, KSTR, SHAPE, KGRN and KFCD class instances
         self.input_system = pyemto.System(folder=self.folder,EMTOdir=self.EMTOdir)
-        #self.lattice = Latticeinputs()
-        #self.emto = Emtoinputs()
-        #
-        self.pmg_input_lattice = Lattice(self.prims)
-        self.pmg_input_struct  = Structure(self.pmg_input_lattice, self.species, self.basis, 
-                                           coords_are_cartesian=self.coords_are_cartesian)
-        self.sws = self.calc_ws_radius(self.pmg_input_struct)
         return
 
     def calc_ws_radius(self,struct):
@@ -93,7 +62,38 @@ class Create_EMTO_input:
             emto_sites.append(struct.sites[i].species_string)
         return emto_sites
 
-    def create_structure_input(self):
+    def init_structure(self,prims=None,basis=None,atoms=None,latpath=None,
+                       coords_are_cartesian=False,latname=None,kappaw=None):
+        if prims is None:
+            sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
+        if basis is None:
+            sys.exit('EMTO.init_structure(): \'basis\' has to be given!')
+        if atoms is None:
+            sys.exit('EMTO.init_structure(): \'atoms\' has to be given!')
+        if latpath is None:
+            self.latpath = os.getcwd()
+        else:
+            self.latpath = latpath
+        if latname is None:
+            self.latname = 'structure'
+        else:
+            self.latname = latname
+
+        self.prims   = np.asarray(prims)
+        self.basis   = np.asarray(basis)
+        self.species = np.asarray(atoms)
+        self.coords_are_cartesian = coords_are_cartesian
+        self.ibz = None
+        if kappaw == None:
+            self.kappaw = [0.0]
+        else:
+            self.kappaw = kappaw
+        #
+        self.pmg_input_lattice = Lattice(self.prims)
+        self.pmg_input_struct  = Structure(self.pmg_input_lattice, self.species, self.basis, 
+                                           coords_are_cartesian=self.coords_are_cartesian)
+        self.sws = self.calc_ws_radius(self.pmg_input_struct)
+
         #
         self.finder = SpacegroupAnalyzer(self.pmg_input_struct)
         self.stm = StructureMatcher(ltol=0.001,stol=0.001,angle_tol=0.01)
@@ -208,6 +208,7 @@ class Create_EMTO_input:
         self.output_lattice = Lattice(np.array([self.output_prima,self.output_primb,self.output_primc]))
         self.output_struct = Structure(self.output_lattice, self.output_sites, 
                                        self.output_basis, coords_are_cartesian=True)
+        #
         # Print EMTO structure information
         print("")
         print("Generated EMTO structure:")
@@ -233,23 +234,145 @@ class Create_EMTO_input:
                                              latparams=[1.0,self.output_boa,self.output_coa],
                                              latvectors=[self.output_alpha,self.output_beta,self.output_gamma],
                                              basis=self.output_basis,
-                                             kappaw=[0.0],
+                                             kappaw=self.kappaw,
                                              EMTOdir=self.EMTOdir)
+        return
+
+    def write_bmdl_kstr_shape_input(self):
         self.input_system.lattice.write_structure_input_files(folder=self.folder,jobname=self.latname)
         return
 
-    def create_KGRN_KFCD_input(self,**kwargs):
+    def init_bulk(self,atoms_cpa=None,splts=None,concs=None,its=None,sws=None,**kwargs):
+        """Generates and writes down to disk KGRN and KFCD input files, as well as the
+           SLURM job script that is used to run the calculations.
+        """
         if self.ibz == None:
-            sys.exit('self.ibz == None! Run create_structure_input() to compute IBZ for your structure.')
-        self.input_system.bulk(lat=common.ibz_to_lat(self.ibz),
-                               latname=self.latname,
-                               latpath=self.latpath,
-                               atoms=self.output_sites,**kwargs)
+            sys.exit('self.ibz == None! Run create_structure_input() to generate IBZ \n'+
+                     'for your structure, if you do not know it.')
+        if sws == None:
+            pass
+        else:
+            self.sws = sws
+        # Construct an index array to keep track of the number of atoms in each site.
+        if atoms_cpa == None:
+            self.KGRN_atoms = np.asarray(self.output_sites)
+            index_array = np.ones(len(self.KGRN_atoms),dtype='int32')
+            index_len = np.sum(index_array)
+        else:
+            index_array = np.ones(len(atoms_cpa),dtype='int32')
+            for i in range(len(atoms_cpa)):
+                if isinstance(atoms_cpa[i],list):
+                    index_array[i] = len(atoms_cpa[i])
+                else:
+                    index_array[i] = 1
+            index_len = np.sum(index_array)
+            atoms_flat = []
+            for i in range(len(atoms_cpa)):
+                if isinstance(atoms_cpa[i],list):
+                    for j in range(len(atoms_cpa[i])):
+                        atoms_flat.append(atoms_cpa[i][j])
+                else:
+                    atoms_flat.append(atoms_cpa[i])
+            self.KGRN_atoms = np.array(atoms_flat)
+        if splts == None:
+            # Assume a zero moments array
+            self.KGRN_splts = np.zeros(index_len)
+        else:
+            splts_flat = []
+            for i in range(len(splts)):
+                if isinstance(splts[i],list):
+                    for j in range(len(splts[i])):
+                        splts_flat.append(splts[i][j])
+                else:
+                    splts_flat.append(splts[i])
+            self.KGRN_splts = np.array(splts_flat)
+        if concs == None:
+            # Assume 1.0 concentration, if site is occupied by a single atom,
+            # and 1.0/N(i) if site(i) is occupied by N(i) atoms (CPA).
+            self.KGRN_concs = np.zeros(index_len)
+            running_index = 0
+            for i in range(len(index_array)):
+                for j in range(index_array[i]):
+                    self.KGRN_concs[running_index] = 1.0/index_array[i]
+                    running_index += 1
+        else:
+            concs_flat = []
+            for i in range(len(concs)):
+                if isinstance(concs[i],list):
+                    for j in range(len(concs[i])):
+                        atoms_flat.append(concs[i][j])
+                else:
+                    atoms_flat.append(concs[i])
+            self.KGRN_concs = np.array(concs_flat)
+        ###
+        # Construct iqs, its, and itas arrays (for the KGRN atomblock).
+        self.KGRN_iqs = np.zeros(index_len, dtype='int32')
+        running_index = 0
+        for i in range(len(index_array)):
+            for j in range(index_array[i]):
+                self.KGRN_iqs[running_index] = i+1
+                running_index += 1
         #
+        self.KGRN_itas = np.zeros(index_len, dtype='int32')
+        running_index = 0
+        for i in range(len(index_array)):
+            for j in range(index_array[i]):
+                self.KGRN_itas[running_index] = j+1
+                running_index += 1
+        #
+        # its = array of the indexes of sublattices (IT in input file). 
+        # The concept of sublattice can be used to reduce computational load;
+        # if two sites are occupied by two identical elements with
+        # identical magnetic moment (different spatial rotation in terms of
+        # lattice symmetry is allowed), we only need to compute one
+        # instance and then copy the information to the other lattice site.
+        self.KGRN_its = np.zeros(index_len, dtype='int32')
+        #
+        if its == None:
+            # Assume distinct sublattices (for safety, not speed!??)
+            self.KGRN_its = np.zeros(index_len, dtype='int32')
+            running_index = 0
+            for i in range(len(index_array)):
+                for j in range(index_array[i]):
+                    self.KGRN_its[running_index] = i+1
+                    running_index += 1
+        elif its == 'all_same':
+            self.KGRN_its = np.ones(index_len, dtype='int32')
+        else:
+            its_flat = []
+            for i in range(len(its)):
+                if isinstance(its[i],list):
+                    for j in range(len(its[i])):
+                        its_flat.append(its[i][j])
+                else:
+                    atoms_flat.append(its[i])
+            self.KGRN_its = np.array(its_flat, dtype='int32')
+        #
+        self.input_system.bulk_new(lat=common.ibz_to_lat(self.ibz),
+                                   ibz=self.ibz,
+                                   latname=self.latname,
+                                   latpath=self.latpath,
+                                   atoms=self.KGRN_atoms,
+                                   concs=self.KGRN_concs,
+                                   splts=self.KGRN_splts,
+                                   iqs=self.KGRN_iqs,
+                                   its=self.KGRN_its,
+                                   itas=self.KGRN_itas,
+                                   sws=self.sws,
+                                   **kwargs)
+        #
+    def write_kgrn_kfcd_input(self):
         self.input_system.emto.kgrn.write_input_file(folder=self.folder)
         self.input_system.emto.kfcd.write_input_file(folder=self.folder)
         self.input_system.emto.batch.write_input_file(folder=self.folder)
         return
+
+    def write_kgrn_kfcd_swsrange(self,sws=None):
+        if sws is None:
+            sys.exit('EMTO.write_KGRN_KFCD_swsrange(): An array of' +
+                     ' WS-radii \'sws\' has to be given!')
+        jobnames = self.input_system.lattice_constants_batch_generate(sws)
+        return jobnames
 
     def draw_structure(self,which='input'):
         self.vis = StructureVis()
