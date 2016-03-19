@@ -212,22 +212,79 @@ class EMTO:
             self.output_primc = self.primcc/norm_tmp
             self.output_basis = self.make_basis_array(self.prim_struct)
             # Apply transformation on the basis atoms
-            self.output_basis = self.output_basis/lat_a
+            self.output_basis = self.output_basis/norm_tmp
             self.output_boa = 0.0
             self.output_coa = 0.0
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 2:
-            pass
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
+            norm_tmp = 2*self.primaa[1]
+            self.output_prima = self.primcc/norm_tmp
+            self.output_primb = self.primaa/norm_tmp
+            self.output_primc = self.primbb/norm_tmp
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            # Apply transformation on the basis atoms 
+            self.output_basis = self.output_basis/norm_tmp
+            self.output_boa = 0.0
+            self.output_coa = 0.0
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 3:
-            pass
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
+            norm_tmp = 2*self.primaa[1]
+            self.output_prima = self.primcc/norm_tmp
+            self.output_primb = self.primaa/norm_tmp
+            self.output_primc = self.primbb/norm_tmp
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            # Apply transformation on the basis atoms
+            self.output_basis = self.output_basis/norm_tmp
+            self.output_boa = 0.0
+            self.output_coa = 0.0
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 4:
+            # Hexagonal, have to rotate the vectors...
             pass
         elif self.sg2ibz[self.finder_space] == 5:
-            pass
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
+            norm_tmp = self.primaa[0]
+            self.output_prima = self.primaa/norm_tmp
+            self.output_primb = self.primbb/norm_tmp
+            self.output_primc = self.primcc/norm_tmp
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            # Apply transformation on the basis atoms
+            self.output_basis = self.output_basis/norm_tmp
+            self.output_boa = 0.0
+            self.output_coa = self.output_primc[2]
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 6:
-            pass
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
+            norm_tmp = 2*self.primbb[0]
+            self.output_prima = self.primaa/norm_tmp
+            self.output_primb = self.primbb/norm_tmp
+            self.output_primc = self.primcc/norm_tmp
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            # Apply transformation on the basis atoms
+            self.output_basis = self.output_basis/norm_tmp
+            self.output_boa = 0.0
+            self.output_coa = 2*self.output_prima[2]
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = 0.0            
         elif self.sg2ibz[self.finder_space] == 7:
             from pyemto.utilities.utils import rotation_matrix
             self.primaa = self.prim_struct.lattice.matrix[0,:]
@@ -258,28 +315,71 @@ class EMTO:
             self.output_gamma = 0.0
             #print('emto_coa = ',emto_coa)
         elif self.sg2ibz[self.finder_space] == 8:
-            pass
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
+            norm_tmp = self.primaa[0]
+            self.output_prima = self.primaa/norm_tmp
+            self.output_primb = self.primbb/norm_tmp
+            self.output_primc = self.primcc/norm_tmp
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            # Apply transformation on the basis atoms
+            self.output_basis = self.output_basis/norm_tmp
+            self.output_boa = self.output_primb[1]
+            self.output_coa = self.output_primc[2]
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 9:
-            pass
+            self.primaa = prim_struct.lattice.matrix[0,:]
+            self.primbb = prim_struct.lattice.matrix[1,:]
+            self.primcc = prim_struct.lattice.matrix[2,:]
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            norm_tmp = 2*self.primaa[0]
+            self.output_prima = self.primaa/norm_tmp
+            self.output_primb = self.primbb/norm_tmp
+            self.output_primc = self.primcc/norm_tmp
+            # Apply transformation on the basis atoms
+            self.output_basis = self.output_basis/norm_tmp
+            self.output_boa = 2*self.output_primb[1]
+            self.output_coa = self.output_primc[2]
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 10:
-            pass
+            self.primaa = prim_struct.lattice.matrix[0,:]
+            self.primbb = prim_struct.lattice.matrix[1,:]
+            self.primcc = prim_struct.lattice.matrix[2,:]
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            norm_tmp = 2*self.primbb[0]
+            self.output_prima = self.primbb/norm_tmp
+            self.output_primb = self.primcc/norm_tmp
+            self.output_primc = self.primaa/norm_tmp
+            # Apply transformation on the basis atoms
+            self.output_basis = self.output_basis/norm_tmp
+            self.output_boa = 2*self.output_primb[1]
+            self.output_coa = 2*self.output_primc[2]
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 11:
             self.primaa = prim_struct.lattice.matrix[0,:]
             self.primbb = prim_struct.lattice.matrix[1,:]
             self.primcc = prim_struct.lattice.matrix[2,:]
             self.output_basis = self.make_basis_array(self.prim_struct)
-            lat_a = 2*self.primbb[0]
-            self.output_prima = self.primbb/lat_a
-            self.output_primb = self.primcc/lat_a
-            self.output_primc = self.primaa/lat_a
+            norm_tmp = 2*self.primbb[0]
+            self.output_prima = self.primbb/norm_tmp
+            self.output_primb = self.primcc/norm_tmp
+            self.output_primc = self.primaa/norm_tmp
             # Apply transformation on the basis atoms
-            self.output_basis = self.output_basis/lat_a
+            self.output_basis = self.output_basis/norm_tmp
             self.output_boa = 2*self.output_primc[1]
             self.output_coa = 2*self.output_primc[2]
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 12:
+            # Simple monoclinic, need to rotate lattice vectors...
             pass
         elif self.sg2ibz[self.finder_space] == 13:
             from pymatgen.util.coord_utils import get_angle
@@ -307,7 +407,23 @@ class EMTO:
             self.output_beta = 0.0
             self.output_gamma = gamma
         elif self.sg2ibz[self.finder_space] == 14:
-            pass
+            self.primaa = prim_struct.lattice.matrix[0,:]
+            self.primbb = prim_struct.lattice.matrix[1,:]
+            self.primcc = prim_struct.lattice.matrix[2,:]
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            norm_tmp = self.primaa[0]
+            self.output_prima = self.primaa/norm_tmp
+            self.output_primb = self.primbb/norm_tmp
+            self.output_primc = self.primcc/norm_tmp
+            # Apply transformation on the basis atoms
+            self.output_basis = self.output_basis/norm_tmp
+            # This could be tested, should be OK:
+            #self.output_boa = np.sqrt(self.output_primb[0]**2+self.output_primb[1]**2)
+            self.output_boa = prim_struct.lattice.b/prim_struct.lattice.a
+            self.output_coa = prim_struct.lattice.c/prim_struct.lattice.a
+            self.output_alpha = prim_struct.lattice.alpha
+            self.output_beta = prim_struct.lattice.beta
+            self.output_gamma = prim_struct.lattice.gamma
         #
         self.output_sites = self.make_sites_array(self.prim_struct)
         self.output_lattice = Lattice(np.array([self.output_prima,self.output_primb,self.output_primc]))
