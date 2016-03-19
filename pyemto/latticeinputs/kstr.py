@@ -308,7 +308,9 @@ class Kstr:
             self.nghbp = 13
         if self.numvec_target is None:
             self.numvec_target = 89
-        self.dmax,numvec_tmp = self.optimize_dmax(self.latvectors,self.basis)
+        # Prevent self.basis from being modified by the omtimize_dmax function
+        # by using np.copy() function
+        self.dmax,numvec_tmp = self.optimize_dmax(self.latvectors,np.copy(self.basis))
         #if self.dmax is None:
         #    if common.lat_to_ibz(self.lat) == 2:
         #        self.dmax = 1.7
