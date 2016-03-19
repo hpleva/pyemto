@@ -108,7 +108,7 @@ class Bmdl:
             line = line + "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
                 .format(self.latvectors[2][0], self.latvectors[2][1], self.latvectors[2][2]) + "\n"
         for i in range(self.nq):
-            line = line + "QX({3})....={0:10.7f} QY({3})...={1:10.7f} QZ({3})...={2:10.7f}"\
+            line = line + "QX({3:03})..={0:10.7f} QY({3:03}).={1:10.7f} QZ({3:03}).={2:10.7f}"\
                 .format(self.basis[i,0], self.basis[i,1], self.basis[i,2], i + 1) + "\n"
 
         return line

@@ -176,6 +176,9 @@ class EMTO:
         #
         self.conv_struct = self.finder.get_conventional_standard_structure(international_monoclinic=False)
         self.prim_struct = self.finder.get_primitive_standard_structure(international_monoclinic=False)
+        # Sort the sequence of basis vectors to be the same as the input structure.
+        print(self.stm.get_mapping(self.pmg_input_struct,self.prim_struct))
+        #
         self.finder_prim = SpacegroupAnalyzer(self.prim_struct)
         self.finder_space = self.finder_prim.get_spacegroup_number()
         self.ibz_string = self.sg2bl[self.finder_space]
@@ -331,9 +334,9 @@ class EMTO:
             self.output_beta = 0.0
             self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 9:
-            self.primaa = prim_struct.lattice.matrix[0,:]
-            self.primbb = prim_struct.lattice.matrix[1,:]
-            self.primcc = prim_struct.lattice.matrix[2,:]
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
             self.output_basis = self.make_basis_array(self.prim_struct)
             norm_tmp = 2*self.primaa[0]
             self.output_prima = self.primaa/norm_tmp
@@ -347,9 +350,9 @@ class EMTO:
             self.output_beta = 0.0
             self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 10:
-            self.primaa = prim_struct.lattice.matrix[0,:]
-            self.primbb = prim_struct.lattice.matrix[1,:]
-            self.primcc = prim_struct.lattice.matrix[2,:]
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
             self.output_basis = self.make_basis_array(self.prim_struct)
             norm_tmp = 2*self.primbb[0]
             self.output_prima = self.primbb/norm_tmp
@@ -363,9 +366,9 @@ class EMTO:
             self.output_beta = 0.0
             self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 11:
-            self.primaa = prim_struct.lattice.matrix[0,:]
-            self.primbb = prim_struct.lattice.matrix[1,:]
-            self.primcc = prim_struct.lattice.matrix[2,:]
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
             self.output_basis = self.make_basis_array(self.prim_struct)
             norm_tmp = 2*self.primbb[0]
             self.output_prima = self.primbb/norm_tmp
@@ -407,9 +410,9 @@ class EMTO:
             self.output_beta = 0.0
             self.output_gamma = gamma
         elif self.sg2ibz[self.finder_space] == 14:
-            self.primaa = prim_struct.lattice.matrix[0,:]
-            self.primbb = prim_struct.lattice.matrix[1,:]
-            self.primcc = prim_struct.lattice.matrix[2,:]
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
             self.output_basis = self.make_basis_array(self.prim_struct)
             norm_tmp = self.primaa[0]
             self.output_prima = self.primaa/norm_tmp
@@ -419,11 +422,11 @@ class EMTO:
             self.output_basis = self.output_basis/norm_tmp
             # This could be tested, should be OK:
             #self.output_boa = np.sqrt(self.output_primb[0]**2+self.output_primb[1]**2)
-            self.output_boa = prim_struct.lattice.b/prim_struct.lattice.a
-            self.output_coa = prim_struct.lattice.c/prim_struct.lattice.a
-            self.output_alpha = prim_struct.lattice.alpha
-            self.output_beta = prim_struct.lattice.beta
-            self.output_gamma = prim_struct.lattice.gamma
+            self.output_boa = self.prim_struct.lattice.b/self.prim_struct.lattice.a
+            self.output_coa = self.prim_struct.lattice.c/self.prim_struct.lattice.a
+            self.output_alpha = self.prim_struct.lattice.alpha
+            self.output_beta = self.prim_struct.lattice.beta
+            self.output_gamma = self.prim_struct.lattice.gamma
         #
         self.output_sites = self.make_sites_array(self.prim_struct)
         self.output_lattice = Lattice(np.array([self.output_prima,self.output_primb,self.output_primc]))
