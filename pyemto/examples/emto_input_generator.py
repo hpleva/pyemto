@@ -131,14 +131,24 @@ class EMTO:
             emto_sites.append(struct.sites[i].species_string)
         return emto_sites
 
-    def init_structure(self,prims=None,basis=None,atoms=None,latpath=None,
+    def make_sites_index(self,species):
+        len_array = len(species)
+        index_array = np.zeros(len_array,dtype='int32')
+        for i in range(len_array):
+            if species[i] == 'A+':
+                index_array[i] = 1
+            else:
+                index_array[i] = int(species[i][1:-1])
+        return index_array
+
+    def init_structure(self,prims=None,basis=None,latpath=None,
                        coords_are_cartesian=False,latname=None,kappaw=None):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
         if basis is None:
             sys.exit('EMTO.init_structure(): \'basis\' has to be given!')
-        if atoms is None:
-            sys.exit('EMTO.init_structure(): \'atoms\' has to be given!')
+        #if atoms is None:
+        #    sys.exit('EMTO.init_structure(): \'atoms\' has to be given!')
         if latpath is None:
             self.latpath = os.getcwd()
         else:
@@ -150,6 +160,13 @@ class EMTO:
 
         self.prims   = np.asarray(prims)
         self.basis   = np.asarray(basis)
+        self.len_basis = len(self.basis[:,0])
+        # Construct species array. We use A+, A2+ etc.
+        # so that the order of basis vectors does not
+        # change when standard structure is created.
+        atoms = []
+        for i in range(self.len_basis):
+            atoms.append('A{0}+'.format(i+1))
         self.species = np.asarray(atoms)
         self.coords_are_cartesian = coords_are_cartesian
         self.ibz = None
@@ -165,7 +182,7 @@ class EMTO:
 
         #
         self.finder = SpacegroupAnalyzer(self.pmg_input_struct)
-        self.stm = StructureMatcher(ltol=0.001,stol=0.001,angle_tol=0.01)
+        self.stm = StructureMatcher(ltol=0.001,stol=0.001,angle_tol=1.0)
         #
         print("Input structure information:")
         print(self.pmg_input_struct)
@@ -176,8 +193,31 @@ class EMTO:
         #
         self.conv_struct = self.finder.get_conventional_standard_structure(international_monoclinic=False)
         self.prim_struct = self.finder.get_primitive_standard_structure(international_monoclinic=False)
+        #print('self.prim_struct:')
+        #print(self.prim_struct)
+        #print("")
         # Sort the sequence of basis vectors to be the same as the input structure.
-        print(self.stm.get_mapping(self.pmg_input_struct,self.prim_struct))
+        # I want to do this because when the conventional (and EMTO) cell is created, sites end up in random order
+        # and the user might not realize that and end up putting species in wrong sites.
+        #species_input_index  = self.make_sites_index(self.make_sites_array(self.pmg_input_struct))
+        #species_output_index = self.make_sites_index(self.make_sites_array(self.prim_struct))
+        #sorting_array = np.argsort(species_output_index)
+        #print(species_input_index)
+        #print(species_output_index)
+        #print(sorting_array)
+        #prim_struct_temp = self.prim_struct.copy()
+        #print('prim_struct_temp:')
+        #print(prim_struct_temp)
+        #print("")
+        #prim_struct_temp[0] = prim_struct_temp[2]
+        #print('self.prim_struct:')
+        #print(self.prim_struct)
+        #print("")
+        #print('prim_struct_temp:')
+        #print(prim_struct_temp)
+        #print("")
+        #for i in range(len(sorting_array)):
+        #    self.prim_struct[i] = prim_struct_temp[sorting_array[i]]
         #
         self.finder_prim = SpacegroupAnalyzer(self.prim_struct)
         self.finder_space = self.finder_prim.get_spacegroup_number()
@@ -479,9 +519,10 @@ class EMTO:
             self.sws = sws
         # Construct an index array to keep track of the number of atoms in each site.
         if atoms_cpa == None:
-            self.KGRN_atoms = np.asarray(self.output_sites)
-            index_array = np.ones(len(self.KGRN_atoms),dtype='int32')
-            index_len = np.sum(index_array)
+            sys.exit('EMTO.init_bulk(): \'atoms_cpa\' has to be given!')
+            #self.KGRN_atoms = np.asarray(self.output_sites)
+            #index_array = np.ones(len(self.KGRN_atoms),dtype='int32')
+            #index_len = np.sum(index_array)
         else:
             index_array = np.ones(len(atoms_cpa),dtype='int32')
             for i in range(len(atoms_cpa)):

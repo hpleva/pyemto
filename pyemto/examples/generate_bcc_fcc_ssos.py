@@ -1,7 +1,7 @@
 from emto_input_generator import *
 import numpy as np
 
-folder = os.getcwd()           # Get current working directory.
+folder = os.getcwd()               # Get current working directory.
 emtopath = folder+"/bcc_fcc_ssos"  # Folder where the calculations will be performed.
 latpath = emtopath
 
@@ -16,17 +16,17 @@ basis = np.array([[0.0,0.0,0.0],
                   [0.2,0.2,0.8],
                   [0.8,0.8,0.2]])
 
-species = ["Co","Cr","Fe","Mn","Ni"]
-species_cpa = species
+#species = ['A1+','A2+','A3+','A4+','A5+']
+species_cpa = ["Co","Cr","Fe","Mn","Ni"]
 
 input_creator = EMTO(folder=emtopath)
 
 input_creator.init_structure(latpath=latpath,
                              prims=prims,
                              basis=basis,
-                             atoms=species,
                              latname='ssos_bcc_1')
 
+"""
 input_creator.init_bulk(atoms_cpa=species_cpa)
 
 sws_range = np.linspace(2,3,6)
@@ -36,3 +36,4 @@ input_creator.write_bmdl_kstr_shape_input()
 input_creator.write_kgrn_kfcd_swsrange(sws=sws_range)
 
 input_creator.draw_structure('output')
+"""
