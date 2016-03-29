@@ -438,8 +438,8 @@ class Kgrn:
 
             Output of atomic lines in kgrn format
 
-        :returns:
-        :rtype:
+        :returns: A atomic lines for kgrn input
+        :rtype: str
         """
 
         lines = ""
@@ -1165,8 +1165,8 @@ class Kgrn:
 
             Output first part of the kgrn input file in formated string
 
-        :returns:
-        :rtype:
+        :returns: A first part of the kgrn input file
+        :rtype: str
         """
 
         now = datetime.datetime.now()
@@ -1247,8 +1247,8 @@ class Kgrn:
 
         :param folder:  (Default value = None)
         :type folder:
-        :returns:
-        :rtype:
+        :returns:  None
+        :rtype: 
         """
 
         # Check data integrity before anything is written on disk or run
@@ -1318,7 +1318,7 @@ class Kgrn:
                                 self.concs[i], self.sm_ss[
                                     i], self.s_wss[i], self.ws_wsts[i],
                                 self.qtrs[i], self.splts[i], self.fixs[i]])
-        return
+
 
     def create_atomblock(self):
         """Constructs the KGRN input file atomblock if all
@@ -1385,7 +1385,6 @@ class Kgrn:
                               self.aconfig[i][6], self.aconfig[
                                   i][7], self.aconfig[i][8],
                               self.aconfig[i][9], self.aconfig[i][10]))
-        return
 
     def check_input_file(self):
         """Perform various checks on the class data
@@ -1601,5 +1600,4 @@ class Kgrn:
             self.DIR010 = 'kgrn/'
         if self.DIR011 is None:
             self.DIR011 = 'kgrn/tmp/'
-        return
 
