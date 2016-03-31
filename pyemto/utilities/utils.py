@@ -29,8 +29,8 @@ def run_emto(name, folder="./"):
     :rtype:
     """
 
-    # filetype = 'sh'
-    filetype = 'cmd'
+    filetype = 'sh'
+    #filetype = 'cmd'
     namelist = []
     jobids = []
     for fltest in os.listdir(folder):
