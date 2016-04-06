@@ -2388,7 +2388,62 @@ class System:
         # Loop until we have enough points to calculate initial sws
         iteration = 0
         while not enough:
+            iteration += 1
+           
+            # if 25 is not enough one should check initial sws
+            if iteration > 25:
+                print(
+                    "SWS loop did not converge in {0} iterations!".format(iteration))
+                quit()
+           
+            # Calculate next point
+            self.sws = next_sws
+            job = self.create_jobname(self.jobname)
+            self.emto.set_values(sws=self.sws, jobname=job)
+            
+            # First check if calculations are already done
+            already = False
+            already = self.check_conv(job, folder=self.folder)
+            # Use existing calculations if available.
+            if self.lc_skip or (all(already) and not self.lc_rerun):
+                conv = (True, True)
+            else:
+                if already[0] and not already[1]:
+                    conv = self.runemto(
+                        jobname=job, folder=self.folder, onlyKFCD=True)
+                else:
+                    conv = self.runemto(jobname=job, folder=self.folder)
 
+            # KGRN has crashed, find out why
+            if conv[0] == False:
+                self.which_error(job, folder=self.folder)
+                quit()
+            en = self.get_energy(job, folder=self.folder, func=xc)
+            energies.append(en)
+            swses.append(self.sws)
+           
+            # Check do we have minumun and predict next sws
+            next_sws, minfound = self.predict_next_sws(swses, energies, delta)
+           
+            # Check if we have mimimum and enough points
+            # 9 points should be enough for EOS
+            if minfound and len(swses) > 9:
+                enough = True
+           
+            #print('debug find_lc: ',swses)
+           
+            if prn:
+                self.print_sws_ens('find_lc', swses, energies)
+           
+            sws0, e0, B, grun = eos.fit(swses, energies)
+           
+            # These functions create files on disk about the data to be fitted
+            # as well as the results of the fit.
+            # eos.prepareData()
+            #sws0,e0,B,grun = eos.fit2file()
+           
+            return sws0, B, e0
+            
 
     def refine_lc(self, sws, delta=0.01, prn=True, xc='PBE'):
         """Calculates a more accurate equilibrium volume for cubic systems.
