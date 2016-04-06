@@ -351,7 +351,7 @@ class EMTO:
             # Apply transformation on the basis atoms
             for i in range(len(self.output_basis[:,0])):
                 self.output_basis[i,:] = np.dot(rot2,np.dot(rot1,self.output_basis[i,:]))/scale_a
-            self.output_boa = 0.0
+            self.output_boa = 1.0
             self.output_coa = self.output_prima[2]
             self.output_alpha = 0.0
             self.output_beta = 0.0
