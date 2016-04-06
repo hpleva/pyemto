@@ -72,8 +72,8 @@ class System:
             self.xc = xc
 
         # Create working folders
-        common.check_folders(folder + '/kgrn', folder + '/kgrn/tmp',
-                           folder + '/kfcd', folder + '/fit')
+        common.check_folders(self.folder + '/kgrn', self.folder + '/kgrn/tmp',
+                           self.folder + '/kfcd', self.folder + '/fit')
 
         # BMDL, KSTR, SHAPE, KGRN and KFCD class instances
         self.lattice = Latticeinputs()
@@ -241,6 +241,138 @@ class System:
                                  concs=self.concs, splts=self.splts, ibz=self.ibz,
                                  latname=self.latname, latpath=self.latpath, emtopath=self.emtopath,
                                  EMTOdir=self.EMTOdir, **kwargs)
+        return
+
+    def bulk_new(self, jobname=None, lat=None, atoms=None, concs=None, splts=None, sws=None,
+                 latname=None, latpath=None, emtopath=None, ibz=None, bmod=None, xc=None, ca=None,
+                 iqs=None, its=None, itas=None,
+                 **kwargs):
+        """Initializes the basic parameters for bulk systems.
+
+           !!!A NEW VERSION OF THE OLD "bulk" ROUTINE!!!
+
+        Basic information concerning the system,
+        such as the types of atoms and the crystal structure should be given to this function and
+        it should be called right after the class instance has been created.
+
+        :param jobname: Name of the system (Default value = None)
+        :type jobname:
+        :param lat: The type of lattice structure (Default value = None)
+        :type lat:
+        :param atoms: List of atoms in the system (Default value = None)
+        :type atoms:
+        :param concs: List of concentrations of the elements in the
+                      'atoms' list. This information is only used in CPA
+                      calculations (Default value = None)
+        :type concs:
+        :param splts: List of initial magnetic moments of the elements in the
+                      'atoms' list (Default value = None)
+        :type splts:
+        :param sws: The Wigner-Seitz radius of the system (Default value = None)
+        :type sws: float
+        :param latname: The 'jobname' of the BMDL, KSTR and SHAPE output files. These
+                        structure output files have to be located in the 'latpath'
+                        directory and they have to be named jobname.extention
+                        (Default value = None)
+        :type latname:
+        :param latpath: The absolute path to the folder where the 'bmdl', 'kstr' and 'shape'
+                        folders are located, which in turn contain the output files of the
+                        structure calculation (Default value = None)
+        :type latpath:
+        :param emtopath: The absolute path to the folder where the EMTO installation is
+                         located (Default value = None)
+        :type emtopath:
+        :param ibz: The code number indicating the Bravais lattice that the crystal
+                    structure of the system has. For a list of possible values, please consult the
+                    EMTO manual (Default value = None)
+        :type ibz:
+        :param bmod: The bulk modulus can be inputed here and if it is given,
+                     it will be used by the elastic modulus routines (Default value = None)
+        :type bmod:
+        :param xc: The choice of the xc-functional. If None, PBE will be used as default
+                   (Default value = None)
+        :type xc:
+        :param ca: The c/a ratio of hcp structures can be inputed here and if it is given,
+                   it will be used by the elastic modulus routines (Default value = None)
+        :type ca:
+        :param **kwargs: Arbitrary other KGRN and KFCD input parameters can be given here
+                         as keyword arguments. They will be passed down to the
+                         self.emto.set_values() function
+        :type **kwargs: str,int,float,list(str),list(int),list(float)
+        :returns: None
+        :rtype: None
+        """
+
+        if lat is None:
+            sys.exit('System.bulk(): \'lat\' has to be given!')
+        else:
+            self.lat = lat
+        if latname is None:
+            self.latname = self.lat
+        else:
+            self.latname = latname
+        if latpath is None:
+            self.latpath = "./"
+        else:
+            self.latpath = latpath
+        if emtopath is None:
+            self.emtopath = self.folder
+        else:
+            self.emtopath = emtopath
+        if atoms is None:
+            sys.exit('System.init_bulk(): \'atoms\' has to be given!')
+        else:
+            self.atoms = atoms
+        if concs is None:
+            # Assume equal concentrations for each element
+            self.concs = np.zeros(len(atoms))
+            self.concs[:] = 1.0 / float(len(atoms))
+        else:
+            self.concs = concs
+        if splts is None:
+            self.splts = np.zeros(len(atoms))
+        else:
+            self.splts = np.asarray(splts)
+        if sws is None:
+            self.sws = 0.0
+            #sys.exit('System.bulk(): \'sws\' has to be given!')
+        else:
+            self.sws = sws
+        if jobname is None:
+            self.jobname, self.fulljobname = self.create_jobname()
+        else:
+            self.jobname = jobname
+            self.fulljobname = self.create_jobname(jobname)
+        if ibz is None:
+            self.ibz = common.lat_to_ibz(self.lat)
+        else:
+            self.ibz = ibz
+
+        # Knowledge of the c/a lattice parameter for hcp systems
+        if ca is not None:
+            self.ca = ca
+        else:
+            self.ca = None
+
+        # Knowledge of the xc-functional we want to use
+        if xc is None:
+            self.xc = 'PBE'
+        else:
+            self.xc = xc
+
+        # Knowledge of the value of the bulk modulus, which
+        # is mainly needed in the elastic constant functions
+        self.bmod = bmod
+
+        # Construct input parameter arrays.
+        self.iqs = iqs
+        self.its = its
+        self.itas = itas
+        
+        self.emto.set_values(jobname=self.fulljobname, sws=self.sws, atoms=self.atoms,
+                             iqs=self.iqs, its=self.its, itas=self.itas, concs=self.concs,
+                             splts=self.splts, ibz=self.ibz, latname=self.latname, latpath=self.latpath,
+                             emtopath=self.emtopath, EMTOdir=self.EMTOdir, **kwargs)
         return
 
 
@@ -525,24 +657,6 @@ class System:
 
             return jobnames
 
-        elif self.lat == 'trig' or self.lat == 'stric':
-            for j in range(len(self.lc_batch_sws_range)):
-                self.sws = self.lc_batch_sws_range[j]
-                job = self.create_jobname(self.jobname)
-                jobnames.append(job)
-                self.emto.set_values(sws=self.sws, jobname=job)
-
-                common.check_folders(
-                    self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                common.check_folders(self.folder + "/kfcd")
-                common.check_folders(self.folder + "/fit")
-
-                self.emto.kgrn.write_input_file(folder=self.folder)
-                self.emto.kfcd.write_input_file(folder=self.folder)
-                self.emto.batch.write_input_file(folder=self.folder)
-
-            return jobnames
-
         elif self.lat == 'hcp':
             #latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
             #            'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
@@ -567,6 +681,26 @@ class System:
                     self.emto.batch.write_input_file(folder=self.folder)
 
             return jobnames
+
+        #elif self.lat == 'trig' or self.lat == 'stric':
+        else:
+            for j in range(len(self.lc_batch_sws_range)):
+                self.sws = self.lc_batch_sws_range[j]
+                job = self.create_jobname(self.jobname)
+                jobnames.append(job)
+                self.emto.set_values(sws=self.sws, jobname=job)
+
+                common.check_folders(
+                    self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
+                common.check_folders(self.folder + "/kfcd")
+                common.check_folders(self.folder + "/fit")
+
+                self.emto.kgrn.write_input_file(folder=self.folder)
+                self.emto.kfcd.write_input_file(folder=self.folder)
+                self.emto.batch.write_input_file(folder=self.folder)
+
+            return jobnames
+
 
     def lattice_constants_batch_calculate(self, sws=None, ca=None):
         """Calculates the ground state WS-radius using the parallelism of

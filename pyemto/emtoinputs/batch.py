@@ -105,7 +105,7 @@ class Batch:
         else:
             common.check_folders(folder)
 
-        fl = open(folder + '/{0}.cmd'.format(self.jobname), "w")
+        fl = open(folder + '/{0}.sh'.format(self.jobname), "w")
         fl.write(self.output())
         fl.close()
         return

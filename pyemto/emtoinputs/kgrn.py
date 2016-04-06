@@ -232,7 +232,7 @@ class Kgrn:
                  dirac_niter=None, iwat=None, nprna=None, vmix=None, rwat=None, rmax=None,
                  dx=None, dr1=None, test=None, teste=None, testy=None, testv=None,
                  FOR001=None, DIR002=None, DIR003=None, FOR004=None, DIR006=None, DIR009=None,
-                 DIR010=None, DIR011=None):
+                 DIR010=None, DIR011=None,ncpu=1):
 
         self.jobname = jobname
         self.latname = latname
@@ -331,6 +331,7 @@ class Kgrn:
         self.DIR009 = DIR009
         self.DIR010 = DIR010
         self.DIR011 = DIR011
+        self.ncpu = 1
 
         if iqs is None:
             self.iqs = np.ones(50, dtype='int32')
@@ -437,8 +438,8 @@ class Kgrn:
 
             Output of atomic lines in kgrn format
 
-        :returns:
-        :rtype:
+        :returns: A atomic lines for kgrn input
+        :rtype: str
         """
 
         lines = ""
@@ -1164,8 +1165,8 @@ class Kgrn:
 
             Output first part of the kgrn input file in formated string
 
-        :returns:
-        :rtype:
+        :returns: A first part of the kgrn input file
+        :rtype: str
         """
 
         now = datetime.datetime.now()
@@ -1200,8 +1201,8 @@ class Kgrn:
             % (self.kmsh, self.ibz, self.nkx) \
             + "NKY..= %2i NKZ..= %2i FBZ..=  %1s\n" \
             % (self.nky, self.nkz, self.fbz)
-        line = line + "KMSH2..= %1s IBZ2.=%3i NKX2.=%3i NKY2.=%3i NKZ2.=%3i" \
-            % (self.kmsh2, self.ibz2, self.nkx2, self.nky2, self.nkz2) + "\n"
+        line = line + "KMSH2..= %1s IBZ2.=%3i NKX2.=%3i NKY2.=%3i NKZ2.=%3i NCPU.=%03i"\
+            % (self.kmsh2, self.ibz2, self.nkx2, self.nky2, self.nkz2, self.ncpu) + "\n"
         line = line + "ZMSH...= %1s NZ1..= %2i " % (self.zmsh, self.nz1) \
             + "NZ2..=%3i NZ3..=%3i NRES.=%3i NZD.=%4i" \
             % (self.nz2, self.nz3, self.nres, self.nzd) + "\n"
@@ -1246,8 +1247,8 @@ class Kgrn:
 
         :param folder:  (Default value = None)
         :type folder:
-        :returns:
-        :rtype:
+        :returns:  None
+        :rtype: 
         """
 
         # Check data integrity before anything is written on disk or run
@@ -1317,7 +1318,7 @@ class Kgrn:
                                 self.concs[i], self.sm_ss[
                                     i], self.s_wss[i], self.ws_wsts[i],
                                 self.qtrs[i], self.splts[i], self.fixs[i]])
-        return
+
 
     def create_atomblock(self):
         """Constructs the KGRN input file atomblock if all
@@ -1384,7 +1385,6 @@ class Kgrn:
                               self.aconfig[i][6], self.aconfig[
                                   i][7], self.aconfig[i][8],
                               self.aconfig[i][9], self.aconfig[i][10]))
-        return
 
     def check_input_file(self):
         """Perform various checks on the class data
@@ -1427,7 +1427,7 @@ class Kgrn:
         if self.strt is None:
             self.strt = 'A'
         if self.msgl is None:
-            self.msgl = 0
+            self.msgl = 1
         if self.expan is None:
             self.expan = 'S'
         if self.fcd is None:
@@ -1452,6 +1452,10 @@ class Kgrn:
             self.ops = 'N'
         if self.afm is None:
             self.afm = 'P'
+            for i in range(len(self.splts)):
+                if not self.splts[i] == 0.0:
+                    self.afm = 'F'
+                    break
         if self.crt is None:
             self.crt = 'M'
         if self.lmaxh is None:
@@ -1596,5 +1600,4 @@ class Kgrn:
             self.DIR010 = 'kgrn/'
         if self.DIR011 is None:
             self.DIR011 = 'kgrn/tmp/'
-        return
 

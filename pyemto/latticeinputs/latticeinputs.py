@@ -467,17 +467,17 @@ class Latticeinputs:
         if folder is None:
             folder = "./"
         else:
-            common.check_folders(folder)
+            common.check_folders(folder,folder+'/bmdl',folder+'/kstr',folder+'/shape')
 
         #if lat is None:
         #    sys.exit('Latticeinputs.write_structure_input_files: \'lat\' has to be given!')
 
         if jobname is None:
-            #sys.exit('Latticeinputs.write_structure_input_files: \'jobname\' has to be given!')
-            jobname = lat
+            sys.exit('Latticeinputs.write_structure_input_files: \'jobname\' has to be given!')
+            #jobname = lat
 
         # Pass down necessary arguments:
-        self.set_values(jobname=jobname,latpath=folder,lat=lat)
+        self.set_values(jobname=jobname,latpath=folder)
 
         # Pass down optional arguments:
         self.set_values(**kwargs)

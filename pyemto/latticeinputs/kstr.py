@@ -84,7 +84,7 @@ class Kstr:
         self.jobname = jobname
         self.latparams = latparams
         self.latvectors = latvectors
-        self.basis = basis
+        self.basis = np.asarray(basis)
         self.kappaw = kappaw
         self.dmax = dmax
         self.msgl = msgl
@@ -160,8 +160,9 @@ class Kstr:
             line = line + "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
                 .format(self.latvectors[2][0], self.latvectors[2][1], self.latvectors[2][2]) + "\n"
         for i in range(self.nq):
-            line = line + "QX.......={0:10.7f} QY......={1:10.7f} QZ......={2:10.7f}"\
-                .format(self.basis[i][0], self.basis[i][1], self.basis[i][2]) + "\n"
+            #line = line + "QX.......={0:10.7f} QY......={1:10.7f} QZ(...={2:10.7f}"\
+                line = line + "QX({3:03})..={0:10.7f} QY({3:03}).={1:10.7f} QZ({3:03}).={2:10.7f}"\
+                .format(self.basis[i,0], self.basis[i,1], self.basis[i,2], i+1) + "\n"
         for i in range(self.nq):
             line = line + "a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}"\
                 .format(*self.awIQ[i, :]) + "\n"
@@ -221,8 +222,8 @@ class Kstr:
                 self.latparams = [1.0, 1.0, self.ca]
                 self.latvectors = [
                     [1.0, 0.0, 0.0], [-0.5, 0.8660254, 0.0], [0.0, 0.0, self.ca]]
-                self.basis = [
-                    [0.0, 0.0, 0.0], [0.0, 0.57735027, self.ca / 2.0]]
+                self.basis = np.asarray([
+                    [0.0, 0.0, 0.0], [0.0, 0.57735027, self.ca / 2.0]])
         else:
             print('WARNING: Kstr() class has no attribute \'{0}\''.format(key))
         return
@@ -268,16 +269,18 @@ class Kstr:
 
         if self.basis is None:
             if self.lat == 'hcp':
-                self.basis = [
-                    [0.0, 0.0, 0.0], [0.0, 0.57735027, self.ca / 2.0]]
+                self.basis = np.asarray([
+                    [0.0, 0.0, 0.0], [0.0, 0.57735027, self.ca / 2.0]])
             else:
-                self.basis = [0.0, 0.0, 0.0]
+                self.basis = np.asarray([0.0, 0.0, 0.0])
 
-        if isinstance(self.basis[0], list):
+        #if isinstance(self.basis[0], list):
+        #    self.nq = len(self.basis)
+        if type(self.basis[0]) == type(np.array([0.0,0.0,0.0])):
             self.nq = len(self.basis)
         else:
             self.nq = 1
-            self.basis = [self.basis]
+            self.basis = np.asarray([self.basis])
         if isinstance(self.latvectors[0], list):
             if len(self.latvectors) == 1:
                 self.iprim = 1
@@ -306,7 +309,9 @@ class Kstr:
             self.nghbp = 13
         if self.numvec_target is None:
             self.numvec_target = 89
-        self.dmax,numvec_tmp = self.optimize_dmax(self.latvectors,self.basis)
+        # Prevent self.basis from being modified by the omtimize_dmax function
+        # by using np.copy() function
+        self.dmax,numvec_tmp = self.optimize_dmax(self.latvectors,np.copy(self.basis))
         #if self.dmax is None:
         #    if common.lat_to_ibz(self.lat) == 2:
         #        self.dmax = 1.7

@@ -29,8 +29,8 @@ def run_emto(name, folder="./"):
     :rtype:
     """
 
-    # filetype = 'sh'
-    filetype = 'cmd'
+    filetype = 'sh'
+    #filetype = 'cmd'
     namelist = []
     jobids = []
     for fltest in os.listdir(folder):
@@ -275,27 +275,27 @@ def extrapolate_0k(
     | bmod                  | Experimental bulk modulus measured at temperature        |
     |                       | TB (in GPa)                                              |
     +-----------------------+----------------------------------------------------------+
-    | TB                    | The temperature at which bmod was measured (in Kelvin)   |
+    | TB                    | The temperature at which bmod was measured (in Kelvin)   |
     +-----------------------+----------------------------------------------------------+
-    | lat                   | Lattice structure                                        |
+    | lat                   | Lattice structure                                        |
     +-----------------------+----------------------------------------------------------+
-    | TD                    | Experimental Debye temperature of the substance          |
+    | TD                    | Experimental Debye temperature of the substance          |
     +-----------------------+----------------------------------------------------------+
-    | alpha                 | VOLUMETRIC!!! thermal expansion coefficient at           |
+    | alpha                 | VOLUMETRIC!!! thermal expansion coefficient at           |
     |                       | temperature T (in 10⁻6 1/K)                              |
     +-----------------------+----------------------------------------------------------+
-    | Talpha                | The temperature at which alpha was measured (in Kelvin)  |
+    | Talpha                | The temperature at which alpha was measured (in Kelvin)  |
     +-----------------------+----------------------------------------------------------+
-    | B1                    | Pressure derivative of the bulk modulus                  |
+    | B1                    | Pressure derivative of the bulk modulus                  |
     +-----------------------+----------------------------------------------------------+
-    | T0                    | The temperature to which we want to extrapolate          |
-    |                       | (Optional argument, if not given assume 0K)              |
+    | T0                    | The temperature to which we want to extrapolate          |
+    |                       | (Optional argument, if not given assume 0K)              |
     +-----------------------+----------------------------------------------------------+
-    | ca                    | c/a lattice parameter for hcp structures                 |
+    | ca                    | c/a lattice parameter for hcp structures                 |
     +-----------------------+----------------------------------------------------------+
-    | ZP                    | Whether or not zero-point (ZP) corrections are performed.|
+    | ZP                    | Whether or not zero-point (ZP) corrections are performed.|
     |                       | If one only wants to calculate the fractional volume     |
-    |                       | change due to dropping temperature, ZP=False.            |
+    |                       | change due to dropping temperature, ZP=False.            |
     +-----------------------+----------------------------------------------------------+
 
     :param a:  (Default value = None)
@@ -468,3 +468,19 @@ def extrapolate_0k(
         a0_ZPAE = (1.0 - FECa_ZPAE) * a0
 
         return a0_ZPAE, bmod0_ZPPE
+
+def rotation_matrix(axis, theta):
+    """
+    Return the rotation matrix associated with counterclockwise rotation about
+    the given axis by theta radians.
+    """
+    axis = np.asarray(axis)
+    theta = np.asarray(theta)
+    axis = axis/np.linalg.norm(axis)
+    a = np.cos(theta/2.0)
+    b, c, d = -axis*np.sin(theta/2.0)
+    aa, bb, cc, dd = a*a, b*b, c*c, d*d
+    bc, ad, ac, ab, bd, cd = b*c, a*d, a*c, a*b, b*d, c*d
+    return np.array([[aa+bb-cc-dd, 2*(bc+ad), 2*(bd-ac)],
+                     [2*(bc-ad), aa+cc-bb-dd, 2*(cd+ab)],
+                     [2*(bd+ac), 2*(cd-ab), aa+dd-bb-cc]])
