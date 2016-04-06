@@ -1293,7 +1293,7 @@ class Kgrn:
             if self.latname is not None and self.latpath is not None:
                 self.FOR001 = self.latpath + '/kstr/' + self.latname + '.tfh'
                 self.FOR001_2 = self.latpath + \
-                    '/kstr/' + self.latname + '2.tfh'
+                    '/kstr/' + self.latname + 'M.tfh'
                 self.FOR001 = common.cleanup_path(self.FOR001)
                 self.FOR001_2 = common.cleanup_path(self.FOR001_2)
                 self.FOR004 = self.latpath + '/bmdl/' + self.latname + '.mdl'
