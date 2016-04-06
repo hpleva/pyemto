@@ -363,7 +363,7 @@ elif mode == 'compute_eq_energy':
                        latpath=latpath,sws=initialsws, xc='PBE')
 
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
-            sws0, B0, e0 = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
+            sws0, B0, e0,grun = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
 
             alloy.bulk(lat='bcc',
                        jobname=finalname+"_bcc",
@@ -392,7 +392,7 @@ elif mode == 'compute_eq_energy':
                        latpath=latpath,sws=initialsws, xc='PBE')
 
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
-            sws0, B0, e0 = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
+            sws0, B0, e0, grun = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
 
             alloy.bulk(lat='fcc',
                        jobname=finalname+"_fcc",
@@ -428,7 +428,7 @@ elif mode == 'compute_eq_energy':
      
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
             #alloy.lattice_constants_batch_generate(sws=swsrange)        
-            sws0, c_over_a0, B0, e0, R0, cs0 = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
+            sws0, c_over_a0, B0, e0, R0, cs0, grun = alloy.lattice_constants_analyze(sws=swsrange,prn=False)
             alloy.sws = sws0 
             ca = round(c_over_a0,3)
             hcpname ="hcp_"+str(ca) # Structure name
@@ -540,7 +540,7 @@ elif mode == 'analyze_results':
                        latpath=latpath,sws=initialsws, xc='PBE')
 
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
-            sws0, B0, e0, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
+            sws0, B0, e0, grun, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
 
             alloy.bulk(lat='bcc',
                        jobname=finalname+"_bcc",
@@ -558,7 +558,7 @@ elif mode == 'analyze_results':
                 e_dft = 0.0
             if magn_moms == None:
                 magn_moms = [0 for i in range(len(concs))]
-            sc_res.append([e_dft,sws0,B0,e0,R_squared,magn_moms])
+            sc_res.append([e_dft,sws0,B0,grun,e0,R_squared,magn_moms])
      
             # FCC second
             initialsws = initial_sws[1]
@@ -567,7 +567,7 @@ elif mode == 'analyze_results':
                        latpath=latpath,sws=initialsws, xc='PBE')
 
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
-            sws0, B0, e0, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
+            sws0, B0, e0, grun, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
 
             alloy.bulk(lat='fcc',
                        jobname=finalname+"_fcc",
@@ -585,7 +585,7 @@ elif mode == 'analyze_results':
                 e_dft = 0.0
             if magn_moms == None:
                 magn_moms = [0 for i in range(len(concs))]
-            sc_res.append([e_dft,sws0,B0,e0,R_squared,magn_moms])
+            sc_res.append([e_dft,sws0,B0,grun,e0,R_squared,magn_moms])
      
             # HCP last
             initialsws = initial_sws[2]
@@ -598,7 +598,7 @@ elif mode == 'analyze_results':
      
             swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes
             #alloy.lattice_constants_batch_generate(sws=swsrange)        
-            sws0, c_over_a0, B0, e0, R0, cs0, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
+            sws0, c_over_a0, B0, e0, R0, cs0, grun, R_squared = alloy.lattice_constants_analyze(sws=swsrange,prn=False,return_error=True)
             alloy.sws = sws0 
             ca = round(c_over_a0,3)
             hcpname ="hcp_"+str(ca) # Structure name
@@ -615,7 +615,7 @@ elif mode == 'analyze_results':
                 e_dft = 0.0
             if magn_moms == None:
                 magn_moms = [0 for i in range(len(concs))]
-            sc_res.append([e_dft,sws0,B0,e0,R_squared,magn_moms,ca])
+            sc_res.append([e_dft,sws0,B0,grun,e0,R_squared,magn_moms,ca])
 
             results.append([[s,c],sc_res])
 
@@ -639,8 +639,8 @@ elif mode == 'analyze_results':
         
         bcc = r[1][0]
         bcc_lc = wsrad_to_latparam(bcc[1],'bcc')
-        output = output + "#   Strc.    dft E      lc       sws        B          fit E     fit err    (c/a)\n"
-        output = output + "     bcc: %f %f %f %f %f %f %f\n" %(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3],bcc[4],1.0)
+        output = output + "#   Strc.    dft E      lc       sws        B          grun     fit E     fit err    (c/a)\n"
+        output = output + "     bcc: %f %f %f %f %f %f %f %f\n" %(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3],bcc[4],bcc[5],1.0)
         # Generate the output line for magnetic moments
         output = output + "bcc_moms:"
         for i in range(len(bcc[5])):
@@ -649,7 +649,7 @@ elif mode == 'analyze_results':
         
         fcc = r[1][1]
         fcc_lc = wsrad_to_latparam(fcc[1],'fcc')
-        output = output + "     fcc: %f %f %f %f %f %f %f\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],fcc[4],1.0)
+        output = output + "     fcc: %f %f %f %f %f %f %f %f\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],fcc[4],fcc[5],1.0)
         # Generate the output line for magnetic moments
         output = output + "fcc_moms:"
         for i in range(len(fcc[5])):
@@ -658,7 +658,7 @@ elif mode == 'analyze_results':
         
         hcp = r[1][2]
         hcp_lc = wsrad_to_latparam(hcp[1],'hcp',ca=hcp[4])
-        output = output +"     hcp: %f %f %f %f %f %f %f\n" %(hcp[0],hcp_lc,hcp[1],hcp[2],hcp[3],hcp[4],hcp[6])
+        output = output +"     hcp: %f %f %f %f %f %f %f %f\n" %(hcp[0],hcp_lc,hcp[1],hcp[2],hcp[3],hcp[4],hcp[5],hcp[7])
         # Generate the output line for magnetic moments
         output = output + "hcp_moms:"
         for i in range(len(hcp[5])):
