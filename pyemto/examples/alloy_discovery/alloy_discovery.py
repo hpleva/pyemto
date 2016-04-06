@@ -88,7 +88,7 @@ for s in systems:
         exit()
 for c in concentrations:
     if not len(c) == len(systems[0]):
-        print("Each given concentrations must have same number number as elements in system!")
+       print("Each given concentrations must have same number number as elements in system!")
         exit()
 
 # Next check magnetic states of system and initialize splits
@@ -639,12 +639,12 @@ elif mode == 'analyze_results':
         
         bcc = r[1][0]
         bcc_lc = wsrad_to_latparam(bcc[1],'bcc')
-        output = output + "#   Strc.    dft E      lc       sws        B          grun     fit E     fit err    (c/a)\n"
+        output = output + "#   Strc.    dft E      lc       sws        B          grun       fit E     fit err    (c/a)\n"
         output = output + "     bcc: %f %f %f %f %f %f %f %f\n" %(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3],bcc[4],bcc[5],1.0)
         # Generate the output line for magnetic moments
         output = output + "bcc_moms:"
-        for i in range(len(bcc[5])):
-            output = output + " {0:9.6f}".format(bcc[5][i])
+        for i in range(len(bcc[6])):
+            output = output + " {0:9.6f}".format(bcc[6][i])
         output = output + "\n"
         
         fcc = r[1][1]
@@ -652,8 +652,8 @@ elif mode == 'analyze_results':
         output = output + "     fcc: %f %f %f %f %f %f %f %f\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],fcc[4],fcc[5],1.0)
         # Generate the output line for magnetic moments
         output = output + "fcc_moms:"
-        for i in range(len(fcc[5])):
-            output = output + " {0:9.6f}".format(fcc[5][i])
+        for i in range(len(fcc[6])):
+            output = output + " {0:9.6f}".format(fcc[6][i])
         output = output + "\n"
         
         hcp = r[1][2]
@@ -661,8 +661,8 @@ elif mode == 'analyze_results':
         output = output +"     hcp: %f %f %f %f %f %f %f %f\n" %(hcp[0],hcp_lc,hcp[1],hcp[2],hcp[3],hcp[4],hcp[5],hcp[7])
         # Generate the output line for magnetic moments
         output = output + "hcp_moms:"
-        for i in range(len(hcp[5])):
-            output = output + " {0:9.6f}".format(hcp[5][i])
+        for i in range(len(hcp[6])):
+            output = output + " {0:9.6f}".format(hcp[6][i])
         output = output + "\n"
 
         output_all += output+"\n"
