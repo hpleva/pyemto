@@ -3299,6 +3299,78 @@ class System:
             print('System.get_moments(): {0} does not exist!'.format(fn))
             return None
 
+    def get_fdos(self, jobname = None,folder=None):
+        """ Extract density of state (DOS) at fermi level from KGRN output
+
+            
+        :param jobname: Name of the KGRN output file
+        :type jobname: str
+        :param folder: Name of the folder where the output file is located (Default value = "./")
+        :type folder: str
+        :returns: DOS at fermi level
+        :rtype: float 
+        """
+
+        if folder == None:
+            folder = self.folder
+        if jobname == None:
+            jobname = self.fulljobname
+
+        fn = os.path.join(folder, "kgrn/")
+        fn = os.path.join(fn, jobname + ".prn")
+
+        file = open(fn,'r')
+        lines = file.readlines()
+        file.close()
+        nxtsws_tag = " NXTSWS:   IQ IT ITA MMT Type  NZ ION  ELN   QTR   SPLIT  FIX  CONC"
+        alat_tag = "Alat ="
+        dos_tag = " Dos(Ef)    ="
+        mag_tag = " Magn. mom. ="
+        hop_tag = " Hopfield   ="
+        for i in range(len(lines)):
+            if nxtsws_tag in lines[i]:
+                indMin = i+2
+            elif alat_tag in lines[i]:
+                indMax = i-2
+                break
+        #
+        concs = np.zeros(indMax + 1 - indMin)
+        doses = np.zeros(indMax + 1 - indMin)
+        its = np.zeros(indMax + 1 - indMin)
+        #
+        ind_tmp = 0
+        for i in range(indMin,indMax+1):
+            concs[ind_tmp] = float(lines[i].split()[-1])
+            its[ind_tmp] = int(lines[i].split()[1])
+            ind_tmp += 1
+        #
+        num_sites = np.max(its)
+        ind_tmp = len(doses) - 1
+        # Because KGRN output file is different for non- and magnetic calculations,
+        # we have to do some additional checks to make sure we are reading the right
+        # values.
+        for i in range(len(lines)-1,indMax,-1):
+            if dos_tag in lines[i]:
+                #print(lines[i])
+                if mag_tag in lines[i+1] or hop_tag in lines[i+1]:
+                    #print(lines[i+1])
+                    doses[ind_tmp] = float(lines[i].split()[-1])
+                    ind_tmp -= 1
+                if ind_tmp == -1:
+                    break
+        #
+        #for i in range(len(doses)):
+        #    print(doses[i])
+        #
+        ry2ev = 13.605698066
+        dos_tot = 0.0
+        for i in range(len(concs)):
+            dos_tot += concs[i]*doses[i]
+            dos_tot /= num_sites
+            dos_tot /= ry2ev
+        return dos_tot
+
+    
     def create_jobname(self, jobname=None):
         """Creates jobnames based on system information.
 
