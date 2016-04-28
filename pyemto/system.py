@@ -3366,8 +3366,9 @@ class System:
         dos_tot = 0.0
         for i in range(len(concs)):
             dos_tot += concs[i]*doses[i]
-            dos_tot /= num_sites
-            dos_tot /= ry2ev
+        
+        dos_tot /= num_sites
+        dos_tot /= ry2ev
         return dos_tot
 
     
