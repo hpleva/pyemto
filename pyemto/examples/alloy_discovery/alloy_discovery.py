@@ -657,7 +657,7 @@ elif mode == 'analyze_results':
         output = output + "\n"
         
         hcp = r[1][2]
-        hcp_lc = wsrad_to_latparam(hcp[1],'hcp',ca=hcp[4])
+        hcp_lc = wsrad_to_latparam(hcp[1],'hcp',ca=hcp[7])
         output = output +"     hcp: %f %f %f %f %f %f %f %f\n" %(hcp[0],hcp_lc,hcp[1],hcp[2],hcp[3],hcp[4],hcp[5],hcp[7])
         # Generate the output line for magnetic moments
         output = output + "hcp_moms:"

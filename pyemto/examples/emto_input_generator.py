@@ -565,9 +565,9 @@ class EMTO:
             for i in range(len(concs)):
                 if isinstance(concs[i],list):
                     for j in range(len(concs[i])):
-                        atoms_flat.append(concs[i][j])
+                        concs_flat.append(concs[i][j])
                 else:
-                    atoms_flat.append(concs[i])
+                    concs_flat.append(concs[i])
             self.KGRN_concs = np.array(concs_flat)
         ###
         # Construct iqs, its, and itas arrays (for the KGRN atomblock).
@@ -610,7 +610,7 @@ class EMTO:
                     for j in range(len(its[i])):
                         its_flat.append(its[i][j])
                 else:
-                    atoms_flat.append(its[i])
+                    its_flat.append(its[i])
             self.KGRN_its = np.array(its_flat, dtype='int32')
         #
         self.input_system.bulk_new(lat=common.ibz_to_lat(self.ibz),
