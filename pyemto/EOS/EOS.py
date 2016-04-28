@@ -489,7 +489,6 @@ class EOS:
                 #l0 = 2.0 * (2.0 - 1.0 / 3.0) / w0
                 l0 = (BP - 1.0) / w0
                 x0 = np.exp(-l0 * w0)
-                print('x0 = ',x0)
                 c0 = -6.0 * np.pi * np.log(x0) * B0 / (x0**2 * l0**3)
                 b0 = -2.0 * c0 * x0
                 a0 = E0 - b0 * x0 - c0 * x0**2
@@ -656,7 +655,7 @@ class EOS:
         print(self.eos_output())
         return
 
-    def fit(self, swses, energies,shift=True,show_plot=False):
+    def fit(self, swses, energies,shift=True,show_plot=False,show_output=True):
         """Calculate volume, energy, and bulk modulus.
 
         About the units:
@@ -710,7 +709,8 @@ class EOS:
         self.compute_eos_quality()
 
         # Printouts
-        self.print_eos_output()
+        if show_output == True:
+            self.print_eos_output()
 
         # Save an image for quality checking
         if show_plot == True:
