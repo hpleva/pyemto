@@ -3405,7 +3405,7 @@ class System:
             return jobname, fulljobname
 
         else:
-            fulljobname = jobname + "_%8.6f" % (self.sws)
+            fulljobname = jobname + "_{0:8.6f}".format(self.sws)
 
         return fulljobname
 
