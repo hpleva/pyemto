@@ -232,7 +232,7 @@ class Kgrn:
                  dirac_niter=None, iwat=None, nprna=None, vmix=None, rwat=None, rmax=None,
                  dx=None, dr1=None, test=None, teste=None, testy=None, testv=None,
                  FOR001=None, DIR002=None, DIR003=None, FOR004=None, DIR006=None, DIR009=None,
-                 DIR010=None, DIR011=None,ncpu=1):
+                 DIR010=None, DIR011=None,ncpu=None,CQNA=None):
 
         self.jobname = jobname
         self.latname = latname
@@ -331,8 +331,9 @@ class Kgrn:
         self.DIR009 = DIR009
         self.DIR010 = DIR010
         self.DIR011 = DIR011
-        self.ncpu = 1
-
+        self.ncpu = ncpu
+        self.CQNA = CQNA
+        
         if iqs is None:
             self.iqs = np.ones(50, dtype='int32')
         else:
@@ -391,8 +392,7 @@ class Kgrn:
         self.atomblock = None
 
         self.Confdtype = [('elem', 'U4'), ('iq', int), ('it', int), ('ita', int),
-                          ('conc', float), ('Sm_s', float), ('S_ws',
-                                                             float), ('WS_wst', float),
+                          ('conc', float), ('Sm_s', float), ('S_ws',float), ('WS_wst', float),
                           ('qtr', float), ('mmom', float), ('fix', 'U1')]
 
         # Try creating the atomblock
@@ -1175,7 +1175,7 @@ class Kgrn:
         line = line + "JOBNAM=" + self.jobname + "\n"
         line = line + "STRT..=  " + self.strt + " MSGL.=  " + str(self.msgl) \
             + " EXPAN.= " + self.expan + " FCD..=  " + self.fcd \
-            + " FUNC..= " + self.func + "\n"
+            + " FUNC..= " + self.func + " CQNA=" + self.CQNA + "\n"
         line = line + "FOR001=" + self.FOR001 + "\n"
         line = line + "FOR001=" + self.FOR001_2 + "\n"
         line = line + "DIR002=" + self.DIR002 + "\n"
@@ -1600,4 +1600,7 @@ class Kgrn:
             self.DIR010 = 'kgrn/'
         if self.DIR011 is None:
             self.DIR011 = 'kgrn/tmp/'
-
+        if self.CQNA is None:
+            self.CQNA = 'N'
+        if self.ncpu is None:
+            self.ncpu = 1
