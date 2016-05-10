@@ -59,7 +59,7 @@ class Kfcd:
     def __init__(self, jobname=None, latname=None, latpath=None, msgl=None, nprn=None,
                  lmaxs=None, nth=None, kfcd_nfi=None, fpot=None, ovcor=None,
                  ubg=None, DIR001=None, DIR002=None, DIR003=None, DIR004=None,
-                 DIR006=None, sws=None):
+                 DIR006=None, sws=None, CQNA=None):
 
         self.jobname = jobname
         self.latname = latname
@@ -77,7 +77,8 @@ class Kfcd:
         self.DIR003 = DIR003
         self.DIR004 = DIR004
         self.DIR006 = DIR006
-
+        self.CQNA = CQNA
+        
     def output(self):
         """Outputs KFCD input file as a formatted string.
 
@@ -88,7 +89,8 @@ class Kfcd:
         """
 
         now = datetime.datetime.now()
-        line = "KFCD      MSGL..=  %1i                        " % (self.msgl) +\
+        #line = "KFCD      MSGL..=  %1i                        " % (self.msgl) +\        
+        line = "KFCD      MSGL..=  {0:1}".format(self.msgl) + " CQNA=  {0}      ".format(self.CQNA) +\
                str(now.day) + "." + str(now.month) + "." + str(now.year) + "\n"
         line = line + "JOBNAM...=" + self.jobname + "\n"
         line = line + "STRNAM...=" + self.latname + "\n"
@@ -205,5 +207,7 @@ class Kfcd:
         if self.DIR006 is None:
             self.DIR006 = 'kfcd/'
             self.DIR006 = common.cleanup_path(self.DIR006)
+        if self.CQNA is None:
+            self.CQNA = 'N'
         return
 
