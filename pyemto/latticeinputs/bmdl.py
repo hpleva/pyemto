@@ -206,10 +206,12 @@ class Bmdl:
             else:
                 self.basis = np.array([[0.0, 0.0, 0.0]])
 
-        #if isinstance(self.basis[0], list):
-        #    self.nq = len(self.basis)
-        if type(self.basis[0]) == type(np.array([0.0,0.0,0.0])):
+        if isinstance(self.basis[0], list):
             self.nq = len(self.basis)
+            self.basis = np.asarray(self.basis)
+        elif type(self.basis[0]) == type(np.array([0.0,0.0,0.0])):
+            self.nq = len(self.basis)
+            self.basis = np.asarray(self.basis)            
         else:
             self.nq = 1
             self.basis = np.asarray([self.basis])
