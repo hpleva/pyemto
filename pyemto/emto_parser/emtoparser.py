@@ -17,11 +17,11 @@ All = slice(None)
 #Kb = 1.3806488e-23*1000#mJ/K
 kb = 8.6173324E-5 #eV/K
 ry2ev = 13.605698066 #eV
-Bohr2Anstr = 0.529177249
-Anstr2M = 1e-10
-Ry2mJ = 2.1798741e-18 * 1000
-RyPbohr32Gpa = 14710.5
-RyPbohr22mJPm2 = Ry2mJ/(Bohr2Anstr*Anstr2M)**2
+bohr2angstrom = 0.529177249
+#Anstr2M = 1e-10
+#Ry2mJ = 2.1798741e-18 * 1000
+#RyPbohr32Gpa = 14710.5
+#RyPbohr22mJPm2 = Ry2mJ/(Bohr2Anstr*Anstr2M)**2
 
 nameparserexample = r'KFCD-(?P<STR>...).*Ni(?P<NiCC>[0-8]+)-(?P<SWS0>[0-9]\.[0-9]+)-.*-(?P<REX>[0-9]+)-.*'
 
@@ -386,6 +386,10 @@ class EMTOPARSER:
         self.main_df.FN = self.main_df.FN.str.replace(":","")
 
         self.nq_df = self.Df(self.get_NQ(),self.NQColumn,self.NQColumnName).applymap(str2num)
+
+        # Compute volume per atom
+        vol_per_atom = 4.0/3*np.pi*(self.main_df.SWS*bohr2angstrom)**3
+        self.main_df.insert(3,'VOL',vol_per_atom)
         
         #"""
         # Calculate configurational entropy
@@ -416,15 +420,16 @@ class EMTOPARSER:
             #self.Smag_df = self.Smag_df[["Smag"]]
         #"""
 
-        self.main_df.insert(7,  'Sconf',   self.Sconf_df.loc[:,'Sconf'])
-        self.main_df.insert(8,  'Smag',    self.Smag_df.loc[:,'Smag'])
-        self.main_df.insert(9,  'DOSEF',   self.dos_df.loc[:,'DOSEF'])
-        self.main_df.insert(10, 'NQ',      self.nq_df.loc[:,'NQ'])
+        insert_index = 8
+        self.main_df.insert(insert_index,   'Sconf',   self.Sconf_df.loc[:,'Sconf'])
+        self.main_df.insert(insert_index+1, 'Smag',    self.Smag_df.loc[:,'Smag'])
+        self.main_df.insert(insert_index+2, 'DOSEF',   self.dos_df.loc[:,'DOSEF'])
+        self.main_df.insert(insert_index+3, 'NQ',      self.nq_df.loc[:,'NQ'])
         
         # Construct the chemical formula and the average atomic mass of the system:
         self.formula_df = self.Df(self.get_Formula_and_Mav(),self.FormulaColumn,self.FormulaColumnName).applymap(str2num)
-        self.main_df.insert(10, 'Formula', self.formula_df.loc[:,'Formula'])
-        self.main_df.insert(11, 'Mav', self.formula_df.loc[:,'Mav'])
+        self.main_df.insert(insert_index+3, 'Formula', self.formula_df.loc[:,'Formula'])
+        self.main_df.insert(insert_index+4, 'Mav', self.formula_df.loc[:,'Mav'])
         
         # Calculate average atomic mass (which is needed when Debye temperature is calculated.)
         #self.mav_df = self.Df(self.get_Mav(),self.MavColumn,self.MavColumnName)
