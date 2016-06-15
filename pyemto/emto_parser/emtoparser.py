@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import sys
-from os import popen
+import os
 import numpy as np
 import pandas as pd
 import pymatgen as pmg
@@ -24,6 +24,10 @@ RyPbohr32Gpa = 14710.5
 RyPbohr22mJPm2 = Ry2mJ/(Bohr2Anstr*Anstr2M)**2
 
 nameparserexample = r'KFCD-(?P<STR>...).*Ni(?P<NiCC>[0-8]+)-(?P<SWS0>[0-9]\.[0-9]+)-.*-(?P<REX>[0-9]+)-.*'
+
+#Loads element data from json file
+with open(os.path.join(os.path.dirname(__file__), "periodic_table.json"), "rt") as f:
+    periodic_table = pd.read_json(f)
 
 def Sws2T(sws,sws0,alpha):
     return (sws-sws0)/sws0/alpha            
@@ -91,16 +95,23 @@ class EMTOPARSER:
         self.ConcentrationColumnName = ["FN","IQ","ITA","Conc","Elem"]
         self.DOSColumn = [0, 1]
         self.DOSColumnName = ["FN","DOSEF"]
+        self.NQColumn = [0, 3]
+        self.NQColumnName = ["FN","NQ"]
+        self.FormulaColumn = [0,1]
+        self.FormulaColumnName = ["Formula","Mav"]
+        #self.MavColumn = [0]
+        #self.MavColumnName = ["Mav"]
+        #
         self.nameparser = None
         self.EN = self.Df(self.Energy(),self.EnergyColumn,self.EnergyColumnName)
         self.STR = self.Df(self.Structure(),self.StructureColumn,self.StructureColumnName)
         #self.EN = self.EN.join(self.STR.set_index(["FN"]),on=["FN"]).applymap(str2num)
         self.EN = self.STR.join(self.EN.set_index(["FN"]),on=["FN"]).applymap(str2num)
-
+        
     def Energy(self):
         """
         cmd =  "grep -H TOT-{} {}".format(self.xc,self.KFCD_filenames)
-        all_output = [i.split() for i in popen(cmd).readlines()]
+        all_output = [i.split() for i in os.popen(cmd).readlines()]
         print(all_output)
         return all_output
         """
@@ -112,7 +123,7 @@ class EMTOPARSER:
             energy_line = ''
             for xc in xc_list:
                 cmd =  "grep -H TOT-{0} {1}".format(xc,KFCD_file)
-                cmd_output = popen(cmd).readlines()
+                cmd_output = os.popen(cmd).readlines()
                 if xc == 'LDA':
                     energy_line += KFCD_file+':' + ' ' + cmd_output[0].split()[7] + ' ' + cmd_output[0].split()[4]
                 # Check if QNA has not been implemented:
@@ -136,7 +147,7 @@ class EMTOPARSER:
         all_output = []
         for KFCD_file in self.KFCD_filenames:
             cmd = r'grep -H mdl {} |sed "s: .*/\([^/].*\).mdl: \1:" '.format(KFCD_file)
-            cmd_output = popen(cmd).readlines()
+            cmd_output = os.popen(cmd).readlines()
             for i in cmd_output:
                 all_output.append(i.split())
         return all_output
@@ -145,11 +156,11 @@ class EMTOPARSER:
         all_output = []
         for KFCD_file in self.KFCD_filenames:
             cmd =  "grep -H Mag {}".format(KFCD_file) 
-            cmd_output = popen(cmd).readlines()
+            cmd_output = os.popen(cmd).readlines()
             # Non-magnetic system return an empty list so we have to create a dummy
             if len(cmd_output) == 0:
                 alt_cmd =  'grep -H \'IQ.*)\' {}'.format(KFCD_file)
-                alt_cmd_output = popen(alt_cmd).readlines()
+                alt_cmd_output = os.popen(alt_cmd).readlines()
                 #print(alt_cmd_output)
                 cmd_output = []
                 for i in alt_cmd_output:
@@ -161,20 +172,20 @@ class EMTOPARSER:
         return all_output
     
         #cmd =  "grep -H Mag {}".format(KFCD_file) 
-        #return [i.split() for i in popen(cmd).readlines()]
+        #return [i.split() for i in os.popen(cmd).readlines()]
 
     def Concentration(self):
         all_output = []
         for KFCD_file in self.KFCD_filenames:
             cmd =  'grep -H \'IQ.*)\' {}'.format(KFCD_file) 
-            cmd_output = popen(cmd).readlines()
+            cmd_output = os.popen(cmd).readlines()
             for i in cmd_output:
                 all_output.append(i.split())
         #print(all_output)
         return all_output
 
         #cmd =  'grep -H \'IQ.*)\' {}'.format(self.KFCD_filenames) 
-        #return [i.split() for i in popen(cmd).readlines()]
+        #return [i.split() for i in os.popen(cmd).readlines()]
 
     def DOSEF(self):
 	"""Extract DOS at Fermi level from the KGRN input file.
@@ -242,14 +253,14 @@ class EMTOPARSER:
     def DOSEF(self):
 	# Reads total DOS, if implemented in EMTO.
         cmd =  'grep -H \' Total DOS at Fermi level =\' {}'.format(self.KGRN_filenames)
-        cmd_output = popen(cmd).readlines()
+        cmd_output = os.popen(cmd).readlines()
         cmd_output = cmd_output[1::2]
         return [i.split() for i in cmd_output]
         
         # Component resolved DOS's
         
         cmd =  'grep -H \'Dos(Ef)\' {}'.format(self.KGRN_filenames)
-        cmd_output = popen(cmd).readlines()
+        cmd_output = os.popen(cmd).readlines()
         final_output = []
         if self.mag == False:
             for i in cmd_output:
@@ -270,12 +281,54 @@ class EMTOPARSER:
         return final_output
     """
 
-    #def Formula(self):
+    def get_Formula_and_Mav(self):
+        """
+        Creates a string that represents the chemical formula of the alloy.
+        """
+        all_output = []
+        index_max = self.main_df.shape[0]
+        #
+        for index in range(index_max):
+            elems = self.main_df[index:index+1].Elem.values.flatten()
+            concs = self.main_df[index:index+1].Conc.values.flatten()
+            nq_tmp = self.main_df.NQ[index]
+            elem_len = len(elems)
+            formula_tmp = {}
+            for i in range(elem_len):
+                if elems[i] == None:
+                    pass
+                else:
+                    if elems[i] in formula_tmp:
+                        formula_tmp[elems[i]] += concs[i]/nq_tmp
+                    else:
+                        formula_tmp[elems[i]] = concs[i]/nq_tmp
+            string_tmp = ''
+            mav_tmp = 0.0
+            for key, value in formula_tmp.iteritems():
+                #print(key,value)
+                string_tmp += '{0:2}{1:5.3f}'.format(key,value)
+                mav_tmp += periodic_table[key]['Atomic mass']*value
+            #print(string_tmp)
+            all_output.append([string_tmp,mav_tmp])
+        return all_output
+
+    #def get_Mav(self):
     #    """
-    #    Creates a string that represents the chemical formula of the alloy.
+    #    Calculates the average atomic mass of the system.
     #    """
+    #    all_output = []
         
+    
+    def get_NQ(self):
+        all_output = []
+        for KFCD_file in self.KFCD_filenames:
+            cmd = 'grep -H NQ {}'.format(KFCD_file)
+            cmd_output = os.popen(cmd).readlines()
+            for i in cmd_output:
+                all_output.append(i.split())
+        return all_output
         
+    
     def Df(self,list,col,colname):
         return pd.DataFrame([[i[x] for x in col] for i in list],columns=colname)
          
@@ -308,9 +361,19 @@ class EMTOPARSER:
             print "big problem !!!"
             raise ValueError
         self.main_df.drop(["FNr","IQr"],axis=1,inplace=True)
+
+        # Using pivot_table function
+        #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc"],columns=["IQ","ITA","Elem"])
+        #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc"],columns=["IQ","ITA"],aggfunc = lambda x: ' '.join(x))
+        #self.main_df = pd.pivot_table(self.main_df,index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: ' '.join(x))
+
+        self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: max(x))
         
-        self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc"],columns=["IQ","ITA","Elem"])
-        #may be a bug here, we can not get Elem any more, but it seem no harm.
+        #self.main_df = pd.pivot_table(self.main_df,index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: pd.to_numeric(x, errors='ignore'))
+        #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Elem"],columns=["IQ","ITA"])
+        
+        self.main_df = self.main_df.applymap(str2num)
+        #self.main_df = self.main_df.apply(lambda x: pd.to_numeric(x, errors='ignore'))
         
         #if self.nameparser is None:
         #    cm_df = pd.pivot_table(cm_df.applymap(str2num),index=["FN","Struc","SWS","Etot"],values=["Mag","CC","Elem"],columns=["IQ","ITA"])
@@ -321,6 +384,8 @@ class EMTOPARSER:
         self.main_df = self.main_df.reset_index()
         # Get rid of the ':' that grep puts at the end of the filename:
         self.main_df.FN = self.main_df.FN.str.replace(":","")
+
+        self.nq_df = self.Df(self.get_NQ(),self.NQColumn,self.NQColumnName).applymap(str2num)
         
         #"""
         # Calculate configurational entropy
@@ -351,13 +416,20 @@ class EMTOPARSER:
             #self.Smag_df = self.Smag_df[["Smag"]]
         #"""
 
-        self.main_df.insert(7, 'Sconf', self.Sconf_df.loc[:,'Sconf'])
-        self.main_df.insert(8, 'Smag', self.Smag_df.loc[:,'Smag'])
-        self.main_df.insert(9, 'DOSEF', self.dos_df.loc[:,'DOSEF'])
+        self.main_df.insert(7,  'Sconf',   self.Sconf_df.loc[:,'Sconf'])
+        self.main_df.insert(8,  'Smag',    self.Smag_df.loc[:,'Smag'])
+        self.main_df.insert(9,  'DOSEF',   self.dos_df.loc[:,'DOSEF'])
+        self.main_df.insert(10, 'NQ',      self.nq_df.loc[:,'NQ'])
+        
+        # Construct the chemical formula and the average atomic mass of the system:
+        self.formula_df = self.Df(self.get_Formula_and_Mav(),self.FormulaColumn,self.FormulaColumnName).applymap(str2num)
+        self.main_df.insert(10, 'Formula', self.formula_df.loc[:,'Formula'])
+        self.main_df.insert(11, 'Mav', self.formula_df.loc[:,'Mav'])
+        
+        # Calculate average atomic mass (which is needed when Debye temperature is calculated.)
+        #self.mav_df = self.Df(self.get_Mav(),self.MavColumn,self.MavColumnName)
 
-        # Construct the chemical formula of the system:
-        #self.formula_df
-            
+        
 if __name__=='__main__' :
     test = EMTOPARSER("kfcd_output/al0.20_co0.20_cr0.20_fe0.20_ni0.20_bcc_2.550000",suffix='prn')
     print test.Energy()

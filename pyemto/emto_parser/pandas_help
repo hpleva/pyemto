@@ -15,6 +15,13 @@ slice3 = thenames.ix[5:12,['year','sex']]
 
 ###########################################################################################################################
 # Select rows based on some criterion:
+# The old way:
+--------------
+bcc_mask = df.main_df.loc[idx[:],idx['Struc']]=='bcc'
+bcc_df = df.main_df.loc[idx[bcc_mask],idx[:]]
+
+# The new way:
+--------------
 # Exact match:
 test.EN[test.EN['str']=='bcc']
 # Wildcard:
