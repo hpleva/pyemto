@@ -431,7 +431,7 @@ class EMTOPARSER:
 
         # Compute volume per atom
         vol_per_atom = 4.0/3*np.pi*(self.main_df.SWS*bohr2angstrom)**3
-        self.main_df.insert(3,'VOL',vol_per_atom)
+        self.main_df.insert(4,'VOL',vol_per_atom)
         
         #"""
         # Calculate configurational entropy
@@ -462,7 +462,7 @@ class EMTOPARSER:
             #self.Smag_df = self.Smag_df[["Smag"]]
         #"""
 
-        insert_index = 8
+        insert_index = 9
         self.main_df.insert(insert_index,   'Sconf',   self.Sconf_df.loc[:,'Sconf'])
         self.main_df.insert(insert_index+1, 'Smag',    self.Smag_df.loc[:,'Smag'])
         self.main_df.insert(insert_index+2, 'DOSEF',   self.dos_df.loc[:,'DOSEF'])
