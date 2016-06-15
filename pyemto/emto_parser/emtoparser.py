@@ -99,14 +99,18 @@ class EMTOPARSER:
         self.NQColumnName = ["FN","NQ"]
         self.FormulaColumn = [0,1]
         self.FormulaColumnName = ["Formula","Mav"]
+        self.StatusColumn = [0,1]
+        self.StatusColumnName = ["FN","Status"]
         #self.MavColumn = [0]
         #self.MavColumnName = ["Mav"]
         #
         self.nameparser = None
         self.EN = self.Df(self.Energy(),self.EnergyColumn,self.EnergyColumnName)
         self.STR = self.Df(self.Structure(),self.StructureColumn,self.StructureColumnName)
+        self.STATUS = self.Df(self.get_Status(),self.StatusColumn,self.StatusColumnName)
         #self.EN = self.EN.join(self.STR.set_index(["FN"]),on=["FN"]).applymap(str2num)
         self.EN = self.STR.join(self.EN.set_index(["FN"]),on=["FN"]).applymap(str2num)
+        self.EN.insert(1, 'Status',   self.STATUS.loc[:,'Status'])
         
     def Energy(self):
         """
@@ -327,6 +331,44 @@ class EMTOPARSER:
             for i in cmd_output:
                 all_output.append(i.split())
         return all_output
+
+    def get_Status(self):
+        all_output = []
+        for KGRN_file in self.KGRN_filenames:
+            cmd = 'grep -H \' Converged in\' {}'.format(KGRN_file)
+            cmd_output = os.popen(cmd).readlines()
+            # Check if not converged:
+            if len(cmd_output) == 0:
+                cmd = 'grep -H \' Not converged\' {}'.format(KGRN_file)
+                cmd_output = os.popen(cmd).readlines()
+                # Check if crashed somehow:
+                if len(cmd_output) == 0:
+                    cmd_output = [KGRN_file+':' + ' ' + 'Crashed_somehow!!!']
+                else:
+                    cmd_output = [KGRN_file+':' + ' ' + 'Not_converged!!!']
+            else:
+                split_tmp = cmd_output[0].split()
+                if len(split_tmp) == 7:
+                    cmd_output = [split_tmp[0] + ' ' +\
+                                  split_tmp[1] + '_' +\
+                                  split_tmp[2] + '_' +\
+                                  split_tmp[3] + '_' +\
+                                  split_tmp[4] + '_' +\
+                                  split_tmp[5] + '_' +\
+                                  split_tmp[6]]
+                elif len(split_tmp) == 8:
+                    cmd_output = [split_tmp[0] + ' ' +\
+                                  split_tmp[1] + '_' +\
+                                  split_tmp[2] + '_' +\
+                                  split_tmp[3] + '_' +\
+                                  split_tmp[4] + '_' +\
+                                  split_tmp[5] + '_' +\
+                                  split_tmp[6] + '_' +\
+                                  split_tmp[7]]
+            for i in cmd_output:
+                all_output.append(i.split())
+            #print(all_output)
+        return all_output
         
     
     def Df(self,list,col,colname):
@@ -367,7 +409,7 @@ class EMTOPARSER:
         #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc"],columns=["IQ","ITA"],aggfunc = lambda x: ' '.join(x))
         #self.main_df = pd.pivot_table(self.main_df,index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: ' '.join(x))
 
-        self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: max(x))
+        self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Status","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: max(x))
         
         #self.main_df = pd.pivot_table(self.main_df,index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: pd.to_numeric(x, errors='ignore'))
         #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Elem"],columns=["IQ","ITA"])
@@ -399,7 +441,7 @@ class EMTOPARSER:
             #self.Sconf_df.reset_index(inplace=True)
             #self.Sconf_df = self.Sconf_df[["Sconf"]]
         elif self.DLM == True:
-            Sconf = -kb*np.sum(np.log(2*self.main_df.Conc[1].ix[:,1::2])*2*self.main_df.Conc[1].ix[:,1::2],axis=1)
+            Sconf = -kb*np.sum(np.log(2*self.main_df.Conc[1].ix[:,::2])*2*self.main_df.Conc[1].ix[:,::2],axis=1)
             self.Sconf_df = pd.DataFrame(Sconf,columns=["Sconf"])
         #"""
         #"""
@@ -414,7 +456,7 @@ class EMTOPARSER:
             #self.S_df.set_index(["FN","Struc"],inplace=True)
             #self.ES = self.EN.join(self.S_df,on=["FN","Struc"])
         elif self.DLM == True:
-            Smag = kb*np.sum(np.log(np.abs(self.main_df.Mag[1].ix[:,1::2])+1.)*2*self.main_df.Conc[1].ix[:,1::2],axis=1)
+            Smag = kb*np.sum(np.log(np.abs(self.main_df.Mag[1].ix[:,::2])+1.)*2*self.main_df.Conc[1].ix[:,::2],axis=1)
             self.Smag_df = pd.DataFrame(Smag,columns=["Smag"])
             #self.Smag_df.reset_index(inplace=True)
             #self.Smag_df = self.Smag_df[["Smag"]]
