@@ -13,10 +13,11 @@ from pyemto.utilities.utils import run_bash
 
 All = slice(None)
 
+ry2ev = 13.605698066 #eV
 #Kb = 8.617332478e-5*0.073498618 #Ry/K
 #Kb = 1.3806488e-23*1000#mJ/K
-kb = 8.6173324E-5 #eV/K
-ry2ev = 13.605698066 #eV
+#kb = 8.6173324E-5 #eV/K
+kb = 8.6173324E-5/ry2ev #Ry/K
 bohr2angstrom = 0.529177249
 #Anstr2M = 1e-10
 #Ry2mJ = 2.1798741e-18 * 1000
@@ -248,7 +249,7 @@ class EMTOPARSER:
 	        dos_tot += concs[i]*doses[i]
 	    dos_tot /= num_sites
 	    #print('dos_tot = ',dos_tot)
-	    dos_tot /= ry2ev
+	    #dos_tot /= ry2ev
             #
             all_output.append('{0} {1}'.format(KGRN_file,dos_tot).split())
         return all_output

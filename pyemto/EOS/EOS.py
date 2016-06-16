@@ -122,6 +122,7 @@ class EOS:
         self.B0 = 0.0
         self.B1 = 0.0
         self.grun = 0.0
+        self.grun_g_factor = 2.0/3
         self.bohr2a = 0.52917721092
         self.ry2ev = 13.605692533
         self.ev2gpa = 160.21773
@@ -524,7 +525,8 @@ class EOS:
             self.B1 = (108*self.eos_parameters[0]/self.v0 + 50*self.eos_parameters[1]/
                        self.v0**(2.0/3.0) + 16*self.eos_parameters[2]/self.v0**(1.0/3.0))/\
                        (27*self.B0*self.v0)
-            self.grun = -0.5 + self.B1/2
+            #self.grun = -0.5 + self.B1/2
+            self.grun = -self.grun_g_factor + 0.5*(1+self.B1)
 
             # Convert B to GPa
             self.B0 *= self.ry2ev * self.ev2gpa
@@ -547,9 +549,11 @@ class EOS:
                 self.B0 = -(mc * mx0**2 * ml**3) / (6 * np.pi * np.log(mx0))
                 # Convert B to GPa
                 self.B0 = self.ev2gpa * self.ry2ev / self.bohr2a**3 * self.B0
-                self.grun = 0.5 * ml * self.sws0
+                #self.grun = 0.5 * ml * self.sws0
                 # Pressure derivative of bmod
-                self.B1 = 2*self.grun + 1.0
+                #self.B1 = 2*self.grun + 1.0
+                self.B1 = 1 - np.log(mx0)
+                self.grun = -self.grun_g_factor + 0.5*(1+self.B1)
             elif self.eos_string == 'oldpoly':
                 c0, c1, c2, c3 = self.eos_parameters
                 # find minimum E in E = c0 + c1*V + c2*V**2 + c3*V**3
@@ -574,7 +578,8 @@ class EOS:
                 self.sws0 = self.vol2wsrad(self.v0)/self.bohr2a
                 self.B0   = self.eos_parameters[1]
                 self.B1   = self.eos_parameters[2]
-                self.grun = -0.5 + self.B1 / 2.0
+                #self.grun = -0.5 + self.B1 / 2.0
+                self.grun = -self.grun_g_factor + 0.5*(1+self.B1)
                 # Convert B to GPa
                 self.B0 *= self.ry2ev * self.ev2gpa
         return
