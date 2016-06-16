@@ -383,7 +383,7 @@ class EMTOPARSER:
         self.conc_df.Elem = self.conc_df.Elem.str.replace("(","")
         #
         # Extract DOS(Ef) out of KGRN output files
-        self.dos_df = self.Df(self.DOSEF(),self.DOSColumn,self.DOSColumnName)
+        self.dos_df = self.Df(self.DOSEF(),self.DOSColumn,self.DOSColumnName).applymap(str2num)
 
         self.mag_df = self.Df(self.Mag(),self.MagneticColumn,self.MagneticColumnName)
         self.mag_df = self.mag_df.join(self.EN,on=["FN"])
