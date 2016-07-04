@@ -102,16 +102,20 @@ class EMTOPARSER:
         self.FormulaColumnName = ["Formula","Mav"]
         self.StatusColumn = [0,1]
         self.StatusColumnName = ["FN","Status"]
+        self.COAColumn = [0,9]
+        self.COAColumnName = ["FN","COA"]
         #self.MavColumn = [0]
         #self.MavColumnName = ["Mav"]
         #
         self.nameparser = None
-        self.EN = self.Df(self.Energy(),self.EnergyColumn,self.EnergyColumnName)
+        self.EN = self.Df(self.Energy(),self.EnergyColumn,self.EnergyColumnName).applymap(str2num)
         self.STR = self.Df(self.Structure(),self.StructureColumn,self.StructureColumnName)
         self.STATUS = self.Df(self.get_Status(),self.StatusColumn,self.StatusColumnName)
+        self.COA = self.Df(self.get_COA(),self.COAColumn,self.COAColumnName)
         #self.EN = self.EN.join(self.STR.set_index(["FN"]),on=["FN"]).applymap(str2num)
         self.EN = self.STR.join(self.EN.set_index(["FN"]),on=["FN"]).applymap(str2num)
         self.EN.insert(1, 'Status',   self.STATUS.loc[:,'Status'])
+        self.EN.insert(3, 'COA', self.COA.loc[:,'COA'])
         
     def Energy(self):
         """
@@ -135,7 +139,8 @@ class EMTOPARSER:
                 elif xc == 'QNA':
                     # QNA not found:
                     if len(cmd_output) == 0:
-                        energy_line += ' ' + 'np.nan'
+                        #energy_line += ' ' + 'np.nan'
+                        energy_line += ' ' + '0.0'
                     # QNA was found:
                     else:
                         energy_line += ' ' + cmd_output[0].split()[4]
@@ -144,7 +149,8 @@ class EMTOPARSER:
             #for i in cmd_output:
             #    all_output.append(i.split())
             all_output.append(energy_line.split())
-        #print(all_output)
+        #for ii in all_output:
+        #    print(ii)
         return all_output
         #"""
         
@@ -333,6 +339,15 @@ class EMTOPARSER:
                 all_output.append(i.split())
         return all_output
 
+    def get_COA(self):
+        all_output = []
+        for KFCD_file in self.KFCD_filenames:
+            cmd = 'grep -H \'BSZ( 3)\' {}'.format(KFCD_file)
+            cmd_output = os.popen(cmd).readlines()
+            for i in cmd_output:
+                all_output.append(i.split())
+        return all_output
+    
     def get_Status(self):
         all_output = []
         for KGRN_file in self.KGRN_filenames:
@@ -366,9 +381,13 @@ class EMTOPARSER:
                                   split_tmp[5] + '_' +\
                                   split_tmp[6] + '_' +\
                                   split_tmp[7]]
-            for i in cmd_output:
-                all_output.append(i.split())
-            #print(all_output)
+            #print(cmd_output)
+            #for i in cmd_output:
+                #all_output.append(i.split())
+            all_output.append(cmd_output[0].split())
+        #for ii in range(len(all_output)):
+        #    print(all_output[ii])
+        #    #print(all_output)
         return all_output
         
     
@@ -410,7 +429,7 @@ class EMTOPARSER:
         #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc"],columns=["IQ","ITA"],aggfunc = lambda x: ' '.join(x))
         #self.main_df = pd.pivot_table(self.main_df,index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: ' '.join(x))
 
-        self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Status","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: max(x))
+        self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Status","Struc","COA","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: max(x))
         
         #self.main_df = pd.pivot_table(self.main_df,index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: pd.to_numeric(x, errors='ignore'))
         #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Elem"],columns=["IQ","ITA"])
@@ -463,7 +482,7 @@ class EMTOPARSER:
             #self.Smag_df = self.Smag_df[["Smag"]]
         #"""
 
-        insert_index = 9
+        insert_index = 10
         self.main_df.insert(insert_index,   'Sconf',   self.Sconf_df.loc[:,'Sconf'])
         self.main_df.insert(insert_index+1, 'Smag',    self.Smag_df.loc[:,'Smag'])
         self.main_df.insert(insert_index+2, 'DOSEF',   self.dos_df.loc[:,'DOSEF'])

@@ -541,6 +541,7 @@ class EOS:
 
             if self.eos_string == 'morse':
                 ma, mb, mc, ml = self.eos_parameters
+                #print('a,b,c,lambda = ',ma,mb,mc,ml)
                 self.e += self.eMin
                 mx0 = -0.5 * mb / mc
                 self.sws0 = -np.log(mx0) / ml
