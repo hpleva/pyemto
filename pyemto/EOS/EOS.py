@@ -274,7 +274,7 @@ class EOS:
         :rtype:
         """
 
-        eta = (V / V0)**(1. / 3.)
+        eta = (V0 / V)**(1. / 3.)
         E = E0 + 9. * B0 * V0 / 16. * \
             (eta**2 - 1)**2 * (6 + BP * (eta**2 - 1.) - 4. * eta**2)
         return E
