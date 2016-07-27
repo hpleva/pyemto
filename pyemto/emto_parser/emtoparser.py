@@ -135,6 +135,13 @@ class EMTOPARSER:
                 cmd_output = os.popen(cmd).readlines()
                 if xc == 'LDA':
                     energy_line += KFCD_file+':' + ' ' + cmd_output[0].split()[7] + ' ' + cmd_output[0].split()[4]
+                    # If KGRN didnt finish properly cmd_output is empty, causing a crash right here!
+                    # 
+                    #if len(cmd_output) == 0:
+                    #    print(KFCD_file)
+                    #    energy_line += KFCD_file+':' + ' ' + '0.0' + ' ' + '0.0'
+                    #else:
+                    #    energy_line += KFCD_file+':' + ' ' + cmd_output[0].split()[7] + ' ' + cmd_output[0].split()[4]
                 # Check if QNA has not been implemented:
                 elif xc == 'QNA':
                     # QNA not found:
@@ -145,7 +152,10 @@ class EMTOPARSER:
                     else:
                         energy_line += ' ' + cmd_output[0].split()[4]
                 else:
-                    energy_line += ' ' + cmd_output[0].split()[4]
+                    if len(cmd_output) == 0:
+                        energy_line += ' ' + '0.0'
+                    else:
+                        energy_line += ' ' + cmd_output[0].split()[4]
             #for i in cmd_output:
             #    all_output.append(i.split())
             all_output.append(energy_line.split())
@@ -168,7 +178,7 @@ class EMTOPARSER:
         for KFCD_file in self.KFCD_filenames:
             cmd =  "grep -H Mag {}".format(KFCD_file) 
             cmd_output = os.popen(cmd).readlines()
-            # Non-magnetic system return an empty list so we have to create a dummy
+            # Non-magnetic systems return an empty list so we have to create a dummy
             if len(cmd_output) == 0:
                 alt_cmd =  'grep -H \'IQ.*)\' {}'.format(KFCD_file)
                 alt_cmd_output = os.popen(alt_cmd).readlines()

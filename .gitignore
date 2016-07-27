@@ -8,4 +8,4 @@
 *.patch
 
 # Do not track setup.py build directory
-build
+build/
