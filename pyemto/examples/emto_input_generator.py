@@ -9,7 +9,7 @@ import os
 
 # Help python to find the pyemto folder
 import sys
-sys.path.insert(0, "/home/henrik/Desktop/pyemto_temp/pyemto/")
+sys.path.insert(0, "/home/hpleva/Desktop/pyemto/")
 
 import pyemto
 import pyemto.common.common as common
@@ -142,7 +142,8 @@ class EMTO:
         return index_array
 
     def init_structure(self,prims=None,basis=None,latpath=None,
-                       coords_are_cartesian=False,latname=None,kappaw=None):
+                       coords_are_cartesian=False,latname=None,
+                       kappaw=None,species=None):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
         if basis is None:
@@ -164,10 +165,14 @@ class EMTO:
         # Construct species array. We use A+, A2+ etc.
         # so that the order of basis vectors does not
         # change when standard structure is created.
-        atoms = []
-        for i in range(self.len_basis):
-            atoms.append('A{0}+'.format(i+1))
-        self.species = np.asarray(atoms)
+        if species == None:
+            atoms = []
+            for i in range(self.len_basis):
+                atoms.append('A{0}+'.format(i+1))
+            self.species = np.asarray(atoms)
+        else:
+            self.species = np.asarray(species)
+            
         self.coords_are_cartesian = coords_are_cartesian
         self.ibz = None
         if kappaw == None:
