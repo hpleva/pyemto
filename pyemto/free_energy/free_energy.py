@@ -1,3 +1,6 @@
+import numpy as np
+from scipy.integrate import quad
+
 # Define some universal constants
 ry2ev = 13.605698066
 #kb = 8.6173324E-5      #eV/K
@@ -152,7 +155,7 @@ def S_elec(dos,T):
     """Electronic entropy. Linear approximation is used, where S(T=0K) = 0
     and S(T=T0) = S0.
     
-    dos should be given in units of 1/eV.
+    dos should be given in units of 1/Ry.
     """
     return np.pi**2/3*kb**2*T*dos
 
