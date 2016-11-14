@@ -84,7 +84,10 @@ class Kstr:
         self.jobname = jobname
         self.latparams = latparams
         self.latvectors = latvectors
-        self.basis = np.asarray(basis)
+        if basis is None:
+            self.basis = None
+        else:
+            self.basis = np.asarray(basis)
         self.kappaw = kappaw
         self.dmax = dmax
         self.msgl = msgl
@@ -274,10 +277,10 @@ class Kstr:
             else:
                 self.basis = np.asarray([0.0, 0.0, 0.0])
 
-        if isinstance(self.basis[0], list):
-            self.nq = len(self.basis)
-            self.basis = np.asarray(self.basis)
-        elif type(self.basis[0]) == type(np.array([0.0,0.0,0.0])):
+        #if isinstance(self.basis[0], list):
+        #    self.nq = len(self.basis)
+        #    self.basis = np.asarray(self.basis)
+        if type(self.basis[0]) == type(np.array([0.0,0.0,0.0])):
             self.nq = len(self.basis)
             self.basis = np.asarray(self.basis)
         else:

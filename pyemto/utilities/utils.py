@@ -180,7 +180,7 @@ def wsrad_to_latparam(sws, lat, ca=None, c=None):
         return a
     if lat == 'hcp':
         if c is None and ca is None:
-            sys.exit('wsrad_to_latparam: Either \'c\' (in angstrom) or ' +\
+            sys.exit('wsrad_to_latparam: Either \'c\' (in angstrom) or ' +
                      '\'ca\' (c/a) has to be given for hcp structure!')
         else:
             if c is not None:
@@ -468,6 +468,7 @@ def extrapolate_0k(
         a0_ZPAE = (1.0 - FECa_ZPAE) * a0
 
         return a0_ZPAE, bmod0_ZPPE
+
 
 def rotation_matrix(axis, theta):
     """

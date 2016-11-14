@@ -14,5 +14,6 @@ setup(name='pyEmto',
 #      url='https://www.python.org/sigs/distutils-sig/',
       packages=['pyemto','pyemto.EOS','pyemto.emtoinputs',
                 'pyemto.latticeinputs','pyemto.utilities',
-                'pyemto.common','pyemto.emto_parser'],
+                'pyemto.common','pyemto.emto_parser',
+                'pyemto.examples'],
      )

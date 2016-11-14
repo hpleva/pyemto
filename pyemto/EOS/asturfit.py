@@ -849,3 +849,12 @@ def strainbootstrap(V, E, V0, ndeg=12, nsample=100, strain='eulerian', LOG=0, na
         return cb
     elif nargout == 2:
         return cb,sb
+
+
+def guess_jumps(vols, ens, deltaE=0.0, LOG=0):
+    """"""
+    n = len(ens)
+
+    # Linear interpolation
+    E1 = np.zeros(n)
+    

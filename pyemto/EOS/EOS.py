@@ -101,7 +101,7 @@ class EOS:
     :rtype:
     """
 
-    def __init__(self, name, xc='PBE', method='morse', units='bohr'):
+    def __init__(self, name, xc='PBE', method='morse', units='bohr', warnings=True):
 
         self.name = name
         self.xc = xc
@@ -130,7 +130,8 @@ class EOS:
         self.initial_guess = None
         self.fit_infodict = None
         self.fitted_ens = None
-
+        self.warnings = warnings
+        
     def vol2wsrad(self, V):
         """
 
@@ -467,11 +468,12 @@ class EOS:
             
             parabola_vmin = -b / 2 / c
 
-            if not (minvol < parabola_vmin and parabola_vmin < maxvol):
-                print('EOS.compute_initial_guess(): Warning the minimum volume of a fitted' +\
-                      ' parabola is not in your volumes.\n' +\
-                      '                             You may not have a minimum in your dataset.')
-            
+            if self.warnings == True:
+                if not (minvol < parabola_vmin and parabola_vmin < maxvol):
+                    print('EOS.compute_initial_guess(): Warning the minimum volume of a fitted' +\
+                          ' parabola is not in your volumes.\n' +\
+                          '                             You may not have a minimum in your dataset.')
+                    
             # evaluate the parabola at the minimum to estimate the groundstate
             # energy
             E0 = self.parabola(parabola_vmin, a, b, c)

@@ -31,12 +31,11 @@ structure.lattice.set_values(latpath=latpath,kappaw=[0.0,-20.0]) # Double Taylor
 # Create hcp structure files
 cas = np.linspace(1.50,1.7,7) # 7 different equally spaced c/a values from 1.5 to 1.7
 latnames = ['hcp_ca1','hcp_ca2','hcp_ca3','hcp_ca4','hcp_ca5','hcp_ca6','hcp_ca7']
-dmaxs = [2.39196429,2.41107143,2.43017857,2.44928571,2.46839286,2.4875,2.50660714]
+#dmaxs = [2.39196429,2.41107143,2.43017857,2.44928571,2.46839286,2.4875,2.50660714]
 
 for i in range(len(latnames)):
     structure.lattice.set_values(jobname=latnames[i],latpath=latpath,
-                                 lat='hcp',kappaw=[0.0,-20.0],msgl=0,ca=cas[i],
-                                 dmax=dmaxs[i])
+                                 lat='hcp',kappaw=[0.0,-20.0],msgl=0,ca=cas[i])
 
     structure.lattice.bmdl.write_input_file(folder=latpath)
     structure.lattice.kstr.write_input_file(folder=latpath)
