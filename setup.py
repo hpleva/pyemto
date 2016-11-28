@@ -15,5 +15,5 @@ setup(name='pyEmto',
       packages=['pyemto','pyemto.EOS','pyemto.emtoinputs',
                 'pyemto.latticeinputs','pyemto.utilities',
                 'pyemto.common','pyemto.emto_parser',
-                'pyemto.examples'],
+                'pyemto.examples','pyemto.free_energy'],
      )
