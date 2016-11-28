@@ -134,14 +134,17 @@ class EMTOPARSER:
                 cmd =  "grep -H TOT-{0} {1}".format(xc,KFCD_file)
                 cmd_output = os.popen(cmd).readlines()
                 if xc == 'LDA':
-                    energy_line += KFCD_file+':' + ' ' + cmd_output[0].split()[7] + ' ' + cmd_output[0].split()[4]
-                    # If KGRN didnt finish properly cmd_output is empty, causing a crash right here!
-                    # 
-                    #if len(cmd_output) == 0:
-                    #    print(KFCD_file)
-                    #    energy_line += KFCD_file+':' + ' ' + '0.0' + ' ' + '0.0'
-                    #else:
+                    #try:
                     #    energy_line += KFCD_file+':' + ' ' + cmd_output[0].split()[7] + ' ' + cmd_output[0].split()[4]
+                    #except:
+                    #    print(KFCD_file)
+                    #    quit()
+                    # If KGRN didnt finish properly cmd_output is empty, causing a crash right here! 
+                    if len(cmd_output) == 0:
+                        print(KFCD_file)
+                        energy_line += KFCD_file+':' + ' ' + '0.0' + ' ' + '0.0'
+                    else:
+                        energy_line += KFCD_file+':' + ' ' + cmd_output[0].split()[7] + ' ' + cmd_output[0].split()[4]
                 # Check if QNA has not been implemented:
                 elif xc == 'QNA':
                     # QNA not found:
@@ -178,15 +181,19 @@ class EMTOPARSER:
         for KFCD_file in self.KFCD_filenames:
             cmd =  "grep -H Mag {}".format(KFCD_file) 
             cmd_output = os.popen(cmd).readlines()
-            # Non-magnetic systems return an empty list so we have to create a dummy
+            # Non-magnetic systems return an empty list so we have to create a dummy:
             if len(cmd_output) == 0:
                 alt_cmd =  'grep -H \'IQ.*)\' {}'.format(KFCD_file)
                 alt_cmd_output = os.popen(alt_cmd).readlines()
-                #print(alt_cmd_output)
-                cmd_output = []
-                for i in alt_cmd_output:
-                    #cmd_output.append(KFCD_file + ':' + '  Magnetic moment for IQ =  {0} is   0.000000 mu_B'.format(i.split()[3]))
-                    cmd_output.append(KFCD_file + ':' + '  Magnetic moment for IQ =  {0} is   np.nan mu_B'.format(i.split()[3]))
+                # Crashed calculations will also return an empty list even here:
+                if len(alt_cmd_output) == 0:
+                    cmd_output = [KFCD_file+':           Magnetic moment for IQ =  1 is   0.000000 mu_B\n']
+                else:
+                    cmd_output = []
+                    for i in alt_cmd_output:
+                        cmd_output.append(KFCD_file + ':' + '  Magnetic moment for IQ =  {0} is   0.000000 mu_B'.format(i.split()[3]))
+                        #cmd_output.append(KFCD_file + ':' + '  Magnetic moment for IQ =  {0} is   np.nan mu_B'.format(i.split()[3]))
+            #print(cmd_output)
             for i in cmd_output:
                 all_output.append(i.split())
         #print(all_output)
@@ -200,6 +207,10 @@ class EMTOPARSER:
         for KFCD_file in self.KFCD_filenames:
             cmd =  'grep -H \'IQ.*)\' {}'.format(KFCD_file) 
             cmd_output = os.popen(cmd).readlines()
+            # Sanity check for crashed calculations:
+            if len(cmd_output) == 0:
+                cmd_output = [KFCD_file+':    IQ =   1 ITA =  1 CONC =  0.000000  (Er  )\n']
+            #print(cmd_output)
             for i in cmd_output:
                 all_output.append(i.split())
         #print(all_output)
@@ -345,6 +356,10 @@ class EMTOPARSER:
         for KFCD_file in self.KFCD_filenames:
             cmd = 'grep -H NQ {}'.format(KFCD_file)
             cmd_output = os.popen(cmd).readlines()
+            # Sanity check for crashed calculations:
+            if len(cmd_output) == 0:
+                cmd_output = [KFCD_file+":           NQ  =  1 NL  =  0 NLM = 81 NS  =  0 CPA_ALPHA =  0.000000\n"]
+            #print(cmd_output)
             for i in cmd_output:
                 all_output.append(i.split())
         return all_output
@@ -354,6 +369,10 @@ class EMTOPARSER:
         for KFCD_file in self.KFCD_filenames:
             cmd = 'grep -H \'BSZ( 3)\' {}'.format(KFCD_file)
             cmd_output = os.popen(cmd).readlines()
+            # Sanity check for crashed calculations:
+            if len(cmd_output) == 0:
+                cmd_output = [KFCD_file+':           BSX( 3)=   0.00000 BSY( 3)=   0.00000 BSZ( 3)=   0.00000\n']
+            #print(cmd_output)
             for i in cmd_output:
                 all_output.append(i.split())
         return all_output
@@ -405,6 +424,7 @@ class EMTOPARSER:
         return pd.DataFrame([[i[x] for x in col] for i in list],columns=colname)
          
     def create_df(self):
+        import sys
         self.EN.reset_index(inplace=True)
         self.EN.set_index(["FN"],inplace=True)
         #
@@ -414,6 +434,7 @@ class EMTOPARSER:
         # Extract DOS(Ef) out of KGRN output files
         self.dos_df = self.Df(self.DOSEF(),self.DOSColumn,self.DOSColumnName).applymap(str2num)
 
+        # Extract magnetic moments
         self.mag_df = self.Df(self.Mag(),self.MagneticColumn,self.MagneticColumnName)
         self.mag_df = self.mag_df.join(self.EN,on=["FN"])
         
@@ -433,7 +454,7 @@ class EMTOPARSER:
             print "big problem !!!"
             raise ValueError
         self.main_df.drop(["FNr","IQr"],axis=1,inplace=True)
-
+        
         # Using pivot_table function
         #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc"],columns=["IQ","ITA","Elem"])
         #self.main_df = pd.pivot_table(self.main_df.applymap(str2num),index=["FN","Struc","SWS","ELDA","EPBE","EP07","EQNA"],values=["Mag","Conc"],columns=["IQ","ITA"],aggfunc = lambda x: ' '.join(x))
@@ -456,13 +477,13 @@ class EMTOPARSER:
         self.main_df = self.main_df.reset_index()
         # Get rid of the ':' that grep puts at the end of the filename:
         self.main_df.FN = self.main_df.FN.str.replace(":","")
-
+        
         self.nq_df = self.Df(self.get_NQ(),self.NQColumn,self.NQColumnName).applymap(str2num)
-
+        
         # Compute volume per atom
         vol_per_atom = 4.0/3*np.pi*(self.main_df.SWS*bohr2angstrom)**3
         self.main_df.insert(4,'VOL',vol_per_atom)
-        
+
         #"""
         # Calculate configurational entropy
         if self.DLM == False:
