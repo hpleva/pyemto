@@ -887,7 +887,7 @@ class EOS:
 
         return y
 
-    def ca_fit(self, x, y, n, debug=False,title=''):
+    def ca_fit(self, x, y, n, debug=False,title='',find_best_fit=False):
         """Fits a polynomial to x vs. y data and calculates
         xmin and ymin from the curve.
 
@@ -901,20 +901,62 @@ class EOS:
         :rtype:
         """
 
-        z = np.polyfit(x, y, n)
-        fit = np.poly1d(z)
-        xmin = -z[1] / (2.0 * z[0])
-        ymin = fit(xmin)
+        # Basic polynomial fit whose accuracy assumes that there is no bad points:
+        if find_best_fit == False:
+            z = np.polyfit(x, y, n)
+            fit = np.poly1d(z)
+            xmin = -z[1] / (2.0 * z[0])
+            ymin = fit(xmin)
 
-        if debug:
-            import time
-            self.ascii_plot(x,y,fit(x),title)
-            time.sleep(0.1)
+        # For cases where one might have outliers the following method is recommended:
+        elif find_best_fit == True:
+            # TODO: Use asturfit to detect bad points. Currently does not work (7 points total, 1-2 bad points).
+            #from asturfit import check_noise
+            #x_good, y_good = check_noise(x,y,show_plot=debug)
+            #z = np.polyfit(x_good, y_good, n)
             #
-            #import pylab
-            #pylab.plot(x,y,'o')
-            #pylab.plot(np.linspace(x[0],x[-1],100),fit(np.linspace(x[0],x[-1],100)))
-            #pylab.show()
+            # Detect one bad point
+            error_min = 9999
+            index_min = 9999
+            x_len = len(x)
+            for i in range(x_len):
+                if i == 0:
+                    x_tmp = x[1:]
+                    y_tmp = y[1:]
+                elif i == x_len-1:
+                    x_tmp = x[:-1]
+                    y_tmp = y[:-1]
+                else:
+                    x_tmp = np.zeros(x_len-1)
+                    y_tmp = np.zeros(x_len-1)
+                    x_tmp[:i] = x[:i]; x_tmp[i:] = x[i+1:]
+                    y_tmp[:i] = y[:i]; y_tmp[i:] = y[i+1:]
+                z = np.polyfit(x_tmp, y_tmp, n)
+                fit = np.poly1d(z)
+                xmin = -z[1] / (2.0 * z[0])
+                ymin = fit(xmin)
+                # Normalized error: length of data = x_len - 1
+                error = np.sum((y_tmp-fit(x_tmp))**2)/(x_len-1)
+                #print(i,x_tmp,y_tmp,error)
+                if error < error_min:
+                    index_min = i
+                    error_min = error
+                    xmin_best = xmin
+                    ymin_best = ymin
+                    fit_best = fit
+            xmin = xmin_best
+            ymin = ymin_best
+            fit  = fit_best
+            
+        if debug:
+            #import time
+            #self.ascii_plot(x,y,fit(x),title)
+            #time.sleep(0.1)
+            #
+            import pylab
+            pylab.plot(x,y,'o')
+            pylab.plot(np.linspace(x[0],x[-1],100),fit(np.linspace(x[0],x[-1],100)))
+            pylab.show()
 
         return xmin, ymin
 

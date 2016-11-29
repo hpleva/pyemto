@@ -102,13 +102,17 @@ def check_noise(vols,ens,show_plot=False):
     # Is this a noisy dataset? 
     fiterr = np.abs(sf.eqstd/sf.eqmean);
     worse = np.max(fiterr)
+
+    # TEST:
+    worse = 0.5
+
     print('################################################')
     print('Noise level: ~0.0 => Smooth, >1.0 => Very noisy.')
     print('################################################')
     if worse < 0.01:
         status = 0
         print("Datafile appears very smooth: Noise level = {0}\nCheck the E(V) plot, anyway.\n".format(worse))
-        return
+        return vols, ens
     elif worse > 1.0:
         status += 20
         print("Noise is a serious problem in your data: Noise level = {0}\n".format(worse))
@@ -386,6 +390,7 @@ def strainfit(V, E, V0, ndeg=4, strain='eulerian', LOG=0, nargout=1):
     
     #c = np.polyfit(f, E, ndeg)
     c = poly.polyfit(f, E, ndeg)[::-1]
+    
     
     #TODO
     """
