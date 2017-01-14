@@ -1219,31 +1219,31 @@ class EOS:
         #time.sleep(0.1)
         return
 
-	def polyfit(self,x,y,n):
-		imag_tol = 1.0e-10
-		# Perform fit using a polynomial of order n:
-		z = np.polyfit(x,y,n)
-		fit = np.poly1d(z)
-		# Find minimum x and y values:
-		# The minima and maxima are of course the points
-		# where the derivative has its roots:
-		der1 = np.polyder(fit,1)
-		der2 = np.polyder(der1,1)
-		# For a minimum the second derivative must be positive.
-		# The global minimum is the point where first derivative
-		# is zero and the second derivative is positive and
-		# the y value is the smallest:
-		y_min = 1.0e20
-		x_min = 0.0
-		for root in np.roots(der1):
-		    #print(root)
-		    # We have to be careful with imaginary roots:
-		    if isinstance(root, complex):
-		        if np.abs(root.imag) < imag_tol:
-		            root = root.real
-		    if isinstance(root, float) and der2(root) > 0 and root > x[0] and root < x[-1]:
-		        #print(root,fit(root))
-		        if fit(root) < y_min:
-		            y_min = fit(root)
-		            x_min = root
-		return x_min,y_min,fit
+    def polyfit(self,x,y,n):
+	imag_tol = 1.0e-10
+	# Perform fit using a polynomial of order n:
+	z = np.polyfit(x,y,n)
+	fit = np.poly1d(z)
+	# Find minimum x and y values:
+	# The minima and maxima are of course the points
+	# where the derivative has its roots:
+	der1 = np.polyder(fit,1)
+	der2 = np.polyder(der1,1)
+	# For a minimum the second derivative must be positive.
+	# The global minimum is the point where first derivative
+	# is zero and the second derivative is positive and
+	# the y value is the smallest:
+	y_min = 1.0e20
+	x_min = 0.0
+	for root in np.roots(der1):
+            #print(root)
+	    # We have to be careful with imaginary roots:
+	    if isinstance(root, complex):
+		if np.abs(root.imag) < imag_tol:
+		    root = root.real
+	    if isinstance(root, float) and der2(root) > 0 and root > x[0] and root < x[-1]:
+		#print(root,fit(root))
+		if fit(root) < y_min:
+		    y_min = fit(root)
+		    x_min = root
+	return x_min,y_min,fit
