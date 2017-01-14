@@ -1219,6 +1219,7 @@ class EOS:
         #time.sleep(0.1)
         return
 
+    @staticmethod
     def polyfit(self,x,y,n):
 	imag_tol = 1.0e-10
 	# Perform fit using a polynomial of order n:
