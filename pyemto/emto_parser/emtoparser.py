@@ -326,6 +326,7 @@ class EMTOPARSER:
             nq_tmp = self.main_df.NQ[index]
             elem_len = len(elems)
             formula_tmp = {}
+            print(elems)
             for i in range(elem_len):
                 if elems[i] == None:
                     pass
@@ -336,7 +337,10 @@ class EMTOPARSER:
                         formula_tmp[elems[i]] = concs[i]/nq_tmp
             string_tmp = ''
             mav_tmp = 0.0
-            for key, value in formula_tmp.iteritems():
+            # iteritems method return stuff in the order it is
+            # organized internally insided the dictionary.
+            # To get alphabetical order we can use sorted() method:
+            for key, value in sorted(formula_tmp.iteritems()):
                 #print(key,value)
                 string_tmp += '{0:2}{1:5.3f}'.format(key,value)
                 mav_tmp += periodic_table[key]['Atomic mass']*value

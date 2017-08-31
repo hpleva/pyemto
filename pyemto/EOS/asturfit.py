@@ -104,7 +104,7 @@ def check_noise(vols,ens,show_plot=False):
     worse = np.max(fiterr)
 
     # TEST:
-    worse = 0.5
+    #worse = 0.5
 
     print('################################################')
     print('Noise level: ~0.0 => Smooth, >1.0 => Very noisy.')
@@ -184,6 +184,9 @@ def avgstrainfit(V, E, V0, nmax=16, MODE=1, strain='eulerian', LOG=0, nargout=1)
     else:
         MaxDegree = int(np.amin([nmax,np.amin([ndata-5, np.trunc(ndata/2.)])]))
 
+    # TEST: Force a certain number of polynomials
+    #MaxDegree = 5
+        
     # Some statistics of the averaging proccess:
     Morder = 0
     npol = 0
