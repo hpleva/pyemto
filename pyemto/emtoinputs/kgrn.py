@@ -1219,7 +1219,7 @@ class Kgrn:
             + "DSWS..=   %4.2f ALPCPA= %6.4f\n" % (self.dsws, self.alpcpa)
         line = line + "Setup: 2 + NQ*NS lines\n"
         line = line + "EFGS...= %6.3f HX....= %6.3f " % (self.efgs, self.hx) \
-            + "NX...=  %1i NZ0..= %2i " % (self.nx, self.nz0) \
+            + "NX...= %2i NZ0..= %2i " % (self.nx, self.nz0) \
             + "STMP..= " + self.stmp + "\n"
         line = line + "Symb   IQ IT ITA NZ  CONC   "\
             + "Sm(s)  S(ws) WS(wst) QTR SPLT Fix\n"
