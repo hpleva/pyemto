@@ -131,7 +131,7 @@ class EOS:
         self.fit_infodict = None
         self.fitted_ens = None
         self.warnings = warnings
-        
+
     def vol2wsrad(self, V):
         """
 
@@ -360,7 +360,7 @@ class EOS:
         :returns: Energy
         :rtype: float
         """
-        
+
         E = B * V0 / (n + 1.) * (V / V0)**(n + 1.) * \
             (np.log(V / V0) - (1. / (n + 1.))) + Einf
         return E
@@ -419,7 +419,7 @@ class EOS:
               b(PRB) = b/V0**(2/3)
               c(PRB) = c/V0**(1/3)
         """
-        
+
         return a/V + b/V**(2.0/3) + c/V**(1.0/3) + d
 
 
@@ -442,30 +442,30 @@ class EOS:
             self.eos_parameters[3],)
         return fity
 
-    
+
     def compute_initial_guess(self):
         """Calculates initial guessess for the fitting parameters."""
-        
+
         if self.eos_string == 'sjeos':
             # SJEOS fitting routine needs no initial guessess
             return None
 
         else:
             p0 = [np.min(self.e), 1, 1]
-            
+
             parabola_parameters, pcov, infodict0, mesg0, ier0 = curve_fit(
                 self.parabola, self.v, self.e, p0)
-            
+
             # Here I just make sure the minimum is bracketed by the volumes.
             # this if for the solver.
             minvol = min(self.v)
             maxvol = max(self.v)
-            
+
             # the minimum of the parabola is at dE/dV = 0, or 2*c V +b =0
             a = parabola_parameters[0]
             b = parabola_parameters[1]
             c = parabola_parameters[2]
-            
+
             parabola_vmin = -b / 2 / c
 
             if self.warnings == True:
@@ -473,21 +473,21 @@ class EOS:
                     print('EOS.compute_initial_guess(): Warning the minimum volume of a fitted' +\
                           ' parabola is not in your volumes.\n' +\
                           '                             You may not have a minimum in your dataset.')
-                    
+
             # evaluate the parabola at the minimum to estimate the groundstate
             # energy
             E0 = self.parabola(parabola_vmin, a, b, c)
-            
+
             # estimate the bulk modulus from Vo*E'',  E'' = 2*c
             B0 = 2 * c * parabola_vmin
-            
+
             if self.eos_string == 'antonschmidt':
                 BP = -2
             else:
                 BP = 4
-            
+
             if self.eos_string == 'morse':
-                B0 *= self.bohr2a**3 
+                B0 *= self.bohr2a**3
                 w0 = self.vol2wsrad(parabola_vmin)/self.bohr2a
                 #l0 = 2.0 * (2.0 - 1.0 / 3.0) / w0
                 l0 = (BP - 1.0) / w0
@@ -532,7 +532,7 @@ class EOS:
 
             # Convert B to GPa
             self.B0 *= self.ry2ev * self.ev2gpa
-            
+
         else:
             if self.eos_string == 'morse':
                 self.eos_parameters, pcov, self.fit_infodict, mesg, ier = curve_fit(
@@ -688,7 +688,7 @@ class EOS:
         self.v = self.wsrad2vol(self.sws*self.bohr2a)
         self.e = np.asarray(energies)
         self.eMin = 0.0
-        
+
         # Remove duplicates and make sure the arrays are sorted
         vLen0 = len(self.v)
         self.v, uniqueInd = np.unique(self.v, return_index=True)
@@ -947,7 +947,7 @@ class EOS:
             xmin = xmin_best
             ymin = ymin_best
             fit  = fit_best
-            
+
         if debug:
             #import time
             #self.ascii_plot(x,y,fit(x),title)
@@ -1078,10 +1078,10 @@ class EOS:
         :type y:
         :param num:  (Default value = 2)
         :type num:
-		  :param title:  (Default value = '')
-		  :type title: str
-		  :param ascii_art: True, if ascii figure of the fit should be drawn.
-		  :type ascii_art: Boolean
+          :param title:  (Default value = '')
+          :type title: str
+          :param ascii_art: True, if ascii figure of the fit should be drawn.
+          :type ascii_art: Boolean
         :returns:
         :rtype:
         """
@@ -1090,7 +1090,7 @@ class EOS:
             ydata = y-y[0]
         else:
             ydata = y
-        
+
         # Starting estimates for the actual fit
         z = np.polyfit(x,ydata,2)
 
@@ -1117,7 +1117,7 @@ class EOS:
             xsim[len(x):] = x[:]
             ysim[:len(x)] = y[::-1]
             ysim[len(x):] = y[:]
-                                        
+
         print(xsim)
         print(ysim)
 
@@ -1154,7 +1154,7 @@ class EOS:
         # Draw the curve
         if ascii_art:
             import time
-            
+
             if num == 1:
                 fitti = eval('self.distortion_poly{0}'.format(num))(x,popt[0])
             elif num == 2:
@@ -1162,7 +1162,7 @@ class EOS:
             elif num == 3:
                 fitti = eval('self.distortion_poly{0}'.format(num))(x,popt[0],popt[1],popt[2])
             self.ascii_plot(x,ydata,fitti,title)
-			
+
             """
             # Draw simulated high-quality fit:
             fitti = np.poly1d(np.polyfit(xsim,ysim,6))(xsim)
@@ -1171,7 +1171,7 @@ class EOS:
             # Allow some time to pass so that the gnuplot process finishes before
             # python continues. Otherwise plots might get drawn into the same canvas.
             time.sleep(0.1)
-            
+
         # TEST
         # TEST
         # TEST: use symmetric fit as output
@@ -1213,7 +1213,7 @@ class EOS:
 
         gnuplot.stdin.write("quit")
         gnuplot.stdin.flush()
-        
+
         # Allow some time to pass so that the gnuplot process finishes before
         # python continues. Otherwise plots might get drawn into the same canvas.
         #time.sleep(0.1)
@@ -1221,30 +1221,28 @@ class EOS:
 
     @staticmethod
     def polyfit(x,y,n):
-	imag_tol = 1.0e-10
-	# Perform fit using a polynomial of order n:
-	z = np.polyfit(x,y,n)
-	fit = np.poly1d(z)
-	# Find minimum x and y values:
-	# The minima and maxima are of course the points
-	# where the derivative has its roots:
-	der1 = np.polyder(fit,1)
-	der2 = np.polyder(der1,1)
-	# For a minimum the second derivative must be positive.
-	# The global minimum is the point where first derivative
-	# is zero and the second derivative is positive and
-	# the y value is the smallest:
-	y_min = 1.0e20
-	x_min = 0.0
-	for root in np.roots(der1):
-            #print(root)
-	    # We have to be careful with imaginary roots:
-	    if isinstance(root, complex):
-		if np.abs(root.imag) < imag_tol:
-		    root = root.real
-	    if isinstance(root, float) and der2(root) > 0 and root > x[0] and root < x[-1]:
-		#print(root,fit(root))
-		if fit(root) < y_min:
-		    y_min = fit(root)
-		    x_min = root
-	return x_min,y_min,fit
+        imag_tol = 1.0e-10
+    # Perform fit using a polynomial of order n:
+        z = np.polyfit(x,y,n)
+        fit = np.poly1d(z)
+    # Find minimum x and y values:
+    # The minima and maxima are of course the points
+    # where the derivative has its roots:
+        der1 = np.polyder(fit,1)
+        der2 = np.polyder(der1,1)
+    # For a minimum the second derivative must be positive.
+    # The global minimum is the point where first derivative
+    # is zero and the second derivative is positive and
+    # the y value is the smallest:
+        y_min = 1.0e20
+        x_min = 0.0
+        for root in np.roots(der1):
+        # We have to be careful with imaginary roots:
+            if isinstance(root, complex):
+                if np.abs(root.imag) < imag_tol:
+                    root = root.real
+            if isinstance(root, float) and der2(root) > 0 and root > x[0] and root < x[-1]:
+                if fit(root) < y_min:
+                    y_min = fit(root)
+                    x_min = root
+        return x_min,y_min,fit

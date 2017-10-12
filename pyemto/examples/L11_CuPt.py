@@ -21,7 +21,7 @@ input_creator = EMTO(folder=emtopath)
 input_creator.init_structure(latpath=latpath,
                              prims=prims,
                              basis=basis,
-                             atoms=species,
+                             species=species,
                              latname='L11')
 
 input_creator.init_bulk(atoms_cpa=species_cpa)
@@ -33,4 +33,4 @@ sws_range = np.linspace(2,3,6)
 
 input_creator.write_kgrn_kfcd_swsrange(sws=sws_range)
 
-input_creator.draw_structure('standard_conv')
+#input_creator.draw_structure('standard_conv')
