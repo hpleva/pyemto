@@ -16,7 +16,8 @@ def interpolate_y(x,y,x0):
         xMax = x[i+1]
         yMin = y[i]
         yMax = y[i+1]
-        if x0 > xMin and x0 < xMax:
+        #
+        if x0 >= xMin and x0 <= xMax:
             break
     # Construct line connecting (xMin,yMin) and (xMax,yMax)
     A = (yMin-yMax)/(xMin-xMax)
@@ -217,15 +218,6 @@ def S_mag(concs,moms):
     summa *= kb
     return summa
             
-#def F_mag(T,concs,moms):
-#    """
-#    r    = WS-radius should be given in bohr,
-#    concs = list of concentrations,
-#    moms  = list of mag. moms.
-#    T    = temperature in Kelvin.
-#    """
-#    return -T*S_mag(r,concs,moms)
-
 def F_mag(S_mag,T):
     """
     S_mag = magnetic entropy in units of Ry/Kelvin,
@@ -238,7 +230,3 @@ def T_Curie(E_DLM,E_FM):
     """
     return 2.0/3*(E_DLM-E_FM)/kb
 
-#def F_gibbs(EDFT,):
-#    """
-#    """
-#    return EDFT + F_elec(dos,T) + F_vib(r,r0,B0,M,grun,T) + F_mag(T,concs,moms)

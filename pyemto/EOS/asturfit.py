@@ -1,3 +1,21 @@
+"""
+Python port of the Asturfit program written in Octave:
+
+@article{Otero-De-La-Roza2011c,
+author = {Otero-de-la-Roza, A. and Lua{\~{n}}a, V{\'{i}}ctor},
+doi = {10.1016/j.cpc.2011.04.016},
+journal = {Computer Physics Communications},
+number = {8},
+pages = {1708--1720},
+publisher = {Elsevier B.V.},
+title = {{Gibbs2: A new version of the quasi-harmonic model code. I. Robust treatment of the static data}},
+url = {http://dx.doi.org/10.1016/j.cpc.2011.04.016 http://linkinghub.elsevier.com/retrieve/pii/S0010465511001470},
+volume = {182},
+year = {2011}
+}
+
+"""
+
 from __future__ import division
 import numpy as np
 import numpy.polynomial.polynomial as poly
@@ -184,9 +202,6 @@ def avgstrainfit(V, E, V0, nmax=16, MODE=1, strain='eulerian', LOG=0, nargout=1)
     else:
         MaxDegree = int(np.amin([nmax,np.amin([ndata-5, np.trunc(ndata/2.)])]))
 
-    # TEST: Force a certain number of polynomials
-    #MaxDegree = 5
-        
     # Some statistics of the averaging proccess:
     Morder = 0
     npol = 0
@@ -865,4 +880,4 @@ def guess_jumps(vols, ens, deltaE=0.0, LOG=0):
 
     # Linear interpolation
     E1 = np.zeros(n)
-    
+    pass
