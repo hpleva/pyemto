@@ -1,14 +1,15 @@
 #!/usr/bin/python
 
 # An example script of how to automatically
-# calculate the equilibrium volume and 
+# calculate the equilibrium volume and
 # bulk modulus of bulk bcc Fe using pyEMTO.
 
+import os
 import pyemto
 
-emtopath = "/wrk/hpleva/pyEMTO_examples/fe" # Define a folder for our KGRN and KFCD input and output files.
-latpath  = "/wrk/hpleva/structures"         # Define a folder where the BMDL, KSTR and KFCD input and output files
-                                            # will be located.
+emtopath = os.getcwd() + "/fe" # Define a folder for our KGRN and KFCD input and output files.
+latpath  = os.getcwd() + "/fe" # Define a folder where the BMDL, KSTR and KFCD input and output files
+                               # will be located.
 
 fe = pyemto.System(folder=emtopath)  # Create a new instance of the pyemto System-class.
 
@@ -25,12 +26,12 @@ fe.bulk(lat     = 'bcc',   # We want to use the bcc structure.
         sofc    = 'Y',     # We want to use soft-core approximation.
         xc      = 'PBE',   # We want to use the PBE functional.
         amix    = 0.05,    # Density mixing.
-        nky     = 21)      # Number of k-points.  
+        nky     = 21)      # Number of k-points.
 
 sws = [2.6,2.62,2.64,2.66,2.68,2.70] # A list of Wigner-Seitz radii
 
 # Generate all the necessary input files with this function:
-#fe.lattice_constants_batch_generate(sws=sws)
+fe.lattice_constants_batch_generate(sws=sws)
 
 #The newly created batch scripts are then submitted by hand.
 
@@ -39,4 +40,4 @@ sws = [2.6,2.62,2.64,2.66,2.68,2.70] # A list of Wigner-Seitz radii
 #fe.lattice_constants_analyze(sws=sws)
 
 # This function combines the features of the previous two:
-fe.lattice_constants_batch_calculate(sws=sws)
+#fe.lattice_constants_batch_calculate(sws=sws)

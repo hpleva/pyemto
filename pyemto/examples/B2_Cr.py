@@ -1,4 +1,4 @@
-from emto_input_generator import *
+from pyemto.examples.emto_input_generator import *
 import numpy as np
 
 folder = os.getcwd()           # Get current working directory.
@@ -20,7 +20,7 @@ input_creator = EMTO(folder=emtopath)
 input_creator.init_structure(latpath=latpath,
                              prims=prims,
                              basis=basis,
-                             atoms=species,
+                             species=species,
                              latname='B2')
 
 input_creator.init_bulk(atoms_cpa=species_cpa,
@@ -29,7 +29,6 @@ input_creator.init_bulk(atoms_cpa=species_cpa,
 sws_range = np.linspace(2,3,6)
 
 input_creator.write_bmdl_kstr_shape_input()
-#input_creator.write_kgrn_kfcd_input()
-#input_creator.write_kgrn_kfcd_swsrange(sws=sws_range)
+input_creator.write_kgrn_kfcd_swsrange(sws=sws_range)
 
 #input_creator.draw_structure('standard_conv')

@@ -2,9 +2,13 @@ import matplotlib.pyplot as plt
 import sys
 import os
 import numpy as np
-import pandas as pd
-import pymatgen as pmg
 from pyemto.utilities.utils import run_bash
+
+try:
+    import pandas as pd
+except ImportError:
+    # pandas has not been installed
+    raise ImportError('EMTOPARSER requires pandas>=0.20.3 to be installed!')
 
 #pd.options.display.max_columns = 5200
 #pd.set_option('notebook_repr_html',True)

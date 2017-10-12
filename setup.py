@@ -1,19 +1,23 @@
 #!/usr/bin/env python
- # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-from distutils.core import setup
+from setuptools import setup
 
-setup(name='pyEmto',
+setup(name='pyemto',
       version='1.0',
       description='Program to generate input files for EMTO prgoram',
       author='H. Levämäki, M. Ropo',
       author_email='hpleva@utu.fi, matti.ropo@tut.fi',
-      license =  'License :: Free for non-commercial use',
+      license =  'License :: MIT',
       classifiers = ['Development Status :: 4 - Beta','Environment :: Console',
                      'Intended Audience :: Science/Research'],
-#      url='https://www.python.org/sigs/distutils-sig/',
-      packages=['pyemto','pyemto.EOS','pyemto.emtoinputs',
+      packages=['pyemto','pyemto.docs','pyemto.EOS','pyemto.emtoinputs',
                 'pyemto.latticeinputs','pyemto.utilities',
                 'pyemto.common','pyemto.emto_parser',
-                'pyemto.examples','pyemto.free_energy'],
+                'pyemto.examples','pyemto.free_energy',
+                'pyemto.space_group'],
+      package_data={"pyemto.emto_parser": ["*.json"]},
+      install_requires=["numpy>=1.10.3","scipy>=0.17.1","matplotlib>=1.5.1"],
+      extras_require={"emto_parser": ["pandas>=0.20.3"],
+                      "emto_input_generator": ["pymatgen>=4.4.0"]}
      )

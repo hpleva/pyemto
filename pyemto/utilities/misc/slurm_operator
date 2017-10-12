@@ -1,0 +1,264 @@
+#!/home/hpleva/miniconda2/bin/python
+
+import subprocess
+import os
+import sys
+from pyemto.utilities.utils import run_bash
+
+def nohup_print(string):
+    """"""
+    sys.stderr.write(string)
+    sys.stderr.flush()
+
+def extract_folder(string):
+    """"""
+    reverse = string[::-1]
+    for i in range(len(reverse)):
+        if reverse[i] == '/':
+            index = i
+            break
+    folder = reverse[i:][::-1]
+    return folder
+
+def load_slurm_list():
+    """Loads a text file which contains a list of SLURM batch scripts."""
+    filename = str(sys.argv[1])
+    with open(filename, 'r') as f:
+        lines = f.read().splitlines()
+    return lines
+
+def submit_jobs(job_list,job_list_index,number_of_jobs):
+    """"""
+    for i in range(number_of_jobs):
+        submit_folder = extract_folder(job_list[job_list_index])
+        submit_cmd = 'cd {0} && sbatch {1}'.format(submit_folder,job_list[job_list_index])
+        output = run_bash(submit_cmd)
+        job_list_index += 1
+    return job_list_index
+
+def get_jobs_status(jobids=None, toplevel=True, time=None):
+    """Returns status of the jobs indicated
+    (jobsdict or list of job ids) or all jobs if no jobids supplied.
+    Set toplevel=False for job step data.
+    
+    :param jobids: List of job IDs (Default value = None)
+    :type jobids: dict or list
+    :param toplevel:  (Default value = True)
+    :type toplevel: boolean
+    :returns: Job statuses
+    :rtype: list(str)
+    """
+    
+    if jobids is None:
+        if time == None:
+            sacct_return = subprocess.Popen(
+                'sacct -p -l -S now', shell=True, stdout=subprocess.PIPE).stdout.readlines()
+        else:
+            sacct_return = subprocess.Popen(
+                'sacct -p -l -S {0}'.format(time), shell=True, stdout=subprocess.PIPE).stdout.readlines()
+
+    else:
+        if isinstance(jobids, dict):
+            qjobs = jobids.keys()
+        else:
+            qjobs = jobids
+        sacct_return = subprocess.Popen(
+            'sacct -j %s -p -l' % (
+            ','.join(qjobs),), shell=True, stdout=subprocess.PIPE).stdout.readlines()
+
+    jobs_status = {}
+    for el in sacct_return[1:]:
+        d = dict(
+            zip(sacct_return[0].strip().split('|'), el.strip().split('|')))
+        if not '.' in d['JobID'] or not toplevel:
+            jobs_status[d['JobID']] = d
+            
+    return jobs_status
+
+def get_status_counts(jobids=None):
+    """Returns the counts of all jobs by status category.
+    
+    :param jobids:  (Default value = None)
+    :type jobids:
+    :returns: 
+    :rtype:
+    """
+    from collections import defaultdict
+    
+    jobs_status = get_jobs_status(jobids)
+    
+    status_counts = defaultdict(int)
+    for jd in jobs_status.values():
+        status_counts[jd['State'].split()[0]] += 1
+    
+    return dict(status_counts)
+
+def slurm_operator(job_list, max_concur_jobs=50, restart_partition='general', sleeptime=300, restart_z=None,
+                   restart_stragglers_after=0.75, kill_if_all_ssusp=False,prn=False,email=False,
+                   after_run=None,email_interval=100):
+    """Loops checking status until no jobs are waiting or running / all are finished.
+    
+    wait/run states:
+
+    ======= =========== ==================================================================================================
+    **Key** **Meaning** **Description**
+    ------- ----------- --------------------------------------------------------------------------------------------------
+    CF      CONFIGURING Job has been allocated resources, but are waiting for them to become ready for use (e.g. booting).
+    CG      COMPLETING  Job is in the process of completing. Some processes on some nodes may still be active.
+    PD      PENDING     Job is awaiting resource allocation.
+    R       RUNNING     Job currently has an allocation.
+    RS      RESIZING    Job is about to change size.
+    S       SUSPENDED   Job has an allocation, but execution has been suspended.
+    ======= =========== ==================================================================================================
+
+    done states:
+
+    ======= =========== ==============================================================================================================
+    **Key** **Meaning** **Description**
+    ------- ----------- --------------------------------------------------------------------------------------------------------------
+    CA      CANCELLED   Job was explicitly cancelled by the user or system administrator.  The job may or may not have been initiated.
+    CD      COMPLETED   Job has terminated all processes on all nodes.
+    F       FAILED      Job terminated with non-zero exit code or other failure condition.
+    NF      NODE_FAIL   Job terminated due to failure of one or more allocated nodes.
+    PR      PREEMPTED   Job terminated due to preemption.
+    TO      TIMEOUT     Job terminated upon reaching its time limit.
+    ======= =========== ==============================================================================================================
+
+    :param jobsdict:
+    :type jobsdict:
+    :param restart_partition:  (Default value = 'general')
+    :type restart_partition:
+    :param sleeptime:  (Default value = 60)
+    :type sleeptime:
+    :param restart_z:  (Default value = None)
+    :type restart_z:
+    :param restart_stragglers_after:  (Default value = 0.75)
+    :type restart_stragglers_after:
+    :param kill_if_all_ssusp:  (Default value = False)
+    :type kill_if_all_ssusp:
+    :returns: None
+    :rtype: None
+    """
+
+    run_status = ['CONFIGURING', 'COMPLETING',
+                  'PENDING', 'RUNNING', 'RESIZING', 'SUSPENDED']
+    done_status = ['CANCELLED', 'COMPLETED',
+                   'FAILED', 'NODE_FAIL', 'PREEMPTED', 'TIMEOUT']
+
+    import sys
+    import time
+    import datetime
+    from datetime import datetime as dt_now
+
+    # Get the current time as start time for sacct
+    from datetime import datetime as dt
+    start_time = dt.now().strftime('%m/%d/%Y-%H:%M:%S')
+    start_time = start_time[:6] + start_time[8:]
+
+    # Initialize job_list running index
+    job_list_index = 0
+
+    # Internal variables
+    initial_slurm_wait = 30
+    total_num_jobs = len(job_list)
+
+    # Find out how many jobs are initially in the queue
+    jobsdict = get_jobs_status(time=start_time)
+    #jobs_amount = len(jobsdict)
+    jobs_amount = int(run_bash('squeue -u hpleva | wc -l')) - 1
+    if prn == True:
+        nohup_print('\n')
+        nohup_print('SLURM operator: {0} jobs have already been submitted\n'.format(jobs_amount))
+        nohup_print('SLURM operator: Will start by submitting {0} jobs\n\n'.format(max_concur_jobs - jobs_amount))
+
+    # Fill the queue, if there are less than "max_concur_jobs" jobs
+    if jobs_amount < max_concur_jobs and job_list_index < total_num_jobs:
+        job_list_index = submit_jobs(job_list,job_list_index,max_concur_jobs-jobs_amount)
+        # Make sure SLURM has enough time to process the submissions
+        time.sleep(initial_slurm_wait)
+
+    jobsdict = get_jobs_status(time=start_time)
+    status = get_status_counts(jobsdict)
+    t = time.time()
+    maxllen = 0
+
+    if prn == True:
+        nohup_print('SLURM operator: Will be requesting job statuses' +
+              ' every {0} seconds\n'.format(sleeptime) + "\n")
+
+    while any([k in run_status for k in status.keys()]):
+        status = get_status_counts(jobsdict)
+        pctdone = sum([status.get(rs, 0)
+                       for rs in done_status]) / float(total_num_jobs) #float(sum(status.values()))
+
+        # CHECK SUSPENDED; RESTART STRAGGLERS, ETC
+
+        outl = '%s %s / %5d (%3d%% completion) job_list_index = %5d\n' % (str(
+            datetime.timedelta(seconds=int(time.time() - t))), status.__repr__(),
+                                                                        total_num_jobs,
+                                                                        pctdone * 100,
+                                                                        job_list_index)
+        # if len(outl) < maxllen:
+        #    pad = maxllen - len(outl)
+        #    outl += ' '*pad
+        # else:
+        #    maxllen = len(outl)
+
+        if prn == True:
+            nohup_print(outl)
+            #sys.stderr.write(outl)
+            #sys.stderr.flush()
+
+        #test_index += 1
+
+        # Update jobsdict
+        jobsdict = get_jobs_status(time=start_time)
+        #jobs_amount = len(jobsdict)
+        jobs_amount = int(run_bash('squeue -u hpleva | wc -l')) - 1
+
+        # Fill the queue, if there are less than "max_concur_jobs" jobs
+        if jobs_amount < max_concur_jobs and job_list_index < total_num_jobs:
+            print('\nSLURM operator: Will be submitting {0} more jobs\n'.format(max_concur_jobs - jobs_amount))
+            job_list_index = submit_jobs(job_list,job_list_index,max_concur_jobs-jobs_amount)
+
+        # Wait
+        time.sleep(sleeptime)
+
+    now = dt_now.now()
+    now_str = now.strftime('%H:%M:%S %d-%m-%Y')
+
+    complete_str = 'completed {0} batch jobs in {1}\n{2}\n'.format(total_num_jobs,
+                                                                   str(datetime.timedelta(seconds=int(time.time() - t))),now_str)
+    if prn == True:
+        nohup_print(complete_str)
+
+    # Send email when all jobs have finished:
+    if email == True:
+        email_str = complete_str + "\n\n"
+        for job in jobsdict:
+            email_str += "{0}  {1}  {2}  {3}  {4}  {5}\n".format(jobsdict[job]['JobID'],jobsdict[job]['JobName'],jobsdict[job]['AllocTRES'],
+                                                                 jobsdict[job]['Elapsed'],jobsdict[job]['State'],jobsdict[job]['ExitCode'])
+        email_str += "\n"
+
+        email_cmd = "echo \"{0}\" | mailx -s \"slurm_watchdog\" hentricks@gmail.com".format(email_str)
+        run_bash(email_cmd)
+        if prn == True:
+            nohup_print('The following email was sent ({0})\n'.format(now_str))
+            nohup_print(email_str)
+    
+    # Check for dependent commands:
+    if after_run is not None:
+        run_bash(after_run)
+    return
+
+
+if __name__ == '__main__':
+    max_concur_jobs = 100
+    job_scripts = load_slurm_list()
+    #submit_initial_jobs(job_scripts)
+    slurm_operator(job_scripts,
+                   max_concur_jobs=max_concur_jobs,
+                   sleeptime=300,
+                   prn=True,
+                   email=True,
+                   email_interval=50)

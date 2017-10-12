@@ -333,7 +333,7 @@ class Kgrn:
         self.DIR011 = DIR011
         self.ncpu = ncpu
         self.CQNA = CQNA
-        
+
         if iqs is None:
             self.iqs = np.ones(50, dtype='int32')
         else:
@@ -1248,7 +1248,7 @@ class Kgrn:
         :param folder:  (Default value = None)
         :type folder:
         :returns:  None
-        :rtype: 
+        :rtype:
         """
 
         # Check data integrity before anything is written on disk or run
@@ -1267,9 +1267,9 @@ class Kgrn:
     def set_values(self, key, value):
         """
 
-        :param key:
+
         :type key:
-        :param value:
+        :param value:, so we have to use .any()
         :type value:
         :returns:
         :rtype:
@@ -1329,9 +1329,13 @@ class Kgrn:
         """
 
         for key in self.atconfKeys:
-            if getattr(self, key) == None:
-                # Some information needed to create the atomblock is still missing,
-                # postpone further processing.
+            # Check if we have a numpy array and do nothing
+            if type(getattr(self, key)) == type(np.array([0.1,0.1])):
+                continue
+
+            # Some information needed to create the atomblock is still missing,
+            # postpone further processing.
+            elif getattr(self, key) == None:
                 return
 
         # Every attribute necessary has some meaningful value, atomblock can therefore

@@ -1,15 +1,16 @@
 #!/usr/bin/python
 import numpy as np
-from pymatgen import Lattice, Structure
-from pymatgen.vis.structure_vtk import StructureVis
-from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
-from pymatgen.analysis.structure_matcher import StructureMatcher
+
+try:
+    from pymatgen import Lattice, Structure
+    from pymatgen.vis.structure_vtk import StructureVis
+    from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
+    from pymatgen.analysis.structure_matcher import StructureMatcher
+except ImportError:
+    # pymatgen has not been installed
+    raise ImportError('emto_input_generator requires pymatgen>=4.4.0 to be installed!')
 
 import os
-
-# Help python to find the pyemto folder
-import sys
-sys.path.insert(0, "/home/hpleva/Desktop/pyemto/")
 
 import pyemto
 import pyemto.common.common as common
@@ -29,7 +30,7 @@ class EMTO:
         else:
             self.folder = folder
         if EMTOdir is None:
-            self.EMTOdir = '/home/henrik/local_emto_stuff/openmp-stable-cmake'    
+            self.EMTOdir = '/home/henrik/local_emto_stuff/openmp-stable-cmake'
         else:
             self.EMTOdir = EMTOdir
 
@@ -172,7 +173,7 @@ class EMTO:
             self.species = np.asarray(atoms)
         else:
             self.species = np.asarray(species)
-            
+
         self.coords_are_cartesian = coords_are_cartesian
         self.ibz = None
         if kappaw == None:
@@ -181,7 +182,7 @@ class EMTO:
             self.kappaw = kappaw
         #
         self.pmg_input_lattice = Lattice(self.prims)
-        self.pmg_input_struct  = Structure(self.pmg_input_lattice, self.species, self.basis, 
+        self.pmg_input_struct  = Structure(self.pmg_input_lattice, self.species, self.basis,
                                            coords_are_cartesian=self.coords_are_cartesian)
         self.sws = self.calc_ws_radius(self.pmg_input_struct)
 
@@ -225,7 +226,7 @@ class EMTO:
         #    self.prim_struct[i] = prim_struct_temp[sorting_array[i]]
         #
         self.finder_prim = SpacegroupAnalyzer(self.prim_struct)
-        self.finder_space = self.finder_prim.get_spacegroup_number()
+        self.finder_space = self.finder_prim.get_space_group_number()
         self.ibz_string = self.sg2bl[self.finder_space]
         self.ibz = self.sg2ibz[self.finder_space]
         #
@@ -241,11 +242,11 @@ class EMTO:
         print("Lattice vectors:")
         print(self.prim_struct.lattice.matrix)
         print("")
-        print("The spacegroup symbol of your structure: {}".format(self.finder_prim.get_spacegroup_symbol()))
-        print("The spacegroup number of your structure: {}".format(self.finder_prim.get_spacegroup_number()))
+        print("The spacegroup symbol of your structure: {}".format(self.finder_prim.get_space_group_symbol()))
+        print("The spacegroup number of your structure: {}".format(self.finder_prim.get_space_group_number()))
         print("The crystal system of your structure   : {}".format(self.finder_prim.get_crystal_system()))
         print("The lattice type of your structure     : {}".format(self.finder_prim.get_lattice_type()))
-        print("The point group of your structure      : {}".format(self.finder_prim.get_point_group()))
+        print("The point group of your structure      : {}".format(self.finder_prim.get_point_group_symbol()))
         print("The Bravais lattice of your structure  : {}".format(self.ibz_string))
         print("Number of basis atoms                  : {}".format(self.prim_struct.num_sites))
         print("")
@@ -275,7 +276,7 @@ class EMTO:
             self.output_primb = self.primaa/norm_tmp
             self.output_primc = self.primbb/norm_tmp
             self.output_basis = self.make_basis_array(self.prim_struct)
-            # Apply transformation on the basis atoms 
+            # Apply transformation on the basis atoms
             self.output_basis = self.output_basis/norm_tmp
             self.output_boa = 0.0
             self.output_coa = 0.0
@@ -332,7 +333,7 @@ class EMTO:
             self.output_coa = 2*self.output_prima[2]
             self.output_alpha = 0.0
             self.output_beta = 0.0
-            self.output_gamma = 0.0            
+            self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 7:
             from pyemto.utilities.utils import rotation_matrix
             self.primaa = self.prim_struct.lattice.matrix[0,:]
@@ -475,7 +476,7 @@ class EMTO:
         #
         self.output_sites = self.make_sites_array(self.prim_struct)
         self.output_lattice = Lattice(np.array([self.output_prima,self.output_primb,self.output_primc]))
-        self.output_struct = Structure(self.output_lattice, self.output_sites, 
+        self.output_struct = Structure(self.output_lattice, self.output_sites,
                                        self.output_basis, coords_are_cartesian=True)
         #
         # Print EMTO structure information
@@ -590,7 +591,7 @@ class EMTO:
                 self.KGRN_itas[running_index] = j+1
                 running_index += 1
         #
-        # its = array of the indexes of sublattices (IT in input file). 
+        # its = array of the indexes of sublattices (IT in input file).
         # The concept of sublattice can be used to reduce computational load;
         # if two sites are occupied by two identical elements with
         # identical magnetic moment (different spatial rotation in terms of

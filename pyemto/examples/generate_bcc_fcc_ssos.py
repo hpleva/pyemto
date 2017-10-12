@@ -1,5 +1,6 @@
-from emto_input_generator import *
 import numpy as np
+from pyemto.examples.emto_input_generator import *
+
 
 folder = os.getcwd()               # Get current working directory.
 emtopath = folder+"/bcc_fcc_ssos"  # Folder where the calculations will be performed.
@@ -26,14 +27,12 @@ input_creator.init_structure(latpath=latpath,
                              basis=basis,
                              latname='ssos_bcc_1')
 
-"""
+
 input_creator.init_bulk(atoms_cpa=species_cpa)
 
-sws_range = np.linspace(2,3,6)
+sws_range = np.linspace(2, 3, 6)
 
 input_creator.write_bmdl_kstr_shape_input()
-#input_creator.write_kgrn_kfcd_input()
 input_creator.write_kgrn_kfcd_swsrange(sws=sws_range)
 
-input_creator.draw_structure('output')
-"""
+#input_creator.draw_structure('output')

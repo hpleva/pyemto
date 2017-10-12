@@ -1,0 +1,45 @@
+#!/usr/bin/python
+
+import os
+import sys
+import numpy as np
+
+name = str(sys.argv[1])
+
+namelist = []				
+for file in os.listdir("kfcd/"):
+    if name in file:
+        namelist.append(file)
+
+data = np.array([[0,0]])
+if len(sys.argv) == 3:
+    enTag = 'TOT-'+sys.argv[2]
+else:
+    enTag = 'TOT-PBE'
+volTag = 'VOL'
+nqTag = 'NQ'
+nq = 1
+
+for name in namelist:
+    nqRead = False
+    lineIndex = 0
+    fl = open("kfcd/"+name)
+    lines = fl.readlines()
+    for line in lines:
+        if not nqRead:
+            if nqTag in line:
+                nq = int(line.split()[2])
+                nqRead = True
+        if enTag in line:
+            linesplit = line.split()
+            data = np.append(data,[[float(linesplit[6]),\
+                                        float(linesplit[3])]],axis=0)
+        lineIndex += 1
+    fl.close()
+
+data = np.delete(data,0,0)
+# Make sure datapoints are in ascending order
+data = data[data[:,0].argsort()]
+
+for i in range(len(data[:,0])):
+    print('{0:.6f} {1:.6f}'.format(data[i,0],data[i,1]))
