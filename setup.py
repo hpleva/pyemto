@@ -4,7 +4,7 @@
 from setuptools import setup
 
 setup(name='pyemto',
-      version='1.0.0',
+      version='1.0.1',
       description='Program to generate input files for EMTO program',
       author='H. Levämäki, M. Ropo',
       author_email='hpleva@utu.fi, matti.ropo@tut.fi',

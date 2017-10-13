@@ -7,5 +7,7 @@
 # Do not track pyment patch files
 *.patch
 
-# Do not track setup.py build directory
+# Do not track setup.py build files
 build/
+dist/
+pyemto.egg-info/
