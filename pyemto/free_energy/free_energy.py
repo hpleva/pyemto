@@ -137,7 +137,7 @@ def dos_parser(filename):
 
 def S_conf(concs):
     """
-    
+    Calclates configurational entropy from concentrations
     """
     summa = 0.0
     for i in range(len(concs)):
@@ -161,6 +161,9 @@ def S_elec(dos,T):
     return np.pi**2/3*kb**2*T*dos
 
 def F_elec(dos,T):
+    """
+    Calculates electroni free energy
+    """
     #print('T, Selec = ',T,S_elec(dos,T)/kb)
     return -T*S_elec(dos,T)
 

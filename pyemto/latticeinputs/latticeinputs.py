@@ -446,7 +446,13 @@ class Latticeinputs:
         return
 
     def basis_transform(self,basis,matrix):
-        """Calculates a basis vector transform given by the transformation matrix."""
+        """Calculates a basis vector transform given by the transformation matrix.
+
+        :param basis: Basis vectors
+        :type basis:  np.array
+        :param matrix: Transformation matrix
+        :type matrix: np.array
+        """
         
         import numpy as np
 
@@ -461,7 +467,15 @@ class Latticeinputs:
     def write_structure_input_files(self,jobname=None,lat=None,folder=None,**kwargs):
         """For a given lattice type, this function writes
         the corresponding structure input files into a
-        given folder"""
+        given folder
+
+        :param jobname: Name of the job
+        :type jobname: str
+        :param lat: Name of the lattice
+        :type lat: str
+        :param folder: Name of the folder
+        :type folder: str
+        """
 
         # Mission critical parameters:
         if folder is None:

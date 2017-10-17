@@ -20,7 +20,6 @@ def run_emto(name, folder="./"):
 
     Finds all the files in a folder that start with the name
 
-
     :param name:
     :type name:
     :param folder:  (Default value = "./")
@@ -53,8 +52,8 @@ def run_emto(name, folder="./"):
 def run_bash(cmd):
     """
 
-    :param cmd:
-    :type cmd:
+    :param cmd: Command to run
+    :type cmd: str
     :returns:
     :rtype:
     """
@@ -68,10 +67,10 @@ def run_bash(cmd):
 def write_batch(folder, jobname):
     """
 
-    :param folder:
-    :type folder:
-    :param jobname:
-    :type jobname:
+    :param folder: Folder to write batch file
+    :type folder: str
+    :param jobname: Name of the job
+    :type jobname: str
     :returns:
     :rtype:
     """
@@ -474,6 +473,11 @@ def rotation_matrix(axis, theta):
     """
     Return the rotation matrix associated with counterclockwise rotation about
     the given axis by theta radians.
+
+    :param axis: 
+    :type axis:
+    :param theta:
+    :type theta:
     """
     axis = np.asarray(axis)
     theta = np.asarray(theta)

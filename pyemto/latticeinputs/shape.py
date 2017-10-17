@@ -80,7 +80,7 @@ class Shape:
     def write_input_file(self, folder=None):
         """Save SHAPE input data to file named filename
 
-        :param folder:  (Default value = None)
+        :param folder: directory to write  (Default value = None)
         :type folder:
         :returns:
         :rtype:
