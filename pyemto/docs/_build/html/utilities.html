@@ -1,106 +1,166 @@
 
 
-<!doctype html>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>utilities package &mdash; pyEMTO 0.9.0 documentation</title>
+  
 
+  
+  
+  
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>utilities package &mdash; pyEMTO 0.9.0 documentation</title>
-    
-    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.9.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/bizstyle.js"></script>
-    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html" />
-    <link rel="up" title="pyEMTO Code Reference" href="code.html" />
-    <link rel="next" title="pyEMTO presentation" href="presentation.html" />
-    <link rel="prev" title="EOS package" href="EOS.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="presentation.html" title="pyEMTO presentation"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="EOS.html" title="EOS package"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="code.html" accesskey="U">pyEMTO Code Reference</a> &raquo;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/logo.svg" alt="Logo"/>
-            </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">utilities package</a><ul>
-<li><a class="reference internal" href="#module-utilities.utils">utilities.utils module</a></li>
-</ul>
-</li>
-</ul>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="EOS.html"
-                        title="previous chapter">EOS package</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="presentation.html"
-                        title="next chapter">pyEMTO presentation</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/utilities.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html"/>
+        <link rel="up" title="pyEMTO Code Reference" href="code.html"/>
+        <link rel="next" title="pyEMTO presentation" href="presentation.html"/>
+        <link rel="prev" title="EOS package" href="EOS.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyEMTO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Example scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">pyEMTO Code Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">pyEMTO presentation</a></li>
+</ul>
+
+            
+          
         </div>
       </div>
+    </nav>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyEMTO</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="code.html">pyEMTO Code Reference</a> &raquo;</li>
+        
+      <li>utilities package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/utilities.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="utilities-package">
 <h1>utilities package<a class="headerlink" href="#utilities-package" title="Permalink to this headline">¶</a></h1>
@@ -175,18 +235,18 @@ change due to dropping temperature, ZP=False.</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>a</strong> &#8211; (Default value = None)</li>
-<li><strong>Ta</strong> &#8211; (Default value = None)</li>
-<li><strong>bmod</strong> &#8211; (Default value = None)</li>
-<li><strong>TB</strong> &#8211; (Default value = None)</li>
-<li><strong>lat</strong> &#8211; (Default value = None)</li>
-<li><strong>TD</strong> &#8211; (Default value = None)</li>
-<li><strong>alpha</strong> &#8211; (Default value = None)</li>
-<li><strong>Talpha</strong> &#8211; (Default value = None)</li>
-<li><strong>B1</strong> &#8211; (Default value = None)</li>
-<li><strong>T0</strong> &#8211; (Default value = None)</li>
-<li><strong>ca</strong> &#8211; (Default value = None)</li>
-<li><strong>ZP</strong> &#8211; (Default value = True)</li>
+<li><strong>a</strong> – (Default value = None)</li>
+<li><strong>Ta</strong> – (Default value = None)</li>
+<li><strong>bmod</strong> – (Default value = None)</li>
+<li><strong>TB</strong> – (Default value = None)</li>
+<li><strong>lat</strong> – (Default value = None)</li>
+<li><strong>TD</strong> – (Default value = None)</li>
+<li><strong>alpha</strong> – (Default value = None)</li>
+<li><strong>Talpha</strong> – (Default value = None)</li>
+<li><strong>B1</strong> – (Default value = None)</li>
+<li><strong>T0</strong> – (Default value = None)</li>
+<li><strong>ca</strong> – (Default value = None)</li>
+<li><strong>ZP</strong> – (Default value = True)</li>
 </ul>
 </td>
 </tr>
@@ -209,10 +269,10 @@ ZPPE corrected 0K bulk modulus (in GPa)</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>a</strong> &#8211; (Default value = None)</li>
-<li><strong>lat</strong> &#8211; (Default value = None)</li>
-<li><strong>ca</strong> &#8211; (Default value = None)</li>
-<li><strong>c</strong> &#8211; (Default value = None)</li>
+<li><strong>a</strong> – (Default value = None)</li>
+<li><strong>lat</strong> – (Default value = None)</li>
+<li><strong>ca</strong> – (Default value = None)</li>
+<li><strong>c</strong> – (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -227,13 +287,32 @@ ZPPE corrected 0K bulk modulus (in GPa)</p>
 </dd></dl>
 
 <dl class="function">
+<dt id="utilities.utils.rotation_matrix">
+<code class="descclassname">utilities.utils.</code><code class="descname">rotation_matrix</code><span class="sig-paren">(</span><em>axis</em>, <em>theta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#rotation_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.rotation_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the rotation matrix associated with counterclockwise rotation about
+the given axis by theta radians.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>axis</strong> – </li>
+<li><strong>theta</strong> – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="utilities.utils.run_bash">
 <code class="descclassname">utilities.utils.</code><code class="descname">run_bash</code><span class="sig-paren">(</span><em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilities/utils.html#run_bash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.utils.run_bash" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cmd</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cmd</strong> (<em>str</em>) – Command to run</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -253,8 +332,8 @@ ZPPE corrected 0K bulk modulus (in GPa)</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; </li>
-<li><strong>folder</strong> &#8211; (Default value = &#8221;./&#8221;)</li>
+<li><strong>name</strong> – </li>
+<li><strong>folder</strong> – (Default value = “./”)</li>
 </ul>
 </td>
 </tr>
@@ -276,9 +355,9 @@ ZPPE corrected 0K bulk modulus (in GPa)</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>folder</strong> &#8211; </li>
-<li><strong>jobname</strong> &#8211; </li>
-<li><strong>system</strong> &#8211; (Default value = &#8216;slurm&#8217;)</li>
+<li><strong>folder</strong> – </li>
+<li><strong>jobname</strong> – </li>
+<li><strong>system</strong> – (Default value = ‘slurm’)</li>
 </ul>
 </td>
 </tr>
@@ -300,8 +379,8 @@ ZPPE corrected 0K bulk modulus (in GPa)</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>folder</strong> &#8211; </li>
-<li><strong>jobname</strong> &#8211; </li>
+<li><strong>folder</strong> (<em>str</em>) – Folder to write batch file</li>
+<li><strong>jobname</strong> (<em>str</em>) – Name of the job</li>
 </ul>
 </td>
 </tr>
@@ -323,11 +402,11 @@ ZPPE corrected 0K bulk modulus (in GPa)</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>folder</strong> &#8211; </li>
-<li><strong>jobname</strong> &#8211; </li>
-<li><strong>atom</strong> &#8211; </li>
-<li><strong>conc</strong> &#8211; </li>
-<li><strong>sws</strong> &#8211; </li>
+<li><strong>folder</strong> – </li>
+<li><strong>jobname</strong> – </li>
+<li><strong>atom</strong> – </li>
+<li><strong>conc</strong> – </li>
+<li><strong>sws</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -349,10 +428,10 @@ ZPPE corrected 0K bulk modulus (in GPa)</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> &#8211; </li>
-<li><strong>lat</strong> &#8211; </li>
-<li><strong>ca</strong> &#8211; (Default value = None)</li>
-<li><strong>c</strong> &#8211; (Default value = None)</li>
+<li><strong>sws</strong> – </li>
+<li><strong>lat</strong> – </li>
+<li><strong>ca</strong> – (Default value = None)</li>
+<li><strong>c</strong> – (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -370,33 +449,76 @@ ZPPE corrected 0K bulk modulus (in GPa)</p>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="presentation.html" class="btn btn-neutral float-right" title="pyEMTO presentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="EOS.html" class="btn btn-neutral" title="EOS package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="presentation.html" title="pyEMTO presentation"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="EOS.html" title="EOS package"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="code.html" >pyEMTO Code Reference</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.9.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

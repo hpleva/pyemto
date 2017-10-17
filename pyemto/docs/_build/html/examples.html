@@ -1,920 +1,982 @@
 
 
-<!doctype html>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Example scripts &mdash; pyEMTO 0.9.0 documentation</title>
+  
 
+  
+  
+  
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+
+  
+  
     
-    <title>Example scripts &mdash; pyEMTO 0.9.0 documentation</title>
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html"/>
+        <link rel="next" title="pyEMTO Code Reference" href="code.html"/>
+        <link rel="prev" title="Installation" href="installation.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
     
-    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.9.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/bizstyle.js"></script>
-    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html" />
-    <link rel="next" title="pyEMTO Code Reference" href="code.html" />
-    <link rel="prev" title="Installation" href="installation.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="code.html" title="pyEMTO Code Reference"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="installation.html" title="Installation"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/logo.svg" alt="Logo"/>
-            </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Example scripts</a><ul>
-<li><a class="reference internal" href="#ground-state-volume-of-bcc-bulk-iron">Ground state volume of bcc bulk iron</a></li>
-<li><a class="reference internal" href="#elastic-constants-of-bcc-bulk-iron">Elastic constants of bcc bulk iron</a></li>
-<li><a class="reference internal" href="#ground-state-volume-and-elastic-constants-of-hcp-bulk-titanium">Ground state volume and elastic constants of hcp bulk titanium</a></li>
-<li><a class="reference internal" href="#ground-state-volume-of-fcc-cocrfemnni-high-entropy-alloy-using-dlm">Ground state volume of fcc CoCrFeMnNi high-entropy alloy using DLM</a></li>
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyEMTO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ground-state-volume-of-bcc-bulk-iron">Ground state volume of bcc bulk iron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#elastic-constants-of-bcc-bulk-iron">Elastic constants of bcc bulk iron</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ground-state-volume-and-elastic-constants-of-hcp-bulk-titanium">Ground state volume and elastic constants of hcp bulk titanium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ground-state-volume-of-fcc-cocrfemnni-high-entropy-alloy-using-dlm">Ground state volume of fcc CoCrFeMnNi high-entropy alloy using DLM</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">pyEMTO Code Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">pyEMTO presentation</a></li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="installation.html"
-                        title="previous chapter">Installation</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="code.html"
-                        title="next chapter">pyEMTO Code Reference</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/examples.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+            
+          
         </div>
       </div>
+    </nav>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyEMTO</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Example scripts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="example-scripts">
 <span id="examples-page"></span><h1>Example scripts<a class="headerlink" href="#example-scripts" title="Permalink to this headline">¶</a></h1>
 <p>Copy-paste the text blocks below and save them as .py files to try them out.</p>
 <div class="section" id="ground-state-volume-of-bcc-bulk-iron">
 <h2>Ground state volume of bcc bulk iron<a class="headerlink" href="#ground-state-volume-of-bcc-bulk-iron" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
 
-<span class="c"># An example script of how to automatically</span>
-<span class="c"># calculate the equilibrium volume and</span>
-<span class="c"># bulk modulus of bulk bcc Fe using pyEMTO.</span>
+<span class="c1"># An example script of how to automatically</span>
+<span class="c1"># calculate the equilibrium volume and</span>
+<span class="c1"># bulk modulus of bulk bcc Fe using pyEMTO.</span>
 
 <span class="kn">import</span> <span class="nn">pyemto</span>
 
-<span class="n">emtopath</span> <span class="o">=</span> <span class="s">&quot;/wrk/hpleva/pyEMTO_examples/fe&quot;</span> <span class="c"># Define a folder for our KGRN and KFCD input and output files.</span>
-<span class="n">latpath</span>  <span class="o">=</span> <span class="s">&quot;/wrk/hpleva/structures&quot;</span>         <span class="c"># Define a folder where the BMDL, KSTR and KFCD input and output files</span>
-                                            <span class="c"># will be located.</span>
+<span class="n">emtopath</span> <span class="o">=</span> <span class="s2">&quot;/wrk/hpleva/pyEMTO_examples/fe&quot;</span> <span class="c1"># Define a folder for our KGRN and KFCD input and output files.</span>
+<span class="n">latpath</span>  <span class="o">=</span> <span class="s2">&quot;/wrk/hpleva/structures&quot;</span>         <span class="c1"># Define a folder where the BMDL, KSTR and KFCD input and output files</span>
+                                            <span class="c1"># will be located.</span>
 
-<span class="n">fe</span> <span class="o">=</span> <span class="n">pyemto</span><span class="o">.</span><span class="n">System</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">emtopath</span><span class="p">)</span>  <span class="c"># Create a new instance of the pyemto System-class.</span>
+<span class="n">fe</span> <span class="o">=</span> <span class="n">pyemto</span><span class="o">.</span><span class="n">System</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">emtopath</span><span class="p">)</span>  <span class="c1"># Create a new instance of the pyemto System-class.</span>
 
-<span class="c"># Let&#39;s calculate the equilibrium volume and bulk modulus of Fe.</span>
+<span class="c1"># Let&#39;s calculate the equilibrium volume and bulk modulus of Fe.</span>
 
-<span class="c"># Initialize the system using the bulk.() function:</span>
+<span class="c1"># Initialize the system using the bulk.() function:</span>
 
-<span class="n">fe</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">lat</span>     <span class="o">=</span> <span class="s">&#39;bcc&#39;</span><span class="p">,</span>   <span class="c"># We want to use the bcc structure.</span>
-        <span class="n">latpath</span> <span class="o">=</span> <span class="n">latpath</span><span class="p">,</span> <span class="c"># Path to the folder where the structure files are located.</span>
-        <span class="n">afm</span>     <span class="o">=</span> <span class="s">&#39;F&#39;</span><span class="p">,</span>     <span class="c"># We want to do a ferromagnetic calculation.</span>
-        <span class="n">atoms</span>   <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Fe&#39;</span><span class="p">],</span>  <span class="c"># A list of atoms.</span>
-        <span class="n">splts</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span>   <span class="c"># A list of magnetic splittings.</span>
-        <span class="n">expan</span>   <span class="o">=</span> <span class="s">&#39;M&#39;</span><span class="p">,</span>     <span class="c"># We want to use the double-Taylor expansion.</span>
-        <span class="n">sofc</span>    <span class="o">=</span> <span class="s">&#39;Y&#39;</span><span class="p">,</span>     <span class="c"># We want to use soft-core approximation.</span>
-        <span class="n">xc</span>      <span class="o">=</span> <span class="s">&#39;PBE&#39;</span><span class="p">,</span>   <span class="c"># We want to use the PBE functional.</span>
-        <span class="n">amix</span>    <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>    <span class="c"># Density mixing.</span>
-        <span class="n">nky</span>     <span class="o">=</span> <span class="mi">21</span><span class="p">)</span>      <span class="c"># Number of k-points.</span>
+<span class="n">fe</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">lat</span>     <span class="o">=</span> <span class="s1">&#39;bcc&#39;</span><span class="p">,</span>   <span class="c1"># We want to use the bcc structure.</span>
+        <span class="n">latpath</span> <span class="o">=</span> <span class="n">latpath</span><span class="p">,</span> <span class="c1"># Path to the folder where the structure files are located.</span>
+        <span class="n">afm</span>     <span class="o">=</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>     <span class="c1"># We want to do a ferromagnetic calculation.</span>
+        <span class="n">atoms</span>   <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fe&#39;</span><span class="p">],</span>  <span class="c1"># A list of atoms.</span>
+        <span class="n">splts</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span>   <span class="c1"># A list of magnetic splittings.</span>
+        <span class="n">expan</span>   <span class="o">=</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span>     <span class="c1"># We want to use the double-Taylor expansion.</span>
+        <span class="n">sofc</span>    <span class="o">=</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span>     <span class="c1"># We want to use soft-core approximation.</span>
+        <span class="n">xc</span>      <span class="o">=</span> <span class="s1">&#39;PBE&#39;</span><span class="p">,</span>   <span class="c1"># We want to use the PBE functional.</span>
+        <span class="n">amix</span>    <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>    <span class="c1"># Density mixing.</span>
+        <span class="n">nky</span>     <span class="o">=</span> <span class="mi">21</span><span class="p">)</span>      <span class="c1"># Number of k-points.</span>
 
-<span class="n">sws</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.6</span><span class="p">,</span><span class="mf">2.62</span><span class="p">,</span><span class="mf">2.64</span><span class="p">,</span><span class="mf">2.66</span><span class="p">,</span><span class="mf">2.68</span><span class="p">,</span><span class="mf">2.70</span><span class="p">]</span> <span class="c"># A list of Wigner-Seitz radii</span>
+<span class="n">sws</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.6</span><span class="p">,</span><span class="mf">2.62</span><span class="p">,</span><span class="mf">2.64</span><span class="p">,</span><span class="mf">2.66</span><span class="p">,</span><span class="mf">2.68</span><span class="p">,</span><span class="mf">2.70</span><span class="p">]</span> <span class="c1"># A list of Wigner-Seitz radii</span>
 
-<span class="c"># Generate all the necessary input files with this function:</span>
-<span class="c">#fe.lattice_constants_batch_generate(sws=sws)</span>
+<span class="c1"># Generate all the necessary input files with this function:</span>
+<span class="c1">#fe.lattice_constants_batch_generate(sws=sws)</span>
 
-<span class="c">#The newly created batch scripts are then submitted by hand.</span>
+<span class="c1">#The newly created batch scripts are then submitted by hand.</span>
 
-<span class="c"># Analyze the results using this function once all the calculations</span>
-<span class="c"># have finished:</span>
-<span class="c">#fe.lattice_constants_analyze(sws=sws)</span>
+<span class="c1"># Analyze the results using this function once all the calculations</span>
+<span class="c1"># have finished:</span>
+<span class="c1">#fe.lattice_constants_analyze(sws=sws)</span>
 
-<span class="c"># This function combines the features of the previous two:</span>
+<span class="c1"># This function combines the features of the previous two:</span>
 <span class="n">fe</span><span class="o">.</span><span class="n">lattice_constants_batch_calculate</span><span class="p">(</span><span class="n">sws</span><span class="o">=</span><span class="n">sws</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The output of this script should look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>Submitted batch job 1021841
-Submitted batch job 1021842
-Submitted batch job 1021843
-Submitted batch job 1021844
-Submitted batch job 1021845
-Submitted batch job 1021846
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021841</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021842</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021843</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021844</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021845</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021846</span>
 
-wait_for_jobs: Submitted 6 jobs
-wait_for_jobs: Will be requesting job statuses every 60 seconds
+<span class="n">wait_for_jobs</span><span class="p">:</span> <span class="n">Submitted</span> <span class="mi">6</span> <span class="n">jobs</span>
+<span class="n">wait_for_jobs</span><span class="p">:</span> <span class="n">Will</span> <span class="n">be</span> <span class="n">requesting</span> <span class="n">job</span> <span class="n">statuses</span> <span class="n">every</span> <span class="mi">60</span> <span class="n">seconds</span>
 
-0:01:00 {&#39;RUNNING&#39;: 6} (  0% completion)
-0:02:00 {&#39;RUNNING&#39;: 6} (  0% completion)
-0:03:00 {&#39;RUNNING&#39;: 6} (  0% completion)
-0:04:00 {&#39;COMPLETED&#39;: 4, &#39;RUNNING&#39;: 2} ( 66% completion)
-0:05:00 {&#39;COMPLETED&#39;: 6} (100% completion)
-completed 6 batch jobs in 0:05:00
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="p">(</span> <span class="mi">66</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span><span class="mi">100</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="n">completed</span> <span class="mi">6</span> <span class="n">batch</span> <span class="n">jobs</span> <span class="ow">in</span> <span class="mi">0</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span>
 
-*****lattice_constants_analyze*****
-
-
-
-********************************
-lattice_constants_analyze(cubic)
-********************************
-  SWS        Energy
-2.600000  -2545.605517
-2.620000  -2545.606394
-2.640000  -2545.606680
-2.660000  -2545.606435
-2.680000  -2545.605705
-2.700000  -2545.604616
+<span class="o">*****</span><span class="n">lattice_constants_analyze</span><span class="o">*****</span>
 
 
-5.2.2015 -- 16:21:13
-JOBNAM = fe1.00 -- PBE
 
-Using morse function
-
-Chi squared         = 2.7459052408e-10
-Reduced Chi squared = 1.3729526204e-10
-R squared           = 0.999907593903
-
-morse parameters:
-
-a      =     0.117551
-b      =  -122.663728
-c      = 32000.491593
-lambda =     2.370150
-
-Ground state parameters:
-
-V0           =     2.640005 Bohr^3 (unit cell volume)
-             =     2.640005 Bohr   (WS-radius)
-E0           = -2545.606678 Ry
-Bmod         =   195.204183 GPa
-Grun. param. =     3.128604
-
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.600000  -2545.605517  -2545.605515      0.000002       -0.000870
-2.620000  -2545.606394  -2545.606400     -0.000006        0.002524
-2.640000  -2545.606680  -2545.606678      0.000002       -0.000950
-2.660000  -2545.606435  -2545.606426      0.000009       -0.003632
-2.680000  -2545.605705  -2545.605716     -0.000011        0.004368
-2.700000  -2545.604616  -2545.604612      0.000004       -0.001440
+<span class="o">********************************</span>
+<span class="n">lattice_constants_analyze</span><span class="p">(</span><span class="n">cubic</span><span class="p">)</span>
+<span class="o">********************************</span>
+  <span class="n">SWS</span>        <span class="n">Energy</span>
+<span class="mf">2.600000</span>  <span class="o">-</span><span class="mf">2545.605517</span>
+<span class="mf">2.620000</span>  <span class="o">-</span><span class="mf">2545.606394</span>
+<span class="mf">2.640000</span>  <span class="o">-</span><span class="mf">2545.606680</span>
+<span class="mf">2.660000</span>  <span class="o">-</span><span class="mf">2545.606435</span>
+<span class="mf">2.680000</span>  <span class="o">-</span><span class="mf">2545.605705</span>
+<span class="mf">2.700000</span>  <span class="o">-</span><span class="mf">2545.604616</span>
 
 
-lattice_constants_analyze(cubic):
-sws0 =      2.640005
-B0   =    195.204183
-E0   =  -2545.606678
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">16</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">13</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">fe1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">PBE</span>
+
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
+
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">2.7459052408e-10</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">1.3729526204e-10</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999907593903</span>
+
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
+
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.117551</span>
+<span class="n">b</span>      <span class="o">=</span>  <span class="o">-</span><span class="mf">122.663728</span>
+<span class="n">c</span>      <span class="o">=</span> <span class="mf">32000.491593</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">2.370150</span>
+
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
+
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">2.640005</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">2.640005</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">2545.606678</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">195.204183</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">3.128604</span>
+
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.600000</span>  <span class="o">-</span><span class="mf">2545.605517</span>  <span class="o">-</span><span class="mf">2545.605515</span>      <span class="mf">0.000002</span>       <span class="o">-</span><span class="mf">0.000870</span>
+<span class="mf">2.620000</span>  <span class="o">-</span><span class="mf">2545.606394</span>  <span class="o">-</span><span class="mf">2545.606400</span>     <span class="o">-</span><span class="mf">0.000006</span>        <span class="mf">0.002524</span>
+<span class="mf">2.640000</span>  <span class="o">-</span><span class="mf">2545.606680</span>  <span class="o">-</span><span class="mf">2545.606678</span>      <span class="mf">0.000002</span>       <span class="o">-</span><span class="mf">0.000950</span>
+<span class="mf">2.660000</span>  <span class="o">-</span><span class="mf">2545.606435</span>  <span class="o">-</span><span class="mf">2545.606426</span>      <span class="mf">0.000009</span>       <span class="o">-</span><span class="mf">0.003632</span>
+<span class="mf">2.680000</span>  <span class="o">-</span><span class="mf">2545.605705</span>  <span class="o">-</span><span class="mf">2545.605716</span>     <span class="o">-</span><span class="mf">0.000011</span>        <span class="mf">0.004368</span>
+<span class="mf">2.700000</span>  <span class="o">-</span><span class="mf">2545.604616</span>  <span class="o">-</span><span class="mf">2545.604612</span>      <span class="mf">0.000004</span>       <span class="o">-</span><span class="mf">0.001440</span>
+
+
+<span class="n">lattice_constants_analyze</span><span class="p">(</span><span class="n">cubic</span><span class="p">):</span>
+<span class="n">sws0</span> <span class="o">=</span>      <span class="mf">2.640005</span>
+<span class="n">B0</span>   <span class="o">=</span>    <span class="mf">195.204183</span>
+<span class="n">E0</span>   <span class="o">=</span>  <span class="o">-</span><span class="mf">2545.606678</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="elastic-constants-of-bcc-bulk-iron">
 <h2>Elastic constants of bcc bulk iron<a class="headerlink" href="#elastic-constants-of-bcc-bulk-iron" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
 
-<span class="c"># An example script showing how to automatically calculate</span>
-<span class="c"># the elastic constants of bulk bcc Fe using pyEMTO.</span>
+<span class="c1"># An example script showing how to automatically calculate</span>
+<span class="c1"># the elastic constants of bulk bcc Fe using pyEMTO.</span>
 
 <span class="kn">import</span> <span class="nn">pyemto</span>
 
-<span class="n">emtopath</span> <span class="o">=</span> <span class="s">&quot;/wrk/hpleva/pyEMTO_examples/fe_elastic_constants&quot;</span> <span class="c"># Define a folder for our KGRN and KFCD input and output files.</span>
-<span class="n">latpath</span>  <span class="o">=</span> <span class="s">&quot;/wrk/hpleva/structures&quot;</span>                           <span class="c"># Define a folder where the BMDL, KSTR and KFCD input and output files</span>
-                                                              <span class="c"># will be located.</span>
+<span class="n">emtopath</span> <span class="o">=</span> <span class="s2">&quot;/wrk/hpleva/pyEMTO_examples/fe_elastic_constants&quot;</span> <span class="c1"># Define a folder for our KGRN and KFCD input and output files.</span>
+<span class="n">latpath</span>  <span class="o">=</span> <span class="s2">&quot;/wrk/hpleva/structures&quot;</span>                           <span class="c1"># Define a folder where the BMDL, KSTR and KFCD input and output files</span>
+                                                              <span class="c1"># will be located.</span>
 
-<span class="n">fe</span> <span class="o">=</span> <span class="n">pyemto</span><span class="o">.</span><span class="n">System</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">emtopath</span><span class="p">)</span>  <span class="c"># Create a new instance of the pyemto System-class.</span>
+<span class="n">fe</span> <span class="o">=</span> <span class="n">pyemto</span><span class="o">.</span><span class="n">System</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">emtopath</span><span class="p">)</span>  <span class="c1"># Create a new instance of the pyemto System-class.</span>
 
-<span class="c"># Let&#39;s calculate the elastic constants of Fe.</span>
+<span class="c1"># Let&#39;s calculate the elastic constants of Fe.</span>
 
-<span class="n">fe</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">lat</span>     <span class="o">=</span> <span class="s">&#39;bcc&#39;</span><span class="p">,</span>   <span class="c"># We want to use the bcc structure.</span>
-        <span class="n">latpath</span> <span class="o">=</span> <span class="n">latpath</span><span class="p">,</span> <span class="c"># Path to the folder where the structure files are located.</span>
-        <span class="n">afm</span>     <span class="o">=</span> <span class="s">&#39;F&#39;</span><span class="p">,</span>     <span class="c"># We want to do a ferromagnetic calculation.</span>
-        <span class="n">atoms</span>   <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Fe&#39;</span><span class="p">],</span>  <span class="c"># A list of atoms.</span>
-        <span class="n">splts</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span>   <span class="c"># A list of magnetic splittings.</span>
-        <span class="n">expan</span>   <span class="o">=</span> <span class="s">&#39;M&#39;</span><span class="p">,</span>     <span class="c"># We want to use the double-Taylor expansion.</span>
-        <span class="n">sofc</span>    <span class="o">=</span> <span class="s">&#39;Y&#39;</span><span class="p">,</span>     <span class="c"># We want to use soft-core approximation.</span>
-        <span class="n">xc</span>      <span class="o">=</span> <span class="s">&#39;PBE&#39;</span><span class="p">,</span>   <span class="c"># We want to use the PBE functional.</span>
-        <span class="n">amix</span>    <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>    <span class="c"># Mixing parameter.</span>
+<span class="n">fe</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">lat</span>     <span class="o">=</span> <span class="s1">&#39;bcc&#39;</span><span class="p">,</span>   <span class="c1"># We want to use the bcc structure.</span>
+        <span class="n">latpath</span> <span class="o">=</span> <span class="n">latpath</span><span class="p">,</span> <span class="c1"># Path to the folder where the structure files are located.</span>
+        <span class="n">afm</span>     <span class="o">=</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>     <span class="c1"># We want to do a ferromagnetic calculation.</span>
+        <span class="n">atoms</span>   <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fe&#39;</span><span class="p">],</span>  <span class="c1"># A list of atoms.</span>
+        <span class="n">splts</span>   <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span>   <span class="c1"># A list of magnetic splittings.</span>
+        <span class="n">expan</span>   <span class="o">=</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span>     <span class="c1"># We want to use the double-Taylor expansion.</span>
+        <span class="n">sofc</span>    <span class="o">=</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span>     <span class="c1"># We want to use soft-core approximation.</span>
+        <span class="n">xc</span>      <span class="o">=</span> <span class="s1">&#39;PBE&#39;</span><span class="p">,</span>   <span class="c1"># We want to use the PBE functional.</span>
+        <span class="n">amix</span>    <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>    <span class="c1"># Mixing parameter.</span>
 
-<span class="n">sws0</span> <span class="o">=</span> <span class="mf">2.64</span> <span class="c"># Eq. WS-radius that we computed previously.</span>
-<span class="n">B0</span>   <span class="o">=</span> <span class="mi">195</span>  <span class="c"># Eq. bulk modulus.</span>
+<span class="n">sws0</span> <span class="o">=</span> <span class="mf">2.64</span> <span class="c1"># Eq. WS-radius that we computed previously.</span>
+<span class="n">B0</span>   <span class="o">=</span> <span class="mi">195</span>  <span class="c1"># Eq. bulk modulus.</span>
 
-<span class="c"># Generate all the necessary input files with this function:</span>
-<span class="c">#fe.elastic_constants_batch_generate(sws=sws0)</span>
+<span class="c1"># Generate all the necessary input files with this function:</span>
+<span class="c1">#fe.elastic_constants_batch_generate(sws=sws0)</span>
 
-<span class="c">#The newly created batch scripts are then submitted by hand.</span>
+<span class="c1">#The newly created batch scripts are then submitted by hand.</span>
 
-<span class="c"># Analyze the results using this function once all the calculations</span>
-<span class="c"># have finished:</span>
-<span class="c">#fe.elastic_constants_analyze(sws=sws,bmod=B0)</span>
+<span class="c1"># Analyze the results using this function once all the calculations</span>
+<span class="c1"># have finished:</span>
+<span class="c1">#fe.elastic_constants_analyze(sws=sws,bmod=B0)</span>
 
-<span class="c"># This function combines the features of the previous two:</span>
+<span class="c1"># This function combines the features of the previous two:</span>
 <span class="n">fe</span><span class="o">.</span><span class="n">elastic_constants_batch_calculate</span><span class="p">(</span><span class="n">sws</span><span class="o">=</span><span class="n">sws0</span><span class="p">,</span><span class="n">bmod</span><span class="o">=</span><span class="n">B0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The output of this script should look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>Submitted batch job 1021848
-Submitted batch job 1021849
-Submitted batch job 1021850
-Submitted batch job 1021851
-Submitted batch job 1021852
-Submitted batch job 1021853
-Submitted batch job 1021854
-Submitted batch job 1021855
-Submitted batch job 1021856
-Submitted batch job 1021857
-Submitted batch job 1021858
-Submitted batch job 1021859
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021848</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021849</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021850</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021851</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021852</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021853</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021854</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021855</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021856</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021857</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021858</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021859</span>
 
-wait_for_jobs: Submitted 12 jobs
-wait_for_jobs: Will be requesting job statuses every 60 seconds
+<span class="n">wait_for_jobs</span><span class="p">:</span> <span class="n">Submitted</span> <span class="mi">12</span> <span class="n">jobs</span>
+<span class="n">wait_for_jobs</span><span class="p">:</span> <span class="n">Will</span> <span class="n">be</span> <span class="n">requesting</span> <span class="n">job</span> <span class="n">statuses</span> <span class="n">every</span> <span class="mi">60</span> <span class="n">seconds</span>
 
-0:01:00 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:02:00 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:03:00 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:04:00 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:05:00 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:06:00 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:07:00 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:08:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:09:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:10:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:11:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:12:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:13:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:14:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:15:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:16:01 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:17:02 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:18:02 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:19:02 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:20:02 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:21:02 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:22:02 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:23:02 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:24:02 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:25:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:26:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:27:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:28:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:29:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:30:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:31:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:32:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:33:03 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:34:04 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:35:04 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:36:04 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:37:04 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:38:04 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:39:04 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:40:04 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:41:04 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:42:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:43:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:44:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:45:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:46:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:47:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:48:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:49:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:50:05 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:51:06 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:52:06 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:53:06 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:54:06 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:55:06 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:56:06 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:57:06 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:58:06 {&#39;RUNNING&#39;: 12} (  0% completion)
-0:59:07 {&#39;RUNNING&#39;: 11, &#39;COMPLETED&#39;: 1} (  8% completion)
-1:00:07 {&#39;RUNNING&#39;: 10, &#39;COMPLETED&#39;: 2} ( 16% completion)
-1:01:07 {&#39;RUNNING&#39;: 9, &#39;COMPLETED&#39;: 3} ( 25% completion)
-1:02:07 {&#39;RUNNING&#39;: 9, &#39;COMPLETED&#39;: 3} ( 25% completion)
-1:03:07 {&#39;RUNNING&#39;: 9, &#39;COMPLETED&#39;: 3} ( 25% completion)
-1:04:07 {&#39;RUNNING&#39;: 9, &#39;COMPLETED&#39;: 3} ( 25% completion)
-1:05:07 {&#39;RUNNING&#39;: 9, &#39;COMPLETED&#39;: 3} ( 25% completion)
-1:06:07 {&#39;RUNNING&#39;: 9, &#39;COMPLETED&#39;: 3} ( 25% completion)
-1:07:08 {&#39;RUNNING&#39;: 9, &#39;COMPLETED&#39;: 3} ( 25% completion)
-1:08:08 {&#39;RUNNING&#39;: 8, &#39;COMPLETED&#39;: 4} ( 33% completion)
-1:09:08 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:10:08 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:11:08 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:12:08 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:13:08 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:14:08 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:15:09 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:16:09 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:17:09 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:18:09 {&#39;COMPLETED&#39;: 6, &#39;RUNNING&#39;: 6} ( 50% completion)
-1:19:09 {&#39;COMPLETED&#39;: 7, &#39;RUNNING&#39;: 5} ( 58% completion)
-1:20:09 {&#39;COMPLETED&#39;: 7, &#39;RUNNING&#39;: 5} ( 58% completion)
-1:21:09 {&#39;COMPLETED&#39;: 8, &#39;RUNNING&#39;: 4} ( 66% completion)
-1:22:09 {&#39;COMPLETED&#39;: 10, &#39;RUNNING&#39;: 2} ( 83% completion)
-1:23:10 {&#39;COMPLETED&#39;: 10, &#39;RUNNING&#39;: 2} ( 83% completion)
-1:24:10 {&#39;COMPLETED&#39;: 10, &#39;RUNNING&#39;: 2} ( 83% completion)
-1:25:10 {&#39;COMPLETED&#39;: 11, &#39;RUNNING&#39;: 1} ( 91% completion)
-1:26:10 {&#39;COMPLETED&#39;: 12} (100% completion)
-completed 12 batch jobs in 1:26:10
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">41</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">43</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">48</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">50</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">55</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">07</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">8</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">07</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="p">(</span> <span class="mi">16</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">07</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span> <span class="mi">25</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">07</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span> <span class="mi">25</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">07</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span> <span class="mi">25</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">07</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span> <span class="mi">25</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">07</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span> <span class="mi">25</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">07</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span> <span class="mi">25</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">08</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span> <span class="mi">25</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">08</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span> <span class="p">(</span> <span class="mi">33</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">08</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">08</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">08</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">08</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span><span class="mi">08</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">08</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">09</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">09</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">09</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">09</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}</span> <span class="p">(</span> <span class="mi">50</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">09</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span> <span class="p">(</span> <span class="mi">58</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">09</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span> <span class="p">(</span> <span class="mi">58</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">09</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span> <span class="p">(</span> <span class="mi">66</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">09</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="p">(</span> <span class="mi">83</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">10</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="p">(</span> <span class="mi">83</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">10</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="p">(</span> <span class="mi">83</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">10</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span> <span class="p">(</span> <span class="mi">91</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">1</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">10</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span> <span class="p">(</span><span class="mi">100</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="n">completed</span> <span class="mi">12</span> <span class="n">batch</span> <span class="n">jobs</span> <span class="ow">in</span> <span class="mi">1</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">10</span>
 
-***cubic_elastic_constants***
+<span class="o">***</span><span class="n">cubic_elastic_constants</span><span class="o">***</span>
 
-fe1.00
+<span class="n">fe1</span><span class="o">.</span><span class="mi">00</span>
 
-c11(GPa) = 299.60
-c12(GPa) = 142.70
-c44(GPa) = 105.95
-c&#39; (GPa) =  78.45
-B  (GPa) = 195.00
+<span class="n">c11</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span> <span class="o">=</span> <span class="mf">299.60</span>
+<span class="n">c12</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span> <span class="o">=</span> <span class="mf">142.70</span>
+<span class="n">c44</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span> <span class="o">=</span> <span class="mf">105.95</span>
+<span class="n">c</span><span class="s1">&#39; (GPa) =  78.45</span>
+<span class="n">B</span>  <span class="p">(</span><span class="n">GPa</span><span class="p">)</span> <span class="o">=</span> <span class="mf">195.00</span>
 
-Voigt average:
+<span class="n">Voigt</span> <span class="n">average</span><span class="p">:</span>
 
-BV(GPa)  = 195.00
-GV(GPa)  =  94.95
-EV(GPa)  = 245.07
-vV(GPa)  =   0.29
+<span class="n">BV</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">195.00</span>
+<span class="n">GV</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span>  <span class="mf">94.95</span>
+<span class="n">EV</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">245.07</span>
+<span class="n">vV</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span>   <span class="mf">0.29</span>
 
-Reuss average:
+<span class="n">Reuss</span> <span class="n">average</span><span class="p">:</span>
 
-BR(GPa)  = 195.00
-GR(GPa)  =  92.92
-ER(GPa)  = 240.55
-vR(GPa)  =   0.29
+<span class="n">BR</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">195.00</span>
+<span class="n">GR</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span>  <span class="mf">92.92</span>
+<span class="n">ER</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">240.55</span>
+<span class="n">vR</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span>   <span class="mf">0.29</span>
 
-Hill average:
+<span class="n">Hill</span> <span class="n">average</span><span class="p">:</span>
 
-BH(GPa)  = 195.00
-GH(GPa)  =  93.93
-EH(GPa)  = 242.81
-vH(GPa)  =   0.29
+<span class="n">BH</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">195.00</span>
+<span class="n">GH</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span>  <span class="mf">93.93</span>
+<span class="n">EH</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span> <span class="mf">242.81</span>
+<span class="n">vH</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span>   <span class="mf">0.29</span>
 
-Elastic anisotropy:
+<span class="n">Elastic</span> <span class="n">anisotropy</span><span class="p">:</span>
 
-AVR(GPa)  =   0.01
+<span class="n">AVR</span><span class="p">(</span><span class="n">GPa</span><span class="p">)</span>  <span class="o">=</span>   <span class="mf">0.01</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="ground-state-volume-and-elastic-constants-of-hcp-bulk-titanium">
 <h2>Ground state volume and elastic constants of hcp bulk titanium<a class="headerlink" href="#ground-state-volume-and-elastic-constants-of-hcp-bulk-titanium" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
 
-<span class="c"># This script will automatically accomplish:</span>
+<span class="c1"># This script will automatically accomplish:</span>
 
-<span class="c">#  1. Calculate the equilibrium volume and bulk modulus of hcp Ti.</span>
-<span class="c">#  2. Calculate the elastic constants of hcp Ti.</span>
+<span class="c1">#  1. Calculate the equilibrium volume and bulk modulus of hcp Ti.</span>
+<span class="c1">#  2. Calculate the elastic constants of hcp Ti.</span>
 
 <span class="kn">import</span> <span class="nn">pyemto</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<span class="c"># It is recommended to always use absolute paths</span>
-<span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>                <span class="c"># Get current working directory.</span>
-<span class="n">latpath</span> <span class="o">=</span> <span class="s">&quot;/wrk/hpleva/structures&quot;</span>  <span class="c"># Folder where the structure files are located.</span>
-<span class="n">emtopath</span> <span class="o">=</span> <span class="n">folder</span><span class="o">+</span><span class="s">&quot;/ti_hcp&quot;</span>         <span class="c"># Folder where the calculation take place.</span>
+<span class="c1"># It is recommended to always use absolute paths</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>                <span class="c1"># Get current working directory.</span>
+<span class="n">latpath</span> <span class="o">=</span> <span class="s2">&quot;/wrk/hpleva/structures&quot;</span>  <span class="c1"># Folder where the structure files are located.</span>
+<span class="n">emtopath</span> <span class="o">=</span> <span class="n">folder</span><span class="o">+</span><span class="s2">&quot;/ti_hcp&quot;</span>         <span class="c1"># Folder where the calculation take place.</span>
 
 <span class="n">ti_hcp</span><span class="o">=</span><span class="n">pyemto</span><span class="o">.</span><span class="n">System</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">emtopath</span><span class="p">)</span>
 
-<span class="c"># Initialize the bulk system using the bulk() function:</span>
-<span class="n">ti_hcp</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s">&#39;hcp&#39;</span><span class="p">,</span>
+<span class="c1"># Initialize the bulk system using the bulk() function:</span>
+<span class="n">ti_hcp</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s1">&#39;hcp&#39;</span><span class="p">,</span>
             <span class="n">latpath</span><span class="o">=</span><span class="n">latpath</span><span class="p">,</span>
-            <span class="n">atoms</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Ti&#39;</span><span class="p">],</span>
+            <span class="n">atoms</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Ti&#39;</span><span class="p">],</span>
             <span class="n">sws</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>
             <span class="n">amix</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
             <span class="n">efmix</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-            <span class="n">expan</span><span class="o">=</span><span class="s">&#39;M&#39;</span><span class="p">,</span>
-            <span class="n">sofc</span><span class="o">=</span><span class="s">&#39;Y&#39;</span><span class="p">,</span>
-            <span class="n">xc</span><span class="o">=</span><span class="s">&#39;P07&#39;</span><span class="p">,</span>           <span class="c"># Use PBEsol</span>
-            <span class="n">nky</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span>             <span class="c"># k-points</span>
-            <span class="n">nkz</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span>             <span class="c"># k-points</span>
-            <span class="n">runtime</span><span class="o">=</span><span class="s">&#39;24:00:00&#39;</span><span class="p">)</span> <span class="c"># Allow large enough timelimit for SLURM</span>
+            <span class="n">expan</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span>
+            <span class="n">sofc</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span>
+            <span class="n">xc</span><span class="o">=</span><span class="s1">&#39;P07&#39;</span><span class="p">,</span>           <span class="c1"># Use PBEsol</span>
+            <span class="n">nky</span><span class="o">=</span><span class="mi">31</span><span class="p">,</span>             <span class="c1"># k-points</span>
+            <span class="n">nkz</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span>             <span class="c1"># k-points</span>
+            <span class="n">runtime</span><span class="o">=</span><span class="s1">&#39;24:00:00&#39;</span><span class="p">)</span> <span class="c1"># Allow large enough timelimit for SLURM</span>
 
-<span class="n">sws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">3.1</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span> <span class="c"># A list of 7 different volumes from 2.9 to 3.1</span>
+<span class="n">sws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">3.1</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span> <span class="c1"># A list of 7 different volumes from 2.9 to 3.1</span>
 
 
 <span class="n">sws0</span><span class="p">,</span><span class="n">ca0</span><span class="p">,</span><span class="n">B0</span><span class="p">,</span><span class="n">e0</span><span class="p">,</span><span class="n">R0</span><span class="p">,</span><span class="n">cs0</span> <span class="o">=</span> <span class="n">ti_hcp</span><span class="o">.</span><span class="n">lattice_constants_batch_calculate</span><span class="p">(</span><span class="n">sws</span><span class="o">=</span><span class="n">sws</span><span class="p">)</span>
 <span class="n">ti_hcp</span><span class="o">.</span><span class="n">elastic_constants_batch_calculate</span><span class="p">(</span><span class="n">sws</span><span class="o">=</span><span class="n">sws0</span><span class="p">,</span><span class="n">bmod</span><span class="o">=</span><span class="n">B0</span><span class="p">,</span><span class="n">ca</span><span class="o">=</span><span class="n">ca0</span><span class="p">,</span><span class="n">R</span><span class="o">=</span><span class="n">R0</span><span class="p">,</span><span class="n">cs</span><span class="o">=</span><span class="n">cs0</span><span class="p">)</span>
 
-<span class="c"># If the batch jobs are submitted by hand use these functions.</span>
+<span class="c1"># If the batch jobs are submitted by hand use these functions.</span>
 
-<span class="c"># To evaluate the results, comment out the _generate functions</span>
-<span class="c"># and uncomment the _analyze functions.</span>
+<span class="c1"># To evaluate the results, comment out the _generate functions</span>
+<span class="c1"># and uncomment the _analyze functions.</span>
 
 <span class="n">ti_hcp</span><span class="o">.</span><span class="n">lattice_constants_batch_generate</span><span class="p">(</span><span class="n">sws</span><span class="o">=</span><span class="n">sws</span><span class="p">)</span>
-<span class="c">#ti_hcp.lattice_constants_analyze(sws=sws)</span>
+<span class="c1">#ti_hcp.lattice_constants_analyze(sws=sws)</span>
 
-<span class="c"># Results. These are inputed to the elastic_constants functions.</span>
-<span class="c">#sws0 =      3.002260</span>
-<span class="c">#ca0  =      1.610122</span>
-<span class="c">#B0   =    115.952318</span>
-<span class="c">#E0   =  -1705.738844</span>
-<span class="c">#R0   =      0.019532</span>
-<span class="c">#cs0  =    498.360422</span>
+<span class="c1"># Results. These are inputed to the elastic_constants functions.</span>
+<span class="c1">#sws0 =      3.002260</span>
+<span class="c1">#ca0  =      1.610122</span>
+<span class="c1">#B0   =    115.952318</span>
+<span class="c1">#E0   =  -1705.738844</span>
+<span class="c1">#R0   =      0.019532</span>
+<span class="c1">#cs0  =    498.360422</span>
 
-<span class="c">#ti_hcp.elastic_constants_batch_generate(sws=sws0,ca=ca0)</span>
-<span class="c">#ti_hcp.elastic_constants_analyze(sws=sws0,bmod=B0,ca=ca0,R=R0,cs=cs0)</span>
+<span class="c1">#ti_hcp.elastic_constants_batch_generate(sws=sws0,ca=ca0)</span>
+<span class="c1">#ti_hcp.elastic_constants_analyze(sws=sws0,bmod=B0,ca=ca0,R=R0,cs=cs0)</span>
 </pre></div>
 </div>
 <p>The output of this script should look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>Submitted batch job 1021973
-Submitted batch job 1021974
-Submitted batch job 1021975
-Submitted batch job 1021976
-Submitted batch job 1021977
-Submitted batch job 1021978
-Submitted batch job 1021979
-Submitted batch job 1021980
-Submitted batch job 1021981
-Submitted batch job 1021982
-Submitted batch job 1021983
-Submitted batch job 1021984
-Submitted batch job 1021985
-Submitted batch job 1021986
-Submitted batch job 1021987
-Submitted batch job 1021988
-Submitted batch job 1021989
-Submitted batch job 1021990
-Submitted batch job 1021991
-Submitted batch job 1021992
-Submitted batch job 1021993
-Submitted batch job 1021994
-Submitted batch job 1021995
-Submitted batch job 1021996
-Submitted batch job 1021997
-Submitted batch job 1021998
-Submitted batch job 1021999
-Submitted batch job 1022000
-Submitted batch job 1022001
-Submitted batch job 1022002
-Submitted batch job 1022003
-Submitted batch job 1022004
-Submitted batch job 1022005
-Submitted batch job 1022006
-Submitted batch job 1022007
-Submitted batch job 1022008
-Submitted batch job 1022009
-Submitted batch job 1022010
-Submitted batch job 1022011
-Submitted batch job 1022012
-Submitted batch job 1022013
-Submitted batch job 1022014
-Submitted batch job 1022015
-Submitted batch job 1022016
-Submitted batch job 1022017
-Submitted batch job 1022018
-Submitted batch job 1022019
-Submitted batch job 1022020
-Submitted batch job 1022021
-()
-wait_for_jobs: Submitted 49 jobs
-wait_for_jobs: Will be requesting job statuses every 60 seconds
-
-0:01:00 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:02:00 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:03:00 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:04:00 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:05:01 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:06:01 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:07:01 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:08:01 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:09:02 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:10:02 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:11:02 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:12:02 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:13:02 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:14:02 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:15:02 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:16:03 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:17:03 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:18:03 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:19:03 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:20:03 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:21:03 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:22:03 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:23:03 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:24:04 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:25:04 {&#39;RUNNING&#39;: 49} (  0% completion)
-0:26:04 {&#39;RUNNING&#39;: 48, &#39;COMPLETED&#39;: 1} (  2% completion)
-0:27:04 {&#39;RUNNING&#39;: 47, &#39;COMPLETED&#39;: 2} (  4% completion)
-0:28:04 {&#39;RUNNING&#39;: 46, &#39;COMPLETED&#39;: 3} (  6% completion)
-0:29:04 {&#39;RUNNING&#39;: 42, &#39;COMPLETED&#39;: 7} ( 14% completion)
-0:30:04 {&#39;RUNNING&#39;: 40, &#39;COMPLETED&#39;: 9} ( 18% completion)
-0:31:05 {&#39;COMPLETED&#39;: 12, &#39;RUNNING&#39;: 37} ( 24% completion)
-0:32:05 {&#39;COMPLETED&#39;: 15, &#39;RUNNING&#39;: 34} ( 30% completion)
-0:33:05 {&#39;COMPLETED&#39;: 15, &#39;RUNNING&#39;: 34} ( 30% completion)
-0:34:05 {&#39;COMPLETED&#39;: 15, &#39;RUNNING&#39;: 34} ( 30% completion)
-0:35:05 {&#39;COMPLETED&#39;: 18, &#39;RUNNING&#39;: 31} ( 36% completion)
-0:36:05 {&#39;COMPLETED&#39;: 29, &#39;RUNNING&#39;: 20} ( 59% completion)
-0:37:05 {&#39;COMPLETED&#39;: 44, &#39;RUNNING&#39;: 5} ( 89% completion)
-0:38:06 {&#39;COMPLETED&#39;: 49} (100% completion)
-completed 49 batch jobs in 0:38:06
-
-*****lattice_constants_analyze*****
-
-
-
-******************************
-lattice_constants_analyze(hcp)
-******************************
-  SWS        Energy0        c&#39;a0
-2.900000  -1705.733796  1.613939
-2.933333  -1705.736608  1.612527
-2.966667  -1705.738262  1.611196
-3.000000  -1705.738843  1.610175
-3.033333  -1705.738424  1.609326
-3.066667  -1705.737080  1.608336
-3.100000  -1705.734889  1.607505
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021973</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021974</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021975</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021976</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021977</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021978</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021979</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021980</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021981</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021982</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021983</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021984</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021985</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021986</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021987</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021988</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021989</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021990</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021991</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021992</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021993</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021994</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021995</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021996</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021997</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021998</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1021999</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022000</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022001</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022002</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022003</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022004</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022005</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022006</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022007</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022008</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022009</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022010</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022011</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022012</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022013</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022014</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022015</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022016</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022017</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022018</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022019</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022020</span>
+<span class="n">Submitted</span> <span class="n">batch</span> <span class="n">job</span> <span class="mi">1022021</span>
+<span class="p">()</span>
+<span class="n">wait_for_jobs</span><span class="p">:</span> <span class="n">Submitted</span> <span class="mi">49</span> <span class="n">jobs</span>
+<span class="n">wait_for_jobs</span><span class="p">:</span> <span class="n">Will</span> <span class="n">be</span> <span class="n">requesting</span> <span class="n">job</span> <span class="n">statuses</span> <span class="n">every</span> <span class="mi">60</span> <span class="n">seconds</span>
+
+<span class="mi">0</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">00</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">01</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">02</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">21</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">03</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">0</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">2</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">47</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">4</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">46</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span> <span class="p">(</span>  <span class="mi">6</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span> <span class="p">(</span> <span class="mi">14</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">04</span> <span class="p">{</span><span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">}</span> <span class="p">(</span> <span class="mi">18</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">37</span><span class="p">}</span> <span class="p">(</span> <span class="mi">24</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">34</span><span class="p">}</span> <span class="p">(</span> <span class="mi">30</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">33</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">34</span><span class="p">}</span> <span class="p">(</span> <span class="mi">30</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">34</span><span class="p">}</span> <span class="p">(</span> <span class="mi">30</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">}</span> <span class="p">(</span> <span class="mi">36</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span> <span class="p">(</span> <span class="mi">59</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">37</span><span class="p">:</span><span class="mi">05</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">44</span><span class="p">,</span> <span class="s1">&#39;RUNNING&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span> <span class="p">(</span> <span class="mi">89</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">06</span> <span class="p">{</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span> <span class="mi">49</span><span class="p">}</span> <span class="p">(</span><span class="mi">100</span><span class="o">%</span> <span class="n">completion</span><span class="p">)</span>
+<span class="n">completed</span> <span class="mi">49</span> <span class="n">batch</span> <span class="n">jobs</span> <span class="ow">in</span> <span class="mi">0</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">06</span>
+
+<span class="o">*****</span><span class="n">lattice_constants_analyze</span><span class="o">*****</span>
+
+
+
+<span class="o">******************************</span>
+<span class="n">lattice_constants_analyze</span><span class="p">(</span><span class="n">hcp</span><span class="p">)</span>
+<span class="o">******************************</span>
+  <span class="n">SWS</span>        <span class="n">Energy0</span>        <span class="n">c</span><span class="s1">&#39;a0</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.733796</span>  <span class="mf">1.613939</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.736608</span>  <span class="mf">1.612527</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.738262</span>  <span class="mf">1.611196</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.738843</span>  <span class="mf">1.610175</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.738424</span>  <span class="mf">1.609326</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.737080</span>  <span class="mf">1.608336</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.734889</span>  <span class="mf">1.607505</span>
 
-
-5.2.2015 -- 18:51:51
-JOBNAM = ti1.00 -- P07
+
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">51</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">ti1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">P07</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 1.16375610448e-11
-Reduced Chi squared = 3.87918701493e-12
-R squared           = 0.999999464309
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">1.16375610448e-11</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">3.87918701493e-12</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999999464309</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.757678
-b      =   -15.168890
-c      =    75.921091
-lambda =     0.767287
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.757678</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">15.168890</span>
+<span class="n">c</span>      <span class="o">=</span>    <span class="mf">75.921091</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">0.767287</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     3.002260 Bohr^3 (unit cell volume)
-             =     3.002260 Bohr   (WS-radius)
-E0           = -1705.738844 Ry
-Bmod         =   115.952318 GPa
-Grun. param. =     1.151798
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">3.002260</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">3.002260</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">1705.738844</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">115.952318</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">1.151798</span>
 
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.900000  -1705.733796  -1705.733796      0.000000       -0.000275
-2.933333  -1705.736608  -1705.736609     -0.000001        0.000498
-2.966667  -1705.738262  -1705.738263     -0.000001        0.000376
-3.000000  -1705.738843  -1705.738842      0.000001       -0.000810
-3.033333  -1705.738424  -1705.738423      0.000001       -0.000680
-3.066667  -1705.737080  -1705.737082     -0.000002        0.001450
-3.100000  -1705.734889  -1705.734889      0.000001       -0.000558
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.733796</span>  <span class="o">-</span><span class="mf">1705.733796</span>      <span class="mf">0.000000</span>       <span class="o">-</span><span class="mf">0.000275</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.736608</span>  <span class="o">-</span><span class="mf">1705.736609</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000498</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.738262</span>  <span class="o">-</span><span class="mf">1705.738263</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000376</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.738843</span>  <span class="o">-</span><span class="mf">1705.738842</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000810</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.738424</span>  <span class="o">-</span><span class="mf">1705.738423</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000680</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.737080</span>  <span class="o">-</span><span class="mf">1705.737082</span>     <span class="o">-</span><span class="mf">0.000002</span>        <span class="mf">0.001450</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.734889</span>  <span class="o">-</span><span class="mf">1705.734889</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000558</span>
 
 
-5.2.2015 -- 18:51:51
-JOBNAM = ti1.00 -- P07
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">51</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">ti1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">P07</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 1.06749728331e-10
-Reduced Chi squared = 3.5583242777e-11
-R squared           = 0.999995355882
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">1.06749728331e-10</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">3.5583242777e-11</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999995355882</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.748045
-b      =   -15.100334
-c      =    76.203651
-lambda =     0.769114
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.748045</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">15.100334</span>
+<span class="n">c</span>      <span class="o">=</span>    <span class="mf">76.203651</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">0.769114</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     3.005849 Bohr^3 (unit cell volume)
-             =     3.005849 Bohr   (WS-radius)
-E0           = -1705.736830 Ry
-Bmod         =   114.888885 GPa
-Grun. param. =     1.155920
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">3.005849</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">3.005849</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">1705.736830</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">114.888885</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">1.155920</span>
 
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.900000  -1705.731449  -1705.731449     -0.000000        0.000021
-2.933333  -1705.734368  -1705.734369     -0.000001        0.000770
-2.966667  -1705.736134  -1705.736130      0.000004       -0.002260
-3.000000  -1705.736814  -1705.736815     -0.000001        0.000665
-3.033333  -1705.736497  -1705.736503     -0.000006        0.003550
-3.066667  -1705.735275  -1705.735268      0.000007       -0.004035
-3.100000  -1705.733178  -1705.733180     -0.000002        0.001288
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.731449</span>  <span class="o">-</span><span class="mf">1705.731449</span>     <span class="o">-</span><span class="mf">0.000000</span>        <span class="mf">0.000021</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.734368</span>  <span class="o">-</span><span class="mf">1705.734369</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000770</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.736134</span>  <span class="o">-</span><span class="mf">1705.736130</span>      <span class="mf">0.000004</span>       <span class="o">-</span><span class="mf">0.002260</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.736814</span>  <span class="o">-</span><span class="mf">1705.736815</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000665</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.736497</span>  <span class="o">-</span><span class="mf">1705.736503</span>     <span class="o">-</span><span class="mf">0.000006</span>        <span class="mf">0.003550</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.735275</span>  <span class="o">-</span><span class="mf">1705.735268</span>      <span class="mf">0.000007</span>       <span class="o">-</span><span class="mf">0.004035</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.733178</span>  <span class="o">-</span><span class="mf">1705.733180</span>     <span class="o">-</span><span class="mf">0.000002</span>        <span class="mf">0.001288</span>
 
 
-5.2.2015 -- 18:51:51
-JOBNAM = ti1.00 -- P07
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">51</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">ti1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">P07</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 3.64530335255e-11
-Reduced Chi squared = 1.21510111752e-11
-R squared           = 0.999998386204
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">3.64530335255e-11</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">1.21510111752e-11</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999998386204</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.743238
-b      =   -15.271044
-c      =    78.441514
-lambda =     0.775451
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.743238</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">15.271044</span>
+<span class="n">c</span>      <span class="o">=</span>    <span class="mf">78.441514</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">0.775451</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     3.004114 Bohr^3 (unit cell volume)
-             =     3.004114 Bohr   (WS-radius)
-E0           = -1705.737897 Ry
-Bmod         =   116.104730 GPa
-Grun. param. =     1.164771
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">3.004114</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">3.004114</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">1705.737897</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">116.104730</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">1.164771</span>
 
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.900000  -1705.732644  -1705.732643      0.000001       -0.000875
-2.933333  -1705.735527  -1705.735531     -0.000004        0.002534
-2.966667  -1705.737255  -1705.737252      0.000003       -0.001704
-3.000000  -1705.737891  -1705.737890      0.000001       -0.000729
-3.033333  -1705.737524  -1705.737524     -0.000000        0.000183
-3.066667  -1705.736229  -1705.736231     -0.000002        0.001216
-3.100000  -1705.734082  -1705.734081      0.000001       -0.000625
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.732644</span>  <span class="o">-</span><span class="mf">1705.732643</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000875</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.735527</span>  <span class="o">-</span><span class="mf">1705.735531</span>     <span class="o">-</span><span class="mf">0.000004</span>        <span class="mf">0.002534</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.737255</span>  <span class="o">-</span><span class="mf">1705.737252</span>      <span class="mf">0.000003</span>       <span class="o">-</span><span class="mf">0.001704</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.737891</span>  <span class="o">-</span><span class="mf">1705.737890</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000729</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.737524</span>  <span class="o">-</span><span class="mf">1705.737524</span>     <span class="o">-</span><span class="mf">0.000000</span>        <span class="mf">0.000183</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.736229</span>  <span class="o">-</span><span class="mf">1705.736231</span>     <span class="o">-</span><span class="mf">0.000002</span>        <span class="mf">0.001216</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.734082</span>  <span class="o">-</span><span class="mf">1705.734081</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000625</span>
 
 
-5.2.2015 -- 18:51:51
-JOBNAM = ti1.00 -- P07
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">51</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">ti1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">P07</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 1.18175890217e-11
-Reduced Chi squared = 3.93919634056e-12
-R squared           = 0.999999463488
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">1.18175890217e-11</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">3.93919634056e-12</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999999463488</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.759517
-b      =   -15.168958
-c      =    75.737639
-lambda =     0.766269
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.759517</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">15.168958</span>
+<span class="n">c</span>      <span class="o">=</span>    <span class="mf">75.737639</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">0.766269</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     3.003084 Bohr^3 (unit cell volume)
-             =     3.003084 Bohr   (WS-radius)
-E0           = -1705.738555 Ry
-Bmod         =   115.894284 GPa
-Grun. param. =     1.150586
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">3.003084</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">3.003084</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">1705.738555</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">115.894284</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">1.150586</span>
 
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.900000  -1705.733423  -1705.733423     -0.000000        0.000259
-2.933333  -1705.736267  -1705.736265      0.000002       -0.001035
-2.966667  -1705.737944  -1705.737946     -0.000002        0.001386
-3.000000  -1705.738551  -1705.738550      0.000001       -0.000391
-3.033333  -1705.738157  -1705.738156      0.000001       -0.000679
-3.066667  -1705.736836  -1705.736837     -0.000001        0.000606
-3.100000  -1705.734664  -1705.734664      0.000000       -0.000147
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.733423</span>  <span class="o">-</span><span class="mf">1705.733423</span>     <span class="o">-</span><span class="mf">0.000000</span>        <span class="mf">0.000259</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.736267</span>  <span class="o">-</span><span class="mf">1705.736265</span>      <span class="mf">0.000002</span>       <span class="o">-</span><span class="mf">0.001035</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.737944</span>  <span class="o">-</span><span class="mf">1705.737946</span>     <span class="o">-</span><span class="mf">0.000002</span>        <span class="mf">0.001386</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.738551</span>  <span class="o">-</span><span class="mf">1705.738550</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000391</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.738157</span>  <span class="o">-</span><span class="mf">1705.738156</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000679</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.736836</span>  <span class="o">-</span><span class="mf">1705.736837</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000606</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.734664</span>  <span class="o">-</span><span class="mf">1705.734664</span>      <span class="mf">0.000000</span>       <span class="o">-</span><span class="mf">0.000147</span>
 
 
-5.2.2015 -- 18:51:51
-JOBNAM = ti1.00 -- P07
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">51</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">ti1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">P07</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 5.45131762039e-12
-Reduced Chi squared = 1.81710587346e-12
-R squared           = 0.999999749818
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">5.45131762039e-12</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">1.81710587346e-12</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999999749818</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.772765
-b      =   -15.129144
-c      =    74.049208
-lambda =     0.759794
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.772765</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">15.129144</span>
+<span class="n">c</span>      <span class="o">=</span>    <span class="mf">74.049208</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">0.759794</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     3.002465 Bohr^3 (unit cell volume)
-             =     3.002465 Bohr   (WS-radius)
-E0           = -1705.738834 Ry
-Bmod         =   115.954728 GPa
-Grun. param. =     1.140627
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">3.002465</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">3.002465</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">1705.738834</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">115.954728</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">1.140627</span>
 
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.900000  -1705.733769  -1705.733768      0.000001       -0.000320
-2.933333  -1705.736585  -1705.736586     -0.000001        0.000827
-2.966667  -1705.738247  -1705.738246      0.000001       -0.000325
-3.000000  -1705.738832  -1705.738831      0.000001       -0.000454
-3.033333  -1705.738419  -1705.738419      0.000000       -0.000175
-3.066667  -1705.737081  -1705.737082     -0.000001        0.000791
-3.100000  -1705.734892  -1705.734891      0.000001       -0.000345
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.733769</span>  <span class="o">-</span><span class="mf">1705.733768</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000320</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.736585</span>  <span class="o">-</span><span class="mf">1705.736586</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000827</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.738247</span>  <span class="o">-</span><span class="mf">1705.738246</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000325</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.738832</span>  <span class="o">-</span><span class="mf">1705.738831</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000454</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.738419</span>  <span class="o">-</span><span class="mf">1705.738419</span>      <span class="mf">0.000000</span>       <span class="o">-</span><span class="mf">0.000175</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.737081</span>  <span class="o">-</span><span class="mf">1705.737082</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000791</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.734892</span>  <span class="o">-</span><span class="mf">1705.734891</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000345</span>
 
 
-5.2.2015 -- 18:51:52
-JOBNAM = ti1.00 -- P07
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">52</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">ti1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">P07</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 1.19109949001e-11
-Reduced Chi squared = 3.97033163337e-12
-R squared           = 0.999999449336
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">1.19109949001e-11</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">3.97033163337e-12</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999999449336</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.745414
-b      =   -15.182081
-c      =    77.304565
-lambda =     0.773045
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.745414</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">15.182081</span>
+<span class="n">c</span>      <span class="o">=</span>    <span class="mf">77.304565</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">0.773045</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     3.002133 Bohr^3 (unit cell volume)
-             =     3.002133 Bohr   (WS-radius)
-E0           = -1705.738728 Ry
-Bmod         =   115.798751 GPa
-Grun. param. =     1.160392
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">3.002133</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">3.002133</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">1705.738728</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">115.798751</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">1.160392</span>
 
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.900000  -1705.733697  -1705.733697      0.000000       -0.000064
-2.933333  -1705.736504  -1705.736504      0.000000       -0.000199
-2.966667  -1705.738150  -1705.738152     -0.000002        0.001152
-3.000000  -1705.738728  -1705.738726      0.000002       -0.001245
-3.033333  -1705.738305  -1705.738305      0.000000       -0.000241
-3.066667  -1705.736961  -1705.736963     -0.000002        0.000983
-3.100000  -1705.734771  -1705.734770      0.000001       -0.000387
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.733697</span>  <span class="o">-</span><span class="mf">1705.733697</span>      <span class="mf">0.000000</span>       <span class="o">-</span><span class="mf">0.000064</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.736504</span>  <span class="o">-</span><span class="mf">1705.736504</span>      <span class="mf">0.000000</span>       <span class="o">-</span><span class="mf">0.000199</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.738150</span>  <span class="o">-</span><span class="mf">1705.738152</span>     <span class="o">-</span><span class="mf">0.000002</span>        <span class="mf">0.001152</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.738728</span>  <span class="o">-</span><span class="mf">1705.738726</span>      <span class="mf">0.000002</span>       <span class="o">-</span><span class="mf">0.001245</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.738305</span>  <span class="o">-</span><span class="mf">1705.738305</span>      <span class="mf">0.000000</span>       <span class="o">-</span><span class="mf">0.000241</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.736961</span>  <span class="o">-</span><span class="mf">1705.736963</span>     <span class="o">-</span><span class="mf">0.000002</span>        <span class="mf">0.000983</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.734771</span>  <span class="o">-</span><span class="mf">1705.734770</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000387</span>
 
 
-5.2.2015 -- 18:51:52
-JOBNAM = ti1.00 -- P07
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">52</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">ti1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">P07</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 1.38286217253e-11
-Reduced Chi squared = 4.60954057509e-12
-R squared           = 0.999999356009
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">1.38286217253e-11</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">4.60954057509e-12</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999999356009</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.759904
-b      =   -15.070597
-c      =    74.720674
-lambda =     0.764158
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.759904</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">15.070597</span>
+<span class="n">c</span>      <span class="o">=</span>    <span class="mf">74.720674</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">0.764158</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     3.002206 Bohr^3 (unit cell volume)
-             =     3.002206 Bohr   (WS-radius)
-E0           = -1705.738293 Ry
-Bmod         =   115.348605 GPa
-Grun. param. =     1.147079
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">3.002206</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">3.002206</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">1705.738293</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">115.348605</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">1.147079</span>
 
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.900000  -1705.733279  -1705.733278      0.000001       -0.000462
-2.933333  -1705.736071  -1705.736073     -0.000002        0.001462
-2.966667  -1705.737719  -1705.737717      0.000002       -0.001374
-3.000000  -1705.738290  -1705.738290     -0.000000        0.000238
-3.033333  -1705.737873  -1705.737873      0.000000       -0.000175
-3.066667  -1705.736536  -1705.736537     -0.000001        0.000590
-3.100000  -1705.734353  -1705.734353      0.000000       -0.000280
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.733279</span>  <span class="o">-</span><span class="mf">1705.733278</span>      <span class="mf">0.000001</span>       <span class="o">-</span><span class="mf">0.000462</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.736071</span>  <span class="o">-</span><span class="mf">1705.736073</span>     <span class="o">-</span><span class="mf">0.000002</span>        <span class="mf">0.001462</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.737719</span>  <span class="o">-</span><span class="mf">1705.737717</span>      <span class="mf">0.000002</span>       <span class="o">-</span><span class="mf">0.001374</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.738290</span>  <span class="o">-</span><span class="mf">1705.738290</span>     <span class="o">-</span><span class="mf">0.000000</span>        <span class="mf">0.000238</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.737873</span>  <span class="o">-</span><span class="mf">1705.737873</span>      <span class="mf">0.000000</span>       <span class="o">-</span><span class="mf">0.000175</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.736536</span>  <span class="o">-</span><span class="mf">1705.736537</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000590</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.734353</span>  <span class="o">-</span><span class="mf">1705.734353</span>      <span class="mf">0.000000</span>       <span class="o">-</span><span class="mf">0.000280</span>
 
 
-5.2.2015 -- 18:51:52
-JOBNAM = ti1.00 -- P07
+<span class="mf">5.2</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">18</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">52</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">ti1</span><span class="o">.</span><span class="mi">00</span> <span class="o">--</span> <span class="n">P07</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 2.17769833254e-11
-Reduced Chi squared = 7.25899444181e-12
-R squared           = 0.99999898819
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">2.17769833254e-11</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">7.25899444181e-12</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.99999898819</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.831171
-b      =   -14.866360
-c      =    66.474685
-lambda =     0.729592
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.831171</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">14.866360</span>
+<span class="n">c</span>      <span class="o">=</span>    <span class="mf">66.474685</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">0.729592</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     3.002865 Bohr^3 (unit cell volume)
-             =     3.002865 Bohr   (WS-radius)
-E0           = -1705.737540 Ry
-Bmod         =   114.985899 GPa
-Grun. param. =     1.095434
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">3.002865</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">3.002865</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">1705.737540</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">114.985899</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">1.095434</span>
 
-sws            Einp           Eout          Residual       err (% * 10**6)
-2.900000  -1705.732490  -1705.732491     -0.000001        0.000576
-2.933333  -1705.735292  -1705.735289      0.000003       -0.001807
-2.966667  -1705.736942  -1705.736944     -0.000002        0.001443
-3.000000  -1705.737535  -1705.737536     -0.000001        0.000646
-3.033333  -1705.737140  -1705.737138      0.000002       -0.001159
-3.066667  -1705.735820  -1705.735820     -0.000000        0.000187
-3.100000  -1705.733649  -1705.733649     -0.000000        0.000114
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>          <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.900000</span>  <span class="o">-</span><span class="mf">1705.732490</span>  <span class="o">-</span><span class="mf">1705.732491</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000576</span>
+<span class="mf">2.933333</span>  <span class="o">-</span><span class="mf">1705.735292</span>  <span class="o">-</span><span class="mf">1705.735289</span>      <span class="mf">0.000003</span>       <span class="o">-</span><span class="mf">0.001807</span>
+<span class="mf">2.966667</span>  <span class="o">-</span><span class="mf">1705.736942</span>  <span class="o">-</span><span class="mf">1705.736944</span>     <span class="o">-</span><span class="mf">0.000002</span>        <span class="mf">0.001443</span>
+<span class="mf">3.000000</span>  <span class="o">-</span><span class="mf">1705.737535</span>  <span class="o">-</span><span class="mf">1705.737536</span>     <span class="o">-</span><span class="mf">0.000001</span>        <span class="mf">0.000646</span>
+<span class="mf">3.033333</span>  <span class="o">-</span><span class="mf">1705.737140</span>  <span class="o">-</span><span class="mf">1705.737138</span>      <span class="mf">0.000002</span>       <span class="o">-</span><span class="mf">0.001159</span>
+<span class="mf">3.066667</span>  <span class="o">-</span><span class="mf">1705.735820</span>  <span class="o">-</span><span class="mf">1705.735820</span>     <span class="o">-</span><span class="mf">0.000000</span>        <span class="mf">0.000187</span>
+<span class="mf">3.100000</span>  <span class="o">-</span><span class="mf">1705.733649</span>  <span class="o">-</span><span class="mf">1705.733649</span>     <span class="o">-</span><span class="mf">0.000000</span>        <span class="mf">0.000114</span>
 
 
-hcp_lattice_constants_analyze(hcp):
-sws0 =      3.002260
-c/a0 =      1.610122
-B0   =    115.952318
-E0   =  -1705.738844
-R    =      0.019532
-cs   =    498.360422
+<span class="n">hcp_lattice_constants_analyze</span><span class="p">(</span><span class="n">hcp</span><span class="p">):</span>
+<span class="n">sws0</span> <span class="o">=</span>      <span class="mf">3.002260</span>
+<span class="n">c</span><span class="o">/</span><span class="n">a0</span> <span class="o">=</span>      <span class="mf">1.610122</span>
+<span class="n">B0</span>   <span class="o">=</span>    <span class="mf">115.952318</span>
+<span class="n">E0</span>   <span class="o">=</span>  <span class="o">-</span><span class="mf">1705.738844</span>
+<span class="n">R</span>    <span class="o">=</span>      <span class="mf">0.019532</span>
+<span class="n">cs</span>   <span class="o">=</span>    <span class="mf">498.360422</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="ground-state-volume-of-fcc-cocrfemnni-high-entropy-alloy-using-dlm">
 <h2>Ground state volume of fcc CoCrFeMnNi high-entropy alloy using DLM<a class="headerlink" href="#ground-state-volume-of-fcc-cocrfemnni-high-entropy-alloy-using-dlm" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/python</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
 
-<span class="c"># Calculate the equilibrium volume and bulk modulus of</span>
-<span class="c"># fcc CoCrFeMnNi high-entropy alloy using DLM.</span>
+<span class="c1"># Calculate the equilibrium volume and bulk modulus of</span>
+<span class="c1"># fcc CoCrFeMnNi high-entropy alloy using DLM.</span>
 
-<span class="c"># !!! NOTE !!!</span>
-<span class="c"># This script DOES NOT automatically start running</span>
-<span class="c"># the batch scripts. It only generates the input files</span>
-<span class="c"># and batch scripts which the user runs by themselves</span>
-<span class="c"># !!! NOTE !!!</span>
+<span class="c1"># !!! NOTE !!!</span>
+<span class="c1"># This script DOES NOT automatically start running</span>
+<span class="c1"># the batch scripts. It only generates the input files</span>
+<span class="c1"># and batch scripts which the user runs by themselves</span>
+<span class="c1"># !!! NOTE !!!</span>
 
 <span class="kn">import</span> <span class="nn">pyemto</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<span class="c"># It is recommended to always use absolute paths</span>
-<span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>                 <span class="c"># Get current working directory.</span>
-<span class="n">latpath</span> <span class="o">=</span> <span class="s">&quot;/wrk/hpleva/structures&quot;</span>   <span class="c"># Folder where the structure output files are.</span>
-<span class="n">emtopath</span> <span class="o">=</span> <span class="n">folder</span><span class="o">+</span><span class="s">&quot;/cocrfemnni_fcc&quot;</span>  <span class="c"># Folder where the calculations will be performed.</span>
+<span class="c1"># It is recommended to always use absolute paths</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>                 <span class="c1"># Get current working directory.</span>
+<span class="n">latpath</span> <span class="o">=</span> <span class="s2">&quot;/wrk/hpleva/structures&quot;</span>   <span class="c1"># Folder where the structure output files are.</span>
+<span class="n">emtopath</span> <span class="o">=</span> <span class="n">folder</span><span class="o">+</span><span class="s2">&quot;/cocrfemnni_fcc&quot;</span>  <span class="c1"># Folder where the calculations will be performed.</span>
 
 <span class="n">cocrfemnni</span><span class="o">=</span><span class="n">pyemto</span><span class="o">.</span><span class="n">System</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">emtopath</span><span class="p">)</span>
 
-<span class="n">sws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.50</span><span class="p">,</span><span class="mf">2.70</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span> <span class="c"># 11 different volumes from 2.5 Bohr to 2.7 Bohr</span>
+<span class="n">sws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.50</span><span class="p">,</span><span class="mf">2.70</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span> <span class="c1"># 11 different volumes from 2.5 Bohr to 2.7 Bohr</span>
 
-<span class="c"># Set KGRN and KFCD values using a for loop.</span>
-<span class="c"># Use write_input_file functions to write input files to disk:</span>
+<span class="c1"># Set KGRN and KFCD values using a for loop.</span>
+<span class="c1"># Use write_input_file functions to write input files to disk:</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sws</span><span class="p">)):</span>
-    <span class="n">cocrfemnni</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s">&#39;fcc&#39;</span><span class="p">,</span>
-                    <span class="n">jobname</span><span class="o">=</span><span class="s">&#39;cocrfemnni&#39;</span><span class="p">,</span>
+    <span class="n">cocrfemnni</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="s1">&#39;fcc&#39;</span><span class="p">,</span>
+                    <span class="n">jobname</span><span class="o">=</span><span class="s1">&#39;cocrfemnni&#39;</span><span class="p">,</span>
                     <span class="n">latpath</span><span class="o">=</span><span class="n">latpath</span><span class="p">,</span>
-                    <span class="n">atoms</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Co&#39;</span><span class="p">,</span><span class="s">&#39;Co&#39;</span><span class="p">,</span><span class="s">&#39;Cr&#39;</span><span class="p">,</span><span class="s">&#39;Cr&#39;</span><span class="p">,</span><span class="s">&#39;Fe&#39;</span><span class="p">,</span><span class="s">&#39;Fe&#39;</span><span class="p">,</span><span class="s">&#39;Mn&#39;</span><span class="p">,</span><span class="s">&#39;Mn&#39;</span><span class="p">,</span><span class="s">&#39;Ni&#39;</span><span class="p">,</span><span class="s">&#39;Ni&#39;</span><span class="p">],</span>
+                    <span class="n">atoms</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Co&#39;</span><span class="p">,</span><span class="s1">&#39;Co&#39;</span><span class="p">,</span><span class="s1">&#39;Cr&#39;</span><span class="p">,</span><span class="s1">&#39;Cr&#39;</span><span class="p">,</span><span class="s1">&#39;Fe&#39;</span><span class="p">,</span><span class="s1">&#39;Fe&#39;</span><span class="p">,</span><span class="s1">&#39;Mn&#39;</span><span class="p">,</span><span class="s1">&#39;Mn&#39;</span><span class="p">,</span><span class="s1">&#39;Ni&#39;</span><span class="p">,</span><span class="s1">&#39;Ni&#39;</span><span class="p">],</span>
                     <span class="n">splts</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span>
                     <span class="n">sws</span><span class="o">=</span><span class="n">sws</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
                     <span class="n">amix</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
                     <span class="n">efmix</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-                    <span class="n">expan</span><span class="o">=</span><span class="s">&#39;M&#39;</span><span class="p">,</span>
-                    <span class="n">sofc</span><span class="o">=</span><span class="s">&#39;Y&#39;</span><span class="p">,</span>
-                    <span class="n">afm</span><span class="o">=</span><span class="s">&#39;M&#39;</span><span class="p">,</span>         <span class="c"># Fixed-spin DLM calculation.</span>
-                    <span class="n">iex</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>           <span class="c"># We want to use self-consistent GGA (PBE).</span>
+                    <span class="n">expan</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span>
+                    <span class="n">sofc</span><span class="o">=</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span>
+                    <span class="n">afm</span><span class="o">=</span><span class="s1">&#39;M&#39;</span><span class="p">,</span>         <span class="c1"># Fixed-spin DLM calculation.</span>
+                    <span class="n">iex</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>           <span class="c1"># We want to use self-consistent GGA (PBE).</span>
                     <span class="n">nz2</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
                     <span class="n">tole</span><span class="o">=</span><span class="mf">1.0E-8</span><span class="p">,</span>
                     <span class="n">ncpa</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                     <span class="n">nky</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span>
                     <span class="n">tfermi</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
-                    <span class="n">dx</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span>        <span class="c"># Dirac equation parameters</span>
-                    <span class="n">dirac_np</span><span class="o">=</span><span class="mi">1001</span><span class="p">,</span>   <span class="c"># Dirac equation parameters</span>
-                    <span class="n">nes</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>          <span class="c"># Dirac equation parameters</span>
-                    <span class="n">dirac_niter</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span> <span class="c"># Dirac equation parameters</span>
+                    <span class="n">dx</span><span class="o">=</span><span class="mf">0.015</span><span class="p">,</span>        <span class="c1"># Dirac equation parameters</span>
+                    <span class="n">dirac_np</span><span class="o">=</span><span class="mi">1001</span><span class="p">,</span>   <span class="c1"># Dirac equation parameters</span>
+                    <span class="n">nes</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>          <span class="c1"># Dirac equation parameters</span>
+                    <span class="n">dirac_niter</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span> <span class="c1"># Dirac equation parameters</span>
 
     <span class="n">cocrfemnni</span><span class="o">.</span><span class="n">emto</span><span class="o">.</span><span class="n">kgrn</span><span class="o">.</span><span class="n">write_input_file</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">emtopath</span><span class="p">)</span>
     <span class="n">cocrfemnni</span><span class="o">.</span><span class="n">emto</span><span class="o">.</span><span class="n">kfcd</span><span class="o">.</span><span class="n">write_input_file</span><span class="p">(</span><span class="n">folder</span><span class="o">=</span><span class="n">emtopath</span><span class="p">)</span>
@@ -922,42 +984,42 @@ cs   =    498.360422
 </pre></div>
 </div>
 <p>The output of this script should look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>25.3.2015 -- 14:57:04
-JOBNAM = quick_fit -- N/A
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">25.3</span><span class="o">.</span><span class="mi">2015</span> <span class="o">--</span> <span class="mi">14</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mi">04</span>
+<span class="n">JOBNAM</span> <span class="o">=</span> <span class="n">quick_fit</span> <span class="o">--</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>
 
-Using morse function
+<span class="n">Using</span> <span class="n">morse</span> <span class="n">function</span>
 
-Chi squared         = 4.62250902489e-09
-Reduced Chi squared = 6.60358432126e-10
-R squared           = 0.999931991714
+<span class="n">Chi</span> <span class="n">squared</span>         <span class="o">=</span> <span class="mf">4.62250902489e-09</span>
+<span class="n">Reduced</span> <span class="n">Chi</span> <span class="n">squared</span> <span class="o">=</span> <span class="mf">6.60358432126e-10</span>
+<span class="n">R</span> <span class="n">squared</span>           <span class="o">=</span> <span class="mf">0.999931991714</span>
 
-morse parameters:
+<span class="n">morse</span> <span class="n">parameters</span><span class="p">:</span>
 
-a      =     0.139363
-b      =   -66.030179
-c      =  7819.057118
-lambda =     2.099339
+<span class="n">a</span>      <span class="o">=</span>     <span class="mf">0.139363</span>
+<span class="n">b</span>      <span class="o">=</span>   <span class="o">-</span><span class="mf">66.030179</span>
+<span class="n">c</span>      <span class="o">=</span>  <span class="mf">7819.057118</span>
+<span class="k">lambda</span> <span class="o">=</span>     <span class="mf">2.099339</span>
 
-Ground state parameters:
+<span class="n">Ground</span> <span class="n">state</span> <span class="n">parameters</span><span class="p">:</span>
 
-V0           =     2.604323 Bohr^3 (unit cell volume)
-             =     2.604323 Bohr   (WS-radius)
-E0           = -2558.658938 Ry
-Bmod         =   184.105793 GPa
-Grun. param. =     2.733677
+<span class="n">V0</span>           <span class="o">=</span>     <span class="mf">2.604323</span> <span class="n">Bohr</span><span class="o">^</span><span class="mi">3</span> <span class="p">(</span><span class="n">unit</span> <span class="n">cell</span> <span class="n">volume</span><span class="p">)</span>
+             <span class="o">=</span>     <span class="mf">2.604323</span> <span class="n">Bohr</span>   <span class="p">(</span><span class="n">WS</span><span class="o">-</span><span class="n">radius</span><span class="p">)</span>
+<span class="n">E0</span>           <span class="o">=</span> <span class="o">-</span><span class="mf">2558.658938</span> <span class="n">Ry</span>
+<span class="n">Bmod</span>         <span class="o">=</span>   <span class="mf">184.105793</span> <span class="n">GPa</span>
+<span class="n">Grun</span><span class="o">.</span> <span class="n">param</span><span class="o">.</span> <span class="o">=</span>     <span class="mf">2.733677</span>
 
-sws            Einp           Eout        Residual       err (% * 10**6)
-2.500000  -2558.650560  -2558.650581     -0.000021        0.008282
-2.520000  -2558.653736  -2558.653710      0.000026       -0.010160
-2.540000  -2558.656041  -2558.656024      0.000017       -0.006580
-2.560000  -2558.657623  -2558.657612      0.000011       -0.004134
-2.580000  -2558.658526  -2558.658555     -0.000029        0.011502
-2.600000  -2558.658899  -2558.658926     -0.000027        0.010718
-2.620000  -2558.658785  -2558.658792     -0.000007        0.002689
-2.640000  -2558.658229  -2558.658212      0.000017       -0.006616
-2.660000  -2558.657266  -2558.657242      0.000024       -0.009530
-2.680000  -2558.655941  -2558.655930      0.000011       -0.004314
-2.700000  -2558.654301  -2558.654322     -0.000021        0.008142
+<span class="n">sws</span>            <span class="n">Einp</span>           <span class="n">Eout</span>        <span class="n">Residual</span>       <span class="n">err</span> <span class="p">(</span><span class="o">%</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+<span class="mf">2.500000</span>  <span class="o">-</span><span class="mf">2558.650560</span>  <span class="o">-</span><span class="mf">2558.650581</span>     <span class="o">-</span><span class="mf">0.000021</span>        <span class="mf">0.008282</span>
+<span class="mf">2.520000</span>  <span class="o">-</span><span class="mf">2558.653736</span>  <span class="o">-</span><span class="mf">2558.653710</span>      <span class="mf">0.000026</span>       <span class="o">-</span><span class="mf">0.010160</span>
+<span class="mf">2.540000</span>  <span class="o">-</span><span class="mf">2558.656041</span>  <span class="o">-</span><span class="mf">2558.656024</span>      <span class="mf">0.000017</span>       <span class="o">-</span><span class="mf">0.006580</span>
+<span class="mf">2.560000</span>  <span class="o">-</span><span class="mf">2558.657623</span>  <span class="o">-</span><span class="mf">2558.657612</span>      <span class="mf">0.000011</span>       <span class="o">-</span><span class="mf">0.004134</span>
+<span class="mf">2.580000</span>  <span class="o">-</span><span class="mf">2558.658526</span>  <span class="o">-</span><span class="mf">2558.658555</span>     <span class="o">-</span><span class="mf">0.000029</span>        <span class="mf">0.011502</span>
+<span class="mf">2.600000</span>  <span class="o">-</span><span class="mf">2558.658899</span>  <span class="o">-</span><span class="mf">2558.658926</span>     <span class="o">-</span><span class="mf">0.000027</span>        <span class="mf">0.010718</span>
+<span class="mf">2.620000</span>  <span class="o">-</span><span class="mf">2558.658785</span>  <span class="o">-</span><span class="mf">2558.658792</span>     <span class="o">-</span><span class="mf">0.000007</span>        <span class="mf">0.002689</span>
+<span class="mf">2.640000</span>  <span class="o">-</span><span class="mf">2558.658229</span>  <span class="o">-</span><span class="mf">2558.658212</span>      <span class="mf">0.000017</span>       <span class="o">-</span><span class="mf">0.006616</span>
+<span class="mf">2.660000</span>  <span class="o">-</span><span class="mf">2558.657266</span>  <span class="o">-</span><span class="mf">2558.657242</span>      <span class="mf">0.000024</span>       <span class="o">-</span><span class="mf">0.009530</span>
+<span class="mf">2.680000</span>  <span class="o">-</span><span class="mf">2558.655941</span>  <span class="o">-</span><span class="mf">2558.655930</span>      <span class="mf">0.000011</span>       <span class="o">-</span><span class="mf">0.004314</span>
+<span class="mf">2.700000</span>  <span class="o">-</span><span class="mf">2558.654301</span>  <span class="o">-</span><span class="mf">2558.654322</span>     <span class="o">-</span><span class="mf">0.000021</span>        <span class="mf">0.008142</span>
 </pre></div>
 </div>
 <div class="figure" id="id1">
@@ -972,32 +1034,76 @@ sws            Einp           Eout        Residual       err (% * 10**6)
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="code.html" class="btn btn-neutral float-right" title="pyEMTO Code Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="code.html" title="pyEMTO Code Reference"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="installation.html" title="Installation"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.9.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

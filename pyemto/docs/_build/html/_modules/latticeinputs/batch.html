@@ -1,80 +1,165 @@
 
 
-<!doctype html>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>latticeinputs.batch &mdash; pyEMTO 0.9.0 documentation</title>
+  
 
+  
+  
+  
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+
+  
+  
     
-    <title>latticeinputs.batch &mdash; pyEMTO 0.9.0 documentation</title>
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
     
-    <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '0.9.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="../../_static/bizstyle.js"></script>
-    <link rel="top" title="pyEMTO 0.9.0 documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="../../index.html">
-              <img class="logo" src="../../_static/logo.svg" alt="Logo"/>
-            </a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyEMTO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Example scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code.html">pyEMTO Code Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../presentation.html">pyEMTO presentation</a></li>
+</ul>
+
+            
+          
         </div>
       </div>
+    </nav>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyEMTO</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>latticeinputs.batch</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <h1>Source code for latticeinputs.batch</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Created on Wed Dec  3 15:09:24 2014</span>
 
@@ -83,11 +168,12 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">re</span>
-
+<span class="kn">import</span> <span class="nn">pyemto.common.common</span> <span class="k">as</span> <span class="nn">common</span>
 
 <div class="viewcode-block" id="Batch"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.batch.Batch">[docs]</a><span class="k">class</span> <span class="nc">Batch</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Creates a batch script for running BMDL, KSTR and SHAPE calculations</span>
@@ -121,11 +207,11 @@
 <span class="sd">    :rtype: None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">runtime</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">latpath</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">EMTOdir</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">runBMDL</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">runKSTR</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">runKSTR2</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                 <span class="n">runSHAPE</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">kappaw</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">kappalen</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">runtime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">latpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">EMTOdir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">runBMDL</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">runKSTR</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">runKSTR2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">runSHAPE</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kappaw</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kappalen</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-        <span class="c"># Batch script related parameters</span>
+        <span class="c1"># Batch script related parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">=</span> <span class="n">jobname</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">=</span> <span class="n">lat</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">=</span> <span class="n">latpath</span>
@@ -147,44 +233,45 @@
 <span class="sd">        :rtype:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c"># Clean up path names</span>
+        <span class="c1"># Clean up path names</span>
 
-        <span class="n">line</span> <span class="o">=</span> <span class="s">&quot;#!/bin/bash&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
-        <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;#SBATCH -J &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
-        <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;#SBATCH -t &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
-        <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;#SBATCH -o &quot;</span> <span class="o">+</span> \
-            <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.output&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
-        <span class="n">line</span> <span class="o">+=</span> <span class="s">&quot;#SBATCH -e &quot;</span> <span class="o">+</span> \
-            <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.error&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
-        <span class="c"># line += &quot;#SBATCH -x pl1,pl11&quot;+&quot;\n&quot;+&quot;\n&quot;</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;#!/bin/bash&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s2">&quot;#SBATCH -J &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s2">&quot;#SBATCH -t &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s2">&quot;#SBATCH -o &quot;</span> <span class="o">+</span> \
+            <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.output&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s2">&quot;#SBATCH -e &quot;</span> <span class="o">+</span> \
+            <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.error&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="c1"># line += &quot;#SBATCH -x pl1,pl11&quot;+&quot;\n&quot;</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
 
-        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="s">&quot;/usr/bin/time &quot;</span>
+        <span class="n">elapsed_time</span> <span class="o">=</span> <span class="s2">&quot;/usr/bin/time &quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runBMDL</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s">&quot;/bmdl/source/bmdl &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
-                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.bmdl &gt; &quot;</span> <span class="o">+</span>\
-                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_bmdl.output&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s2">&quot;/bmdl/source/bmdl &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
+                <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.bmdl &gt; &quot;</span> <span class="o">+</span>\
+                <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_bmdl.output&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runKSTR</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s">&quot;/kstr/source/kstr &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
-                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.kstr &gt; &quot;</span> <span class="o">+</span>\
-                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_kstr.output&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s2">&quot;/kstr/source/kstr &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
+                <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.kstr &gt; &quot;</span> <span class="o">+</span>\
+                <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_kstr.output&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runKSTR2</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s">&quot;/kstr/source/kstr &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
-                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;2&#39;</span> <span class="o">+</span> <span class="s">&quot;.kstr &gt; &quot;</span> <span class="o">+</span>\
-                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;2&#39;</span> <span class="o">+</span> <span class="s">&quot;_kstr.output&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s2">&quot;/kstr/source/kstr &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
+                <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;M&#39;</span> <span class="o">+</span> <span class="s2">&quot;.kstr &gt; &quot;</span> <span class="o">+</span>\
+                <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;M&#39;</span> <span class="o">+</span> <span class="s2">&quot;_kstr.output&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runSHAPE</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s">&quot;/shape/source/shape &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
-                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;.shape &gt; &quot;</span> <span class="o">+</span>\
-                <span class="bp">self</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_shape.output&quot;</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="n">elapsed_time</span> <span class="o">+</span> <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">+</span> <span class="s2">&quot;/shape/source/shape &lt; &quot;</span><span class="p">)</span> <span class="o">+</span>\
+                <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.shape &gt; &quot;</span> <span class="o">+</span>\
+                <span class="n">common</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;_shape.output&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
 
-        <span class="k">return</span> <span class="n">line</span>
-</div>
-<div class="viewcode-block" id="Batch.write_input_file"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.batch.Batch.write_input_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">line</span></div>
+
+<div class="viewcode-block" id="Batch.write_input_file"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.batch.Batch.write_input_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;(self,str) -&gt;(None)</span>
 
 <span class="sd">            Save batch input data to file named filename</span>
@@ -195,19 +282,19 @@
 <span class="sd">        :rtype:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c"># Check data integrity before anything is written on disk or run</span>
+        <span class="c1"># Check data integrity before anything is written on disk or run</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_input_file</span><span class="p">()</span>
 
-        <span class="k">if</span> <span class="n">folder</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="c">#sys.exit(&#39;Batch_lattice.write_input_file: \&#39;folder\&#39; has to be given!&#39;)</span>
-            <span class="n">folder</span> <span class="o">=</span> <span class="s">&quot;./&quot;</span>
+        <span class="k">if</span> <span class="n">folder</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1">#sys.exit(&#39;Batch_lattice.write_input_file: \&#39;folder\&#39; has to be given!&#39;)</span>
+            <span class="n">folder</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">check_folders</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+            <span class="n">common</span><span class="o">.</span><span class="n">check_folders</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
 
-        <span class="n">fl</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s">&#39;/{0}.cmd&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">),</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">fl</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s1">&#39;/</span><span class="si">{0}</span><span class="s1">.sh&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jobname</span><span class="p">),</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
         <span class="n">fl</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">())</span>
-        <span class="n">fl</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</div>
+        <span class="n">fl</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="Batch.set_values"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.batch.Batch.set_values">[docs]</a>    <span class="k">def</span> <span class="nf">set_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
@@ -222,9 +309,9 @@
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span>
-                <span class="s">&#39;WARNING: Batch_lattice() class has no attribute </span><span class="se">\&#39;</span><span class="s">{0}</span><span class="se">\&#39;</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
-</div>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;WARNING: Batch_lattice() class has no attribute </span><span class="se">\&#39;</span><span class="si">{0}</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+        <span class="k">return</span></div>
+
 <div class="viewcode-block" id="Batch.check_input_file"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.batch.Batch.check_input_file">[docs]</a>    <span class="k">def</span> <span class="nf">check_input_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Perform various checks on the class data to</span>
 <span class="sd">            make sure that all necessary data exists</span>
@@ -234,85 +321,98 @@
 <span class="sd">        :rtype:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c"># Mission critical parameters</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="c1"># Mission critical parameters</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">jobname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span>
-                    <span class="s">&#39;Batch_lattice.check_input_file: </span><span class="se">\&#39;</span><span class="s">jobname</span><span class="se">\&#39;</span><span class="s"> or&#39;</span> <span class="o">+</span>\
-                    <span class="s">&#39; </span><span class="se">\&#39;</span><span class="s">lat</span><span class="se">\&#39;</span><span class="s"> (jobname = lat) has to be given!&#39;</span><span class="p">)</span>
+                    <span class="s1">&#39;Batch_lattice.check_input_file: </span><span class="se">\&#39;</span><span class="s1">jobname</span><span class="se">\&#39;</span><span class="s1"> or&#39;</span> <span class="o">+</span>\
+                    <span class="s1">&#39; </span><span class="se">\&#39;</span><span class="s1">lat</span><span class="se">\&#39;</span><span class="s1"> (jobname = lat) has to be given!&#39;</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">=</span> <span class="s">&quot;./&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="s">&quot;01:00:00&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">=</span> <span class="s">&quot;$HOME/EMTO5.8/&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runBMDL</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">runBMDL</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runKSTR</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">runKSTR</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runSHAPE</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">runSHAPE</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">latpath</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="s2">&quot;01:00:00&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">EMTOdir</span> <span class="o">=</span> <span class="s2">&quot;$HOME/EMTO5.8/&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runBMDL</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runBMDL</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runKSTR</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runKSTR</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">runSHAPE</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runSHAPE</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">kappalen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kappaw</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappalen</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">runKSTR2</span> <span class="o">=</span> <span class="bp">True</span>
-</div>
-<div class="viewcode-block" id="Batch.check_folders"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.batch.Batch.check_folders">[docs]</a>    <span class="k">def</span> <span class="nf">check_folders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Checks whether or not given folders exist</span>
-
-<span class="sd">        :param *args:</span>
-<span class="sd">        :type *args:</span>
-<span class="sd">        :returns:</span>
-<span class="sd">        :rtype:</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-        <span class="k">return</span>
-</div>
-<div class="viewcode-block" id="Batch.cleanup_path"><a class="viewcode-back" href="../../latticeinputs.html#latticeinputs.batch.Batch.cleanup_path">[docs]</a>    <span class="k">def</span> <span class="nf">cleanup_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Cleans up directory path strings from double forward slashes.</span>
-
-<span class="sd">        :param string:</span>
-<span class="sd">        :type string:</span>
-<span class="sd">        :returns: Cleaned up directory path string</span>
-<span class="sd">        :rtype: str</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;\/+&#39;</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
-        <span class="c">#string = string.lstrip(&#39;/&#39;)</span>
-
-        <span class="k">return</span> <span class="n">string</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runKSTR2</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span></div></div>
 </pre></div>
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.9.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

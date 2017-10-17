@@ -1,106 +1,166 @@
 
 
-<!doctype html>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>EOS package &mdash; pyEMTO 0.9.0 documentation</title>
+  
 
+  
+  
+  
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>EOS package &mdash; pyEMTO 0.9.0 documentation</title>
-    
-    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.9.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/bizstyle.js"></script>
-    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html" />
-    <link rel="up" title="pyEMTO Code Reference" href="code.html" />
-    <link rel="next" title="utilities package" href="utilities.html" />
-    <link rel="prev" title="emtoinputs package" href="emtoinputs.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="utilities.html" title="utilities package"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="emtoinputs.html" title="emtoinputs package"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="code.html" accesskey="U">pyEMTO Code Reference</a> &raquo;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/logo.svg" alt="Logo"/>
-            </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">EOS package</a><ul>
-<li><a class="reference internal" href="#module-EOS.EOS">EOS.EOS module</a></li>
-</ul>
-</li>
-</ul>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="emtoinputs.html"
-                        title="previous chapter">emtoinputs package</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="utilities.html"
-                        title="next chapter">utilities package</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/EOS.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html"/>
+        <link rel="up" title="pyEMTO Code Reference" href="code.html"/>
+        <link rel="next" title="utilities package" href="utilities.html"/>
+        <link rel="prev" title="emtoinputs package" href="emtoinputs.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyEMTO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Example scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code.html">pyEMTO Code Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">pyEMTO presentation</a></li>
+</ul>
+
+            
+          
         </div>
       </div>
+    </nav>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyEMTO</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="code.html">pyEMTO Code Reference</a> &raquo;</li>
+        
+      <li>EOS package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/EOS.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="eos-package">
 <h1>EOS package<a class="headerlink" href="#eos-package" title="Permalink to this headline">¶</a></h1>
@@ -111,8 +171,9 @@
 &#64;author: Henrik Levämäki</p>
 <dl class="class">
 <dt id="EOS.EOS.EOS">
-<em class="property">class </em><code class="descclassname">EOS.EOS.</code><code class="descname">EOS</code><span class="sig-paren">(</span><em>name</em>, <em>xc='PBE'</em>, <em>method='morse'</em>, <em>units='bohr'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fit equation of state for bulk systems.</p>
+<em class="property">class </em><code class="descclassname">EOS.EOS.</code><code class="descname">EOS</code><span class="sig-paren">(</span><em>name</em>, <em>xc='PBE'</em>, <em>method='morse'</em>, <em>units='bohr'</em>, <em>warnings=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Fit equation of state for bulk systems.</p>
 <p>The following equations are available:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -153,8 +214,8 @@ Vol I: Principles. pages 195-210</td>
 </tr>
 </tbody>
 </table>
-<p>Use:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">eos</span> <span class="o">=</span> <span class="n">EquationOfState</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">eos</span><span class="o">=</span><span class="s">&#39;murnaghan&#39;</span><span class="p">)</span>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">eos</span> <span class="o">=</span> <span class="n">EquationOfState</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">energies</span><span class="p">,</span> <span class="n">eos</span><span class="o">=</span><span class="s1">&#39;murnaghan&#39;</span><span class="p">)</span>
 <span class="n">v0</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">eos</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">eos</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -164,10 +225,10 @@ Vol I: Principles. pages 195-210</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; </li>
-<li><strong>xc</strong> &#8211; (Default value = &#8216;PBE&#8217;)</li>
-<li><strong>method</strong> &#8211; (Default value = &#8216;morse&#8217;)</li>
-<li><strong>units</strong> &#8211; (Default value = &#8216;bohr&#8217;)</li>
+<li><strong>name</strong> – </li>
+<li><strong>xc</strong> – (Default value = ‘PBE’)</li>
+<li><strong>method</strong> – (Default value = ‘morse’)</li>
+<li><strong>units</strong> – (Default value = ‘bohr’)</li>
 </ul>
 </td>
 </tr>
@@ -186,7 +247,7 @@ Vol I: Principles. pages 195-210</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>V</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>V</strong> – </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -215,11 +276,11 @@ as the other equtions do.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>V</strong> &#8211; </li>
-<li><strong>Einf</strong> &#8211; </li>
-<li><strong>B</strong> &#8211; </li>
-<li><strong>n</strong> &#8211; </li>
-<li><strong>V0</strong> &#8211; </li>
+<li><strong>V</strong> – </li>
+<li><strong>Einf</strong> – </li>
+<li><strong>B</strong> – </li>
+<li><strong>n</strong> – </li>
+<li><strong>V0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -234,6 +295,11 @@ as the other equtions do.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="EOS.EOS.EOS.ascii_plot">
+<code class="descname">ascii_plot</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>z</em>, <em>title=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.ascii_plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.ascii_plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="EOS.EOS.EOS.birch">
 <code class="descname">birch</code><span class="sig-paren">(</span><em>V</em>, <em>E0</em>, <em>B0</em>, <em>BP</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.birch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.birch" title="Permalink to this definition">¶</a></dt>
 <dd><p>From Intermetallic compounds: Principles and Practice, Vol. I: Principles
@@ -245,11 +311,11 @@ paper downloaded from Web</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>V</strong> &#8211; </li>
-<li><strong>E0</strong> &#8211; </li>
-<li><strong>B0</strong> &#8211; </li>
-<li><strong>BP</strong> &#8211; </li>
-<li><strong>V0</strong> &#8211; </li>
+<li><strong>V</strong> – </li>
+<li><strong>E0</strong> – </li>
+<li><strong>B0</strong> – </li>
+<li><strong>BP</strong> – </li>
+<li><strong>V0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -272,11 +338,11 @@ paper downloaded from Web</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>V</strong> &#8211; </li>
-<li><strong>E0</strong> &#8211; </li>
-<li><strong>B0</strong> &#8211; </li>
-<li><strong>BP</strong> &#8211; </li>
-<li><strong>V0</strong> &#8211; </li>
+<li><strong>V</strong> – </li>
+<li><strong>E0</strong> – </li>
+<li><strong>B0</strong> – </li>
+<li><strong>BP</strong> – </li>
+<li><strong>V0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -297,7 +363,7 @@ paper downloaded from Web</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>WSrad</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>WSrad</strong> – </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -309,7 +375,7 @@ paper downloaded from Web</p>
 
 <dl class="method">
 <dt id="EOS.EOS.EOS.ca_fit">
-<code class="descname">ca_fit</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.ca_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.ca_fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ca_fit</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>n</em>, <em>debug=False</em>, <em>title=''</em>, <em>find_best_fit=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.ca_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.ca_fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fits a polynomial to x vs. y data and calculates
 xmin and ymin from the curve.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -317,9 +383,9 @@ xmin and ymin from the curve.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>y</strong> &#8211; </li>
-<li><strong>n</strong> &#8211; </li>
+<li><strong>x</strong> – </li>
+<li><strong>y</strong> – </li>
+<li><strong>n</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -334,8 +400,27 @@ xmin and ymin from the curve.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="EOS.EOS.EOS.compute_eos_fit">
+<code class="descname">compute_eos_fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.compute_eos_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.compute_eos_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs the least-squares curve fitting for the chosen EOS function.
+Ground state quantities are returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.compute_eos_quality">
+<code class="descname">compute_eos_quality</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.compute_eos_quality"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.compute_eos_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute different estimates for the quality of the fit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.compute_initial_guess">
+<code class="descname">compute_initial_guess</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.compute_initial_guess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.compute_initial_guess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates initial guessess for the fitting parameters.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="EOS.EOS.EOS.distortion_fit">
-<code class="descname">distortion_fit</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>num=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.distortion_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.distortion_fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">distortion_fit</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>num=2</em>, <em>title=''</em>, <em>ascii_art=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.distortion_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.distortion_fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fits the distortion_poly function to
 the distortion data.</p>
 <dl class="docutils">
@@ -350,9 +435,9 @@ the distortion data.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>y</strong> &#8211; </li>
-<li><strong>num</strong> &#8211; (Default value = 2)</li>
+<li><strong>x</strong> – </li>
+<li><strong>y</strong> – </li>
+<li><strong>num</strong> – (Default value = 2)</li>
 </ul>
 </td>
 </tr>
@@ -368,7 +453,7 @@ the distortion data.</p>
 
 <dl class="method">
 <dt id="EOS.EOS.EOS.distortion_poly1">
-<code class="descname">distortion_poly1</code><span class="sig-paren">(</span><em>x</em>, <em>a2</em>, <em>a1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.distortion_poly1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.distortion_poly1" title="Permalink to this definition">¶</a></dt>
+<code class="descname">distortion_poly1</code><span class="sig-paren">(</span><em>x</em>, <em>a2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.distortion_poly1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.distortion_poly1" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>One variable form of the 2nd order polynomial</dt>
 <dd>which is used to fitting distortion vs. energy
@@ -379,9 +464,9 @@ data in order to find elastic constants.</dd>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>a2</strong> &#8211; </li>
-<li><strong>a1</strong> &#8211; </li>
+<li><strong>x</strong> – </li>
+<li><strong>a2</strong> – </li>
+<li><strong>a1</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -408,9 +493,9 @@ data in order to find elastic constants.</dd>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>a2</strong> &#8211; </li>
-<li><strong>a0</strong> &#8211; </li>
+<li><strong>x</strong> – </li>
+<li><strong>a2</strong> – </li>
+<li><strong>a0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -437,10 +522,10 @@ data in order to find elastic constants.</dd>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>a2</strong> &#8211; </li>
-<li><strong>a1</strong> &#8211; </li>
-<li><strong>a0</strong> &#8211; </li>
+<li><strong>x</strong> – </li>
+<li><strong>a2</strong> – </li>
+<li><strong>a1</strong> – </li>
+<li><strong>a0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -455,22 +540,28 @@ data in order to find elastic constants.</dd>
 </dd></dl>
 
 <dl class="method">
+<dt id="EOS.EOS.EOS.eos_output">
+<code class="descname">eos_output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.eos_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.eos_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct a string for the EOS output message.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="EOS.EOS.EOS.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>swses</em>, <em>energies</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.fit" title="Permalink to this definition">¶</a></dt>
+<code class="descname">fit</code><span class="sig-paren">(</span><em>swses</em>, <em>energies</em>, <em>shift=True</em>, <em>show_plot=False</em>, <em>show_output=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate volume, energy, and bulk modulus.</p>
-<p>A fitting input file is created in the &#8216;/fit&#8217; folder.
-Returns the optimal volume, the minumum energy, and the bulk
-modulus.  Notice that the units for the bulk modulus is
-eV/Angstrom^3 - to get the value in GPa, do this:</p>
-<p>v0, e0, B = eos.fit()
-print B*160.21773, &#8216;GPa&#8217;</p>
+<p>About the units:</p>
+<p>Input “swses” should be the WS-radii in bohr.
+Input “energies” should be the energies in Ry.</p>
+<p>Volumes are always in Angstrom**3
+Bulk moduli are always in GPa</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>swses</strong> (<em>list(float)</em>) &#8211; List of WS-radii</li>
-<li><strong>energies</strong> (<em>list(float)</em>) &#8211; List of energies</li>
+<li><strong>swses</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of WS-radii</li>
+<li><strong>energies</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of energies</li>
+<li><strong>shift</strong> (<em>True</em><em> or </em><em>False</em>) – Shift the energies so that the lowest energy is zero. Improves fit quality. Sometimes instable.</li>
 </ul>
 </td>
 </tr>
@@ -485,29 +576,6 @@ print B*160.21773, &#8216;GPa&#8217;</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="EOS.EOS.EOS.fit2file">
-<code class="descname">fit2file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.fit2file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.fit2file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate volume, energy, and bulk modulus.</p>
-<p>Returns the optimal volume, the minumum energy, and the bulk
-modulus.  Notice that the units for the bulk modulus is
-eV/Angstrom^3 - to get the value in GPa, do this:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">v0</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">eos</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">B</span><span class="o">*</span><span class="mf">160.21773</span><span class="p">,</span> <span class="s">&#39;GPa&#39;</span>
-</pre></div>
-</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="EOS.EOS.EOS.fit_eval">
 <code class="descname">fit_eval</code><span class="sig-paren">(</span><em>sws</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.fit_eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.fit_eval" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the fitting function at given points</p>
@@ -515,7 +583,7 @@ eV/Angstrom^3 - to get the value in GPa, do this:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sws</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sws</strong> – </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -527,17 +595,17 @@ eV/Angstrom^3 - to get the value in GPa, do this:</p>
 
 <dl class="method">
 <dt id="EOS.EOS.EOS.morse">
-<code class="descname">morse</code><span class="sig-paren">(</span><em>w</em>, <em>a0</em>, <em>b0</em>, <em>c0</em>, <em>l0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.morse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.morse" title="Permalink to this definition">¶</a></dt>
+<code class="descname">morse</code><span class="sig-paren">(</span><em>sws</em>, <em>a0</em>, <em>b0</em>, <em>c0</em>, <em>l0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.morse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.morse" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>w</strong> &#8211; </li>
-<li><strong>a0</strong> &#8211; </li>
-<li><strong>b0</strong> &#8211; </li>
-<li><strong>c0</strong> &#8211; </li>
-<li><strong>l0</strong> &#8211; </li>
+<li><strong>w</strong> – </li>
+<li><strong>a0</strong> – </li>
+<li><strong>b0</strong> – </li>
+<li><strong>c0</strong> – </li>
+<li><strong>l0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -554,11 +622,11 @@ eV/Angstrom^3 - to get the value in GPa, do this:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>V</strong> &#8211; </li>
-<li><strong>E0</strong> &#8211; </li>
-<li><strong>B0</strong> &#8211; </li>
-<li><strong>BP</strong> &#8211; </li>
-<li><strong>V0</strong> &#8211; </li>
+<li><strong>V</strong> – </li>
+<li><strong>E0</strong> – </li>
+<li><strong>B0</strong> – </li>
+<li><strong>BP</strong> – </li>
+<li><strong>V0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -581,11 +649,11 @@ eV/Angstrom^3 - to get the value in GPa, do this:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>V</strong> &#8211; </li>
-<li><strong>c0</strong> &#8211; </li>
-<li><strong>c1</strong> &#8211; </li>
-<li><strong>c2</strong> &#8211; </li>
-<li><strong>c3</strong> &#8211; </li>
+<li><strong>V</strong> – </li>
+<li><strong>c0</strong> – </li>
+<li><strong>c1</strong> – </li>
+<li><strong>c2</strong> – </li>
+<li><strong>c3</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -613,10 +681,10 @@ was not a good idea because for noisy data the fit is too wiggly
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> &#8211; </li>
-<li><strong>a</strong> &#8211; </li>
-<li><strong>b</strong> &#8211; </li>
-<li><strong>c</strong> &#8211; </li>
+<li><strong>x</strong> – </li>
+<li><strong>a</strong> – </li>
+<li><strong>b</strong> – </li>
+<li><strong>c</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -632,18 +700,18 @@ was not a good idea because for noisy data the fit is too wiggly
 
 <dl class="method">
 <dt id="EOS.EOS.EOS.plot">
-<code class="descname">plot</code><span class="sig-paren">(</span><em>filename=None</em>, <em>show=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.plot" title="Permalink to this definition">¶</a></dt>
+<code class="descname">plot</code><span class="sig-paren">(</span><em>filename=None</em>, <em>show=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot fitted energy curve.</p>
 <p>Uses Matplotlib to plot the energy curve.  Use <em>show=True</em> to
-show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
-<em>filename=&#8217;abc.eps&#8217;</em> to save the figure to a file.</p>
+show the figure and <em>filename=’abc.png’</em> or
+<em>filename=’abc.eps’</em> to save the figure to a file.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> &#8211; (Default value = None)</li>
-<li><strong>show</strong> &#8211; (Default value = None)</li>
+<li><strong>filename</strong> – (Default value = None)</li>
+<li><strong>show</strong> – (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -657,6 +725,11 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 </table>
 </dd></dl>
 
+<dl class="staticmethod">
+<dt id="EOS.EOS.EOS.polyfit">
+<em class="property">static </em><code class="descname">polyfit</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.polyfit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.polyfit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="EOS.EOS.EOS.pouriertarantola">
 <code class="descname">pouriertarantola</code><span class="sig-paren">(</span><em>V</em>, <em>E0</em>, <em>B0</em>, <em>BP</em>, <em>V0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.pouriertarantola"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.pouriertarantola" title="Permalink to this definition">¶</a></dt>
@@ -666,11 +739,11 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>V</strong> &#8211; </li>
-<li><strong>E0</strong> &#8211; </li>
-<li><strong>B0</strong> &#8211; </li>
-<li><strong>BP</strong> &#8211; </li>
-<li><strong>V0</strong> &#8211; </li>
+<li><strong>V</strong> – </li>
+<li><strong>E0</strong> – </li>
+<li><strong>B0</strong> – </li>
+<li><strong>BP</strong> – </li>
+<li><strong>V0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -701,18 +774,48 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 </dd></dl>
 
 <dl class="method">
-<dt id="EOS.EOS.EOS.prepareData">
-<code class="descname">prepareData</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.prepareData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.prepareData" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dt id="EOS.EOS.EOS.print_eos_output">
+<code class="descname">print_eos_output</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.print_eos_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.print_eos_output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.relax_fit">
+<code class="descname">relax_fit</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>n</em>, <em>debug=False</em>, <em>title=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.relax_fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.relax_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fits a polynomial to x vs. y data and calculates
+xmin and ymin from the curve.</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> – </li>
+<li><strong>y</strong> – </li>
+<li><strong>n</strong> – </li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"></p>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="EOS.EOS.EOS.sjeos">
+<code class="descname">sjeos</code><span class="sig-paren">(</span><em>V</em>, <em>a</em>, <em>b</em>, <em>c</em>, <em>d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EOS/EOS.html#EOS.sjeos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EOS.EOS.EOS.sjeos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stabilized jellium (SJEOS) fitting function from
+PRB 63, 224115 (2001).</p>
+<dl class="docutils">
+<dt>Note: EOS parameters here differ from the PRB definitions</dt>
+<dd>by having V0 being included in them.
+a(PRB) = a/V0
+b(PRB) = b/V0**(2/3)
+c(PRB) = c/V0**(1/3)</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -724,11 +827,11 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>V</strong> &#8211; </li>
-<li><strong>E0</strong> &#8211; </li>
-<li><strong>beta</strong> &#8211; </li>
-<li><strong>alpha</strong> &#8211; </li>
-<li><strong>V0</strong> &#8211; </li>
+<li><strong>V</strong> – </li>
+<li><strong>E0</strong> – </li>
+<li><strong>beta</strong> – </li>
+<li><strong>alpha</strong> – </li>
+<li><strong>V0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -751,11 +854,11 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>V</strong> &#8211; </li>
-<li><strong>E0</strong> &#8211; </li>
-<li><strong>B0</strong> &#8211; </li>
-<li><strong>BP</strong> &#8211; </li>
-<li><strong>V0</strong> &#8211; </li>
+<li><strong>V</strong> – </li>
+<li><strong>E0</strong> – </li>
+<li><strong>B0</strong> – </li>
+<li><strong>BP</strong> – </li>
+<li><strong>V0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -776,7 +879,7 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>V</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>V</strong> – </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -793,7 +896,7 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>WSrad</strong> &#8211; </td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>WSrad</strong> – </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -816,10 +919,10 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>f</strong> &#8211; </li>
-<li><strong>x</strong> &#8211; </li>
-<li><strong>y</strong> &#8211; </li>
-<li><strong>p0</strong> &#8211; </li>
+<li><strong>f</strong> – </li>
+<li><strong>x</strong> – </li>
+<li><strong>y</strong> – </li>
+<li><strong>p0</strong> – </li>
 </ul>
 </td>
 </tr>
@@ -837,33 +940,76 @@ show the figure and <em>filename=&#8217;abc.png&#8217;</em> or
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="utilities.html" class="btn btn-neutral float-right" title="utilities package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="emtoinputs.html" class="btn btn-neutral" title="emtoinputs package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="utilities.html" title="utilities package"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="emtoinputs.html" title="emtoinputs package"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="code.html" >pyEMTO Code Reference</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.9.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

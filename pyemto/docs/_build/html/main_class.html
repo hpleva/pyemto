@@ -1,110 +1,185 @@
 
 
-<!doctype html>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Main class &mdash; pyEMTO 0.9.0 documentation</title>
+  
 
+  
+  
+  
+  
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+
+  
+  
     
-    <title>Main class &mdash; pyEMTO 0.9.0 documentation</title>
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html"/>
+        <link rel="up" title="pyEMTO Code Reference" href="code.html"/>
+        <link rel="next" title="latticeinputs package" href="latticeinputs.html"/>
+        <link rel="prev" title="pyEMTO Code Reference" href="code.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
     
-    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.9.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript" src="_static/bizstyle.js"></script>
-    <link rel="top" title="pyEMTO 0.9.0 documentation" href="index.html" />
-    <link rel="up" title="pyEMTO Code Reference" href="code.html" />
-    <link rel="next" title="latticeinputs package" href="latticeinputs.html" />
-    <link rel="prev" title="pyEMTO Code Reference" href="code.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="latticeinputs.html" title="latticeinputs package"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="code.html" title="pyEMTO Code Reference"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="code.html" accesskey="U">pyEMTO Code Reference</a> &raquo;</li> 
-      </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/logo.svg" alt="Logo"/>
-            </a></p>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="code.html"
-                        title="previous chapter">pyEMTO Code Reference</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="latticeinputs.html"
-                        title="next chapter">latticeinputs package</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/main_class.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyEMTO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Example scripts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="code.html">pyEMTO Code Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Main class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="latticeinputs.html">latticeinputs package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emtoinputs.html">emtoinputs package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EOS.html">EOS package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">utilities package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="presentation.html">pyEMTO presentation</a></li>
+</ul>
+
+            
+          
         </div>
       </div>
+    </nav>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyEMTO</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="code.html">pyEMTO Code Reference</a> &raquo;</li>
+        
+      <li>Main class</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/main_class.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="main-class">
 <h1>Main class<a class="headerlink" href="#main-class" title="Permalink to this headline">¶</a></h1>
 <p>Below is a description of the code found in the main part of the package, system.py.</p>
-<span class="target" id="module-system"></span><p>pyEmto v 0.9</p>
-<p>Created on Wed Dec  3 14:25:06 2014</p>
+<span class="target" id="module-system"></span><p>Created on Wed Dec  3 14:25:06 2014</p>
 <p>&#64;author: Matti Ropo
 &#64;author: Henrik Levämäki</p>
 <dl class="class">
 <dt id="system.System">
 <em class="property">class </em><code class="descclassname">system.</code><code class="descname">System</code><span class="sig-paren">(</span><em>folder=None</em>, <em>EMTOdir=None</em>, <em>xc=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System" title="Permalink to this definition">¶</a></dt>
-<dd><p>The main class which provides the basis for the pyEMTO scripts.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The main class which provides the basis for the pyEMTO scripts.</p>
 <p>Somewhere in the beginning of a pyEMTO script a new instance of
 the system class should be created. All subsequent communication
 with the newly created system should be through the class methods,
@@ -114,14 +189,14 @@ which are described below.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>folder</strong> (<em>str</em>) &#8211; Main folder where the input and output files will
+<li><strong>folder</strong> (<em>str</em>) – Main folder where the input and output files will
 be stored. Use of absolute paths is recommended
 (Default value = current working directory)</li>
-<li><strong>EMTOdir</strong> (<em>str</em>) &#8211; Path to the folder of the EMTO installation.
+<li><strong>EMTOdir</strong> (<em>str</em>) – Path to the folder of the EMTO installation.
 This entry can and should be modified by the user
 inside the System.__init__ function
 (Default value = /home/user/EMTO5.8)</li>
-<li><strong>xc</strong> (<em>str</em>) &#8211; Choice for the xc-functional can be set here.
+<li><strong>xc</strong> (<em>str</em>) – Choice for the xc-functional can be set here.
 (Default value = PBE)</li>
 </ul>
 </td>
@@ -146,34 +221,92 @@ it should be called right after the class instance has been created.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobname</strong> &#8211; Name of the system (Default value = None)</li>
-<li><strong>lat</strong> &#8211; The type of lattice structure (Default value = None)</li>
-<li><strong>atoms</strong> &#8211; List of atoms in the system (Default value = None)</li>
-<li><strong>concs</strong> &#8211; List of concentrations of the elements in the
-&#8216;atoms&#8217; list. This information is only used in CPA
+<li><strong>jobname</strong> – Name of the system (Default value = None)</li>
+<li><strong>lat</strong> – The type of lattice structure (Default value = None)</li>
+<li><strong>atoms</strong> – List of atoms in the system (Default value = None)</li>
+<li><strong>concs</strong> – List of concentrations of the elements in the
+‘atoms’ list. This information is only used in CPA
 calculations (Default value = None)</li>
-<li><strong>splts</strong> &#8211; List of initial magnetic moments of the elements in the
-&#8216;atoms&#8217; list (Default value = None)</li>
-<li><strong>sws</strong> (<em>float</em>) &#8211; The Wigner-Seitz radius of the system (Default value = None)</li>
-<li><strong>latname</strong> &#8211; The &#8216;jobname&#8217; of the BMDL, KSTR and SHAPE output files. These
-structure output files have to be located in the &#8216;latpath&#8217;
+<li><strong>splts</strong> – List of initial magnetic moments of the elements in the
+‘atoms’ list (Default value = None)</li>
+<li><strong>sws</strong> (<em>float</em>) – The Wigner-Seitz radius of the system (Default value = None)</li>
+<li><strong>latname</strong> – The ‘jobname’ of the BMDL, KSTR and SHAPE output files. These
+structure output files have to be located in the ‘latpath’
 directory and they have to be named jobname.extention
 (Default value = None)</li>
-<li><strong>latpath</strong> &#8211; The absolute path to the folder where the &#8216;bmdl&#8217;, &#8216;kstr&#8217; and &#8216;shape&#8217;
+<li><strong>latpath</strong> – The absolute path to the folder where the ‘bmdl’, ‘kstr’ and ‘shape’
 folders are located, which in turn contain the output files of the
 structure calculation (Default value = None)</li>
-<li><strong>emtopath</strong> &#8211; The absolute path to the folder where the EMTO installation is
+<li><strong>emtopath</strong> – The absolute path to the folder where the EMTO installation is
 located (Default value = None)</li>
-<li><strong>ibz</strong> &#8211; The code number indicating the Bravais lattice that the crystal
+<li><strong>ibz</strong> – The code number indicating the Bravais lattice that the crystal
 structure of the system has. For a list of possible values, please consult the
 EMTO manual (Default value = None)</li>
-<li><strong>bmod</strong> &#8211; The bulk modulus can be inputed here and if it is given,
+<li><strong>bmod</strong> – The bulk modulus can be inputed here and if it is given,
 it will be used by the elastic modulus routines (Default value = None)</li>
-<li><strong>xc</strong> &#8211; The choice of the xc-functional. If None, PBE will be used as default
+<li><strong>xc</strong> – The choice of the xc-functional. If None, PBE will be used as default
 (Default value = None)</li>
-<li><strong>ca</strong> &#8211; The c/a ratio of hcp structures can be inputed here and if it is given,
+<li><strong>ca</strong> – The c/a ratio of hcp structures can be inputed here and if it is given,
 it will be used by the elastic modulus routines (Default value = None)</li>
-<li><strong>**kwargs</strong> &#8211; <p>Arbitrary other KGRN and KFCD input parameters can be given here
+<li><strong>**kwargs</strong> – <p>Arbitrary other KGRN and KFCD input parameters can be given here
+as keyword arguments. They will be passed down to the
+self.emto.set_values() function</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.bulk_new">
+<code class="descname">bulk_new</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>lat=None</em>, <em>atoms=None</em>, <em>concs=None</em>, <em>splts=None</em>, <em>sws=None</em>, <em>latname=None</em>, <em>latpath=None</em>, <em>emtopath=None</em>, <em>ibz=None</em>, <em>bmod=None</em>, <em>xc=None</em>, <em>ca=None</em>, <em>iqs=None</em>, <em>its=None</em>, <em>itas=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.bulk_new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.bulk_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the basic parameters for bulk systems.</p>
+<blockquote>
+<div>!!!A NEW VERSION OF THE OLD “bulk” ROUTINE!!!</div></blockquote>
+<p>Basic information concerning the system,
+such as the types of atoms and the crystal structure should be given to this function and
+it should be called right after the class instance has been created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> – Name of the system (Default value = None)</li>
+<li><strong>lat</strong> – The type of lattice structure (Default value = None)</li>
+<li><strong>atoms</strong> – List of atoms in the system (Default value = None)</li>
+<li><strong>concs</strong> – List of concentrations of the elements in the
+‘atoms’ list. This information is only used in CPA
+calculations (Default value = None)</li>
+<li><strong>splts</strong> – List of initial magnetic moments of the elements in the
+‘atoms’ list (Default value = None)</li>
+<li><strong>sws</strong> (<em>float</em>) – The Wigner-Seitz radius of the system (Default value = None)</li>
+<li><strong>latname</strong> – The ‘jobname’ of the BMDL, KSTR and SHAPE output files. These
+structure output files have to be located in the ‘latpath’
+directory and they have to be named jobname.extention
+(Default value = None)</li>
+<li><strong>latpath</strong> – The absolute path to the folder where the ‘bmdl’, ‘kstr’ and ‘shape’
+folders are located, which in turn contain the output files of the
+structure calculation (Default value = None)</li>
+<li><strong>emtopath</strong> – The absolute path to the folder where the EMTO installation is
+located (Default value = None)</li>
+<li><strong>ibz</strong> – The code number indicating the Bravais lattice that the crystal
+structure of the system has. For a list of possible values, please consult the
+EMTO manual (Default value = None)</li>
+<li><strong>bmod</strong> – The bulk modulus can be inputed here and if it is given,
+it will be used by the elastic modulus routines (Default value = None)</li>
+<li><strong>xc</strong> – The choice of the xc-functional. If None, PBE will be used as default
+(Default value = None)</li>
+<li><strong>ca</strong> – The c/a ratio of hcp structures can be inputed here and if it is given,
+it will be used by the elastic modulus routines (Default value = None)</li>
+<li><strong>**kwargs</strong> – <p>Arbitrary other KGRN and KFCD input parameters can be given here
 as keyword arguments. They will be passed down to the
 self.emto.set_values() function</p>
 </li>
@@ -200,8 +333,8 @@ their output files.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the output files</li>
-<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the output files are located (Default value = &#8221;./&#8221;)</li>
+<li><strong>jobname</strong> (<em>str</em>) – Name of the output files</li>
+<li><strong>folder</strong> (<em>str</em>) – Name of the folder where the output files are located (Default value = “./”)</li>
 </ul>
 </td>
 </tr>
@@ -210,25 +343,6 @@ their output files.</p>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">boolean, boolean</p>
 </td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="system.System.check_folders">
-<code class="descname">check_folders</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.check_folders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.check_folders" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks whether or not given folders exist.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> &#8211; <p>List of folders</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -245,8 +359,8 @@ rerun in any case.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobname</strong> (<em>str</em>) &#8211; Filename of the structure output file</li>
-<li><strong>folder</strong> (<em>str</em>) &#8211; Folder where the output file is located (Default value = &#8221;./&#8221;)</li>
+<li><strong>jobname</strong> (<em>str</em>) – Filename of the structure output file</li>
+<li><strong>folder</strong> (<em>str</em>) – Folder where the output file is located (Default value = “./”)</li>
 </ul>
 </td>
 </tr>
@@ -275,7 +389,7 @@ atomic concentrations and 3.000000 is the sws.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>jobname</strong> (<em>str</em>) &#8211; Optional prefix for the full jobname (Default value = None)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>jobname</strong> (<em>str</em>) – Optional prefix for the full jobname (Default value = None)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Newly created full jobname</td>
 </tr>
@@ -287,7 +401,7 @@ atomic concentrations and 3.000000 is the sws.</p>
 
 <dl class="method">
 <dt id="system.System.elastic_constants_analyze">
-<code class="descname">elastic_constants_analyze</code><span class="sig-paren">(</span><em>sws=None</em>, <em>bmod=None</em>, <em>ca=None</em>, <em>R=None</em>, <em>cs=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.elastic_constants_analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.elastic_constants_analyze" title="Permalink to this definition">¶</a></dt>
+<code class="descname">elastic_constants_analyze</code><span class="sig-paren">(</span><em>sws=None</em>, <em>bmod=None</em>, <em>ca=None</em>, <em>R=None</em>, <em>cs=None</em>, <em>relax=True</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.elastic_constants_analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.elastic_constants_analyze" title="Permalink to this definition">¶</a></dt>
 <dd><p>Analyzes the output files generated using the
 elastic_constants_batch_generate function.</p>
 <p>The results are printed on screen.</p>
@@ -296,11 +410,11 @@ elastic_constants_batch_generate function.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius (Default value = None)</li>
-<li><strong>bmod</strong> (<em>float</em>) &#8211; Bulk modulus (Default value = None)</li>
-<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
-<li><strong>R</strong> (<em>float</em>) &#8211; Dimensionless quantity of hcp systems (Default value = None)</li>
-<li><strong>cs</strong> (<em>float</em>) &#8211; Second order c/a-derivative of the energy (Default value = None)</li>
+<li><strong>sws</strong> (<em>float</em>) – WS-radius (Default value = None)</li>
+<li><strong>bmod</strong> (<em>float</em>) – Bulk modulus (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) – hpc c/a ratio  (Default value = None)</li>
+<li><strong>R</strong> (<em>float</em>) – Dimensionless quantity of hcp systems (Default value = None)</li>
+<li><strong>cs</strong> (<em>float</em>) – Second order c/a-derivative of the energy (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -325,11 +439,11 @@ of the batch system.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius (Default value = None)</li>
-<li><strong>bmod</strong> (<em>float</em>) &#8211; Bulk modulus (Default value = None)</li>
-<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
-<li><strong>R</strong> (<em>float</em>) &#8211; The dimensionless quantity of hcp systems (Default value = None)</li>
-<li><strong>cs</strong> (<em>float</em>) &#8211; Second order c/a-derivative of the energy (Default value = None)</li>
+<li><strong>sws</strong> (<em>float</em>) – WS-radius (Default value = None)</li>
+<li><strong>bmod</strong> (<em>float</em>) – Bulk modulus (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) – hpc c/a ratio  (Default value = None)</li>
+<li><strong>R</strong> (<em>float</em>) – The dimensionless quantity of hcp systems (Default value = None)</li>
+<li><strong>cs</strong> (<em>float</em>) – Second order c/a-derivative of the energy (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -345,15 +459,15 @@ of the batch system.</p>
 
 <dl class="method">
 <dt id="system.System.elastic_constants_batch_generate">
-<code class="descname">elastic_constants_batch_generate</code><span class="sig-paren">(</span><em>sws=None</em>, <em>ca=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.elastic_constants_batch_generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.elastic_constants_batch_generate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">elastic_constants_batch_generate</code><span class="sig-paren">(</span><em>sws=None</em>, <em>ca=None</em>, <em>relax=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.elastic_constants_batch_generate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.elastic_constants_batch_generate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates all the necessary input files based on the class data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius (Default value = None)</li>
-<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
+<li><strong>sws</strong> (<em>float</em>) – WS-radius (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) – hpc c/a ratio  (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -377,9 +491,9 @@ of the batch system.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius (Default value = None)</li>
-<li><strong>bmod</strong> (<em>float</em>) &#8211; Bulk modulus (Default value = None)</li>
-<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
+<li><strong>sws</strong> (<em>float</em>) – WS-radius (Default value = None)</li>
+<li><strong>bmod</strong> (<em>float</em>) – Bulk modulus (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) – hpc c/a ratio  (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -402,9 +516,9 @@ of the batch system.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>delta</strong> (<em>float</em>) &#8211; Step size for the volume vs. energy array (Default value = 0.01)</li>
-<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed, False if not (Default value = True)</li>
-<li><strong>xc</strong> (<em>str</em>) &#8211; Choice of the xc-functional (Default value = &#8216;PBE&#8217;)</li>
+<li><strong>delta</strong> (<em>float</em>) – Step size for the volume vs. energy array (Default value = 0.01)</li>
+<li><strong>prn</strong> (<em>boolean</em>) – True if results should be printed, False if not (Default value = True)</li>
+<li><strong>xc</strong> (<em>str</em>) – Choice of the xc-functional (Default value = ‘PBE’)</li>
 </ul>
 </td>
 </tr>
@@ -427,9 +541,9 @@ of the batch system.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>delta</strong> (<em>float</em>) &#8211; Step size for the volume vs. energy array (Default value = 0.01)</li>
-<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed, False if not (Default value = True)</li>
-<li><strong>xc</strong> (<em>str</em>) &#8211; Choice of the xc-functional (Default value = &#8216;PBE&#8217;)</li>
+<li><strong>delta</strong> (<em>float</em>) – Step size for the volume vs. energy array (Default value = 0.01)</li>
+<li><strong>prn</strong> (<em>boolean</em>) – True if results should be printed, False if not (Default value = True)</li>
+<li><strong>xc</strong> (<em>str</em>) – Choice of the xc-functional (Default value = ‘PBE’)</li>
 </ul>
 </td>
 </tr>
@@ -445,19 +559,19 @@ of the batch system.</p>
 
 <dl class="method">
 <dt id="system.System.get_energy">
-<code class="descname">get_energy</code><span class="sig-paren">(</span><em>jobname</em>, <em>func='PBE'</em>, <em>folder='./'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.get_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.get_energy" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_energy</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>func='PBE'</em>, <em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.get_energy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.get_energy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extracts total energy from the KFCD output file.</p>
 <p>Different total energies given by different xc-functionals can
-be selected using the <em>func</em> input parameter. Default value is 
-&#8216;PBE&#8217;.</p>
+be selected using the <em>func</em> input parameter. Default value is
+‘PBE’.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the KFCD output file</li>
-<li><strong>func</strong> (<em>str</em>) &#8211; Name of the xc-functional (Default value = &#8220;PBE&#8221;)</li>
-<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the output file is located (Default value = &#8221;./&#8221;)</li>
+<li><strong>jobname</strong> (<em>str</em>) – Name of the KFCD output file</li>
+<li><strong>func</strong> (<em>str</em>) – Name of the xc-functional (Default value = “PBE”)</li>
+<li><strong>folder</strong> (<em>str</em>) – Name of the folder where the output file is located (Default value = “./”)</li>
 </ul>
 </td>
 </tr>
@@ -465,6 +579,30 @@ be selected using the <em>func</em> input parameter. Default value is
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="system.System.get_fdos">
+<code class="descname">get_fdos</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.get_fdos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.get_fdos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract density of state (DOS) at fermi level from KGRN output</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) – Name of the KGRN output file</li>
+<li><strong>folder</strong> (<em>str</em>) – Name of the folder where the output file is located (Default value = “./”)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">DOS at fermi level</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
 </td>
 </tr>
 </tbody>
@@ -482,8 +620,8 @@ Set toplevel=False for job step data.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobids</strong> (<em>dict or list</em>) &#8211; List of job IDs (Default value = None)</li>
-<li><strong>toplevel</strong> (<em>boolean</em>) &#8211; (Default value = True)</li>
+<li><strong>jobids</strong> (<em>dict</em><em> or </em><em>list</em>) – List of job IDs (Default value = None)</li>
+<li><strong>toplevel</strong> (<em>boolean</em>) – (Default value = True)</li>
 </ul>
 </td>
 </tr>
@@ -498,6 +636,31 @@ Set toplevel=False for job step data.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="system.System.get_moments">
+<code class="descname">get_moments</code><span class="sig-paren">(</span><em>jobname=None</em>, <em>func='PBE'</em>, <em>folder=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.get_moments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.get_moments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts magnetic moments from the KFCD output file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jobname</strong> (<em>str</em>) – Name of the KFCD output file</li>
+<li><strong>func</strong> (<em>str</em>) – Name of the xc-functional (Default value = “PBE”)</li>
+<li><strong>folder</strong> (<em>str</em>) – Name of the folder where the output file is located (Default value = “./”)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Total energy if it is found, otherwise return None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="system.System.get_status_counts">
 <code class="descname">get_status_counts</code><span class="sig-paren">(</span><em>jobids=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.get_status_counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.get_status_counts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the counts of all jobs by status category.</p>
@@ -505,7 +668,7 @@ Set toplevel=False for job step data.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>jobids</strong> &#8211; (Default value = None)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>jobids</strong> – (Default value = None)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
 </tr>
@@ -516,28 +679,8 @@ Set toplevel=False for job step data.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="system.System.lat_to_ibz">
-<code class="descname">lat_to_ibz</code><span class="sig-paren">(</span><em>lat</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.lat_to_ibz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.lat_to_ibz" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the Bravais lattice ibz code based on the input
-string code, e.g. lat=&#8217;bcc&#8217; or lat=&#8217;fco&#8217;</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lat</strong> (<em>str</em>) &#8211; lattice string code</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ibz code corresponding to the Bravais lattice
-given by the &#8216;lat&#8217; key</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="system.System.lattice_constants_analyze">
-<code class="descname">lattice_constants_analyze</code><span class="sig-paren">(</span><em>sws=None</em>, <em>ca=None</em>, <em>prn=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.lattice_constants_analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.lattice_constants_analyze" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lattice_constants_analyze</code><span class="sig-paren">(</span><em>sws=None</em>, <em>ca=None</em>, <em>prn=True</em>, <em>debug=False</em>, <em>method='morse'</em>, <em>return_error=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.lattice_constants_analyze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.lattice_constants_analyze" title="Permalink to this definition">¶</a></dt>
 <dd><p>Analyzes the output files generated using the
 lattice_constants_batch_generate function.</p>
 <p>The results are printed on screen.</p>
@@ -546,9 +689,9 @@ lattice_constants_batch_generate function.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>list(float)</em>) &#8211; List of WS-radii (Default value = None)</li>
-<li><strong>ca</strong> (<em>list(float)</em>) &#8211; List hpc c/a ratios  (Default value = None)</li>
-<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed on screen, False if not (Default value = True)</li>
+<li><strong>sws</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of WS-radii (Default value = None)</li>
+<li><strong>ca</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List hpc c/a ratios  (Default value = None)</li>
+<li><strong>prn</strong> (<em>boolean</em>) – True if results should be printed on screen, False if not (Default value = True)</li>
 </ul>
 </td>
 </tr>
@@ -575,8 +718,8 @@ At the end results are printed on screen.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>list(float)</em>) &#8211; List of WS-radii (Default value = None)</li>
-<li><strong>ca</strong> (<em>float</em>) &#8211; hpc c/a ratio  (Default value = None)</li>
+<li><strong>sws</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of WS-radii (Default value = None)</li>
+<li><strong>ca</strong> (<em>float</em>) – hpc c/a ratio  (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -604,8 +747,8 @@ on disk. List of jobnames are returned.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>list(float)</em>) &#8211; List of WS-radii (Default value = None)</li>
-<li><strong>ca</strong> (<em>list(float)</em>) &#8211; List of hcp c/a ratios (Default value = None)</li>
+<li><strong>sws</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of WS-radii (Default value = None)</li>
+<li><strong>ca</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of hcp c/a ratios (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -629,12 +772,12 @@ on disk. List of jobnames are returned.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>float</em>) &#8211; Initial guess for the eq. WS-radius (Default value = None)</li>
-<li><strong>stype</strong> (<em>str</em>) &#8211; Type of the energy minimisation algorithm (Default value = &#8220;simple&#8221;)</li>
-<li><strong>rerun</strong> (<em>boolean</em>) &#8211; True if  (Default value = False)</li>
-<li><strong>skip</strong> (<em>boolean</em>) &#8211; True if (Default value = False)</li>
-<li><strong>delta</strong> (<em>float</em>) &#8211; Step size (Default value = 0.01)</li>
-<li><strong>refine</strong> (<em>boolean</em>) &#8211; True if an optimized WS-radius vs. energy curve
+<li><strong>sws</strong> (<em>float</em>) – Initial guess for the eq. WS-radius (Default value = None)</li>
+<li><strong>stype</strong> (<em>str</em>) – Type of the energy minimisation algorithm (Default value = “simple”)</li>
+<li><strong>rerun</strong> (<em>boolean</em>) – True if  (Default value = False)</li>
+<li><strong>skip</strong> (<em>boolean</em>) – True if (Default value = False)</li>
+<li><strong>delta</strong> (<em>float</em>) – Step size (Default value = 0.01)</li>
+<li><strong>refine</strong> (<em>boolean</em>) – True if an optimized WS-radius vs. energy curve
 should be computed, False if not (Default value = True)</li>
 </ul>
 </td>
@@ -658,9 +801,9 @@ should be computed, False if not (Default value = True)</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>swses</strong> (<em>list(float)</em>) &#8211; List of current WS-radii</li>
-<li><strong>en</strong> (<em>list(float)</em>) &#8211; List of current energies</li>
-<li><strong>maxdelta</strong> (<em>float</em>) &#8211; Maximum step size (Default value = 0.05)</li>
+<li><strong>swses</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of current WS-radii</li>
+<li><strong>en</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of current energies</li>
+<li><strong>maxdelta</strong> (<em>float</em>) – Maximum step size (Default value = 0.05)</li>
 </ul>
 </td>
 </tr>
@@ -684,9 +827,9 @@ False if not yet found</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>string</strong> (<em>str</em>) &#8211; Header for the printout</li>
-<li><strong>swses</strong> (<em>list(float)</em>) &#8211; List of WS-radii</li>
-<li><strong>energies</strong> (<em>list(float)</em>) &#8211; List of energies</li>
+<li><strong>string</strong> (<em>str</em>) – Header for the printout</li>
+<li><strong>swses</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of WS-radii</li>
+<li><strong>energies</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of energies</li>
 </ul>
 </td>
 </tr>
@@ -709,10 +852,10 @@ False if not yet found</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>string</strong> (<em>str</em>) &#8211; Header for the printout</li>
-<li><strong>swses</strong> (<em>list(float)</em>) &#8211; List of WS-radii</li>
-<li><strong>energies</strong> (<em>list(float)</em>) &#8211; List of energies</li>
-<li><strong>cas</strong> (<em>list(float)</em>) &#8211; List of c/a ratios</li>
+<li><strong>string</strong> (<em>str</em>) – Header for the printout</li>
+<li><strong>swses</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of WS-radii</li>
+<li><strong>energies</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of energies</li>
+<li><strong>cas</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of c/a ratios</li>
 </ul>
 </td>
 </tr>
@@ -735,10 +878,10 @@ False if not yet found</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius</li>
-<li><strong>delta</strong> (<em>float</em>) &#8211; Step size for the volume vs. energy array (Default value = 0.01)</li>
-<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed, False if not (Default value = True)</li>
-<li><strong>xc</strong> (<em>str</em>) &#8211; Choice of the xc-functional (Default value = &#8216;PBE&#8217;)</li>
+<li><strong>sws</strong> (<em>float</em>) – WS-radius</li>
+<li><strong>delta</strong> (<em>float</em>) – Step size for the volume vs. energy array (Default value = 0.01)</li>
+<li><strong>prn</strong> (<em>boolean</em>) – True if results should be printed, False if not (Default value = True)</li>
+<li><strong>xc</strong> (<em>str</em>) – Choice of the xc-functional (Default value = ‘PBE’)</li>
 </ul>
 </td>
 </tr>
@@ -761,11 +904,11 @@ False if not yet found</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>sws</strong> (<em>float</em>) &#8211; WS-radius</li>
-<li><strong>ca0</strong> (<em>float</em>) &#8211; Previously computed eq. c/a ratio</li>
-<li><strong>delta</strong> (<em>float</em>) &#8211; Step size for the volume vs. energy array (Default value = 0.01)</li>
-<li><strong>prn</strong> (<em>boolean</em>) &#8211; True if results should be printed, False if not (Default value = True)</li>
-<li><strong>xc</strong> (<em>str</em>) &#8211; Choice of the xc-functional (Default value = &#8216;PBE&#8217;)</li>
+<li><strong>sws</strong> (<em>float</em>) – WS-radius</li>
+<li><strong>ca0</strong> (<em>float</em>) – Previously computed eq. c/a ratio</li>
+<li><strong>delta</strong> (<em>float</em>) – Step size for the volume vs. energy array (Default value = 0.01)</li>
+<li><strong>prn</strong> (<em>boolean</em>) – True if results should be printed, False if not (Default value = True)</li>
+<li><strong>xc</strong> (<em>str</em>) – Choice of the xc-functional (Default value = ‘PBE’)</li>
 </ul>
 </td>
 </tr>
@@ -788,10 +931,10 @@ False if not yet found</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the input files</li>
-<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the input files are located (Default value = &#8221;./&#8221;)</li>
-<li><strong>EMTODIR</strong> (<em>str</em>) &#8211; Path to the EMTO installation folder (Default value = None)</li>
-<li><strong>onlyKFCD</strong> (<em>boolean</em>) &#8211; True if only KFCD needs to calculated,
+<li><strong>jobname</strong> (<em>str</em>) – Name of the input files</li>
+<li><strong>folder</strong> (<em>str</em>) – Name of the folder where the input files are located (Default value = “./”)</li>
+<li><strong>EMTODIR</strong> (<em>str</em>) – Path to the EMTO installation folder (Default value = None)</li>
+<li><strong>onlyKFCD</strong> (<em>boolean</em>) – True if only KFCD needs to calculated,
 False if also KGRN (Default value = False)</li>
 </ul>
 </td>
@@ -815,9 +958,9 @@ False if also KGRN (Default value = False)</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the input files (Default value = None)</li>
-<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the input files are located (Default value = &#8221;./&#8221;)</li>
-<li><strong>EMTODIR</strong> (<em>str</em>) &#8211; Path to the EMTO installation folder (Default value = None)</li>
+<li><strong>jobname</strong> (<em>str</em>) – Name of the input files (Default value = None)</li>
+<li><strong>folder</strong> (<em>str</em>) – Name of the folder where the input files are located (Default value = “./”)</li>
+<li><strong>EMTODIR</strong> (<em>str</em>) – Path to the EMTO installation folder (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -841,8 +984,8 @@ batch scripts to the batch system.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobnames</strong> (<em>list(float)</em>) &#8211; List of jobnames</li>
-<li><strong>folder</strong> (<em>str</em>) &#8211; Folder where the batch scripts are located (Default value = None)</li>
+<li><strong>jobnames</strong> (<em>list</em><em>(</em><em>float</em><em>)</em>) – List of jobnames</li>
+<li><strong>folder</strong> (<em>str</em>) – Folder where the batch scripts are located (Default value = None)</li>
 </ul>
 </td>
 </tr>
@@ -858,7 +1001,7 @@ batch scripts to the batch system.</p>
 
 <dl class="method">
 <dt id="system.System.wait_for_jobs">
-<code class="descname">wait_for_jobs</code><span class="sig-paren">(</span><em>jobsdict</em>, <em>restart_partition='general'</em>, <em>sleeptime=5</em>, <em>restart_z=None</em>, <em>restart_stragglers_after=0.75</em>, <em>kill_if_all_ssusp=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.wait_for_jobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.wait_for_jobs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">wait_for_jobs</code><span class="sig-paren">(</span><em>jobsdict</em>, <em>restart_partition='general'</em>, <em>sleeptime=60</em>, <em>restart_z=None</em>, <em>restart_stragglers_after=0.75</em>, <em>kill_if_all_ssusp=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.wait_for_jobs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.wait_for_jobs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loops checking status until no jobs are waiting or running / all are finished.</p>
 <p>wait/run states:</p>
 <table border="1" class="docutils">
@@ -941,12 +1084,12 @@ batch scripts to the batch system.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobsdict</strong> &#8211; </li>
-<li><strong>restart_partition</strong> &#8211; (Default value = &#8216;general&#8217;)</li>
-<li><strong>sleeptime</strong> &#8211; (Default value = 5)</li>
-<li><strong>restart_z</strong> &#8211; (Default value = None)</li>
-<li><strong>restart_stragglers_after</strong> &#8211; (Default value = 0.75)</li>
-<li><strong>kill_if_all_ssusp</strong> &#8211; (Default value = False)</li>
+<li><strong>jobsdict</strong> – </li>
+<li><strong>restart_partition</strong> – (Default value = ‘general’)</li>
+<li><strong>sleeptime</strong> – (Default value = 60)</li>
+<li><strong>restart_z</strong> – (Default value = None)</li>
+<li><strong>restart_stragglers_after</strong> – (Default value = 0.75)</li>
+<li><strong>kill_if_all_ssusp</strong> – (Default value = False)</li>
 </ul>
 </td>
 </tr>
@@ -970,8 +1113,8 @@ batch scripts to the batch system.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>jobname</strong> (<em>str</em>) &#8211; Name of the KGRN output file</li>
-<li><strong>folder</strong> (<em>str</em>) &#8211; Name of the folder where the output file is located (Default value = &#8221;./&#8221;)</li>
+<li><strong>jobname</strong> (<em>str</em>) – Name of the KGRN output file</li>
+<li><strong>folder</strong> (<em>str</em>) – Name of the folder where the output file is located (Default value = “./”)</li>
 </ul>
 </td>
 </tr>
@@ -985,38 +1128,87 @@ batch scripts to the batch system.</p>
 </table>
 </dd></dl>
 
+<dl class="method">
+<dt id="system.System.write_inputs">
+<code class="descname">write_inputs</code><span class="sig-paren">(</span><em>folder=None</em>, <em>batch=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/system.html#System.write_inputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#system.System.write_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write kgrn and kfcd inputs files and possible batch file</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="latticeinputs.html" class="btn btn-neutral float-right" title="latticeinputs package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="code.html" class="btn btn-neutral" title="pyEMTO Code Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="latticeinputs.html" title="latticeinputs package"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="code.html" title="pyEMTO Code Reference"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">pyEMTO 0.9.0 documentation</a> &raquo;</li>
-          <li class="nav-item nav-item-1"><a href="code.html" >pyEMTO Code Reference</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Henrik Levämäki, Matti Ropo.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.9.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

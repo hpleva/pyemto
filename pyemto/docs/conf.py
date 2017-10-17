@@ -19,12 +19,8 @@ import shlex
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('../'))
-#sys.path.insert(0, '/home/henrik/Dropbox/EMTO/pyEMTO')
-#sys.path.insert(0, '/home/henrik/Dropbox/EMTO/pyEMTO/pyemto/latticeinputs')
-#sys.path.insert(0, '/home/henrik/Dropbox/EMTO/pyEMTO/pyemto/emtoinputs')
-sys.path.append('/home/henrik/Dropbox/EMTO/pyEMTO')
-sys.path.append('/home/henrik/Dropbox/EMTO/pyEMTO/pyemto')
+sys.path.insert(0, os.path.abspath('../'))
+sys.path.insert(0, os.path.abspath('../../'))
 
 # -- General configuration ------------------------------------------------
 
@@ -118,8 +114,8 @@ todo_include_todos = True
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'bizstyle'
-#html_theme = 'sphinx_rtd_theme'
+#html_theme = 'bizstyle'
+html_theme = 'sphinx_rtd_theme'
 #html_theme = 'nature'
 #html_theme = 'alabaster'
 #html_theme = 'classic'
@@ -142,7 +138,7 @@ html_theme = 'bizstyle'
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = 'logo.svg'
+#html_logo = 'logo.svg'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
