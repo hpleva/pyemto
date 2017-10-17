@@ -24,6 +24,9 @@ import numpy.polynomial.polynomial as poly
 hybohr3togpa = 2*14710.50498740275538944426
 
 class polynomial:
+    """
+
+    """
     def __init__(self):
         self.c = None
         self.SSerr = None
@@ -36,6 +39,9 @@ class polynomial:
                 .format(self.c,self.SSerr,self.order,self.data,self.w,self.smin)
     
 class minimum:
+    """
+    Class to store minimums
+    """
     def __init__(self):
         self.Vmin = None
         self.fmin = None
@@ -46,6 +52,9 @@ class minimum:
                 .format(self.Vmin,self.fmin,self.Emin,self.err)
 
 class straineval_class:
+    """
+    Class to store strains
+    """
     def __init__(self):
         self.E   = None
         self.E1v = None

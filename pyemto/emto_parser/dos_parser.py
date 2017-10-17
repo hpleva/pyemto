@@ -89,6 +89,9 @@ class emto_dos:
                     
             
     def plot_dos(self):
+        """ 
+        Plot density of states plot.
+        """
         import pylab
         pylab.plot([0.0,0.0],[-10,100],'--',linewidth=2,color='red')
         #total dos

@@ -4,6 +4,8 @@ import os
 import numpy as np
 from pyemto.utilities.utils import run_bash
 
+
+# Try to import pandas
 try:
     import pandas as pd
 except ImportError:
@@ -16,6 +18,8 @@ except ImportError:
 #pd.set_option('display.max_colwidth', 100)
 
 All = slice(None)
+
+# Set up some constants
 
 ry2ev = 13.605698066 #eV
 #Kb = 8.617332478e-5*0.073498618 #Ry/K
@@ -123,12 +127,8 @@ class EMTOPARSER:
 
     def Energy(self):
         """
-        cmd =  "grep -H TOT-{} {}".format(self.xc,self.KFCD_filenames)
-        all_output = [i.split() for i in os.popen(cmd).readlines()]
-        print(all_output)
-        return all_output
+        Extract Total energies from the KFCD output file
         """
-        #"""
         xc_list = ['LDA','PBE','P07','QNA']
         all_output = []
 
@@ -172,6 +172,8 @@ class EMTOPARSER:
         #"""
 
     def Structure(self):
+        """ Extract structure name from the BDML file.
+        """
         all_output = []
         for KFCD_file in self.KFCD_filenames:
             cmd = r'grep -H mdl {} |sed "s: .*/\([^/].*\).mdl: \1:" '.format(KFCD_file)
@@ -181,6 +183,8 @@ class EMTOPARSER:
         return all_output
 
     def Mag(self):
+        """  Extract magnetic momets from KFCD output 
+        """
         all_output = []
         for KFCD_file in self.KFCD_filenames:
             cmd =  "grep -H Mag {}".format(KFCD_file)
@@ -207,6 +211,8 @@ class EMTOPARSER:
         #return [i.split() for i in os.popen(cmd).readlines()]
 
     def Concentration(self):
+        """ Extract elemental concentration for each site from KFCD output
+        """
         all_output = []
         for KFCD_file in self.KFCD_filenames:
             cmd =  'grep -H \'IQ.*)\' {}'.format(KFCD_file)
@@ -323,6 +329,9 @@ class EMTOPARSER:
 
 
     def get_NQ(self):
+        """ 
+        Extract number of atom positions from KFCD
+        """
         all_output = []
         for KFCD_file in self.KFCD_filenames:
             cmd = 'grep -H NQ {}'.format(KFCD_file)
@@ -336,6 +345,10 @@ class EMTOPARSER:
         return all_output
 
     def get_COA(self):
+        """
+        Extract C over A ration from the KFCD output
+        """
+        
         all_output = []
         for KFCD_file in self.KFCD_filenames:
             cmd = 'grep -H \'BSZ( 3)\' {}'.format(KFCD_file)
@@ -349,6 +362,9 @@ class EMTOPARSER:
         return all_output
 
     def get_Status(self):
+        """
+        Extract status of calculation from KGRN output
+        """
         all_output = []
         for KGRN_file in self.KGRN_filenames:
             cmd = 'grep -H \' Converged in\' {}'.format(KGRN_file)
@@ -389,6 +405,9 @@ class EMTOPARSER:
         return pd.DataFrame([[i[x] for x in col] for i in list],columns=colname)
 
     def create_df(self):
+        """
+        Create pandas DataFrame from extracted data
+        """
         import sys
         self.EN.reset_index(inplace=True)
         self.EN.set_index(["FN"],inplace=True)
