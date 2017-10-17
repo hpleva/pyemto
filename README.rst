@@ -9,7 +9,7 @@ Installation
 
    pip install pyemto
 
-or
+or::
 
    git clone https://github.com/hpleva/pyemto.git
    cd pyemto
