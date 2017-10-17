@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-
-pyEmto v 0.9
-
 Created on Wed Dec  3 14:25:06 2014
 
 @author: Matti Ropo
@@ -13,7 +10,6 @@ from __future__ import print_function
 import time
 import os
 import sys
-import re
 import numpy as np
 import pyemto.common.common as common
 
@@ -230,7 +226,7 @@ class System:
             self.concs = np.array([1.0,1.0])
             self.its   = np.array([1,2],dtype='int32')
             self.itas  = np.array([1,1],dtype='int32')
-            
+
             self.emto.set_values(jobname=self.fulljobname, sws=self.sws, atoms=self.atoms,
                                  iqs=self.iqs, its=self.its, itas=self.itas, concs=self.concs,
                                  splts=self.splts, ibz=self.ibz, latname=self.latname, latpath=self.latpath,
@@ -368,7 +364,7 @@ class System:
         self.iqs = iqs
         self.its = its
         self.itas = itas
-        
+
         self.emto.set_values(jobname=self.fulljobname, sws=self.sws, atoms=self.atoms,
                              iqs=self.iqs, its=self.its, itas=self.itas, concs=self.concs,
                              splts=self.splts, ibz=self.ibz, latname=self.latname, latpath=self.latpath,
@@ -385,7 +381,7 @@ class System:
         if batch:
             self.emto.batch.write_input_file(folder=folder)
 
-    
+
     def lattice_constants_analyze(self, sws=None, ca=None,prn=True,debug=False,method='morse',return_error=False):
         """Analyzes the output files generated using the
         lattice_constants_batch_generate function.
@@ -503,7 +499,7 @@ class System:
                     formaatti = formaatti + "{0}{1}{2}{3} ".format("{",i,":13.6f","}")
                 for i in range(len(energies[:,0])):
                     print(formaatti.format(self.lc_analyze_ca_range[i],*energies[i,:]))
-                
+
 
             # Now we can start processing the 2D energy array.
             # There might be some calculations that didn't converge.
@@ -1081,7 +1077,7 @@ class System:
                 # undistorted lattice, which means we don't need to
                 # relax it:
                 job = self.create_jobname(self.jobname + jobname_dist[0][0])
-                        
+
                 en_orig = self.get_energy(job, folder=self.folder, func=self.xc)
                 if isinstance(en_orig, type(None)):
                     print('System.elastic_constants_analyze(): Warning:' +
@@ -1089,7 +1085,7 @@ class System:
                 else:
                     en_c66.append(en_orig)
                     good_deltas_c66.append(deltas[0])
-                
+
                 # For all the rest of the structures we compute the
                 # relaxed ground state energy by fitting a polynomial
                 # to the atomic pos. vs. energy data:
@@ -1099,7 +1095,7 @@ class System:
                     for j in range(len(jobname_dist[i])):
                         already = False
                         job = self.create_jobname(self.jobname + jobname_dist[i][j])
-                        
+
                         en = self.get_energy(job, folder=self.folder, func=self.xc)
                         if isinstance(en, type(None)):
                             print('System.elastic_constants_analyze(): Warning:' +
@@ -1123,7 +1119,7 @@ class System:
                 for i in range(self.elastic_constants_points):
                     already = False
                     job = self.create_jobname(self.jobname + jobname_dist[i])
-                    
+
                     en = self.get_energy(job, folder=self.folder, func=self.xc)
                     if isinstance(en, type(None)):
                         print('System.elastic_constants_analyze(): Warning:' +
@@ -1180,14 +1176,14 @@ class System:
             if relax:
                 # First we have to determine how relaxation affects
                 # the energy.
-                
+
                 for i in range(self.elastic_constants_points):
                     ens_tmp = []
                     xind_tmp = []
                     for j in range(self.hcpo_relax_points):
                         already = False
                         job = self.create_jobname(self.jobname + jobname_dist[i][j])
-                        
+
                         en = self.get_energy(job, folder=self.folder, func=self.xc)
                         if isinstance(en, type(None)):
                             print('System.elastic_constants_analyze(): Warning:' +
@@ -1209,7 +1205,7 @@ class System:
                 for i in range(self.elastic_constants_points):
                     already = False
                     job = self.create_jobname(self.jobname + jobname_dist[i])
-                    
+
                     en = self.get_energy(job, folder=self.folder, func=self.xc)
                     if isinstance(en, type(None)):
                         print('System.elastic_constants_analyze(): Warning:' +
@@ -1491,7 +1487,7 @@ class System:
                         self.lattice.distortion(lat='hcp', dist='ortho', ca=self.ca, index=i,
                                                 deltas=self.elastic_constants_deltas,
                                                 relax=do_i_relax,relax_index=j)
-                        
+
                         self.lattice.set_values(jobname=latname_dist[i][j],latpath=self.folder)
                         self.lattice.bmdl.write_input_file(folder=self.folder)
                         self.lattice.kstr.write_input_file(folder=self.folder)
@@ -1503,7 +1499,7 @@ class System:
                     self.lattice.distortion(lat='hcp', dist='ortho', ca=self.ca, index=i,
                                             deltas=self.elastic_constants_deltas,
                                             relax=False)
-                    
+
                     self.lattice.set_values(jobname=latname_dist[i],latpath=self.folder)
                     self.lattice.bmdl.write_input_file(folder=self.folder)
                     self.lattice.kstr.write_input_file(folder=self.folder)
@@ -1521,7 +1517,7 @@ class System:
                         jobnames.append(job)
                         self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i][j],
                                              latpath=self.folder)
-                        
+
                         common.check_folders(self.folder, self.folder + "/kgrn")
                         common.check_folders(self.folder + "/kgrn/tmp")
                         common.check_folders(self.folder + "/kfcd")
@@ -1529,14 +1525,14 @@ class System:
                         self.emto.kgrn.write_input_file(folder=self.folder)
                         self.emto.kfcd.write_input_file(folder=self.folder)
                         self.emto.batch.write_input_file(folder=self.folder)
-                        
+
             else:
                 for i in range(self.elastic_constants_points):
                     job = self.create_jobname(self.jobname + jobname_dist[i])
                     jobnames.append(job)
                     self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i],
                                          latpath=self.folder)
-                    
+
                     common.check_folders(self.folder, self.folder + "/kgrn")
                     common.check_folders(self.folder + "/kgrn/tmp")
                     common.check_folders(self.folder + "/kfcd")
@@ -1599,7 +1595,7 @@ class System:
                         self.lattice.distortion(lat='hcp', dist='mono', ca=self.ca, index=i,
                                                 deltas=self.elastic_constants_deltas,
                                                 relax=do_i_relax,relax_index=j)
-                        
+
                         self.lattice.set_values(jobname=latname_dist[i][j],latpath=self.folder)
                         self.lattice.bmdl.write_input_file(folder=self.folder)
                         self.lattice.kstr.write_input_file(folder=self.folder)
@@ -1611,7 +1607,7 @@ class System:
                     self.lattice.distortion(lat='hcp', dist='mono', ca=self.ca, index=i,
                                             deltas=self.elastic_constants_deltas,
                                             relax=False)
-                    
+
                     self.lattice.set_values(jobname=latname_dist[i],latpath=self.folder)
                     self.lattice.bmdl.write_input_file(folder=self.folder)
                     self.lattice.kstr.write_input_file(folder=self.folder)
@@ -1629,7 +1625,7 @@ class System:
                         jobnames.append(job)
                         self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i][j],
                                              latpath=self.folder)
-                        
+
                         common.check_folders(self.folder, self.folder + "/kgrn")
                         common.check_folders(self.folder + "/kgrn/tmp")
                         common.check_folders(self.folder + "/kfcd")
@@ -1657,17 +1653,17 @@ class System:
 
                 self.splts = np.array([self.splts, self.splts]).flatten()
                 self.itas = np.array([self.itas, self.itas]).flatten()
-                
+
                 self.emto.set_values(atoms=self.atoms, iqs=self.iqs, itas=self.itas,
                                      concs=self.concs, splts=self.splts)
                 ####################################################################
-                
+
                 for i in range(self.elastic_constants_points):
                     job = self.create_jobname(self.jobname + jobname_dist[i])
                     jobnames.append(job)
                     self.emto.set_values(sws=self.sws, jobname=job, latname=latname_dist[i],
                                          latpath=self.folder)
-                    
+
                     common.check_folders(self.folder, self.folder + "/kgrn")
                     common.check_folders(self.folder + "/kgrn/tmp")
                     common.check_folders(self.folder + "/kfcd")
@@ -2389,18 +2385,18 @@ class System:
         iteration = 0
         while not enough:
             iteration += 1
-           
+
             # if 25 is not enough one should check initial sws
             if iteration > 25:
                 print(
                     "SWS loop did not converge in {0} iterations!".format(iteration))
                 quit()
-           
+
             # Calculate next point
             self.sws = next_sws
             job = self.create_jobname(self.jobname)
             self.emto.set_values(sws=self.sws, jobname=job)
-            
+
             # First check if calculations are already done
             already = False
             already = self.check_conv(job, folder=self.folder)
@@ -2421,29 +2417,29 @@ class System:
             en = self.get_energy(job, folder=self.folder, func=xc)
             energies.append(en)
             swses.append(self.sws)
-           
+
             # Check do we have minumun and predict next sws
             next_sws, minfound = self.predict_next_sws(swses, energies, delta)
-           
+
             # Check if we have mimimum and enough points
             # 9 points should be enough for EOS
             if minfound and len(swses) > 9:
                 enough = True
-           
+
             #print('debug find_lc: ',swses)
-           
+
             if prn:
                 self.print_sws_ens('find_lc', swses, energies)
-           
+
             sws0, e0, B, grun = eos.fit(swses, energies)
-           
+
             # These functions create files on disk about the data to be fitted
             # as well as the results of the fit.
             # eos.prepareData()
             #sws0,e0,B,grun = eos.fit2file()
-           
+
             return sws0, B, e0
-            
+
 
     def refine_lc(self, sws, delta=0.01, prn=True, xc='PBE'):
         """Calculates a more accurate equilibrium volume for cubic systems.
@@ -3075,7 +3071,7 @@ class System:
     def runemto(self, jobname, folder="./", EMTODIR=None, onlyKFCD=False):
         """Run KGRN and KFCD **WITHOUT** using the batch system and check convergence.
 
-        
+
         :param jobname: Name of the input files
         :type jobname: str
         :param folder: Name of the folder where the input files are located (Default value = "./")
@@ -3165,7 +3161,7 @@ class System:
         """Tries to determine the reason why a given KGRN calculation did not converge.
 
         The reason for the crash will be printed on screen.
-        
+
         :param jobname: Name of the KGRN output file
         :type jobname: str
         :param folder: Name of the folder where the output file is located (Default value = "./")
@@ -3212,7 +3208,7 @@ class System:
         """Extracts total energy from the KFCD output file.
 
         Different total energies given by different xc-functionals can
-        be selected using the *func* input parameter. Default value is 
+        be selected using the *func* input parameter. Default value is
         'PBE'.
 
         :param jobname: Name of the KFCD output file
@@ -3229,7 +3225,7 @@ class System:
             folder = self.folder
         if jobname == None:
             jobname = self.fulljobname
-        
+
         fn = os.path.join(folder, "kfcd/")
         fn = os.path.join(fn, jobname + ".prn")
         try:
@@ -3268,7 +3264,7 @@ class System:
             folder = self.folder
         if jobname == None:
             jobname = self.fulljobname
-        
+
         fn = os.path.join(folder, "kfcd/")
         fn = os.path.join(fn, jobname + ".prn")
 
@@ -3302,13 +3298,13 @@ class System:
     def get_fdos(self, jobname = None,folder=None):
         """ Extract density of state (DOS) at fermi level from KGRN output
 
-            
+
         :param jobname: Name of the KGRN output file
         :type jobname: str
         :param folder: Name of the folder where the output file is located (Default value = "./")
         :type folder: str
         :returns: DOS at fermi level
-        :rtype: float 
+        :rtype: float
         """
 
         if folder == None:
@@ -3366,12 +3362,12 @@ class System:
         dos_tot = 0.0
         for i in range(len(concs)):
             dos_tot += concs[i]*doses[i]
-        
+
         dos_tot /= num_sites
         dos_tot /= ry2ev
         return dos_tot
 
-    
+
     def create_jobname(self, jobname=None):
         """Creates jobnames based on system information.
 
@@ -3444,7 +3440,7 @@ class System:
     def wait_for_jobs(self, jobsdict, restart_partition='general', sleeptime=60, restart_z=None,
                       restart_stragglers_after=0.75, kill_if_all_ssusp=False):
         """Loops checking status until no jobs are waiting or running / all are finished.
-        
+
         wait/run states:
 
         ======= =========== ==================================================================================================
@@ -3533,7 +3529,7 @@ class System:
 
         :param jobids:  (Default value = None)
         :type jobids:
-        :returns: 
+        :returns:
         :rtype:
         """
         from collections import defaultdict
