@@ -156,7 +156,7 @@ def check_noise(vols,ens,show_plot=False):
     cb,sb = strainbootstrap(vols, ens, vref, ndeg=12, nsample=sample, strain=strain, LOG=1, nargout=2)
     bad = sb.outliers
     good = [i for i in range(len(vols))]
-    for i in xrange(len(bad)):
+    for i in range(len(bad)):
         good.remove(bad[i])
     #fileplot = sprintf("%s-evn.eps", rootname)
     #plot(v,sb.Efit,'-r;BS fit;', v(good),e(good),'ob;good data;' \
@@ -598,7 +598,7 @@ def strainmin(c, V0, Vrange, strain='eulerian'):
             ffmin = ff[ieemin]
         CONV = 1e-8; MAXIT = 30
         fnew = ffmin; delta = 1e30; it = 0
-        for i in xrange(MAXIT):
+        for i in range(MAXIT):
             fold = fnew; dold = delta
             fnew = fold - np.polyval(c1,fold) / np.polyval(c2,fold)
             delta = np.abs(fnew-fold)
