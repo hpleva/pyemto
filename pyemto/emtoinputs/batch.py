@@ -41,7 +41,8 @@ class Batch:
     """
 
     def __init__(self, jobname=None, runtime=None, EMTOdir=None,
-                 emtopath=None, runKGRN=None, runKFCD=None):
+                 emtopath=None, runKGRN=None, runKFCD=None,
+                 account=None, KGRN_file_type=None, KFCD_file_type=None):
 
         # Batch script related parameters
         self.jobname = jobname
@@ -50,6 +51,15 @@ class Batch:
         self.EMTOdir = EMTOdir
         self.runKGRN = runKGRN
         self.runKFCD = runKFCD
+        self.account = account
+        if KGRN_file_type is not None:
+            self.KGRN_file_type = KGRN_file_type
+        else:
+            self.KGRN_file_type = 'kgrn'
+        if KFCD_file_type is not None:
+            self.KFCD_file_type = KFCD_file_type
+        else:
+            self.KFCD_file_type = 'kfcd'
 
         return
 
@@ -70,16 +80,18 @@ class Batch:
         line += "#SBATCH -e " + \
             common.cleanup_path(
                 self.emtopath + "/" + self.jobname) + ".error" + "\n"
+        if self.account is not None:
+            line +="#SBATCH -A {0}".format(self.account) + "\n"
         line += "\n"
 
         elapsed_time = "/usr/bin/time "
         if self.runKGRN:
             line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kgrn/source/kgrn_cpa < ") +\
-                    common.cleanup_path(self.emtopath + "/" + self.jobname) + ".kgrn > " +\
+                    common.cleanup_path(self.emtopath + "/" + self.jobname) + ".{0} > ".format(self.KGRN_file_type) +\
                     common.cleanup_path(self.emtopath + "/" + self.jobname) + "_kgrn.output" + "\n"
         if self.runKFCD:
             line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kfcd/source/kfcd_cpa < ") +\
-                common.cleanup_path(self.emtopath + "/" + self.jobname) + ".kfcd > " +\
+                common.cleanup_path(self.emtopath + "/" + self.jobname) + ".{0} > ".format(self.KFCD_file_type) +\
                 common.cleanup_path(self.emtopath + "/" + self.jobname) + "_kfcd.output" + "\n"
 
         return line

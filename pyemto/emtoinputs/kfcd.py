@@ -59,7 +59,7 @@ class Kfcd:
     def __init__(self, jobname=None, latname=None, latpath=None, msgl=None, nprn=None,
                  lmaxs=None, nth=None, kfcd_nfi=None, fpot=None, ovcor=None,
                  ubg=None, DIR001=None, DIR002=None, DIR003=None, DIR004=None,
-                 DIR006=None, sws=None, CQNA=None):
+                 DIR006=None, sws=None, CQNA=None, KFCD_file_type=None):
 
         self.jobname = jobname
         self.latname = latname
@@ -78,6 +78,9 @@ class Kfcd:
         self.DIR004 = DIR004
         self.DIR006 = DIR006
         self.CQNA = CQNA
+        self.KFCD_file_type = KFCD_file_type
+        if KFCD_file_type is None:
+            self.KFCD_file_type = 'kfcd'
         
     def output(self):
         """Outputs KFCD input file as a formatted string.
@@ -126,7 +129,7 @@ class Kfcd:
         else:
             common.check_folders(folder)
 
-        fl = open(folder + '/{0}.kfcd'.format(self.jobname), "w")
+        fl = open(folder + '/{0}.{1}'.format(self.jobname,self.KFCD_file_type), "w")
         fl.write(self.output())
         fl.close()
         return

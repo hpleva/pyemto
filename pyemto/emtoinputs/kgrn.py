@@ -232,7 +232,7 @@ class Kgrn:
                  dirac_niter=None, iwat=None, nprna=None, vmix=None, rwat=None, rmax=None,
                  dx=None, dr1=None, test=None, teste=None, testy=None, testv=None,
                  FOR001=None, DIR002=None, DIR003=None, FOR004=None, DIR006=None, DIR009=None,
-                 DIR010=None, DIR011=None,ncpu=None,CQNA=None):
+                 DIR010=None, DIR011=None,ncpu=None,CQNA=None,KGRN_file_type=None):
 
         self.jobname = jobname
         self.latname = latname
@@ -333,6 +333,7 @@ class Kgrn:
         self.DIR011 = DIR011
         self.ncpu = ncpu
         self.CQNA = CQNA
+        self.KGRN_file_type = KGRN_file_type
 
         if iqs is None:
             self.iqs = np.ones(50, dtype='int32')
@@ -371,6 +372,9 @@ class Kgrn:
             self.ws_wsts = np.ones(50)
         else:
             self.ws_wsts = ws_wsts
+        if KGRN_file_type is None:
+            self.KGRN_file_type = 'kgrn'
+
 
         self.atconfKeys = ['atoms', 'concs', 'iqs', 'its', 'itas', 'qtrs', 'splts',
                            'fixs', 'sm_ss', 's_wss', 'ws_wsts']
@@ -1260,7 +1264,7 @@ class Kgrn:
         else:
             common.check_folders(folder)
 
-        fl = open(folder + '/{0}.kgrn'.format(self.jobname), "w")
+        fl = open(folder + '/{0}.{1}'.format(self.jobname,self.KGRN_file_type), "w")
         fl.write(self.output())
         fl.close()
 

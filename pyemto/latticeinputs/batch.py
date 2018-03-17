@@ -83,6 +83,7 @@ class Batch:
         line += "#SBATCH -e " + \
             common.cleanup_path(
                 self.latpath + "/" + self.jobname) + ".error" + "\n"
+        line += "#SBATCH -A snic2017-12-37" + "\n"
         line += "\n"
 
         elapsed_time = "/usr/bin/time "
