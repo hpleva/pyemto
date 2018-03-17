@@ -198,7 +198,9 @@ class EMTO:
         print("")
         #
         self.conv_struct = self.finder.get_conventional_standard_structure(international_monoclinic=False)
-        self.prim_struct = self.finder.get_primitive_standard_structure(international_monoclinic=False)
+        #self.prim_struct = self.finder.get_primitive_standard_structure(international_monoclinic=False)
+        self.prim_struct = self.pmg_input_struct
+
         #print('self.prim_struct:')
         #print(self.prim_struct)
         #print("")
