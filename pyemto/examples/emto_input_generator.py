@@ -144,7 +144,7 @@ class EMTO:
 
     def init_structure(self,prims=None,basis=None,latpath=None,
                        coords_are_cartesian=False,latname=None,
-                       kappaw=None,species=None):
+                       kappaw=None,species=None,find_primitive=False):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
         if basis is None:
@@ -185,6 +185,7 @@ class EMTO:
         self.pmg_input_struct  = Structure(self.pmg_input_lattice, self.species, self.basis,
                                            coords_are_cartesian=self.coords_are_cartesian)
         self.sws = self.calc_ws_radius(self.pmg_input_struct)
+        self.find_primitive = find_primitive
 
         #
         self.finder = SpacegroupAnalyzer(self.pmg_input_struct)
@@ -198,8 +199,10 @@ class EMTO:
         print("")
         #
         self.conv_struct = self.finder.get_conventional_standard_structure(international_monoclinic=False)
-        #self.prim_struct = self.finder.get_primitive_standard_structure(international_monoclinic=False)
-        self.prim_struct = self.pmg_input_struct
+        if self.find_primitive:
+            self.prim_struct = self.finder.get_primitive_standard_structure(international_monoclinic=False)
+        else:
+            self.prim_struct = self.pmg_input_struct
 
         #print('self.prim_struct:')
         #print(self.prim_struct)
