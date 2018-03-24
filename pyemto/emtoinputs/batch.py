@@ -42,7 +42,8 @@ class Batch:
 
     def __init__(self, jobname=None, runtime=None, EMTOdir=None,
                  emtopath=None, runKGRN=None, runKFCD=None,
-                 account=None, KGRN_file_type=None, KFCD_file_type=None):
+                 account=None, KGRN_file_type=None, KFCD_file_type=None,
+                 slurm_options=None):
 
         # Batch script related parameters
         self.jobname = jobname
@@ -60,6 +61,7 @@ class Batch:
             self.KFCD_file_type = KFCD_file_type
         else:
             self.KFCD_file_type = 'kfcd'
+        self.slurm_options = slurm_options
 
         return
 
@@ -81,7 +83,10 @@ class Batch:
             common.cleanup_path(
                 self.emtopath + "/" + self.jobname) + ".error" + "\n"
         if self.account is not None:
-            line +="#SBATCH -A {0}".format(self.account) + "\n"
+            line += "#SBATCH -A {0}".format(self.account) + "\n"
+        if self.slurm_options is not None:
+            for so in self.slurm_options:
+                line += so + "\n"
         line += "\n"
 
         elapsed_time = "/usr/bin/time "
