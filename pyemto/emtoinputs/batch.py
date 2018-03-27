@@ -43,7 +43,7 @@ class Batch:
     def __init__(self, jobname=None, runtime=None, EMTOdir=None,
                  emtopath=None, runKGRN=None, runKFCD=None,
                  account=None, KGRN_file_type=None, KFCD_file_type=None,
-                 slurm_options=None):
+                 slurm_options=None, parallel=None):
 
         # Batch script related parameters
         self.jobname = jobname
@@ -62,6 +62,7 @@ class Batch:
         else:
             self.KFCD_file_type = 'kfcd'
         self.slurm_options = slurm_options
+        self.parallel = parallel
 
         return
 
@@ -90,8 +91,12 @@ class Batch:
         line += "\n"
 
         elapsed_time = "/usr/bin/time "
+        if self.parallel is True:
+            kgrn_exe = 'kgrn_omp'
+        else:
+            kgrn_exe = 'kgrn_cpa'
         if self.runKGRN:
-            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kgrn/source/kgrn_cpa < ") +\
+            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kgrn/source/" + kgrn_exe + " < ") +\
                     common.cleanup_path(self.emtopath + "/" + self.jobname) + ".{0} > ".format(self.KGRN_file_type) +\
                     common.cleanup_path(self.emtopath + "/" + self.jobname) + "_kgrn.output" + "\n"
         if self.runKFCD:
