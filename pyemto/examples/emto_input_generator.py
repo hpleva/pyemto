@@ -30,7 +30,7 @@ class EMTO:
         else:
             self.folder = folder
         if EMTOdir is None:
-            self.EMTOdir = '/home/henrik/local_emto_stuff/openmp-stable-cmake'
+            self.EMTOdir = '/home/EMTO'
         else:
             self.EMTOdir = EMTOdir
 

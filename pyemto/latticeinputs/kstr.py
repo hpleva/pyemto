@@ -13,6 +13,7 @@ import os
 import datetime
 import numpy as np
 import pyemto.common.common as common
+from pyemto.c import c_lattice
 
 class Kstr:
     """Contains information about KSTR input files for EMTO 5.8 program
@@ -302,7 +303,7 @@ class Kstr:
         if self.kappalen == 2:
             self.twocenter = True
         elif self.kappalen == 1:
-            self.twocenter = False    
+            self.twocenter = False
         else:
             print("Kappa does not have correct number of values, please correct! : %s" % (str(self.kappaw)))
             exit()
@@ -481,7 +482,8 @@ class Kstr:
             # ncrq = Number of vectors for the first site
             # in the basis, which has been shifted to lie
             # in the origin.
-            f_mid = self.compute_num_of_vecs(prims,basis,nghbp,dmax_mid)
+            #f_mid = self.compute_num_of_vecs(prims,basis,nghbp,dmax_mid)
+            f_mid = c_lattice.compute_num_of_vecs(prims,basis,nghbp,dmax_mid,self.nq)
             #
             if f_mid == ncrq_target:
                 # Target number of vectors has been reached exactly
@@ -522,4 +524,3 @@ class Kstr:
         #self.latvectors = None
         #self.basis = None
         return
-

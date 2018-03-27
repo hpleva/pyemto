@@ -1,10 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
+from setuptools import setup, Extension
+from Cython.Build import cythonize
+
+extensions = [
+    Extension("pyemto.c.c_lattice", ["pyemto/c/c_lattice.pyx"],
+              #include_dirs = [...],
+              #libraries = [...],
+              #library_dirs = [...],
+              )
+]
 
 setup(name='pyemto',
-      version='0.9.2',
+      version='0.9.3',
       description='Program to generate input files for EMTO program',
       author='H. Levämäki, M. Ropo',
       author_email='hpleva@utu.fi, matti.ropo@tut.fi',
@@ -21,4 +30,5 @@ setup(name='pyemto',
       install_requires=["numpy>=1.10.3", "scipy>=0.17.1", "matplotlib>=1.5.1"],
       extras_require={"emto_parser": ["pandas>=0.20.3"],
                       "emto_input_generator": ["pymatgen>=4.4.0"]},
+      ext_modules = cythonize(extensions),
       )
