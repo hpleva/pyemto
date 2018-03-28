@@ -511,7 +511,7 @@ class Kstr:
             dmax_mid = np.round((dmax_max + dmax_min)/2,4)
             #print('dmax, Number of vectors: {0:6.4f}, {1}'.format(dmax_mid_old,f_mid))
         print('dmax, Number of vectors: {0:6.4f}, {1}'.format(dmax_closest,f_closest))
-        return dmax_closest,f_closest
+        return dmax_closest, f_closest
 
     def finalize(self):
         """Re-initializes input parameters."""

@@ -37,7 +37,7 @@ class polynomial:
     def __repr__(self):
         return "c    = {0}\nSSerr = {1}\norder = {2}\ndata  = {3}\nw     = {4}\nsmin = {5}\n"\
                 .format(self.c,self.SSerr,self.order,self.data,self.w,self.smin)
-    
+
 class minimum:
     """
     Class to store minimums
@@ -89,7 +89,7 @@ class savg_class:
         self.B2pstd = None
         self.B3pmean = None
         self.B3pstd = None
-    
+
 class sb_class:
     def __init__(self):
         self.mean = None
@@ -97,7 +97,7 @@ class sb_class:
         self.outliers = None
         self.Efit = None
         self.R2 = None
-    
+
 def volume2strain(V, V0, strain='eulerian'):
     """"""
     # Determine the strain:
@@ -125,9 +125,9 @@ def check_noise(vols,ens,show_plot=False):
     rk = [1,3,4,5]
     strain = 'eulerian'
     cf,sf = avgstrainfit(vols,ens,vref,nmax=10,strain=strain,LOG=1,nargout=2)
-    
-    # Is this a noisy dataset? 
-    fiterr = np.abs(sf.eqstd/sf.eqmean);
+
+    # Is this a noisy dataset?
+    fiterr = np.abs(sf.eqstd/sf.eqmean)
     worse = np.max(fiterr)
 
     # TEST:
@@ -148,9 +148,9 @@ def check_noise(vols,ens,show_plot=False):
         status += 10
         print("Some level of noise exists: Noise level = {0}\nCheck carefully the next results.\n".format(worse))
         sample = 1000
-    
+
     #"""
-    # Try first a bootstrap fit to detect possible outliers:                                                                                                                                                                                      
+    # Try first a bootstrap fit to detect possible outliers:
     print("\nA bootstrap fit will be tried to detect possible outliers:\n")
     print("Bootstrap sample size: {0}\n".format(sample))
     cb,sb = strainbootstrap(vols, ens, vref, ndeg=12, nsample=sample, strain=strain, LOG=1, nargout=2)
@@ -169,7 +169,7 @@ def check_noise(vols,ens,show_plot=False):
     #"""
 
     #"""
-    # Remove the detected outliers:                                                                                                                                                                                                               
+    # Remove the detected outliers:
     vg = vols[good]; eg = ens[good]
     print("\nRemove the outliers and keep {0} points.\n".format(len(vg)))
     #"""
@@ -188,9 +188,9 @@ def check_noise(vols,ens,show_plot=False):
         plt.tight_layout()
         plt.show()
         print(sb.Efit)
-        
+
     return vg,eg
-    
+
 def avgstrainfit(V, E, V0, nmax=16, MODE=1, strain='eulerian', LOG=0, nargout=1):
     """avgstrainfit - Fit to an average strain polynomials."""
 
@@ -235,10 +235,10 @@ def avgstrainfit(V, E, V0, nmax=16, MODE=1, strain='eulerian', LOG=0, nargout=1)
         #print(sm)
         #print(Efit)
         #print(SSerr)
-        
+
     #print('s2 = ',s2)
     #print(pol)
-    
+
     # Get the polynomial weights:
     SSmin = np.amin(s2)
     Q = 0
@@ -259,7 +259,7 @@ def avgstrainfit(V, E, V0, nmax=16, MODE=1, strain='eulerian', LOG=0, nargout=1)
         pol[k].w = pol[k].w / Q
 
     #print(pol)
-        
+
     # Form the average polynomial:
     cavg = np.zeros(Morder+1)
     for k in range(npol):
@@ -354,7 +354,7 @@ def avgstrainfit(V, E, V0, nmax=16, MODE=1, strain='eulerian', LOG=0, nargout=1)
                 print('stdvev {0:11.6f} {1:11.6f} {2:11.6f} {3:11.6f} {4:14.9f}\n'.format(
                         float(np.real(pstd[1])), float(np.real(pstd[2]))*hybohr3togpa, float(np.real(pstd[3]))
                       , float(np.real(pstd[4]))/hybohr3togpa, float(np.real(pstd[5]))/hybohr3togpa**2))
-        
+
         Efit = strainevalE(cavg, V0, V, strain)
         SSerr = np.sum((E-Efit)**2)
         SStot = np.sum((E-np.mean(E))**2)
@@ -401,7 +401,7 @@ def avgstrainfit(V, E, V0, nmax=16, MODE=1, strain='eulerian', LOG=0, nargout=1)
     elif nargout == 2:
         return cavg,savg
     #"""
-        
+
 def strainfit(V, E, V0, ndeg=4, strain='eulerian', LOG=0, nargout=1):
     """"""
     # Determine the strain:
@@ -414,11 +414,11 @@ def strainfit(V, E, V0, ndeg=4, strain='eulerian', LOG=0, nargout=1):
     else:
         import sys
         sys.exit('strainfit: Requested strain form \'{0}\' is unknown!'.format(strain))
-    
+
     #c = np.polyfit(f, E, ndeg)
     c = poly.polyfit(f, E, ndeg)[::-1]
-    
-    
+
+
     #TODO
     """
    if (LOG > 0 | nargout > 1)
@@ -671,7 +671,7 @@ def straineval(c, V0, V, strain='eulerian'):
     else:
         import sys
         sys.exit('straineval: Requested strain form \'{0}\' is unknown!'.format(strain))
-    
+
     s = straineval_class()
     # Evaluate E(f) and the derivatives of E versus f:
     s.E = np.polyval(c, f)
@@ -758,7 +758,7 @@ def strainbootstrap(V, E, V0, ndeg=12, nsample=100, strain='eulerian', LOG=0, na
     for k in range(npol):
         n = len(pol[k].c) - 1
         cb[Morder-n:] += pol[k].c * pol[k].w
-        
+
     # Extra output and optional LOG record:
     # If the average of polynomials has a minimum, analize the equilibrium
     # geometry.
@@ -830,7 +830,7 @@ def strainbootstrap(V, E, V0, ndeg=12, nsample=100, strain='eulerian', LOG=0, na
             sb.std = pstd
             sb.R2 = R2
             sb.Efit = Efit
-        
+
         if (LOG>0):
             print('\n\nProperties of the average polynomial:')
             #print('Vmin, Emin: {0:.6f} {1:.6f}'.format(Vmin, prop.E))
@@ -876,7 +876,7 @@ def strainbootstrap(V, E, V0, ndeg=12, nsample=100, strain='eulerian', LOG=0, na
                 for i in range(len(iout)):
                     output_string += ' {0},'.format(iout[i])
                 print(output_string)
-    
+
     if nargout == 1:
         return cb
     elif nargout == 2:
