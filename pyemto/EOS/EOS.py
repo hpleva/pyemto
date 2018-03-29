@@ -9,7 +9,6 @@ Created on Wed Dec  9 10:51:00 2014
 
 from __future__ import print_function
 import sys
-import os
 import numpy as np
 import datetime
 from scipy.optimize import leastsq
@@ -1245,4 +1244,4 @@ class EOS:
                 if fit(root) < y_min:
                     y_min = fit(root)
                     x_min = root
-        return x_min,y_min,fit
+        return x_min, y_min, fit

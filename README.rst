@@ -15,3 +15,6 @@ or::
    cd pyemto
    python setup.py install
 
+.. image:: https://readthedocs.org/projects/pyemto/badge/?version=latest
+   :target: http://pyemto.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
