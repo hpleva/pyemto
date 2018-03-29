@@ -144,7 +144,8 @@ class EMTO:
 
     def init_structure(self,prims=None,basis=None,latpath=None,
                        coords_are_cartesian=False,latname=None,
-                       kappaw=None,species=None,find_primitive=False):
+                       species=None,find_primitive=False,
+                       **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
         if basis is None:
@@ -509,8 +510,8 @@ class EMTO:
                                              latparams=[1.0,self.output_boa,self.output_coa],
                                              latvectors=[self.output_alpha,self.output_beta,self.output_gamma],
                                              basis=self.output_basis,
-                                             kappaw=self.kappaw,
-                                             EMTOdir=self.EMTOdir)
+                                             EMTOdir=self.EMTOdir,
+                                             **kwargs)
         return
 
     def write_bmdl_kstr_shape_input(self):
