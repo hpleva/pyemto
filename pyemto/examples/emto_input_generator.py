@@ -177,10 +177,10 @@ class EMTO:
 
         self.coords_are_cartesian = coords_are_cartesian
         self.ibz = None
-        if kappaw == None:
-            self.kappaw = [0.0]
-        else:
-            self.kappaw = kappaw
+        #if kappaw == None:
+        #    self.kappaw = [0.0]
+        #else:
+        #    self.kappaw = kappaw
         #
         self.pmg_input_lattice = Lattice(self.prims)
         self.pmg_input_struct  = Structure(self.pmg_input_lattice, self.species, self.basis,
