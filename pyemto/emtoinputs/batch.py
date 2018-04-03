@@ -63,7 +63,7 @@ class Batch:
             self.KFCD_file_type = 'kfcd'
         self.slurm_options = slurm_options
         self.parallel = parallel
-
+        self.use_module = False
         return
 
     def output(self):
@@ -85,7 +85,13 @@ class Batch:
                 self.emtopath + "/" + self.jobname) + ".error" + "\n"
         if self.account is not None:
             line += "#SBATCH -A {0}".format(self.account) + "\n"
+        
+        self.use_module = False
         if self.slurm_options is not None:
+            for tmp in self.slurm_options:
+                if 'module load emto' in tmp:
+                    self.use_module = True
+                    break
             for so in self.slurm_options:
                 line += so + "\n"
         line += "\n"
@@ -93,14 +99,24 @@ class Batch:
         elapsed_time = "/usr/bin/time "
         if self.parallel is True:
             kgrn_exe = 'kgrn_omp'
+            kfcd_exe = 'kfcd_cpa'
         else:
             kgrn_exe = 'kgrn_cpa'
+            kfcd_exe = 'kfcd_cpa'
+
+        if not self.use_module:
+            KGRN_path = self.EMTOdir + "/kgrn/source/"
+            KFCD_path = self.EMTOdir + "/kfcd/source/"
+        else:
+            KGRN_path = ""
+            KFCD_path = ""
+
         if self.runKGRN:
-            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kgrn/source/" + kgrn_exe + " < ") +\
+            line += elapsed_time + common.cleanup_path(KGRN_path + kgrn_exe + " < ") +\
                     common.cleanup_path(self.emtopath + "/" + self.jobname) + ".{0} > ".format(self.KGRN_file_type) +\
                     common.cleanup_path(self.emtopath + "/" + self.jobname) + "_kgrn.output" + "\n"
         if self.runKFCD:
-            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kfcd/source/kfcd_cpa < ") +\
+            line += elapsed_time + common.cleanup_path(KFCD_path + kfcd_exe + " < ") +\
                 common.cleanup_path(self.emtopath + "/" + self.jobname) + ".{0} > ".format(self.KFCD_file_type) +\
                 common.cleanup_path(self.emtopath + "/" + self.jobname) + "_kfcd.output" + "\n"
 

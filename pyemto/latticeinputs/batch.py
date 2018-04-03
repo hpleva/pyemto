@@ -48,7 +48,8 @@ class Batch:
 
     def __init__(self, jobname=None, lat=None, runtime=None, latpath=None,
                  EMTOdir=None, runBMDL=None, runKSTR=None, runKSTR2=None,
-                 runSHAPE=None, kappaw=None, kappalen=None):
+                 runSHAPE=None, kappaw=None, kappalen=None,
+                 slurm_options=None, account=None):
 
         # Batch script related parameters
         self.jobname = jobname
@@ -62,6 +63,10 @@ class Batch:
         self.runSHAPE = runSHAPE
         self.kappaw = kappaw
         self.kappalen = kappalen
+        self.account = account
+        self.slurm_options = slurm_options
+        self.use_module = False
+        #print('BMDL self.slurm_options = ',self.slurm_options)
 
     def output(self):
         """(self) -> (str)
@@ -83,27 +88,50 @@ class Batch:
         line += "#SBATCH -e " + \
             common.cleanup_path(
                 self.latpath + "/" + self.jobname) + ".error" + "\n"
-        line += "#SBATCH -A snic2017-12-37" + "\n"
+        if self.account is not None:
+            line += "#SBATCH -A {0}".format(self.account) + "\n"
+
+        self.use_module = False
+        if self.slurm_options is not None:
+            for tmp in self.slurm_options:
+                if 'module load emto' in tmp:
+                    self.use_module = True
+                    break
+            for so in self.slurm_options:
+                # Do not use more than one CPU for the structure calculations
+                if "#SBATCH -n " in so:
+                    pass
+                else:
+                    line += so + "\n"
         line += "\n"
 
         elapsed_time = "/usr/bin/time "
+
+        if not self.use_module:
+            BMDL_path = self.EMTOdir + "/bmdl/source/bmdl"
+            KSTR_path = self.EMTOdir + "/kstr/source/kstr"
+            SHAPE_path = self.EMTOdir + "/shape/source/shape"
+        else:
+            BMDL_path = "bmdl"
+            KSTR_path = "kstr"
+            SHAPE_path = "shape"            
         if self.runBMDL:
-            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/bmdl/source/bmdl < ") +\
+            line += elapsed_time + common.cleanup_path(BMDL_path + " < ") +\
                 common.cleanup_path(self.latpath + "/" + self.jobname) + ".bmdl > " +\
                 common.cleanup_path(
                     self.latpath + "/" + self.jobname) + "_bmdl.output" + "\n"
         if self.runKSTR:
-            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kstr/source/kstr < ") +\
+            line += elapsed_time + common.cleanup_path(KSTR_path + " < ") +\
                 common.cleanup_path(self.latpath + "/" + self.jobname) + ".kstr > " +\
                 common.cleanup_path(
                     self.latpath + "/" + self.jobname) + "_kstr.output" + "\n"
         if self.runKSTR2:
-            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/kstr/source/kstr < ") +\
+            line += elapsed_time + common.cleanup_path(KSTR_path + " < ") +\
                 common.cleanup_path(self.latpath + "/" + self.jobname) + 'M' + ".kstr > " +\
                 common.cleanup_path(
                     self.latpath + "/" + self.jobname) + 'M' + "_kstr.output" + "\n"
         if self.runSHAPE:
-            line += elapsed_time + common.cleanup_path(self.EMTOdir + "/shape/source/shape < ") +\
+            line += elapsed_time + common.cleanup_path(SHAPE_path + " < ") +\
                 common.cleanup_path(self.latpath + "/" + self.jobname) + ".shape > " +\
                 common.cleanup_path(
                     self.latpath + "/" + self.jobname) + "_shape.output" + "\n"
