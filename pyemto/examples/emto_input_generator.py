@@ -592,6 +592,8 @@ class EMTO:
                 else:
                     ws_wsts_flat.append(ws_wsts[i])
             self.KGRN_ws_wsts = np.array(ws_wsts_flat)
+        else:
+            self.KGRN_ws_wsts = np.ones_like(self.KGRN_concs)
         ###
         # Construct iqs, its, and itas arrays (for the KGRN atomblock).
         self.KGRN_iqs = np.zeros(index_len, dtype='int32')
