@@ -725,10 +725,10 @@ class EOS:
 
         return self.sws0, self.e0, self.B0, self.grun, self.rsquared
 
-    def pressure(self, V):
+    def pressure(self, sws):
         """Pressure"""
-        if self.method == 'birchmurnaghan':
-            ratio = self.v0 / V
+        if self.eos_string == 'birchmurnaghan':
+            ratio = (self.sws0 / sws)**3
             P = 3*self.B0/2 * ((ratio)**(7./3)-(ratio)**(5./3)) * (1+3./4*(self.B1-4)*((ratio)**(2./3)-1))
             return P
         else:
