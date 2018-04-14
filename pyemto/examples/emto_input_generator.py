@@ -518,7 +518,8 @@ class EMTO:
         self.input_system.lattice.write_structure_input_files(folder=self.folder,jobname=self.latname)
         return
 
-    def init_bulk(self,atoms_cpa=None,splts=None,concs=None,its=None,sws=None,**kwargs):
+    def init_bulk(self,atoms_cpa=None,splts=None,concs=None,its=None,sws=None,
+                  ws_wsts=None,**kwargs):
         """Generates and writes down to disk KGRN and KFCD input files, as well as the
            SLURM job script that is used to run the calculations.
         """
@@ -581,6 +582,18 @@ class EMTO:
                 else:
                     concs_flat.append(concs[i])
             self.KGRN_concs = np.array(concs_flat)
+        # ws_wsts
+        if ws_wsts is not None:
+            ws_wsts_flat = []
+            for i in range(len(ws_wsts)):
+                if isinstance(ws_wsts[i],list):
+                    for j in range(len(ws_wsts[i])):
+                        ws_wsts_flat.append(ws_wsts[i][j])
+                else:
+                    ws_wsts_flat.append(ws_wsts[i])
+            self.KGRN_ws_wsts = np.array(ws_wsts_flat)
+        else:
+            self.KGRN_ws_wsts = np.ones_like(self.KGRN_concs)
         ###
         # Construct iqs, its, and itas arrays (for the KGRN atomblock).
         self.KGRN_iqs = np.zeros(index_len, dtype='int32')
@@ -636,6 +649,7 @@ class EMTO:
                                    its=self.KGRN_its,
                                    itas=self.KGRN_itas,
                                    sws=self.sws,
+                                   ws_wsts=self.KGRN_ws_wsts,
                                    **kwargs)
         #
     def write_kgrn_kfcd_input(self):
