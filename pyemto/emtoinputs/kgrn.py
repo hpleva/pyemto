@@ -1317,11 +1317,14 @@ class Kgrn:
         """
 
         self.atconf = []
-        for i in range(len(self.atoms)):
-            self.atconf.append([self.atoms[i], self.iqs[i], self.its[i], self.itas[i],
-                                self.concs[i], self.sm_ss[
-                                    i], self.s_wss[i], self.ws_wsts[i],
-                                self.qtrs[i], self.splts[i], self.fixs[i]])
+        try:
+            for i in range(len(self.atoms)):
+                self.atconf.append([self.atoms[i], self.iqs[i], self.its[i], self.itas[i],
+                                    self.concs[i], self.sm_ss[i],
+                                    self.s_wss[i], self.ws_wsts[i],
+                                    self.qtrs[i], self.splts[i], self.fixs[i]])
+        except:
+            pass
 
 
     def create_atomblock(self):
