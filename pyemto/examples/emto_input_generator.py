@@ -23,7 +23,7 @@ class EMTO:
        -list of atomic species that occupy the basis sites.
     """
 
-    def __init__(self,folder=None,EMTOdir=None):
+    def __init__(self, folder=None, EMTOdir=None):
         """ """
         if folder is None:
             self.folder = os.getcwd()
@@ -58,52 +58,121 @@ class EMTO:
                        211:3, 212:1, 213:1, 214:3, 215:1, 216:2, 217:3, 218:1, 219:2, 220:3,
                        221:1, 222:1, 223:1, 224:1, 225:2, 226:2, 227:2, 228:2, 229:3, 230:3}
 
-        self.sg2bl = {1:'simple triclinic', 2:'simple triclinic', 3:'simple monoclinic', 4:'simple monoclinic', 5:'base-centered monoclinic',
-                      6:'simple monoclinic', 7:'simple monoclinic', 8:'base-centered monoclinic', 9:'base-centered monoclinic', 10:'simple monoclinic',
-                      11:'simple monoclinic', 12:'base-centered monoclinic', 13:'simple monoclinic', 14:'simple monoclinic', 15:'base-centered monoclinic',
-                      16:'simple orthorhombic', 17:'simple orthorhombic', 18:'simple orthorhombic', 19:'simple orthorhombic', 20:'base-centered orthorhombic',
-                      21:'base-centered orthorhombic', 22:'face-centered orthorhombic', 23:'body-centered orthorhombic', 24:'body-centered orthorhombic', 25:'simple orthorhombic',
-                      26:'simple orthorhombic', 27:'simple orthorhombic', 28:'simple orthorhombic', 29:'simple orthorhombic', 30:'simple orthorhombic',
-                      31:'simple orthorhombic', 32:'simple orthorhombic', 33:'simple orthorhombic', 34:'simple orthorhombic', 35:'base-centered orthorhombic',
-                      36:'base-centered orthorhombic', 37:'base-centered orthorhombic', 38:'base-centered orthorhombic', 39:'base-centered orthorhombic', 40:'base-centered orthorhombic',
-                      41:'base-centered orthorhombic', 42:'face-centered orthorhombic', 43:'face-centered orthorhombic', 44:'body-centered orthorhombic', 45:'body-centered orthorhombic',
-                      46:'body-centered orthorhombic', 47:'simple orthorhombic', 48:'simple orthorhombic', 49:'simple orthorhombic', 50:'simple orthorhombic',
-                      51:'simple orthorhombic', 52:'simple orthorhombic', 53:'simple orthorhombic', 54:'simple orthorhombic', 55:'simple orthorhombic',
-                      56:'simple orthorhombic', 57:'simple orthorhombic', 58:'simple orthorhombic', 59:'simple orthorhombic', 60:'simple orthorhombic',
-                      61:'simple orthorhombic', 62:'simple orthorhombic', 63:'base-centered orthorhombic', 64:'base-centered orthorhombic', 65:'base-centered orthorhombic',
-                      66:'base-centered orthorhombic', 67:'base-centered orthorhombic', 68:'base-centered orthorhombic', 69:'face-centered orthorhombic', 70:'face-centered orthorhombic',
-                      71:'body-centered orthorhombic', 72:'body-centered orthorhombic', 73:'body-centered orthorhombic', 74:'body-centered orthorhombic', 75:'simple tetragonal',
-                      76:'simple tetragonal', 77:'simple tetragonal', 78:'simple tetragonal', 79:'body-centered tetragonal', 80:'body-centered tetragonal',
-                      81:'simple tetragonal', 82:'body-centered tetragonal', 83:'simple tetragonal', 84:'simple tetragonal', 85:'simple tetragonal',
-                      86:'simple tetragonal', 87:'body-centered tetragonal', 88:'body-centered tetragonal', 89:'simple tetragonal', 90:'simple tetragonal',
-                      91:'simple tetragonal', 92:'simple tetragonal', 93:'simple tetragonal', 94:'simple tetragonal', 95:'simple tetragonal',
-                      96:'simple tetragonal', 97:'body-centered tetragonal', 98:'body-centered tetragonal', 99:'simple tetragonal', 100:'simple tetragonal',
-                      101:'simple tetragonal', 102:'simple tetragonal', 103:'simple tetragonal', 104:'simple tetragonal', 105:'simple tetragonal',
-                      106:'simple tetragonal', 107:'body-centered tetragonal', 108:'body-centered tetragonal', 109:'body-centered tetragonal', 110:'body-centered tetragonal',
-                      111:'simple tetragonal', 112:'simple tetragonal', 113:'simple tetragonal', 114:'simple tetragonal', 115:'simple tetragonal',
-                      116:'simple tetragonal', 117:'simple tetragonal', 118:'simple tetragonal', 119:'body-centered tetragonal', 120:'body-centered tetragonal',
-                      121:'body-centered tetragonal', 122:'body-centered tetragonal', 123:'simple tetragonal', 124:'simple tetragonal', 125:'simple tetragonal',
-                      126:'simple tetragonal', 127:'simple tetragonal', 128:'simple tetragonal', 129:'simple tetragonal', 130:'simple tetragonal',
-                      131:'simple tetragonal', 132:'simple tetragonal', 133:'simple tetragonal', 134:'simple tetragonal', 135:'simple tetragonal',
-                      136:'simple tetragonal', 137:'simple tetragonal', 138:'simple tetragonal', 139:'body-centered tetragonal', 140:'body-centered tetragonal',
-                      141:'body-centered tetragonal', 142:'body-centered tetragonal', 143:'hexagonal', 144:'hexagonal', 145:'hexagonal',
-                      146:'rhombohedral', 147:'hexagonal', 148:'rhombohedral', 149:'hexagonal', 150:'hexagonal',
-                      151:'hexagonal', 152:'hexagonal', 153:'hexagonal', 154:'hexagonal', 155:'rhombohedral',
-                      156:'hexagonal', 157:'hexagonal', 158:'hexagonal', 159:'hexagonal', 160:'rhombohedral',
-                      161:'rhombohedral', 162:'hexagonal', 163:'hexagonal', 164:'hexagonal', 165:'hexagonal',
-                      166:'rhombohedral', 167:'rhombohedral', 168:'hexagonal', 169:'hexagonal', 170:'hexagonal',
-                      171:'hexagonal', 172:'hexagonal', 173:'hexagonal', 174:'hexagonal', 175:'hexagonal',
-                      176:'hexagonal', 177:'hexagonal', 178:'hexagonal', 179:'hexagonal', 180:'hexagonal',
-                      181:'hexagonal', 182:'hexagonal', 183:'hexagonal', 184:'hexagonal', 185:'hexagonal',
-                      186:'hexagonal', 187:'hexagonal', 188:'hexagonal', 189:'hexagonal', 190:'hexagonal',
-                      191:'hexagonal', 192:'hexagonal', 193:'hexagonal', 194:'hexagonal', 195:'simple cubic',
-                      196:'face-centered cubic', 197:'body-centered cubic', 198:'simple cubic', 199:'body-centered cubic', 200:'simple cubic',
-                      201:'simple cubic', 202:'face-centered cubic', 203:'face-centered cubic', 204:'body-centered cubic', 205:'simple cubic',
-                      206:'body-centered cubic', 207:'simple cubic', 208:'simple cubic', 209:'face-centered cubic', 210:'face-centered cubic',
-                      211:'body-centered cubic', 212:'simple cubic', 213:'simple cubic', 214:'body-centered cubic', 215:'simple cubic',
-                      216:'face-centered cubic', 217:'body-centered cubic', 218:'simple cubic', 219:'face-centered cubic', 220:'body-centered cubic',
-                      221:'simple cubic', 222:'simple cubic', 223:'simple cubic', 224:'simple cubic', 225:'face-centered cubic',
-                      226:'face-centered cubic', 227:'face-centered cubic', 228:'face-centered cubic', 229:'body-centered cubic', 230:'body-centered cubic'}
+        self.sg2bl = {1:'simple triclinic', 2:'simple triclinic',
+                      3:'simple monoclinic', 4:'simple monoclinic',
+                      5:'base-centered monoclinic', 6:'simple monoclinic',
+                      7:'simple monoclinic', 8:'base-centered monoclinic',
+                      9:'base-centered monoclinic', 10:'simple monoclinic',
+                      11:'simple monoclinic', 12:'base-centered monoclinic',
+                      13:'simple monoclinic', 14:'simple monoclinic',
+                      15:'base-centered monoclinic', 16:'simple orthorhombic',
+                      17:'simple orthorhombic', 18:'simple orthorhombic',
+                      19:'simple orthorhombic', 20:'base-centered orthorhombic',
+                      21:'base-centered orthorhombic', 22:'face-centered orthorhombic',
+                      23:'body-centered orthorhombic', 24:'body-centered orthorhombic',
+                      25:'simple orthorhombic', 26:'simple orthorhombic',
+                      27:'simple orthorhombic', 28:'simple orthorhombic',
+                      29:'simple orthorhombic', 30:'simple orthorhombic',
+                      31:'simple orthorhombic', 32:'simple orthorhombic',
+                      33:'simple orthorhombic', 34:'simple orthorhombic',
+                      35:'base-centered orthorhombic', 36:'base-centered orthorhombic',
+                      37:'base-centered orthorhombic', 38:'base-centered orthorhombic',
+                      39:'base-centered orthorhombic', 40:'base-centered orthorhombic',
+                      41:'base-centered orthorhombic', 42:'face-centered orthorhombic',
+                      43:'face-centered orthorhombic', 44:'body-centered orthorhombic',
+                      45:'body-centered orthorhombic', 46:'body-centered orthorhombic',
+                      47:'simple orthorhombic', 48:'simple orthorhombic',
+                      49:'simple orthorhombic', 50:'simple orthorhombic',
+                      51:'simple orthorhombic', 52:'simple orthorhombic',
+                      53:'simple orthorhombic', 54:'simple orthorhombic',
+                      55:'simple orthorhombic', 56:'simple orthorhombic',
+                      57:'simple orthorhombic', 58:'simple orthorhombic',
+                      59:'simple orthorhombic', 60:'simple orthorhombic',
+                      61:'simple orthorhombic', 62:'simple orthorhombic',
+                      63:'base-centered orthorhombic', 64:'base-centered orthorhombic',
+                      65:'base-centered orthorhombic', 66:'base-centered orthorhombic',
+                      67:'base-centered orthorhombic', 68:'base-centered orthorhombic',
+                      69:'face-centered orthorhombic', 70:'face-centered orthorhombic',
+                      71:'body-centered orthorhombic', 72:'body-centered orthorhombic',
+                      73:'body-centered orthorhombic', 74:'body-centered orthorhombic',
+                      75:'simple tetragonal', 76:'simple tetragonal',
+                      77:'simple tetragonal', 78:'simple tetragonal',
+                      79:'body-centered tetragonal', 80:'body-centered tetragonal',
+                      81:'simple tetragonal', 82:'body-centered tetragonal',
+                      83:'simple tetragonal', 84:'simple tetragonal',
+                      85:'simple tetragonal', 86:'simple tetragonal',
+                      87:'body-centered tetragonal', 88:'body-centered tetragonal',
+                      89:'simple tetragonal', 90:'simple tetragonal',
+                      91:'simple tetragonal', 92:'simple tetragonal',
+                      93:'simple tetragonal', 94:'simple tetragonal',
+                      95:'simple tetragonal', 96:'simple tetragonal',
+                      97:'body-centered tetragonal', 98:'body-centered tetragonal',
+                      99:'simple tetragonal', 100:'simple tetragonal',
+                      101:'simple tetragonal', 102:'simple tetragonal',
+                      103:'simple tetragonal', 104:'simple tetragonal',
+                      105:'simple tetragonal', 106:'simple tetragonal',
+                      107:'body-centered tetragonal', 108:'body-centered tetragonal',
+                      109:'body-centered tetragonal', 110:'body-centered tetragonal',
+                      111:'simple tetragonal', 112:'simple tetragonal',
+                      113:'simple tetragonal', 114:'simple tetragonal',
+                      115:'simple tetragonal', 116:'simple tetragonal',
+                      117:'simple tetragonal', 118:'simple tetragonal',
+                      119:'body-centered tetragonal', 120:'body-centered tetragonal',
+                      121:'body-centered tetragonal', 122:'body-centered tetragonal',
+                      123:'simple tetragonal', 124:'simple tetragonal',
+                      125:'simple tetragonal', 126:'simple tetragonal',
+                      127:'simple tetragonal', 128:'simple tetragonal',
+                      129:'simple tetragonal', 130:'simple tetragonal',
+                      131:'simple tetragonal', 132:'simple tetragonal',
+                      133:'simple tetragonal', 134:'simple tetragonal',
+                      135:'simple tetragonal', 136:'simple tetragonal',
+                      137:'simple tetragonal', 138:'simple tetragonal',
+                      139:'body-centered tetragonal', 140:'body-centered tetragonal',
+                      141:'body-centered tetragonal', 142:'body-centered tetragonal',
+                      143:'hexagonal', 144:'hexagonal',
+                      145:'hexagonal', 146:'rhombohedral',
+                      147:'hexagonal', 148:'rhombohedral',
+                      149:'hexagonal', 150:'hexagonal',
+                      151:'hexagonal', 152:'hexagonal',
+                      153:'hexagonal', 154:'hexagonal',
+                      155:'rhombohedral', 156:'hexagonal',
+                      157:'hexagonal', 158:'hexagonal',
+                      159:'hexagonal', 160:'rhombohedral',
+                      161:'rhombohedral', 162:'hexagonal',
+                      163:'hexagonal', 164:'hexagonal',
+                      165:'hexagonal', 166:'rhombohedral',
+                      167:'rhombohedral', 168:'hexagonal',
+                      169:'hexagonal', 170:'hexagonal',
+                      171:'hexagonal', 172:'hexagonal',
+                      173:'hexagonal', 174:'hexagonal',
+                      175:'hexagonal', 176:'hexagonal',
+                      177:'hexagonal', 178:'hexagonal',
+                      179:'hexagonal', 180:'hexagonal',
+                      181:'hexagonal', 182:'hexagonal',
+                      183:'hexagonal', 184:'hexagonal',
+                      185:'hexagonal', 186:'hexagonal',
+                      187:'hexagonal', 188:'hexagonal',
+                      189:'hexagonal', 190:'hexagonal',
+                      191:'hexagonal', 192:'hexagonal',
+                      193:'hexagonal', 194:'hexagonal',
+                      195:'simple cubic', 196:'face-centered cubic',
+                      197:'body-centered cubic', 198:'simple cubic',
+                      199:'body-centered cubic', 200:'simple cubic',
+                      201:'simple cubic', 202:'face-centered cubic',
+                      203:'face-centered cubic', 204:'body-centered cubic',
+                      205:'simple cubic', 206:'body-centered cubic',
+                      207:'simple cubic', 208:'simple cubic',
+                      209:'face-centered cubic', 210:'face-centered cubic',
+                      211:'body-centered cubic', 212:'simple cubic',
+                      213:'simple cubic', 214:'body-centered cubic',
+                      215:'simple cubic', 216:'face-centered cubic',
+                      217:'body-centered cubic', 218:'simple cubic',
+                      219:'face-centered cubic', 220:'body-centered cubic',
+                      221:'simple cubic', 222:'simple cubic',
+                      223:'simple cubic', 224:'simple cubic',
+                      225:'face-centered cubic', 226:'face-centered cubic',
+                      227:'face-centered cubic', 228:'face-centered cubic',
+                      229:'body-centered cubic', 230:'body-centered cubic'}
 
         # BMDL, KSTR, SHAPE, KGRN and KFCD class instances
         self.input_system = pyemto.System(folder=self.folder,EMTOdir=self.EMTOdir)
@@ -190,7 +259,7 @@ class EMTO:
 
         #
         self.finder = SpacegroupAnalyzer(self.pmg_input_struct, symprec=0.0001, angle_tolerance=0.0001)
-        self.stm = StructureMatcher(ltol=0.001,stol=0.001,angle_tol=1.0)
+        self.stm = StructureMatcher(ltol=0.001,stol=0.001,angle_tol=0.001)
         #
         print("Input structure information:")
         print(self.pmg_input_struct)
@@ -435,8 +504,29 @@ class EMTO:
             self.output_beta = 0.0
             self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 12:
-            # Simple monoclinic, need to rotate lattice vectors...
-            pass
+            self.primaa = self.prim_struct.lattice.matrix[0,:]
+            self.primbb = self.prim_struct.lattice.matrix[1,:]
+            self.primcc = self.prim_struct.lattice.matrix[2,:]
+            gamma = self.prim_struct.lattice.angles[0]
+            bc_norm = np.linalg.norm(self.primbb)
+            rot1 = np.array([[1.0,0.0,0.0],
+                             [0.0,np.cos(np.radians(90)),np.sin(np.radians(90))],
+                             [0.0,-np.sin(np.radians(90)),np.cos(np.radians(90))]])
+            rot2 = np.array([[np.cos(np.radians(90)),0.0,-np.sin(np.radians(90))],
+                             [0.0,1.0,0.0],
+                             [np.sin(np.radians(90)),0.0,np.cos(np.radians(90))]])
+            self.output_prima = np.dot(rot2,np.dot(rot1,self.primbb/bc_norm))
+            self.output_primb = np.dot(rot2,np.dot(rot1,self.primcc/bc_norm))
+            self.output_primc = np.dot(rot2,np.dot(rot1,self.primaa/bc_norm))
+            self.output_basis = self.make_basis_array(self.prim_struct)
+            # Apply transformation on the basis atoms
+            for i in range(len(self.output_basis[:,0])):
+                self.output_basis[i,:] = np.dot(rot2,np.dot(rot1,self.output_basis[i,:]))/bc_norm
+            self.output_boa = np.linalg.norm(self.output_primb)
+            self.output_coa = np.linalg.norm(self.output_primc)
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = gamma
         elif self.sg2ibz[self.finder_space] == 13:
             from pymatgen.util.coord import get_angle
             self.primaa = self.prim_struct.lattice.matrix[0,:]
