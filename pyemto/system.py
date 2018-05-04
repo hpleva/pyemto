@@ -206,8 +206,8 @@ class System:
             else:
                 self.concs = np.array([self.concs, self.concs]).flatten()
             self.iqs = np.zeros(len(self.atoms), dtype='int32')
-            self.iqs[:len(self.iqs) / 2] = 1
-            self.iqs[len(self.iqs) / 2:] = 2
+            self.iqs[:len(self.iqs) // 2] = 1
+            self.iqs[len(self.iqs) // 2:] = 2
             if splts is None:
                 self.splts = np.zeros(len(self.atoms))
             else:
@@ -1642,7 +1642,6 @@ class System:
                 # Atconf related arrays need to be modified because we now have   #
                 # a four atom basis.                                              #
                 ###################################################################
-
                 self.atoms = np.array([self.atoms, self.atoms]).flatten()
                 self.concs = np.array([self.concs, self.concs]).flatten()
 
@@ -1653,7 +1652,7 @@ class System:
 
                 self.splts = np.array([self.splts, self.splts]).flatten()
                 self.itas = np.array([self.itas, self.itas]).flatten()
-
+                
                 self.emto.set_values(atoms=self.atoms, iqs=self.iqs, itas=self.itas,
                                      concs=self.concs, splts=self.splts)
                 ####################################################################

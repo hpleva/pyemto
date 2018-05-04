@@ -209,15 +209,15 @@ class Bmdl:
             else:
                 self.basis = np.array([[0.0, 0.0, 0.0]])
 
-        #if isinstance(self.basis[0], list):
-        #    self.nq = len(self.basis)
-        #    self.basis = np.asarray(self.basis)
-        if type(self.basis[0]) == type(np.array([0.0,0.0,0.0])):
-            self.nq = len(self.basis)
-            self.basis = np.asarray(self.basis)            
-        else:
-            self.nq = 1
+        # Make sure basis is a numpy array of shape np.array([[xxx], [xxx]])
+        if isinstance(self.basis, list):
+            self.basis = np.asarray(self.basis)
+        elif isinstance(self.basis, np.ndarray):
+            pass
+        if len(self.basis.shape) == 1:
             self.basis = np.asarray([self.basis])
+        self.nq = self.basis.shape[0]
+        
         if isinstance(self.latvectors[0], list):
             if len(self.latvectors) == 1:
                 self.iprim = 1

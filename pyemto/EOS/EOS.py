@@ -662,7 +662,7 @@ class EOS:
         print(self.eos_output())
         return
 
-    def fit(self, swses, energies,shift=True,show_plot=False,show_output=True):
+    def fit(self, swses, energies, shift=False, show_plot=False, show_output=True, pressure=False):
         """Calculate volume, energy, and bulk modulus.
 
         About the units:
@@ -725,6 +725,15 @@ class EOS:
 
         return self.sws0, self.e0, self.B0, self.grun, self.rsquared
 
+    def pressure(self, sws):
+        """Pressure"""
+        if self.eos_string == 'birchmurnaghan':
+            ratio = (self.sws0 / sws)**3
+            P = 3*self.B0/2 * ((ratio)**(7./3)-(ratio)**(5./3)) * (1+3./4*(self.B1-4)*((ratio)**(2./3)-1))
+            return P
+        else:
+            print('Pressure only implemented for Birch-Murnaghan!')
+            
 
     def plot(self, filename=None, show=True):
         """Plot fitted energy curve.
