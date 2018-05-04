@@ -665,7 +665,7 @@ class EMTO:
         jobnames = self.input_system.lattice_constants_batch_generate(sws)
         return jobnames
 
-    def draw_structure(self,which='input'):
+    def draw_structure(self, which='input'):
         self.vis = StructureVis()
         if which == 'input':
             self.vis.set_structure(self.pmg_input_struct)

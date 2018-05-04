@@ -67,7 +67,7 @@ class Latticeinputs:
                    relax=True, relax_index=None, basis=None):
         """A function which sets various class data to create distorted lattice structures.
 
-        Distorted lattices are used to calculate elastic constants.        
+        Distorted lattices are used to calculate elastic constants.
         An integer *index* is used to specify for which delta and dmax value we
         want to generate the distortion input file data.
 
@@ -111,7 +111,7 @@ class Latticeinputs:
         :returns: None
         :rtype: None
         """
-        
+
         default_deltas = np.linspace(0.0, 0.05, 6)
         delta_tol = 1.0E-6
 
@@ -222,7 +222,7 @@ class Latticeinputs:
         #
         #hcpm_disp = 2*np.sqrt(3.0)/np.sqrt(1+delta**2)/(1-delta**2)
         #hcpm_relax = np.linspace(-hcpm_disp,hcpm_disp,5)
-                
+
         # Details can be found in Vitos' book pages 104-110.
 
         if lat == 'bcc' and dist == 'ortho':
@@ -280,7 +280,7 @@ class Latticeinputs:
             cao = ca/(1.0+delta)/(1.0-delta**2)
             latparams = [1.0,bao,cao]
             latvectors = [90.0,90.0,90.0]
-            
+
             pos1 = [0.0,0.0,0.0]
             pos2 = [0.0,latparams[1]/3.0,latparams[2]/2.0]
             if relax:
@@ -298,12 +298,12 @@ class Latticeinputs:
             # on wants to describe the distorted structure
             # as a simple monoclinic with a four atom basis.
             # Look Vitos' book page 110.
-            
+
             self.set_values(lat='sm',dmax=dmax)
 
             # WARNING!!
             # gamma = the gamma angle = the beta angle in the standard/conventional definition.
-            gam = np.arccos(2*delta/(1+delta**2))/np.pi*180.0 
+            gam = np.arccos(2*delta/(1+delta**2))/np.pi*180.0
             bam = ca # Distorted b over a
             cam = np.sqrt(3.0)/np.sqrt(1.0+delta**2)/(1.0-delta**2) # Distorted c over a
             latparams = [1.0,bam,cam]
@@ -319,7 +319,7 @@ class Latticeinputs:
             pos3 = [0.5,0.0,-cam/2.0]
             pos4 = [pos2[0]+pos3[0],pos2[1]+pos3[1],pos2[2]+pos3[2]]
             basis = [pos1,pos2,pos3,pos4]
-            
+
             # The following lines give the distorted structure
             # as a base-centered monoclinic with a two-atom basis.
             """
@@ -359,7 +359,7 @@ class Latticeinputs:
             latvectors = [bs1,bs2,bs3]
             latparams = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
                          np.linalg.norm(np.asarray(bs3))]
-            
+
             if basis == None:
                 basis = [0.0,0.0,0.0]
             else:
@@ -383,7 +383,7 @@ class Latticeinputs:
             latvectors = [bs1,bs2,bs3]
             latparams  = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
                           np.linalg.norm(np.asarray(bs3))]
-            
+
             if basis == None:
                 basis = [0.0,0.0,0.0]
             else:
@@ -406,7 +406,7 @@ class Latticeinputs:
             latvectors = [bs1,bs2,bs3]
             latparams = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
                          np.linalg.norm(np.asarray(bs3))]
-            
+
             if basis == None:
                 basis = [0.0,0.0,0.0]
             else:
@@ -430,7 +430,7 @@ class Latticeinputs:
             latvectors = [bs1,bs2,bs3]
             latparams  = [np.linalg.norm(np.asarray(bs1)),np.linalg.norm(np.asarray(bs2)),
                           np.linalg.norm(np.asarray(bs3))]
-            
+
             if basis == None:
                 basis = [0.0,0.0,0.0]
             else:
@@ -445,7 +445,9 @@ class Latticeinputs:
 
         return
 
-    def basis_transform(self,basis,matrix):
+        #elif lat == 'L10' and dist == ''
+
+    def basis_transform(self, basis, matrix):
         """Calculates a basis vector transform given by the transformation matrix.
 
         :param basis: Basis vectors
@@ -453,7 +455,7 @@ class Latticeinputs:
         :param matrix: Transformation matrix
         :type matrix: np.array
         """
-        
+
         import numpy as np
 
         tmp = np.asarray(basis)

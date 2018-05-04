@@ -232,6 +232,9 @@ class System:
                                  splts=self.splts, ibz=self.ibz, latname=self.latname, latpath=self.latpath,
                                  emtopath=self.emtopath, EMTOdir=self.EMTOdir, **kwargs)
 
+        #elif self.lat == 'L10':
+
+
         else:
             self.emto.set_values(jobname=self.fulljobname, sws=self.sws, atoms=self.atoms,
                                  concs=self.concs, splts=self.splts, ibz=self.ibz,
@@ -604,7 +607,7 @@ class System:
                 print('')
 
             if return_error:
-                return sws0, c_over_a0, B0, e0, R0, cs0, grun ,R_squared
+                return sws0, c_over_a0, B0, e0, R0, cs0, grun, R_squared
             else:
                 return sws0, c_over_a0, B0, e0, R0, cs0, grun
 
@@ -1652,7 +1655,7 @@ class System:
 
                 self.splts = np.array([self.splts, self.splts]).flatten()
                 self.itas = np.array([self.itas, self.itas]).flatten()
-                
+
                 self.emto.set_values(atoms=self.atoms, iqs=self.iqs, itas=self.itas,
                                      concs=self.concs, splts=self.splts)
                 ####################################################################
