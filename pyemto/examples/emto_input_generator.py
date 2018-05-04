@@ -189,7 +189,7 @@ class EMTO:
         self.find_primitive = find_primitive
 
         #
-        self.finder = SpacegroupAnalyzer(self.pmg_input_struct)
+        self.finder = SpacegroupAnalyzer(self.pmg_input_struct, symprec=0.0001, angle_tolerance=0.0001)
         self.stm = StructureMatcher(ltol=0.001,stol=0.001,angle_tol=1.0)
         #
         print("Input structure information:")
@@ -231,7 +231,7 @@ class EMTO:
         #for i in range(len(sorting_array)):
         #    self.prim_struct[i] = prim_struct_temp[sorting_array[i]]
         #
-        self.finder_prim = SpacegroupAnalyzer(self.prim_struct)
+        self.finder_prim = SpacegroupAnalyzer(self.prim_struct, symprec=0.0001, angle_tolerance=0.0001)
         self.finder_space = self.finder_prim.get_space_group_number()
         self.ibz_string = self.sg2bl[self.finder_space]
         self.ibz = self.sg2ibz[self.finder_space]
@@ -255,6 +255,7 @@ class EMTO:
         print("The point group of your structure      : {}".format(self.finder_prim.get_point_group_symbol()))
         print("The Bravais lattice of your structure  : {}".format(self.ibz_string))
         print("Number of basis atoms                  : {}".format(self.prim_struct.num_sites))
+        print("EMTO IBZ                               : {}".format(self.sg2ibz[self.finder_space]))
         print("")
         #
         if self.sg2ibz[self.finder_space] == 1:
@@ -437,7 +438,7 @@ class EMTO:
             # Simple monoclinic, need to rotate lattice vectors...
             pass
         elif self.sg2ibz[self.finder_space] == 13:
-            from pymatgen.util.coord_utils import get_angle
+            from pymatgen.util.coord import get_angle
             self.primaa = self.prim_struct.lattice.matrix[0,:]
             self.primbb = self.prim_struct.lattice.matrix[1,:]
             self.primcc = self.prim_struct.lattice.matrix[2,:]
