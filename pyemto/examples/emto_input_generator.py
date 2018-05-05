@@ -510,7 +510,7 @@ class EMTO:
             # Apply transformation on the basis atoms
             for i in range(len(self.output_basis[:,0])):
                 self.output_basis[i,:] = np.dot(rot1, self.output_basis[i,:])
-            self.output_basis = self.output_basis / (2*self.output_prima[0])
+            self.output_basis = self.output_basis / norm_tmp
             self.output_boa = 2*self.output_primc[1]
             self.output_coa = 2*self.output_primc[2]
             self.output_alpha = 0.0
