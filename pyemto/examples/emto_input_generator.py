@@ -488,16 +488,22 @@ class EMTO:
             self.output_beta = 0.0
             self.output_gamma = 0.0
         elif self.sg2ibz[self.finder_space] == 11:
+            from pyemto.utilities.utils import rotation_matrix
             self.primaa = self.prim_struct.lattice.matrix[0,:]
             self.primbb = self.prim_struct.lattice.matrix[1,:]
             self.primcc = self.prim_struct.lattice.matrix[2,:]
+            rot1 = rotation_matrix([1,1,1], 120./180*np.pi)
             self.output_basis = self.make_basis_array(self.prim_struct)
-            norm_tmp = 2*self.primbb[0]
-            self.output_prima = self.primbb/norm_tmp
-            self.output_primb = self.primcc/norm_tmp
-            self.output_primc = self.primaa/norm_tmp
+            self.output_prima = np.dot(rot1, self.primaa)
+            self.output_primb = np.dot(rot1, self.primbb)
+            self.output_primc = np.dot(rot1, self.primcc)
+            self.output_prima /= 2*self.output_prima[0]
+            self.output_primb /= 2*self.output_prima[0]
+            self.output_primc /= 2*self.output_prima[0]
             # Apply transformation on the basis atoms
-            self.output_basis = self.output_basis/norm_tmp
+            for i in range(len(self.output_basis[:,0])):
+                self.output_basis[i,:] = np.dot(rot1, self.output_basis[i,:])
+            self.output_basis = self.output_basis / (2*self.output_prima[0])
             self.output_boa = 2*self.output_primc[1]
             self.output_coa = 2*self.output_primc[2]
             self.output_alpha = 0.0
