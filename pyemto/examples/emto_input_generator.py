@@ -476,9 +476,9 @@ class EMTO:
             self.primbb = self.prim_struct.lattice.matrix[1,:]
             self.primcc = self.prim_struct.lattice.matrix[2,:]
             self.output_basis = self.make_basis_array(self.prim_struct)            
-            self.output_prima = np.zeros_as(self.primaa)
-            self.output_primb = np.zeros_as(self.primbb)
-            self.output_primc = np.zeros_as(self.primcc)
+            self.output_prima = np.zeros_like(self.primaa)
+            self.output_primb = np.zeros_like(self.primbb)
+            self.output_primc = np.zeros_like(self.primcc)
             self.output_prima[0] = self.primaa[1]
             self.output_prima[1] = self.primaa[0]
             self.output_prima[2] = self.primaa[2]
