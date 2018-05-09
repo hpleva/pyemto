@@ -466,7 +466,7 @@ class Latticeinputs:
 
         return new_basis
 
-    def write_structure_input_files(self, jobname_lat=None,lat=None,folder=None,**kwargs):
+    def write_structure_input_files(self, jobname_lat=None, lat=None, folder=None, **kwargs):
         """For a given lattice type, this function writes
         the corresponding structure input files into a
         given folder

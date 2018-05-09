@@ -912,7 +912,7 @@ class EMTO:
                                    **kwargs)
 
     def write_bmdl_kstr_shape_input(self):
-        self.input_system.lattice.write_structure_input_files(folder=self.folder, jobname=self.latname)
+        self.input_system.lattice.write_structure_input_files(folder=self.folder, jobname_lat=self.latname)
         return
 
     def write_kgrn_kfcd_input(self):
