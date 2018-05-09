@@ -400,12 +400,12 @@ class EMTO:
         self.ibz_string = self.sg2bl[self.finder_space]
         self.ibz = self.sg2ibz[self.finder_space]
         #
-        #print("Detected standard conventional structure:")
-        #print(self.conv_struct)
-        #print("Volume: ",self.conv_struct.volume)
-        #print("Lattice vectors:")
-        #print(self.conv_struct.lattice.matrix)
-        #print("")
+        print("Detected standard conventional structure:")
+        print(self.conv_struct)
+        print("Volume: ",self.conv_struct.volume)
+        print("Lattice vectors:")
+        print(self.conv_struct.lattice.matrix)
+        print("")
         print("Detected standard structure:")
         print(self.prim_struct)
         print("Volume: ", self.prim_struct.volume)
@@ -476,10 +476,28 @@ class EMTO:
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = 0.0
+            self.emto_prima = np.array([0.5, 0.5, -0.5])
+            self.emto_primb = np.array([-0.5, 0.5, 0.5])
+            self.emto_primc = np.array([0.5, -0.5, 0.5])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 4:
-            # Hexagonal, have to rotate the vectors...
-            pass
+            rot1 = rotation_matrix([0.0, 0.0, 1.0], 60./180*np.pi)
+            self.output_prima = np.dot(rot1, self.primaa)
+            self.output_primb = np.dot(rot1, self.primbb)
+            self.output_primc = np.dot(rot1, self.primcc)
+            for i in range(len(self.output_basis[:, 0])):
+                self.output_basis[i, :] = np.dot(rot1, self.output_basis[i, :])
+            self.output_boa = 0.0
+            self.output_coa = self.output_primc[2]
+            self.output_alpha = 0.0
+            self.output_beta = 0.0
+            self.output_gamma = 0.0
+            # EMTO convention:
+            self.emto_prima = np.array([1., 0, 0])
+            self.emto_primb = np.array([-0.5, np.sqrt(3.)/2, 0])
+            self.emto_primc = np.array([0., 0, self.output_coa])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 5:
             norm_tmp = self.primaa[0]
@@ -493,19 +511,26 @@ class EMTO:
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = 0.0
+            self.emto_prima = np.array([1.0, 0.0, 0.0])
+            self.emto_primb = np.array([0.0, 1.0, 0.0])
+            self.emto_primc = np.array([0.0, 0.0, self.output_coa])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 6:
-            norm_tmp = 2*self.primbb[0]
-            self.output_prima = self.primaa/norm_tmp
-            self.output_primb = self.primbb/norm_tmp
-            self.output_primc = self.primcc/norm_tmp
+            self.output_prima = self.primbb
+            self.output_primb = self.primcc
+            self.output_primc = self.primaa
             # Apply transformation on the basis atoms
-            self.output_basis = self.output_basis/norm_tmp
+            self.output_basis = self.output_basis
             self.output_boa = 0.0
             self.output_coa = 2*self.output_prima[2]
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = 0.0
+            self.emto_prima = np.array([0.5, -0.5, self.output_coa/2])
+            self.emto_primb = np.array([0.5, 0.5, -self.output_coa/2])
+            self.emto_primc = np.array([-0.5, 0.5, self.output_coa/2])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 7:
             alpha = self.prim_struct.lattice.alpha
@@ -530,6 +555,10 @@ class EMTO:
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = 0.0
+            self.emto_prima = np.array([0.0, 1.0, self.output_coa])
+            self.emto_primb = np.array([-np.sqrt(3.)/2, -0.5, self.output_coa])
+            self.emto_primc = np.array([np.sqrt(3.)/2, -0.5, self.output_coa])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 8:
             norm_tmp = self.primaa[0]
@@ -543,6 +572,10 @@ class EMTO:
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = 0.0
+            self.emto_prima = np.array([1.0, 0.0, 0.0])
+            self.emto_primb = np.array([0.0, self.output_boa, 0.0])
+            self.emto_primc = np.array([0.0, 0.0 ,self.output_coa])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 9:
             norm_tmp = 2*self.primaa[0]
@@ -589,6 +622,10 @@ class EMTO:
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = 0.0
+            self.emto_prima = np.array([0.5, -self.output_boa/2, self.output_coa/2])
+            self.emto_primb = np.array([0.5, self.output_boa/2, -self.output_coa/2])
+            self.emto_primc = np.array([-0.5, self.output_boa/2, self.output_coa/2])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 11:
             rot1 = rotation_matrix([1, 1, 1], 120./180*np.pi)
@@ -634,6 +671,11 @@ class EMTO:
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = gamma
+            self.emto_prima = np.array([1.0, 0, 0])
+            self.emto_primb = np.array([self.output_boa*np.cos(np.radians(self.output_gamma)),
+                                        self.output_boa*np.sin(np.radians(self.output_gamma)), 0])
+            self.emto_primc = np.array([0, 0, self.output_coa])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 13:
             gamma = get_angle(self.primcc, self.primaa+self.primbb)
@@ -655,6 +697,14 @@ class EMTO:
             self.output_alpha = 0.0
             self.output_beta = 0.0
             self.output_gamma = gamma
+            self.emto_prima = np.array([0.0, -self.output_boa, 0])
+            self.emto_primb = np.array([0.5*np.sin(np.radians(self.output_gamma)),
+                                        -0.5*np.cos(np.radians(self.output_gamma)),
+                                        -self.output_coa/2])
+            self.emto_primc = np.array([0.5*np.sin(np.radians(self.output_gamma)),
+                                        -0.5*np.cos(np.radians(self.output_gamma)),
+                                        self.output_coa/2])
+            self.emto_basis = self.output_basis
 
         elif self.sg2ibz[self.finder_space] == 14:
             norm_tmp = self.primaa[0]
@@ -670,6 +720,22 @@ class EMTO:
             self.output_alpha = self.prim_struct.lattice.alpha
             self.output_beta = self.prim_struct.lattice.beta
             self.output_gamma = self.prim_struct.lattice.gamma
+            self.emto_prima = np.array([1.0, 0, 0])
+            self.emto_primb = np.array([self.output_boa*np.cos(np.radians(self.output_gamma)),
+                                        self.output_boa*np.sin(np.radians(self.output_gamma)),
+                                        0])
+            self.emto_primc = np.array([self.output_coa*np.cos(np.radians(self.output_beta)),
+                                        self.output_coa*(np.cos(np.radians(self.output_alpha)) -
+                                        np.cos(np.radians(self.output_beta)) *
+                                        np.cos(np.radians(self.output_gamma))) / np.sin(np.radians(self.output_gamma)),
+                                        self.output_coa*np.sqrt(1 - np.cos(np.radians(self.output_gamma))**2 -
+                                        np.cos(np.radians(self.output_alpha))**2 -
+                                        np.cos(np.radians(self.output_beta))**2 +
+                                        2*np.cos(np.radians(self.output_alpha))*
+                                        np.cos(np.radians(self.output_beta))*
+                                        np.cos(np.radians(self.output_gamma)))/np.sin(np.radians(self.output_gamma))])
+            self.emto_basis = self.output_basis
+
         #
         self.output_sites = self.make_sites_array(self.prim_struct)
         self.output_lattice = Lattice(np.array([self.emto_prima, self.emto_primb, self.emto_primc]))
@@ -688,25 +754,23 @@ class EMTO:
         for i in range(len(self.output_struct.sites)):
             print(self.output_struct.sites[i].coords)
         print("")
-        # Sanity check
-        print('')
         fitted_angles = [get_angle(self.output_prima, self.emto_prima),
             get_angle(self.output_primb, self.emto_primb),
             get_angle(self.output_primc, self.emto_primc)]
         for i, angle in enumerate(fitted_angles):
             #print(angle)
             if angle > self.fit_angle_tol:
-                sys.exit('Angle between lattice vectors {0} is {1} > {2}'.format(i, angle, self.fit_angle_tol))
+                sys.exit('Error: Angle between lattice vectors {0} is {1} > {2}!!!'.format(i+1, angle, self.fit_angle_tol))
         fitted_ratios = [np.linalg.norm(self.output_prima) / np.linalg.norm(self.emto_prima),
             np.linalg.norm(self.output_primb) / np.linalg.norm(self.emto_primb),
             np.linalg.norm(self.output_primc) / np.linalg.norm(self.emto_primc)]
         for i, ratio in enumerate(fitted_ratios):
             #print(ratio)
             if np.abs(ratio - 1.0) > self.fit_norm_ratio_tol:
-                sys.exit('Ratio between lattice vector {0} norms is {1} > {2}'.format(i, ratio, self.fit_norm_ratio_tol))
+                sys.exit('Error: Ratio between lattice vector {0} norms is {1} > {2}!!!'.format(i+1, ratio, self.fit_norm_ratio_tol))
         print('Structure similarity check (input vs. output for EMTO):')
-        #fit1 = self.stm.fit_anonymous(self.pmg_input_struct, self.output_struct)
-        #fit2 = self.stm.fit(self.pmg_input_struct, self.output_struct)
+        fit1 = self.stm.fit_anonymous(self.pmg_input_struct, self.output_struct)
+        fit2 = self.stm.fit(self.pmg_input_struct, self.output_struct)
         if fit1:
             print('Same structure (sites only)     ?: ', fit1)
         else:
