@@ -376,7 +376,6 @@ class EMTO:
             self.pmg_species = self.get_equivalent_sites()
         else:
             self.pmg_species = np.linspace(1, len(self.species), len(self.species), dtype=np.int)
-        print(self.pmg_species)
         #
         self.coords_are_cartesian = coords_are_cartesian
         self.ibz = None

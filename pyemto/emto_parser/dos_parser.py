@@ -1,105 +1,139 @@
 import numpy as np
-import sys
 
-class emto_dos:
-    def __init__(self,dos_path):
-        """Takes an EMTO DOS output file and parses the data into numpy arrays for easy plotting etc.
-        """
-
-        self.dos_path = dos_path
-        self.dos_lines = None
-        self.dos_auth_str = '     Total DOS and NOS and partial (IT) DOSUP+DOWN'
-
-        self.E_total_str = '     E     Total     1'
-        self.E_total_sublattice_str = '     E     Total       s       p       d       f'
-        self.tnos_str = '  TNOS'
+class Atom(object):
+    def __init__(self, i, label, arr1, arr2):
+        self.number = i
+        self.label = label
+        self.e = arr1[:,0]
+        self.dos = arr1[:,1]
+        self.sdos = arr1[:,2]
+        self.pdos = arr1[:,3]
+        self.ddos = arr1[:,4]
+        self.fdos = arr1[:,5]
+        #
+        self.nos = arr2[:,1]
+        self.snos = arr2[:,2]
+        self.pnos = arr2[:,3]
+        self.dnos = arr2[:,4]
+        self.fnos = arr2[:,5]
         
-        self.total_dos_nos_array = None
-        self.total_dos_nos_index_beg = None
-        self.total_dos_nos_index_end = None
-
-        self.sublattice_dos_spdf_array = []
-        self.sublattice_dos_spdf_index_beg = []
-        self.sublattice_dos_spdf_index_end = []
-
-        self.sublattice_tnos_spdf_array = []
-        self.sublattice_tnos_spdf_index_beg = []
-        self.sublattice_tnos_spdf_index_end = []
-
-        self.sublattice_info = []
+class Element(object):
+    def __init__(self, dos, nos, sdos, pdos, ddos, fdos, snos, pnos, dnos, fnos):
+        self.dos = dos
+        self.nos = nos
+        self.sdos = sdos
+        self.pdos = pdos
+        self.ddos = ddos
+        self.fdos = fdos
+        self.snos = snos
+        self.pnos = pnos
+        self.dnos = dnos
+        self.fnos = fnos
         
-        with open(dos_path, "rt") as dos_file:
-            self.dos_lines = [line.rstrip() for line in dos_file]
-            #print(self.dos_lines)
-            #for line in self.dos_lines:
-            #    print(line)
-            
-            # Confirm to some extent that this is a valid EMTO DOS output file:
-            if self.dos_auth_str not in self.dos_lines:
-                raise Exception('File {0} does not look like a valid EMTO DOS file!\n'.format(dos_path)+
-                                '           File does not contain the usual header \'{0}\'!'.format(self.dos_auth_str))
-            
-            # Extract line indexes of the beginnings and ends of data blocks:
-            index = 0
-            first_sublattice = True
-            for line in self.dos_lines:
-                if self.E_total_str in line:
-                    self.total_dos_nos_index_beg = index+2
-                elif self.E_total_sublattice_str in line:
-                    if first_sublattice == True:
-                        self.total_dos_nos_index_end = index-4
-                        first_sublattice = False
-                    else:
-                        self.sublattice_tnos_spdf_index_end.append(index-5)
-                    self.sublattice_dos_spdf_index_beg.append(index+2)
-                    sublattice_line = self.dos_lines[index-2]
-                    sublattice_line_list = sublattice_line.split()
-                    #print(sublattice_line)
-                    self.sublattice_info.append([sublattice_line_list[1],sublattice_line_list[3]])
-                elif self.tnos_str in line:
-                    self.sublattice_tnos_spdf_index_beg.append(index+2)
-                    self.sublattice_dos_spdf_index_end.append(index-2)
-                index += 1
-            # Get the last TNOS index
-            for i in xrange(index-1,0,-1):
-                if self.dos_lines[i] != '':
-                    self.sublattice_tnos_spdf_index_end.append(i)
-
-            # Now populate the arrays
-            # E, total DOS, total NOS, THEN total DOS per sublattice (spin up + spin down)
-            self.total_dos_nos_array = np.loadtxt(self.dos_lines[self.total_dos_nos_index_beg:self.total_dos_nos_index_end+1])
-
-            #"""
-            for i in range(len(self.sublattice_info)):
-                #      E     Total DOS       s       p       d       f
-                self.sublattice_dos_spdf_array.append(np.loadtxt(self.dos_lines[self.sublattice_dos_spdf_index_beg[i]:self.sublattice_dos_spdf_index_end[i]+1]))
-                #      E     Total NOS       s       p       d       f
-                self.sublattice_tnos_spdf_array.append(np.loadtxt(self.dos_lines[self.sublattice_tnos_spdf_index_beg[i]:self.sublattice_tnos_spdf_index_end[i]+1]))
-            #"""
-                
-            #for row in self.sublattice_tnos_spdf_array[3]:
-            #for row in self.dos_lines[self.sublattice_dos_spdf_index_beg[i]:self.sublattice_dos_spdf_index_end[i]+1]:
-            #    print(row)
-            #print(test)
-            #i = 3
-            #print(self.dos_lines[self.sublattice_dos_spdf_index_beg[i]:self.sublattice_dos_spdf_index_end[i]+1])
-            #print(self.dos_lines[self.sublattice_tnos_spdf_index_beg[i]:self.sublattice_tnos_spdf_index_end[i]+1])
-
-            #self.total_dos_nos_array = np.loadtxt(,)
-                    
-            
-    def plot_dos(self):
-        """ 
-        Plot density of states plot.
-        """
-        import pylab
-        pylab.plot([0.0,0.0],[-10,100],'--',linewidth=2,color='red')
-        #total dos
-        #pylab.plot(self.total_dos_nos_array[:,0],self.total_dos_nos_array[:,1])
-        #component dos
-        pylab.plot(self.sublattice_dos_spdf_array[0][:,0],self.sublattice_dos_spdf_array[0][:,1])
-        pylab.plot(self.sublattice_dos_spdf_array[1][:,0],self.sublattice_dos_spdf_array[1][:,1],'--')
-        pylab.xlim(-0.6,0.05)
-        pylab.ylim(-1.0,40)
-        pylab.title(self.dos_path)
-        pylab.show()
+        
+class Get_DOS(object):
+	"""Parser for EMTO DOS files"""
+    def __init__(self, fn):
+        self.fn = fn
+        self.data = None
+        with open(self.fn, 'r') as self.data:
+            self.lines = [line.rstrip() for line in self.data]
+        self.e = None
+        # Total DOS and NOS
+        self.dos = None
+        self.nos = None
+        # Lattice data
+        self.nq = 0
+        self.labels = []
+        # Collect info and find breakpoints
+        last_line = ''
+        self.startpoints = []
+        self.endpoints = []
+        for i, line in enumerate(self.lines):
+            if '#Sublattice' in line:
+                tmp = line.split()[3]
+                self.nq += 1
+                self.labels.append(tmp)
+            try:
+                tmp1 = float(line.split()[0])
+                try:
+                    tmp2 = float(last_line.split()[0])
+                except:
+                    self.startpoints.append(i)
+                    #print(last_line)
+                    #print(line)
+                    #print()
+            except:
+                try:
+                    tmp2 = float(last_line.split()[0])
+                    self.endpoints.append(i-1)
+                except:
+                    pass
+            last_line = line
+        # Get list of unique elements
+        self.unique = []
+        self.unique_ind = []
+        for label in self.labels:
+            if label not in self.unique:
+                self.unique.append(label)
+                self.unique_ind.append(np.where(np.array(self.labels) == label)[0])
+        # Get actual data
+        self.atoms = []
+        self.tmp = np.array([l.split() for l in self.lines[self.startpoints[0]:self.endpoints[0]+1]], dtype=np.float)
+        self.e = self.tmp[:,0]
+        self.dos = self.tmp[:,1]
+        self.nos = self.tmp[:,2]
+        for i in range(self.nq):
+            ind1 = (i+1)*2 - 1
+            ind2 = (i+1)*2
+            tmp1 = np.array([l.split() for l in self.lines[self.startpoints[ind1]:self.endpoints[ind1]+1]], dtype=np.float)
+            tmp2 = np.array([l.split() for l in self.lines[self.startpoints[ind2]:self.endpoints[ind2]+1]], dtype=np.float)
+            self.atoms.append(Atom(i, self.labels[i], tmp1, tmp2))
+        # Get total s,p,d,f DOS and NOS
+        self.sdos = np.zeros_like(self.e)
+        self.pdos = np.zeros_like(self.e)
+        self.ddos = np.zeros_like(self.e)
+        self.fdos = np.zeros_like(self.e)
+        self.snos = np.zeros_like(self.e)
+        self.pnos = np.zeros_like(self.e)
+        self.dnos = np.zeros_like(self.e)
+        self.fnos = np.zeros_like(self.e)
+        for atom in self.atoms:
+            self.sdos += atom.sdos
+            self.pdos += atom.pdos
+            self.ddos += atom.ddos
+            self.fdos += atom.fdos
+            self.snos += atom.snos
+            self.pnos += atom.pnos
+            self.dnos += atom.dnos
+            self.fnos += atom.fnos
+        # Get element-wise total DOS and NOS
+        self.elems = {}
+        for i, u in enumerate(self.unique):
+            dos = np.zeros_like(self.e)
+            nos = np.zeros_like(self.e)
+            sdos = np.zeros_like(self.e)
+            pdos = np.zeros_like(self.e)
+            ddos = np.zeros_like(self.e)
+            fdos = np.zeros_like(self.e)
+            snos = np.zeros_like(self.e)
+            pnos = np.zeros_like(self.e)
+            dnos = np.zeros_like(self.e)
+            fnos = np.zeros_like(self.e)
+            for j in self.unique_ind[i]:
+                dos += self.atoms[j].dos
+                nos += self.atoms[j].nos
+                sdos += self.atoms[j].sdos
+                pdos += self.atoms[j].pdos
+                ddos += self.atoms[j].ddos
+                fdos += self.atoms[j].fdos
+                snos += self.atoms[j].snos
+                pnos += self.atoms[j].pnos
+                dnos += self.atoms[j].dnos
+                fnos += self.atoms[j].fnos
+            self.elems[self.unique[i]] = Element(dos, nos, sdos, pdos, ddos, fdos, snos, pnos, dnos, fnos)
+        
+    def print_file(self):
+        for i, line in enumerate(self.lines):
+            #if '#' in line:
+                print(i, line)
