@@ -207,15 +207,19 @@ class EMTO:
             emto_sites.append(struct.sites[i].specie.number)
         return emto_sites
 
-    def make_sites_index(self, species):
-        len_array = len(species)
-        index_array = np.zeros(len_array, dtype='int32')
-        for i in range(len_array):
-            if species[i] == 'A+':
-                index_array[i] = 1
-            else:
-                index_array[i] = int(species[i][1:-1])
-        return index_array
+    def make_cpa_sites_array(self, struct):
+        len_basis = struct.num_sites
+        self.atoms_cpa = []
+        self.concs_cpa = []
+        self.splts_cpa = []
+        for i in range(len_basis):
+            atom_number = struct.sites[i].specie.number
+            for j in range(len(self.pmg_species)):
+                if atom_number == self.pmg_species[j]:
+                    self.atoms_cpa.append(self.species[j])
+                    self.concs_cpa.append(self.concs[j])
+                    self.splts_cpa.append(self.splts[j])
+                    break
 
     def get_equivalent_sites(self):
         """Find all the sites that have exactly the same species,
@@ -271,11 +275,11 @@ class EMTO:
             output_sites[-1] = next_available
         return output_sites
 
-    def init_structure(self, prims=None, basis=None, latpath=None,
-                       coords_are_cartesian=False, latname=None,
-                       species=None, find_primitive=True,
-                       concs=None, splts=None,
-                       **kwargs):
+    def prepare_input_files(self, prims=None, basis=None, latpath=None,
+                            coords_are_cartesian=False, latname=None,
+                            species=None, find_primitive=True,
+                            concs=None, splts=None, its=None, ws_wsts=None,
+                            **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
         if basis is None:
@@ -372,7 +376,7 @@ class EMTO:
             self.pmg_species = self.get_equivalent_sites()
         else:
             self.pmg_species = np.linspace(1, len(self.species), len(self.species), dtype=np.int)
-        #print(self.pmg_species)
+        print(self.pmg_species)
         #
         self.coords_are_cartesian = coords_are_cartesian
         self.ibz = None
@@ -781,7 +785,7 @@ class EMTO:
             sys.exit('Input and output structures differ (sites + chemistry) !!!')
         print("")
         # Generate EMTO structure input files
-        self.input_system.lattice.set_values(jobname=self.latname,
+        self.input_system.lattice.set_values(jobname_lat=self.latname,
                                              latpath=self.latpath,
                                              lat=common.ibz_to_lat(self.ibz),
                                              latparams=[1.0, self.output_boa, self.output_coa],
@@ -789,81 +793,59 @@ class EMTO:
                                              basis=self.output_basis,
                                              EMTOdir=self.EMTOdir,
                                              **kwargs)
-        return
-
-    def write_bmdl_kstr_shape_input(self):
-        self.input_system.lattice.write_structure_input_files(folder=self.folder,jobname=self.latname)
-        return
-
-    def init_bulk(self, atoms_cpa=None, splts=None, concs=None, its=None, sws=None,
-                  ws_wsts=None, **kwargs):
-        """Generates and writes down to disk KGRN and KFCD input files, as well as the
-           SLURM job script that is used to run the calculations.
-        """
-        if self.ibz == None:
+        # Finally, save atoms, splts, and concs of the output structure to be read by init_bulk function.
+        self.make_cpa_sites_array(self.output_struct)
+        #
+        # Prepare KGRN, KFCD, and SLURM input files next.
+        if self.ibz is None:
             sys.exit('self.ibz == None! Run create_structure_input() to generate IBZ \n'+
-                     'for your structure, if you do not know it.')
-        if sws == None:
-            pass
-        else:
-            self.sws = sws
+                     'for your structure.')
         # Construct an index array to keep track of the number of atoms in each site.
-        if atoms_cpa == None:
-            sys.exit('EMTO.init_bulk(): \'atoms_cpa\' has to be given!')
-            #self.KGRN_atoms = np.asarray(self.output_sites)
-            #index_array = np.ones(len(self.KGRN_atoms),dtype='int32')
-            #index_len = np.sum(index_array)
+        if self.atoms_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.atoms_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
-            index_array = np.ones(len(atoms_cpa),dtype='int32')
-            for i in range(len(atoms_cpa)):
-                if isinstance(atoms_cpa[i],list):
-                    index_array[i] = len(atoms_cpa[i])
+            index_array = np.ones(len(self.atoms_cpa), dtype='int32')
+            for i in range(len(self.atoms_cpa)):
+                if isinstance(self.atoms_cpa[i], list):
+                    index_array[i] = len(self.atoms_cpa[i])
                 else:
                     index_array[i] = 1
             index_len = np.sum(index_array)
             atoms_flat = []
-            for i in range(len(atoms_cpa)):
-                if isinstance(atoms_cpa[i],list):
-                    for j in range(len(atoms_cpa[i])):
-                        atoms_flat.append(atoms_cpa[i][j])
+            for i in range(len(self.atoms_cpa)):
+                if isinstance(self.atoms_cpa[i], list):
+                    for j in range(len(self.atoms_cpa[i])):
+                        atoms_flat.append(self.atoms_cpa[i][j])
                 else:
-                    atoms_flat.append(atoms_cpa[i])
+                    atoms_flat.append(self.atoms_cpa[i])
             self.KGRN_atoms = np.array(atoms_flat)
-        if splts is None:
-            # Assume a zero moments array
-            self.KGRN_splts = np.zeros(index_len)
+        if self.splts_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.splts_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
             splts_flat = []
-            for i in range(len(splts)):
-                if isinstance(splts[i], list):
-                    for j in range(len(splts[i])):
-                        splts_flat.append(splts[i][j])
+            for i in range(len(self.splts_cpa)):
+                if isinstance(self.splts_cpa[i], list):
+                    for j in range(len(self.splts_cpa[i])):
+                        splts_flat.append(self.splts_cpa[i][j])
                 else:
-                    splts_flat.append(splts[i])
+                    splts_flat.append(self.splts_cpa[i])
             self.KGRN_splts = np.array(splts_flat)
-        if concs is None:
-            # Assume 1.0 concentration, if site is occupied by a single atom,
-            # and 1.0/N(i) if site(i) is occupied by N(i) atoms (CPA).
-            self.KGRN_concs = np.zeros(index_len)
-            running_index = 0
-            for i in range(len(index_array)):
-                for j in range(index_array[i]):
-                    self.KGRN_concs[running_index] = 1.0/index_array[i]
-                    running_index += 1
+        if self.concs_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.concs_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
             concs_flat = []
-            for i in range(len(concs)):
-                if isinstance(concs[i], list):
-                    for j in range(len(concs[i])):
-                        concs_flat.append(concs[i][j])
+            for i in range(len(self.concs_cpa)):
+                if isinstance(self.concs_cpa[i], list):
+                    for j in range(len(self.concs_cpa[i])):
+                        concs_flat.append(self.concs_cpa[i][j])
                 else:
-                    concs_flat.append(concs[i])
+                    concs_flat.append(self.concs_cpa[i])
             self.KGRN_concs = np.array(concs_flat)
         # ws_wsts
         if ws_wsts is not None:
             ws_wsts_flat = []
             for i in range(len(ws_wsts)):
-                if isinstance(ws_wsts[i],list):
+                if isinstance(ws_wsts[i], list):
                     for j in range(len(ws_wsts[i])):
                         ws_wsts_flat.append(ws_wsts[i][j])
                 else:
@@ -928,14 +910,18 @@ class EMTO:
                                    sws=self.sws,
                                    ws_wsts=self.KGRN_ws_wsts,
                                    **kwargs)
-        #
+
+    def write_bmdl_kstr_shape_input(self):
+        self.input_system.lattice.write_structure_input_files(folder=self.folder, jobname=self.latname)
+        return
+
     def write_kgrn_kfcd_input(self):
         self.input_system.emto.kgrn.write_input_file(folder=self.folder)
         self.input_system.emto.kfcd.write_input_file(folder=self.folder)
         self.input_system.emto.batch.write_input_file(folder=self.folder)
         return
 
-    def write_kgrn_kfcd_swsrange(self,sws=None):
+    def write_kgrn_kfcd_swsrange(self, sws=None):
         if sws is None:
             sys.exit('EMTO.write_KGRN_KFCD_swsrange(): An array of' +
                      ' WS-radii \'sws\' has to be given!')

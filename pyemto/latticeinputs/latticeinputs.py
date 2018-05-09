@@ -57,7 +57,7 @@ class Latticeinputs:
             if hasattr(self.batch, key):
                 self.batch.set_values(key, kwargs[key])
                 attr_found = True
-            if attr_found == False:
+            if attr_found is False:
                 print(
                     'WARNING: Neither Bmdl(), Kstr(), Shape() nor Batch_lattice()' +\
                     ' classes have the attribute \'{0}\''.format(key))
@@ -466,13 +466,13 @@ class Latticeinputs:
 
         return new_basis
 
-    def write_structure_input_files(self,jobname=None,lat=None,folder=None,**kwargs):
+    def write_structure_input_files(self, jobname_lat=None,lat=None,folder=None,**kwargs):
         """For a given lattice type, this function writes
         the corresponding structure input files into a
         given folder
 
-        :param jobname: Name of the job
-        :type jobname: str
+        :param jobname_lat: Name of the job
+        :type jobname_lat: str
         :param lat: Name of the lattice
         :type lat: str
         :param folder: Name of the folder
@@ -488,12 +488,12 @@ class Latticeinputs:
         #if lat is None:
         #    sys.exit('Latticeinputs.write_structure_input_files: \'lat\' has to be given!')
 
-        if jobname is None:
-            sys.exit('Latticeinputs.write_structure_input_files: \'jobname\' has to be given!')
-            #jobname = lat
+        if jobname_lat is None:
+            sys.exit('Latticeinputs.write_structure_input_files: \'jobname_lat\' has to be given!')
+            #jobname_lat = lat
 
         # Pass down necessary arguments:
-        self.set_values(jobname=jobname,latpath=folder)
+        self.set_values(jobname_lat=jobname_lat,latpath=folder)
 
         # Pass down optional arguments:
         self.set_values(**kwargs)

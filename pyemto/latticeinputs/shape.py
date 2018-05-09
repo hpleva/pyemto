@@ -9,17 +9,16 @@ Created on Wed Dec  3 15:10:00 2014
 
 from __future__ import print_function
 import sys
-import os
 import datetime
-import numpy as np
 import pyemto.common.common as common
+
 
 class Shape:
 
     """Contains information about SHAPE input files for EMTO 5.8 program.
 
-    :param jobname:  (Default value = None)
-    :type jobname:
+    :param jobname_lat:  (Default value = None)
+    :type jobname_lat:
     :param lat:  (Default value = None)
     :type lat:
     :param lmax:  (Default value = None)
@@ -38,10 +37,10 @@ class Shape:
     :rtype:
     """
 
-    def __init__(self, jobname=None, lat=None, lmax=None, nsr=None, nfi=None,
+    def __init__(self, jobname_lat=None, lat=None, lmax=None, nsr=None, nfi=None,
                  ivef=None, msgl=None, nprn=None):
 
-        self.jobname = jobname
+        self.jobname_lat = jobname_lat
         self.lat = lat
         self.lmax = lmax
         self.nsr = nsr
@@ -57,14 +56,14 @@ class Shape:
         :rtype: str
         """
 
-        slope = 'kstr/' + self.jobname + ".tfh"
+        slope = 'kstr/' + self.jobname_lat + ".tfh"
         shapef = "shape/"
         prn = "shape/"
         now = datetime.datetime.now()
 
         line = "SHAPE     HP......=N                            "\
             + str(now.day) + "." + str(now.month) + "." + str(now.year) + "\n"
-        JOBNAMline = "JOBNAM...=" + self.jobname
+        JOBNAMline = "JOBNAM...=" + self.jobname_lat
         MSGLline = "MSGL.=  " + str(self.msgl)
         line = line + "{0:21s}{1:9s}".format(JOBNAMline, MSGLline) + "\n"
         line = line + "FOR001=" + slope + "\n"
@@ -95,7 +94,7 @@ class Shape:
         else:
             common.check_folders(folder)
 
-        fl = open(folder + '/{0}.shape'.format(self.jobname), "w")
+        fl = open(folder + '/{0}.shape'.format(self.jobname_lat), "w")
         fl.write(self.output())
         fl.close()
         return
@@ -127,11 +126,11 @@ class Shape:
         :rtype:
         """
 
-        if self.jobname is None and self.lat is None:
+        if self.jobname_lat is None and self.lat is None:
             sys.exit(
-                'Shape.check_input_file: \'jobname\' OR \'lat\' has to be given!')
-        elif self.jobname is None and self.lat is not None:
-            self.jobname = self.lat
+                'Shape.check_input_file: \'jobname_lat\' OR \'lat\' has to be given!')
+        elif self.jobname_lat is None and self.lat is not None:
+            self.jobname_lat = self.lat
 
         if self.lmax is None:
             self.lmax = 30
@@ -146,4 +145,3 @@ class Shape:
         if self.nprn is None:
             self.nprn = 0
         return
-

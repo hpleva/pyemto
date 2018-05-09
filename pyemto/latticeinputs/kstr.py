@@ -9,17 +9,17 @@ Created on Wed Dec  3 15:00:14 2014
 
 from __future__ import print_function
 import sys
-import os
 import datetime
 import numpy as np
 import pyemto.common.common as common
 from pyemto.c import c_lattice
 
+
 class Kstr:
     """Contains information about KSTR input files for EMTO 5.8 program
 
-    :param jobname:  (Default value = None)
-    :type jobname:
+    :param jobname_lat:  (Default value = None)
+    :type jobname_lat:
     :param lat:  (Default value = None)
     :type lat:
     :param latparams:  (Default value = None)
@@ -72,7 +72,7 @@ class Kstr:
     :rtype: None
     """
 
-    def __init__(self, jobname=None, lat=None, latparams=None, ca=None,
+    def __init__(self, jobname_lat=None, lat=None, latparams=None, ca=None,
                  latvectors=None, basis=None, kappaw=None, dmax=None,
                  msgl=None, nprn=None, lamda=None, amax=None,
                  bmax=None, nqr2=None, mode=None, store=None, high=None,
@@ -82,7 +82,7 @@ class Kstr:
         # Argument checking and default values
 
         self.lat = lat
-        self.jobname = jobname
+        self.jobname_lat = jobname_lat
         self.latparams = latparams
         self.latvectors = latvectors
         if basis is None:
@@ -126,15 +126,15 @@ class Kstr:
 
         if index == 1:
             kappaw = self.kappaw[0]
-            jobname = self.jobname
+            jobname_lat = self.jobname_lat
         elif index == 2:
             kappaw = self.kappaw[1]
-            jobname = self.jobname2
+            jobname_lat = self.jobname_lat2
 
         now = datetime.datetime.now()
         line = "KSTR      HP......=N                              "\
             + str(now.day) + "." + str(now.month) + "." + str(now.year) + "\n"
-        JOBNAMline = "JOBNAM...=" + jobname
+        JOBNAMline = "JOBNAM...=" + jobname_lat
         MSGLline = "MSGL.=  " + str(self.msgl)
         line = line + "{0:21s}{1:9s}".format(JOBNAMline, MSGLline) +\
             " MODE...={0} STORE..={1} HIGH...={2}"\
@@ -142,7 +142,7 @@ class Kstr:
         line = line + "DIR001=" + slope + "\n"
         line = line + "DIR006=" + prn + "\n"
         line = line + "Slope matrices, {0:10}, (kappa*w)^2= {1:5.1f}"\
-            .format(jobname, kappaw) + "\n"
+            .format(jobname_lat, kappaw) + "\n"
         line = line + "NL.....={0:2d} NLH...={1:2d} NLW...={2:2d} "\
             .format(self.kstr_nl, self.nlh, self.nlw) +\
             "NDER..={0:2d} ITRANS={1:2d} NPRN..={2:2d}"\
@@ -193,11 +193,11 @@ class Kstr:
         else:
             common.check_folders(folder)
 
-        fl = open(folder + '/{0}.kstr'.format(self.jobname), "w")
+        fl = open(folder + '/{0}.kstr'.format(self.jobname_lat), "w")
         fl.write(self.output(1))
         fl.close()
         if self.twocenter:
-            fl = open(folder + '/{0}.kstr'.format(self.jobname2), "w")
+            fl = open(folder + '/{0}.kstr'.format(self.jobname_lat2), "w")
             fl.write(self.output(2))
             fl.close()
 
@@ -248,8 +248,8 @@ class Kstr:
 
         if self.lat is None:
             sys.exit('Kstr.check_input_file: \'lat\' has to be given!')
-        elif self.jobname is None and self.lat is not None:
-            self.jobname = self.lat
+        elif self.jobname_lat is None and self.lat is not None:
+            self.jobname_lat = self.lat
 
         if self.latparams is None:
             if self.lat == 'hcp':
@@ -308,7 +308,7 @@ class Kstr:
             print("Kappa does not have correct number of values, please correct! : %s" % (str(self.kappaw)))
             exit()
         if self.twocenter:
-            self.jobname2 = self.jobname + 'M'
+            self.jobname_lat2 = self.jobname_lat + 'M'
 
         # Optimize dmax
         if self.nghbp is None:
@@ -474,7 +474,7 @@ class Kstr:
         f_closest = 1000
         #
         print('Latticeinputs.Kstr.optimize_dmax(): Optimizing dmax (target = {0:3d}) for {1}...'
-              .format(ncrq_target,self.jobname))
+              .format(ncrq_target,self.jobname_lat))
         #
         while np.abs(dmax_mid_old - dmax_mid) > tol_target:
             # Compute the number of vectors that
@@ -519,7 +519,7 @@ class Kstr:
         self.awIQ = None
         #self.dmax = None
         #self.kappaw = None
-        #self.jobname = None
+        #self.jobname_lat = None
         #self.latparams = None
         #self.latvectors = None
         #self.basis = None

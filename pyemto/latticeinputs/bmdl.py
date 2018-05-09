@@ -9,7 +9,6 @@ Created on Wed Dec  3 15:09:24 2014
 
 from __future__ import print_function
 import sys
-import os
 import datetime
 import pyemto.common.common as common
 import numpy as np
@@ -17,8 +16,8 @@ import numpy as np
 class Bmdl:
     """Contains information about BMDL input files for EMTO 5.8 program.
 
-    :param jobname:  (Default value = None)
-    :type jobname:
+    :param jobname_lat:  (Default value = None)
+    :type jobname_lat:
     :param lat:  (Default value = None)
     :type lat:
     :param latparams:  (Default value = None)
@@ -47,12 +46,12 @@ class Bmdl:
     :rtype: None
     """
 
-    def __init__(self, jobname=None, lat=None, latparams=None, latvectors=None,
+    def __init__(self, jobname_lat=None, lat=None, latparams=None, latvectors=None,
                  basis=None, msgl=None, nprn=None, bmdl_nl=None, lamda=None,
                  amax=None, bmax=None, nqr2=None, ca=None):
 
         self.lat = lat
-        self.jobname = jobname
+        self.jobname_lat = jobname_lat
         self.latparams = latparams
         self.latvectors = latvectors
         if basis is None:
@@ -84,7 +83,7 @@ class Bmdl:
         now = datetime.datetime.now()
         line = "BMDL      HP......=N                              "\
             + str(now.day) + "." + str(now.month) + "." + str(now.year) + "\n"
-        JOBNAMline = "JOBNAM...=" + self.jobname
+        JOBNAMline = "JOBNAM...=" + self.jobname_lat
         MSGLline = "MSGL.=  " + str(self.msgl)
         NPRNline = "NPRN.=  " + str(self.nprn)
         line = line + \
@@ -92,7 +91,7 @@ class Bmdl:
                 JOBNAMline, MSGLline, NPRNline) + "\n"
         line = line + "DIR001=" + mdlfile + "\n"
         line = line + "DIR006=" + prnfile + "\n"
-        line = line + "Madelung potential for {0}".format(self.jobname) + "\n"
+        line = line + "Madelung potential for {0}".format(self.jobname_lat) + "\n"
         line = line + "NL.....={0:2d}".format(self.bmdl_nl) + "\n"
         line = line + "LAMDA....=      {0:4.2f} AMAX....=      {1:4.2f} BMAX....=      {2:4.2f}"\
             .format(self.lamda, self.amax, self.bmax) + "\n"
@@ -117,7 +116,7 @@ class Bmdl:
         return line
 
     def write_input_file(self, folder=None):
-        """Save BMDL input data to file named by self.jobname
+        """Save BMDL input data to file named by self.jobname_lat
 
         :param folder:  (Default value = None)
         :type folder:
@@ -134,7 +133,7 @@ class Bmdl:
         else:
             common.check_folders(folder)
 
-        fl = open(folder + '/{0}.bmdl'.format(self.jobname), "w")
+        fl = open(folder + '/{0}.bmdl'.format(self.jobname_lat), "w")
         fl.write(self.output())
         fl.close()
 
@@ -179,8 +178,8 @@ class Bmdl:
 
         if self.lat is None:
             sys.exit('Bmdl.check_input_file: \'lat\' has to be given!')
-        elif self.jobname is None and self.lat is not None:
-            self.jobname = self.lat
+        elif self.jobname_lat is None and self.lat is not None:
+            self.jobname_lat = self.lat
 
         if self.latparams is None:
             if self.lat == 'hcp':
@@ -217,7 +216,7 @@ class Bmdl:
         if len(self.basis.shape) == 1:
             self.basis = np.asarray([self.basis])
         self.nq = self.basis.shape[0]
-        
+
         if isinstance(self.latvectors[0], list):
             if len(self.latvectors) == 1:
                 self.iprim = 1
@@ -241,4 +240,3 @@ class Bmdl:
         if self.nqr2 is None:
             self.nqr2 = 0
         return
-

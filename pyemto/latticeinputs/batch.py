@@ -9,10 +9,8 @@ Created on Wed Dec  3 15:09:24 2014
 
 from __future__ import print_function
 import sys
-import os
-import datetime
-import re
 import pyemto.common.common as common
+
 
 class Batch:
     """Creates a batch script for running BMDL, KSTR and SHAPE calculations
@@ -20,8 +18,8 @@ class Batch:
     This class is used to to create batch scripts for a supercomputer environment (EMTO 5.8).
     !!! Currently only SLURM is supported. !!!
 
-    :param jobname:  (Default value = None)
-    :type jobname:
+    :param jobname_lat:  (Default value = None)
+    :type jobname_lat:
     :param lat:  (Default value = None)
     :type lat:
     :param runtime:  (Default value = None)
@@ -46,13 +44,13 @@ class Batch:
     :rtype: None
     """
 
-    def __init__(self, jobname=None, lat=None, runtime=None, latpath=None,
+    def __init__(self, jobname_lat=None, lat=None, runtime=None, latpath=None,
                  EMTOdir=None, runBMDL=None, runKSTR=None, runKSTR2=None,
                  runSHAPE=None, kappaw=None, kappalen=None,
                  slurm_options=None, account=None):
 
         # Batch script related parameters
-        self.jobname = jobname
+        self.jobname_lat = jobname_lat
         self.lat = lat
         self.latpath = latpath
         self.runtime = runtime
@@ -80,14 +78,14 @@ class Batch:
         # Clean up path names
 
         line = "#!/bin/bash" + "\n" + "\n"
-        line += "#SBATCH -J " + self.jobname + "\n"
+        line += "#SBATCH -J " + self.jobname_lat + "\n"
         line += "#SBATCH -t " + self.runtime + "\n"
         line += "#SBATCH -o " + \
             common.cleanup_path(
-                self.latpath + "/" + self.jobname) + ".output" + "\n"
+                self.latpath + "/" + self.jobname_lat) + ".output" + "\n"
         line += "#SBATCH -e " + \
             common.cleanup_path(
-                self.latpath + "/" + self.jobname) + ".error" + "\n"
+                self.latpath + "/" + self.jobname_lat) + ".error" + "\n"
         if self.account is not None:
             line += "#SBATCH -A {0}".format(self.account) + "\n"
 
@@ -114,27 +112,27 @@ class Batch:
         else:
             BMDL_path = "bmdl"
             KSTR_path = "kstr"
-            SHAPE_path = "shape"            
+            SHAPE_path = "shape"
         if self.runBMDL:
             line += elapsed_time + common.cleanup_path(BMDL_path + " < ") +\
-                common.cleanup_path(self.latpath + "/" + self.jobname) + ".bmdl > " +\
+                common.cleanup_path(self.latpath + "/" + self.jobname_lat) + ".bmdl > " +\
                 common.cleanup_path(
-                    self.latpath + "/" + self.jobname) + "_bmdl.output" + "\n"
+                    self.latpath + "/" + self.jobname_lat) + "_bmdl.output" + "\n"
         if self.runKSTR:
             line += elapsed_time + common.cleanup_path(KSTR_path + " < ") +\
-                common.cleanup_path(self.latpath + "/" + self.jobname) + ".kstr > " +\
+                common.cleanup_path(self.latpath + "/" + self.jobname_lat) + ".kstr > " +\
                 common.cleanup_path(
-                    self.latpath + "/" + self.jobname) + "_kstr.output" + "\n"
+                    self.latpath + "/" + self.jobname_lat) + "_kstr.output" + "\n"
         if self.runKSTR2:
             line += elapsed_time + common.cleanup_path(KSTR_path + " < ") +\
-                common.cleanup_path(self.latpath + "/" + self.jobname) + 'M' + ".kstr > " +\
+                common.cleanup_path(self.latpath + "/" + self.jobname_lat) + 'M' + ".kstr > " +\
                 common.cleanup_path(
-                    self.latpath + "/" + self.jobname) + 'M' + "_kstr.output" + "\n"
+                    self.latpath + "/" + self.jobname_lat) + 'M' + "_kstr.output" + "\n"
         if self.runSHAPE:
             line += elapsed_time + common.cleanup_path(SHAPE_path + " < ") +\
-                common.cleanup_path(self.latpath + "/" + self.jobname) + ".shape > " +\
+                common.cleanup_path(self.latpath + "/" + self.jobname_lat) + ".shape > " +\
                 common.cleanup_path(
-                    self.latpath + "/" + self.jobname) + "_shape.output" + "\n"
+                    self.latpath + "/" + self.jobname_lat) + "_shape.output" + "\n"
 
         return line
 
@@ -158,7 +156,7 @@ class Batch:
         else:
             common.check_folders(folder)
 
-        fl = open(folder + '/{0}.sh'.format(self.jobname), "w")
+        fl = open(folder + '/{0}.sh'.format(self.jobname_lat), "w")
         fl.write(self.output())
         fl.close()
 
@@ -189,13 +187,13 @@ class Batch:
         """
 
         # Mission critical parameters
-        if self.jobname is None:
+        if self.jobname_lat is None:
             if self.lat is not None:
-                self.jobname = self.lat
+                self.jobname_lat = self.lat
             else:
                 sys.exit(
-                    'Batch_lattice.check_input_file: \'jobname\' or' +\
-                    ' \'lat\' (jobname = lat) has to be given!')
+                    'Batch_lattice.check_input_file: \'jobname_lat\' or' +\
+                    ' \'lat\' (jobname_lat = lat) has to be given!')
 
         if self.latpath is None:
             self.latpath = "./"

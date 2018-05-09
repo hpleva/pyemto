@@ -474,7 +474,7 @@ def rotation_matrix(axis, theta):
     Return the rotation matrix associated with counterclockwise rotation about
     the given axis by theta radians.
 
-    :param axis: 
+    :param axis:
     :type axis:
     :param theta:
     :type theta:
@@ -489,3 +489,15 @@ def rotation_matrix(axis, theta):
     return np.array([[aa+bb-cc-dd, 2*(bc+ad), 2*(bd-ac)],
                      [2*(bc-ad), aa+cc-bb-dd, 2*(cd+ab)],
                      [2*(bd+ac), 2*(cd-ab), aa+dd-bb-cc]])
+
+
+def distort(dist_mat, mat):
+    """Apply distortion matrix to lattice vectors or sites.
+
+    Coordinates are assumed to be Cartesian."""
+    array = np.array(mat)
+    for i in range(len(mat)):
+        array[i, :] = np.array([np.sum(dist_mat[0, :]*mat[i, :]),
+                                np.sum(dist_mat[1, :]*mat[i, :]),
+                                np.sum(dist_mat[2, :]*mat[i, :])])
+    return array
