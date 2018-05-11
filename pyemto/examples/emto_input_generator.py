@@ -512,7 +512,7 @@ class EMTO:
             self.emto_basis = self.output_basis
 
         elif self.spg_ibz == 4:
-            rot1 = rotation_matrix([0.0, 0.0, 1.0], 60./180*np.pi)
+            rot1 = rotation_matrix([0.0, 0.0, 1.0], 0./180*np.pi)
             self.output_prima = np.dot(rot1, self.primaa)
             self.output_primb = np.dot(rot1, self.primbb)
             self.output_primc = np.dot(rot1, self.primcc)
