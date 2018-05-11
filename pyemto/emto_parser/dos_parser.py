@@ -32,7 +32,7 @@ class Element(object):
         
         
 class Get_DOS(object):
-	"""Parser for EMTO DOS files"""
+    """Parser for EMTO DOS files"""
     def __init__(self, fn):
         self.fn = fn
         self.data = None
@@ -50,7 +50,7 @@ class Get_DOS(object):
         self.startpoints = []
         self.endpoints = []
         for i, line in enumerate(self.lines):
-            if '#Sublattice' in line:
+            if 'Sublattice' in line:
                 tmp = line.split()[3]
                 self.nq += 1
                 self.labels.append(tmp)

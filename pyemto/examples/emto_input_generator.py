@@ -2,6 +2,7 @@ import sys
 import numpy as np
 from itertools import combinations
 from pyemto.utilities.utils import rotation_matrix
+import spglib as spg
 
 try:
     from pymatgen import Lattice, Structure
@@ -403,26 +404,52 @@ class EMTO:
         self.ibz_string = self.sg2bl[self.finder_space]
         self.ibz = self.sg2ibz[self.finder_space]
         #
-        print("Detected standard conventional structure:")
-        print(self.conv_struct)
-        print("Volume: ",self.conv_struct.volume)
-        print("Lattice vectors:")
-        print(self.conv_struct.lattice.matrix)
-        print("")
-        print("Detected standard structure:")
+        # spglib
+        spg_cell = (
+        self.pmg_input_lattice.matrix,
+        self.pmg_input_struct.frac_coords,
+        self.pmg_species
+        )
+        self.spg_space_group = spg.get_spacegroup(spg_cell)
+        self.spg_space_group_number = int(self.spg_space_group.split()[-1].lstrip('(').rstrip(')'))
+        self.spg_space_group_symbol = self.spg_space_group
+        self.spg_prim_lat, self.spg_prim_pos, self.spg_prim_species = spg.standardize_cell(spg_cell, to_primitive=True)
+        self.prim_struct = Structure(Lattice(self.spg_prim_lat), self.spg_prim_species, self.spg_prim_pos)
+        self.spg_ibz = self.sg2ibz[self.spg_space_group_number]
+        #print(spg_prim_pos)
+        #print(spg_prim_species)
+        #
+        #print("Detected standard conventional structure:")
+        #print(self.conv_struct)
+        #print("Volume: ",self.conv_struct.volume)
+        #print("Lattice vectors:")
+        #print(self.conv_struct.lattice.matrix)
+        #print("")
+        print("Detected standardized structure:")
         print(self.prim_struct)
         print("Volume: ", self.prim_struct.volume)
         print("Lattice vectors:")
         print(self.prim_struct.lattice.matrix)
         print("")
-        print("The spacegroup symbol of input structure: {}".format(self.finder_prim.get_space_group_symbol()))
-        print("The spacegroup number of input structure: {}".format(self.finder_prim.get_space_group_number()))
-        print("The crystal system of input structure   : {}".format(self.finder_prim.get_crystal_system()))
-        print("The lattice type of input structure     : {}".format(self.finder_prim.get_lattice_type()))
-        print("The point group of input structure      : {}".format(self.finder_prim.get_point_group_symbol()))
-        print("The Bravais lattice of input structure  : {}".format(self.ibz_string))
+        print("The spacegroup symbol of input structure: {}".format(self.spg_space_group))
+        print("The spacegroup number of input structure: {}".format(self.spg_space_group_number))
+        #print("The crystal system of input structure   : {}".format(self.finder_prim.get_crystal_system()))
+        #print("The lattice type of input structure     : {}".format(self.finder_prim.get_lattice_type()))
+        #print("The point group of input structure      : {}".format(self.finder_prim.get_point_group_symbol()))
+        print("The Bravais lattice of input structure  : {}".format(self.sg2bl[self.spg_space_group_number]))
         print("Number of basis atoms                   : {}".format(self.prim_struct.num_sites))
-        print("EMTO IBZ                                : {}".format(self.sg2ibz[self.finder_space]))
+        print("EMTO IBZ                                : {}".format(self.spg_ibz))
+
+        #print("The spacegroup symbol of input structure: {}".format(self.finder_prim.get_space_group_symbol()))
+        #print("The spacegroup number of input structure: {}".format(self.finder_prim.get_space_group_number()))
+        #print("The crystal system of input structure   : {}".format(self.finder_prim.get_crystal_system()))
+        #print("The lattice type of input structure     : {}".format(self.finder_prim.get_lattice_type()))
+        #print("The point group of input structure      : {}".format(self.finder_prim.get_point_group_symbol()))
+        #print("The Bravais lattice of input structure  : {}".format(self.ibz_string))
+        #print("Number of basis atoms                   : {}".format(self.prim_struct.num_sites))
+        #print("EMTO IBZ                                : {}".format(self.sg2ibz[self.finder_space]))
+        #print("spglib EMTO IBZ                         : {}".format(spg_ibz))
+
         print("")
         #
         self.primaa = self.prim_struct.lattice.matrix[0, :]
@@ -433,7 +460,7 @@ class EMTO:
         # self.primaX to lattice vectors used by EMTO.
         # This transform depends on the type of the Bravais lattice,
         # so each case must be treated separately.
-        if self.sg2ibz[self.finder_space] == 1:
+        if self.spg_ibz == 1:
             norm_tmp = np.linalg.norm(self.primaa)
             self.output_prima = self.primaa/norm_tmp
             self.output_primb = self.primbb/norm_tmp
@@ -450,7 +477,7 @@ class EMTO:
             self.emto_primc = np.array([0, 0, 1])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 2:
+        elif self.spg_ibz == 2:
             norm_tmp = 2*self.primaa[1]
             self.output_prima = self.primcc/norm_tmp
             self.output_primb = self.primaa/norm_tmp
@@ -467,7 +494,7 @@ class EMTO:
             self.emto_primc = np.array([0.5, 0, 0.5])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 3:
+        elif self.spg_ibz == 3:
             norm_tmp = 2*self.primaa[1]
             self.output_prima = self.primcc/norm_tmp
             self.output_primb = self.primaa/norm_tmp
@@ -484,7 +511,7 @@ class EMTO:
             self.emto_primc = np.array([0.5, -0.5, 0.5])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 4:
+        elif self.spg_ibz == 4:
             rot1 = rotation_matrix([0.0, 0.0, 1.0], 60./180*np.pi)
             self.output_prima = np.dot(rot1, self.primaa)
             self.output_primb = np.dot(rot1, self.primbb)
@@ -502,7 +529,7 @@ class EMTO:
             self.emto_primc = np.array([0., 0, self.output_coa])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 5:
+        elif self.spg_ibz == 5:
             norm_tmp = self.primaa[0]
             self.output_prima = self.primaa/norm_tmp
             self.output_primb = self.primbb/norm_tmp
@@ -519,7 +546,7 @@ class EMTO:
             self.emto_primc = np.array([0.0, 0.0, self.output_coa])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 6:
+        elif self.spg_ibz == 6:
             self.output_prima = self.primbb
             self.output_primb = self.primcc
             self.output_primc = self.primaa
@@ -535,7 +562,7 @@ class EMTO:
             self.emto_primc = np.array([-0.5, 0.5, self.output_coa/2])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 7:
+        elif self.spg_ibz == 7:
             alpha = self.prim_struct.lattice.alpha
             kulma = np.arctan((self.primaa[0]+self.primbb[0]+self.primcc[0])/
                               (self.primaa[2]+self.primbb[2]+self.primcc[2]))
@@ -563,7 +590,7 @@ class EMTO:
             self.emto_primc = np.array([np.sqrt(3.)/2, -0.5, self.output_coa])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 8:
+        elif self.spg_ibz == 8:
             norm_tmp = self.primaa[0]
             self.output_prima = self.primaa/norm_tmp
             self.output_primb = self.primbb/norm_tmp
@@ -580,7 +607,7 @@ class EMTO:
             self.emto_primc = np.array([0.0, 0.0 ,self.output_coa])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 9:
+        elif self.spg_ibz == 9:
             norm_tmp = 2*self.primaa[0]
             self.output_prima = self.primaa/norm_tmp
             self.output_primb = self.primbb/norm_tmp
@@ -598,7 +625,7 @@ class EMTO:
             self.emto_primc = np.array([0, 0, self.output_coa])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 10:
+        elif self.spg_ibz == 10:
             self.output_prima = np.zeros_like(self.primaa)
             self.output_primb = np.zeros_like(self.primbb)
             self.output_primc = np.zeros_like(self.primcc)
@@ -630,7 +657,7 @@ class EMTO:
             self.emto_primc = np.array([-0.5, self.output_boa/2, self.output_coa/2])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 11:
+        elif self.spg_ibz == 11:
             rot1 = rotation_matrix([1, 1, 1], 120./180*np.pi)
             self.output_prima = np.dot(rot1, self.primaa)
             self.output_primb = np.dot(rot1, self.primbb)
@@ -654,21 +681,34 @@ class EMTO:
             self.emto_primc = np.array([0, self.output_boa/2, self.output_coa/2])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 12:
-            gamma = self.prim_struct.lattice.angles[0]
-            bc_norm = np.linalg.norm(self.primbb)
-            rot1 = np.array([[1.0,0.0,0.0],
-                             [0.0,np.cos(np.radians(90)),np.sin(np.radians(90))],
-                             [0.0,-np.sin(np.radians(90)),np.cos(np.radians(90))]])
-            rot2 = np.array([[np.cos(np.radians(90)),0.0,-np.sin(np.radians(90))],
-                             [0.0,1.0,0.0],
-                             [np.sin(np.radians(90)),0.0,np.cos(np.radians(90))]])
-            self.output_prima = np.dot(rot2, np.dot(rot1, self.primbb/bc_norm))
-            self.output_primb = np.dot(rot2, np.dot(rot1, self.primcc/bc_norm))
-            self.output_primc = np.dot(rot2, np.dot(rot1, self.primaa/bc_norm))
+        elif self.spg_ibz == 12:
+            bc_norm = np.linalg.norm(self.primaa)
+            rot1 = rotation_matrix([1, 0, 0], -90./180*np.pi)
+            self.output_prima = np.dot(rot1, self.primaa/bc_norm)
+            self.output_primb = np.dot(rot1, self.primcc/bc_norm)
+            self.output_primc = np.dot(rot1, self.primbb/bc_norm)
+            # Mirror a3 from negative z-axis to positive side
+            self.output_primc *= -1.0
+            # spg uses gamma > 90, so we redine the a3 lattice vector so that
+            # gamma < 90:
+            self.output_primb[0] *= -1.0
+            gamma = get_angle(self.output_prima, self.output_primb)
+            y_fac = self.output_primb[1]
+            shift = np.abs(2*self.output_primb[0])
+            #
             # Apply transformation on the basis atoms
             for i in range(len(self.output_basis[:, 0])):
-                self.output_basis[i, :] = np.dot(rot2, np.dot(rot1, self.output_basis[i, :]))/bc_norm
+                self.output_basis[i, :] = np.dot(rot1, self.output_basis[i, :])/bc_norm
+            # Transform basis because self.output_primc was mirrored:
+            for i in range(len(self.output_basis[:, 0])):
+                self.output_basis[i, 2] *= -1.0
+            # Transform basis because gamma was changed above:
+            for i in range(len(self.output_basis[:, 0])):
+                #self.output_basis[i, :] = np.dot(shift_mat, self.output_basis[i, :])
+                if self.output_basis[i, 1] > 0:
+                    self.output_basis[i, 0] += shift * np.abs(self.output_basis[i, 1] / y_fac)
+                else:
+                    self.output_basis[i, 0] -= shift * np.abs(self.output_basis[i, 1] / y_fac)
             self.output_boa = np.linalg.norm(self.output_primb)
             self.output_coa = np.linalg.norm(self.output_primc)
             self.output_alpha = 0.0
@@ -680,7 +720,7 @@ class EMTO:
             self.emto_primc = np.array([0, 0, self.output_coa])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 13:
+        elif self.spg_ibz == 13:
             gamma = get_angle(self.primcc, self.primaa+self.primbb)
             rot1 = np.array([[1.0,0.0,0.0],
                              [0.0,np.cos(np.radians(180-gamma)),-np.sin(np.radians(180-gamma))],
@@ -709,7 +749,7 @@ class EMTO:
                                         self.output_coa/2])
             self.emto_basis = self.output_basis
 
-        elif self.sg2ibz[self.finder_space] == 14:
+        elif self.spg_ibz == 14:
             norm_tmp = self.primaa[0]
             self.output_prima = self.primaa/norm_tmp
             self.output_primb = self.primbb/norm_tmp
@@ -739,9 +779,9 @@ class EMTO:
                                         np.cos(np.radians(self.output_gamma)))/np.sin(np.radians(self.output_gamma))])
             self.emto_basis = self.output_basis
 
-        #
         self.output_sites = self.make_sites_array(self.prim_struct)
         self.output_lattice = Lattice(np.array([self.emto_prima, self.emto_primb, self.emto_primc]))
+        #self.output_lattice = Lattice(np.array([self.output_prima, self.output_primb, self.output_primc]))
         self.output_struct = Structure(self.output_lattice, self.output_sites,
                                        self.emto_basis, coords_are_cartesian=True)
         #
@@ -761,28 +801,33 @@ class EMTO:
             get_angle(self.output_primb, self.emto_primb),
             get_angle(self.output_primc, self.emto_primc)]
         for i, angle in enumerate(fitted_angles):
-            #print(angle)
+            print(angle)
             if angle > self.fit_angle_tol:
                 sys.exit('Error: Angle between lattice vectors {0} is {1} > {2}!!!'.format(i+1, angle, self.fit_angle_tol))
         fitted_ratios = [np.linalg.norm(self.output_prima) / np.linalg.norm(self.emto_prima),
             np.linalg.norm(self.output_primb) / np.linalg.norm(self.emto_primb),
             np.linalg.norm(self.output_primc) / np.linalg.norm(self.emto_primc)]
         for i, ratio in enumerate(fitted_ratios):
-            #print(ratio)
+            print(ratio)
             if np.abs(ratio - 1.0) > self.fit_norm_ratio_tol:
                 sys.exit('Error: Ratio between lattice vector {0} norms is {1} > {2}!!!'.format(i+1, ratio, self.fit_norm_ratio_tol))
+        print('')
         print('Structure similarity check (input vs. output for EMTO):')
-        fit1 = self.stm.fit_anonymous(self.pmg_input_struct, self.output_struct)
-        fit2 = self.stm.fit(self.pmg_input_struct, self.output_struct)
-        if fit1:
-            print('Same structure (sites only)     ?: ', fit1)
-        else:
-            sys.exit('Input and output structures differ (sites only) !!!')
-        if fit2:
-            print('Same structure (sites+chemistry)?: ', fit2)
-        else:
-            sys.exit('Input and output structures differ (sites + chemistry) !!!')
+        fit1 = self.stm.fit_anonymous(self.pmg_input_struct, self.prim_struct)
+        fit2 = self.stm.fit(self.pmg_input_struct, self.prim_struct)
+        fit3 = self.stm.fit_anonymous(self.prim_struct, self.output_struct)
+        fit4 = self.stm.fit(self.prim_struct, self.output_struct)
+        fit5 = self.stm.fit_anonymous(self.pmg_input_struct, self.output_struct)
+        fit6 = self.stm.fit(self.pmg_input_struct, self.output_struct)
+        print('Input  -> spglib (sites only)     ?: ', fit1)
+        print('Input  -> spglib (sites+chemistry)?: ', fit2)
+        print('spglib -> EMTO   (sites only)     ?: ', fit3)
+        print('spglib -> EMTO   (sites+chemistry)?: ', fit4)
+        print('Input  -> EMTO   (sites only)     ?: ', fit5)
+        print('Input  -> EMTO   (sites+chemistry)?: ', fit6)
         print("")
+        if not all([fit1, fit2, fit3, fit4, fit5, fit6]):
+            sys.exit('Some structures are not identical (check for False above) !!!')
         # Generate EMTO structure input files
         self.input_system.lattice.set_values(jobname_lat=self.latname,
                                              latpath=self.latpath,

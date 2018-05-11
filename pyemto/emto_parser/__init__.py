@@ -7,4 +7,4 @@
 """
 
 from pyemto.emto_parser.emtoparser import EMTOPARSER
-from pyemto.emto_parser.dos_parser import emto_dos
+from pyemto.emto_parser.dos_parser import Get_DOS
