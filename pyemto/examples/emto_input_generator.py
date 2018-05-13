@@ -402,7 +402,7 @@ class EMTO:
         self.finder_prim = SpacegroupAnalyzer(self.prim_struct, symprec=0.0001, angle_tolerance=0.0001)
         self.finder_space = self.finder_prim.get_space_group_number()
         self.ibz_string = self.sg2bl[self.finder_space]
-        self.ibz = self.sg2ibz[self.finder_space]
+        #self.ibz = self.sg2ibz[self.finder_space]
         #
         # spglib
         spg_cell = (
@@ -416,6 +416,7 @@ class EMTO:
         self.spg_prim_lat, self.spg_prim_pos, self.spg_prim_species = spg.standardize_cell(spg_cell, to_primitive=True)
         self.prim_struct = Structure(Lattice(self.spg_prim_lat), self.spg_prim_species, self.spg_prim_pos)
         self.spg_ibz = self.sg2ibz[self.spg_space_group_number]
+        self.ibz = self.spg_ibz
         #print(spg_prim_pos)
         #print(spg_prim_species)
         #
