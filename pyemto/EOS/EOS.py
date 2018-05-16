@@ -1069,7 +1069,7 @@ class EOS:
         E = a2 * x**2 + a1 * x + a0
         return E
 
-    def distortion_fit(self,x,y,num=2,title='',ascii_art=True):
+    def distortion_fit(self, x, y, num=2, title='', ascii_art=False):
         """Fits the distortion_poly function to
         the distortion data.
 
