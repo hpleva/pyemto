@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import sys
 import os
 import numpy as np
+import six
 from pyemto.utilities.utils import run_bash
-
 
 # Try to import pandas
 try:
@@ -52,7 +52,7 @@ def str2num(string):
     '''
     if string == 'np.nan':
         return np.nan
-    if not isinstance(string, basestring):
+    if not isinstance(string, str):
         #raise ValueError('input must be string, yours is a '+type(string).__name__)
         return string
     try:
@@ -91,6 +91,13 @@ class EMTOPARSER:
         # Create a list of the filenames
         self.KGRN_filenames = run_bash('ls {}'.format(self.KGRN_filenames)).split()
         self.KFCD_filenames = run_bash('ls {}'.format(self.KFCD_filenames)).split()
+
+        # In python3 run_bash returns bytestrings, so first we make sure they are decoded
+        # to regular strings.
+        for i in range(len(self.KGRN_filenames)):
+            self.KGRN_filenames[i] = self.KGRN_filenames[i].decode()
+        for i in range(len(self.KFCD_filenames)):
+            self.KFCD_filenames[i] = self.KFCD_filenames[i].decode()
 
         #self.xc = xc
         self.DLM = DLM
@@ -135,7 +142,7 @@ class EMTOPARSER:
         for KFCD_file in self.KFCD_filenames:
             energy_line = ''
             for xc in xc_list:
-                cmd =  "grep -H TOT-{0} {1}".format(xc,KFCD_file)
+                cmd =  "grep -H TOT-{0} {1}".format(xc, KFCD_file)
                 cmd_output = os.popen(cmd).readlines()
                 if xc == 'LDA':
                     #try:
@@ -145,7 +152,7 @@ class EMTOPARSER:
                     #    quit()
                     # If KGRN didnt finish properly cmd_output is empty, causing a crash right here!
                     if len(cmd_output) == 0:
-                        print(KFCD_file)
+                        print(KFCD_file + ' didn\'t finish properly!')
                         energy_line += KFCD_file+':' + ' ' + '0.0' + ' ' + '0.0'
                     else:
                         energy_line += KFCD_file+':' + ' ' + cmd_output[0].split()[7] + ' ' + cmd_output[0].split()[4]
@@ -313,7 +320,8 @@ class EMTOPARSER:
             # iteritems method return stuff in the order it is
             # organized internally insided the dictionary.
             # To get alphabetical order we can use sorted() method:
-            for key, value in sorted(formula_tmp.iteritems()):
+            #for key, value in sorted(formula_tmp.iteritems()):
+            for key, value in sorted(six.iteritems(formula_tmp)):
                 #print(key,value)
                 string_tmp += '{0:2}{1:5.3f}'.format(key,value)
                 mav_tmp += periodic_table[key]['Atomic mass']*value
