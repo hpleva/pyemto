@@ -260,37 +260,37 @@ class EMTOPARSER:
             concs = np.zeros(indMax + 1 - indMin)
             doses = np.zeros(indMax + 1 - indMin)
             its = np.zeros(indMax + 1 - indMin)
-        #
+            #
             ind_tmp = 0
             for i in range(indMin, indMax+1):
                 concs[ind_tmp] = float(lines[i].split()[-1])
                 its[ind_tmp] = int(lines[i].split()[1])
                 ind_tmp += 1
-        #
-        #print("concs = ",concs)
-        #print("its = ",its)
-        #
-        num_sites = np.max(its)
-        ind_tmp = len(doses) - 1
-        # Because KGRN output file is different for non- and magnetic calculations,
-        # we have to do some additional checks to make sure we are reading the right
-        # values.
-        for i in range(len(lines)-1,indMax,-1):
-            if dos_tag in lines[i]:
-                #print(lines[i])
-                if mag_tag in lines[i+1] or hop_tag in lines[i+1]:
-                    #print(lines[i+1])
-                    doses[ind_tmp] = float(lines[i].split()[-1])
-                    ind_tmp -= 1
-                if ind_tmp == -1:
-                    break
-        #
-        dos_tot = 0.0
-        for i in range(len(concs)):
-            dos_tot += concs[i]*doses[i]
-        dos_tot /= num_sites
-        #
-        all_output.append('{0} {1}'.format(KGRN_file,dos_tot).split())
+                #
+            #print("concs = ",concs)
+            #print("its = ",its)
+            #
+            num_sites = np.max(its)
+            ind_tmp = len(doses) - 1
+            # Because KGRN output file is different for non- and magnetic calculations,
+            # we have to do some additional checks to make sure we are reading the right
+            # values.
+            for i in range(len(lines)-1,indMax,-1):
+                if dos_tag in lines[i]:
+                    #print(lines[i])
+                    if mag_tag in lines[i+1] or hop_tag in lines[i+1]:
+                        #print(lines[i+1])
+                        doses[ind_tmp] = float(lines[i].split()[-1])
+                        ind_tmp -= 1
+                    if ind_tmp == -1:
+                        break
+            #
+            dos_tot = 0.0
+            for i in range(len(concs)):
+                dos_tot += concs[i]*doses[i]
+            dos_tot /= num_sites
+            #
+            all_output.append('{0} {1}'.format(KGRN_file,dos_tot).split())
         return all_output
 
     def get_Formula_and_Mav(self):
@@ -306,7 +306,7 @@ class EMTOPARSER:
             nq_tmp = self.main_df.NQ[index]
             elem_len = len(elems)
             formula_tmp = {}
-            print(elems)
+            #print(elems)
             for i in range(elem_len):
                 if elems[i] == None:
                     pass
@@ -420,15 +420,15 @@ class EMTOPARSER:
         self.EN.reset_index(inplace=True)
         self.EN.set_index(["FN"],inplace=True)
         #
-        self.conc_df  = self.Df(self.Concentration(),self.ConcentrationColumn,self.ConcentrationColumnName)
+        self.conc_df  = self.Df(self.Concentration(), self.ConcentrationColumn, self.ConcentrationColumnName)
         self.conc_df.Elem = self.conc_df.Elem.str.replace("(","")
         #
         # Extract DOS(Ef) out of KGRN output files
-        self.dos_df = self.Df(self.DOSEF(),self.DOSColumn,self.DOSColumnName).applymap(str2num)
+        self.dos_df = self.Df(self.DOSEF(), self.DOSColumn, self.DOSColumnName).applymap(str2num)
 
         # Extract magnetic moments
-        self.mag_df = self.Df(self.Mag(),self.MagneticColumn,self.MagneticColumnName)
-        self.mag_df = self.mag_df.join(self.EN,on=["FN"])
+        self.mag_df = self.Df(self.Mag(), self.MagneticColumn, self.MagneticColumnName)
+        self.mag_df = self.mag_df.join(self.EN, on=["FN"])
 
         if self.nameparser is None:
             pass
