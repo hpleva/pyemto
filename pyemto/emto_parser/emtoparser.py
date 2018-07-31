@@ -5,36 +5,17 @@ import numpy as np
 import six
 from pyemto.utilities.utils import run_bash
 
-# Try to import pandas
 try:
     import pandas as pd
 except ImportError:
-    # pandas has not been installed
     raise ImportError('EMTOPARSER requires pandas>=0.20.3 to be installed!')
 
-#pd.options.display.max_columns = 5200
-#pd.set_option('notebook_repr_html',True)
-#pd.set_option('display.width', 1000)
-#pd.set_option('display.max_colwidth', 100)
-
-All = slice(None)
-
 # Set up some constants
-
 ry2ev = 13.605698066 #eV
-#Kb = 8.617332478e-5*0.073498618 #Ry/K
-#Kb = 1.3806488e-23*1000#mJ/K
-#kb = 8.6173324E-5 #eV/K
 kb = 8.6173324E-5/ry2ev #Ry/K
 bohr2angstrom = 0.529177249
-#Anstr2M = 1e-10
-#Ry2mJ = 2.1798741e-18 * 1000
-#RyPbohr32Gpa = 14710.5
-#RyPbohr22mJPm2 = Ry2mJ/(Bohr2Anstr*Anstr2M)**2
 
-nameparserexample = r'KFCD-(?P<STR>...).*Ni(?P<NiCC>[0-8]+)-(?P<SWS0>[0-9]\.[0-9]+)-.*-(?P<REX>[0-9]+)-.*'
-
-#Loads element data from json file
+# Loads periodic table data from a json file
 with open(os.path.join(os.path.dirname(__file__), "periodic_table.json"), "rt") as f:
     periodic_table = pd.read_json(f)
 
@@ -66,8 +47,8 @@ def str2num(string):
             except ValueError:
                 return string
 
-class EMTOPARSER:
-
+            
+class EMTOPARSER(object):
     def __init__(self,KGRN_filenames,KFCD_filenames,suffix="prn",DLM=False):
         """
         parse KGRN and KFCD output
@@ -128,7 +109,7 @@ class EMTOPARSER:
         self.STATUS = self.Df(self.get_Status(),self.StatusColumn,self.StatusColumnName)
         self.COA = self.Df(self.get_COA(),self.COAColumn,self.COAColumnName)
         #self.EN = self.EN.join(self.STR.set_index(["FN"]),on=["FN"]).applymap(str2num)
-        self.EN = self.STR.join(self.EN.set_index(["FN"]),on=["FN"]).applymap(str2num)
+        self.EN = self.STR.join(self.EN.set_index(["FN"]), on=["FN"]).applymap(str2num)
         self.EN.insert(1, 'Status',   self.STATUS.loc[:,'Status'])
         self.EN.insert(3, 'COA', self.COA.loc[:,'COA'])
 
@@ -306,7 +287,7 @@ class EMTOPARSER:
             nq_tmp = self.main_df.NQ[index]
             elem_len = len(elems)
             formula_tmp = {}
-            #print(elems)
+            #print(nq_tmp, elems)
             for i in range(elem_len):
                 if elems[i] == None:
                     pass
@@ -318,9 +299,8 @@ class EMTOPARSER:
             string_tmp = ''
             mav_tmp = 0.0
             # iteritems method return stuff in the order it is
-            # organized internally insided the dictionary.
+            # organized internally inside the dictionary.
             # To get alphabetical order we can use sorted() method:
-            #for key, value in sorted(formula_tmp.iteritems()):
             for key, value in sorted(six.iteritems(formula_tmp)):
                 #print(key,value)
                 string_tmp += '{0:2}{1:5.3f}'.format(key,value)
@@ -328,13 +308,6 @@ class EMTOPARSER:
             #print(string_tmp)
             all_output.append([string_tmp,mav_tmp])
         return all_output
-
-    #def get_Mav(self):
-    #    """
-    #    Calculates the average atomic mass of the system.
-    #    """
-    #    all_output = []
-
 
     def get_NQ(self):
         """ 
@@ -347,7 +320,6 @@ class EMTOPARSER:
             # Sanity check for crashed calculations:
             if len(cmd_output) == 0:
                 cmd_output = [KFCD_file+":           NQ  =  1 NL  =  0 NLM = 81 NS  =  0 CPA_ALPHA =  0.000000\n"]
-            #print(cmd_output)
             for i in cmd_output:
                 all_output.append(i.split())
         return all_output
@@ -364,7 +336,6 @@ class EMTOPARSER:
             # Sanity check for crashed calculations:
             if len(cmd_output) == 0:
                 cmd_output = [KFCD_file+':           BSX( 3)=   0.00000 BSY( 3)=   0.00000 BSZ( 3)=   0.00000\n']
-            #print(cmd_output)
             for i in cmd_output:
                 all_output.append(i.split())
         return all_output
@@ -383,7 +354,12 @@ class EMTOPARSER:
                 cmd_output = os.popen(cmd).readlines()
                 # Check if crashed somehow:
                 if len(cmd_output) == 0:
-                    cmd_output = [KGRN_file+':' + ' ' + 'Crashed_somehow!!!']
+                    cmd = 'grep -H \'Fermi level not found.\' {}'.format(KGRN_file)
+                    cmd_output = os.popen(cmd).readlines()
+                    if len(cmd_output) != 0:
+                        cmd_output = [cmd_output[-1].rstrip('\n').replace(' ', '_').replace(':_', ': ')]
+                    else:
+                        cmd_output = [KGRN_file+':' + ' ' + 'Crashed_somehow!!!']
                 else:
                     cmd_output = [KGRN_file+':' + ' ' + 'Not_converged!!!']
             else:
@@ -408,7 +384,6 @@ class EMTOPARSER:
             all_output.append(cmd_output[0].split())
         return all_output
 
-
     def Df(self,list,col,colname):
         return pd.DataFrame([[i[x] for x in col] for i in list],columns=colname)
 
@@ -416,12 +391,11 @@ class EMTOPARSER:
         """
         Create pandas DataFrame from extracted data
         """
-        import sys
         self.EN.reset_index(inplace=True)
-        self.EN.set_index(["FN"],inplace=True)
+        self.EN.set_index(["FN"], inplace=True)
         #
         self.conc_df  = self.Df(self.Concentration(), self.ConcentrationColumn, self.ConcentrationColumnName)
-        self.conc_df.Elem = self.conc_df.Elem.str.replace("(","")
+        self.conc_df.Elem = self.conc_df.Elem.str.replace("(", "")
         #
         # Extract DOS(Ef) out of KGRN output files
         self.dos_df = self.Df(self.DOSEF(), self.DOSColumn, self.DOSColumnName).applymap(str2num)
@@ -439,28 +413,28 @@ class EMTOPARSER:
             fnc.append("Struc")
             self.mag_df = self.mag_df.join(fn_df)
 
-        self.main_df  = self.conc_df.join(self.mag_df,rsuffix='r')
+        self.main_df  = self.conc_df.join(self.mag_df, rsuffix='r')
         if (self.main_df.FN != self.main_df.FNr).any():
             print("big problem !!!")
             raise ValueError
-        self.main_df.drop(["FNr","IQr"],axis=1,inplace=True)
+        self.main_df.drop(["FNr", "IQr"], axis=1, inplace=True)
 
         self.main_df = pd.pivot_table(self.main_df.applymap(str2num),
-        index=["FN","Status","Struc","COA","SWS","ELDA","EPBE","EP07","EQNA"],
-        values=["Mag","Conc","Elem"],columns=["IQ","ITA"],aggfunc = lambda x: max(x))
+        index=["index", "FN", "Status", "Struc", "COA", "SWS", "ELDA", "EPBE", "EP07", "EQNA"],
+        values=["Mag", "Conc", "Elem"], columns=["IQ", "ITA"], aggfunc = lambda x: max(x)
+        )
 
         self.main_df = self.main_df.applymap(str2num)
-
-        # Some tricks
         self.main_df = self.main_df.reset_index()
+        self.main_df.drop(["index"], axis=1, inplace=True)
         # Get rid of the ':' that grep puts at the end of the filename:
-        self.main_df.FN = self.main_df.FN.str.replace(":","")
+        self.main_df.FN = self.main_df.FN.str.replace(":", "")
 
-        self.nq_df = self.Df(self.get_NQ(),self.NQColumn,self.NQColumnName).applymap(str2num)
+        self.nq_df = self.Df(self.get_NQ(), self.NQColumn, self.NQColumnName).applymap(str2num)
 
         # Compute volume per atom
         vol_per_atom = 4.0/3*np.pi*(self.main_df.SWS*bohr2angstrom)**3
-        self.main_df.insert(4,'VOL',vol_per_atom)
+        self.main_df.insert(4, 'VOL', vol_per_atom)
 
         # Calculate configurational entropy
         if self.DLM == False:
