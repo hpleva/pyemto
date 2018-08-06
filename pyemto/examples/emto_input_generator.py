@@ -417,6 +417,30 @@ class EMTO:
         self.prim_struct = Structure(Lattice(self.spg_prim_lat), self.spg_prim_species, self.spg_prim_pos)
         self.spg_ibz = self.sg2ibz[self.spg_space_group_number]
         self.ibz = self.spg_ibz
+
+        mesh = [kwargs['nkx'], kwargs['nky'], kwargs['nkz']]
+        print()
+        print('#'*60)
+        mapping, grid = spg.get_ir_reciprocal_mesh(mesh, spg_cell, is_time_reversal=True, is_shift=(0, 0, 0))
+        uniques, counts = np.unique(mapping, return_counts=True)
+        all_weights = []
+        kpoints = []
+        weights = []
+        for xx in mapping:
+            all_weights.append(counts[np.argwhere(uniques == xx).flatten()[0]])
+        for xx, yy in zip(uniques, counts):
+            kpoints.append(grid[np.argwhere(mapping == xx).flatten()[0]])
+            weights.append(yy)
+        for xx, yy, zz in zip(mapping, grid, all_weights):
+            print(xx, yy, zz)
+        print()
+        for kp, ww in zip(kpoints, weights):
+            print(kp, ww)
+        print()
+        print('NKVEC = ', len(kpoints))
+        print('#'*60)
+        print()
+        
         #print(spg_prim_pos)
         #print(spg_prim_species)
         #
