@@ -473,8 +473,10 @@ class EMTOPARSER(object):
             Smag = kb*np.sum(np.log(np.abs(self.main_df.Mag[1].ix[:,::2])+1.)*2*self.main_df.Conc[1].ix[:,::2],axis=1)
             self.Smag_df = pd.DataFrame(Smag,columns=["Smag"])
 
-        self.insert_index = 10
-        count = 0
+        if self.KGRN_filenames is not None:
+            self.insert_index = 10
+        else:
+            self.insert_index = 9
         self.main_df.insert(self.insert_index,   'Sconf',   self.Sconf_df.loc[:,'Sconf'])
         self.insert_index += 1
         self.main_df.insert(self.insert_index, 'Smag',    self.Smag_df.loc[:,'Smag'])
