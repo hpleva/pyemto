@@ -49,7 +49,7 @@ def str2num(string):
 
             
 class EMTOPARSER(object):
-    def __init__(self,KGRN_filenames,KFCD_filenames,suffix="prn",DLM=False):
+    def __init__(self, KFCD_filenames, KGRN_filenames=None, suffix="prn", DLM=False):
         """
         parse KGRN and KFCD output
         after init you can get a pd.DataFrame self.EN
@@ -66,17 +66,23 @@ class EMTOPARSER(object):
                 FeCrNi.EN have FN Etot Esite SWS and S as columns
                 FeCrNi.CM have Mag and CC for each IQ ITA and element
         """
-        self.KGRN_filenames = KGRN_filenames + '.' + suffix
+
+        if KGRN_filenames is not None:
+            self.KGRN_filenames = KGRN_filenames + '.' + suffix
+        else:
+            self.KGRN_filenames = None
         self.KFCD_filenames = KFCD_filenames + '.' + suffix
 
         # Create a list of the filenames
-        self.KGRN_filenames = run_bash('ls {}'.format(self.KGRN_filenames)).split()
+        if self.KGRN_filenames is not None:
+            self.KGRN_filenames = run_bash('ls {}'.format(self.KGRN_filenames)).split()
         self.KFCD_filenames = run_bash('ls {}'.format(self.KFCD_filenames)).split()
 
         # In python3 run_bash returns bytestrings, so first we make sure they are decoded
         # to regular strings.
-        for i in range(len(self.KGRN_filenames)):
-            self.KGRN_filenames[i] = self.KGRN_filenames[i].decode()
+        if self.KGRN_filenames is not None:
+            for i in range(len(self.KGRN_filenames)):
+                self.KGRN_filenames[i] = self.KGRN_filenames[i].decode()
         for i in range(len(self.KFCD_filenames)):
             self.KFCD_filenames[i] = self.KFCD_filenames[i].decode()
 
@@ -106,13 +112,18 @@ class EMTOPARSER(object):
         self.nameparser = None
         self.EN = self.Df(self.Energy(),self.EnergyColumn,self.EnergyColumnName).applymap(str2num)
         self.STR = self.Df(self.Structure(),self.StructureColumn,self.StructureColumnName)
-        self.STATUS = self.Df(self.get_Status(),self.StatusColumn,self.StatusColumnName)
+        if self.KGRN_filenames is not None:
+            self.STATUS = self.Df(self.get_Status(),self.StatusColumn,self.StatusColumnName)
         self.COA = self.Df(self.get_COA(),self.COAColumn,self.COAColumnName)
         #self.EN = self.EN.join(self.STR.set_index(["FN"]),on=["FN"]).applymap(str2num)
         self.EN = self.STR.join(self.EN.set_index(["FN"]), on=["FN"]).applymap(str2num)
-        self.EN.insert(1, 'Status',   self.STATUS.loc[:,'Status'])
-        self.EN.insert(3, 'COA', self.COA.loc[:,'COA'])
-
+        if self.KGRN_filenames is not None:
+            self.EN.insert(1, 'Status',   self.STATUS.loc[:,'Status'])
+            self.insert_index = 3
+        else:
+            self.insert_index = 2
+        self.EN.insert(self.insert_index, 'COA', self.COA.loc[:,'COA'])
+            
     def Energy(self):
         """
         Extract Total energies from the KFCD output file
@@ -398,7 +409,8 @@ class EMTOPARSER(object):
         self.conc_df.Elem = self.conc_df.Elem.str.replace("(", "")
         #
         # Extract DOS(Ef) out of KGRN output files
-        self.dos_df = self.Df(self.DOSEF(), self.DOSColumn, self.DOSColumnName).applymap(str2num)
+        if self.KGRN_filenames is not None:
+            self.dos_df = self.Df(self.DOSEF(), self.DOSColumn, self.DOSColumnName).applymap(str2num)
 
         # Extract magnetic moments
         self.mag_df = self.Df(self.Mag(), self.MagneticColumn, self.MagneticColumnName)
@@ -413,17 +425,27 @@ class EMTOPARSER(object):
             fnc.append("Struc")
             self.mag_df = self.mag_df.join(fn_df)
 
-        self.main_df  = self.conc_df.join(self.mag_df, rsuffix='r')
+        self.main_df = self.conc_df.join(self.mag_df, rsuffix='r')
         if (self.main_df.FN != self.main_df.FNr).any():
             print("big problem !!!")
             raise ValueError
         self.main_df.drop(["FNr", "IQr"], axis=1, inplace=True)
 
-        self.main_df = pd.pivot_table(self.main_df.applymap(str2num),
-        index=["index", "FN", "Status", "Struc", "COA", "SWS", "ELDA", "EPBE", "EP07", "EQNA"],
-        values=["Mag", "Conc", "Elem"], columns=["IQ", "ITA"], aggfunc = lambda x: max(x)
-        )
-
+        if self.KGRN_filenames is not None:
+            self.main_df = pd.pivot_table(self.main_df.applymap(str2num),
+                                          index=["index", "FN", "Status", "Struc", "COA", "SWS",
+                                                 "ELDA", "EPBE", "EP07", "EQNA"],
+                                          values=["Mag", "Conc", "Elem"],
+                                          columns=["IQ", "ITA"], aggfunc = lambda x: max(x))
+        else:
+            # Status field is grabbed from KGRN output files, so it is left out if there
+            # are no KGRN output files available.
+            self.main_df = pd.pivot_table(self.main_df.applymap(str2num),
+                                          index=["index", "FN", "Struc", "COA", "SWS",
+                                                 "ELDA", "EPBE", "EP07", "EQNA"],
+                                          values=["Mag", "Conc", "Elem"],
+                                          columns=["IQ", "ITA"], aggfunc = lambda x: max(x))
+            
         self.main_df = self.main_df.applymap(str2num)
         self.main_df = self.main_df.reset_index()
         self.main_df.drop(["index"], axis=1, inplace=True)
@@ -434,7 +456,7 @@ class EMTOPARSER(object):
 
         # Compute volume per atom
         vol_per_atom = 4.0/3*np.pi*(self.main_df.SWS*bohr2angstrom)**3
-        self.main_df.insert(4, 'VOL', vol_per_atom)
+        self.main_df.insert(self.insert_index+1, 'VOL', vol_per_atom)
 
         # Calculate configurational entropy
         if self.DLM == False:
@@ -451,16 +473,23 @@ class EMTOPARSER(object):
             Smag = kb*np.sum(np.log(np.abs(self.main_df.Mag[1].ix[:,::2])+1.)*2*self.main_df.Conc[1].ix[:,::2],axis=1)
             self.Smag_df = pd.DataFrame(Smag,columns=["Smag"])
 
-        insert_index = 10
-        self.main_df.insert(insert_index,   'Sconf',   self.Sconf_df.loc[:,'Sconf'])
-        self.main_df.insert(insert_index+1, 'Smag',    self.Smag_df.loc[:,'Smag'])
-        self.main_df.insert(insert_index+2, 'DOSEF',   self.dos_df.loc[:,'DOSEF'])
-        self.main_df.insert(insert_index+3, 'NQ',      self.nq_df.loc[:,'NQ'])
+        self.insert_index = 10
+        count = 0
+        self.main_df.insert(self.insert_index,   'Sconf',   self.Sconf_df.loc[:,'Sconf'])
+        self.insert_index += 1
+        self.main_df.insert(self.insert_index, 'Smag',    self.Smag_df.loc[:,'Smag'])
+        self.insert_index += 1
+        if self.KGRN_filenames is not None:
+            self.main_df.insert(self.insert_index, 'DOSEF',   self.dos_df.loc[:,'DOSEF'])
+            self.insert_index += 1
+        self.main_df.insert(self.insert_index, 'NQ',      self.nq_df.loc[:,'NQ'])
 
         # Construct the chemical formula and the average atomic mass of the system:
-        self.formula_df = self.Df(self.get_Formula_and_Mav(),self.FormulaColumn,self.FormulaColumnName).applymap(str2num)
-        self.main_df.insert(insert_index+3, 'Formula', self.formula_df.loc[:,'Formula'])
-        self.main_df.insert(insert_index+4, 'Mav', self.formula_df.loc[:,'Mav'])
+        self.formula_df = self.Df(self.get_Formula_and_Mav(), self.FormulaColumn,
+                                  self.FormulaColumnName).applymap(str2num)
+        self.main_df.insert(self.insert_index, 'Formula', self.formula_df.loc[:,'Formula'])
+        self.insert_index += 1
+        self.main_df.insert(self.insert_index, 'Mav', self.formula_df.loc[:,'Mav'])
 
         # Calculate average atomic mass (which is needed when Debye temperature is calculated.)
         #self.mav_df = self.Df(self.get_Mav(),self.MavColumn,self.MavColumnName)
