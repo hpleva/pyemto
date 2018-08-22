@@ -1229,6 +1229,8 @@ class EOS:
 
     @staticmethod
     def polyfit(x,y,n):
+        if n < 2:
+            raise ValueError("Polynomial order n must be 2 or larger.")
         imag_tol = 1.0e-10
     # Perform fit using a polynomial of order n:
         z = np.polyfit(x,y,n)

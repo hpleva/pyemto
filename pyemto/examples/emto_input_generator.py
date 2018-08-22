@@ -616,12 +616,27 @@ class EMTO:
             self.emto_basis = self.output_basis
 
         elif self.spg_ibz == 8:
-            norm_tmp = self.primaa[0]
-            self.output_prima = self.primaa/norm_tmp
-            self.output_primb = self.primbb/norm_tmp
-            self.output_primc = self.primcc/norm_tmp
-            # Apply transformation on the basis atoms
-            self.output_basis = self.output_basis/norm_tmp
+            if np.abs(self.primaa[0]) < np.abs(self.primcc[2]):
+                norm_tmp = self.primcc[2]
+                rot1 = rotation_matrix([0.0, 0.0, 1.0], -90./180*np.pi)
+                rot2 = rotation_matrix([-1.0, 0.0, 0.0], 90./180*np.pi)
+                self.output_prima = np.dot(rot2, np.dot(rot1, self.primbb))/norm_tmp
+                self.output_primb = np.dot(rot2, np.dot(rot1, self.primcc))/norm_tmp
+                self.output_primc = np.dot(rot2, np.dot(rot1, self.primaa))/norm_tmp
+                print(self.output_prima)
+                print(self.output_primb)
+                print(self.output_primc)
+                # Apply transformation on the basis atoms
+                for i in range(len(self.output_basis[:, 0])):
+                    self.output_basis[i,:] = np.dot(rot2, np.dot(rot1, self.output_basis[i, :]))/norm_tmp
+            else:
+                norm_tmp = self.primaa[0]
+                self.output_prima = self.primaa/norm_tmp
+                self.output_primb = self.primbb/norm_tmp
+                self.output_primc = self.primcc/norm_tmp
+                # Apply transformation on the basis atoms
+                self.output_basis = self.output_basis/norm_tmp
+            #
             self.output_boa = self.output_primb[1]
             self.output_coa = self.output_primc[2]
             self.output_alpha = 0.0
