@@ -280,6 +280,7 @@ class EMTO:
                             coords_are_cartesian=False, latname=None,
                             species=None, find_primitive=True,
                             concs=None, splts=None, its=None, ws_wsts=None,
+                            make_supercell=None,
                             **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
@@ -380,10 +381,15 @@ class EMTO:
         #
         self.coords_are_cartesian = coords_are_cartesian
         self.ibz = None
+        self.make_supercell = make_supercell
         #
         self.pmg_input_lattice = Lattice(self.prims)
         self.pmg_input_struct = Structure(self.pmg_input_lattice, self.pmg_species, self.basis,
                                           coords_are_cartesian=self.coords_are_cartesian)
+        #
+        if self.make_supercell is not None:
+            self.pmg_input_struct.make_supercell(self.make_supercell)
+        #
         self.sws = self.calc_ws_radius(self.pmg_input_struct)
         #
         self.finder = SpacegroupAnalyzer(self.pmg_input_struct, symprec=0.0001, angle_tolerance=0.0001)
@@ -419,8 +425,8 @@ class EMTO:
         self.ibz = self.spg_ibz
 
         mesh = [kwargs['nkx'], kwargs['nky'], kwargs['nkz']]
-        print()
-        print('#'*60)
+        #print()
+        #print('#'*60)
         mapping, grid = spg.get_ir_reciprocal_mesh(mesh, spg_cell, is_time_reversal=True, is_shift=(0, 0, 0))
         uniques, counts = np.unique(mapping, return_counts=True)
         all_weights = []
@@ -431,15 +437,15 @@ class EMTO:
         for xx, yy in zip(uniques, counts):
             kpoints.append(grid[np.argwhere(mapping == xx).flatten()[0]])
             weights.append(yy)
-        for xx, yy, zz in zip(mapping, grid, all_weights):
-            print(xx, yy, zz)
-        print()
-        for kp, ww in zip(kpoints, weights):
-            print(kp, ww)
-        print()
-        print('NKVEC = ', len(kpoints))
-        print('#'*60)
-        print()
+        #for xx, yy, zz in zip(mapping, grid, all_weights):
+        #    print(xx, yy, zz)
+        #print()
+        #for kp, ww in zip(kpoints, weights):
+        #    print(kp, ww)
+        #print()
+        #print('NKVEC = ', len(kpoints))
+        #print('#'*60)
+        #print()
         
         #print(spg_prim_pos)
         #print(spg_prim_species)
@@ -616,7 +622,15 @@ class EMTO:
             self.emto_basis = self.output_basis
 
         elif self.spg_ibz == 8:
-            if np.abs(self.primaa[0]) < np.abs(self.primcc[2]):
+            if np.abs(self.primaa[0]) < np.abs(self.primbb[1]) and np.abs(self.primbb[1]) < np.abs(self.primcc[2]):
+                norm_tmp = self.primaa[0]
+                self.output_prima = self.primaa/norm_tmp
+                self.output_primb = self.primbb/norm_tmp
+                self.output_primc = self.primcc/norm_tmp
+                # Apply transformation on the basis atoms
+                self.output_basis = self.output_basis/norm_tmp
+                
+            elif np.abs(self.primaa[0]) < np.abs(self.primcc[2]):
                 norm_tmp = self.primcc[2]
                 rot1 = rotation_matrix([0.0, 0.0, 1.0], -90./180*np.pi)
                 rot2 = rotation_matrix([-1.0, 0.0, 0.0], 90./180*np.pi)
