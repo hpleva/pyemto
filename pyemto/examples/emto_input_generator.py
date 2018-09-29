@@ -629,6 +629,16 @@ class EMTO:
                 self.output_primc = self.primcc/norm_tmp
                 # Apply transformation on the basis atoms
                 self.output_basis = self.output_basis/norm_tmp
+
+            if np.abs(np.abs(self.primaa[0]) - np.abs(self.primbb[1])) < 1.e-6 and \
+               np.abs(self.primbb[1]) < np.abs(self.primcc[2]):
+                norm_tmp = self.primaa[0]
+                self.output_prima = self.primaa/norm_tmp
+                self.output_primb = self.primbb/norm_tmp
+                self.output_primc = self.primcc/norm_tmp
+                # Apply transformation on the basis atoms
+                self.output_basis = self.output_basis/norm_tmp
+
                 
             elif np.abs(self.primaa[0]) < np.abs(self.primcc[2]):
                 norm_tmp = self.primcc[2]
