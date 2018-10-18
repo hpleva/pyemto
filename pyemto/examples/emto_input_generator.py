@@ -605,6 +605,7 @@ class EMTO:
             self.output_primb = np.dot(rot2, np.dot(rot1, self.primbb))
             self.output_primc = np.dot(rot2, np.dot(rot1, self.primcc))
             scale_a = self.output_prima[1]
+            print('scale_a = ',scale_a)
             self.output_prima = self.output_prima/scale_a
             self.output_primb = self.output_primb/scale_a
             self.output_primc = self.output_primc/scale_a
