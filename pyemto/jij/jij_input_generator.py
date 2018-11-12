@@ -1,0 +1,203 @@
+#!/usr/bin/env python
+import numpy as np
+import sys
+import re
+import click
+
+@click.command()
+@click.argument('kstr_input')
+@click.option('--jobname', default='jobname', help='Jobname should be the same as the KGRN jobname.')
+@click.option('--output_folder', default='./', help='The folder where the Jij input file will be written.')
+@click.option('--shifts', default='[2,2,2]', help='How many unit cell layers will be included in the NN search. Far away NN-pairs require many layers. Give as a python list of three integers, e.g. --shifts=\'[2,2,2]\'.')
+def write_jij_input_file(kstr_input=None, ref_site=0, shifts=[2,2,2], output_folder='./', jobname='jobname',
+                        nstart=1, nfinish=None, ncomp=1, delete_equivalent=False):
+    # Parse KSTR input file
+    if type(shifts) is str:
+        shifts = eval(shifts)
+    if kstr_input is None:
+        sys.exit('KSTR input file must be given!!!')
+    kstr = open(kstr_input, 'r')
+    lines = kstr.readlines()
+    for line in lines:
+        if 'IPRIM' in line:
+            iprim = int(line.split()[5])
+            if iprim == 0:
+                sys.exit('IPRIM = 0 is not supported yet!!!')
+        if 'LAT.' in line:
+            line = re.split('=| ', line.rstrip('\n'))
+            tmp = []
+            for i in line:
+                try:
+                    tmp.append(int(i))
+                except:
+                    pass
+            lat = tmp[1]
+    # Construct lattice and basis vectors
+    radf = np.pi/180
+    for line in lines:
+        if 'A.' in line and 'B.' in line and 'C.' in line:
+            line = re.split('=| ', line.rstrip('\n'))
+            a = float(line[1])
+            b = float(line[3])
+            c = float(line[5])
+            boa = b/a
+            coa = c/a
+        if 'ALPHA.' in line:
+            line = re.split('=| ', line.rstrip('\n'))
+            angles = []
+            for i in line:
+                try:
+                    tmp = float(i)
+                    angles.append(tmp)
+                except:
+                    pass
+            alpha, beta, gamma = np.array(angles)*radf
+            #print(alpha, beta, gamma)
+
+    basis = []
+    for line in lines:
+        if 'QX' in line and 'QY' in line and 'QZ' in line:
+            line = re.split('=| ', line.rstrip('\n'))
+            pos = []
+            for i in line:
+                try:
+                    pos.append(float(i))
+                except:
+                    pass
+            basis.append(pos)
+    basis = np.array(basis)
+    print(basis)
+    if lat == 1:
+        lattice = np.array([
+            [1.0,0.0,0.0],
+            [0.0,1.0,0.0],
+            [0.0,0.0,1.0]
+        ])
+    elif lat == 2:
+        lattice = np.array([
+            [0.5,0.5,0.0],
+            [0.0,0.5,0.5],
+            [0.5,0.0,0.5]
+        ])
+    elif lat == 3:
+        lattice = np.array([
+            [0.5,0.5,-0.5],
+            [-0.5,0.5,0.5],
+            [0.5,-0.5,0.5]
+        ])
+    elif lat == 4:
+        sys.exit('LAT = ' + str(lat) + ' not implemented yet!!!')
+    elif lat == 5:
+        lattice = np.array([
+            [1.0,0.0,0.0],
+            [0.0,1.0,0.0],
+            [0.0,0.0,coa]
+        ])
+    elif lat == 6:
+        lattice = np.array([
+            [-0.5,0.5,coa/2],
+            [0.5,-0.5,coa/2],
+            [0.5,0.5,-coa/2]
+        ])
+    elif lat == 7:
+        sys.exit('LAT = ' + str(lat) + ' not implemented yet!!!')
+    elif lat == 8:
+        lattice = np.array([
+            [1.0,0.0,0.0],
+            [0.0,boa,0.0],
+            [0.0,0.0,coa]
+        ])
+    elif lat == 9:
+        lattice = np.array([
+            [0.5,-boa/2,0.0],
+            [0.5,boa/2,0.0],
+            [0.0,0.0,coa]
+        ])
+    elif lat == 10:
+        lattice = np.array([
+            [0.5,-boa/2,coa/2],
+            [0.5,boa/2,-coa/2],
+            [-0.5,boa/2,coa/2]
+        ])
+    elif lat == 11:
+        sys.exit('LAT = ' + str(lat) + ' not implemented yet!!!')
+    elif lat == 12:
+        sys.exit('LAT = ' + str(lat) + ' not implemented yet!!!')
+    elif lat == 13:
+        sys.exit('LAT = ' + str(lat) + ' not implemented yet!!!')
+    elif lat == 14:
+        sys.exit('LAT = ' + str(lat) + ' not implemented yet!!!')
+    #
+    Nsites = len(basis)
+    header = '          Vectors for pair GPM (J_xc) interactions: expP_1j' + '\n'
+    file = open(output_folder + jobname + '.jij', 'w')
+    file.write(header)
+    #
+    data = []
+    for atom1 in range(1, Nsites+1):
+        for atom2 in range(1, Nsites+1):
+            for i in range(-shifts[0], shifts[0]+1):
+                for j in range(-shifts[1], shifts[1]+1):
+                    for k in range(-shifts[2], shifts[2]+1):
+                        # lattice displacement for pair ij in multiple of the basis vectors
+                        cell_disp = i*lattice[0] + j*lattice[1] + k*lattice[2]
+                        # Do not include same site inside the same unit cell (self-interaction)
+                        if i==0 and j==0 and k==0 and atom1==atom2:
+                            continue
+                        atom_disp = cell_disp + basis[atom2-1] - basis[atom1-1]
+                        distance = np.linalg.norm(atom_disp)
+                        data.append((atom1, atom2, cell_disp[0], cell_disp[1], cell_disp[2], distance))
+    #
+    dtype = [('site1', np.int64), ('site2', np.int64), ('cell_disp1', np.float64), ('cell_disp2', np.float64),
+             ('cell_disp3', np.float64), ('dist', np.float64)]
+    data = np.array(data, dtype=dtype)
+    data = np.sort(data, order=['dist','site1','site2','cell_disp3','cell_disp2','cell_disp1'])
+    #
+    # Keep only inequivalent i-j pairs
+    if delete_equivalent:
+        drop_index = []
+        for i, row in enumerate(data):
+            if i in drop_index:
+                continue
+            a1, a2, cd1, cd2, cd3, dis = row
+            for j in range(i+1, len(data)):
+                row2 = data[j]
+                if j in drop_index:
+                    continue
+                a1x, a2x, cd1x, cd2x, cd3x, disx = row2
+                if a1 == a2x and a2 == a1x and cd1 == -cd1x and cd2 == -cd2x and \
+                   cd3 == -cd3x and np.abs(dis-disx)<1e-12:
+                    if a1 < a2:
+                        drop_index.append(j)
+                    elif a1x < a2x:
+                        drop_index.append(i)
+                    elif len(np.where(np.array([cd1,cd2,cd3])<0)[0]) < \
+                         len(np.where(np.array([cd1x,cd2x,cd3x])<0)[0]):
+                        drop_index.append(j)
+                    else:
+                        drop_index.append(i)
+        #
+        data_new = []
+        for i, row in enumerate(data):
+            if i in drop_index:
+                continue
+            data_new.append(row)
+        data = np.array(data_new, dtype=dtype)
+        data = np.sort(data, order=['dist','site1','site2','cell_disp3','cell_disp2','cell_disp1'])
+    #
+    trim_template = ' 1 4476  1           '
+    if nfinish is None:
+        nfinish = len(data)
+    file.write(' {0} {1} {2}'.format(nstart,nfinish,ncomp).ljust(len(trim_template)) + 
+               ':: nstart, nfinish, ncomp\n')
+    #
+    for row in data:
+        string = str(row[0]).ljust(3) + str(row[1]).ljust(3)
+        string += '{0:9.6f} {1:9.6f} {2:9.6f} '.format(row[2],row[3],row[4])
+        string += '  # {0:15.12f}\n'.format(row[5])
+        file.write(string)
+    file.close()
+    return data
+
+if __name__ == '__main__':
+    write_jij_input_file()
