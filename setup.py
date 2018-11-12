@@ -34,4 +34,5 @@ setup(name='pyemto',
       extras_require={"emto_parser": ["pandas>=0.20.3"],
                       "emto_input_generator": ["pymatgen>=4.4.0"]},
       ext_modules = cythonize(extensions),
+      scripts=['pyemto/jij/create_jij_input']
       )
