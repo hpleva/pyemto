@@ -66,7 +66,6 @@ def write_jij_input_file(kstr_input=None, ref_site=0, shifts=[2,2,2], output_fol
                     pass
             basis.append(pos)
     basis = np.array(basis)
-    print(basis)
     if lat == 1:
         lattice = np.array([
             [1.0,0.0,0.0],
@@ -147,6 +146,7 @@ def write_jij_input_file(kstr_input=None, ref_site=0, shifts=[2,2,2], output_fol
                         atom_disp = cell_disp + basis[atom2-1] - basis[atom1-1]
                         distance = np.linalg.norm(atom_disp)
                         data.append((atom1, atom2, cell_disp[0], cell_disp[1], cell_disp[2], distance))
+                        #data.append((atom1, atom2, i, j, k, distance))
     #
     dtype = [('site1', np.int64), ('site2', np.int64), ('cell_disp1', np.float64), ('cell_disp2', np.float64),
              ('cell_disp3', np.float64), ('dist', np.float64)]
@@ -191,11 +191,13 @@ def write_jij_input_file(kstr_input=None, ref_site=0, shifts=[2,2,2], output_fol
     file.write(' {0} {1} {2}'.format(nstart,nfinish,ncomp).ljust(len(trim_template)) + 
                ':: nstart, nfinish, ncomp\n')
     #
+    index = 1
     for row in data:
         string = str(row[0]).ljust(3) + str(row[1]).ljust(3)
-        string += '{0:9.6f} {1:9.6f} {2:9.6f} '.format(row[2],row[3],row[4])
-        string += '  # {0:15.12f}\n'.format(row[5])
+        string += '{0:15.12f} {1:15.12f} {2:15.12f} '.format(row[2],row[3],row[4])
+        string += '  # {0:15.12f}  {1}\n'.format(row[5],index)
         file.write(string)
+        index += 1
     file.close()
     return data
 
