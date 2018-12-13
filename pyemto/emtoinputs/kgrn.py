@@ -431,9 +431,12 @@ class Kgrn:
         :returns:
         :rtype:
         """
-
-        line = "%-2s    %3i %2i %2i  %2i  %5.3f  %5.3f  %5.3f  %5.3f  %3.1f %4.1f  %s" \
-            % (atom, iq, it, ita, self.symtonum[atom], conc, Sm_s, S_ws, WS_wst, qtr, splt, fix)
+        if conc > 10:
+            line = "%-2s    %3i %2i %2i  %2i  %5.2f  %5.3f  %5.3f  %5.3f  %3.1f %4.1f  %s" \
+                   % (atom, iq, it, ita, self.symtonum[atom], conc, Sm_s, S_ws, WS_wst, qtr, splt, fix)
+        else:
+            line = "%-2s    %3i %2i %2i  %2i  %5.3f  %5.3f  %5.3f  %5.3f  %3.1f %4.1f  %s" \
+                   % (atom, iq, it, ita, self.symtonum[atom], conc, Sm_s, S_ws, WS_wst, qtr, splt, fix)
 
         return line
 

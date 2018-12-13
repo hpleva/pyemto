@@ -354,8 +354,13 @@ class EMTO:
                     for j in range(len(concs[i])):
                         tmp.append(concs[i][j])
                         tmp_sum += concs[i][j]
-                    if np.abs(tmp_sum - 1.0) > 1.e-6:
-                        sys.exit('Concentrations {0} for site {1} do not add up to 1.0!!!'.format(concs[i], i+1))
+                    print(tmp_sum)
+                    if tmp_sum < 1.1:
+                        if np.abs(tmp_sum - 1.0) > 1.e-6:
+                            sys.exit('Concentrations {0} for site {1} do not add up to 1.0!!!'.format(concs[i], i+1))
+                    else:
+                        if np.abs(tmp_sum - 100.0) > 1.e-3:
+                            sys.exit('Concentrations {0} for site {1} do not add up to 100!!!'.format(concs[i], i+1))                        
                     self.concs.append(tmp)
                 else:
                     self.concs.append([concs[i]])
