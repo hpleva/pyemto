@@ -11,3 +11,6 @@
 build/
 dist/
 pyemto.egg-info/
+
+# Do not track Cython generated C code
+pyemto/c/c_lattice.c
