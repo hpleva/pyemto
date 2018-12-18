@@ -7,9 +7,7 @@ Easily generate input files and corresponding batch scripts for the EMTO
 Installation
 ------------
 
-   pip install pyemto
-
-or::
+::
 
    git clone https://github.com/hpleva/pyemto.git
    cd pyemto

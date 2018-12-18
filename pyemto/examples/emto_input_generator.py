@@ -416,7 +416,8 @@ class EMTO:
         self.spg_space_group = spg.get_spacegroup(spg_cell)
         self.spg_space_group_number = int(self.spg_space_group.split()[-1].lstrip('(').rstrip(')'))
         self.spg_space_group_symbol = self.spg_space_group
-        self.spg_prim_lat, self.spg_prim_pos, self.spg_prim_species = spg.standardize_cell(spg_cell, to_primitive=True)
+        self.spg_prim_lat, self.spg_prim_pos, self.spg_prim_species = spg.standardize_cell(spg_cell,
+                                                                                           to_primitive=True)
         self.prim_struct = Structure(Lattice(self.spg_prim_lat), self.spg_prim_species, self.spg_prim_pos)
         self.spg_ibz = self.sg2ibz[self.spg_space_group_number]
         self.ibz = self.spg_ibz
@@ -906,8 +907,8 @@ class EMTO:
         if (self.spg_ibz != self.emto_ibz):
             print("Input and output IBZ are different!!!")
             should_exit = True
-        #if should_exit:
-        #    sys.exit("Structure conversion went wrong! Check the symmetry information above.")
+        if should_exit:
+            sys.exit("Structure conversion went wrong! Check the symmetry information above.")
         #
         fitted_angles = [get_angle(self.output_prima, self.emto_prima),
             get_angle(self.output_primb, self.emto_primb),
@@ -938,8 +939,8 @@ class EMTO:
         print('Input  -> EMTO   (sites+chemistry)?: ', fit6)
         print("")
 
-        print(self.prim_struct)
-        print(self.output_struct)
+        #print(self.prim_struct)
+        #print(self.output_struct)
         
         if not all([fit1, fit2, fit3, fit4, fit5, fit6]):
             sys.exit('Some structures are not identical (check for False above) !!!')
