@@ -857,7 +857,6 @@ class EMTO:
 
         self.output_sites = self.make_sites_array(self.prim_struct)
         self.output_lattice = Lattice(np.array([self.emto_prima, self.emto_primb, self.emto_primc]))
-        #self.output_lattice = Lattice(np.array([self.output_prima, self.output_primb, self.output_primc]))
         self.output_struct = Structure(self.output_lattice, self.output_sites,
                                        self.emto_basis, coords_are_cartesian=True)
         #
@@ -899,7 +898,10 @@ class EMTO:
         print("Number of basis atoms                   : {}".format(self.output_struct.num_sites))
         print("EMTO IBZ                                : {}".format(self.emto_ibz))
         print("")
-        #
+
+        print(self.prim_struct)
+        print(self.emto_struct)
+        
         should_exit = False
         if (self.spg_space_group != self.emto_space_group):
             print("Input and output spacegroups are different!!!")
@@ -938,9 +940,6 @@ class EMTO:
         print('Input  -> EMTO   (sites only)     ?: ', fit5)
         print('Input  -> EMTO   (sites+chemistry)?: ', fit6)
         print("")
-
-        #print(self.prim_struct)
-        #print(self.output_struct)
         
         if not all([fit1, fit2, fit3, fit4, fit5, fit6]):
             sys.exit('Some structures are not identical (check for False above) !!!')

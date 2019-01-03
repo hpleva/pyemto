@@ -14,7 +14,7 @@ extensions = [
 ]
 
 setup(name='pyemto',
-      version='0.9.3',
+      version='0.9.5',
       description='Program to generate input files for EMTO program',
       author='H. Levämäki, M. Ropo',
       author_email='hpleva@utu.fi, matti.ropo@tut.fi',
