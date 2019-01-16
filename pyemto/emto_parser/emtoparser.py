@@ -49,7 +49,7 @@ def str2num(string):
 
             
 class EMTOPARSER(object):
-    def __init__(self, KFCD_filenames, KGRN_filenames=None, suffix="prn", DLM=False):
+    def __init__(self, KGRN_filenames, KFCD_filenames=None, suffix="prn", DLM=False):
         """
         parse KGRN and KFCD output
         after init you can get a pd.DataFrame self.EN
