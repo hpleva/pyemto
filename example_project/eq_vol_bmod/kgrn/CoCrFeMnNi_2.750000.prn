@@ -1,0 +1,4066 @@
+ TASK:     Self-consistent KKR Calc for CoCrFeMnNi_2.750000. 00:39 / 24-Jan-19  
+
+ FHNDLR:   Program: KGRN, Version: LV 24 Oct 2013 
+
+           JOB:    CoCrFeMnNi_2.750000
+           FOR001: /proj/snic2016-1-180/users/x_henle/HEA_ELF_project/CoCrFeMnNi/eq_vol_bmod/PM_CPA/kstr/fcc.tfh
+           FOR002: kgrn/CoCrFeMnNi_2.750000.pot
+           FOR003: kgrn/CoCrFeMnNi_2.750000.atm
+           FOR004: /proj/snic2016-1-180/users/x_henle/HEA_ELF_project/CoCrFeMnNi/eq_vol_bmod/PM_CPA/bmdl/fcc.mdl
+           FOR006: kgrn/CoCrFeMnNi_2.750000.prn
+           FOR009: kgrn/CoCrFeMnNi_2.750000.zms
+           FOR010: kgrn/CoCrFeMnNi_2.750000.chd
+           FOR011: kgrn/tmp/CoCrFeMnNi_2.750000.tmp
+
+           MSGL = 1 STRT =A FUNC = SCA EXPAN = S FCD = Y
+ 
+       EMTO versio: 5.8.0-72-g41b653d
+ current branch on: KED_ELF
+   commit hash key: 41b653d3184b434d0218530b14d0310cf66cc0a6
+        compile on: 2019-01-21T12:20:12
+           OS info: Linux 3.10.0-957.1.3.el7.x86_64 x86_64 GNU/Linux
+          CPU-info: Intel(R) Xeon(R) Gold 6130 CPU @ 2.10GHz
+     compiler-info: ifort (IFORT) 18.0.3 20180410
+   BLAS and LAPACK: mkl
+        Build Type: release
+
+ TRNSFM:   Single Taylor expansion for the slope matrix
+
+           Slope matrices, fcc       , (kappa*w)^2=   0.0            20-Jan-19  
+
+           ITRANS =  3 (kappa0*w)^2 =   0.000 NDER =  6
+
+ INPUT:    Non-overlapping values are used for f and g
+
+           Higher tails included in the charge density Lmaxt =  4
+
+           Full charge density is calculated for       Lmaxh =  8
+
+           Soft core approximation
+
+           TOLE   =0.1000E-05 TOLEF =0.1000E-05 TOLCPA=0.1000E-05
+           DEPTH  = 1.0000000 IMAGZ = 0.0200000 EPS   = 0.2000000
+           AMIX   = 0.0100000 EFMIX = 1.0000000 ALPCPA= 0.6000000
+
+           NQ     =  1 NT    =  1 NL    =  4 NS    =  2 MNTA  = 10
+           KMSH   =  G IBZ   =  2 NKX   = 13 NKY   = 13 NKZ   = 13
+           ZMSH   =  C NZ1   = 16 NZ2   =  8 NZ3   =  8 NRES  =  4
+           NITER  =200 NLIN  = 31 NCPA  = 15 AFM   =  F CRT   =  M
+
+ MGAUN:    Generate real Gaunt numbers
+
+ MGAUNT:   NGAUNT =   708
+
+ SET3DI:   Angular integration mesh generated with NTH =  91 NFI =  91
+
+ ROTM3D:   Set up the 3D rotation matrices for IBZ =  2
+
+           Rotation matrices generated, NPRPRT = 48
+
+ SETSYM:   Set up the site-group symmetry elements for IQ =  1
+
+           E     sigb  C31+  C31-  sigf  sige  C4z+  C4z-
+           C2z   sigx  C2d   C4y-  S64-  S62+  sigy  C4x+
+           C2c   S62-  S63+  siga  C33+  C34-  S4x+  S4y-
+           I     C2b   S61-  S61+  C2f   C2e   S4z-  S4z+
+           sigz  C2x   sigd  S4y+  C34+  C32-  C2y   S4x-
+           sigc  C32+  C33-  C2a   S63-  S64+  C4x-  C4y+
+
+
+ MADMTR:   Madelung potential for fcc                                20-Jan-19  
+
+           NLMAD  =  49
+
+ SCAWS:    IQ IT ITA  WS     S      Sm     Si     Sc     hard spheres (s,p,...)
+
+            1  1  1 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1  2 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1  3 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1  4 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1  5 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1  6 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1  7 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1  8 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1  9 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+            1  1 10 2.7500 2.7500 2.7500 2.4879 3.5185 1.9250 1.9250 1.9250 1.9250
+
+           Exchange-correlation: P-W
+
+ ATOMI:    Atomic calculation for Co   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 27 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 353   JRIA  = 355   JWOA  =   0   NP    = 419
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.7131534E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Co     3d7_4s2                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -5.5683392E+02
+            2s1/2      2         0       0.00     -6.5993867E+01
+            2p3/2      2         0       0.00     -5.7341669E+01
+            2p1/2      4         0       0.00     -5.6254842E+01
+            3s1/2      2         0       0.00     -7.5673806E+00
+            3p3/2      2         0       0.00     -4.9875461E+00
+            3p1/2      4         0       0.00     -4.8504070E+00
+            3d5/2      4         1       0.02     -7.0953347E-01
+            3d3/2      3         1       0.03     -6.9530075E-01
+            4s1/2      2         1       0.54     -5.1518105E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1635.824170 VINT =  -4457.601376 EKIN =   2821.777206
+           ENUC =  -6672.396732 ECOR =   1888.932662
+           EVAL =    476.654012 EXCT =   -113.798874 EXCC =      0.000000
+           ETOT =  -2781.625063
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      2821.777206
+           El-ion energy      -6672.396732
+           El-el energy        1182.793337
+           Exc energy          -113.798874
+
+           Total energy       -2781.625063
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Co   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 27 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 353   JRIA  = 355   JWOA  =   0   NP    = 419
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.7131534E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Co     3d7_4s2                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -5.5683392E+02
+            2s1/2      2         0       0.00     -6.5993867E+01
+            2p3/2      2         0       0.00     -5.7341669E+01
+            2p1/2      4         0       0.00     -5.6254842E+01
+            3s1/2      2         0       0.00     -7.5673806E+00
+            3p3/2      2         0       0.00     -4.9875461E+00
+            3p1/2      4         0       0.00     -4.8504070E+00
+            3d5/2      4         1       0.02     -7.0953347E-01
+            3d3/2      3         1       0.03     -6.9530075E-01
+            4s1/2      2         1       0.54     -5.1518105E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1635.824170 VINT =  -4457.601376 EKIN =   2821.777206
+           ENUC =  -6672.396732 ECOR =   1888.932662
+           EVAL =    476.654012 EXCT =   -113.798874 EXCC =      0.000000
+           ETOT =  -2781.625063
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      2821.777206
+           El-ion energy      -6672.396732
+           El-el energy        1182.793337
+           Exc energy          -113.798874
+
+           Total energy       -2781.625063
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Cr   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 24 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 349   JRIA  = 351   JWOA  =   0   NP    = 415
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.8040782E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Cr     3d4_4s2                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -4.3147542E+02
+            2s1/2      2         0       0.00     -4.9301913E+01
+            2p3/2      2         0       0.00     -4.1991756E+01
+            2p1/2      4         0       0.00     -4.1358088E+01
+            3s1/2      2         0       0.00     -5.7721093E+00
+            3p3/2      2         0       0.00     -3.7397995E+00
+            3p1/2      4         0       0.00     -3.6629995E+00
+            3d5/2      4         1       0.06     -5.3354023E-01
+            4s1/2      2         1       0.64     -4.6033211E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1247.701165 VINT =  -3367.966919 EKIN =   2120.265754
+           ENUC =  -5003.977161 ECOR =   1518.263882
+           EVAL =    240.536305 EXCT =    -92.689077 EXCC =      0.000000
+           ETOT =  -2097.000390
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      2120.265754
+           El-ion energy      -5003.977161
+           El-el energy         879.400094
+           Exc energy           -92.689077
+
+           Total energy       -2097.000390
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Cr   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 24 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 349   JRIA  = 351   JWOA  =   0   NP    = 415
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.8040782E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Cr     3d4_4s2                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -4.3147542E+02
+            2s1/2      2         0       0.00     -4.9301913E+01
+            2p3/2      2         0       0.00     -4.1991756E+01
+            2p1/2      4         0       0.00     -4.1358088E+01
+            3s1/2      2         0       0.00     -5.7721093E+00
+            3p3/2      2         0       0.00     -3.7397995E+00
+            3p1/2      4         0       0.00     -3.6629995E+00
+            3d5/2      4         1       0.06     -5.3354023E-01
+            4s1/2      2         1       0.64     -4.6033211E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1247.701165 VINT =  -3367.966919 EKIN =   2120.265754
+           ENUC =  -5003.977161 ECOR =   1518.263882
+           EVAL =    240.536305 EXCT =    -92.689077 EXCC =      0.000000
+           ETOT =  -2097.000390
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      2120.265754
+           El-ion energy      -5003.977161
+           El-el energy         879.400094
+           Exc energy           -92.689077
+
+           Total energy       -2097.000390
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Fe   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 26 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 351   JRIA  = 353   JWOA  =   0   NP    = 417
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.7572524E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Fe     3d7_4s1                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -5.1292415E+02
+            2s1/2      2         0       0.00     -5.9829197E+01
+            2p3/2      2         0       0.00     -5.1634184E+01
+            2p1/2      4         0       0.00     -5.0718777E+01
+            3s1/2      2         0       0.00     -6.6399344E+00
+            3p3/2      2         0       0.00     -4.2560325E+00
+            3p1/2      4         0       0.00     -4.1433090E+00
+            3d5/2      4         1       0.07     -3.9934352E-01
+            3d3/2      3         1       0.07     -3.8931669E-01
+            4s1/2      1         1       0.64     -4.4868290E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1493.229353 VINT =  -4067.436254 EKIN =   2574.206901
+           ENUC =  -6089.848273 ECOR =   1765.096580
+           EVAL =    398.882412 EXCT =   -106.838843 EXCC =      0.000000
+           ETOT =  -2540.490719
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      2574.206901
+           El-ion energy      -6089.848273
+           El-el energy        1081.989496
+           Exc energy          -106.838843
+
+           Total energy       -2540.490719
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Fe   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 26 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 351   JRIA  = 353   JWOA  =   0   NP    = 417
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.7572524E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Fe     3d7_4s1                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -5.1292415E+02
+            2s1/2      2         0       0.00     -5.9829197E+01
+            2p3/2      2         0       0.00     -5.1634184E+01
+            2p1/2      4         0       0.00     -5.0718777E+01
+            3s1/2      2         0       0.00     -6.6399344E+00
+            3p3/2      2         0       0.00     -4.2560325E+00
+            3p1/2      4         0       0.00     -4.1433090E+00
+            3d5/2      4         1       0.07     -3.9934352E-01
+            3d3/2      3         1       0.07     -3.8931669E-01
+            4s1/2      1         1       0.64     -4.4868290E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1493.229353 VINT =  -4067.436254 EKIN =   2574.206901
+           ENUC =  -6089.848273 ECOR =   1765.096580
+           EVAL =    398.882412 EXCT =   -106.838843 EXCC =      0.000000
+           ETOT =  -2540.490719
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      2574.206901
+           El-ion energy      -6089.848273
+           El-el energy        1081.989496
+           Exc energy          -106.838843
+
+           Total energy       -2540.490719
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Mn   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 25 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 351   JRIA  = 353   JWOA  =   0   NP    = 417
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.7572524E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Mn     3d5_4s2                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -4.7144639E+02
+            2s1/2      2         0       0.00     -5.4611198E+01
+            2p3/2      2         0       0.00     -4.6859221E+01
+            2p1/2      4         0       0.00     -4.6094600E+01
+            3s1/2      2         0       0.00     -6.3531596E+00
+            3p3/2      2         0       0.00     -4.1439341E+00
+            3p1/2      4         0       0.00     -4.0497549E+00
+            3d5/2      4         1       0.04     -5.9478201E-01
+            3d3/2      1         1       0.04     -5.8603513E-01
+            4s1/2      2         1       0.61     -4.7939622E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1371.329183 VINT =  -3711.818967 EKIN =   2340.489784
+           ENUC =  -5526.682931 ECOR =   1637.507190
+           EVAL =    309.096909 EXCT =    -99.437040 EXCC =      0.000000
+           ETOT =  -2312.328137
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      2340.489784
+           El-ion energy      -5526.682931
+           El-el energy         973.302049
+           Exc energy           -99.437040
+
+           Total energy       -2312.328137
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Mn   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 25 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 351   JRIA  = 353   JWOA  =   0   NP    = 417
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.7572524E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Mn     3d5_4s2                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -4.7144639E+02
+            2s1/2      2         0       0.00     -5.4611198E+01
+            2p3/2      2         0       0.00     -4.6859221E+01
+            2p1/2      4         0       0.00     -4.6094600E+01
+            3s1/2      2         0       0.00     -6.3531596E+00
+            3p3/2      2         0       0.00     -4.1439341E+00
+            3p1/2      4         0       0.00     -4.0497549E+00
+            3d5/2      4         1       0.04     -5.9478201E-01
+            3d3/2      1         1       0.04     -5.8603513E-01
+            4s1/2      2         1       0.61     -4.7939622E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1371.329183 VINT =  -3711.818967 EKIN =   2340.489784
+           ENUC =  -5526.682931 ECOR =   1637.507190
+           EVAL =    309.096909 EXCT =    -99.437040 EXCC =      0.000000
+           ETOT =  -2312.328137
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      2340.489784
+           El-ion energy      -5526.682931
+           El-el energy         973.302049
+           Exc energy           -99.437040
+
+           Total energy       -2312.328137
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Ni   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 28 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 353   JRIA  = 355   JWOA  =   0   NP    = 419
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.7131534E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Ni     3d8_4s2                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -6.0226948E+02
+            2s1/2      2         0       0.00     -7.2075392E+01
+            2p3/2      2         0       0.00     -6.2964481E+01
+            2p1/2      4         0       0.00     -6.1682525E+01
+            3s1/2      2         0       0.00     -8.2038101E+00
+            3p3/2      2         0       0.00     -5.4297844E+00
+            3p1/2      4         0       0.00     -5.2665150E+00
+            3d5/2      4         1       0.02     -7.6408788E-01
+            3d3/2      4         1       0.02     -7.4638542E-01
+            4s1/2      2         1       0.51     -5.3229199E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1776.788538 VINT =  -4860.378136 EKIN =   3083.589598
+           ENUC =  -7297.271837 ECOR =   2021.137202
+           EVAL =    576.658166 EXCT =   -121.419478 EXCC =      0.000000
+           ETOT =  -3036.204033
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      3083.589598
+           El-ion energy      -7297.271837
+           El-el energy        1298.897684
+           Exc energy          -121.419478
+
+           Total energy       -3036.204033
+
+ Atomic charge densities, and potential stored on FOR003
+
+ ATOMI:    Atomic calculation for Ni   WSATM =  2.750000
+
+           NITER =100 IEX   =  4 IWAT  =  0 IZ    = 28 ION   =  0
+
+           Precision on energy, wavefunction, and potential:
+
+           TESTE =  1.00E-12 TESTY =  1.00E-12 TESTV =  1.00E-12
+           VMIX  =  0.300000
+
+           Precision on energy and number of iterations in DIRACA:
+
+           TEST  =  1.00E-12 NES   = 15
+
+           Radial mesh given by (R(1)=DR1/IZ) : 
+
+           JWSA  = 353   JRIA  = 355   JWOA  =   0   NP    = 419
+           DR1   =  0.002000 DX    =  0.030000 RMAX  = 20.000000
+           R(1)  =  0.7131534E-04         R(NP) =  0.1991754E+02
+
+           Exchange-correlation: Perdew-Wang-CA      
+
+           Valence orbital Nodes
+
+                 4s          3
+                 4p          2
+                 3d          0
+                 4f          0
+
+ ATOMC:    Ni     3d8_4s2                Perdew-Wang-CA      
+
+
+           Orbital   Occup.   Valence   deltaQ   Final energy (Rydberg)
+
+            1s1/2      2         0       0.00     -6.0226948E+02
+            2s1/2      2         0       0.00     -7.2075392E+01
+            2p3/2      2         0       0.00     -6.2964481E+01
+            2p1/2      4         0       0.00     -6.1682525E+01
+            3s1/2      2         0       0.00     -8.2038101E+00
+            3p3/2      2         0       0.00     -5.4297844E+00
+            3p1/2      4         0       0.00     -5.2665150E+00
+            3d5/2      4         1       0.02     -7.6408788E-01
+            3d3/2      4         1       0.02     -7.4638542E-01
+            4s1/2      2         1       0.51     -5.3229199E-01
+
+ TOTALT:   (Rydberg)
+
+           EONE =  -1776.788538 VINT =  -4860.378136 EKIN =   3083.589598
+           ENUC =  -7297.271837 ECOR =   2021.137202
+           EVAL =    576.658166 EXCT =   -121.419478 EXCC =      0.000000
+           ETOT =  -3036.204033
+
+           Valence energies in the frozen core approximation (Rydbergs)
+
+           Kinetic energy      3083.589598
+           El-ion energy      -7297.271837
+           El-el energy        1298.897684
+           Exc energy          -121.419478
+
+           Total energy       -3036.204033
+
+ Atomic charge densities, and potential stored on FOR003
+
+           Self-consistent bulk program: ATOM
+
+
+ OLDIN:    NT     =  1 NS   =  2
+
+           EFGS   =  0.000000
+
+ SETRMS:   dimension for potential spheres     : 355
+
+           dimension for circumscribed spheres : 362
+
+           IT ITA    Si      w       Sc      S
+
+            1  1     349     353     362     353
+                   2.4879  2.7500  3.5185  2.7500
+            1  2     349     353     362     353
+                   2.4879  2.7500  3.5185  2.7500
+            1  3     345     349     358     349
+                   2.4879  2.7500  3.5185  2.7500
+            1  4     345     349     358     349
+                   2.4879  2.7500  3.5185  2.7500
+            1  5     347     351     360     351
+                   2.4879  2.7500  3.5185  2.7500
+            1  6     347     351     360     351
+                   2.4879  2.7500  3.5185  2.7500
+            1  7     347     351     360     351
+                   2.4879  2.7500  3.5185  2.7500
+            1  8     347     351     360     351
+                   2.4879  2.7500  3.5185  2.7500
+            1  9     349     353     362     353
+                   2.4879  2.7500  3.5185  2.7500
+            1 10     349     353     362     353
+                   2.4879  2.7500  3.5185  2.7500
+
+ SETNGB:   Madelung correction for each site and sort
+
+             0.401941  0.401941  0.401941  0.401941  0.401941  0.401941  0.401941  0.401941
+
+             0.401941  0.401941
+
+ NXTSWS:   IQ IT ITA MMT Type  NZ ION  ELN   QTR   SPLIT  FIX  CONC
+
+            1  1  1   1   Co   27  0   9.0  0.000  1.000   N  0.100
+            1  1  2   1   Co   27  0   9.0  0.000 -1.000   N  0.100
+            1  1  3   1   Cr   24  0   6.0  0.000  1.000   N  0.100
+            1  1  4   1   Cr   24  0   6.0  0.000 -1.000   N  0.100
+            1  1  5   1   Fe   26  0   8.0  0.000  1.000   N  0.100
+            1  1  6   1   Fe   26  0   8.0  0.000 -1.000   N  0.100
+            1  1  7   1   Mn   25  0   7.0  0.000  1.000   N  0.100
+            1  1  8   1   Mn   25  0   7.0  0.000 -1.000   N  0.100
+            1  1  9   1   Ni   28  0  10.0  0.000  1.000   N  0.100
+            1  1 10   1   Ni   28  0  10.0  0.000 -1.000   N  0.100
+
+           SWS =    2.7500 Alat =  7.0369 Bohr   3.7238 AA
+           VOL =   87.1137 ELT  =  8.0000
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  346   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  346   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  342   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  342   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  344   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  344   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  344   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  344   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  346   4.975849    0.707107    0.049162  10.53 %
+
+           Number of different overlapping spheres NOV =  1
+
+            jt  wov   ovt jrov   tov(Bohr)   tov(a)      okac     omega
+
+             1   12    1  346   4.975849    0.707107    0.049162  10.53 %
+
+ OVRLPS:   VOL =   87.113746 VOLS =   87.113746 VOLI =    0.000000
+
+ RENORM:   IT         CWS             ZWS
+             1  1   0.18000000E+02 0.25742699E+02
+             1  2   0.18000000E+02 0.25742699E+02
+             1  3   0.18000000E+02 0.22465955E+02
+             1  4   0.18000000E+02 0.22465955E+02
+             1  5   0.18000000E+02 0.24870536E+02
+             1  6   0.18000000E+02 0.24870536E+02
+             1  7   0.18000000E+02 0.23563077E+02
+             1  8   0.18000000E+02 0.23563077E+02
+             1  9   0.18000000E+02 0.26823441E+02
+             1 10   0.18000000E+02 0.26823441E+02
+
+ OPTPOT:   Fbar =  0.000000 g = -0.678490 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.678490 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.678490     -0.678490
+
+ EBTOP:      Bot       Top
+
+            -0.751001 10.538473
+
+ KMESH:    Brillouin zone: fcc. NPT =  240
+
+ KMESH:    NKVEC =   240 NKX = 13 NKY = 13 NKZ = 13
+           DKX =  0.166667 DKY =  0.166667 DKZ =  0.166667
+
+ SETIBZ:   dimension of the point group:
+           IMSYMM:   1 IBZR:  48 IBZROT:  48
+
+ ZMESH:    Semi-circular contour
+
+
+           ELT  =  8.000000 EB   = -1.500000 EFX=  0.000000
+           DEPTH=  1.000000 DELTA=  0.079621 EPS=  0.200000
+
+           LZ     Re(z)     Im(z)    Weight
+
+            1  -0.977211 -0.149230  0.109376 -0.349765
+            2  -0.649261 -0.477202  0.502693 -0.157234
+            3  -0.206694 -0.404934  0.305164  0.221040
+            4  -0.036457 -0.187424  0.072137  0.178413
+            5  -0.003731 -0.060971  0.009980  0.081229
+            6  -0.000099 -0.009974  0.000529  0.026522
+
+           LX     Re(z)     Im(z)
+
+            1  -0.200099 -0.009974
+            2  -0.100099 -0.009974
+            3  -0.000099 -0.009974
+            4   0.099901 -0.009974
+            5   0.199901 -0.009974
+
+ WARNING:  Taylor expansion might not be converged:
+
+ LZ exp   E     S00     S00_Dots(1,2,...)
+
+  3  1  -0.21  1.3535  1.1162  0.1883  0.0386  0.0082  0.0018  0.0004
+  4  1  -0.04  2.0039  1.5189  0.3487  0.0972  0.0282  0.0084  0.0025
+  5  1  -0.00  2.1428  1.5964  0.3851  0.1128  0.0345  0.0107  0.0033
+  6  1  -0.00  2.1585  1.6050  0.3893  0.1146  0.0352  0.0110  0.0034
+
+ PATHOP: CPA equation for IS =  1 converged in  3-11 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-11 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 10-11 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 10-11 iterations
+
+ Atom:Co              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.416695    0.672742    1.024673    2.749878   -0.509107    0.614770    0.888535    2.720945
+ Dnud       =    5.953474    7.918035    3.318908   12.673435    5.855268    7.821213    3.101533   12.601306
+ Omega-     =    0.211395    1.179860    0.506485    4.419097    0.174670    1.139216    0.423116    4.372309
+ S*Phisq-   =   -0.332008    0.322481    0.045691    0.389655   -0.330341    0.319690    0.039465    0.387178
+ Phi-/Phi+  =    0.856187    0.697521    0.208724    0.580170    0.854127    0.694539    0.180534    0.578346
+
+ Mu         =    0.796555    0.820089    5.788063    0.678711    0.800574    0.827249    6.701151    0.683052
+ Tau        =    0.875880    0.997506    0.882564    1.028037    0.876067    0.997629    0.764425    1.028116
+ A          =    2.020004    3.878233    0.295202   10.415978    1.939250    3.778957    0.163914   10.299975
+ C          =   -0.288605    0.679860    0.006485    3.919097   -0.325330    0.639216   -0.076884    3.872309
+ B          =   -0.676380   -0.128011   -0.254491    1.868546   -0.712089   -0.163662   -0.309800    1.831992
+ V          =   -0.676380   -0.707112   -1.088049   -0.782250   -0.712089   -0.741656   -1.169900   -0.813893
+ D(Ef)      =   -2.021646   -0.268656  -28.440522    2.272712   -2.180679   -0.346418   12.884752    2.240489
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.657623                                       -0.686544
+ V(W) Up,Dwn=   -0.657623                                       -0.686544
+
+ Atom:Co              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.509107    0.614770    0.888535    2.720945   -0.416695    0.672742    1.024673    2.749878
+ Dnud       =    5.855268    7.821213    3.101533   12.601306    5.953474    7.918035    3.318908   12.673435
+ Omega-     =    0.174670    1.139216    0.423116    4.372309    0.211395    1.179860    0.506485    4.419097
+ S*Phisq-   =   -0.330341    0.319690    0.039465    0.387178   -0.332008    0.322481    0.045691    0.389655
+ Phi-/Phi+  =    0.854127    0.694539    0.180534    0.578346    0.856187    0.697521    0.208724    0.580170
+
+ Mu         =    0.800574    0.827249    6.701151    0.683052    0.796555    0.820089    5.788063    0.678711
+ Tau        =    0.876067    0.997629    0.764425    1.028116    0.875880    0.997506    0.882564    1.028037
+ A          =    1.939250    3.778957    0.163914   10.299975    2.020004    3.878233    0.295202   10.415978
+ C          =   -0.325330    0.639216   -0.076884    3.872309   -0.288605    0.679860    0.006485    3.919097
+ B          =   -0.712089   -0.163662   -0.309800    1.831992   -0.676380   -0.128011   -0.254491    1.868546
+ V          =   -0.712089   -0.741656   -1.169900   -0.813893   -0.676380   -0.707112   -1.088049   -0.782250
+ D(Ef)      =   -2.180679   -0.346418   12.884752    2.240489   -2.021646   -0.268656  -28.440522    2.272712
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.686544                                       -0.657623
+ V(W) Up,Dwn=   -0.686544                                       -0.657623
+
+ Atom:Cr              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =    0.016647    0.966754    1.177710    2.728317   -0.081884    0.893998    1.074882    2.684611
+ Dnud       =    7.109068    9.644728    4.491250   12.562080    6.995469    9.465788    4.282872   12.464799
+ Omega-     =    0.443058    1.477227    0.898388    4.365214    0.393669    1.420961    0.818380    4.299359
+ S*Phisq-   =   -0.381165    0.371069    0.095118    0.385216   -0.379542    0.367072    0.088465    0.382048
+ Phi-/Phi+  =    0.876681    0.742373    0.332555    0.577348    0.874929    0.738352    0.313458    0.574851
+
+ Mu         =    0.693827    0.712705    2.780360    0.686532    0.696794    0.720465    2.989470    0.692223
+ Tau        =    0.799882    0.981960    1.076205    1.029789    0.800094    0.981929    1.028063    1.029364
+ A          =    3.033955    5.298224    1.110942   10.245188    2.928289    5.129736    0.962658   10.089707
+ C          =   -0.056942    0.977227    0.398388    3.865214   -0.106331    0.920961    0.318380    3.799359
+ B          =   -0.491724    0.081194   -0.077574    1.833712   -0.540129    0.031701   -0.132913    1.780763
+ V          =   -0.491724   -0.522299   -1.031726   -0.805298   -0.540129   -0.570491   -1.092732   -0.852873
+ D(Ef)      =   -1.163866    0.142146   -0.552511    2.247554   -1.302865    0.052681   -0.918023    2.199078
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.676818                                       -0.722357
+ V(W) Up,Dwn=   -0.676818                                       -0.722357
+
+ Atom:Cr              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.081884    0.893998    1.074882    2.684611    0.016647    0.966754    1.177710    2.728317
+ Dnud       =    6.995469    9.465788    4.282872   12.464799    7.109068    9.644728    4.491250   12.562080
+ Omega-     =    0.393669    1.420961    0.818380    4.299359    0.443058    1.477227    0.898388    4.365214
+ S*Phisq-   =   -0.379542    0.367072    0.088465    0.382048   -0.381165    0.371069    0.095118    0.385216
+ Phi-/Phi+  =    0.874929    0.738352    0.313458    0.574851    0.876681    0.742373    0.332555    0.577348
+
+ Mu         =    0.696794    0.720465    2.989470    0.692223    0.693827    0.712705    2.780360    0.686532
+ Tau        =    0.800094    0.981929    1.028063    1.029364    0.799882    0.981960    1.076205    1.029789
+ A          =    2.928289    5.129736    0.962658   10.089707    3.033955    5.298224    1.110942   10.245188
+ C          =   -0.106331    0.920961    0.318380    3.799359   -0.056942    0.977227    0.398388    3.865214
+ B          =   -0.540129    0.031701   -0.132913    1.780763   -0.491724    0.081194   -0.077574    1.833712
+ V          =   -0.540129   -0.570491   -1.092732   -0.852873   -0.491724   -0.522299   -1.031726   -0.805298
+ D(Ef)      =   -1.302865    0.052681   -0.918023    2.199078   -1.163866    0.142146   -0.552511    2.247554
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.722357                                       -0.676818
+ V(W) Up,Dwn=   -0.722357                                       -0.676818
+
+ Atom:Fe              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.153953    0.832576    1.279572    2.776641   -0.238789    0.774954    1.194577    2.746074
+ Dnud       =    6.490107    8.495624    4.368075   12.749514    6.389843    8.386538    4.134476   12.673275
+ Omega-     =    0.336812    1.328354    0.895379    4.466026    0.298028    1.285080    0.805559    4.416322
+ S*Phisq-   =   -0.353133    0.342394    0.087700    0.392396   -0.351188    0.339374    0.079137    0.389776
+ Phi-/Phi+  =    0.866491    0.714167    0.321397    0.582077    0.864679    0.711165    0.299178    0.580166
+
+ Mu         =    0.748905    0.772394    3.015534    0.673969    0.753051    0.779267    3.341836    0.678499
+ Tau        =    0.843423    0.984868    1.090223    1.027576    0.844551    0.985295    1.046915    1.027701
+ A          =    2.481813    4.421987    1.041560   10.538473    2.393254    4.310000    0.870160   10.415173
+ C          =   -0.163188    0.828354    0.395379    3.966026   -0.201972    0.785080    0.305559    3.916322
+ B          =   -0.570732   -0.017643   -0.048420    1.904004   -0.608121   -0.055534   -0.104119    1.865124
+ V          =   -0.570732   -0.609939   -0.968981   -0.752889   -0.608121   -0.646546   -1.017016   -0.786527
+ D(Ef)      =   -1.510567   -0.039732   -0.525280    2.302695   -1.643108   -0.114166   -0.982197    2.268696
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.631766                                       -0.662523
+ V(W) Up,Dwn=   -0.631766                                       -0.662523
+
+ Atom:Fe              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.238789    0.774954    1.194577    2.746074   -0.153953    0.832576    1.279572    2.776641
+ Dnud       =    6.389843    8.386538    4.134476   12.673275    6.490107    8.495624    4.368075   12.749514
+ Omega-     =    0.298028    1.285080    0.805559    4.416322    0.336812    1.328354    0.895379    4.466026
+ S*Phisq-   =   -0.351188    0.339374    0.079137    0.389776   -0.353133    0.342394    0.087700    0.392396
+ Phi-/Phi+  =    0.864679    0.711165    0.299178    0.580166    0.866491    0.714167    0.321397    0.582077
+
+ Mu         =    0.753051    0.779267    3.341836    0.678499    0.748905    0.772394    3.015534    0.673969
+ Tau        =    0.844551    0.985295    1.046915    1.027701    0.843423    0.984868    1.090223    1.027576
+ A          =    2.393254    4.310000    0.870160   10.415173    2.481813    4.421987    1.041560   10.538473
+ C          =   -0.201972    0.785080    0.305559    3.916322   -0.163188    0.828354    0.395379    3.966026
+ B          =   -0.608121   -0.055534   -0.104119    1.865124   -0.570732   -0.017643   -0.048420    1.904004
+ V          =   -0.608121   -0.646546   -1.017016   -0.786527   -0.570732   -0.609939   -0.968981   -0.752889
+ D(Ef)      =   -1.643108   -0.114166   -0.982197    2.268696   -1.510567   -0.039732   -0.525280    2.302695
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.662523                                       -0.631766
+ V(W) Up,Dwn=   -0.662523                                       -0.631766
+
+ Atom:Mn              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.141210    0.840970    1.135153    2.733833   -0.236594    0.774008    1.029070    2.696179
+ Dnud       =    6.672749    8.764333    4.073551   12.594380    6.565431    8.637238    3.858360   12.506614
+ Omega-     =    0.351503    1.352750    0.764615    4.380261    0.307220    1.303332    0.682605    4.321914
+ S*Phisq-   =   -0.363488    0.350488    0.076811    0.386525   -0.361825    0.347312    0.069891    0.383601
+ Phi-/Phi+  =    0.869669    0.721302    0.293141    0.578170    0.867820    0.717972    0.270963    0.575928
+
+ Mu         =    0.727569    0.754556    3.443028    0.684206    0.730914    0.761457    3.783929    0.689422
+ Tau        =    0.825416    0.981444    1.035531    1.029227    0.825690    0.981296    0.972367    1.029043
+ A          =    2.640457    4.625519    0.807942   10.294405    2.544579    4.497769    0.661943   10.153861
+ C          =   -0.148497    0.852750    0.264615    3.880261   -0.192780    0.803332    0.182605    3.821914
+ B          =   -0.566459   -0.008187   -0.135523    1.843117   -0.609715   -0.052135   -0.190096    1.796763
+ V          =   -0.566459   -0.604981   -1.045523   -0.799458   -0.609715   -0.647888   -1.107075   -0.840485
+ D(Ef)      =   -1.447195   -0.021207   -1.220994    2.254075   -1.590078   -0.106063   -1.965702    2.212233
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.671965                                       -0.710498
+ V(W) Up,Dwn=   -0.671965                                       -0.710498
+
+ Atom:Mn              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.236594    0.774008    1.029070    2.696179   -0.141210    0.840970    1.135153    2.733833
+ Dnud       =    6.565431    8.637238    3.858360   12.506614    6.672749    8.764333    4.073551   12.594380
+ Omega-     =    0.307220    1.303332    0.682605    4.321914    0.351503    1.352750    0.764615    4.380261
+ S*Phisq-   =   -0.361825    0.347312    0.069891    0.383601   -0.363488    0.350488    0.076811    0.386525
+ Phi-/Phi+  =    0.867820    0.717972    0.270963    0.575928    0.869669    0.721302    0.293141    0.578170
+
+ Mu         =    0.730914    0.761457    3.783929    0.689422    0.727569    0.754556    3.443028    0.684206
+ Tau        =    0.825690    0.981296    0.972367    1.029043    0.825416    0.981444    1.035531    1.029227
+ A          =    2.544579    4.497769    0.661943   10.153861    2.640457    4.625519    0.807942   10.294405
+ C          =   -0.192780    0.803332    0.182605    3.821914   -0.148497    0.852750    0.264615    3.880261
+ B          =   -0.609715   -0.052135   -0.190096    1.796763   -0.566459   -0.008187   -0.135523    1.843117
+ V          =   -0.609715   -0.647888   -1.107075   -0.840485   -0.566459   -0.604981   -1.045523   -0.799458
+ D(Ef)      =   -1.590078   -0.106063   -1.965702    2.212233   -1.447195   -0.021207   -1.220994    2.254075
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.710498                                       -0.671965
+ V(W) Up,Dwn=   -0.710498                                       -0.671965
+
+ Atom:Ni              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.542376    0.614862    0.937868    2.759168   -0.634657    0.560498    0.761801    2.733455
+ Dnud       =    5.645507    7.645127    2.987599   12.716227    5.550965    7.554780    2.775869   12.650527
+ Omega-     =    0.156318    1.116519    0.385945    4.440661    0.122433    1.079108    0.304893    4.398392
+ S*Phisq-   =   -0.318063    0.311230    0.033551    0.391334   -0.316430    0.308506    0.028262    0.389055
+ Phi-/Phi+  =    0.849522    0.688962    0.164941    0.581245    0.847351    0.686021    0.134329    0.579593
+
+ Mu         =    0.831478    0.849735    7.882369    0.675799    0.835771    0.857238    9.357416    0.679756
+ Tau        =    0.900102    1.008356    0.750551    1.027422    0.900129    1.008594    0.590970    1.027571
+ A          =    1.770010    3.618371    0.086836   10.482282    1.695354    3.526811   -0.031867   10.376370
+ C          =   -0.343682    0.616519   -0.114055    3.940661   -0.377567    0.579108   -0.195107    3.898392
+ B          =   -0.718085   -0.168779   -0.315780    1.882936   -0.751001   -0.201246   -0.371527    1.850105
+ V          =   -0.718085   -0.738692   -1.131124   -0.772214   -0.751001   -0.770000   -1.247088   -0.800403
+ D(Ef)      =   -2.328031   -0.365032    6.027495    2.283431   -2.500093   -0.439972    4.035916    2.254777
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.649349                                       -0.674858
+ V(W) Up,Dwn=   -0.649349                                       -0.674858
+
+ Atom:Ni              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000   -0.500000
+ D-nu       =   -0.634657    0.560498    0.761801    2.733455   -0.542376    0.614862    0.937868    2.759168
+ Dnud       =    5.550965    7.554780    2.775869   12.650527    5.645507    7.645127    2.987599   12.716227
+ Omega-     =    0.122433    1.079108    0.304893    4.398392    0.156318    1.116519    0.385945    4.440661
+ S*Phisq-   =   -0.316430    0.308506    0.028262    0.389055   -0.318063    0.311230    0.033551    0.391334
+ Phi-/Phi+  =    0.847351    0.686021    0.134329    0.579593    0.849522    0.688962    0.164941    0.581245
+
+ Mu         =    0.835771    0.857238    9.357416    0.679756    0.831478    0.849735    7.882369    0.675799
+ Tau        =    0.900129    1.008594    0.590970    1.027571    0.900102    1.008356    0.750551    1.027422
+ A          =    1.695354    3.526811   -0.031867   10.376370    1.770010    3.618371    0.086836   10.482282
+ C          =   -0.377567    0.579108   -0.195107    3.898392   -0.343682    0.616519   -0.114055    3.940661
+ B          =   -0.751001   -0.201246   -0.371527    1.850105   -0.718085   -0.168779   -0.315780    1.882936
+ V          =   -0.751001   -0.770000   -1.247088   -0.800403   -0.718085   -0.738692   -1.131124   -0.772214
+ D(Ef)      =   -2.500093   -0.439972    4.035916    2.254777   -2.328031   -0.365032    6.027495    2.283431
+
+ Bot, Top   =   -0.751001   10.538473
+ V-Madelung =   -0.000000
+ V(S) Up,Dwn=   -0.674858                                       -0.649349
+ V(W) Up,Dwn=   -0.674858                                       -0.649349
+
+ EF         =    0.047554
+
+ VMTZ Up,Dwn=   -0.678490                                       -0.678490
+
+ Atom:Co  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.394836    0.485587    4.520787    0.026456    0.399071    0.490304    4.665544    0.026263
+ Nos(Ef)    =   11.008846
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =    0.153516    0.000000
+ Stoner-I   =    0.239227    0.264750    0.543066    0.304775
+
+ Atom:Co  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.399071    0.490304    4.665544    0.026263    0.394836    0.485587    4.520787    0.026456
+ Nos(Ef)    =   11.008846
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =   -0.153516    0.000000
+ Stoner-I   =    0.239227    0.264750    0.543066    0.304775
+
+ Atom:Cr  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.344867    0.449295    1.431336    0.026401    0.346814    0.451558    1.776300    0.026062
+ Nos(Ef)    =    4.852633
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =    0.348835    0.000000
+ Stoner-I   =    0.141582    0.161295    0.229357    0.188786
+
+ Atom:Cr  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.346814    0.451558    1.776300    0.026062    0.344867    0.449295    1.431336    0.026401
+ Nos(Ef)    =    4.852633
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =   -0.348835    0.000000
+ Stoner-I   =    0.141582    0.161295    0.229357    0.188786
+
+ Atom:Fe  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.368624    0.462700    1.619011    0.026601    0.371892    0.465687    2.162796    0.026410
+ Nos(Ef)    =    5.503722
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =    0.549848    0.000000
+ Stoner-I   =    0.070536    0.078702    0.163353    0.090396
+
+ Atom:Fe  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.371892    0.465687    2.162796    0.026410    0.368624    0.462700    1.619011    0.026601
+ Nos(Ef)    =    5.503722
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =   -0.549848    0.000000
+ Stoner-I   =    0.070536    0.078702    0.163353    0.090396
+
+ Atom:Mn  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.359769    0.458103    2.337607    0.026410    0.362488    0.460762    2.941438    0.026133
+ Nos(Ef)    =    6.972711
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =    0.608933    0.000000
+ Stoner-I   =    0.072722    0.081155    0.134678    0.095819
+
+ Atom:Mn  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.362488    0.460762    2.941438    0.026133    0.359769    0.458103    2.337607    0.026410
+ Nos(Ef)    =    6.972711
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =   -0.608933    0.000000
+ Stoner-I   =    0.072722    0.081155    0.134678    0.095819
+
+ Atom:Ni  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.414416    0.500928    4.844921    0.026485    0.419358    0.506455    4.923203    0.026321
+ Nos(Ef)    =   11.662087
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =    0.088586    0.000000
+ Stoner-I   =    0.382506    0.422315    0.914950    0.477149
+
+ Atom:Ni  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.419358    0.506455    4.923203    0.026321    0.414416    0.500928    4.844921    0.026485
+ Nos(Ef)    =   11.662087
+ Dos(Ef)    =    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+ Dos(Ef)    =    0.000000
+ Magn. mom. =   -0.088586    0.000000
+ Stoner-I   =    0.382506    0.422315    0.914950    0.477149
+
+ PRNPRM:   EONE =  -1637.472833 VINT =  -4444.706728 EKIN =   2807.233894
+           ECOR =   1139.680987 ENUC =  -6691.072839 EMADL=     -0.000000
+           EVAL =     60.055373 EXCT =   -114.633494 EXCC =      0.000000
+           ETOT =  -2798.736078 OKAE =      0.000000 E[n] =  -2798.736078
+            T*S =      0.000000 E-TS =  -2798.736078
+
+ PRNPRM:   EONE =  -1637.472833 VINT =  -4444.706728 EKIN =   2807.233894
+           ECOR =   1139.680987 ENUC =  -6691.072839 EMADL=     -0.000000
+           EVAL =     60.055373 EXCT =   -114.633494 EXCC =      0.000000
+           ETOT =  -2798.736078 OKAE =      0.000000 E[n] =  -2798.736078
+            T*S =      0.000000 E-TS =  -2798.736078
+
+ PRNPRM:   EONE =  -1248.271930 VINT =  -3351.987964 EKIN =   2103.716034
+           ECOR =    876.474667 ENUC =  -5024.844344 EMADL=     -0.000000
+           EVAL =     21.567587 EXCT =    -93.712239 EXCC =      0.000000
+           ETOT =  -2116.798296 OKAE =     -0.000001 E[n] =  -2116.798297
+            T*S =      0.000000 E-TS =  -2116.798296
+
+ PRNPRM:   EONE =  -1248.271930 VINT =  -3351.987964 EKIN =   2103.716034
+           ECOR =    876.474667 ENUC =  -5024.844344 EMADL=     -0.000000
+           EVAL =     21.567587 EXCT =    -93.712239 EXCC =      0.000000
+           ETOT =  -2116.798296 OKAE =     -0.000001 E[n] =  -2116.798297
+            T*S =      0.000000 E-TS =  -2116.798296
+
+ PRNPRM:   EONE =  -1493.801912 VINT =  -4053.156297 EKIN =   2559.354386
+           ECOR =   1051.106662 ENUC =  -6106.277560 EMADL=     -0.000000
+           EVAL =     45.813591 EXCT =   -107.597393 EXCC =      0.000000
+           ETOT =  -2557.600314 OKAE =      0.000002 E[n] =  -2557.600313
+            T*S =      0.000000 E-TS =  -2557.600314
+
+ PRNPRM:   EONE =  -1493.801912 VINT =  -4053.156297 EKIN =   2559.354386
+           ECOR =   1051.106662 ENUC =  -6106.277560 EMADL=     -0.000000
+           EVAL =     45.813591 EXCT =   -107.597393 EXCC =      0.000000
+           ETOT =  -2557.600314 OKAE =      0.000002 E[n] =  -2557.600313
+            T*S =      0.000000 E-TS =  -2557.600314
+
+ PRNPRM:   EONE =  -1371.993245 VINT =  -3696.902942 EKIN =   2324.909698
+           ECOR =    959.728198 ENUC =  -5546.810846 EMADL=     -0.000000
+           EVAL =     31.649074 EXCT =   -100.394637 EXCC =      0.000000
+           ETOT =  -2330.918513 OKAE =     -0.000001 E[n] =  -2330.918514
+            T*S =      0.000000 E-TS =  -2330.918513
+
+ PRNPRM:   EONE =  -1371.993245 VINT =  -3696.902942 EKIN =   2324.909698
+           ECOR =    959.728198 ENUC =  -5546.810846 EMADL=     -0.000000
+           EVAL =     31.649074 EXCT =   -100.394637 EXCC =      0.000000
+           ETOT =  -2330.918513 OKAE =     -0.000001 E[n] =  -2330.918514
+            T*S =      0.000000 E-TS =  -2330.918513
+
+ PRNPRM:   EONE =  -1779.189894 VINT =  -4847.573378 EKIN =   3068.383484
+           ECOR =   1236.328256 ENUC =  -7315.258360 EMADL=     -0.000000
+           EVAL =     78.965397 EXCT =   -122.198100 EXCC =      0.000000
+           ETOT =  -3053.779324 OKAE =      0.000001 E[n] =  -3053.779323
+            T*S =      0.000000 E-TS =  -3053.779324
+
+ PRNPRM:   EONE =  -1779.189894 VINT =  -4847.573378 EKIN =   3068.383484
+           ECOR =   1236.328256 ENUC =  -7315.258360 EMADL=     -0.000000
+           EVAL =     78.965397 EXCT =   -122.198100 EXCC =      0.000000
+           ETOT =  -3053.779324 OKAE =      0.000001 E[n] =  -3053.779323
+            T*S =      0.000000 E-TS =  -3053.779324
+
+           Total energies in the soft core approximation (Rydbergs)
+           calculated from output charge density:
+
+           Kinetic energy      2807.233894
+           Madelung energy       -0.000000
+           El-ion energy      -6691.072839
+           El-el energy        1199.736360
+           Exc energy          -114.633494
+                              ------------
+           Total              -2798.736078
+           Total+OKAE         -2798.736078
+           Total+Ewald        -2798.722358 4pi SS n(S)=  2.332579
+
+           Kinetic energy      2807.233894
+           Madelung energy       -0.000000
+           El-ion energy      -6691.072839
+           El-el energy        1199.736360
+           Exc energy          -114.633494
+                              ------------
+           Total              -2798.736078
+           Total+OKAE         -2798.736078
+           Total+Ewald        -2798.722358 4pi SS n(S)=  2.332579
+
+           Kinetic energy      2103.716034
+           Madelung energy       -0.000000
+           El-ion energy      -5024.844344
+           El-el energy         898.042254
+           Exc energy           -93.712239
+                              ------------
+           Total              -2116.798296
+           Total+OKAE         -2116.798297
+           Total+Ewald        -2116.780347 4pi SS n(S)=  2.667878
+
+           Kinetic energy      2103.716034
+           Madelung energy       -0.000000
+           El-ion energy      -5024.844344
+           El-el energy         898.042254
+           Exc energy           -93.712239
+                              ------------
+           Total              -2116.798296
+           Total+OKAE         -2116.798297
+           Total+Ewald        -2116.780347 4pi SS n(S)=  2.667878
+
+           Kinetic energy      2559.354386
+           Madelung energy       -0.000000
+           El-ion energy      -6106.277560
+           El-el energy        1096.920253
+           Exc energy          -107.597393
+                              ------------
+           Total              -2557.600314
+           Total+OKAE         -2557.600313
+           Total+Ewald        -2557.589598 4pi SS n(S)=  2.061440
+
+           Kinetic energy      2559.354386
+           Madelung energy       -0.000000
+           El-ion energy      -6106.277560
+           El-el energy        1096.920253
+           Exc energy          -107.597393
+                              ------------
+           Total              -2557.600314
+           Total+OKAE         -2557.600313
+           Total+Ewald        -2557.589598 4pi SS n(S)=  2.061440
+
+           Kinetic energy      2324.909698
+           Madelung energy       -0.000000
+           El-ion energy      -5546.810846
+           El-el energy         991.377272
+           Exc energy          -100.394637
+                              ------------
+           Total              -2330.918513
+           Total+OKAE         -2330.918514
+           Total+Ewald        -2330.901969 4pi SS n(S)=  2.561444
+
+           Kinetic energy      2324.909698
+           Madelung energy       -0.000000
+           El-ion energy      -5546.810846
+           El-el energy         991.377272
+           Exc energy          -100.394637
+                              ------------
+           Total              -2330.918513
+           Total+OKAE         -2330.918514
+           Total+Ewald        -2330.901969 4pi SS n(S)=  2.561444
+
+           Kinetic energy      3068.383484
+           Madelung energy       -0.000000
+           El-ion energy      -7315.258360
+           El-el energy        1315.293653
+           Exc energy          -122.198100
+                              ------------
+           Total              -3053.779324
+           Total+OKAE         -3053.779323
+           Total+Ewald        -3053.766897 4pi SS n(S)=  2.219881
+
+           Kinetic energy      3068.383484
+           Madelung energy       -0.000000
+           El-ion energy      -7315.258360
+           El-el energy        1315.293653
+           Exc energy          -122.198100
+                              ------------
+           Total              -3053.779324
+           Total+OKAE         -3053.779323
+           Total+Ewald        -3053.766897 4pi SS n(S)=  2.219881
+
+           Total energy       -2571.566505
+
+           Total energy+OKA   -2571.566505
+
+           Total+Ewald        -2571.552234
+                              ============
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     7.7306    0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000
+ Tot  7.7306
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.002625
+       4  4  25  -0.002219
+       6  0  43   0.000213
+       6  4  47  -0.000563
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.703479 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.703479 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.683488     -0.683488
+
+ KGRN:  Iteration no.   1 Etot =    -2571.566505 erren = 1.00000000
+
+        Magn. mom. =  0.000
+
+        Dyson loops    32 EF   =       -0.030308 erref = 0.04755444
+
+ KGRN:  QSCA = -0.004030
+
+ KGRN:  QCPA =  0.094431  0.094431 -0.130569 -0.130569 -0.056548 -0.056548
+
+ KGRN:  QCPA = -0.035088 -0.035088  0.127775  0.127775
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3- 9 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3- 9 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in  8-12 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  8-12 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0188    0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000
+ Tot  8.0188
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001891
+       4  4  25  -0.001598
+       6  0  43   0.000160
+       6  4  47  -0.000423
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.713613 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.713613 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.695538     -0.695538
+
+ KGRN:  Iteration no.   2 Etot =    -2554.144179 erren = 1.00000000
+
+        Magn. mom. =  0.000
+
+        Dyson loops    32 EF   =       -0.057584 erref = 0.08653457
+
+ KGRN:  QSCA =  0.004065
+
+ KGRN:  QCPA =  0.099230  0.099230 -0.159578 -0.159578 -0.029779 -0.029779
+
+ KGRN:  QCPA = -0.050692 -0.050692  0.140819  0.140819
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-10 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-10 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in  7-11 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  7-11 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0175   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+ Tot  8.0175
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001595
+       4  4  25  -0.001348
+       6  0  43   0.000140
+       6  4  47  -0.000370
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.718823 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.718823 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.714166     -0.714166
+
+ KGRN:  Iteration no.   3 Etot =    -2554.167088 erren = 0.02290926
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.074724 erref = 0.03104081
+
+ KGRN:  QSCA =  0.011578
+
+ KGRN:  QCPA =  0.101667  0.101667 -0.171906 -0.171906 -0.012783 -0.012783
+
+ KGRN:  QCPA = -0.060936 -0.060936  0.143958  0.143958
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-10 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-10 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in  7-15 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  7-15 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0136   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000
+ Tot  8.0136
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001486
+       4  4  25  -0.001256
+       6  0  43   0.000140
+       6  4  47  -0.000370
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.722296 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.722296 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.722296     -0.722296
+
+ KGRN:  Iteration no.   4 Etot =    -2554.184539 erren = 0.01745108
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.085093 erref = 0.01343496
+
+ KGRN:  QSCA =  0.017140
+
+ KGRN:  QCPA =  0.104026  0.104026 -0.177077 -0.177077 -0.003608 -0.003608
+
+ KGRN:  QCPA = -0.069094 -0.069094  0.145753  0.145753
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-11 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-11 iterations
+
+ PATHOP: CPA equation for IS = 1 not converged
+         number of iterations performed  7 to 15
+
+ PATHOP: CPA equation for IS = 2 not converged
+         number of iterations performed  7 to 15
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0117   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000
+ Tot  8.0117
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001496
+       4  4  25  -0.001264
+       6  0  43   0.000142
+       6  4  47  -0.000376
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.724722 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.724722 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.724722     -0.724722
+
+ KGRN:  Iteration no.   5 Etot =    -2554.193891 erren = 0.00935146
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.091280 erref = 0.00746012
+
+ KGRN:  QSCA =  0.021250
+
+ KGRN:  QCPA =  0.107376  0.107376 -0.179048 -0.179048 -0.000626 -0.000626
+
+ KGRN:  QCPA = -0.076637 -0.076637  0.148936  0.148936
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-12 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-12 iterations
+
+ PATHOP: CPA equation for IS = 1 not converged
+         number of iterations performed  7 to 15
+
+ PATHOP: CPA equation for IS = 2 not converged
+         number of iterations performed  7 to 15
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0109   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+ Tot  8.0109
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001544
+       4  4  25  -0.001305
+       6  0  43   0.000144
+       6  4  47  -0.000382
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.726430 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.726430 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.726430     -0.726430
+
+ KGRN:  Iteration no.   6 Etot =    -2554.200980 erren = 0.00708894
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.094832 erref = 0.00411779
+
+ KGRN:  QSCA =  0.024293
+
+ KGRN:  QCPA =  0.111361  0.111361 -0.179037 -0.179037 -0.002334 -0.002334
+
+ KGRN:  QCPA = -0.083355 -0.083355  0.153365  0.153365
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS = 1 not converged
+         number of iterations performed  8 to 15
+
+ PATHOP: CPA equation for IS = 2 not converged
+         number of iterations performed  8 to 15
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0104    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0104
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001579
+       4  4  25  -0.001335
+       6  0  43   0.000146
+       6  4  47  -0.000387
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.727677 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.727677 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.727677     -0.727677
+
+ KGRN:  Iteration no.   7 Etot =    -2554.206058 erren = 0.00507808
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.096912 erref = 0.00207571
+
+ KGRN:  QSCA =  0.026444
+
+ KGRN:  QCPA =  0.114981  0.114981 -0.178207 -0.178207 -0.005399 -0.005399
+
+ KGRN:  QCPA = -0.088905 -0.088905  0.157530  0.157530
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS = 1 not converged
+         number of iterations performed  8 to 15
+
+ PATHOP: CPA equation for IS = 2 not converged
+         number of iterations performed  8 to 15
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0101   -0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0101
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001596
+       4  4  25  -0.001349
+       6  0  43   0.000147
+       6  4  47  -0.000390
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.728610 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.728610 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.728610     -0.728610
+
+ KGRN:  Iteration no.   8 Etot =    -2554.208902 erren = 0.00284431
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.098226 erref = 0.00114514
+
+ KGRN:  QSCA =  0.027929
+
+ KGRN:  QCPA =  0.117706  0.117706 -0.177412 -0.177412 -0.007746 -0.007746
+
+ KGRN:  QCPA = -0.093183 -0.093183  0.160635  0.160635
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-14 iterations
+
+ PATHOP: CPA equation for IS = 1 not converged
+         number of iterations performed  7 to 15
+
+ PATHOP: CPA equation for IS = 2 not converged
+         number of iterations performed  7 to 15
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0100   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000
+ Tot  8.0100
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001604
+       4  4  25  -0.001356
+       6  0  43   0.000148
+       6  4  47  -0.000392
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.729307 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.729307 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.729307     -0.729307
+
+ KGRN:  Iteration no.   9 Etot =    -2554.210286 erren = 0.00138405
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.099119 erref = 0.00079313
+
+ KGRN:  QSCA =  0.028965
+
+ KGRN:  QCPA =  0.119554  0.119554 -0.176890 -0.176890 -0.009101 -0.009101
+
+ KGRN:  QCPA = -0.096294 -0.096294  0.162730  0.162730
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-14 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in  7-15 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  7-15 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0098   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000
+ Tot  8.0098
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001608
+       4  4  25  -0.001359
+       6  0  43   0.000148
+       6  4  47  -0.000393
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.729824 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.729824 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.729824     -0.729824
+
+ KGRN:  Iteration no.  10 Etot =    -2554.211003 erren = 0.00071652
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.099754 erref = 0.00060906
+
+ KGRN:  QSCA =  0.029702
+
+ KGRN:  QCPA =  0.120743  0.120743 -0.176591 -0.176591 -0.009778 -0.009778
+
+ KGRN:  QCPA = -0.098461 -0.098461  0.164088  0.164088
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in  6-15 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  6-15 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0098   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000
+ Tot  8.0098
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001609
+       4  4  25  -0.001360
+       6  0  43   0.000149
+       6  4  47  -0.000393
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730205 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730205 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.730205     -0.730205
+
+ KGRN:  Iteration no.  11 Etot =    -2554.211433 erren = 0.00043022
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100215 erref = 0.00046921
+
+ KGRN:  QSCA =  0.030234
+
+ KGRN:  QCPA =  0.121489  0.121489 -0.176430 -0.176430 -0.010081 -0.010081
+
+ KGRN:  QCPA = -0.099937 -0.099937  0.164959  0.164959
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in  9-15 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  9-15 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0097   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000
+ Tot  8.0097
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001616
+       4  4  25  -0.001366
+       6  0  43   0.000149
+       6  4  47  -0.000394
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730490 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730490 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.730490     -0.730490
+
+ KGRN:  Iteration no.  12 Etot =    -2554.212146 erren = 0.00071359
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100616 erref = 0.00038408
+
+ KGRN:  QSCA =  0.030626
+
+ KGRN:  QCPA =  0.121931  0.121931 -0.176410 -0.176410 -0.010317 -0.010317
+
+ KGRN:  QCPA = -0.100996 -0.100996  0.165792  0.165792
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 12-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 12-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0097   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000
+ Tot  8.0097
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001615
+       4  4  25  -0.001365
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730695 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730695 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.730695     -0.730695
+
+ KGRN:  Iteration no.  13 Etot =    -2554.212344 erren = 0.00019752
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100898 erref = 0.00032633
+
+ KGRN:  QSCA =  0.030917
+
+ KGRN:  QCPA =  0.122298  0.122298 -0.176384 -0.176384 -0.010449 -0.010449
+
+ KGRN:  QCPA = -0.101705 -0.101705  0.166239  0.166239
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 12-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 12-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0097   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000
+ Tot  8.0097
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001614
+       4  4  25  -0.001364
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730844 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730844 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.730844     -0.730844
+
+ KGRN:  Iteration no.  14 Etot =    -2554.212454 erren = 0.00011003
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101076 erref = 0.00020547
+
+ KGRN:  QSCA =  0.031129
+
+ KGRN:  QCPA =  0.122501  0.122501 -0.176331 -0.176331 -0.010465 -0.010465
+
+ KGRN:  QCPA = -0.102178 -0.102178  0.166473  0.166473
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 13-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 13-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0097   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000
+ Tot  8.0097
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001613
+       4  4  25  -0.001363
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730952 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.730952 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.730952     -0.730952
+
+ KGRN:  Iteration no.  15 Etot =    -2554.212498 erren = 0.00004427
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101184 erref = 0.00012350
+
+ KGRN:  QSCA =  0.031284
+
+ KGRN:  QCPA =  0.122581  0.122581 -0.176278 -0.176278 -0.010417 -0.010417
+
+ KGRN:  QCPA = -0.102486 -0.102486  0.166600  0.166600
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 13-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 13-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0097   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000
+ Tot  8.0097
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001613
+       4  4  25  -0.001363
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731032 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731032 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731032     -0.731032
+
+ KGRN:  Iteration no.  16 Etot =    -2554.212515 erren = 0.00001693
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101247 erref = 0.00007291
+
+ KGRN:  QSCA =  0.031395
+
+ KGRN:  QCPA =  0.122571  0.122571 -0.176227 -0.176227 -0.010341 -0.010341
+
+ KGRN:  QCPA = -0.102678 -0.102678  0.166675  0.166675
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001613
+       4  4  25  -0.001363
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731092 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731092 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731092     -0.731092
+
+ KGRN:  Iteration no.  17 Etot =    -2554.212523 erren = 0.00000764
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101279 erref = 0.00004117
+
+ KGRN:  QSCA =  0.031476
+
+ KGRN:  QCPA =  0.122487  0.122487 -0.176175 -0.176175 -0.010252 -0.010252
+
+ KGRN:  QCPA = -0.102789 -0.102789  0.166730  0.166730
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 12-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 12-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001613
+       4  4  25  -0.001363
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731136 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731136 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731136     -0.731136
+
+ KGRN:  Iteration no.  18 Etot =    -2554.212530 erren = 0.00000721
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101287 erref = 0.00001737
+
+ KGRN:  QSCA =  0.031534
+
+ KGRN:  QCPA =  0.122330  0.122330 -0.176116 -0.176116 -0.010155 -0.010155
+
+ KGRN:  QCPA = -0.102839 -0.102839  0.166780  0.166780
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 12-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 12-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001613
+       4  4  25  -0.001364
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731169 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731169 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731169     -0.731169
+
+ KGRN:  Iteration no.  19 Etot =    -2554.212538 erren = 0.00000834
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101275 erref = 0.00000211
+
+ KGRN:  QSCA =  0.031576
+
+ KGRN:  QCPA =  0.122093  0.122093 -0.176043 -0.176043 -0.010046 -0.010046
+
+ KGRN:  QCPA = -0.102842 -0.102842  0.166838  0.166838
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 12-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 12-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001614
+       4  4  25  -0.001364
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731195 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731195 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731195     -0.731195
+
+ KGRN:  Iteration no.  20 Etot =    -2554.212548 erren = 0.00000947
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101245 erref = 0.00001992
+
+ KGRN:  QSCA =  0.031606
+
+ KGRN:  QCPA =  0.121766  0.121766 -0.175951 -0.175951 -0.009922 -0.009922
+
+ KGRN:  QCPA = -0.102804 -0.102804  0.166910  0.166910
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 12-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 12-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001615
+       4  4  25  -0.001365
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731216 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731216 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731216     -0.731216
+
+ KGRN:  Iteration no.  21 Etot =    -2554.212559 erren = 0.00001093
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101197 erref = 0.00003720
+
+ KGRN:  QSCA =  0.031626
+
+ KGRN:  QCPA =  0.121341  0.121341 -0.175835 -0.175835 -0.009778 -0.009778
+
+ KGRN:  QCPA = -0.102729 -0.102729  0.167001  0.167001
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 12-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 12-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001616
+       4  4  25  -0.001366
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731233 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731233 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731233     -0.731233
+
+ KGRN:  Iteration no.  22 Etot =    -2554.212571 erren = 0.00001204
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101134 erref = 0.00005390
+
+ KGRN:  QSCA =  0.031640
+
+ KGRN:  QCPA =  0.120815  0.120815 -0.175695 -0.175695 -0.009611 -0.009611
+
+ KGRN:  QCPA = -0.102622 -0.102622  0.167112  0.167112
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 12-14 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 12-14 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001618
+       4  4  25  -0.001367
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731248 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731248 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731248     -0.731248
+
+ KGRN:  Iteration no.  23 Etot =    -2554.212583 erren = 0.00001229
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.101058 erref = 0.00006901
+
+ KGRN:  QSCA =  0.031647
+
+ KGRN:  QCPA =  0.120201  0.120201 -0.175534 -0.175534 -0.009422 -0.009422
+
+ KGRN:  QCPA = -0.102487 -0.102487  0.167242  0.167242
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001620
+       4  4  25  -0.001369
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731262 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731262 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731262     -0.731262
+
+ KGRN:  Iteration no.  24 Etot =    -2554.212594 erren = 0.00001132
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100974 erref = 0.00008066
+
+ KGRN:  QSCA =  0.031649
+
+ KGRN:  QCPA =  0.119523  0.119523 -0.175357 -0.175357 -0.009217 -0.009217
+
+ KGRN:  QCPA = -0.102333 -0.102333  0.167384  0.167384
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001622
+       4  4  25  -0.001370
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731275 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731275 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731275     -0.731275
+
+ KGRN:  Iteration no.  25 Etot =    -2554.212603 erren = 0.00000912
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100889 erref = 0.00008693
+
+ KGRN:  QSCA =  0.031647
+
+ KGRN:  QCPA =  0.118821  0.118821 -0.175177 -0.175177 -0.009006 -0.009006
+
+ KGRN:  QCPA = -0.102170 -0.102170  0.167532  0.167532
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0096   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000
+ Tot  8.0096
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001623
+       4  4  25  -0.001372
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731288 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731288 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731288     -0.731288
+
+ KGRN:  Iteration no.  26 Etot =    -2554.212610 erren = 0.00000615
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100808 erref = 0.00008672
+
+ KGRN:  QSCA =  0.031640
+
+ KGRN:  QCPA =  0.118138  0.118138 -0.175002 -0.175002 -0.008801 -0.008801
+
+ KGRN:  QCPA = -0.102009 -0.102009  0.167675  0.167675
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001625
+       4  4  25  -0.001373
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731301 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731301 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731301     -0.731301
+
+ KGRN:  Iteration no.  27 Etot =    -2554.212613 erren = 0.00000318
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100735 erref = 0.00008042
+
+ KGRN:  QSCA =  0.031631
+
+ KGRN:  QCPA =  0.117509  0.117509 -0.174844 -0.174844 -0.008611 -0.008611
+
+ KGRN:  QCPA = -0.101860 -0.101860  0.167807  0.167807
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001626
+       4  4  25  -0.001374
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731313 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731313 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731313     -0.731313
+
+ KGRN:  Iteration no.  28 Etot =    -2554.212614 erren = 0.00000086
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100674 erref = 0.00006974
+
+ KGRN:  QSCA =  0.031620
+
+ KGRN:  QCPA =  0.116960  0.116960 -0.174707 -0.174707 -0.008445 -0.008445
+
+ KGRN:  QCPA = -0.101730 -0.101730  0.167922  0.167922
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001627
+       4  4  25  -0.001375
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731324 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731324 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731324     -0.731324
+
+ KGRN:  Iteration no.  29 Etot =    -2554.212613 erren = 0.00000055
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100626 erref = 0.00005697
+
+ KGRN:  QSCA =  0.031608
+
+ KGRN:  QCPA =  0.116502  0.116502 -0.174594 -0.174594 -0.008306 -0.008306
+
+ KGRN:  QCPA = -0.101620 -0.101620  0.168018  0.168018
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001628
+       4  4  25  -0.001376
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731333 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731333 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731333     -0.731333
+
+ KGRN:  Iteration no.  30 Etot =    -2554.212612 erren = 0.00000114
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100589 erref = 0.00004420
+
+ KGRN:  QSCA =  0.031596
+
+ KGRN:  QCPA =  0.116133  0.116133 -0.174504 -0.174504 -0.008194 -0.008194
+
+ KGRN:  QCPA = -0.101531 -0.101531  0.168096  0.168096
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001629
+       4  4  25  -0.001376
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731342 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731342 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731342     -0.731342
+
+ KGRN:  Iteration no.  31 Etot =    -2554.212611 erren = 0.00000119
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100562 erref = 0.00003283
+
+ KGRN:  QSCA =  0.031585
+
+ KGRN:  QCPA =  0.115846  0.115846 -0.174434 -0.174434 -0.008106 -0.008106
+
+ KGRN:  QCPA = -0.101462 -0.101462  0.168156  0.168156
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001629
+       4  4  25  -0.001377
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731349 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731349 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731349     -0.731349
+
+ KGRN:  Iteration no.  32 Etot =    -2554.212610 erren = 0.00000098
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100543 erref = 0.00002348
+
+ KGRN:  QSCA =  0.031575
+
+ KGRN:  QCPA =  0.115627  0.115627 -0.174382 -0.174382 -0.008039 -0.008039
+
+ KGRN:  QCPA = -0.101410 -0.101410  0.168203  0.168203
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001629
+       4  4  25  -0.001377
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731354 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731354 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731354     -0.731354
+
+ KGRN:  Iteration no.  33 Etot =    -2554.212609 erren = 0.00000070
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100530 erref = 0.00001627
+
+ KGRN:  QSCA =  0.031567
+
+ KGRN:  QCPA =  0.115465  0.115465 -0.174343 -0.174343 -0.007989 -0.007989
+
+ KGRN:  QCPA = -0.101370 -0.101370  0.168237  0.168237
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001630
+       4  4  25  -0.001377
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731359 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731359 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731359     -0.731359
+
+ KGRN:  Iteration no.  34 Etot =    -2554.212609 erren = 0.00000045
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100521 erref = 0.00001094
+
+ KGRN:  QSCA =  0.031560
+
+ KGRN:  QCPA =  0.115346  0.115346 -0.174315 -0.174315 -0.007953 -0.007953
+
+ KGRN:  QCPA = -0.101342 -0.101342  0.168263  0.168263
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001630
+       4  4  25  -0.001377
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731363 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731363 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731363     -0.731363
+
+ KGRN:  Iteration no.  35 Etot =    -2554.212608 erren = 0.00000025
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100516 erref = 0.00000715
+
+ KGRN:  QSCA =  0.031554
+
+ KGRN:  QCPA =  0.115260  0.115260 -0.174294 -0.174294 -0.007926 -0.007926
+
+ KGRN:  QCPA = -0.101321 -0.101321  0.168282  0.168282
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001630
+       4  4  25  -0.001378
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731366 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731366 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731366     -0.731366
+
+ KGRN:  Iteration no.  36 Etot =    -2554.212608 erren = 0.00000012
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100512 erref = 0.00000454
+
+ KGRN:  QSCA =  0.031550
+
+ KGRN:  QCPA =  0.115199  0.115199 -0.174280 -0.174280 -0.007907 -0.007907
+
+ KGRN:  QCPA = -0.101306 -0.101306  0.168295  0.168295
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001630
+       4  4  25  -0.001378
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731368 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731368 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731368     -0.731368
+
+ KGRN:  Iteration no.  37 Etot =    -2554.212608 erren = 0.00000002
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100510 erref = 0.00000278
+
+ KGRN:  QSCA =  0.031546
+
+ KGRN:  QCPA =  0.115155  0.115155 -0.174269 -0.174269 -0.007894 -0.007894
+
+ KGRN:  QCPA = -0.101296 -0.101296  0.168305  0.168305
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001630
+       4  4  25  -0.001378
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731370 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731370 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731370     -0.731370
+
+ KGRN:  Iteration no.  38 Etot =    -2554.212608 erren = 0.00000003
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100509 erref = 0.00000164
+
+ KGRN:  QSCA =  0.031543
+
+ KGRN:  QCPA =  0.115125  0.115125 -0.174262 -0.174262 -0.007885 -0.007885
+
+ KGRN:  QCPA = -0.101289 -0.101289  0.168311  0.168311
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1     8.0095   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+ Tot  8.0095
+
+ MLTPM:    Non vanishing higher moments for IQ =  1
+
+       l  m   L
+       4  0  21  -0.001630
+       4  4  25  -0.001378
+       6  0  43   0.000149
+       6  4  47  -0.000395
+
+ Linear loop not converged
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731371 VolI =  0.000000
+
+ OPTPOT:   Fbar =  0.000000 g = -0.731371 VolI =  0.000000
+
+           VMTZ(Up,Dwn) =      -0.731371     -0.731371
+
+ KGRN:  Iteration no.  39 Etot =    -2554.212608 erren = 0.00000005
+
+        Magn. mom. = -0.000
+
+        Dyson loops    32 EF   =       -0.100508 erref = 0.00000091
+
+ KGRN:  QSCA =  0.031541
+
+ KGRN:  QCPA =  0.115103  0.115103 -0.174257 -0.174257 -0.007878 -0.007878
+
+ KGRN:  QCPA = -0.101284 -0.101284  0.168316  0.168316
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ PATHOP: CPA equation for IS =  1 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in  3-13 iterations
+
+ PATHOP: CPA equation for IS =  1 converged in 11-13 iterations
+
+ PATHOP: CPA equation for IS =  2 converged in 11-13 iterations
+
+ EBTOP:      Bot       Top
+
+            -0.712699  9.981375
+
+ FESPTH: CPA equation for IS =  1 converged in  9- 9 iterations
+
+         DOS(EF) = 11.391717
+
+ FESPTH: CPA equation for IS =  2 converged in  9- 9 iterations
+
+         DOS(EF) = 11.391717
+
+ ZMESH:    Semi-elliptic contour
+
+ ZMESH:    ELT  =  8.000000 EB   = -0.180129 EFX= -0.100508
+           DELTA=  0.079621 b/a  = -0.062500 EPS=  0.200000
+
+           LZ     Re(z)     Im(z)    Weight
+
+            1  -0.179342 -0.000698  0.004037 -0.001782
+            2  -0.162834 -0.003097  0.029479 -0.002318
+            3  -0.133683 -0.004524  0.023505 -0.000673
+            4  -0.116990 -0.004869  0.011188 -0.000148
+            5  -0.109013 -0.004948  0.005561 -0.000037
+            6  -0.104825 -0.004969  0.003139 -0.000011
+            7  -0.102336 -0.004975  0.001942 -0.000003
+            8  -0.100882 -0.004976  0.000937 -0.000000
+            9  -0.100134 -0.004976  0.000937  0.000000
+           10  -0.098680 -0.004975  0.001942  0.000003
+           11  -0.096192 -0.004969  0.003139  0.000011
+           12  -0.092003 -0.004948  0.005561  0.000037
+           13  -0.084027 -0.004869  0.011188  0.000148
+           14  -0.067333 -0.004524  0.023505  0.000673
+           15  -0.038182 -0.003097  0.029479  0.002318
+           16  -0.021674 -0.000698  0.004037  0.001782
+
+ DOSPTH: CPA equation for IS =  1 converged in 11-15 iterations
+
+ DOSPTH: CPA equation for IS =  2 converged in 11-15 iterations
+
+ ZMESH:    Semi-circular contour
+
+
+           ELT  =  8.000000 EB   = -1.600508 EFX= -0.100508
+           DEPTH=  1.000000 DELTA=  0.079621 EPS=  0.200000
+
+           LZ     Re(z)     Im(z)    Weight
+
+            1  -1.099896 -0.024738  0.003113 -0.062850
+            2  -1.084860 -0.124112  0.033622 -0.131212
+            3  -1.019839 -0.272326  0.100905 -0.155375
+            4  -0.881699 -0.413439  0.171794 -0.116842
+            5  -0.690216 -0.491887  0.202148 -0.036867
+            6  -0.494883 -0.488716  0.181335  0.039191
+            7  -0.336823 -0.424818  0.132733  0.082387
+            8  -0.229432 -0.335115  0.083534  0.092498
+            9  -0.165398 -0.246331  0.046989  0.083000
+           10  -0.130809 -0.171413  0.024235  0.066407
+           11  -0.113558 -0.113490  0.011595  0.049750
+           12  -0.105578 -0.071018  0.005123  0.035705
+           13  -0.102197 -0.041065  0.002034  0.024677
+           14  -0.100942 -0.020820  0.000674  0.016174
+           15  -0.100574 -0.008116  0.000154  0.009475
+           16  -0.100511 -0.001503  0.000012  0.003880
+
+           LX     Re(z)     Im(z)
+
+            1  -0.102511 -0.001503
+            2  -0.101511 -0.001503
+            3  -0.100511 -0.001503
+            4  -0.099511 -0.001503
+            5  -0.098511 -0.001503
+
+ Atom:Co              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.426873   -0.286470   -0.207285   -0.228402   -0.427856   -0.286586   -0.232570   -0.228389
+ D-nu       =   -0.628367    0.281895   -1.233449    2.485932   -0.657165    0.265993   -1.865514    2.484174
+ Dnud       =    5.740635    7.373121    1.986233   12.127634    5.688851    7.321240    1.918945   12.101093
+ Omega-     =    0.130107    0.937209    0.060335    4.048934    0.118661    0.923343    0.030089    4.038148
+ S*Phisq-   =   -0.330794    0.310726    0.022054    0.373208   -0.328377    0.308420    0.020405    0.371970
+ Phi-/Phi+  =    0.851646    0.679936   -0.002761    0.565962    0.850497    0.678154   -0.016478    0.565247
+
+ Mu         =    0.799480    0.851112   11.991712    0.708620    0.805364    0.857475   12.960643    0.710978
+ Tau        =    0.869795    0.983699    0.000320    1.021412    0.873835    0.985868    0.012317    1.022222
+ A          =    1.932992    3.563215   -0.036984    9.839499    1.887268    3.511616   -0.102110    9.798886
+ C          =   -0.296766    0.650740   -0.146950    3.820532   -0.309195    0.636757   -0.202481    3.809759
+ B          =   -0.685183   -0.139285   -0.313041    1.835325   -0.695295   -0.148591   -0.359398    1.830061
+ V          =   -0.685183   -0.720241   39.792231   -0.795425   -0.695295   -0.727624    5.989070   -0.796708
+ D(Ef)      =   -1.657993   -0.078450   -7.054256    2.361863   -1.710102   -0.097882   66.232351    2.359928
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =   -0.062602
+ V(S) Up,Dwn=   -0.694248                                       -0.691407
+ V(W) Up,Dwn=   -0.694248                                       -0.691407
+
+ Atom:Co              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.427856   -0.286586   -0.232570   -0.228389   -0.426873   -0.286470   -0.207285   -0.228402
+ D-nu       =   -0.657165    0.265993   -1.865514    2.484174   -0.628367    0.281895   -1.233449    2.485932
+ Dnud       =    5.688851    7.321240    1.918945   12.101093    5.740635    7.373121    1.986233   12.127634
+ Omega-     =    0.118661    0.923343    0.030089    4.038148    0.130107    0.937209    0.060335    4.048934
+ S*Phisq-   =   -0.328377    0.308420    0.020405    0.371970   -0.330794    0.310726    0.022054    0.373208
+ Phi-/Phi+  =    0.850497    0.678154   -0.016478    0.565247    0.851646    0.679936   -0.002761    0.565962
+
+ Mu         =    0.805364    0.857475   12.960643    0.710978    0.799480    0.851112   11.991712    0.708620
+ Tau        =    0.873835    0.985868    0.012317    1.022222    0.869795    0.983699    0.000320    1.021412
+ A          =    1.887268    3.511616   -0.102110    9.798886    1.932992    3.563215   -0.036984    9.839499
+ C          =   -0.309195    0.636757   -0.202481    3.809759   -0.296766    0.650740   -0.146950    3.820532
+ B          =   -0.695295   -0.148591   -0.359398    1.830061   -0.685183   -0.139285   -0.313041    1.835325
+ V          =   -0.695295   -0.727624    5.989070   -0.796708   -0.685183   -0.720241   39.792233   -0.795425
+ D(Ef)      =   -1.710102   -0.097882   66.232343    2.359928   -1.657993   -0.078450   -7.054256    2.361863
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =   -0.062602
+ V(S) Up,Dwn=   -0.691407                                       -0.694248
+ V(W) Up,Dwn=   -0.691407                                       -0.694248
+
+ Atom:Cr              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.423777   -0.286405   -0.224733   -0.228480   -0.423795   -0.286408   -0.224717   -0.228480
+ D-nu       =   -0.470416    0.378734   -0.834854    2.355389   -0.471189    0.378177   -0.841987    2.355175
+ Dnud       =    6.484195    8.239840    2.298721   11.694711    6.483053    8.238301    2.296158   11.693824
+ Omega-     =    0.210288    1.054124    0.131212    3.811530    0.209938    1.053709    0.130358    3.811072
+ S*Phisq-   =   -0.368984    0.340202    0.035839    0.356878   -0.368946    0.340156    0.035793    0.356841
+ Phi-/Phi+  =    0.866385    0.707027    0.056376    0.553990    0.866365    0.706983    0.055919    0.553965
+
+ Mu         =    0.716733    0.777371    7.379174    0.741046    0.716807    0.777475    7.388684    0.741122
+ Tau        =    0.806995    0.971493    0.082085    1.023438    0.807039    0.971503    0.080865    1.023450
+ A          =    2.548057    4.251330    0.096381    9.184141    2.546984    4.249920    0.095207    9.182793
+ C          =   -0.213489    0.767719   -0.093520    3.583051   -0.213857    0.767301   -0.094358    3.582592
+ B          =   -0.639378   -0.077834   -0.341355    1.667282   -0.639712   -0.078169   -0.342031    1.666982
+ V          =   -0.639378   -0.675797   -3.272097   -0.926315   -0.639712   -0.676112   -3.294766   -0.926518
+ D(Ef)      =   -1.323299    0.042596   -2.877421    2.226646   -1.324422    0.041966   -2.899814    2.226423
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =    0.063664
+ V(S) Up,Dwn=   -0.791804                                       -0.791887
+ V(W) Up,Dwn=   -0.791804                                       -0.791887
+
+ Atom:Cr              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.423795   -0.286408   -0.224717   -0.228480   -0.423777   -0.286405   -0.224733   -0.228480
+ D-nu       =   -0.471189    0.378177   -0.841987    2.355175   -0.470416    0.378734   -0.834854    2.355389
+ Dnud       =    6.483053    8.238301    2.296158   11.693824    6.484195    8.239840    2.298721   11.694711
+ Omega-     =    0.209938    1.053709    0.130358    3.811072    0.210288    1.054124    0.131212    3.811530
+ S*Phisq-   =   -0.368946    0.340156    0.035793    0.356841   -0.368984    0.340202    0.035839    0.356878
+ Phi-/Phi+  =    0.866365    0.706983    0.055919    0.553965    0.866385    0.707027    0.056376    0.553990
+
+ Mu         =    0.716807    0.777475    7.388684    0.741122    0.716733    0.777371    7.379174    0.741046
+ Tau        =    0.807039    0.971503    0.080865    1.023450    0.806995    0.971493    0.082085    1.023438
+ A          =    2.546984    4.249920    0.095207    9.182793    2.548057    4.251330    0.096381    9.184141
+ C          =   -0.213857    0.767301   -0.094358    3.582592   -0.213489    0.767719   -0.093520    3.583051
+ B          =   -0.639712   -0.078169   -0.342031    1.666982   -0.639378   -0.077834   -0.341355    1.667282
+ V          =   -0.639712   -0.676112   -3.294766   -0.926518   -0.639378   -0.675797   -3.272097   -0.926315
+ D(Ef)      =   -1.324422    0.041966   -2.899814    2.226423   -1.323299    0.042596   -2.877421    2.226646
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =    0.063664
+ V(S) Up,Dwn=   -0.791887                                       -0.791804
+ V(W) Up,Dwn=   -0.791887                                       -0.791804
+
+ Atom:Fe              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.425794   -0.286549   -0.213477   -0.228446   -0.429080   -0.287050   -0.262762   -0.228414
+ D-nu       =   -0.581196    0.299516   -0.614118    2.441087   -0.683306    0.236350   -2.249957    2.426546
+ Dnud       =    5.987336    7.609779    2.194707   12.004359    5.822315    7.434097    1.923114   11.902705
+ Omega-     =    0.153543    0.970258    0.124968    3.975972    0.112182    0.920328    0.020060    3.929541
+ S*Phisq-   =   -0.344647    0.320975    0.028321    0.368852   -0.337786    0.313978    0.022670    0.364356
+ Phi-/Phi+  =    0.856884    0.687818    0.037482    0.562619    0.853422    0.682005   -0.015617    0.559823
+
+ Mu         =    0.767345    0.823937    9.337955    0.716989    0.782930    0.842297   11.665521    0.725837
+ Tau        =    0.845135    0.974498    0.045916    1.021301    0.855346    0.979445    0.009958    1.023655
+ A          =    2.135910    3.768203    0.058612    9.650769    1.987586    3.595377   -0.131092    9.495368
+ C          =   -0.272251    0.683709   -0.088509    3.747526   -0.316897    0.633278   -0.242702    3.701127
+ B          =   -0.674461   -0.126957   -0.289612    1.780493   -0.712699   -0.163617   -0.416809    1.753926
+ V          =   -0.674461   -0.716259   -3.866507   -0.841662   -0.712699   -0.747847    7.015394   -0.854756
+ D(Ef)      =   -1.542548   -0.052400   -2.685391    2.315601   -1.714084   -0.127353   15.359397    2.300220
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =   -0.008938
+ V(S) Up,Dwn=   -0.733483                                       -0.731843
+ V(W) Up,Dwn=   -0.733483                                       -0.731843
+
+ Atom:Fe              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.429080   -0.287050   -0.262762   -0.228414   -0.425794   -0.286549   -0.213477   -0.228446
+ D-nu       =   -0.683306    0.236350   -2.249957    2.426546   -0.581196    0.299516   -0.614118    2.441087
+ Dnud       =    5.822315    7.434097    1.923114   11.902705    5.987336    7.609779    2.194707   12.004359
+ Omega-     =    0.112182    0.920328    0.020060    3.929541    0.153543    0.970258    0.124968    3.975972
+ S*Phisq-   =   -0.337786    0.313978    0.022670    0.364356   -0.344647    0.320975    0.028321    0.368852
+ Phi-/Phi+  =    0.853422    0.682005   -0.015617    0.559823    0.856884    0.687818    0.037482    0.562619
+
+ Mu         =    0.782930    0.842297   11.665521    0.725837    0.767345    0.823937    9.337955    0.716989
+ Tau        =    0.855346    0.979445    0.009958    1.023655    0.845135    0.974498    0.045916    1.021301
+ A          =    1.987586    3.595377   -0.131092    9.495368    2.135910    3.768203    0.058612    9.650769
+ C          =   -0.316897    0.633278   -0.242702    3.701127   -0.272251    0.683709   -0.088509    3.747526
+ B          =   -0.712699   -0.163617   -0.416809    1.753926   -0.674461   -0.126957   -0.289612    1.780493
+ V          =   -0.712699   -0.747847    7.015394   -0.854756   -0.674461   -0.716259   -3.866507   -0.841662
+ D(Ef)      =   -1.714084   -0.127353   15.359397    2.300220   -1.542548   -0.052400   -2.685391    2.315601
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =   -0.008938
+ V(S) Up,Dwn=   -0.731843                                       -0.733483
+ V(W) Up,Dwn=   -0.731843                                       -0.733483
+
+ Atom:Mn              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.423822   -0.286339   -0.224839   -0.228470   -0.427587   -0.286994   -0.244478   -0.228445
+ D-nu       =   -0.493056    0.357157   -0.315243    2.408853   -0.629365    0.265272   -1.905732    2.379402
+ Dnud       =    6.280904    7.943714    2.421288   11.899312    6.074445    7.703485    1.990638   11.753188
+ Omega-     =    0.195471    1.027103    0.188219    3.918423    0.137335    0.957718    0.038142    3.846217
+ S*Phisq-   =   -0.358740    0.332446    0.035388    0.364955   -0.351126    0.324084    0.027213    0.358757
+ Phi-/Phi+  =    0.862654    0.698302    0.077710    0.559729    0.858646    0.690833   -0.001876    0.555646
+
+ Mu         =    0.737198    0.795505    7.473224    0.724644    0.753184    0.816031    9.718202    0.737164
+ Tau        =    0.822904    0.969771    0.157953    1.021630    0.832954    0.973627    0.000120    1.024171
+ A          =    2.383603    4.046516    0.155229    9.492494    2.193771    3.815471   -0.070526    9.269339
+ C          =   -0.228350    0.740764   -0.036620    3.689953   -0.290252    0.670723   -0.206337    3.617772
+ B          =   -0.644207   -0.091530   -0.274323    1.739406   -0.699182   -0.145725   -0.411011    1.694356
+ V          =   -0.644207   -0.687471   -2.313552   -0.874196   -0.699182   -0.736640   72.324416   -0.901835
+ D(Ef)      =   -1.379360    0.016857   -1.686129    2.282243   -1.590758   -0.089328  -25.939295    2.251394
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =    0.031821
+ V(S) Up,Dwn=   -0.759429                                       -0.766832
+ V(W) Up,Dwn=   -0.759429                                       -0.766832
+
+ Atom:Mn              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.427587   -0.286994   -0.244478   -0.228445   -0.423822   -0.286339   -0.224839   -0.228470
+ D-nu       =   -0.629365    0.265272   -1.905732    2.379402   -0.493056    0.357157   -0.315243    2.408853
+ Dnud       =    6.074445    7.703485    1.990638   11.753188    6.280904    7.943714    2.421288   11.899312
+ Omega-     =    0.137335    0.957718    0.038142    3.846217    0.195471    1.027103    0.188219    3.918423
+ S*Phisq-   =   -0.351126    0.324084    0.027213    0.358757   -0.358740    0.332446    0.035388    0.364955
+ Phi-/Phi+  =    0.858646    0.690833   -0.001876    0.555646    0.862654    0.698302    0.077710    0.559729
+
+ Mu         =    0.753184    0.816031    9.718202    0.737164    0.737198    0.795505    7.473224    0.724644
+ Tau        =    0.832954    0.973627    0.000120    1.024171    0.822904    0.969771    0.157953    1.021630
+ A          =    2.193771    3.815471   -0.070526    9.269339    2.383603    4.046516    0.155229    9.492494
+ C          =   -0.290252    0.670723   -0.206337    3.617772   -0.228350    0.740764   -0.036620    3.689953
+ B          =   -0.699182   -0.145725   -0.411011    1.694356   -0.644207   -0.091530   -0.274323    1.739406
+ V          =   -0.699182   -0.736640   72.324415   -0.901835   -0.644207   -0.687471   -2.313552   -0.874196
+ D(Ef)      =   -1.590758   -0.089328  -25.939295    2.251394   -1.379360    0.016857   -1.686129    2.282243
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =    0.031821
+ V(S) Up,Dwn=   -0.766832                                       -0.759429
+ V(W) Up,Dwn=   -0.766832                                       -0.759429
+
+ Atom:Ni              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.429062   -0.286530   -0.230655   -0.228380   -0.429062   -0.286530   -0.230655   -0.228380
+ D-nu       =   -0.696763    0.254595   -1.883752    2.515049   -0.696763    0.254595   -1.883752    2.515049
+ Dnud       =    5.496990    7.163224    1.887296   12.220081    5.496990    7.163224    1.887296   12.220081
+ Omega-     =    0.101162    0.900737    0.026164    4.100907    0.101162    0.900737    0.026164    4.100907
+ S*Phisq-   =   -0.318036    0.301212    0.018086    0.376622   -0.318036    0.301212    0.018086    0.376622
+ Phi-/Phi+  =    0.846083    0.672604   -0.023061    0.568436    0.846083    0.672604   -0.023061    0.568436
+
+ Mu         =    0.831549    0.877995   14.622799    0.702196    0.831549    0.877995   14.622799    0.702196
+ Tau        =    0.892904    0.993004    0.027217    1.021020    0.892904    0.993004    0.027217    1.021020
+ A          =    1.738377    3.374283   -0.116101    9.981375    1.738377    3.374283   -0.116101    9.981375
+ C          =   -0.327901    0.614206   -0.204491    3.872528   -0.327901    0.614206   -0.204491    3.872528
+ B          =   -0.703793   -0.156418   -0.344994    1.872918   -0.703793   -0.156418   -0.344994    1.872918
+ V          =   -0.703793   -0.729284    3.716836   -0.765385   -0.703793   -0.729284    3.716836   -0.765385
+ D(Ef)      =   -1.812883   -0.115715   21.279274    2.391943   -1.812883   -0.115715   21.279274    2.391943
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =   -0.085823
+ V(S) Up,Dwn=   -0.670224                                       -0.670224
+ V(W) Up,Dwn=   -0.670224                                       -0.670224
+
+ Atom:Ni              S =    2.750000        SWS =    2.750000
+ Exch:P-W                              Date : 24-Jan-19
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+
+ E-nu       =   -0.429062   -0.286530   -0.230655   -0.228380   -0.429062   -0.286530   -0.230655   -0.228380
+ D-nu       =   -0.696763    0.254595   -1.883752    2.515049   -0.696763    0.254595   -1.883752    2.515049
+ Dnud       =    5.496990    7.163224    1.887296   12.220081    5.496990    7.163224    1.887296   12.220081
+ Omega-     =    0.101162    0.900737    0.026164    4.100907    0.101162    0.900737    0.026164    4.100907
+ S*Phisq-   =   -0.318036    0.301212    0.018086    0.376622   -0.318036    0.301212    0.018086    0.376622
+ Phi-/Phi+  =    0.846083    0.672604   -0.023061    0.568436    0.846083    0.672604   -0.023061    0.568436
+
+ Mu         =    0.831549    0.877995   14.622799    0.702196    0.831549    0.877995   14.622799    0.702196
+ Tau        =    0.892904    0.993004    0.027217    1.021020    0.892904    0.993004    0.027217    1.021020
+ A          =    1.738377    3.374283   -0.116101    9.981375    1.738377    3.374283   -0.116101    9.981375
+ C          =   -0.327901    0.614206   -0.204491    3.872528   -0.327901    0.614206   -0.204491    3.872528
+ B          =   -0.703793   -0.156418   -0.344994    1.872918   -0.703793   -0.156418   -0.344994    1.872918
+ V          =   -0.703793   -0.729284    3.716836   -0.765385   -0.703793   -0.729284    3.716836   -0.765385
+ D(Ef)      =   -1.812883   -0.115715   21.279274    2.391943   -1.812883   -0.115715   21.279274    2.391943
+
+ Bot, Top   =   -0.712699    9.981375
+ V-Madelung =   -0.085823
+ V(S) Up,Dwn=   -0.670224                                       -0.670224
+ V(W) Up,Dwn=   -0.670224                                       -0.670224
+
+ EF         =   -0.100508
+
+ VMTZ Up,Dwn=   -0.731371                                       -0.731371
+
+ Atom:Co  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.344226    0.348777    3.453368    0.020769    0.347298    0.350947    4.230471    0.020800
+ Nos(Ef)    =    9.116657
+ Dos(Ef)    =    0.157514    0.599966   18.714493    0.067718    0.158280    0.602433    9.708405    0.067836
+ Dos(Ef)    =   30.076645
+ Magn. mom. =    0.782375   -0.000000
+ Stoner-I   =    0.015887    0.017873    0.070978    0.013770
+ Hopfield   =    0.031021 (Ry/Bohr^2),     1.507211 (eV/AA^2)
+ Hopfield   =    0.030783 (Ry/Bohr^2),     1.495662 (eV/AA^2)
+
+ Atom:Co  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.347298    0.350947    4.230471    0.020800    0.344226    0.348777    3.453368    0.020769
+ Nos(Ef)    =    9.116657
+ Dos(Ef)    =    0.158280    0.602433    9.708405    0.067836    0.157514    0.599966   18.714493    0.067718
+ Dos(Ef)    =   30.076645
+ Magn. mom. =   -0.782375   -0.000000
+ Stoner-I   =    0.015887    0.017873    0.070978    0.013770
+ Hopfield   =    0.030783 (Ry/Bohr^2),     1.495662 (eV/AA^2)
+ Hopfield   =    0.031021 (Ry/Bohr^2),     1.507211 (eV/AA^2)
+
+ Atom:Cr  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.311768    0.332940    2.226599    0.020408    0.311806    0.332969    2.237419    0.020408
+ Nos(Ef)    =    5.794317
+ Dos(Ef)    =    0.143703    0.575336   12.058345    0.066489    0.143705    0.575347   12.114921    0.066489
+ Dos(Ef)    =   25.744335
+ Magn. mom. =    0.010887   -0.000000
+ Stoner-I   =    0.033749    0.038413    0.076996    0.042131
+ Hopfield   =    0.039841 (Ry/Bohr^2),     1.935741 (eV/AA^2)
+ Hopfield   =    0.039867 (Ry/Bohr^2),     1.937018 (eV/AA^2)
+
+ Atom:Cr  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.311806    0.332969    2.237419    0.020408    0.311768    0.332940    2.226599    0.020408
+ Nos(Ef)    =    5.794317
+ Dos(Ef)    =    0.143705    0.575347   12.114921    0.066489    0.143703    0.575336   12.058345    0.066489
+ Dos(Ef)    =   25.744335
+ Magn. mom. =   -0.010887   -0.000000
+ Stoner-I   =    0.033749    0.038413    0.076996    0.042131
+ Hopfield   =    0.039867 (Ry/Bohr^2),     1.937018 (eV/AA^2)
+ Hopfield   =    0.039841 (Ry/Bohr^2),     1.935741 (eV/AA^2)
+
+ Atom:Fe  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.331542    0.341971    2.218078    0.020605    0.340074    0.348323    4.354468    0.020667
+ Nos(Ef)    =    7.975728
+ Dos(Ef)    =    0.151924    0.588228   15.069737    0.067138    0.153617    0.594133    6.684563    0.067382
+ Dos(Ef)    =   23.376720
+ Magn. mom. =    2.151337   -0.000000
+ Stoner-I   =    0.020753    0.023442    0.071673    0.021568
+ Hopfield   =    0.032722 (Ry/Bohr^2),     1.589866 (eV/AA^2)
+ Hopfield   =    0.033285 (Ry/Bohr^2),     1.617230 (eV/AA^2)
+
+ Atom:Fe  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.340074    0.348323    4.354468    0.020667    0.331542    0.341971    2.218078    0.020605
+ Nos(Ef)    =    7.975728
+ Dos(Ef)    =    0.153617    0.594133    6.684563    0.067382    0.151924    0.588228   15.069737    0.067138
+ Dos(Ef)    =   23.376720
+ Magn. mom. =   -2.151337   -0.000000
+ Stoner-I   =    0.020753    0.023442    0.071673    0.021568
+ Hopfield   =    0.033285 (Ry/Bohr^2),     1.617230 (eV/AA^2)
+ Hopfield   =    0.032722 (Ry/Bohr^2),     1.589866 (eV/AA^2)
+
+ Atom:Mn  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.319067    0.335240    1.617257    0.020506    0.327782    0.341836    3.903231    0.020528
+ Nos(Ef)    =    6.885447
+ Dos(Ef)    =    0.147318    0.579428    8.910536    0.066802    0.148547    0.584097    9.790813    0.066906
+ Dos(Ef)    =   20.294447
+ Magn. mom. =    2.301306   -0.000000
+ Stoner-I   =    0.026899    0.030435    0.073748    0.031365
+ Hopfield   =    0.034038 (Ry/Bohr^2),     1.653818 (eV/AA^2)
+ Hopfield   =    0.037488 (Ry/Bohr^2),     1.821440 (eV/AA^2)
+
+ Atom:Mn  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.327782    0.341836    3.903231    0.020528    0.319067    0.335240    1.617257    0.020506
+ Nos(Ef)    =    6.885447
+ Dos(Ef)    =    0.148547    0.584097    9.790813    0.066906    0.147318    0.579428    8.910536    0.066802
+ Dos(Ef)    =   20.294447
+ Magn. mom. =   -2.301306   -0.000000
+ Stoner-I   =    0.026899    0.030435    0.073748    0.031365
+ Hopfield   =    0.037488 (Ry/Bohr^2),     1.821440 (eV/AA^2)
+ Hopfield   =    0.034038 (Ry/Bohr^2),     1.653818 (eV/AA^2)
+
+ Atom:Ni  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.358006    0.356311    4.378756    0.020853    0.358006    0.356311    4.378756    0.020853
+ Nos(Ef)    =   10.227851
+ Dos(Ef)    =    0.162965    0.611641    9.086932    0.068007    0.162965    0.611641    9.086932    0.068007
+ Dos(Ef)    =   19.859089
+ Magn. mom. =   -0.000000   -0.000000
+ Stoner-I   =    0.000000    0.000000    0.000000    0.000000
+ Hopfield   =    0.028162 (Ry/Bohr^2),     1.368299 (eV/AA^2)
+ Hopfield   =    0.028162 (Ry/Bohr^2),     1.368299 (eV/AA^2)
+
+ Atom:Ni  
+
+ Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2      s  1/2      p  1/2      d  1/2      f  1/2
+ 
+ Nos(Ef)    =    0.358006    0.356311    4.378756    0.020853    0.358006    0.356311    4.378756    0.020853
+ Nos(Ef)    =   10.227851
+ Dos(Ef)    =    0.162965    0.611641    9.086932    0.068007    0.162965    0.611641    9.086932    0.068007
+ Dos(Ef)    =   19.859089
+ Magn. mom. =   -0.000000   -0.000000
+ Stoner-I   =    0.000000    0.000000    0.000000    0.000000
+ Hopfield   =    0.028162 (Ry/Bohr^2),     1.368299 (eV/AA^2)
+ Hopfield   =    0.028162 (Ry/Bohr^2),     1.368299 (eV/AA^2)
+
+ PRNPRM:   EONE =  -1622.100222 VINT =  -4443.991275 EKIN =   2821.891052
+           ECOR =   1138.242247 ENUC =  -6688.043716 EMADL=     -0.002868
+           EVAL =     60.140995 EXCT =   -114.547982 EXCC =      0.000000
+           ETOT =  -2782.320272 OKAE =      0.000001 E[n] =  -2782.320271
+            T*S =      0.000000 E-TS =  -2782.320272
+
+ PRNPRM:   EONE =  -1622.100222 VINT =  -4443.991275 EKIN =   2821.891052
+           ECOR =   1138.242247 ENUC =  -6688.043716 EMADL=     -0.002868
+           EVAL =     60.140995 EXCT =   -114.547982 EXCC =      0.000000
+           ETOT =  -2782.320272 OKAE =      0.000001 E[n] =  -2782.320271
+            T*S =      0.000000 E-TS =  -2782.320272
+
+ PRNPRM:   EONE =  -1238.153426 VINT =  -3358.529902 EKIN =   2120.376477
+           ECOR =    867.873852 ENUC =  -5012.521081 EMADL=     -0.006603
+           EVAL =     19.777684 EXCT =    -93.244871 EXCC =      0.000000
+           ETOT =  -2097.744543 OKAE =     -0.000002 E[n] =  -2097.744545
+            T*S =      0.000000 E-TS =  -2097.744543
+
+ PRNPRM:   EONE =  -1238.153426 VINT =  -3358.529902 EKIN =   2120.376477
+           ECOR =    867.873852 ENUC =  -5012.521081 EMADL=     -0.006603
+           EVAL =     19.777684 EXCT =    -93.244871 EXCC =      0.000000
+           ETOT =  -2097.744543 OKAE =     -0.000002 E[n] =  -2097.744545
+            T*S =      0.000000 E-TS =  -2097.744543
+
+ PRNPRM:   EONE =  -1488.808828 VINT =  -4063.310930 EKIN =   2574.502103
+           ECOR =   1043.270582 ENUC =  -6095.077599 EMADL=      0.000009
+           EVAL =     43.388737 EXCT =   -107.220924 EXCC =      0.000000
+           ETOT =  -2541.137094 OKAE =     -0.000000 E[n] =  -2541.137094
+            T*S =      0.000000 E-TS =  -2541.137094
+
+ PRNPRM:   EONE =  -1488.808828 VINT =  -4063.310930 EKIN =   2574.502103
+           ECOR =   1043.270582 ENUC =  -6095.077599 EMADL=      0.000009
+           EVAL =     43.388737 EXCT =   -107.220924 EXCC =      0.000000
+           ETOT =  -2541.137094 OKAE =     -0.000000 E[n] =  -2541.137094
+            T*S =      0.000000 E-TS =  -2541.137094
+
+ PRNPRM:   EONE =  -1360.396874 VINT =  -3701.264111 EKIN =   2340.867237
+           ECOR =    953.522673 ENUC =  -5537.449505 EMADL=     -0.002216
+           EVAL =     30.169349 EXCT =   -100.162076 EXCC =      0.000000
+           ETOT =  -2313.054537 OKAE =     -0.000001 E[n] =  -2313.054538
+            T*S =      0.000000 E-TS =  -2313.054537
+
+ PRNPRM:   EONE =  -1360.396874 VINT =  -3701.264111 EKIN =   2340.867237
+           ECOR =    953.522673 ENUC =  -5537.449505 EMADL=     -0.002216
+           EVAL =     30.169349 EXCT =   -100.162076 EXCC =      0.000000
+           ETOT =  -2313.054537 OKAE =     -0.000001 E[n] =  -2313.054538
+            T*S =      0.000000 E-TS =  -2313.054537
+
+ PRNPRM:   EONE =  -1761.727331 VINT =  -4845.555784 EKIN =   3083.828453
+           ECOR =   1236.633359 ENUC =  -7314.901964 EMADL=     -0.006159
+           EVAL =     79.836729 EXCT =   -122.197015 EXCC =      0.000000
+           ETOT =  -3036.806596 OKAE =      0.000001 E[n] =  -3036.806595
+            T*S =      0.000000 E-TS =  -3036.806596
+
+ PRNPRM:   EONE =  -1761.727331 VINT =  -4845.555784 EKIN =   3083.828453
+           ECOR =   1236.633359 ENUC =  -7314.901964 EMADL=     -0.006159
+           EVAL =     79.836729 EXCT =   -122.197015 EXCC =      0.000000
+           ETOT =  -3036.806596 OKAE =      0.000001 E[n] =  -3036.806595
+            T*S =      0.000000 E-TS =  -3036.806596
+
+           Total energies in the soft core approximation (Rydbergs)
+           calculated from output charge density:
+
+           Kinetic energy      2821.891052
+           Madelung energy       -0.002868
+           El-ion energy      -6688.043716
+           El-el energy        1198.383242
+           Exc energy          -114.547982
+                              ------------
+           Total              -2782.320272
+           Total+OKAE         -2782.320271
+           Total+Ewald        -2782.294764 4pi SS n(S)=  3.180473
+
+           Kinetic energy      2821.891052
+           Madelung energy       -0.002868
+           El-ion energy      -6688.043716
+           El-el energy        1198.383242
+           Exc energy          -114.547982
+                              ------------
+           Total              -2782.320272
+           Total+OKAE         -2782.320271
+           Total+Ewald        -2782.294764 4pi SS n(S)=  3.180473
+
+           Kinetic energy      2120.376477
+           Madelung energy       -0.006603
+           El-ion energy      -5012.521081
+           El-el energy         887.651535
+           Exc energy           -93.244871
+                              ------------
+           Total              -2097.744543
+           Total+OKAE         -2097.744545
+           Total+Ewald        -2097.715524 4pi SS n(S)=  3.392311
+
+           Kinetic energy      2120.376477
+           Madelung energy       -0.006603
+           El-ion energy      -5012.521081
+           El-el energy         887.651535
+           Exc energy           -93.244871
+                              ------------
+           Total              -2097.744543
+           Total+OKAE         -2097.744545
+           Total+Ewald        -2097.715524 4pi SS n(S)=  3.392311
+
+           Kinetic energy      2574.502103
+           Madelung energy        0.000009
+           El-ion energy      -6095.077599
+           El-el energy        1086.659318
+           Exc energy          -107.220924
+                              ------------
+           Total              -2541.137094
+           Total+OKAE         -2541.137094
+           Total+Ewald        -2541.110664 4pi SS n(S)=  3.237456
+
+           Kinetic energy      2574.502103
+           Madelung energy        0.000009
+           El-ion energy      -6095.077599
+           El-el energy        1086.659318
+           Exc energy          -107.220924
+                              ------------
+           Total              -2541.137094
+           Total+OKAE         -2541.137094
+           Total+Ewald        -2541.110664 4pi SS n(S)=  3.237456
+
+           Kinetic energy      2340.867237
+           Madelung energy       -0.002216
+           El-ion energy      -5537.449505
+           El-el energy         983.692022
+           Exc energy          -100.162076
+                              ------------
+           Total              -2313.054537
+           Total+OKAE         -2313.054538
+           Total+Ewald        -2313.027332 4pi SS n(S)=  3.284620
+
+           Kinetic energy      2340.867237
+           Madelung energy       -0.002216
+           El-ion energy      -5537.449505
+           El-el energy         983.692022
+           Exc energy          -100.162076
+                              ------------
+           Total              -2313.054537
+           Total+OKAE         -2313.054538
+           Total+Ewald        -2313.027332 4pi SS n(S)=  3.284620
+
+           Kinetic energy      3083.828453
+           Madelung energy       -0.006159
+           El-ion energy      -7314.901964
+           El-el energy        1316.470088
+           Exc energy          -122.197015
+                              ------------
+           Total              -3036.806596
+           Total+OKAE         -3036.806595
+           Total+Ewald        -3036.782643 4pi SS n(S)=  3.082037
+
+           Kinetic energy      3083.828453
+           Madelung energy       -0.006159
+           El-ion energy      -7314.901964
+           El-el energy        1316.470088
+           Exc energy          -122.197015
+                              ------------
+           Total              -3036.806596
+           Total+OKAE         -3036.806595
+           Total+Ewald        -3036.782643 4pi SS n(S)=  3.082037
+
+           Total energy       -2554.212608
+
+           Total energy+OKA   -2554.212608
+
+           Total+Ewald        -2554.186185
+                              ============
+
+result   2.750000  -2782.320272 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -2782.320272 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -2097.744543 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -2097.744543 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -2541.137094 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -2541.137094 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -2313.054537 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -2313.054537 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -3036.806596 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+result   2.750000  -3036.806596 -0.630863 -0.630863 -0.100508 -0.731371 -0.731371
+
+ Converged in 40 iterations at 00:58  24-Jan-19
+
+ Potential parameters, charge densities, and potential stored on:    24-Jan-19
+
+ Calculation of the full charge density, lmaxh =  8
+
+ FCDPTH: CPA equation for IS =  1 converged in  3-13 iterations
+
+ FCDPTH: CPA equation for IS =  2 converged in  3-13 iterations
+
+ KKRFCD: NOS(Ef) =  8.000000 ELT =  8.000000
+
+ MGAUN:    Generate real Gaunt numbers
+
+ MGAUNT:   NGAUNT = 23621
+
+ GRNFCD: Construct the full charge density
+
+ get_KED: Construct the kinetic energy density.
+
+ rot_ked:   Perform the 3D rotations of KED-related quantities.
+
+ ROTCHD:   Perform the 3D rotations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1    27.1564    0.7824    0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000
+   1    27.1564   -0.7824    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000
+   1    23.8672    0.0109   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000
+   1    23.8672   -0.0109   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000
+   1    26.0335    2.1513    0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000
+   1    26.0335   -2.1513    0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000    0.0000
+   1    24.9401    2.3013   -0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000
+   1    24.9401   -2.3013   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000
+   1    28.2097   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000
+   1    28.2097   -0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000
+ Tot 26.0414
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 1
+
+       l  m   L
+       4  0  21  -0.003344
+       4  4  25  -0.002826
+       6  0  43  -0.000729
+       6  4  47   0.001930
+       8  0  73   0.000155
+       8  4  77   0.000083
+       8  8  81   0.000126
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 2
+
+       l  m   L
+       4  0  21  -0.003344
+       4  4  25  -0.002826
+       6  0  43  -0.000729
+       6  4  47   0.001930
+       8  0  73   0.000155
+       8  4  77   0.000083
+       8  8  81   0.000126
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 3
+
+       l  m   L
+       4  0  21  -0.005393
+       4  4  25  -0.004558
+       6  0  43  -0.000830
+       6  4  47   0.002195
+       8  0  73   0.000194
+       8  4  77   0.000103
+       8  8  81   0.000157
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 4
+
+       l  m   L
+       4  0  21  -0.005393
+       4  4  25  -0.004558
+       6  0  43  -0.000830
+       6  4  47   0.002195
+       8  0  73   0.000194
+       8  4  77   0.000103
+       8  8  81   0.000157
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 5
+
+       l  m   L
+       4  0  21  -0.004121
+       4  4  25  -0.003483
+       6  0  43  -0.000723
+       6  4  47   0.001912
+       8  0  73   0.000158
+       8  4  77   0.000084
+       8  8  81   0.000128
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 6
+
+       l  m   L
+       4  0  21  -0.004121
+       4  4  25  -0.003483
+       6  0  43  -0.000723
+       6  4  47   0.001912
+       8  0  73   0.000158
+       8  4  77   0.000084
+       8  8  81   0.000128
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 7
+
+       l  m   L
+       4  0  21  -0.004295
+       4  4  25  -0.003630
+       6  0  43  -0.000785
+       6  4  47   0.002077
+       8  0  73   0.000179
+       8  4  77   0.000095
+       8  8  81   0.000145
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 8
+
+       l  m   L
+       4  0  21  -0.004295
+       4  4  25  -0.003630
+       6  0  43  -0.000785
+       6  4  47   0.002077
+       8  0  73   0.000179
+       8  4  77   0.000095
+       8  8  81   0.000145
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 9
+
+       l  m   L
+       4  0  21  -0.003093
+       4  4  25  -0.002614
+       6  0  43  -0.000663
+       6  4  47   0.001754
+       8  0  73   0.000134
+       8  4  77   0.000071
+       8  8  81   0.000109
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA =10
+
+       l  m   L
+       4  0  21  -0.003093
+       4  4  25  -0.002614
+       6  0  43  -0.000663
+       6  4  47   0.001754
+       8  0  73   0.000134
+       8  4  77   0.000071
+       8  8  81   0.000109
+
+ Calculation of the SCA full charge density, lmax =  3
+
+ FCDPTH: CPA equation for IS =  1 converged in  3-13 iterations
+
+ FCDPTH: CPA equation for IS =  2 converged in  3-13 iterations
+
+ KKRFCD: NOS(Ef) =  8.000000 ELT =  8.000000
+
+ MGAUN:    Generate real Gaunt numbers
+
+ MGAUNT:   NGAUNT =   708
+
+ GRNFCD: Construct the full charge density
+
+ ROTCHD:   Perform the 3D rotations
+
+ MLTPM:    Multipole moments
+
+  IQ        s       Spin        y         z         x         xy        yz      3zz-1       xz      xx-yy     3xx y      xyz      5zz y     5zz z     5zz x     xx  z     3yy x
+   1    27.1466    0.7824   -0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000
+   1    27.1466   -0.7824   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000
+   1    23.8573    0.0109    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000
+   1    23.8573   -0.0109    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000
+   1    26.0237    2.1513   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000   -0.0000   -0.0000    0.0000
+   1    26.0237   -2.1513   -0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000    0.0000
+   1    24.9303    2.3013   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000   -0.0000
+   1    24.9303   -2.3013   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000   -0.0000    0.0000    0.0000
+   1    28.1999   -0.0000   -0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000    0.0000   -0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000
+   1    28.1999   -0.0000    0.0000   -0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000    0.0000    0.0000   -0.0000   -0.0000    0.0000   -0.0000    0.0000   -0.0000
+ Tot 26.0315
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 1
+
+       l  m   L
+       4  0  21  -0.000919
+       4  4  25  -0.000777
+       6  0  43   0.000147
+       6  4  47  -0.000388
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 2
+
+       l  m   L
+       4  0  21  -0.000919
+       4  4  25  -0.000777
+       6  0  43   0.000147
+       6  4  47  -0.000388
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 3
+
+       l  m   L
+       4  0  21  -0.002918
+       4  4  25  -0.002466
+       6  0  43   0.000154
+       6  4  47  -0.000407
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 4
+
+       l  m   L
+       4  0  21  -0.002918
+       4  4  25  -0.002466
+       6  0  43   0.000154
+       6  4  47  -0.000407
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 5
+
+       l  m   L
+       4  0  21  -0.001741
+       4  4  25  -0.001471
+       6  0  43   0.000150
+       6  4  47  -0.000396
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 6
+
+       l  m   L
+       4  0  21  -0.001741
+       4  4  25  -0.001471
+       6  0  43   0.000150
+       6  4  47  -0.000396
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 7
+
+       l  m   L
+       4  0  21  -0.001863
+       4  4  25  -0.001575
+       6  0  43   0.000152
+       6  4  47  -0.000402
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 8
+
+       l  m   L
+       4  0  21  -0.001863
+       4  4  25  -0.001575
+       6  0  43   0.000152
+       6  4  47  -0.000402
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 9
+
+       l  m   L
+       4  0  21  -0.000710
+       4  4  25  -0.000600
+       6  0  43   0.000145
+       6  4  47  -0.000384
+
+ ELDENS:   Non vanishing higher moments for IQ =  1 ITA =10
+
+       l  m   L
+       4  0  21  -0.000710
+       4  4  25  -0.000600
+       6  0  43   0.000145
+       6  4  47  -0.000384
+
+ Full charge density stored on:24-Jan-19
+
+ KGRN calculation finished at 01:54 on 24-Jan-19
