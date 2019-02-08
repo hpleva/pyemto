@@ -1,0 +1,1474 @@
+ FHNDLR:   Program: KFCD, Version: LV  22 Jan 2008                   TM: 01:57
+                                                                     24-Jan-19
+
+           JOB   : CoCrFeMnNi_2.642857                                                                                                                                                                                                                                             
+           FOR001: /proj/snic2016-1-180/users/x_henle/HEA_ELF_project/CoCrFeMnNi/eq_vol_bmod/PM_CPA/kstr/fcc.tfh
+           FOR002: kgrn/CoCrFeMnNi_2.642857.chd
+           FOR003: /proj/snic2016-1-180/users/x_henle/HEA_ELF_project/CoCrFeMnNi/eq_vol_bmod/PM_CPA/shape/fcc.shp
+           FOR004: /proj/snic2016-1-180/users/x_henle/HEA_ELF_project/CoCrFeMnNi/eq_vol_bmod/PM_CPA/bmdl/fcc.mdl
+           FOR006: kfcd/CoCrFeMnNi_2.642857.prn
+ 
+       EMTO versio: 5.8.0-72-g41b653d
+ current branch on: KED_ELF
+   commit hash key: 41b653d3184b434d0218530b14d0310cf66cc0a6
+        compile on: 2019-01-21T12:20:12
+           OS info: Linux 3.10.0-957.1.3.el7.x86_64 x86_64 GNU/Linux
+          CPU-info: Intel(R) Xeon(R) Gold 6130 CPU @ 2.10GHz
+     compiler-info: ifort (IFORT) 18.0.3 20180410
+   BLAS and LAPACK: mkl
+        Build Type: release
+
+ STRINP:   Slope matrices, fcc       , (kappa*w)^2=   0.0            20-Jan-19  
+
+           IQ    WI        WC        WS        WSA
+
+            1  0.353553  0.500000  0.390796  0.390796
+
+ CHDINP:   Bulk charge density generated on            24-Jan-19
+
+           BSX( 1)=   0.50000 BSY( 1)=   0.50000 BSZ( 1)=   0.00000
+           BSX( 2)=   0.00000 BSY( 2)=   0.50000 BSZ( 2)=   0.50000
+           BSX( 3)=   0.50000 BSY( 3)=   0.00000 BSZ( 3)=   0.50000
+ 
+            QX( 1)=   0.00000  QY( 1)=   0.00000  QZ( 1)=   0.00000
+
+            IQ ITA    WS     JWS  JRI  JRC ION  Z    ELN    XQTR   CONC
+
+             1  1  2.642857  351  353  360  0  27  27.000  0.110  0.100
+
+             1  2  2.642857  351  353  360  0  27  27.000  0.110  0.100
+
+             1  3  2.642857  347  349  356  0  24  24.000 -0.194  0.100
+
+             1  4  2.642857  347  349  356  0  24  24.000 -0.194  0.100
+
+             1  5  2.642857  351  353  360  0  26  26.000  0.009  0.100
+
+             1  6  2.642857  351  353  360  0  26  26.000  0.009  0.100
+
+             1  7  2.642857  349  351  358  0  25  25.000 -0.080  0.100
+
+             1  8  2.642857  349  351  358  0  25  25.000 -0.080  0.100
+
+             1  9  2.642857  353  355  362  0  28  28.000  0.155  0.100
+
+             1 10  2.642857  353  355  362  0  28  28.000  0.155  0.100
+
+           ASA total energy components for IQ =  1 ITA =  1
+
+           EONE =  -1620.814908 VINT =  -4442.947057 EKIN =   2822.132149
+           ECOR =   1139.128905 ENUC =  -6689.534950 EMADL=     -0.002721
+           EVAL =     60.554770 EXCT =   -114.612910 EXCC =      0.000000
+           ETOT =  -2782.334758
+
+           ASA total energy components for IQ =  1 ITA =  2
+
+           EONE =  -1620.814908 VINT =  -4442.947057 EKIN =   2822.132149
+           ECOR =   1139.128905 ENUC =  -6689.534950 EMADL=     -0.002721
+           EVAL =     60.554770 EXCT =   -114.612910 EXCC =      0.000000
+           ETOT =  -2782.334758
+
+           ASA total energy components for IQ =  1 ITA =  3
+
+           EONE =  -1236.824146 VINT =  -3357.530323 EKIN =   2120.706176
+           ECOR =    868.763930 ENUC =  -5013.902353 EMADL=     -0.008491
+           EVAL =     20.004290 EXCT =    -93.328199 EXCC =      0.000000
+           ETOT =  -2097.764647
+
+           ASA total energy components for IQ =  1 ITA =  4
+
+           EONE =  -1236.824146 VINT =  -3357.530323 EKIN =   2120.706176
+           ECOR =    868.763930 ENUC =  -5013.902353 EMADL=     -0.008491
+           EVAL =     20.004290 EXCT =    -93.328199 EXCC =      0.000000
+           ETOT =  -2097.764647
+
+           ASA total energy components for IQ =  1 ITA =  5
+
+           EONE =  -1487.300957 VINT =  -4061.928584 EKIN =   2574.627627
+           ECOR =   1044.492551 ENUC =  -6096.949352 EMADL=      0.000006
+           EVAL =     43.908813 EXCT =   -107.262608 EXCC =      0.000000
+           ETOT =  -2541.182963
+
+           ASA total energy components for IQ =  1 ITA =  6
+
+           EONE =  -1487.300957 VINT =  -4061.928584 EKIN =   2574.627627
+           ECOR =   1044.492551 ENUC =  -6096.949352 EMADL=      0.000006
+           EVAL =     43.908813 EXCT =   -107.262608 EXCC =      0.000000
+           ETOT =  -2541.182963
+
+           ASA total energy components for IQ =  1 ITA =  7
+
+           EONE =  -1359.196435 VINT =  -3700.069390 EKIN =   2340.872955
+           ECOR =    954.550070 ENUC =  -5538.950133 EMADL=     -0.001414
+           EVAL =     30.574692 EXCT =   -100.158477 EXCC =      0.000000
+           ETOT =  -2313.112307
+
+           ASA total energy components for IQ =  1 ITA =  8
+
+           EONE =  -1359.196435 VINT =  -3700.069390 EKIN =   2340.872955
+           ECOR =    954.550070 ENUC =  -5538.950133 EMADL=     -0.001414
+           EVAL =     30.574692 EXCT =   -100.158477 EXCC =      0.000000
+           ETOT =  -2313.112307
+
+           ASA total energy components for IQ =  1 ITA =  9
+
+           EONE =  -1760.645137 VINT =  -4844.767820 EKIN =   3084.122683
+           ECOR =   1237.281653 ENUC =  -7316.098146 EMADL=     -0.005404
+           EVAL =     80.170174 EXCT =   -122.259880 EXCC =      0.000000
+           ETOT =  -3036.788919
+
+           ASA total energy components for IQ =  1 ITA = 10
+
+           EONE =  -1760.645137 VINT =  -4844.767820 EKIN =   3084.122683
+           ECOR =   1237.281653 ENUC =  -7316.098146 EMADL=     -0.005404
+           EVAL =     80.170174 EXCT =   -122.259880 EXCC =      0.000000
+           ETOT =  -3036.788919
+
+           Local muffin-tin zero, VMTZR(UP,DOWN) = -0.772968 -0.772968
+
+           Global muffin-tin zero, VMTZ(UP,DOWN) = -0.772968 -0.772968
+
+           NQ  =  1 NL  =  9 NLM = 81 NS  =  2 CPA_ALPHA =  0.600000
+
+           DX =  0.030000 VOL  =  0.250000 (a^3)
+           w  =  0.390796 (a)     2.642857 (Bohr)
+           a  =  6.762748 (Bohr)  3.578691 (angs)
+
+ INPUT:    Lmax for the shape function :  30
+
+           Lmax for the full charge density :   8
+
+ SHPINP:   Shape function for fcc       structure     20-Jan-19 TM: 11:37
+
+           Shape function for IQ =  1
+
+           JRIN= 347     JWS= 351    JRIC= 360
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 347     JWS= 351    JRIC= 360
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 343     JWS= 347    JRIC= 356
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 343     JWS= 347    JRIC= 356
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 347     JWS= 351    JRIC= 360
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 347     JWS= 351    JRIC= 360
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 345     JWS= 349    JRIC= 358
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 345     JWS= 349    JRIC= 358
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 349     JWS= 353    JRIC= 362
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           JRIN= 349     JWS= 353    JRIC= 362
+
+           Si  =  0.353553  WS=  0.390796  Sc=  0.500000 (a units)
+
+           Nr. of non-vanishing shape functions up to lmaxs= 30 is :  71
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+
+           Nr. of liniar mesh intervals NINT  =   4
+           between RINS=R(JRIN)=  2.344004 and SC=  3.381374
+
+           NSR( 1)=   5  DSR( 1)=  0.001737
+           NSR( 2)=  51  DSR( 2)=  0.001094
+           NSR( 3)=  25  DSR( 3)=  0.001032
+           NSR( 4)=  61  DSR( 4)=  0.001116
+           NSRT  = 139
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  1
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:   0.038696  0.038696
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  2
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:   0.038696  0.038696
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  3
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:  -0.066754 -0.066754
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  4
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:  -0.066754 -0.066754
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  5
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:   0.002455  0.003450
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  6
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:   0.003450  0.002455
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  7
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:  -0.027372 -0.030495
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  8
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:  -0.030495 -0.027372
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA =  9
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:   0.059541  0.059541
+
+ OVRLPS:   Set up the overlapping spheres for IQ =  1 ITA = 10
+
+           Number of different overlapping spheres NOV = 12
+
+          jq   tov_x       tov_y       tov_z       tov         okac     omega
+
+           1  0.000000   -0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107    0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000    0.707107   -0.707107    4.781985    0.040303  10.53 %
+           1  0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107   -0.707107    0.000000    4.781985    0.040303  10.53 %
+           1  0.000000   -0.707107    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.707107    0.000000    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000    0.707107    4.781985    0.040303  10.53 %
+           1 -0.707107    0.000000   -0.707107    4.781985    0.040303  10.53 %
+
+           Muffin-tin discontinuity:   0.059541  0.059541
+
+ SETMADL:  Madelung matrices with lmax=  6
+           Madelung potential for fcc                                20-Jan-19  
+
+ SETGAUSS: Angular integration mesh generated with NTH =  41 NFI =  81
+
+ ASACHD:   Bulk multipole moments within WS sphere :
+
+             l  m
+
+             0  0  13.0209
+             4  0  -0.0020
+             4  4  -0.0017
+             0  0  13.0209
+             4  0  -0.0020
+             4  4  -0.0017
+
+           IS   IQ   ITA   QMM       QSPIN     QTR
+
+             1   1   1  13.554963 13.554963
+             2   1   1  13.554969 13.554969 27.109932 27.109932
+             1   1   2  13.554969 13.554969
+             2   1   2  13.554963 13.554963 27.109932 27.109932
+             1   1   3  11.903173 11.903173
+             2   1   3  11.903173 11.903173 23.806347 23.806347
+             1   1   4  11.903173 11.903173
+             2   1   4  11.903173 11.903173 23.806347 23.806347
+             1   1   5  12.255665 12.255665
+             2   1   5  13.753009 13.753009 26.008674 26.008674
+             1   1   6  13.753009 13.753009
+             2   1   6  12.255665 12.255665 26.008674 26.008674
+             1   1   7  11.898870 11.898870
+             2   1   7  13.021577 13.021577 24.920447 24.920447
+             1   1   8  13.021577 13.021577
+             2   1   8  11.898870 11.898870 24.920447 24.920447
+             1   1   9  14.077300 14.077300
+             2   1   9  14.077300 14.077300 28.154600 28.154600
+             1   1  10  14.077300 14.077300
+             2   1  10  14.077300 14.077300 28.154600 28.154600
+
+           No force calculation, SDIP =    0.00000
+
+ SETXCP:   IXC =   5 TXCH =  P-W
+
+ RENORM:   Renormalize the total charge density
+
+           IQ =  1 ITA =  1 IS =  1 ELT + QTR = 13.554963
+
+           RS( 1)=  2.390993 q(r)  =  0.070506
+           RS( 2)=  2.760880 q(r)  =  0.414890
+           RS( 3)=  2.928356 q(r)  =  0.447866
+           RS( 4)=  3.381374 q(r)  =  0.462283
+
+           n(Si)= 13.092719 n(Sc-Si)=  0.462283 n(Sc)= 13.555002
+
+           IQ =  1 ITA =  1 IS =  2 ELT + QTR = 13.554969
+
+           RS( 1)=  2.390993 q(r)  =  0.070506
+           RS( 2)=  2.760880 q(r)  =  0.414890
+           RS( 3)=  2.928356 q(r)  =  0.447866
+           RS( 4)=  3.381374 q(r)  =  0.462283
+
+           n(Si)= 13.092724 n(Sc-Si)=  0.462283 n(Sc)= 13.555007
+
+           IQ =  1 ITA =  2 IS =  1 ELT + QTR = 13.554969
+
+           RS( 1)=  2.390993 q(r)  =  0.070506
+           RS( 2)=  2.760880 q(r)  =  0.414890
+           RS( 3)=  2.928356 q(r)  =  0.447866
+           RS( 4)=  3.381374 q(r)  =  0.462283
+
+           n(Si)= 13.092724 n(Sc-Si)=  0.462283 n(Sc)= 13.555007
+
+           IQ =  1 ITA =  2 IS =  2 ELT + QTR = 13.554963
+
+           RS( 1)=  2.390993 q(r)  =  0.070506
+           RS( 2)=  2.760880 q(r)  =  0.414890
+           RS( 3)=  2.928356 q(r)  =  0.447866
+           RS( 4)=  3.381374 q(r)  =  0.462283
+
+           n(Si)= 13.092719 n(Sc-Si)=  0.462283 n(Sc)= 13.555002
+
+           IQ =  1 ITA =  3 IS =  1 ELT + QTR = 11.903173
+
+           RS( 1)=  2.390993 q(r)  =  0.073320
+           RS( 2)=  2.760880 q(r)  =  0.433220
+           RS( 3)=  2.928356 q(r)  =  0.467460
+           RS( 4)=  3.381374 q(r)  =  0.482577
+
+           n(Si)= 11.417238 n(Sc-Si)=  0.482577 n(Sc)= 11.899814
+
+           IQ =  1 ITA =  3 IS =  2 ELT + QTR = 11.903173
+
+           RS( 1)=  2.390993 q(r)  =  0.073320
+           RS( 2)=  2.760880 q(r)  =  0.433220
+           RS( 3)=  2.928356 q(r)  =  0.467460
+           RS( 4)=  3.381374 q(r)  =  0.482577
+
+           n(Si)= 11.417238 n(Sc-Si)=  0.482577 n(Sc)= 11.899814
+
+           IQ =  1 ITA =  4 IS =  1 ELT + QTR = 11.903173
+
+           RS( 1)=  2.390993 q(r)  =  0.073320
+           RS( 2)=  2.760880 q(r)  =  0.433220
+           RS( 3)=  2.928356 q(r)  =  0.467460
+           RS( 4)=  3.381374 q(r)  =  0.482577
+
+           n(Si)= 11.417238 n(Sc-Si)=  0.482577 n(Sc)= 11.899814
+
+           IQ =  1 ITA =  4 IS =  2 ELT + QTR = 11.903173
+
+           RS( 1)=  2.390993 q(r)  =  0.073320
+           RS( 2)=  2.760880 q(r)  =  0.433220
+           RS( 3)=  2.928356 q(r)  =  0.467460
+           RS( 4)=  3.381374 q(r)  =  0.482577
+
+           n(Si)= 11.417238 n(Sc-Si)=  0.482577 n(Sc)= 11.899814
+
+           IQ =  1 ITA =  5 IS =  1 ELT + QTR = 12.255665
+
+           RS( 1)=  2.390993 q(r)  =  0.070250
+           RS( 2)=  2.760880 q(r)  =  0.418058
+           RS( 3)=  2.928356 q(r)  =  0.451628
+           RS( 4)=  3.381374 q(r)  =  0.466339
+
+           n(Si)= 11.788096 n(Sc-Si)=  0.466339 n(Sc)= 12.254435
+
+           IQ =  1 ITA =  5 IS =  2 ELT + QTR = 13.753009
+
+           RS( 1)=  2.390993 q(r)  =  0.073183
+           RS( 2)=  2.760880 q(r)  =  0.427045
+           RS( 3)=  2.928356 q(r)  =  0.460650
+           RS( 4)=  3.381374 q(r)  =  0.475441
+
+           n(Si)= 13.277300 n(Sc-Si)=  0.475441 n(Sc)= 13.752740
+
+           IQ =  1 ITA =  6 IS =  1 ELT + QTR = 13.753009
+
+           RS( 1)=  2.390993 q(r)  =  0.073183
+           RS( 2)=  2.760880 q(r)  =  0.427045
+           RS( 3)=  2.928356 q(r)  =  0.460650
+           RS( 4)=  3.381374 q(r)  =  0.475441
+
+           n(Si)= 13.277300 n(Sc-Si)=  0.475441 n(Sc)= 13.752740
+
+           IQ =  1 ITA =  6 IS =  2 ELT + QTR = 12.255665
+
+           RS( 1)=  2.390993 q(r)  =  0.070250
+           RS( 2)=  2.760880 q(r)  =  0.418058
+           RS( 3)=  2.928356 q(r)  =  0.451628
+           RS( 4)=  3.381374 q(r)  =  0.466339
+
+           n(Si)= 11.788096 n(Sc-Si)=  0.466339 n(Sc)= 12.254435
+
+           IQ =  1 ITA =  7 IS =  1 ELT + QTR = 11.898870
+
+           RS( 1)=  2.390993 q(r)  =  0.070599
+           RS( 2)=  2.760880 q(r)  =  0.420407
+           RS( 3)=  2.928356 q(r)  =  0.454126
+           RS( 4)=  3.381374 q(r)  =  0.468980
+
+           n(Si)= 11.427923 n(Sc-Si)=  0.468980 n(Sc)= 11.896903
+
+           IQ =  1 ITA =  7 IS =  2 ELT + QTR = 13.021577
+
+           RS( 1)=  2.390993 q(r)  =  0.075248
+           RS( 2)=  2.760880 q(r)  =  0.439543
+           RS( 3)=  2.928356 q(r)  =  0.473910
+           RS( 4)=  3.381374 q(r)  =  0.488961
+
+           n(Si)= 12.530177 n(Sc-Si)=  0.488961 n(Sc)= 13.019138
+
+           IQ =  1 ITA =  8 IS =  1 ELT + QTR = 13.021577
+
+           RS( 1)=  2.390993 q(r)  =  0.075248
+           RS( 2)=  2.760880 q(r)  =  0.439543
+           RS( 3)=  2.928356 q(r)  =  0.473910
+           RS( 4)=  3.381374 q(r)  =  0.488961
+
+           n(Si)= 12.530177 n(Sc-Si)=  0.488961 n(Sc)= 13.019138
+
+           IQ =  1 ITA =  8 IS =  2 ELT + QTR = 11.898870
+
+           RS( 1)=  2.390993 q(r)  =  0.070599
+           RS( 2)=  2.760880 q(r)  =  0.420407
+           RS( 3)=  2.928356 q(r)  =  0.454126
+           RS( 4)=  3.381374 q(r)  =  0.468980
+
+           n(Si)= 11.427923 n(Sc-Si)=  0.468980 n(Sc)= 11.896903
+
+           IQ =  1 ITA =  9 IS =  1 ELT + QTR = 14.077300
+
+           RS( 1)=  2.390993 q(r)  =  0.068368
+           RS( 2)=  2.760880 q(r)  =  0.403342
+           RS( 3)=  2.928356 q(r)  =  0.435789
+           RS( 4)=  3.381374 q(r)  =  0.450100
+
+           n(Si)= 13.629775 n(Sc-Si)=  0.450100 n(Sc)= 14.079874
+
+           IQ =  1 ITA =  9 IS =  2 ELT + QTR = 14.077300
+
+           RS( 1)=  2.390993 q(r)  =  0.068368
+           RS( 2)=  2.760880 q(r)  =  0.403342
+           RS( 3)=  2.928356 q(r)  =  0.435789
+           RS( 4)=  3.381374 q(r)  =  0.450100
+
+           n(Si)= 13.629775 n(Sc-Si)=  0.450100 n(Sc)= 14.079874
+
+           IQ =  1 ITA = 10 IS =  1 ELT + QTR = 14.077300
+
+           RS( 1)=  2.390993 q(r)  =  0.068368
+           RS( 2)=  2.760880 q(r)  =  0.403342
+           RS( 3)=  2.928356 q(r)  =  0.435789
+           RS( 4)=  3.381374 q(r)  =  0.450100
+
+           n(Si)= 13.629775 n(Sc-Si)=  0.450100 n(Sc)= 14.079874
+
+           IQ =  1 ITA = 10 IS =  2 ELT + QTR = 14.077300
+
+           RS( 1)=  2.390993 q(r)  =  0.068368
+           RS( 2)=  2.760880 q(r)  =  0.403342
+           RS( 3)=  2.928356 q(r)  =  0.435789
+           RS( 4)=  3.381374 q(r)  =  0.450100
+
+           n(Si)= 13.629775 n(Sc-Si)=  0.450100 n(Sc)= 14.079874
+
+           ELN =   26.000000 actual=   25.998520 amax=  0.004008
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  1
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) = -0.000778 nel(FCD)   = 13.555742
+
+           Deln(spin up ) = -0.000778 nel(FCD)   = 13.555746
+
+           Magnetic moment for IQ =  1 is   0.000005 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   1
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -6689.534950 ENUC(FCD)=    -6689.509415
+           EHAR(ASA)=     1199.683638 EHAR(FCD)=     1199.623908
+           Coul(ASA)=    -5489.851312 Coul(FCD)=    -5489.885507
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.044246 Exc_nL   =        0.033704
+           EXC(ASA) =     -114.612910 EXC(FCD) =     -114.623452
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.027417 Exc_nL   =        0.033541
+           EXC(ASA) =     -119.274037 EXC(FCD) =     -119.267913
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.033408 Exc_nL   =        0.033692
+           EXC(ASA) =     -116.835779 EXC(FCD) =     -116.835495
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.033198 Exc_nL   =        0.033842
+           EXC(ASA) =     -114.882188 EXC(FCD) =     -114.881545
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.029500 Exc_nL   =        0.033607
+           EXC(ASA) =     -115.662402 EXC(FCD) =     -115.658295
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     2822.132149 EKIN(FCD)=     2822.194574
+           OKAE(ASA)=        0.000001 OKAE(FCD)=        0.000001
+           Ekin(ASA)=     2822.132150 Ekin(FCD)=     2822.194575
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  2
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) = -0.000778 nel(FCD)   = 13.555746
+
+           Deln(spin up ) = -0.000778 nel(FCD)   = 13.555742
+
+           Magnetic moment for IQ =  1 is  -0.000005 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   2
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -6689.534950 ENUC(FCD)=    -6689.509415
+           EHAR(ASA)=     1199.683638 EHAR(FCD)=     1199.623908
+           Coul(ASA)=    -5489.851312 Coul(FCD)=    -5489.885507
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.044246 Exc_nL   =        0.033704
+           EXC(ASA) =     -114.612910 EXC(FCD) =     -114.623452
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.027417 Exc_nL   =        0.033541
+           EXC(ASA) =     -119.274037 EXC(FCD) =     -119.267913
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.033408 Exc_nL   =        0.033692
+           EXC(ASA) =     -116.835779 EXC(FCD) =     -116.835495
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.033198 Exc_nL   =        0.033842
+           EXC(ASA) =     -114.882188 EXC(FCD) =     -114.881545
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.029500 Exc_nL   =        0.033607
+           EXC(ASA) =     -115.662402 EXC(FCD) =     -115.658295
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     2822.132149 EKIN(FCD)=     2822.194574
+           OKAE(ASA)=        0.000001 OKAE(FCD)=        0.000001
+           Ekin(ASA)=     2822.132150 Ekin(FCD)=     2822.194575
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  3
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) =  0.002619 nel(FCD)   = 11.900554
+
+           Deln(spin up ) =  0.002619 nel(FCD)   = 11.900554
+
+           Magnetic moment for IQ =  1 is   0.000000 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   3
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -5013.902353 ENUC(FCD)=    -5013.738938
+           EHAR(ASA)=      888.768194 EHAR(FCD)=      888.573657
+           Coul(ASA)=    -4125.134159 Coul(FCD)=    -4125.165281
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.044059 Exc_nL   =        0.038698
+           EXC(ASA) =      -93.328199 EXC(FCD) =      -93.333561
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.026117 Exc_nL   =        0.038416
+           EXC(ASA) =      -97.354696 EXC(FCD) =      -97.342397
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032604 Exc_nL   =        0.038644
+           EXC(ASA) =      -95.253504 EXC(FCD) =      -95.247464
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032549 Exc_nL   =        0.038845
+           EXC(ASA) =      -93.595888 EXC(FCD) =      -93.589593
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.028490 Exc_nL   =        0.038530
+           EXC(ASA) =      -94.264005 EXC(FCD) =      -94.253964
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     2120.706176 EKIN(FCD)=     2120.729675
+           OKAE(ASA)=       -0.000001 OKAE(FCD)=       -0.000002
+           Ekin(ASA)=     2120.706175 Ekin(FCD)=     2120.729674
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  4
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) =  0.002619 nel(FCD)   = 11.900554
+
+           Deln(spin up ) =  0.002619 nel(FCD)   = 11.900554
+
+           Magnetic moment for IQ =  1 is   0.000000 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   4
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -5013.902353 ENUC(FCD)=    -5013.738938
+           EHAR(ASA)=      888.768194 EHAR(FCD)=      888.573657
+           Coul(ASA)=    -4125.134159 Coul(FCD)=    -4125.165281
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.044059 Exc_nL   =        0.038698
+           EXC(ASA) =      -93.328199 EXC(FCD) =      -93.333561
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.026117 Exc_nL   =        0.038416
+           EXC(ASA) =      -97.354696 EXC(FCD) =      -97.342397
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032604 Exc_nL   =        0.038644
+           EXC(ASA) =      -95.253504 EXC(FCD) =      -95.247464
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032549 Exc_nL   =        0.038845
+           EXC(ASA) =      -93.595888 EXC(FCD) =      -93.589593
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.028490 Exc_nL   =        0.038530
+           EXC(ASA) =      -94.264005 EXC(FCD) =      -94.253964
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     2120.706176 EKIN(FCD)=     2120.729675
+           OKAE(ASA)=       -0.000001 OKAE(FCD)=       -0.000002
+           Ekin(ASA)=     2120.706175 Ekin(FCD)=     2120.729674
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  5
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) =  0.000489 nel(FCD)   = 12.255175
+
+           Deln(spin up ) = -0.000471 nel(FCD)   = 13.753480
+
+           Magnetic moment for IQ =  1 is   1.498305 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   5
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -6096.949352 ENUC(FCD)=    -6096.885940
+           EHAR(ASA)=     1088.401331 EHAR(FCD)=     1088.303711
+           Coul(ASA)=    -5008.548021 Coul(FCD)=    -5008.582228
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.044152 Exc_nL   =        0.034878
+           EXC(ASA) =     -107.262608 EXC(FCD) =     -107.271882
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.026001 Exc_nL   =        0.034738
+           EXC(ASA) =     -111.713706 EXC(FCD) =     -111.704968
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032189 Exc_nL   =        0.034890
+           EXC(ASA) =     -109.388587 EXC(FCD) =     -109.385886
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.031815 Exc_nL   =        0.035011
+           EXC(ASA) =     -107.534165 EXC(FCD) =     -107.530970
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.027743 Exc_nL   =        0.034761
+           EXC(ASA) =     -108.276335 EXC(FCD) =     -108.269317
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     2574.627627 EKIN(FCD)=     2574.697357
+           OKAE(ASA)=        0.000000 OKAE(FCD)=        0.000000
+           Ekin(ASA)=     2574.627628 Ekin(FCD)=     2574.697357
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  6
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) = -0.000471 nel(FCD)   = 13.753480
+
+           Deln(spin up ) =  0.000489 nel(FCD)   = 12.255175
+
+           Magnetic moment for IQ =  1 is  -1.498305 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   6
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -6096.949352 ENUC(FCD)=    -6096.885940
+           EHAR(ASA)=     1088.401331 EHAR(FCD)=     1088.303711
+           Coul(ASA)=    -5008.548021 Coul(FCD)=    -5008.582228
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.044152 Exc_nL   =        0.034878
+           EXC(ASA) =     -107.262608 EXC(FCD) =     -107.271882
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.026001 Exc_nL   =        0.034738
+           EXC(ASA) =     -111.713706 EXC(FCD) =     -111.704968
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032189 Exc_nL   =        0.034890
+           EXC(ASA) =     -109.388587 EXC(FCD) =     -109.385886
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.031815 Exc_nL   =        0.035011
+           EXC(ASA) =     -107.534165 EXC(FCD) =     -107.530970
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.027743 Exc_nL   =        0.034761
+           EXC(ASA) =     -108.276335 EXC(FCD) =     -108.269317
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     2574.627627 EKIN(FCD)=     2574.697357
+           OKAE(ASA)=        0.000000 OKAE(FCD)=        0.000000
+           Ekin(ASA)=     2574.627628 Ekin(FCD)=     2574.697357
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  7
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) =  0.001227 nel(FCD)   = 11.897643
+
+           Deln(spin up ) =  0.001699 nel(FCD)   = 13.019878
+
+           Magnetic moment for IQ =  1 is   1.122235 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   7
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -5538.950133 ENUC(FCD)=    -5538.827875
+           EHAR(ASA)=      985.124733 EHAR(FCD)=      984.969222
+           Coul(ASA)=    -4553.825400 Coul(FCD)=    -4553.858653
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.043982 Exc_nL   =        0.037042
+           EXC(ASA) =     -100.158477 EXC(FCD) =     -100.165417
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.026345 Exc_nL   =        0.036903
+           EXC(ASA) =     -104.395640 EXC(FCD) =     -104.385083
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032683 Exc_nL   =        0.037061
+           EXC(ASA) =     -102.183281 EXC(FCD) =     -102.178903
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032570 Exc_nL   =        0.037201
+           EXC(ASA) =     -100.427477 EXC(FCD) =     -100.422846
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.028671 Exc_nL   =        0.036915
+           EXC(ASA) =     -101.132299 EXC(FCD) =     -101.124055
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     2340.872955 EKIN(FCD)=     2340.937694
+           OKAE(ASA)=       -0.000001 OKAE(FCD)=       -0.000001
+           Ekin(ASA)=     2340.872954 Ekin(FCD)=     2340.937693
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  8
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) =  0.001699 nel(FCD)   = 13.019878
+
+           Deln(spin up ) =  0.001227 nel(FCD)   = 11.897643
+
+           Magnetic moment for IQ =  1 is  -1.122235 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   8
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -5538.950133 ENUC(FCD)=    -5538.827875
+           EHAR(ASA)=      985.124733 EHAR(FCD)=      984.969222
+           Coul(ASA)=    -4553.825400 Coul(FCD)=    -4553.858653
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.043982 Exc_nL   =        0.037042
+           EXC(ASA) =     -100.158477 EXC(FCD) =     -100.165417
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.026345 Exc_nL   =        0.036903
+           EXC(ASA) =     -104.395640 EXC(FCD) =     -104.385083
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032683 Exc_nL   =        0.037061
+           EXC(ASA) =     -102.183281 EXC(FCD) =     -102.178903
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.032570 Exc_nL   =        0.037201
+           EXC(ASA) =     -100.427477 EXC(FCD) =     -100.422846
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.028671 Exc_nL   =        0.036915
+           EXC(ASA) =     -101.132299 EXC(FCD) =     -101.124055
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     2340.872955 EKIN(FCD)=     2340.937694
+           OKAE(ASA)=       -0.000001 OKAE(FCD)=       -0.000001
+           Ekin(ASA)=     2340.872954 Ekin(FCD)=     2340.937693
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA =  9
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) = -0.003314 nel(FCD)   = 14.080614
+
+           Deln(spin up ) = -0.003314 nel(FCD)   = 14.080614
+
+           Magnetic moment for IQ =  1 is   0.000000 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =   9
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -7316.098146 ENUC(FCD)=    -7316.188558
+           EHAR(ASA)=     1317.451786 EHAR(FCD)=     1317.508699
+           Coul(ASA)=    -5998.646360 Coul(FCD)=    -5998.679859
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.044794 Exc_nL   =        0.030247
+           EXC(ASA) =     -122.259880 EXC(FCD) =     -122.274427
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.028497 Exc_nL   =        0.030064
+           EXC(ASA) =     -127.138923 EXC(FCD) =     -127.137355
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.034288 Exc_nL   =        0.030201
+           EXC(ASA) =     -124.584959 EXC(FCD) =     -124.589046
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.034040 Exc_nL   =        0.030305
+           EXC(ASA) =     -122.531172 EXC(FCD) =     -122.534907
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.030427 Exc_nL   =        0.030156
+           EXC(ASA) =     -123.348812 EXC(FCD) =     -123.349082
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     3084.122683 EKIN(FCD)=     3084.150360
+           OKAE(ASA)=        0.000001 OKAE(FCD)=        0.000001
+           Ekin(ASA)=     3084.122685 Ekin(FCD)=     3084.150361
+
+ FCDCHD:   Set up sigma(r)*n(r) for site IQ =  1 ITA = 10
+
+ FCDREN:   number of electrons relative to ASA value:
+
+           Deln(spin dow) = -0.003314 nel(FCD)   = 14.080614
+
+           Deln(spin up ) = -0.003314 nel(FCD)   = 14.080614
+
+           Magnetic moment for IQ =  1 is   0.000000 mu_B
+
+ ENCOMP:   Intracell energy components for IQ  =   1  ITA  =  10
+
+          *Hartree energy:
+
+           ENUC(ASA)=    -7316.098146 ENUC(FCD)=    -7316.188558
+           EHAR(ASA)=     1317.451786 EHAR(FCD)=     1317.508699
+           Coul(ASA)=    -5998.646360 Coul(FCD)=    -5998.679859
+
+          *LDA exchange-correlation energy:
+
+           Exc_0-ASA=       -0.044794 Exc_nL   =        0.030247
+           EXC(ASA) =     -122.259880 EXC(FCD) =     -122.274427
+
+          *PBE exchange-correlation energy:
+
+           Exc_0-ASA=       -0.028497 Exc_nL   =        0.030064
+           EXC(ASA) =     -127.138923 EXC(FCD) =     -127.137355
+
+          *P07 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.034288 Exc_nL   =        0.030201
+           EXC(ASA) =     -124.584959 EXC(FCD) =     -124.589046
+
+          *AM5 exchange-correlation energy:
+
+           Exc_0-ASA=       -0.034040 Exc_nL   =        0.030305
+           EXC(ASA) =     -122.531172 EXC(FCD) =     -122.534907
+
+          *LAG exchange-correlation energy:
+
+           Exc_0-ASA=       -0.030427 Exc_nL   =        0.030156
+           EXC(ASA) =     -123.348812 EXC(FCD) =     -123.349082
+
+          *Kinetic energy:
+
+           EKIN(ASA)=     3084.122683 EKIN(FCD)=     3084.150360
+           OKAE(ASA)=        0.000001 OKAE(FCD)=        0.000001
+           Ekin(ASA)=     3084.122685 Ekin(FCD)=     3084.150361
+
+ Total FCD magnetic moment per unit cell   0.000000 mu_B
+
+ FCDMAD:   Inter cell energy calculated with lmax=  6
+
+ OVCORR:   Number of nearby cells of site IQ= 1
+           for which the overlap correction is needed :12
+           number of cells for Madelung correction :74
+
+           Madelung correction for higher l, lmax=  20
+           site number  1 neigbours   74
+           ECR=  0.000138
+
+ OVCORR:   Overlap correction for site number  1
+
+ LITTLB:   LMAX=  30 LMAXO=  55 LMAXI=  30
+
+           IQ  ITA      ASA        EMM        ENR         ER      EMADL
+
+             1  1  -0.002744   0.021656   0.021189   0.013238   0.010961
+             1  2  -0.002744   0.021656   0.021189   0.013238   0.010961
+             1  3  -0.008514   0.021656   0.021189   0.013238   0.005191
+             1  4  -0.008514   0.021656   0.021189   0.013238   0.005191
+             1  5  -0.000017   0.021656   0.021189   0.013238   0.013688
+             1  6  -0.000017   0.021656   0.021189   0.013238   0.013688
+             1  7  -0.001437   0.021656   0.021189   0.013238   0.012268
+             1  8  -0.001437   0.021656   0.021189   0.013238   0.012268
+             1  9  -0.005426   0.021656   0.021189   0.013238   0.008279
+             1 10  -0.005426   0.021656   0.021189   0.013238   0.008279
+
+*TOTALE:   FCD total energies for bulk
+
+    IQ =   1 ITA =  1 CONC =  0.100000  (Co  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         2822.194575   2822.132150      0.062425
+    Hartree        -5489.874546  -5489.854056     -0.020490
+    Exc.LDA         -114.623452   -114.612910     -0.010542
+    Exc.PBE         -119.267913   -119.274037      0.006124
+    Exc.P07         -116.835495   -116.835779      0.000284
+    Exc.AM5         -114.881545   -114.882188      0.000644
+    Exc.LAG         -115.658295   -115.662402      0.004107
+    Tot LDA        -2782.303422  -2782.334816      0.031394
+                 --------------
+    Tot PBE        -2786.947884  -2786.995944      0.048060
+                 --------------
+    Tot P07        -2784.515466  -2784.557685      0.042220
+                 --------------
+    Tot AM5        -2782.561515  -2782.604095      0.042579
+                 --------------
+    Tot LAG        -2783.338266  -2783.384309      0.046043
+                 --------------
+
+    IQ =   1 ITA =  2 CONC =  0.100000  (Co  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         2822.194575   2822.132150      0.062425
+    Hartree        -5489.874546  -5489.854056     -0.020490
+    Exc.LDA         -114.623452   -114.612910     -0.010542
+    Exc.PBE         -119.267913   -119.274037      0.006124
+    Exc.P07         -116.835495   -116.835779      0.000284
+    Exc.AM5         -114.881545   -114.882188      0.000644
+    Exc.LAG         -115.658295   -115.662402      0.004107
+    Tot LDA        -2782.303422  -2782.334816      0.031394
+                 --------------
+    Tot PBE        -2786.947884  -2786.995944      0.048060
+                 --------------
+    Tot P07        -2784.515466  -2784.557685      0.042220
+                 --------------
+    Tot AM5        -2782.561515  -2782.604095      0.042579
+                 --------------
+    Tot LAG        -2783.338266  -2783.384309      0.046043
+                 --------------
+
+    IQ =   1 ITA =  3 CONC =  0.100000  (Cr  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         2120.729674   2120.706175      0.023499
+    Hartree        -4125.160090  -4125.142673     -0.017417
+    Exc.LDA          -93.333561    -93.328199     -0.005362
+    Exc.PBE          -97.342397    -97.354696      0.012299
+    Exc.P07          -95.247464    -95.253504      0.006040
+    Exc.AM5          -93.589593    -93.595888      0.006295
+    Exc.LAG          -94.253964    -94.264005      0.010041
+    Tot LDA        -2097.763978  -2097.764697      0.000719
+                 --------------
+    Tot PBE        -2101.772813  -2101.791194      0.018380
+                 --------------
+    Tot P07        -2099.677881  -2099.690002      0.012121
+                 --------------
+    Tot AM5        -2098.020009  -2098.032386      0.012376
+                 --------------
+    Tot LAG        -2098.684381  -2098.700503      0.016122
+                 --------------
+
+    IQ =   1 ITA =  4 CONC =  0.100000  (Cr  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         2120.729674   2120.706175      0.023499
+    Hartree        -4125.160090  -4125.142673     -0.017417
+    Exc.LDA          -93.333561    -93.328199     -0.005362
+    Exc.PBE          -97.342397    -97.354696      0.012299
+    Exc.P07          -95.247464    -95.253504      0.006040
+    Exc.AM5          -93.589593    -93.595888      0.006295
+    Exc.LAG          -94.253964    -94.264005      0.010041
+    Tot LDA        -2097.763978  -2097.764697      0.000719
+                 --------------
+    Tot PBE        -2101.772813  -2101.791194      0.018380
+                 --------------
+    Tot P07        -2099.677881  -2099.690002      0.012121
+                 --------------
+    Tot AM5        -2098.020009  -2098.032386      0.012376
+                 --------------
+    Tot LAG        -2098.684381  -2098.700503      0.016122
+                 --------------
+
+    IQ =   1 ITA =  5 CONC =  0.100000  (Fe  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         2574.697357   2574.627628      0.069730
+    Hartree        -5008.568541  -5008.548038     -0.020502
+    Exc.LDA         -107.271882   -107.262608     -0.009274
+    Exc.PBE         -111.704968   -111.713706      0.008737
+    Exc.P07         -109.385886   -109.388587      0.002701
+    Exc.AM5         -107.530970   -107.534165      0.003195
+    Exc.LAG         -108.269317   -108.276335      0.007018
+    Tot LDA        -2541.143065  -2541.183019      0.039953
+                 --------------
+    Tot PBE        -2545.576152  -2545.634116      0.057965
+                 --------------
+    Tot P07        -2543.257069  -2543.308998      0.051928
+                 --------------
+    Tot AM5        -2541.402154  -2541.454576      0.052423
+                 --------------
+    Tot LAG        -2542.140500  -2542.196746      0.056245
+                 --------------
+
+    IQ =   1 ITA =  6 CONC =  0.100000  (Fe  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         2574.697357   2574.627628      0.069730
+    Hartree        -5008.568541  -5008.548038     -0.020502
+    Exc.LDA         -107.271882   -107.262608     -0.009274
+    Exc.PBE         -111.704968   -111.713706      0.008737
+    Exc.P07         -109.385886   -109.388587      0.002701
+    Exc.AM5         -107.530970   -107.534165      0.003195
+    Exc.LAG         -108.269317   -108.276335      0.007018
+    Tot LDA        -2541.143065  -2541.183019      0.039953
+                 --------------
+    Tot PBE        -2545.576152  -2545.634116      0.057965
+                 --------------
+    Tot P07        -2543.257069  -2543.308998      0.051928
+                 --------------
+    Tot AM5        -2541.402154  -2541.454576      0.052423
+                 --------------
+    Tot LAG        -2542.140500  -2542.196746      0.056245
+                 --------------
+
+    IQ =   1 ITA =  7 CONC =  0.100000  (Mn  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         2340.937693   2340.872954      0.064739
+    Hartree        -4553.846385  -4553.826837     -0.019548
+    Exc.LDA         -100.165417   -100.158477     -0.006940
+    Exc.PBE         -104.385083   -104.395640      0.010557
+    Exc.P07         -102.178903   -102.183281      0.004378
+    Exc.AM5         -100.422846   -100.427477      0.004631
+    Exc.LAG         -101.124055   -101.132299      0.008244
+    Tot LDA        -2313.074109  -2313.112360      0.038251
+                 --------------
+    Tot PBE        -2317.293775  -2317.349523      0.055748
+                 --------------
+    Tot P07        -2315.087595  -2315.137164      0.049569
+                 --------------
+    Tot AM5        -2313.331538  -2313.381360      0.049822
+                 --------------
+    Tot LAG        -2314.032747  -2314.086181      0.053435
+                 --------------
+
+    IQ =   1 ITA =  8 CONC =  0.100000  (Mn  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         2340.937693   2340.872954      0.064739
+    Hartree        -4553.846385  -4553.826837     -0.019548
+    Exc.LDA         -100.165417   -100.158477     -0.006940
+    Exc.PBE         -104.385083   -104.395640      0.010557
+    Exc.P07         -102.178903   -102.183281      0.004378
+    Exc.AM5         -100.422846   -100.427477      0.004631
+    Exc.LAG         -101.124055   -101.132299      0.008244
+    Tot LDA        -2313.074109  -2313.112360      0.038251
+                 --------------
+    Tot PBE        -2317.293775  -2317.349523      0.055748
+                 --------------
+    Tot P07        -2315.087595  -2315.137164      0.049569
+                 --------------
+    Tot AM5        -2313.331538  -2313.381360      0.049822
+                 --------------
+    Tot LAG        -2314.032747  -2314.086181      0.053435
+                 --------------
+
+    IQ =   1 ITA =  9 CONC =  0.100000  (Ni  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         3084.150361   3084.122685      0.027677
+    Hartree        -5998.671580  -5998.651786     -0.019794
+    Exc.LDA         -122.274427   -122.259880     -0.014547
+    Exc.PBE         -127.137355   -127.138923      0.001567
+    Exc.P07         -124.589046   -124.584959     -0.004087
+    Exc.AM5         -122.534907   -122.531172     -0.003736
+    Exc.LAG         -123.349082   -123.348812     -0.000270
+    Tot LDA        -3036.795646  -3036.788982     -0.006665
+                 --------------
+    Tot PBE        -3041.658574  -3041.668024      0.009450
+                 --------------
+    Tot P07        -3039.110265  -3039.114060      0.003796
+                 --------------
+    Tot AM5        -3037.056127  -3037.060273      0.004147
+                 --------------
+    Tot LAG        -3037.870301  -3037.877914      0.007612
+                 --------------
+
+    IQ =   1 ITA = 10 CONC =  0.100000  (Ni  )
+
+                         (FCD)         (ASA)       Difference
+
+    Ts[n]              0.000000      0.000000      0.000000
+    Kinetic         3084.150361   3084.122685      0.027677
+    Hartree        -5998.671580  -5998.651786     -0.019794
+    Exc.LDA         -122.274427   -122.259880     -0.014547
+    Exc.PBE         -127.137355   -127.138923      0.001567
+    Exc.P07         -124.589046   -124.584959     -0.004087
+    Exc.AM5         -122.534907   -122.531172     -0.003736
+    Exc.LAG         -123.349082   -123.348812     -0.000270
+    Tot LDA        -3036.795646  -3036.788982     -0.006665
+                 --------------
+    Tot PBE        -3041.658574  -3041.668024      0.009450
+                 --------------
+    Tot P07        -3039.110265  -3039.114060      0.003796
+                 --------------
+    Tot AM5        -3037.056127  -3037.060273      0.004147
+                 --------------
+    Tot LAG        -3037.870301  -3037.877914      0.007612
+                 --------------
+
+  *Total energy:
+
+
+    TOT-LDA   -2554.216044 (Ry)   -2554.216044 (Ry/site)   S=  2.642857 Bohr
+            ==============      ==============
+
+    TOT-PBE   -2558.649840 (Ry)   -2558.649840 (Ry/site)   S=  2.642857 Bohr
+            ==============      ==============
+
+    TOT-P07   -2556.329655 (Ry)   -2556.329655 (Ry/site)   S=  2.642857 Bohr
+            ==============      ==============
+
+    TOT-AM5   -2554.474269 (Ry)   -2554.474269 (Ry/site)   S=  2.642857 Bohr
+            ==============      ==============
+
+    TOT-LAG   -2555.213239 (Ry)   -2555.213239 (Ry/site)   S=  2.642857 Bohr
+            ==============      ==============
+
+ KFCD: Finished at: 24-Jan-19  01:59
