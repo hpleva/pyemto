@@ -94,8 +94,8 @@ class EMTOPARSER(object):
         self.StructureColumnName = ["FN","Struc"]
         self.MagneticColumn = [0, 6, 8]
         self.MagneticColumnName = ["FN","IQ","Mag"]
-        self.ConcentrationColumn = [0, 3, 6, 9, 10]
-        self.ConcentrationColumnName = ["FN","IQ","ITA","Conc","Elem"]
+        self.ConcentrationColumn = [0, 3, 6, 9, 10, 15]
+        self.ConcentrationColumnName = ["FN","IQ","ITA","Conc","Elem","ElemPBE"]
         self.DOSColumn = [0, 1]
         self.DOSColumnName = ["FN","DOSEF"]
         self.NQColumn = [0, 3]
@@ -216,17 +216,20 @@ class EMTOPARSER(object):
         for KFCD_file in self.KFCD_filenames:
             cmd =  'grep -H \'IQ.*)\' {}'.format(KFCD_file)
             cmd_output = os.popen(cmd).readlines()
+            cmd2 = 'grep -H \'Tot PBE\' {}'.format(KFCD_file)
+            cmd_output2 = os.popen(cmd2).readlines()
+            #print(cmd_output2)
             # Sanity check for crashed calculations:
             if len(cmd_output) == 0:
-                cmd_output = [KFCD_file+':    IQ =   1 ITA =  1 CONC =  0.000000  (Er  )\n']
+                cmd_output = [KFCD_file+':    IQ =   1 ITA =  1 CONC =  0.000000  (Er  ) ']
+            if len(cmd_output2) == 0:
+                cmd_output2 = [KFCD_file+':    Tot PBE   0.0   0.0   0.0 \n']
             #print(cmd_output)
-            for i in cmd_output:
-                all_output.append(i.split())
+            for i,j in zip(cmd_output, cmd_output2):
+                all_output.append(i.split() + j.split())
         #print(all_output)
         return all_output
 
-        #cmd =  'grep -H \'IQ.*)\' {}'.format(self.KFCD_filenames)
-        #return [i.split() for i in os.popen(cmd).readlines()]
 
     def DOSEF(self):
         """Extract DOS at Fermi level from the KGRN input file.
@@ -408,6 +411,8 @@ class EMTOPARSER(object):
         self.conc_df  = self.Df(self.Concentration(), self.ConcentrationColumn, self.ConcentrationColumnName)
         self.conc_df.Elem = self.conc_df.Elem.str.replace("(", "")
         #
+        #self.elem_en_df = self.Df(self.ElemEnergy(), self.ElemEnColumn, self.ElemEnColumnName)
+        #
         # Extract DOS(Ef) out of KGRN output files
         if self.KGRN_filenames is not None:
             self.dos_df = self.Df(self.DOSEF(), self.DOSColumn, self.DOSColumnName).applymap(str2num)
@@ -435,7 +440,7 @@ class EMTOPARSER(object):
             self.main_df = pd.pivot_table(self.main_df.applymap(str2num),
                                           index=["index", "FN", "Status", "Struc", "COA", "SWS",
                                                  "ELDA", "EPBE", "EP07", "EQNA"],
-                                          values=["Mag", "Conc", "Elem"],
+                                          values=["Mag", "Conc", "Elem", "ElemPBE"],
                                           columns=["IQ", "ITA"], aggfunc = lambda x: max(x))
         else:
             # Status field is grabbed from KGRN output files, so it is left out if there
@@ -443,7 +448,7 @@ class EMTOPARSER(object):
             self.main_df = pd.pivot_table(self.main_df.applymap(str2num),
                                           index=["index", "FN", "Struc", "COA", "SWS",
                                                  "ELDA", "EPBE", "EP07", "EQNA"],
-                                          values=["Mag", "Conc", "Elem"],
+                                          values=["Mag", "Conc", "Elem", "ElemPBE"],
                                           columns=["IQ", "ITA"], aggfunc = lambda x: max(x))
             
         self.main_df = self.main_df.applymap(str2num)
@@ -465,6 +470,7 @@ class EMTOPARSER(object):
         elif self.DLM == True:
             Sconf = -kb*np.sum(np.log(2*self.main_df.Conc[1].ix[:,::2])*2*self.main_df.Conc[1].ix[:,::2],axis=1)
             self.Sconf_df = pd.DataFrame(Sconf,columns=["Sconf"])
+        
         #calculate Magnetic Entropy
         if self.DLM == False:
             Smag = kb*np.sum(np.log(np.abs(self.main_df.Mag[1])+1.)*self.main_df.Conc[1],axis=1)
