@@ -1,0 +1,1551 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Atom	emto_parser/dos_parser.py	/^class Atom(object):$/;"	c
+AtomOutput	emtoinputs/kgrn.py	/^    def AtomOutput(self):$/;"	m	class:Kgrn
+Atomline	emtoinputs/kgrn.py	/^    def Atomline($/;"	m	class:Kgrn
+B0	examples/fe_elastic_constants.py	/^B0   = 195  # Eq. bulk modulus.$/;"	v
+BASE	c/c_lattice.c	217;"	d	file:
+Batch	emtoinputs/batch.py	/^class Batch:$/;"	c
+Batch	latticeinputs/batch.py	/^class Batch:$/;"	c
+Bmdl	latticeinputs/bmdl.py	/^class Bmdl:$/;"	c
+CYTHON_ABI	c/c_lattice.c	29;"	d	file:
+CYTHON_ASSUME_SAFE_MACROS	c/c_lattice.c	129;"	d	file:
+CYTHON_ASSUME_SAFE_MACROS	c/c_lattice.c	187;"	d	file:
+CYTHON_ASSUME_SAFE_MACROS	c/c_lattice.c	89;"	d	file:
+CYTHON_ASSUME_SAFE_MACROS	c/c_lattice.c	90;"	d	file:
+CYTHON_AVOID_BORROWED_REFS	c/c_lattice.c	126;"	d	file:
+CYTHON_AVOID_BORROWED_REFS	c/c_lattice.c	184;"	d	file:
+CYTHON_AVOID_BORROWED_REFS	c/c_lattice.c	87;"	d	file:
+CYTHON_AVOID_BORROWED_REFS	c/c_lattice.c	88;"	d	file:
+CYTHON_CCOMPLEX	c/c_lattice.c	843;"	d	file:
+CYTHON_CCOMPLEX	c/c_lattice.c	845;"	d	file:
+CYTHON_CCOMPLEX	c/c_lattice.c	847;"	d	file:
+CYTHON_COMPILING_IN_CPYTHON	c/c_lattice.c	108;"	d	file:
+CYTHON_COMPILING_IN_CPYTHON	c/c_lattice.c	149;"	d	file:
+CYTHON_COMPILING_IN_CPYTHON	c/c_lattice.c	68;"	d	file:
+CYTHON_COMPILING_IN_PYPY	c/c_lattice.c	106;"	d	file:
+CYTHON_COMPILING_IN_PYPY	c/c_lattice.c	147;"	d	file:
+CYTHON_COMPILING_IN_PYPY	c/c_lattice.c	66;"	d	file:
+CYTHON_COMPILING_IN_PYSTON	c/c_lattice.c	107;"	d	file:
+CYTHON_COMPILING_IN_PYSTON	c/c_lattice.c	148;"	d	file:
+CYTHON_COMPILING_IN_PYSTON	c/c_lattice.c	67;"	d	file:
+CYTHON_FALLTHROUGH	c/c_lattice.c	284;"	d	file:
+CYTHON_FALLTHROUGH	c/c_lattice.c	286;"	d	file:
+CYTHON_FALLTHROUGH	c/c_lattice.c	288;"	d	file:
+CYTHON_FALLTHROUGH	c/c_lattice.c	293;"	d	file:
+CYTHON_FALLTHROUGH	c/c_lattice.c	295;"	d	file:
+CYTHON_FALLTHROUGH	c/c_lattice.c	300;"	d	file:
+CYTHON_FALLTHROUGH	c/c_lattice.c	301;"	d	file:
+CYTHON_FAST_PYCALL	c/c_lattice.c	136;"	d	file:
+CYTHON_FAST_PYCALL	c/c_lattice.c	137;"	d	file:
+CYTHON_FAST_PYCALL	c/c_lattice.c	196;"	d	file:
+CYTHON_FAST_PYCALL	c/c_lattice.c	95;"	d	file:
+CYTHON_FAST_PYCALL	c/c_lattice.c	96;"	d	file:
+CYTHON_FAST_PYCCALL	c/c_lattice.c	212;"	d	file:
+CYTHON_FAST_THREAD_STATE	c/c_lattice.c	134;"	d	file:
+CYTHON_FAST_THREAD_STATE	c/c_lattice.c	135;"	d	file:
+CYTHON_FAST_THREAD_STATE	c/c_lattice.c	193;"	d	file:
+CYTHON_FAST_THREAD_STATE	c/c_lattice.c	93;"	d	file:
+CYTHON_FAST_THREAD_STATE	c/c_lattice.c	94;"	d	file:
+CYTHON_FORMAT_SSIZE_T	c/c_lattice.c	324;"	d	file:
+CYTHON_FUTURE_DIVISION	c/c_lattice.c	31;"	d	file:
+CYTHON_HEX_VERSION	c/c_lattice.c	30;"	d	file:
+CYTHON_INLINE	c/c_lattice.c	308;"	d	file:
+CYTHON_INLINE	c/c_lattice.c	310;"	d	file:
+CYTHON_INLINE	c/c_lattice.c	312;"	d	file:
+CYTHON_INLINE	c/c_lattice.c	314;"	d	file:
+CYTHON_INLINE	c/c_lattice.c	316;"	d	file:
+CYTHON_MAYBE_UNUSED_VAR	c/c_lattice.c	/^     template<class T> void CYTHON_MAYBE_UNUSED_VAR( const T& ) { }$/;"	f
+CYTHON_MAYBE_UNUSED_VAR	c/c_lattice.c	257;"	d	file:
+CYTHON_NCP_UNUSED	c/c_lattice.c	262;"	d	file:
+CYTHON_NCP_UNUSED	c/c_lattice.c	264;"	d	file:
+CYTHON_PEP393_ENABLED	c/c_lattice.c	462;"	d	file:
+CYTHON_PEP393_ENABLED	c/c_lattice.c	474;"	d	file:
+CYTHON_PEP489_MULTI_PHASE_INIT	c/c_lattice.c	138;"	d	file:
+CYTHON_PEP489_MULTI_PHASE_INIT	c/c_lattice.c	139;"	d	file:
+CYTHON_PEP489_MULTI_PHASE_INIT	c/c_lattice.c	199;"	d	file:
+CYTHON_PEP489_MULTI_PHASE_INIT	c/c_lattice.c	97;"	d	file:
+CYTHON_PEP489_MULTI_PHASE_INIT	c/c_lattice.c	98;"	d	file:
+CYTHON_REFNANNY	c/c_lattice.c	1159;"	d	file:
+CYTHON_RESTRICT	c/c_lattice.c	231;"	d	file:
+CYTHON_RESTRICT	c/c_lattice.c	233;"	d	file:
+CYTHON_RESTRICT	c/c_lattice.c	235;"	d	file:
+CYTHON_RESTRICT	c/c_lattice.c	237;"	d	file:
+CYTHON_SMALL_CODE	c/c_lattice.c	4756;"	d	file:
+CYTHON_SMALL_CODE	c/c_lattice.c	4758;"	d	file:
+CYTHON_SMALL_CODE	c/c_lattice.c	4760;"	d	file:
+CYTHON_UNPACK_METHODS	c/c_lattice.c	132;"	d	file:
+CYTHON_UNPACK_METHODS	c/c_lattice.c	190;"	d	file:
+CYTHON_UNPACK_METHODS	c/c_lattice.c	91;"	d	file:
+CYTHON_UNPACK_METHODS	c/c_lattice.c	92;"	d	file:
+CYTHON_UNUSED	c/c_lattice.c	243;"	d	file:
+CYTHON_UNUSED	c/c_lattice.c	245;"	d	file:
+CYTHON_UNUSED	c/c_lattice.c	248;"	d	file:
+CYTHON_UNUSED	c/c_lattice.c	250;"	d	file:
+CYTHON_USE_ASYNC_SLOTS	c/c_lattice.c	114;"	d	file:
+CYTHON_USE_ASYNC_SLOTS	c/c_lattice.c	115;"	d	file:
+CYTHON_USE_ASYNC_SLOTS	c/c_lattice.c	160;"	d	file:
+CYTHON_USE_ASYNC_SLOTS	c/c_lattice.c	161;"	d	file:
+CYTHON_USE_ASYNC_SLOTS	c/c_lattice.c	163;"	d	file:
+CYTHON_USE_ASYNC_SLOTS	c/c_lattice.c	74;"	d	file:
+CYTHON_USE_ASYNC_SLOTS	c/c_lattice.c	75;"	d	file:
+CYTHON_USE_ASYNC_SLOTS	c/c_lattice.c	77;"	d	file:
+CYTHON_USE_DICT_VERSIONS	c/c_lattice.c	101;"	d	file:
+CYTHON_USE_DICT_VERSIONS	c/c_lattice.c	102;"	d	file:
+CYTHON_USE_DICT_VERSIONS	c/c_lattice.c	142;"	d	file:
+CYTHON_USE_DICT_VERSIONS	c/c_lattice.c	143;"	d	file:
+CYTHON_USE_DICT_VERSIONS	c/c_lattice.c	205;"	d	file:
+CYTHON_USE_EXC_INFO_STACK	c/c_lattice.c	103;"	d	file:
+CYTHON_USE_EXC_INFO_STACK	c/c_lattice.c	104;"	d	file:
+CYTHON_USE_EXC_INFO_STACK	c/c_lattice.c	144;"	d	file:
+CYTHON_USE_EXC_INFO_STACK	c/c_lattice.c	145;"	d	file:
+CYTHON_USE_EXC_INFO_STACK	c/c_lattice.c	208;"	d	file:
+CYTHON_USE_PYLIST_INTERNALS	c/c_lattice.c	116;"	d	file:
+CYTHON_USE_PYLIST_INTERNALS	c/c_lattice.c	117;"	d	file:
+CYTHON_USE_PYLIST_INTERNALS	c/c_lattice.c	172;"	d	file:
+CYTHON_USE_PYLIST_INTERNALS	c/c_lattice.c	79;"	d	file:
+CYTHON_USE_PYLIST_INTERNALS	c/c_lattice.c	80;"	d	file:
+CYTHON_USE_PYLONG_INTERNALS	c/c_lattice.c	123;"	d	file:
+CYTHON_USE_PYLONG_INTERNALS	c/c_lattice.c	124;"	d	file:
+CYTHON_USE_PYLONG_INTERNALS	c/c_lattice.c	166;"	d	file:
+CYTHON_USE_PYLONG_INTERNALS	c/c_lattice.c	167;"	d	file:
+CYTHON_USE_PYLONG_INTERNALS	c/c_lattice.c	169;"	d	file:
+CYTHON_USE_PYLONG_INTERNALS	c/c_lattice.c	85;"	d	file:
+CYTHON_USE_PYLONG_INTERNALS	c/c_lattice.c	86;"	d	file:
+CYTHON_USE_PYTYPE_LOOKUP	c/c_lattice.c	112;"	d	file:
+CYTHON_USE_PYTYPE_LOOKUP	c/c_lattice.c	113;"	d	file:
+CYTHON_USE_PYTYPE_LOOKUP	c/c_lattice.c	154;"	d	file:
+CYTHON_USE_PYTYPE_LOOKUP	c/c_lattice.c	155;"	d	file:
+CYTHON_USE_PYTYPE_LOOKUP	c/c_lattice.c	157;"	d	file:
+CYTHON_USE_PYTYPE_LOOKUP	c/c_lattice.c	71;"	d	file:
+CYTHON_USE_PYTYPE_LOOKUP	c/c_lattice.c	72;"	d	file:
+CYTHON_USE_TP_FINALIZE	c/c_lattice.c	100;"	d	file:
+CYTHON_USE_TP_FINALIZE	c/c_lattice.c	140;"	d	file:
+CYTHON_USE_TP_FINALIZE	c/c_lattice.c	141;"	d	file:
+CYTHON_USE_TP_FINALIZE	c/c_lattice.c	202;"	d	file:
+CYTHON_USE_TP_FINALIZE	c/c_lattice.c	99;"	d	file:
+CYTHON_USE_TYPE_SLOTS	c/c_lattice.c	110;"	d	file:
+CYTHON_USE_TYPE_SLOTS	c/c_lattice.c	151;"	d	file:
+CYTHON_USE_TYPE_SLOTS	c/c_lattice.c	69;"	d	file:
+CYTHON_USE_TYPE_SLOTS	c/c_lattice.c	70;"	d	file:
+CYTHON_USE_UNICODE_INTERNALS	c/c_lattice.c	119;"	d	file:
+CYTHON_USE_UNICODE_INTERNALS	c/c_lattice.c	175;"	d	file:
+CYTHON_USE_UNICODE_INTERNALS	c/c_lattice.c	81;"	d	file:
+CYTHON_USE_UNICODE_INTERNALS	c/c_lattice.c	82;"	d	file:
+CYTHON_USE_UNICODE_WRITER	c/c_lattice.c	121;"	d	file:
+CYTHON_USE_UNICODE_WRITER	c/c_lattice.c	122;"	d	file:
+CYTHON_USE_UNICODE_WRITER	c/c_lattice.c	178;"	d	file:
+CYTHON_USE_UNICODE_WRITER	c/c_lattice.c	179;"	d	file:
+CYTHON_USE_UNICODE_WRITER	c/c_lattice.c	181;"	d	file:
+CYTHON_USE_UNICODE_WRITER	c/c_lattice.c	83;"	d	file:
+CYTHON_USE_UNICODE_WRITER	c/c_lattice.c	84;"	d	file:
+CYTHON_WITHOUT_ASSERTIONS	c/c_lattice.c	640;"	d	file:
+Concentration	emto_parser/emtoparser.py	/^    def Concentration(self):$/;"	m	class:EMTOPARSER
+DECREF	c/c_lattice.c	/^    void (*DECREF)(void*, PyObject*, int);$/;"	m	struct:__anon9	file:
+DL_EXPORT	c/c_lattice.c	51;"	d	file:
+DL_IMPORT	c/c_lattice.c	48;"	d	file:
+DOSEF	emto_parser/emtoparser.py	/^    def DOSEF(self):$/;"	m	class:EMTOPARSER
+Df	emto_parser/emtoparser.py	/^    def Df(self,list,col,colname):$/;"	m	class:EMTOPARSER
+EFx	emto_parser/dos_parser.py	/^    def EFx(self):$/;"	m	class:Get_DOS
+EFy	emto_parser/dos_parser.py	/^    def EFy(self):$/;"	m	class:Get_DOS
+EMTO	examples/emto_input_generator.py	/^class EMTO:$/;"	c
+EMTOPARSER	emto_parser/emtoparser.py	/^class EMTOPARSER(object):$/;"	c
+EMTOdir	examples/alloy_discovery/alloy_discovery.py	/^EMTOdir = "\/home\/hpleva\/EMTO\/openmp-stable-cmake"$/;"	v
+EOS	EOS/EOS.py	/^class EOS:$/;"	c
+E_D	free_energy/free_energy.py	/^def E_D(r,r0,B0,M,grun,T):$/;"	f
+Element	emto_parser/dos_parser.py	/^class Element(object):$/;"	c
+Emtoinputs	emtoinputs/emtoinputs.py	/^class Emtoinputs:$/;"	c
+Energy	emto_parser/emtoparser.py	/^    def Energy(self):$/;"	m	class:EMTOPARSER
+F_conf	free_energy/free_energy.py	/^def F_conf(S_conf,T):$/;"	f
+F_elec	free_energy/free_energy.py	/^def F_elec(dos,T):$/;"	f
+F_mag	free_energy/free_energy.py	/^def F_mag(S_mag,T):$/;"	f
+F_vib	free_energy/free_energy.py	/^def F_vib(r,r0,B0,M,grun,T):$/;"	f
+FinishContext	c/c_lattice.c	/^    void (*FinishContext)(void**);$/;"	m	struct:__anon9	file:
+GIVEREF	c/c_lattice.c	/^    void (*GIVEREF)(void*, PyObject*, int);$/;"	m	struct:__anon9	file:
+GOTREF	c/c_lattice.c	/^    void (*GOTREF)(void*, PyObject*, int);$/;"	m	struct:__anon9	file:
+Get_DOS	emto_parser/dos_parser.py	/^class Get_DOS(object):$/;"	c
+HAVE_LONG_LONG	c/c_lattice.c	56;"	d	file:
+INCREF	c/c_lattice.c	/^    void (*INCREF)(void*, PyObject*, int);$/;"	m	struct:__anon9	file:
+IS_UNSIGNED	c/c_lattice.c	869;"	d	file:
+Kfcd	emtoinputs/kfcd.py	/^class Kfcd:$/;"	c
+Kgrn	emtoinputs/kgrn.py	/^class Kgrn:$/;"	c
+Kstr	latticeinputs/kstr.py	/^class Kstr:$/;"	c
+Latticeinputs	latticeinputs/latticeinputs.py	/^class Latticeinputs:$/;"	c
+MASK	c/c_lattice.c	218;"	d	file:
+METH_FASTCALL	c/c_lattice.c	353;"	d	file:
+METH_STACKLESS	c/c_lattice.c	349;"	d	file:
+Mag	emto_parser/emtoparser.py	/^    def Mag(self):$/;"	m	class:EMTOPARSER
+PY_LONG_LONG	c/c_lattice.c	60;"	d	file:
+PY_SSIZE_T_CLEAN	c/c_lattice.c	22;"	d	file:
+PyBaseString_Type	c/c_lattice.c	516;"	d	file:
+PyBoolObject	c/c_lattice.c	556;"	d	file:
+PyByteArray_Check	c/c_lattice.c	500;"	d	file:
+PyIntObject	c/c_lattice.c	539;"	d	file:
+PyInt_AS_LONG	c/c_lattice.c	549;"	d	file:
+PyInt_AsLong	c/c_lattice.c	548;"	d	file:
+PyInt_AsSsize_t	c/c_lattice.c	550;"	d	file:
+PyInt_AsUnsignedLongLongMask	c/c_lattice.c	552;"	d	file:
+PyInt_AsUnsignedLongMask	c/c_lattice.c	551;"	d	file:
+PyInt_Check	c/c_lattice.c	541;"	d	file:
+PyInt_CheckExact	c/c_lattice.c	542;"	d	file:
+PyInt_FromLong	c/c_lattice.c	545;"	d	file:
+PyInt_FromSize_t	c/c_lattice.c	546;"	d	file:
+PyInt_FromSsize_t	c/c_lattice.c	547;"	d	file:
+PyInt_FromString	c/c_lattice.c	543;"	d	file:
+PyInt_FromUnicode	c/c_lattice.c	544;"	d	file:
+PyInt_Type	c/c_lattice.c	540;"	d	file:
+PyMem_RawFree	c/c_lattice.c	396;"	d	file:
+PyMem_RawMalloc	c/c_lattice.c	394;"	d	file:
+PyMem_RawRealloc	c/c_lattice.c	395;"	d	file:
+PyNumber_Int	c/c_lattice.c	553;"	d	file:
+PyObject_ASCII	c/c_lattice.c	513;"	d	file:
+PyObject_Format	c/c_lattice.c	503;"	d	file:
+PyObject_Free	c/c_lattice.c	390;"	d	file:
+PyObject_Malloc	c/c_lattice.c	389;"	d	file:
+PyObject_Realloc	c/c_lattice.c	391;"	d	file:
+PyObject_Unicode	c/c_lattice.c	521;"	d	file:
+PySet_CheckExact	c/c_lattice.c	531;"	d	file:
+PyStringObject	c/c_lattice.c	517;"	d	file:
+PyString_Check	c/c_lattice.c	519;"	d	file:
+PyString_CheckExact	c/c_lattice.c	520;"	d	file:
+PyString_Type	c/c_lattice.c	518;"	d	file:
+PyThread_tss_alloc	c/c_lattice.c	/^static CYTHON_INLINE Py_tss_t * PyThread_tss_alloc(void) {$/;"	f	file:
+PyThread_tss_create	c/c_lattice.c	/^static CYTHON_INLINE int PyThread_tss_create(Py_tss_t *key) {$/;"	f	file:
+PyThread_tss_delete	c/c_lattice.c	/^static CYTHON_INLINE void PyThread_tss_delete(Py_tss_t *key) {$/;"	f	file:
+PyThread_tss_free	c/c_lattice.c	/^static CYTHON_INLINE void PyThread_tss_free(Py_tss_t *key) {$/;"	f	file:
+PyThread_tss_get	c/c_lattice.c	/^static CYTHON_INLINE void * PyThread_tss_get(Py_tss_t *key) {$/;"	f	file:
+PyThread_tss_is_created	c/c_lattice.c	/^static CYTHON_INLINE int PyThread_tss_is_created(Py_tss_t *key) {$/;"	f	file:
+PyThread_tss_set	c/c_lattice.c	/^static CYTHON_INLINE int PyThread_tss_set(Py_tss_t *key, void *value) {$/;"	f	file:
+PyUnicode_1BYTE_KIND	c/c_lattice.c	475;"	d	file:
+PyUnicode_2BYTE_KIND	c/c_lattice.c	476;"	d	file:
+PyUnicode_4BYTE_KIND	c/c_lattice.c	477;"	d	file:
+PyUnicode_Contains	c/c_lattice.c	497;"	d	file:
+PyUnicode_InternFromString	c/c_lattice.c	560;"	d	file:
+Py_HUGE_VAL	c/c_lattice.c	63;"	d	file:
+Py_MEMBER_SIZE	c/c_lattice.c	1348;"	d	file:
+Py_OptimizeFlag	c/c_lattice.c	321;"	d	file:
+Py_TPFLAGS_CHECKTYPES	c/c_lattice.c	337;"	d	file:
+Py_TPFLAGS_HAVE_FINALIZE	c/c_lattice.c	346;"	d	file:
+Py_TPFLAGS_HAVE_INDEX	c/c_lattice.c	340;"	d	file:
+Py_TPFLAGS_HAVE_NEWBUFFER	c/c_lattice.c	343;"	d	file:
+Py_hash_t	c/c_lattice.c	/^  typedef long Py_hash_t;$/;"	t	file:
+Py_tss_NEEDS_INIT	c/c_lattice.c	416;"	d	file:
+Py_tss_t	c/c_lattice.c	/^typedef int Py_tss_t;$/;"	t	file:
+SHIFT	c/c_lattice.c	216;"	d	file:
+S_conf	free_energy/free_energy.py	/^def S_conf(concs):$/;"	f
+S_elec	free_energy/free_energy.py	/^def S_elec(dos,T):$/;"	f
+S_mag	free_energy/free_energy.py	/^def S_mag(concs,moms):$/;"	f
+S_vib	free_energy/free_energy.py	/^def S_vib(r,r0,B0,M,grun,T):$/;"	f
+SetupContext	c/c_lattice.c	/^    void* (*SetupContext)(const char*, int, const char*);$/;"	m	struct:__anon9	file:
+Shape	latticeinputs/shape.py	/^class Shape:$/;"	c
+Structure	emto_parser/emtoparser.py	/^    def Structure(self):$/;"	m	class:EMTOPARSER
+Sws2T	emto_parser/emtoparser.py	/^def Sws2T(sws,sws0,alpha):$/;"	f
+System	system.py	/^class System:$/;"	c
+T_Curie	free_energy/free_energy.py	/^def T_Curie(E_DLM,E_FM):$/;"	f
+_Complex_I	c/c_lattice.c	858;"	d	file:
+_Complex_I	c/c_lattice.c	859;"	d	file:
+_USE_MATH_DEFINES	c/c_lattice.c	595;"	d	file:
+__PYX_BUF_FLAGS_PACKED_STRUCT	c/c_lattice.c	871;"	d	file:
+__PYX_BUILD_PY_SSIZE_T	c/c_lattice.c	323;"	d	file:
+__PYX_COMMA	c/c_lattice.c	53;"	d	file:
+__PYX_DEFAULT_STRING_ENCODING	c/c_lattice.c	/^static char* __PYX_DEFAULT_STRING_ENCODING;$/;"	v	file:
+__PYX_DEFAULT_STRING_ENCODING	c/c_lattice.c	648;"	d	file:
+__PYX_DEFAULT_STRING_ENCODING_IS_ASCII	c/c_lattice.c	646;"	d	file:
+__PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT	c/c_lattice.c	647;"	d	file:
+__PYX_ERR	c/c_lattice.c	614;"	d	file:
+__PYX_EXTERN_C	c/c_lattice.c	621;"	d	file:
+__PYX_EXTERN_C	c/c_lattice.c	623;"	d	file:
+__PYX_GET_DICT_VERSION	c/c_lattice.c	369;"	d	file:
+__PYX_GET_DICT_VERSION	c/c_lattice.c	384;"	d	file:
+__PYX_HAVE_API__pyemto__c__c_lattice	c/c_lattice.c	628;"	d	file:
+__PYX_HAVE_RT_ImportType	c/c_lattice.c	6791;"	d	file:
+__PYX_HAVE_RT_ImportType_proto	c/c_lattice.c	1424;"	d	file:
+__PYX_HAVE__pyemto__c__c_lattice	c/c_lattice.c	627;"	d	file:
+__PYX_NAN	c/c_lattice.c	/^static CYTHON_INLINE float __PYX_NAN() {$/;"	f	file:
+__PYX_NAN	c/c_lattice.c	599;"	d	file:
+__PYX_PY_DICT_LOOKUP_IF_MODIFIED	c/c_lattice.c	373;"	d	file:
+__PYX_PY_DICT_LOOKUP_IF_MODIFIED	c/c_lattice.c	386;"	d	file:
+__PYX_UPDATE_DICT_CACHE	c/c_lattice.c	370;"	d	file:
+__PYX_UPDATE_DICT_CACHE	c/c_lattice.c	385;"	d	file:
+__PYX_VERIFY_RETURN_INT	c/c_lattice.c	7145;"	d	file:
+__PYX_VERIFY_RETURN_INT_EXC	c/c_lattice.c	7147;"	d	file:
+__PYX__VERIFY_RETURN_INT	c/c_lattice.c	7149;"	d	file:
+__Pxy_PyFrame_Initialize_Offsets	c/c_lattice.c	1352;"	d	file:
+__Pyx_AddTraceback	c/c_lattice.c	/^static void __Pyx_AddTraceback(const char *funcname, int c_line,$/;"	f	file:
+__Pyx_ArgTypeTest	c/c_lattice.c	1314;"	d	file:
+__Pyx_BUILD_ASSERT_EXPR	c/c_lattice.c	1345;"	d	file:
+__Pyx_BUILTIN_MODULE_NAME	c/c_lattice.c	326;"	d	file:
+__Pyx_BUILTIN_MODULE_NAME	c/c_lattice.c	331;"	d	file:
+__Pyx_BufFmt_CheckString	c/c_lattice.c	/^static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const char* ts) {$/;"	f	file:
+__Pyx_BufFmt_Context	c/c_lattice.c	/^} __Pyx_BufFmt_Context;$/;"	t	typeref:struct:__anon6	file:
+__Pyx_BufFmt_DescribeTypeChar	c/c_lattice.c	/^static const char* __Pyx_BufFmt_DescribeTypeChar(char ch, int is_complex) {$/;"	f	file:
+__Pyx_BufFmt_ExpectNumber	c/c_lattice.c	/^static int __Pyx_BufFmt_ExpectNumber(const char **ts) {$/;"	f	file:
+__Pyx_BufFmt_Init	c/c_lattice.c	/^static void __Pyx_BufFmt_Init(__Pyx_BufFmt_Context* ctx,$/;"	f	file:
+__Pyx_BufFmt_ParseNumber	c/c_lattice.c	/^static int __Pyx_BufFmt_ParseNumber(const char** ts) {$/;"	f	file:
+__Pyx_BufFmt_ProcessTypeChunk	c/c_lattice.c	/^static int __Pyx_BufFmt_ProcessTypeChunk(__Pyx_BufFmt_Context* ctx) {$/;"	f	file:
+__Pyx_BufFmt_RaiseExpected	c/c_lattice.c	/^static void __Pyx_BufFmt_RaiseExpected(__Pyx_BufFmt_Context* ctx) {$/;"	f	file:
+__Pyx_BufFmt_RaiseUnexpectedChar	c/c_lattice.c	/^static void __Pyx_BufFmt_RaiseUnexpectedChar(char ch) {$/;"	f	file:
+__Pyx_BufFmt_StackElem	c/c_lattice.c	/^} __Pyx_BufFmt_StackElem;$/;"	t	typeref:struct:__anon5	file:
+__Pyx_BufFmt_TypeCharToAlignment	c/c_lattice.c	/^static size_t __Pyx_BufFmt_TypeCharToAlignment(char ch, CYTHON_UNUSED int is_complex) {$/;"	f	file:
+__Pyx_BufFmt_TypeCharToGroup	c/c_lattice.c	/^static char __Pyx_BufFmt_TypeCharToGroup(char ch, int is_complex) {$/;"	f	file:
+__Pyx_BufFmt_TypeCharToNativeSize	c/c_lattice.c	/^static size_t __Pyx_BufFmt_TypeCharToNativeSize(char ch, int is_complex) {$/;"	f	file:
+__Pyx_BufFmt_TypeCharToPadding	c/c_lattice.c	/^static size_t __Pyx_BufFmt_TypeCharToPadding(char ch, CYTHON_UNUSED int is_complex) {$/;"	f	file:
+__Pyx_BufFmt_TypeCharToStandardSize	c/c_lattice.c	/^static size_t __Pyx_BufFmt_TypeCharToStandardSize(char ch, int is_complex) {$/;"	f	file:
+__Pyx_BufPtrStrided2d	c/c_lattice.c	1251;"	d	file:
+__Pyx_Buf_DimInfo	c/c_lattice.c	/^} __Pyx_Buf_DimInfo;$/;"	t	typeref:struct:__anon11	file:
+__Pyx_Buffer	c/c_lattice.c	/^} __Pyx_Buffer;$/;"	t	typeref:struct:__anon12	file:
+__Pyx_CIMAG	c/c_lattice.c	1495;"	d	file:
+__Pyx_CIMAG	c/c_lattice.c	1498;"	d	file:
+__Pyx_CIMAG	c/c_lattice.c	1502;"	d	file:
+__Pyx_CLEAR	c/c_lattice.c	1217;"	d	file:
+__Pyx_CLineForTraceback	c/c_lattice.c	/^static int __Pyx_CLineForTraceback(PyThreadState *tstate, int c_line) {$/;"	f	file:
+__Pyx_CLineForTraceback	c/c_lattice.c	1438;"	d	file:
+__Pyx_CREAL	c/c_lattice.c	1494;"	d	file:
+__Pyx_CREAL	c/c_lattice.c	1497;"	d	file:
+__Pyx_CREAL	c/c_lattice.c	1501;"	d	file:
+__Pyx_CodeObjectCache	c/c_lattice.c	/^struct __Pyx_CodeObjectCache {$/;"	s	file:
+__Pyx_CodeObjectCacheEntry	c/c_lattice.c	/^} __Pyx_CodeObjectCacheEntry;$/;"	t	typeref:struct:__anon10	file:
+__Pyx_CreateCodeObjectForTraceback	c/c_lattice.c	/^static PyCodeObject* __Pyx_CreateCodeObjectForTraceback($/;"	f	file:
+__Pyx_DECREF	c/c_lattice.c	1189;"	d	file:
+__Pyx_DECREF	c/c_lattice.c	1201;"	d	file:
+__Pyx_DECREF_SET	c/c_lattice.c	1213;"	d	file:
+__Pyx_DefaultClassType	c/c_lattice.c	329;"	d	file:
+__Pyx_DefaultClassType	c/c_lattice.c	334;"	d	file:
+__Pyx_ErrFetch	c/c_lattice.c	1277;"	d	file:
+__Pyx_ErrFetch	c/c_lattice.c	1293;"	d	file:
+__Pyx_ErrFetchInState	c/c_lattice.c	/^static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {$/;"	f	file:
+__Pyx_ErrFetchInState	c/c_lattice.c	1291;"	d	file:
+__Pyx_ErrFetchWithState	c/c_lattice.c	1275;"	d	file:
+__Pyx_ErrFetchWithState	c/c_lattice.c	1289;"	d	file:
+__Pyx_ErrRestore	c/c_lattice.c	1276;"	d	file:
+__Pyx_ErrRestore	c/c_lattice.c	1292;"	d	file:
+__Pyx_ErrRestoreInState	c/c_lattice.c	/^static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {$/;"	f	file:
+__Pyx_ErrRestoreInState	c/c_lattice.c	1290;"	d	file:
+__Pyx_ErrRestoreWithState	c/c_lattice.c	1274;"	d	file:
+__Pyx_ErrRestoreWithState	c/c_lattice.c	1288;"	d	file:
+__Pyx_ExceptionReset	c/c_lattice.c	1399;"	d	file:
+__Pyx_ExceptionReset	c/c_lattice.c	1403;"	d	file:
+__Pyx_ExceptionSave	c/c_lattice.c	1397;"	d	file:
+__Pyx_ExceptionSave	c/c_lattice.c	1402;"	d	file:
+__Pyx_GIVEREF	c/c_lattice.c	1191;"	d	file:
+__Pyx_GIVEREF	c/c_lattice.c	1203;"	d	file:
+__Pyx_GOTREF	c/c_lattice.c	1190;"	d	file:
+__Pyx_GOTREF	c/c_lattice.c	1202;"	d	file:
+__Pyx_GetBuffer	c/c_lattice.c	/^static int __Pyx_GetBuffer(PyObject *obj, Py_buffer *view, int flags) {$/;"	f	file:
+__Pyx_GetBuffer	c/c_lattice.c	1480;"	d	file:
+__Pyx_GetBufferAndValidate	c/c_lattice.c	1240;"	d	file:
+__Pyx_GetBuiltinName	c/c_lattice.c	/^static PyObject *__Pyx_GetBuiltinName(PyObject *name) {$/;"	f	file:
+__Pyx_GetException	c/c_lattice.c	1416;"	d	file:
+__Pyx_INCREF	c/c_lattice.c	1188;"	d	file:
+__Pyx_INCREF	c/c_lattice.c	1200;"	d	file:
+__Pyx_Import	c/c_lattice.c	/^  static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {$/;"	f	file:
+__Pyx_ImportType	c/c_lattice.c	/^static PyTypeObject *__Pyx_ImportType(PyObject *module, const char *module_name, const char *class_name,$/;"	f	file:
+__Pyx_ImportType_CheckSize	c/c_lattice.c	/^enum __Pyx_ImportType_CheckSize {$/;"	g	file:
+__Pyx_ImportType_CheckSize_Error	c/c_lattice.c	/^   __Pyx_ImportType_CheckSize_Error = 0,$/;"	e	enum:__Pyx_ImportType_CheckSize	file:
+__Pyx_ImportType_CheckSize_Ignore	c/c_lattice.c	/^   __Pyx_ImportType_CheckSize_Ignore = 2$/;"	e	enum:__Pyx_ImportType_CheckSize	file:
+__Pyx_ImportType_CheckSize_Warn	c/c_lattice.c	/^   __Pyx_ImportType_CheckSize_Warn = 1,$/;"	e	enum:__Pyx_ImportType_CheckSize	file:
+__Pyx_InBases	c/c_lattice.c	/^static int __Pyx_InBases(PyTypeObject *a, PyTypeObject *b) {$/;"	f	file:
+__Pyx_InitCachedBuiltins	c/c_lattice.c	/^static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {$/;"	f	file:
+__Pyx_InitCachedConstants	c/c_lattice.c	/^static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {$/;"	f	file:
+__Pyx_InitGlobals	c/c_lattice.c	/^static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {$/;"	f	file:
+__Pyx_InitStrings	c/c_lattice.c	/^  static int __Pyx_InitStrings(__Pyx_StringTabEntry *t) {$/;"	f	file:
+__Pyx_IsSubtype	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_IsSubtype(PyTypeObject *a, PyTypeObject *b) {$/;"	f	file:
+__Pyx_Is_Little_Endian	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_Is_Little_Endian(void)$/;"	f	file:
+__Pyx_LocalBuf_ND	c/c_lattice.c	/^} __Pyx_LocalBuf_ND;$/;"	t	typeref:struct:__anon13	file:
+__Pyx_MODULE_NAME	c/c_lattice.c	1652;"	d	file:
+__Pyx_NewRef	c/c_lattice.c	720;"	d	file:
+__Pyx_Owned_Py_None	c/c_lattice.c	721;"	d	file:
+__Pyx_ParseOptionalKeywords	c/c_lattice.c	/^  static int __Pyx_ParseOptionalKeywords($/;"	f	file:
+__Pyx_PyAsyncMethodsStruct	c/c_lattice.c	/^    } __Pyx_PyAsyncMethodsStruct;$/;"	t	typeref:struct:__anon2	file:
+__Pyx_PyAsyncMethodsStruct	c/c_lattice.c	578;"	d	file:
+__Pyx_PyBaseString_Check	c/c_lattice.c	524;"	d	file:
+__Pyx_PyBaseString_Check	c/c_lattice.c	527;"	d	file:
+__Pyx_PyBaseString_CheckExact	c/c_lattice.c	525;"	d	file:
+__Pyx_PyBaseString_CheckExact	c/c_lattice.c	528;"	d	file:
+__Pyx_PyBool_FromLong	c/c_lattice.c	/^static CYTHON_INLINE PyObject * __Pyx_PyBool_FromLong(long b) {$/;"	f	file:
+__Pyx_PyByteArray_FromCString	c/c_lattice.c	709;"	d	file:
+__Pyx_PyByteArray_FromString	c/c_lattice.c	684;"	d	file:
+__Pyx_PyByteArray_FromStringAndSize	c/c_lattice.c	685;"	d	file:
+__Pyx_PyBytes_AsSString	c/c_lattice.c	700;"	d	file:
+__Pyx_PyBytes_AsString	c/c_lattice.c	699;"	d	file:
+__Pyx_PyBytes_AsUString	c/c_lattice.c	701;"	d	file:
+__Pyx_PyBytes_AsWritableSString	c/c_lattice.c	697;"	d	file:
+__Pyx_PyBytes_AsWritableString	c/c_lattice.c	696;"	d	file:
+__Pyx_PyBytes_AsWritableUString	c/c_lattice.c	698;"	d	file:
+__Pyx_PyBytes_FromCString	c/c_lattice.c	708;"	d	file:
+__Pyx_PyBytes_FromString	c/c_lattice.c	686;"	d	file:
+__Pyx_PyBytes_FromStringAndSize	c/c_lattice.c	687;"	d	file:
+__Pyx_PyCFunctionFast	c/c_lattice.c	/^  typedef PyObject *(*__Pyx_PyCFunctionFast) (PyObject *self, PyObject *const *args, Py_ssize_t nargs);$/;"	t	file:
+__Pyx_PyCFunctionFast	c/c_lattice.c	359;"	d	file:
+__Pyx_PyCFunctionFastWithKeywords	c/c_lattice.c	/^  typedef PyObject *(*__Pyx_PyCFunctionFastWithKeywords) (PyObject *self, PyObject *const *args,$/;"	t	file:
+__Pyx_PyCFunctionFastWithKeywords	c/c_lattice.c	360;"	d	file:
+__Pyx_PyCFunction_FastCall	c/c_lattice.c	/^static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {$/;"	f	file:
+__Pyx_PyCFunction_FastCall	c/c_lattice.c	1333;"	d	file:
+__Pyx_PyCode_HasFreeVars	c/c_lattice.c	399;"	d	file:
+__Pyx_PyCode_HasFreeVars	c/c_lattice.c	402;"	d	file:
+__Pyx_PyCode_New	c/c_lattice.c	327;"	d	file:
+__Pyx_PyCode_New	c/c_lattice.c	332;"	d	file:
+__Pyx_PyDict_GetItem	c/c_lattice.c	/^static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key) {$/;"	f	file:
+__Pyx_PyDict_GetItem	c/c_lattice.c	1374;"	d	file:
+__Pyx_PyDict_GetItemStr	c/c_lattice.c	457;"	d	file:
+__Pyx_PyDict_GetItemStr	c/c_lattice.c	459;"	d	file:
+__Pyx_PyDict_NewPresized	c/c_lattice.c	445;"	d	file:
+__Pyx_PyDict_NewPresized	c/c_lattice.c	447;"	d	file:
+__Pyx_PyErr_Clear	c/c_lattice.c	1273;"	d	file:
+__Pyx_PyErr_Clear	c/c_lattice.c	1286;"	d	file:
+__Pyx_PyErr_ExceptionMatches	c/c_lattice.c	1408;"	d	file:
+__Pyx_PyErr_ExceptionMatches	c/c_lattice.c	1411;"	d	file:
+__Pyx_PyErr_ExceptionMatchesInState	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {$/;"	f	file:
+__Pyx_PyErr_ExceptionMatchesTuple	c/c_lattice.c	/^static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {$/;"	f	file:
+__Pyx_PyErr_GetTopmostException	c/c_lattice.c	/^__Pyx_PyErr_GetTopmostException(PyThreadState *tstate)$/;"	f	file:
+__Pyx_PyErr_GivenExceptionMatches	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches(PyObject *err, PyObject* exc_type) {$/;"	f	file:
+__Pyx_PyErr_GivenExceptionMatches	c/c_lattice.c	1606;"	d	file:
+__Pyx_PyErr_GivenExceptionMatches2	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObject *exc_type1, PyObject *exc_type2) {$/;"	f	file:
+__Pyx_PyErr_GivenExceptionMatches2	c/c_lattice.c	1607;"	d	file:
+__Pyx_PyErr_GivenExceptionMatchesTuple	c/c_lattice.c	/^static int __Pyx_PyErr_GivenExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {$/;"	f	file:
+__Pyx_PyErr_Occurred	c/c_lattice.c	1264;"	d	file:
+__Pyx_PyErr_Occurred	c/c_lattice.c	1268;"	d	file:
+__Pyx_PyErr_SetNone	c/c_lattice.c	1281;"	d	file:
+__Pyx_PyErr_SetNone	c/c_lattice.c	1283;"	d	file:
+__Pyx_PyErr_SetNone	c/c_lattice.c	1287;"	d	file:
+__Pyx_PyException_Check	c/c_lattice.c	1609;"	d	file:
+__Pyx_PyFastCFunction_Check	c/c_lattice.c	363;"	d	file:
+__Pyx_PyFastCFunction_Check	c/c_lattice.c	366;"	d	file:
+__Pyx_PyFrame_GetLocalsplus	c/c_lattice.c	1355;"	d	file:
+__Pyx_PyFrame_SetLineNumber	c/c_lattice.c	400;"	d	file:
+__Pyx_PyFrame_SetLineNumber	c/c_lattice.c	403;"	d	file:
+__Pyx_PyFunction_FastCall	c/c_lattice.c	1338;"	d	file:
+__Pyx_PyFunction_FastCallDict	c/c_lattice.c	/^static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, int nargs, PyObject *kwargs) {$/;"	f	file:
+__Pyx_PyFunction_FastCallDict	c/c_lattice.c	1343;"	d	file:
+__Pyx_PyFunction_FastCallNoKw	c/c_lattice.c	/^static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,$/;"	f	file:
+__Pyx_PyIndex_AsSsize_t	c/c_lattice.c	/^static CYTHON_INLINE Py_ssize_t __Pyx_PyIndex_AsSsize_t(PyObject* b) {$/;"	f	file:
+__Pyx_PyInt_AddObjC	c/c_lattice.c	/^static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED long intval, CYTHON_UNUSED int inplace) {$/;"	f	file:
+__Pyx_PyInt_AddObjC	c/c_lattice.c	1256;"	d	file:
+__Pyx_PyInt_AsHash_t	c/c_lattice.c	566;"	d	file:
+__Pyx_PyInt_AsHash_t	c/c_lattice.c	569;"	d	file:
+__Pyx_PyInt_As_int	c/c_lattice.c	/^  static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {$/;"	f	file:
+__Pyx_PyInt_As_long	c/c_lattice.c	/^  static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *x) {$/;"	f	file:
+__Pyx_PyInt_FromHash_t	c/c_lattice.c	565;"	d	file:
+__Pyx_PyInt_FromHash_t	c/c_lattice.c	568;"	d	file:
+__Pyx_PyInt_FromSize_t	c/c_lattice.c	/^static CYTHON_INLINE PyObject * __Pyx_PyInt_FromSize_t(size_t ival) {$/;"	f	file:
+__Pyx_PyInt_From_enum__NPY_TYPES	c/c_lattice.c	/^  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_enum__NPY_TYPES(enum NPY_TYPES value) {$/;"	f	file:
+__Pyx_PyInt_From_int	c/c_lattice.c	/^  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {$/;"	f	file:
+__Pyx_PyInt_From_long	c/c_lattice.c	/^  static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {$/;"	f	file:
+__Pyx_PyMODINIT_FUNC	c/c_lattice.c	4993;"	d	file:
+__Pyx_PyMODINIT_FUNC	c/c_lattice.c	4995;"	d	file:
+__Pyx_PyMODINIT_FUNC	c/c_lattice.c	4999;"	d	file:
+__Pyx_PyMODINIT_FUNC	c/c_lattice.c	5001;"	d	file:
+__Pyx_PyMethod_New	c/c_lattice.c	572;"	d	file:
+__Pyx_PyMethod_New	c/c_lattice.c	574;"	d	file:
+__Pyx_PyNumber_Divide	c/c_lattice.c	450;"	d	file:
+__Pyx_PyNumber_Divide	c/c_lattice.c	453;"	d	file:
+__Pyx_PyNumber_Float	c/c_lattice.c	741;"	d	file:
+__Pyx_PyNumber_InPlaceDivide	c/c_lattice.c	451;"	d	file:
+__Pyx_PyNumber_InPlaceDivide	c/c_lattice.c	454;"	d	file:
+__Pyx_PyNumber_Int	c/c_lattice.c	737;"	d	file:
+__Pyx_PyNumber_Int	c/c_lattice.c	739;"	d	file:
+__Pyx_PyNumber_IntOrLong	c/c_lattice.c	/^static CYTHON_INLINE PyObject* __Pyx_PyNumber_IntOrLong(PyObject* x) {$/;"	f	file:
+__Pyx_PyNumber_IntOrLongWrongResultType	c/c_lattice.c	/^static PyObject* __Pyx_PyNumber_IntOrLongWrongResultType(PyObject* result, const char* type_name) {$/;"	f	file:
+__Pyx_PyObject_AsSString	c/c_lattice.c	705;"	d	file:
+__Pyx_PyObject_AsString	c/c_lattice.c	/^static CYTHON_INLINE const char* __Pyx_PyObject_AsString(PyObject* o) {$/;"	f	file:
+__Pyx_PyObject_AsStringAndSize	c/c_lattice.c	/^static CYTHON_INLINE const char* __Pyx_PyObject_AsStringAndSize(PyObject* o, Py_ssize_t *length) {$/;"	f	file:
+__Pyx_PyObject_AsUString	c/c_lattice.c	706;"	d	file:
+__Pyx_PyObject_AsWritableSString	c/c_lattice.c	703;"	d	file:
+__Pyx_PyObject_AsWritableString	c/c_lattice.c	702;"	d	file:
+__Pyx_PyObject_AsWritableUString	c/c_lattice.c	704;"	d	file:
+__Pyx_PyObject_Call	c/c_lattice.c	/^static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {$/;"	f	file:
+__Pyx_PyObject_Call	c/c_lattice.c	1323;"	d	file:
+__Pyx_PyObject_CallMethO	c/c_lattice.c	/^static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {$/;"	f	file:
+__Pyx_PyObject_CallOneArg	c/c_lattice.c	/^static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {$/;"	f	file:
+__Pyx_PyObject_Dict_GetItem	c/c_lattice.c	1370;"	d	file:
+__Pyx_PyObject_Dict_GetItem	c/c_lattice.c	1375;"	d	file:
+__Pyx_PyObject_FromCString	c/c_lattice.c	707;"	d	file:
+__Pyx_PyObject_FromString	c/c_lattice.c	649;"	d	file:
+__Pyx_PyObject_FromStringAndSize	c/c_lattice.c	650;"	d	file:
+__Pyx_PyObject_GetAttrStr	c/c_lattice.c	/^static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject* attr_name) {$/;"	f	file:
+__Pyx_PyObject_GetAttrStr	c/c_lattice.c	1224;"	d	file:
+__Pyx_PyObject_IsTrue	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_PyObject_IsTrue(PyObject* x) {$/;"	f	file:
+__Pyx_PyObject_IsTrueAndDecref	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_PyObject_IsTrueAndDecref(PyObject* x) {$/;"	f	file:
+__Pyx_PySequence_SIZE	c/c_lattice.c	534;"	d	file:
+__Pyx_PySequence_SIZE	c/c_lattice.c	536;"	d	file:
+__Pyx_PySequence_Tuple	c/c_lattice.c	726;"	d	file:
+__Pyx_PyStr_FromCString	c/c_lattice.c	710;"	d	file:
+__Pyx_PyStr_FromString	c/c_lattice.c	690;"	d	file:
+__Pyx_PyStr_FromString	c/c_lattice.c	693;"	d	file:
+__Pyx_PyStr_FromStringAndSize	c/c_lattice.c	691;"	d	file:
+__Pyx_PyStr_FromStringAndSize	c/c_lattice.c	694;"	d	file:
+__Pyx_PyString_Format	c/c_lattice.c	508;"	d	file:
+__Pyx_PyString_Format	c/c_lattice.c	510;"	d	file:
+__Pyx_PyString_FormatSafe	c/c_lattice.c	505;"	d	file:
+__Pyx_PyThreadState_Current	c/c_lattice.c	406;"	d	file:
+__Pyx_PyThreadState_Current	c/c_lattice.c	408;"	d	file:
+__Pyx_PyThreadState_Current	c/c_lattice.c	410;"	d	file:
+__Pyx_PyThreadState_Current	c/c_lattice.c	412;"	d	file:
+__Pyx_PyThreadState_assign	c/c_lattice.c	1263;"	d	file:
+__Pyx_PyThreadState_assign	c/c_lattice.c	1267;"	d	file:
+__Pyx_PyThreadState_declare	c/c_lattice.c	1262;"	d	file:
+__Pyx_PyThreadState_declare	c/c_lattice.c	1266;"	d	file:
+__Pyx_PyType_AsAsync	c/c_lattice.c	579;"	d	file:
+__Pyx_PyType_AsAsync	c/c_lattice.c	581;"	d	file:
+__Pyx_PyType_AsAsync	c/c_lattice.c	584;"	d	file:
+__Pyx_PyUnicode_AsStringAndSize	c/c_lattice.c	/^static CYTHON_INLINE const char* __Pyx_PyUnicode_AsStringAndSize(PyObject* o, Py_ssize_t *length) {$/;"	f	file:
+__Pyx_PyUnicode_AsStringAndSize	c/c_lattice.c	/^static const char* __Pyx_PyUnicode_AsStringAndSize(PyObject* o, Py_ssize_t *length) {$/;"	f	file:
+__Pyx_PyUnicode_AsUnicode	c/c_lattice.c	719;"	d	file:
+__Pyx_PyUnicode_Concat	c/c_lattice.c	489;"	d	file:
+__Pyx_PyUnicode_Concat	c/c_lattice.c	492;"	d	file:
+__Pyx_PyUnicode_ConcatSafe	c/c_lattice.c	490;"	d	file:
+__Pyx_PyUnicode_ConcatSafe	c/c_lattice.c	493;"	d	file:
+__Pyx_PyUnicode_DATA	c/c_lattice.c	469;"	d	file:
+__Pyx_PyUnicode_DATA	c/c_lattice.c	483;"	d	file:
+__Pyx_PyUnicode_FormatSafe	c/c_lattice.c	506;"	d	file:
+__Pyx_PyUnicode_FromCString	c/c_lattice.c	711;"	d	file:
+__Pyx_PyUnicode_FromString	c/c_lattice.c	/^static CYTHON_INLINE PyObject* __Pyx_PyUnicode_FromString(const char* c_str) {$/;"	f	file:
+__Pyx_PyUnicode_FromStringAndSize	c/c_lattice.c	789;"	d	file:
+__Pyx_PyUnicode_FromStringAndSize	c/c_lattice.c	791;"	d	file:
+__Pyx_PyUnicode_FromUnicode	c/c_lattice.c	717;"	d	file:
+__Pyx_PyUnicode_FromUnicodeAndLength	c/c_lattice.c	718;"	d	file:
+__Pyx_PyUnicode_GET_LENGTH	c/c_lattice.c	465;"	d	file:
+__Pyx_PyUnicode_GET_LENGTH	c/c_lattice.c	479;"	d	file:
+__Pyx_PyUnicode_IS_TRUE	c/c_lattice.c	472;"	d	file:
+__Pyx_PyUnicode_IS_TRUE	c/c_lattice.c	486;"	d	file:
+__Pyx_PyUnicode_KIND	c/c_lattice.c	468;"	d	file:
+__Pyx_PyUnicode_KIND	c/c_lattice.c	482;"	d	file:
+__Pyx_PyUnicode_MAX_CHAR_VALUE	c/c_lattice.c	467;"	d	file:
+__Pyx_PyUnicode_MAX_CHAR_VALUE	c/c_lattice.c	481;"	d	file:
+__Pyx_PyUnicode_READ	c/c_lattice.c	470;"	d	file:
+__Pyx_PyUnicode_READ	c/c_lattice.c	484;"	d	file:
+__Pyx_PyUnicode_READY	c/c_lattice.c	463;"	d	file:
+__Pyx_PyUnicode_READY	c/c_lattice.c	478;"	d	file:
+__Pyx_PyUnicode_READ_CHAR	c/c_lattice.c	466;"	d	file:
+__Pyx_PyUnicode_READ_CHAR	c/c_lattice.c	480;"	d	file:
+__Pyx_PyUnicode_WRITE	c/c_lattice.c	471;"	d	file:
+__Pyx_PyUnicode_WRITE	c/c_lattice.c	485;"	d	file:
+__Pyx_Py_UNICODE_strlen	c/c_lattice.c	/^static CYTHON_INLINE size_t __Pyx_Py_UNICODE_strlen(const Py_UNICODE *u) {$/;"	f	file:
+__Pyx_Raise	c/c_lattice.c	/^static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause) {$/;"	f	file:
+__Pyx_Raise	c/c_lattice.c	/^static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb,$/;"	f	file:
+__Pyx_RaiseArgtupleInvalid	c/c_lattice.c	/^  static void __Pyx_RaiseArgtupleInvalid($/;"	f	file:
+__Pyx_RaiseDoubleKeywordsError	c/c_lattice.c	/^  static void __Pyx_RaiseDoubleKeywordsError($/;"	f	file:
+__Pyx_RaiseNeedMoreValuesError	c/c_lattice.c	/^  static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {$/;"	f	file:
+__Pyx_RaiseNoneNotIterableError	c/c_lattice.c	/^  static CYTHON_INLINE void __Pyx_RaiseNoneNotIterableError(void) {$/;"	f	file:
+__Pyx_RaiseTooManyValuesError	c/c_lattice.c	/^  static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {$/;"	f	file:
+__Pyx_RefNanny	c/c_lattice.c	/^  static __Pyx_RefNannyAPIStruct *__Pyx_RefNanny = NULL;$/;"	v	file:
+__Pyx_RefNannyAPIStruct	c/c_lattice.c	/^  } __Pyx_RefNannyAPIStruct;$/;"	t	typeref:struct:__anon9	file:
+__Pyx_RefNannyDeclarations	c/c_lattice.c	1172;"	d	file:
+__Pyx_RefNannyDeclarations	c/c_lattice.c	1197;"	d	file:
+__Pyx_RefNannyFinishContext	c/c_lattice.c	1186;"	d	file:
+__Pyx_RefNannyFinishContext	c/c_lattice.c	1199;"	d	file:
+__Pyx_RefNannyImportAPI	c/c_lattice.c	/^static __Pyx_RefNannyAPIStruct *__Pyx_RefNannyImportAPI(const char *modname) {$/;"	f	file:
+__Pyx_RefNannySetupContext	c/c_lattice.c	1174;"	d	file:
+__Pyx_RefNannySetupContext	c/c_lattice.c	1183;"	d	file:
+__Pyx_RefNannySetupContext	c/c_lattice.c	1198;"	d	file:
+__Pyx_ReleaseBuffer	c/c_lattice.c	/^static void __Pyx_ReleaseBuffer(Py_buffer *view) {$/;"	f	file:
+__Pyx_ReleaseBuffer	c/c_lattice.c	1481;"	d	file:
+__Pyx_SET_CIMAG	c/c_lattice.c	1507;"	d	file:
+__Pyx_SET_CIMAG	c/c_lattice.c	1510;"	d	file:
+__Pyx_SET_CREAL	c/c_lattice.c	1506;"	d	file:
+__Pyx_SET_CREAL	c/c_lattice.c	1509;"	d	file:
+__Pyx_SafeReleaseBuffer	c/c_lattice.c	/^  static CYTHON_INLINE void __Pyx_SafeReleaseBuffer(Py_buffer* info) {$/;"	f	file:
+__Pyx_StringTabEntry	c/c_lattice.c	/^                const char is_unicode; const char is_str; const char intern; } __Pyx_StringTabEntry;$/;"	t	typeref:struct:__anon3	file:
+__Pyx_StructField	c/c_lattice.c	/^} __Pyx_StructField;$/;"	t	typeref:struct:__Pyx_StructField_	file:
+__Pyx_StructField_	c/c_lattice.c	/^typedef struct __Pyx_StructField_ {$/;"	s	file:
+__Pyx_TypeCheck	c/c_lattice.c	1600;"	d	file:
+__Pyx_TypeCheck	c/c_lattice.c	1605;"	d	file:
+__Pyx_TypeInfo	c/c_lattice.c	/^} __Pyx_TypeInfo;$/;"	t	typeref:struct:__anon4	file:
+__Pyx_TypeInfo_nn___pyx_t_5numpy_double_t	c/c_lattice.c	/^static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_5numpy_double_t = { "double_t", NULL, sizeof(__pyx_t_5numpy_double_t), { 0 }, 0, 'R', 0, 0 };$/;"	v	file:
+__Pyx_TypeTest	c/c_lattice.c	/^  static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {$/;"	f	file:
+__Pyx_WriteUnraisable	c/c_lattice.c	/^  static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,$/;"	f	file:
+__Pyx_XCLEAR	c/c_lattice.c	1218;"	d	file:
+__Pyx_XDECREF	c/c_lattice.c	1193;"	d	file:
+__Pyx_XDECREF	c/c_lattice.c	1205;"	d	file:
+__Pyx_XDECREF_SET	c/c_lattice.c	1209;"	d	file:
+__Pyx_XGIVEREF	c/c_lattice.c	1195;"	d	file:
+__Pyx_XGIVEREF	c/c_lattice.c	1207;"	d	file:
+__Pyx_XGOTREF	c/c_lattice.c	1194;"	d	file:
+__Pyx_XGOTREF	c/c_lattice.c	1206;"	d	file:
+__Pyx_XINCREF	c/c_lattice.c	1192;"	d	file:
+__Pyx_XINCREF	c/c_lattice.c	1204;"	d	file:
+__Pyx_ZeroBuffer	c/c_lattice.c	/^static void __Pyx_ZeroBuffer(Py_buffer* buf) {$/;"	f	file:
+__Pyx__ArgTypeTest	c/c_lattice.c	/^  static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact)$/;"	f	file:
+__Pyx__ExceptionReset	c/c_lattice.c	/^static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {$/;"	f	file:
+__Pyx__ExceptionSave	c/c_lattice.c	/^static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {$/;"	f	file:
+__Pyx__GetBufferAndValidate	c/c_lattice.c	/^static int __Pyx__GetBufferAndValidate($/;"	f	file:
+__Pyx__GetException	c/c_lattice.c	/^static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb)$/;"	f	file:
+__Pyx__PyObject_CallOneArg	c/c_lattice.c	/^static PyObject* __Pyx__PyObject_CallOneArg(PyObject *func, PyObject *arg) {$/;"	f	file:
+__Pyx_c_abs_double	c/c_lattice.c	/^        static CYTHON_INLINE double __Pyx_c_abs_double(__pyx_t_double_complex z) {$/;"	f	file:
+__Pyx_c_abs_double	c/c_lattice.c	1563;"	d	file:
+__Pyx_c_abs_double	c/c_lattice.c	1570;"	d	file:
+__Pyx_c_abs_float	c/c_lattice.c	/^        static CYTHON_INLINE float __Pyx_c_abs_float(__pyx_t_float_complex z) {$/;"	f	file:
+__Pyx_c_abs_float	c/c_lattice.c	1525;"	d	file:
+__Pyx_c_abs_float	c/c_lattice.c	1532;"	d	file:
+__Pyx_c_conj_double	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_conj_double(__pyx_t_double_complex a) {$/;"	f	file:
+__Pyx_c_conj_double	c/c_lattice.c	1561;"	d	file:
+__Pyx_c_conj_double	c/c_lattice.c	1568;"	d	file:
+__Pyx_c_conj_float	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_float_complex __Pyx_c_conj_float(__pyx_t_float_complex a) {$/;"	f	file:
+__Pyx_c_conj_float	c/c_lattice.c	1523;"	d	file:
+__Pyx_c_conj_float	c/c_lattice.c	1530;"	d	file:
+__Pyx_c_diff_double	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_diff_double(__pyx_t_double_complex a, __pyx_t_double_complex b) {$/;"	f	file:
+__Pyx_c_diff_double	c/c_lattice.c	1555;"	d	file:
+__Pyx_c_diff_float	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_float_complex __Pyx_c_diff_float(__pyx_t_float_complex a, __pyx_t_float_complex b) {$/;"	f	file:
+__Pyx_c_diff_float	c/c_lattice.c	1517;"	d	file:
+__Pyx_c_eq_double	c/c_lattice.c	/^    static CYTHON_INLINE int __Pyx_c_eq_double(__pyx_t_double_complex a, __pyx_t_double_complex b) {$/;"	f	file:
+__Pyx_c_eq_double	c/c_lattice.c	1553;"	d	file:
+__Pyx_c_eq_float	c/c_lattice.c	/^    static CYTHON_INLINE int __Pyx_c_eq_float(__pyx_t_float_complex a, __pyx_t_float_complex b) {$/;"	f	file:
+__Pyx_c_eq_float	c/c_lattice.c	1515;"	d	file:
+__Pyx_c_is_zero_double	c/c_lattice.c	/^    static CYTHON_INLINE int __Pyx_c_is_zero_double(__pyx_t_double_complex a) {$/;"	f	file:
+__Pyx_c_is_zero_double	c/c_lattice.c	1560;"	d	file:
+__Pyx_c_is_zero_double	c/c_lattice.c	1567;"	d	file:
+__Pyx_c_is_zero_float	c/c_lattice.c	/^    static CYTHON_INLINE int __Pyx_c_is_zero_float(__pyx_t_float_complex a) {$/;"	f	file:
+__Pyx_c_is_zero_float	c/c_lattice.c	1522;"	d	file:
+__Pyx_c_is_zero_float	c/c_lattice.c	1529;"	d	file:
+__Pyx_c_neg_double	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_neg_double(__pyx_t_double_complex a) {$/;"	f	file:
+__Pyx_c_neg_double	c/c_lattice.c	1558;"	d	file:
+__Pyx_c_neg_float	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_float_complex __Pyx_c_neg_float(__pyx_t_float_complex a) {$/;"	f	file:
+__Pyx_c_neg_float	c/c_lattice.c	1520;"	d	file:
+__Pyx_c_pow_double	c/c_lattice.c	/^        static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_pow_double(__pyx_t_double_complex a, __pyx_t_double_complex b) {$/;"	f	file:
+__Pyx_c_pow_double	c/c_lattice.c	1564;"	d	file:
+__Pyx_c_pow_double	c/c_lattice.c	1571;"	d	file:
+__Pyx_c_pow_float	c/c_lattice.c	/^        static CYTHON_INLINE __pyx_t_float_complex __Pyx_c_pow_float(__pyx_t_float_complex a, __pyx_t_float_complex b) {$/;"	f	file:
+__Pyx_c_pow_float	c/c_lattice.c	1526;"	d	file:
+__Pyx_c_pow_float	c/c_lattice.c	1533;"	d	file:
+__Pyx_c_prod_double	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_prod_double(__pyx_t_double_complex a, __pyx_t_double_complex b) {$/;"	f	file:
+__Pyx_c_prod_double	c/c_lattice.c	1556;"	d	file:
+__Pyx_c_prod_float	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_float_complex __Pyx_c_prod_float(__pyx_t_float_complex a, __pyx_t_float_complex b) {$/;"	f	file:
+__Pyx_c_prod_float	c/c_lattice.c	1518;"	d	file:
+__Pyx_c_quot_double	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_quot_double(__pyx_t_double_complex a, __pyx_t_double_complex b) {$/;"	f	file:
+__Pyx_c_quot_double	c/c_lattice.c	1557;"	d	file:
+__Pyx_c_quot_float	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_float_complex __Pyx_c_quot_float(__pyx_t_float_complex a, __pyx_t_float_complex b) {$/;"	f	file:
+__Pyx_c_quot_float	c/c_lattice.c	1519;"	d	file:
+__Pyx_c_sum_double	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_double_complex __Pyx_c_sum_double(__pyx_t_double_complex a, __pyx_t_double_complex b) {$/;"	f	file:
+__Pyx_c_sum_double	c/c_lattice.c	1554;"	d	file:
+__Pyx_c_sum_float	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_float_complex __Pyx_c_sum_float(__pyx_t_float_complex a, __pyx_t_float_complex b) {$/;"	f	file:
+__Pyx_c_sum_float	c/c_lattice.c	1516;"	d	file:
+__Pyx_check_binary_version	c/c_lattice.c	/^  static int __Pyx_check_binary_version(void) {$/;"	f	file:
+__Pyx_fits_Py_ssize_t	c/c_lattice.c	653;"	d	file:
+__Pyx_init_sys_getdefaultencoding_params	c/c_lattice.c	/^static int __Pyx_init_sys_getdefaultencoding_params(void) {$/;"	f	file:
+__Pyx_inner_PyErr_GivenExceptionMatches2	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_inner_PyErr_GivenExceptionMatches2(PyObject *err, PyObject* exc_type1, PyObject *exc_type2) {$/;"	f	file:
+__Pyx_inner_PyErr_GivenExceptionMatches2	c/c_lattice.c	/^static int __Pyx_inner_PyErr_GivenExceptionMatches2(PyObject *err, PyObject* exc_type1, PyObject* exc_type2) {$/;"	f	file:
+__Pyx_is_valid_index	c/c_lattice.c	/^static CYTHON_INLINE int __Pyx_is_valid_index(Py_ssize_t i, Py_ssize_t limit) {$/;"	f	file:
+__Pyx_long_cast	c/c_lattice.c	652;"	d	file:
+__Pyx_minusones	c/c_lattice.c	/^static Py_ssize_t __Pyx_minusones[] = { -1, -1, -1, -1, -1, -1, -1, -1 };$/;"	v	file:
+__Pyx_modinit_function_export_code	c/c_lattice.c	/^static int __Pyx_modinit_function_export_code(void) {$/;"	f	file:
+__Pyx_modinit_function_import_code	c/c_lattice.c	/^static int __Pyx_modinit_function_import_code(void) {$/;"	f	file:
+__Pyx_modinit_global_init_code	c/c_lattice.c	/^static int __Pyx_modinit_global_init_code(void) {$/;"	f	file:
+__Pyx_modinit_type_import_code	c/c_lattice.c	/^static int __Pyx_modinit_type_import_code(void) {$/;"	f	file:
+__Pyx_modinit_type_init_code	c/c_lattice.c	/^static int __Pyx_modinit_type_init_code(void) {$/;"	f	file:
+__Pyx_modinit_variable_export_code	c/c_lattice.c	/^static int __Pyx_modinit_variable_export_code(void) {$/;"	f	file:
+__Pyx_modinit_variable_import_code	c/c_lattice.c	/^static int __Pyx_modinit_variable_import_code(void) {$/;"	f	file:
+__Pyx_pad_double	c/c_lattice.c	/^typedef struct { double x; char c; } __Pyx_pad_double;$/;"	t	typeref:struct:__anon26	file:
+__Pyx_pad_float	c/c_lattice.c	/^typedef struct { float x; char c; } __Pyx_pad_float;$/;"	t	typeref:struct:__anon25	file:
+__Pyx_pad_int	c/c_lattice.c	/^typedef struct { int x; char c; } __Pyx_pad_int;$/;"	t	typeref:struct:__anon23	file:
+__Pyx_pad_long	c/c_lattice.c	/^typedef struct { long x; char c; } __Pyx_pad_long;$/;"	t	typeref:struct:__anon24	file:
+__Pyx_pad_longdouble	c/c_lattice.c	/^typedef struct { long double x; char c; } __Pyx_pad_longdouble;$/;"	t	typeref:struct:__anon27	file:
+__Pyx_pad_longlong	c/c_lattice.c	/^typedef struct { PY_LONG_LONG x; char c; } __Pyx_pad_longlong;$/;"	t	typeref:struct:__anon29	file:
+__Pyx_pad_short	c/c_lattice.c	/^typedef struct { short x; char c; } __Pyx_pad_short;$/;"	t	typeref:struct:__anon22	file:
+__Pyx_pad_void_p	c/c_lattice.c	/^typedef struct { void *x; char c; } __Pyx_pad_void_p;$/;"	t	typeref:struct:__anon28	file:
+__Pyx_pretend_to_initialize	c/c_lattice.c	/^static CYTHON_INLINE void __Pyx_pretend_to_initialize(void* ptr) { (void)ptr; }$/;"	f	file:
+__Pyx_sst_abs	c/c_lattice.c	668;"	d	file:
+__Pyx_sst_abs	c/c_lattice.c	670;"	d	file:
+__Pyx_sst_abs	c/c_lattice.c	672;"	d	file:
+__Pyx_sst_abs	c/c_lattice.c	674;"	d	file:
+__Pyx_sst_abs	c/c_lattice.c	676;"	d	file:
+__Pyx_sst_abs	c/c_lattice.c	678;"	d	file:
+__Pyx_sst_abs	c/c_lattice.c	680;"	d	file:
+__Pyx_st_double	c/c_lattice.c	/^typedef struct { char c; double x; } __Pyx_st_double;$/;"	t	typeref:struct:__anon18	file:
+__Pyx_st_float	c/c_lattice.c	/^typedef struct { char c; float x; } __Pyx_st_float;$/;"	t	typeref:struct:__anon17	file:
+__Pyx_st_int	c/c_lattice.c	/^typedef struct { char c; int x; } __Pyx_st_int;$/;"	t	typeref:struct:__anon15	file:
+__Pyx_st_long	c/c_lattice.c	/^typedef struct { char c; long x; } __Pyx_st_long;$/;"	t	typeref:struct:__anon16	file:
+__Pyx_st_longdouble	c/c_lattice.c	/^typedef struct { char c; long double x; } __Pyx_st_longdouble;$/;"	t	typeref:struct:__anon19	file:
+__Pyx_st_longlong	c/c_lattice.c	/^typedef struct { char c; PY_LONG_LONG x; } __Pyx_st_longlong;$/;"	t	typeref:struct:__anon21	file:
+__Pyx_st_short	c/c_lattice.c	/^typedef struct { char c; short x; } __Pyx_st_short;$/;"	t	typeref:struct:__anon14	file:
+__Pyx_st_void_p	c/c_lattice.c	/^typedef struct { char c; void *x; } __Pyx_st_void_p;$/;"	t	typeref:struct:__anon20	file:
+__Pyx_sys_getdefaultencoding_not_ascii	c/c_lattice.c	/^static int __Pyx_sys_getdefaultencoding_not_ascii;$/;"	v	file:
+__Pyx_truncl	c/c_lattice.c	608;"	d	file:
+__Pyx_truncl	c/c_lattice.c	610;"	d	file:
+__Pyx_uchar_cast	c/c_lattice.c	651;"	d	file:
+__Pyx_void_to_None	c/c_lattice.c	267;"	d	file:
+__Pyx_zeros	c/c_lattice.c	/^static Py_ssize_t __Pyx_zeros[] = { 0, 0, 0, 0, 0, 0, 0, 0 };$/;"	v	file:
+__cdecl	c/c_lattice.c	41;"	d	file:
+__fastcall	c/c_lattice.c	44;"	d	file:
+__has_attribute	c/c_lattice.c	224;"	d	file:
+__has_cpp_attribute	c/c_lattice.c	227;"	d	file:
+__init__	EOS/EOS.py	/^    def __init__(self, name, xc='PBE', method='morse', units='bohr', warnings=True):$/;"	m	class:EOS
+__init__	EOS/asturfit.py	/^    def __init__(self):$/;"	m	class:minimum
+__init__	EOS/asturfit.py	/^    def __init__(self):$/;"	m	class:polynomial
+__init__	EOS/asturfit.py	/^    def __init__(self):$/;"	m	class:savg_class
+__init__	EOS/asturfit.py	/^    def __init__(self):$/;"	m	class:sb_class
+__init__	EOS/asturfit.py	/^    def __init__(self):$/;"	m	class:straineval_class
+__init__	emto_parser/dos_parser.py	/^    def __init__(self, e, dos, nos, sdos, pdos, ddos, fdos, snos, pnos, dnos, fnos):$/;"	m	class:Element
+__init__	emto_parser/dos_parser.py	/^    def __init__(self, fn):$/;"	m	class:Get_DOS
+__init__	emto_parser/dos_parser.py	/^    def __init__(self, i, label, spin, arr1, arr2):$/;"	m	class:Atom
+__init__	emto_parser/emtoparser.py	/^    def __init__(self, KGRN_filenames, KFCD_filenames=None, suffix="prn", DLM=False):$/;"	m	class:EMTOPARSER
+__init__	emtoinputs/batch.py	/^    def __init__(self, jobname=None, runtime=None, EMTOdir=None,$/;"	m	class:Batch
+__init__	emtoinputs/emtoinputs.py	/^    def __init__(self):$/;"	m	class:Emtoinputs
+__init__	emtoinputs/kfcd.py	/^    def __init__(self, jobname=None, latname=None, latpath=None, msgl=None, nprn=None,$/;"	m	class:Kfcd
+__init__	emtoinputs/kgrn.py	/^    def __init__(self, jobname=None, latname=None, latpath=None, ibz=None, atoms=None,$/;"	m	class:Kgrn
+__init__	examples/emto_input_generator.py	/^    def __init__(self, folder=None, EMTOdir=None):$/;"	m	class:EMTO
+__init__	latticeinputs/batch.py	/^    def __init__(self, jobname_lat=None, lat=None, runtime=None, latpath=None,$/;"	m	class:Batch
+__init__	latticeinputs/bmdl.py	/^    def __init__(self, jobname_lat=None, lat=None, latparams=None, latvectors=None,$/;"	m	class:Bmdl
+__init__	latticeinputs/kstr.py	/^    def __init__(self, jobname_lat=None, lat=None, latparams=None, ca=None,$/;"	m	class:Kstr
+__init__	latticeinputs/latticeinputs.py	/^    def __init__(self):$/;"	m	class:Latticeinputs
+__init__	latticeinputs/shape.py	/^    def __init__(self, jobname_lat=None, lat=None, lmax=None, nsr=None, nfi=None,$/;"	m	class:Shape
+__init__	system.py	/^    def __init__(self, folder=None, EMTOdir=None, xc=None):$/;"	m	class:System
+__pyx_PyFloat_AsDouble	c/c_lattice.c	731;"	d	file:
+__pyx_PyFloat_AsDouble	c/c_lattice.c	733;"	d	file:
+__pyx_PyFloat_AsFloat	c/c_lattice.c	735;"	d	file:
+__pyx_b	c/c_lattice.c	/^static PyObject *__pyx_b;$/;"	v	file:
+__pyx_bisect_code_objects	c/c_lattice.c	/^  static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {$/;"	f	file:
+__pyx_buffmt_parse_array	c/c_lattice.c	/^__pyx_buffmt_parse_array(__Pyx_BufFmt_Context* ctx, const char** tsp)$/;"	f	file:
+__pyx_builtin_ImportError	c/c_lattice.c	/^static PyObject *__pyx_builtin_ImportError;$/;"	v	file:
+__pyx_builtin_RuntimeError	c/c_lattice.c	/^static PyObject *__pyx_builtin_RuntimeError;$/;"	v	file:
+__pyx_builtin_ValueError	c/c_lattice.c	/^static PyObject *__pyx_builtin_ValueError;$/;"	v	file:
+__pyx_builtin_range	c/c_lattice.c	/^static PyObject *__pyx_builtin_range;$/;"	v	file:
+__pyx_cfilenm	c/c_lattice.c	/^static const char * __pyx_cfilenm= __FILE__;$/;"	v	file:
+__pyx_check_sizeof_voidp	c/c_lattice.c	/^    enum { __pyx_check_sizeof_voidp = 1 \/ (int)(SIZEOF_VOID_P == sizeof(void*)) };$/;"	e	enum:__anon1	file:
+__pyx_clineno	c/c_lattice.c	/^static int __pyx_clineno = 0;$/;"	v	file:
+__pyx_code_cache	c/c_lattice.c	/^static struct __Pyx_CodeObjectCache __pyx_code_cache = {0,0,NULL};$/;"	v	typeref:struct:__Pyx_CodeObjectCache	file:
+__pyx_cython_runtime	c/c_lattice.c	/^static PyObject *__pyx_cython_runtime = NULL;$/;"	v	file:
+__pyx_d	c/c_lattice.c	/^static PyObject *__pyx_d;$/;"	v	file:
+__pyx_doc_6pyemto_1c_9c_lattice_compute_num_of_vecs	c/c_lattice.c	/^static char __pyx_doc_6pyemto_1c_9c_lattice_compute_num_of_vecs[] = "Computes the number of vectors for a given dmax value.";$/;"	v	file:
+__pyx_empty_bytes	c/c_lattice.c	/^static PyObject *__pyx_empty_bytes;$/;"	v	file:
+__pyx_empty_tuple	c/c_lattice.c	/^static PyObject *__pyx_empty_tuple;$/;"	v	file:
+__pyx_empty_unicode	c/c_lattice.c	/^static PyObject *__pyx_empty_unicode;$/;"	v	file:
+__pyx_f	c/c_lattice.c	/^static const char *__pyx_f[] = {$/;"	v	file:
+__pyx_f_5numpy_PyArray_MultiIterNew1	c/c_lattice.c	/^static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew1(PyObject *__pyx_v_a) {$/;"	f	file:
+__pyx_f_5numpy_PyArray_MultiIterNew2	c/c_lattice.c	/^static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew2(PyObject *__pyx_v_a, PyObject *__pyx_v_b) {$/;"	f	file:
+__pyx_f_5numpy_PyArray_MultiIterNew3	c/c_lattice.c	/^static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew3(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c) {$/;"	f	file:
+__pyx_f_5numpy_PyArray_MultiIterNew4	c/c_lattice.c	/^static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew4(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d) {$/;"	f	file:
+__pyx_f_5numpy_PyArray_MultiIterNew5	c/c_lattice.c	/^static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyArray_MultiIterNew5(PyObject *__pyx_v_a, PyObject *__pyx_v_b, PyObject *__pyx_v_c, PyObject *__pyx_v_d, PyObject *__pyx_v_e) {$/;"	f	file:
+__pyx_f_5numpy_PyDataType_SHAPE	c/c_lattice.c	/^static CYTHON_INLINE PyObject *__pyx_f_5numpy_PyDataType_SHAPE(PyArray_Descr *__pyx_v_d) {$/;"	f	file:
+__pyx_f_5numpy__util_dtypestring	c/c_lattice.c	/^static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *__pyx_v_descr, char *__pyx_v_f, char *__pyx_v_end, int *__pyx_v_offset) {$/;"	f	file:
+__pyx_f_5numpy_get_array_base	c/c_lattice.c	/^static CYTHON_INLINE PyObject *__pyx_f_5numpy_get_array_base(PyArrayObject *__pyx_v_arr) {$/;"	f	file:
+__pyx_f_5numpy_import_array	c/c_lattice.c	/^static CYTHON_INLINE int __pyx_f_5numpy_import_array(void) {$/;"	f	file:
+__pyx_f_5numpy_import_ufunc	c/c_lattice.c	/^static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {$/;"	f	file:
+__pyx_f_5numpy_import_umath	c/c_lattice.c	/^static CYTHON_INLINE int __pyx_f_5numpy_import_umath(void) {$/;"	f	file:
+__pyx_f_5numpy_set_array_base	c/c_lattice.c	/^static CYTHON_INLINE void __pyx_f_5numpy_set_array_base(PyArrayObject *__pyx_v_arr, PyObject *__pyx_v_base) {$/;"	f	file:
+__pyx_f_6pyemto_1c_9c_lattice_compute_num_of_vecs	c/c_lattice.c	/^static int __pyx_f_6pyemto_1c_9c_lattice_compute_num_of_vecs(PyArrayObject *__pyx_v_prims, PyArrayObject *__pyx_v_basis, int __pyx_v_nghbp, double __pyx_v_dmax, int __pyx_v_nq, CYTHON_UNUSED int __pyx_skip_dispatch) {$/;"	f	file:
+__pyx_filename	c/c_lattice.c	/^static const char *__pyx_filename;$/;"	v	file:
+__pyx_find_code_object	c/c_lattice.c	/^static PyCodeObject *__pyx_find_code_object(int code_line) {$/;"	f	file:
+__pyx_insert_code_object	c/c_lattice.c	/^static void __pyx_insert_code_object(int code_line, PyCodeObject* code_object) {$/;"	f	file:
+__pyx_int_0	c/c_lattice.c	/^static PyObject *__pyx_int_0;$/;"	v	file:
+__pyx_int_1	c/c_lattice.c	/^static PyObject *__pyx_int_1;$/;"	v	file:
+__pyx_k_Format_string_allocated_too_shor	c/c_lattice.c	/^static const char __pyx_k_Format_string_allocated_too_shor[] = "Format string allocated too short, see comment in numpy.pxd";$/;"	v	file:
+__pyx_k_Format_string_allocated_too_shor_2	c/c_lattice.c	/^static const char __pyx_k_Format_string_allocated_too_shor_2[] = "Format string allocated too short.";$/;"	v	file:
+__pyx_k_ImportError	c/c_lattice.c	/^static const char __pyx_k_ImportError[] = "ImportError";$/;"	v	file:
+__pyx_k_Non_native_byte_order_not_suppor	c/c_lattice.c	/^static const char __pyx_k_Non_native_byte_order_not_suppor[] = "Non-native byte order not supported";$/;"	v	file:
+__pyx_k_RuntimeError	c/c_lattice.c	/^static const char __pyx_k_RuntimeError[] = "RuntimeError";$/;"	v	file:
+__pyx_k_ValueError	c/c_lattice.c	/^static const char __pyx_k_ValueError[] = "ValueError";$/;"	v	file:
+__pyx_k_basis	c/c_lattice.c	/^static const char __pyx_k_basis[] = "basis";$/;"	v	file:
+__pyx_k_cline_in_traceback	c/c_lattice.c	/^static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";$/;"	v	file:
+__pyx_k_dmax	c/c_lattice.c	/^static const char __pyx_k_dmax[] = "dmax";$/;"	v	file:
+__pyx_k_import	c/c_lattice.c	/^static const char __pyx_k_import[] = "__import__";$/;"	v	file:
+__pyx_k_main	c/c_lattice.c	/^static const char __pyx_k_main[] = "__main__";$/;"	v	file:
+__pyx_k_name	c/c_lattice.c	/^static const char __pyx_k_name[] = "__name__";$/;"	v	file:
+__pyx_k_ndarray_is_not_C_contiguous	c/c_lattice.c	/^static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";$/;"	v	file:
+__pyx_k_ndarray_is_not_Fortran_contiguou	c/c_lattice.c	/^static const char __pyx_k_ndarray_is_not_Fortran_contiguou[] = "ndarray is not Fortran contiguous";$/;"	v	file:
+__pyx_k_nghbp	c/c_lattice.c	/^static const char __pyx_k_nghbp[] = "nghbp";$/;"	v	file:
+__pyx_k_np	c/c_lattice.c	/^static const char __pyx_k_np[] = "np";$/;"	v	file:
+__pyx_k_nq	c/c_lattice.c	/^static const char __pyx_k_nq[] = "nq";$/;"	v	file:
+__pyx_k_numpy	c/c_lattice.c	/^static const char __pyx_k_numpy[] = "numpy";$/;"	v	file:
+__pyx_k_numpy_core_multiarray_failed_to	c/c_lattice.c	/^static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";$/;"	v	file:
+__pyx_k_numpy_core_umath_failed_to_impor	c/c_lattice.c	/^static const char __pyx_k_numpy_core_umath_failed_to_impor[] = "numpy.core.umath failed to import";$/;"	v	file:
+__pyx_k_prims	c/c_lattice.c	/^static const char __pyx_k_prims[] = "prims";$/;"	v	file:
+__pyx_k_range	c/c_lattice.c	/^static const char __pyx_k_range[] = "range";$/;"	v	file:
+__pyx_k_test	c/c_lattice.c	/^static const char __pyx_k_test[] = "__test__";$/;"	v	file:
+__pyx_k_unknown_dtype_code_in_numpy_pxd	c/c_lattice.c	/^static const char __pyx_k_unknown_dtype_code_in_numpy_pxd[] = "unknown dtype code in numpy.pxd (%d)";$/;"	v	file:
+__pyx_kp_s_numpy_core_multiarray_failed_to	c/c_lattice.c	/^static PyObject *__pyx_kp_s_numpy_core_multiarray_failed_to;$/;"	v	file:
+__pyx_kp_s_numpy_core_umath_failed_to_impor	c/c_lattice.c	/^static PyObject *__pyx_kp_s_numpy_core_umath_failed_to_impor;$/;"	v	file:
+__pyx_kp_u_Format_string_allocated_too_shor	c/c_lattice.c	/^static PyObject *__pyx_kp_u_Format_string_allocated_too_shor;$/;"	v	file:
+__pyx_kp_u_Format_string_allocated_too_shor_2	c/c_lattice.c	/^static PyObject *__pyx_kp_u_Format_string_allocated_too_shor_2;$/;"	v	file:
+__pyx_kp_u_Non_native_byte_order_not_suppor	c/c_lattice.c	/^static PyObject *__pyx_kp_u_Non_native_byte_order_not_suppor;$/;"	v	file:
+__pyx_kp_u_ndarray_is_not_C_contiguous	c/c_lattice.c	/^static PyObject *__pyx_kp_u_ndarray_is_not_C_contiguous;$/;"	v	file:
+__pyx_kp_u_ndarray_is_not_Fortran_contiguou	c/c_lattice.c	/^static PyObject *__pyx_kp_u_ndarray_is_not_Fortran_contiguou;$/;"	v	file:
+__pyx_kp_u_unknown_dtype_code_in_numpy_pxd	c/c_lattice.c	/^static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;$/;"	v	file:
+__pyx_lineno	c/c_lattice.c	/^static int __pyx_lineno;$/;"	v	file:
+__pyx_m	c/c_lattice.c	/^static PyObject *__pyx_m = NULL;$/;"	v	file:
+__pyx_methods	c/c_lattice.c	/^static PyMethodDef __pyx_methods[] = {$/;"	v	file:
+__pyx_module_is_main_pyemto__c__c_lattice	c/c_lattice.c	/^int __pyx_module_is_main_pyemto__c__c_lattice = 0;$/;"	v
+__pyx_moduledef	c/c_lattice.c	/^static struct PyModuleDef __pyx_moduledef = {$/;"	v	typeref:struct:PyModuleDef	file:
+__pyx_moduledef_slots	c/c_lattice.c	/^static PyModuleDef_Slot __pyx_moduledef_slots[] = {$/;"	v	file:
+__pyx_n_s_ImportError	c/c_lattice.c	/^static PyObject *__pyx_n_s_ImportError;$/;"	v	file:
+__pyx_n_s_RuntimeError	c/c_lattice.c	/^static PyObject *__pyx_n_s_RuntimeError;$/;"	v	file:
+__pyx_n_s_ValueError	c/c_lattice.c	/^static PyObject *__pyx_n_s_ValueError;$/;"	v	file:
+__pyx_n_s_basis	c/c_lattice.c	/^static PyObject *__pyx_n_s_basis;$/;"	v	file:
+__pyx_n_s_cline_in_traceback	c/c_lattice.c	/^static PyObject *__pyx_n_s_cline_in_traceback;$/;"	v	file:
+__pyx_n_s_dmax	c/c_lattice.c	/^static PyObject *__pyx_n_s_dmax;$/;"	v	file:
+__pyx_n_s_import	c/c_lattice.c	/^static PyObject *__pyx_n_s_import;$/;"	v	file:
+__pyx_n_s_main	c/c_lattice.c	/^static PyObject *__pyx_n_s_main;$/;"	v	file:
+__pyx_n_s_name	c/c_lattice.c	/^static PyObject *__pyx_n_s_name;$/;"	v	file:
+__pyx_n_s_nghbp	c/c_lattice.c	/^static PyObject *__pyx_n_s_nghbp;$/;"	v	file:
+__pyx_n_s_np	c/c_lattice.c	/^static PyObject *__pyx_n_s_np;$/;"	v	file:
+__pyx_n_s_nq	c/c_lattice.c	/^static PyObject *__pyx_n_s_nq;$/;"	v	file:
+__pyx_n_s_numpy	c/c_lattice.c	/^static PyObject *__pyx_n_s_numpy;$/;"	v	file:
+__pyx_n_s_prims	c/c_lattice.c	/^static PyObject *__pyx_n_s_prims;$/;"	v	file:
+__pyx_n_s_range	c/c_lattice.c	/^static PyObject *__pyx_n_s_range;$/;"	v	file:
+__pyx_n_s_test	c/c_lattice.c	/^static PyObject *__pyx_n_s_test;$/;"	v	file:
+__pyx_pf_5numpy_7ndarray_2__releasebuffer__	c/c_lattice.c	/^static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info) {$/;"	f	file:
+__pyx_pf_5numpy_7ndarray___getbuffer__	c/c_lattice.c	/^static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags) {$/;"	f	file:
+__pyx_pf_6pyemto_1c_9c_lattice_compute_num_of_vecs	c/c_lattice.c	/^static PyObject *__pyx_pf_6pyemto_1c_9c_lattice_compute_num_of_vecs(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_prims, PyArrayObject *__pyx_v_basis, int __pyx_v_nghbp, double __pyx_v_dmax, int __pyx_v_nq) {$/;"	f	file:
+__pyx_ptype_5numpy_broadcast	c/c_lattice.c	/^static PyTypeObject *__pyx_ptype_5numpy_broadcast = 0;$/;"	v	file:
+__pyx_ptype_5numpy_dtype	c/c_lattice.c	/^static PyTypeObject *__pyx_ptype_5numpy_dtype = 0;$/;"	v	file:
+__pyx_ptype_5numpy_flatiter	c/c_lattice.c	/^static PyTypeObject *__pyx_ptype_5numpy_flatiter = 0;$/;"	v	file:
+__pyx_ptype_5numpy_ndarray	c/c_lattice.c	/^static PyTypeObject *__pyx_ptype_5numpy_ndarray = 0;$/;"	v	file:
+__pyx_ptype_5numpy_ufunc	c/c_lattice.c	/^static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;$/;"	v	file:
+__pyx_ptype_7cpython_4type_type	c/c_lattice.c	/^static PyTypeObject *__pyx_ptype_7cpython_4type_type = 0;$/;"	v	file:
+__pyx_pw_5numpy_7ndarray_1__getbuffer__	c/c_lattice.c	/^static CYTHON_UNUSED int __pyx_pw_5numpy_7ndarray_1__getbuffer__(PyObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags) {$/;"	f	file:
+__pyx_pw_5numpy_7ndarray_3__releasebuffer__	c/c_lattice.c	/^static CYTHON_UNUSED void __pyx_pw_5numpy_7ndarray_3__releasebuffer__(PyObject *__pyx_v_self, Py_buffer *__pyx_v_info) {$/;"	f	file:
+__pyx_pw_6pyemto_1c_9c_lattice_1compute_num_of_vecs	c/c_lattice.c	/^static PyObject *__pyx_pw_6pyemto_1c_9c_lattice_1compute_num_of_vecs(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {$/;"	f	file:
+__pyx_pyframe_localsplus_offset	c/c_lattice.c	/^  static size_t __pyx_pyframe_localsplus_offset = 0;$/;"	v	file:
+__pyx_string_tab	c/c_lattice.c	/^static __Pyx_StringTabEntry __pyx_string_tab[] = {$/;"	v	file:
+__pyx_t_5numpy_cdouble_t	c/c_lattice.c	/^typedef npy_cdouble __pyx_t_5numpy_cdouble_t;$/;"	t	file:
+__pyx_t_5numpy_cfloat_t	c/c_lattice.c	/^typedef npy_cfloat __pyx_t_5numpy_cfloat_t;$/;"	t	file:
+__pyx_t_5numpy_clongdouble_t	c/c_lattice.c	/^typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;$/;"	t	file:
+__pyx_t_5numpy_complex_t	c/c_lattice.c	/^typedef npy_cdouble __pyx_t_5numpy_complex_t;$/;"	t	file:
+__pyx_t_5numpy_double_t	c/c_lattice.c	/^typedef npy_double __pyx_t_5numpy_double_t;$/;"	t	file:
+__pyx_t_5numpy_float32_t	c/c_lattice.c	/^typedef npy_float32 __pyx_t_5numpy_float32_t;$/;"	t	file:
+__pyx_t_5numpy_float64_t	c/c_lattice.c	/^typedef npy_float64 __pyx_t_5numpy_float64_t;$/;"	t	file:
+__pyx_t_5numpy_float_t	c/c_lattice.c	/^typedef npy_double __pyx_t_5numpy_float_t;$/;"	t	file:
+__pyx_t_5numpy_int16_t	c/c_lattice.c	/^typedef npy_int16 __pyx_t_5numpy_int16_t;$/;"	t	file:
+__pyx_t_5numpy_int32_t	c/c_lattice.c	/^typedef npy_int32 __pyx_t_5numpy_int32_t;$/;"	t	file:
+__pyx_t_5numpy_int64_t	c/c_lattice.c	/^typedef npy_int64 __pyx_t_5numpy_int64_t;$/;"	t	file:
+__pyx_t_5numpy_int8_t	c/c_lattice.c	/^typedef npy_int8 __pyx_t_5numpy_int8_t;$/;"	t	file:
+__pyx_t_5numpy_int_t	c/c_lattice.c	/^typedef npy_long __pyx_t_5numpy_int_t;$/;"	t	file:
+__pyx_t_5numpy_intp_t	c/c_lattice.c	/^typedef npy_intp __pyx_t_5numpy_intp_t;$/;"	t	file:
+__pyx_t_5numpy_long_t	c/c_lattice.c	/^typedef npy_longlong __pyx_t_5numpy_long_t;$/;"	t	file:
+__pyx_t_5numpy_longdouble_t	c/c_lattice.c	/^typedef npy_longdouble __pyx_t_5numpy_longdouble_t;$/;"	t	file:
+__pyx_t_5numpy_longlong_t	c/c_lattice.c	/^typedef npy_longlong __pyx_t_5numpy_longlong_t;$/;"	t	file:
+__pyx_t_5numpy_uint16_t	c/c_lattice.c	/^typedef npy_uint16 __pyx_t_5numpy_uint16_t;$/;"	t	file:
+__pyx_t_5numpy_uint32_t	c/c_lattice.c	/^typedef npy_uint32 __pyx_t_5numpy_uint32_t;$/;"	t	file:
+__pyx_t_5numpy_uint64_t	c/c_lattice.c	/^typedef npy_uint64 __pyx_t_5numpy_uint64_t;$/;"	t	file:
+__pyx_t_5numpy_uint8_t	c/c_lattice.c	/^typedef npy_uint8 __pyx_t_5numpy_uint8_t;$/;"	t	file:
+__pyx_t_5numpy_uint_t	c/c_lattice.c	/^typedef npy_ulong __pyx_t_5numpy_uint_t;$/;"	t	file:
+__pyx_t_5numpy_uintp_t	c/c_lattice.c	/^typedef npy_uintp __pyx_t_5numpy_uintp_t;$/;"	t	file:
+__pyx_t_5numpy_ulong_t	c/c_lattice.c	/^typedef npy_ulonglong __pyx_t_5numpy_ulong_t;$/;"	t	file:
+__pyx_t_5numpy_ulonglong_t	c/c_lattice.c	/^typedef npy_ulonglong __pyx_t_5numpy_ulonglong_t;$/;"	t	file:
+__pyx_t_double_complex	c/c_lattice.c	/^    typedef ::std::complex< double > __pyx_t_double_complex;$/;"	t	class:std	file:
+__pyx_t_double_complex	c/c_lattice.c	/^    typedef double _Complex __pyx_t_double_complex;$/;"	t	file:
+__pyx_t_double_complex	c/c_lattice.c	/^    typedef struct { double real, imag; } __pyx_t_double_complex;$/;"	t	typeref:struct:__anon8	file:
+__pyx_t_double_complex_from_parts	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(double x, double y) {$/;"	f	file:
+__pyx_t_float_complex	c/c_lattice.c	/^    typedef ::std::complex< float > __pyx_t_float_complex;$/;"	t	class:std	file:
+__pyx_t_float_complex	c/c_lattice.c	/^    typedef float _Complex __pyx_t_float_complex;$/;"	t	file:
+__pyx_t_float_complex	c/c_lattice.c	/^    typedef struct { float real, imag; } __pyx_t_float_complex;$/;"	t	typeref:struct:__anon7	file:
+__pyx_t_float_complex_from_parts	c/c_lattice.c	/^    static CYTHON_INLINE __pyx_t_float_complex __pyx_t_float_complex_from_parts(float x, float y) {$/;"	f	file:
+__pyx_tuple_	c/c_lattice.c	/^static PyObject *__pyx_tuple_;$/;"	v	file:
+__pyx_tuple__2	c/c_lattice.c	/^static PyObject *__pyx_tuple__2;$/;"	v	file:
+__pyx_tuple__3	c/c_lattice.c	/^static PyObject *__pyx_tuple__3;$/;"	v	file:
+__pyx_tuple__4	c/c_lattice.c	/^static PyObject *__pyx_tuple__4;$/;"	v	file:
+__pyx_tuple__5	c/c_lattice.c	/^static PyObject *__pyx_tuple__5;$/;"	v	file:
+__pyx_tuple__6	c/c_lattice.c	/^static PyObject *__pyx_tuple__6;$/;"	v	file:
+__pyx_tuple__7	c/c_lattice.c	/^static PyObject *__pyx_tuple__7;$/;"	v	file:
+__repr__	EOS/asturfit.py	/^    def __repr__(self):$/;"	m	class:minimum	file:
+__repr__	EOS/asturfit.py	/^    def __repr__(self):$/;"	m	class:polynomial	file:
+__repr__	EOS/asturfit.py	/^    def __repr__(self):$/;"	m	class:straineval_class	file:
+__stdcall	c/c_lattice.c	38;"	d	file:
+_general_function	EOS/EOS.py	/^def _general_function(params, xdata, ydata, function):$/;"	f
+aconflines	emtoinputs/kgrn.py	/^    def aconflines(self, atype):$/;"	m	class:Kgrn
+afm	examples/CoCrFeMnNi_fcc.py	/^                    afm='M',         # Fixed-spin DLM calculation.$/;"	v
+afm	examples/alloy_discovery/alloy_discovery.py	/^                       afm = afm,$/;"	v
+afm	examples/alloy_discovery/alloy_discovery.py	/^    afm = "F"$/;"	v
+afm	examples/alloy_discovery/alloy_discovery.py	/^    afm = "P"$/;"	v
+afm	examples/alloy_discovery/make_alloy_final.py	/^                   afm = afm,$/;"	v
+afm	examples/alloy_discovery/make_alloy_final.py	/^    afm = "F"$/;"	v
+afm	examples/alloy_discovery/make_alloy_final.py	/^    afm = "P"$/;"	v
+afm	examples/alloy_discovery/make_alloy_inputs.py	/^                   afm = afm,$/;"	v
+afm	examples/alloy_discovery/make_alloy_inputs.py	/^    afm = "F"$/;"	v
+afm	examples/alloy_discovery/make_alloy_inputs.py	/^    afm = "P"$/;"	v
+afm	examples/fe.py	/^        afm     = 'F',     # We want to do a ferromagnetic calculation.$/;"	v
+afm	examples/fe_elastic_constants.py	/^        afm     = 'F',     # We want to do a ferromagnetic calculation.$/;"	v
+alloy	examples/alloy_discovery/alloy_discovery.py	/^            alloy = pyemto.System(folder=apath)$/;"	v
+alloy	examples/alloy_discovery/alloy_discovery.py	/^            alloy = pyemto.System(folder=apath,EMTOdir=EMTOdir)$/;"	v
+alloy	examples/alloy_discovery/collect_alloy_final.py	/^        alloy = pyemto.System(folder=apath)$/;"	v
+alloy	examples/alloy_discovery/make_alloy_final.py	/^        alloy = pyemto.System(folder=apath)$/;"	v
+alloy	examples/alloy_discovery/make_alloy_inputs.py	/^        alloy = pyemto.System(folder=apath)$/;"	v
+alpcpa	examples/alloy_discovery/alloy_discovery.py	/^                       alpcpa=0.796)#,$/;"	v
+alpcpa	examples/alloy_discovery/alloy_discovery.py	/^                       alpcpa=0.796)$/;"	v
+am_aiter	c/c_lattice.c	/^        unaryfunc am_aiter;$/;"	m	struct:__anon2	file:
+am_anext	c/c_lattice.c	/^        unaryfunc am_anext;$/;"	m	struct:__anon2	file:
+am_await	c/c_lattice.c	/^        unaryfunc am_await;$/;"	m	struct:__anon2	file:
+amix	examples/CoCrFeMnNi_fcc.py	/^                    amix=0.02,$/;"	v
+amix	examples/alloy_discovery/alloy_discovery.py	/^                       amix=0.02,$/;"	v
+amix	examples/alloy_discovery/make_alloy_final.py	/^                   amix=0.02,$/;"	v
+amix	examples/alloy_discovery/make_alloy_inputs.py	/^                   amix=0.02,$/;"	v
+amix	examples/fe.py	/^        amix    = 0.05,    # Density mixing.$/;"	v
+amix	examples/fe_elastic_constants.py	/^        amix    = 0.05)    # Mixing parameter.$/;"	v
+amix	examples/ti_hcp.py	/^            amix=0.02,$/;"	v
+angstrom2bohr	EOS/EOS.py	/^    def angstrom2bohr(self, V):$/;"	m	class:EOS
+antonschmidt	EOS/EOS.py	/^    def antonschmidt(self, V, Einf, B, n, V0):$/;"	m	class:EOS
+apath	examples/alloy_discovery/alloy_discovery.py	/^            apath = os.path.join(apath,magn)$/;"	v
+apath	examples/alloy_discovery/alloy_discovery.py	/^            apath = os.path.join(base_dir,apath)$/;"	v
+apath	examples/alloy_discovery/alloy_discovery.py	/^            apath = os.path.join(sname,cname)$/;"	v
+apath	examples/alloy_discovery/collect_alloy_final.py	/^        apath = os.path.join(apath,magn)$/;"	v
+apath	examples/alloy_discovery/collect_alloy_final.py	/^        apath = os.path.join(sname,cname)                $/;"	v
+apath	examples/alloy_discovery/make_alloy_final.py	/^        apath = os.path.join(apath,magn)$/;"	v
+apath	examples/alloy_discovery/make_alloy_final.py	/^        apath = os.path.join(sname,cname)                $/;"	v
+apath	examples/alloy_discovery/make_alloy_inputs.py	/^        apath = os.path.join(apath,magn)$/;"	v
+apath	examples/alloy_discovery/make_alloy_inputs.py	/^        apath = os.path.join(sname,cname)                $/;"	v
+arraysize	c/c_lattice.c	/^  size_t arraysize[8];$/;"	m	struct:__anon4	file:
+ascii_plot	EOS/EOS.py	/^    def ascii_plot(self,x,y,z,title=''):$/;"	m	class:EOS
+atoms	examples/CoCrFeMnNi_fcc.py	/^                    atoms=['Co','Co','Cr','Cr','Fe','Fe','Mn','Mn','Ni','Ni'],$/;"	v
+atoms	examples/alloy_discovery/alloy_discovery.py	/^                       atoms = s,$/;"	v
+atoms	examples/alloy_discovery/make_alloy_final.py	/^                   atoms = s,$/;"	v
+atoms	examples/alloy_discovery/make_alloy_inputs.py	/^                   atoms = s,$/;"	v
+atoms	examples/fe.py	/^        atoms   = ['Fe'],  # A list of atoms.$/;"	v
+atoms	examples/fe_elastic_constants.py	/^        atoms   = ['Fe'],  # A list of atoms.$/;"	v
+atoms	examples/ti_hcp.py	/^            atoms=['Ti'],$/;"	v
+avgstrainfit	EOS/asturfit.py	/^def avgstrainfit(V, E, V0, nmax=16, MODE=1, strain='eulerian', LOG=0, nargout=1):$/;"	f
+base_dir	examples/alloy_discovery/alloy_discovery.py	/^base_dir = os.getcwd()$/;"	v
+basis	examples/B2_Cr.py	/^                             basis=basis,$/;"	v
+basis	examples/B2_Cr.py	/^basis = np.array([[0.0,0.0,0.0],$/;"	v
+basis	examples/L11_CuPt.py	/^                             basis=basis,$/;"	v
+basis	examples/L11_CuPt.py	/^basis = np.array([[0.0,0.0,0.0],$/;"	v
+basis	examples/create_L11.py	/^                             basis=basis,$/;"	v
+basis	examples/create_L11.py	/^basis = np.array([[0.0, 0.0, 0.0],$/;"	v
+basis	examples/generate_bcc_fcc_ssos.py	/^                             basis=basis,$/;"	v
+basis	examples/generate_bcc_fcc_ssos.py	/^basis = np.array([[0.0,0.0,0.0],$/;"	v
+basis_transform	latticeinputs/latticeinputs.py	/^    def basis_transform(self, basis, matrix):$/;"	m	class:Latticeinputs
+bcc	examples/alloy_discovery/alloy_discovery.py	/^        bcc = r[1][0]$/;"	v
+bcc	examples/alloy_discovery/collect_alloy_final.py	/^    bcc = r[1][0]$/;"	v
+bcc	examples/alloy_discovery/make_alloy_final.py	/^    bcc = r[1][0]$/;"	v
+bcc_lc	examples/alloy_discovery/alloy_discovery.py	/^        bcc_lc = wsrad_to_latparam(bcc[1],'bcc')$/;"	v
+bcc_lc	examples/alloy_discovery/collect_alloy_final.py	/^    bcc_lc = utils.wsrad_to_latparam(bcc[1],'bcc')$/;"	v
+birch	EOS/EOS.py	/^    def birch(self, V, E0, B0, BP, V0):$/;"	m	class:EOS
+birchmurnaghan	EOS/EOS.py	/^    def birchmurnaghan(self, V, E0, B0, BP, V0):$/;"	m	class:EOS
+bl_list	space_group/generate_space_group_dics.py	/^bl_list = []$/;"	v
+bohr2angstrom	EOS/EOS.py	/^    def bohr2angstrom(self, WSrad):$/;"	m	class:EOS
+bohr2angstrom	emto_parser/emtoparser.py	/^bohr2angstrom = 0.529177249$/;"	v
+bulk	system.py	/^    def bulk(self, jobname=None, lat=None, atoms=None, concs=None, splts=None, sws=None,$/;"	m	class:System
+bulk_new	system.py	/^    def bulk_new(self, jobname=None, lat=None, atoms=None, concs=None, splts=None, sws=None,$/;"	m	class:System
+c	c/c_lattice.c	/^typedef struct { PY_LONG_LONG x; char c; } __Pyx_pad_longlong;$/;"	m	struct:__anon29	file:
+c	c/c_lattice.c	/^typedef struct { char c; PY_LONG_LONG x; } __Pyx_st_longlong;$/;"	m	struct:__anon21	file:
+c	c/c_lattice.c	/^typedef struct { char c; double x; } __Pyx_st_double;$/;"	m	struct:__anon18	file:
+c	c/c_lattice.c	/^typedef struct { char c; float x; } __Pyx_st_float;$/;"	m	struct:__anon17	file:
+c	c/c_lattice.c	/^typedef struct { char c; int x; } __Pyx_st_int;$/;"	m	struct:__anon15	file:
+c	c/c_lattice.c	/^typedef struct { char c; long double x; } __Pyx_st_longdouble;$/;"	m	struct:__anon19	file:
+c	c/c_lattice.c	/^typedef struct { char c; long x; } __Pyx_st_long;$/;"	m	struct:__anon16	file:
+c	c/c_lattice.c	/^typedef struct { char c; short x; } __Pyx_st_short;$/;"	m	struct:__anon14	file:
+c	c/c_lattice.c	/^typedef struct { char c; void *x; } __Pyx_st_void_p;$/;"	m	struct:__anon20	file:
+c	c/c_lattice.c	/^typedef struct { double x; char c; } __Pyx_pad_double;$/;"	m	struct:__anon26	file:
+c	c/c_lattice.c	/^typedef struct { float x; char c; } __Pyx_pad_float;$/;"	m	struct:__anon25	file:
+c	c/c_lattice.c	/^typedef struct { int x; char c; } __Pyx_pad_int;$/;"	m	struct:__anon23	file:
+c	c/c_lattice.c	/^typedef struct { long double x; char c; } __Pyx_pad_longdouble;$/;"	m	struct:__anon27	file:
+c	c/c_lattice.c	/^typedef struct { long x; char c; } __Pyx_pad_long;$/;"	m	struct:__anon24	file:
+c	c/c_lattice.c	/^typedef struct { short x; char c; } __Pyx_pad_short;$/;"	m	struct:__anon22	file:
+c	c/c_lattice.c	/^typedef struct { void *x; char c; } __Pyx_pad_void_p;$/;"	m	struct:__anon28	file:
+ca	examples/alloy_discovery/alloy_discovery.py	/^                       ca = ca,$/;"	v
+ca	examples/alloy_discovery/alloy_discovery.py	/^            ca = round(c_over_a0,3)$/;"	v
+ca	examples/alloy_discovery/collect_alloy_final.py	/^        ca = round(c_over_a0,3)$/;"	v
+ca	examples/alloy_discovery/make_alloy_final.py	/^                   ca= ca,$/;"	v
+ca	examples/alloy_discovery/make_alloy_final.py	/^        ca = round(c_over_a0,3)$/;"	v
+ca_fit	EOS/EOS.py	/^    def ca_fit(self, x, y, n, debug=False,title='',find_best_fit=False):$/;"	m	class:EOS
+calc_ws_radius	examples/emto_input_generator.py	/^    def calc_ws_radius(self, struct):$/;"	m	class:EMTO
+cas	examples/structures.py	/^cas = np.linspace(1.50,1.7,7) # 7 different equally spaced c\/a values from 1.5 to 1.7$/;"	v
+check_conv	system.py	/^    def check_conv(self, jobname, folder=".\/"):$/;"	m	class:System
+check_folders	common/common.py	/^def check_folders(*args):$/;"	f
+check_input_file	emtoinputs/batch.py	/^    def check_input_file(self):$/;"	m	class:Batch
+check_input_file	emtoinputs/kfcd.py	/^    def check_input_file(self):$/;"	m	class:Kfcd
+check_input_file	emtoinputs/kgrn.py	/^    def check_input_file(self):$/;"	m	class:Kgrn
+check_input_file	latticeinputs/batch.py	/^    def check_input_file(self):$/;"	m	class:Batch
+check_input_file	latticeinputs/bmdl.py	/^    def check_input_file(self):$/;"	m	class:Bmdl
+check_input_file	latticeinputs/kstr.py	/^    def check_input_file(self):$/;"	m	class:Kstr
+check_input_file	latticeinputs/shape.py	/^    def check_input_file(self):$/;"	m	class:Shape
+check_noise	EOS/asturfit.py	/^def check_noise(vols,ens,show_plot=False):$/;"	f
+check_str	system.py	/^    def check_str(self, jobname, folder=".\/"):$/;"	m	class:System
+cleanup_path	common/common.py	/^def cleanup_path(string):$/;"	f
+clist	examples/alloy_discovery/alloy_discovery.py	/^                clist = [2*c[i] for i in range(0,len(c),2)]$/;"	v
+clist	examples/alloy_discovery/alloy_discovery.py	/^                clist = c$/;"	v
+clist	examples/alloy_discovery/collect_alloy_final.py	/^            clist = [c[i] for i in range(0,len(c),2)]$/;"	v
+clist	examples/alloy_discovery/collect_alloy_final.py	/^            clist = c$/;"	v
+clist	examples/alloy_discovery/make_alloy_final.py	/^            clist = [c[i] for i in range(0,len(c),2)]$/;"	v
+clist	examples/alloy_discovery/make_alloy_final.py	/^            clist = c$/;"	v
+clist	examples/alloy_discovery/make_alloy_inputs.py	/^            clist = [c[i] for i in range(0,len(c),2)]$/;"	v
+clist	examples/alloy_discovery/make_alloy_inputs.py	/^            clist = c$/;"	v
+cname	examples/alloy_discovery/alloy_discovery.py	/^                    cname = cname+"-"$/;"	v
+cname	examples/alloy_discovery/alloy_discovery.py	/^                cname = cname +str(int(conc*1000)).zfill(4)$/;"	v
+cname	examples/alloy_discovery/alloy_discovery.py	/^            cname = ""$/;"	v
+cname	examples/alloy_discovery/collect_alloy_final.py	/^                cname = cname+"-"$/;"	v
+cname	examples/alloy_discovery/collect_alloy_final.py	/^            cname = cname +str(int(conc*1000)).zfill(4)$/;"	v
+cname	examples/alloy_discovery/collect_alloy_final.py	/^        cname = ""$/;"	v
+cname	examples/alloy_discovery/make_alloy_final.py	/^                cname = cname+"-"$/;"	v
+cname	examples/alloy_discovery/make_alloy_final.py	/^            cname = cname +str(int(conc*1000)).zfill(4)$/;"	v
+cname	examples/alloy_discovery/make_alloy_final.py	/^        cname = ""$/;"	v
+cname	examples/alloy_discovery/make_alloy_inputs.py	/^                cname = cname+"-"$/;"	v
+cname	examples/alloy_discovery/make_alloy_inputs.py	/^            cname = cname +str(int(conc*1000)).zfill(4)$/;"	v
+cname	examples/alloy_discovery/make_alloy_inputs.py	/^        cname = ""$/;"	v
+cocrfemnni	examples/CoCrFeMnNi_fcc.py	/^cocrfemnni=pyemto.System(folder=emtopath)$/;"	v
+code_line	c/c_lattice.c	/^    int code_line;$/;"	m	struct:__anon10	file:
+code_object	c/c_lattice.c	/^    PyCodeObject* code_object;$/;"	m	struct:__anon10	file:
+compute_eos_fit	EOS/EOS.py	/^    def compute_eos_fit(self):$/;"	m	class:EOS
+compute_eos_quality	EOS/EOS.py	/^    def compute_eos_quality(self):$/;"	m	class:EOS
+compute_initial_guess	EOS/EOS.py	/^    def compute_initial_guess(self):$/;"	m	class:EOS
+compute_num_of_vecs	c/c_lattice.pyx	/^cpdef int compute_num_of_vecs(np.ndarray[np.double_t, ndim=2] prims,$/;"	f
+compute_num_of_vecs	latticeinputs/kstr.py	/^    def compute_num_of_vecs(self,prims,basis,nghbp,dmax):$/;"	m	class:Kstr
+conc	examples/alloy_discovery/alloy_discovery.py	/^            conc = concs_per_cent[j] #\/ 100$/;"	v
+conc_line	examples/alloy_discovery/alloy_discovery.py	/^            conc_line = conc_line + '{0:8.6f} '.format(r[0][1][i])$/;"	v
+conc_line	examples/alloy_discovery/alloy_discovery.py	/^        conc_line = ""$/;"	v
+conc_rest	examples/alloy_discovery/alloy_discovery.py	/^            conc_rest = (100.0 - conc) \/ 4$/;"	v
+concentrations	examples/alloy_discovery/alloy_discovery.py	/^    concentrations = newconcs$/;"	v
+concentrations	examples/alloy_discovery/alloy_discovery.py	/^concentrations = []$/;"	v
+concentrations	examples/alloy_discovery/collect_alloy_final.py	/^    concentrations = newconcs$/;"	v
+concentrations	examples/alloy_discovery/collect_alloy_final.py	/^concentrations = [[1.0]]$/;"	v
+concentrations	examples/alloy_discovery/make_alloy_final.py	/^    concentrations = newconcs$/;"	v
+concentrations	examples/alloy_discovery/make_alloy_final.py	/^concentrations = [[1.0]]$/;"	v
+concentrations	examples/alloy_discovery/make_alloy_inputs.py	/^    concentrations = newconcs$/;"	v
+concentrations	examples/alloy_discovery/make_alloy_inputs.py	/^concentrations = [[1.0]]$/;"	v
+concs	examples/alloy_discovery/alloy_discovery.py	/^                       concs = c, $/;"	v
+concs	examples/alloy_discovery/alloy_discovery.py	/^                       concs = c,$/;"	v
+concs	examples/alloy_discovery/make_alloy_final.py	/^                   concs = c,$/;"	v
+concs	examples/alloy_discovery/make_alloy_inputs.py	/^                   concs = c,$/;"	v
+concs_per_cent	examples/alloy_discovery/alloy_discovery.py	/^concs_per_cent = np.array([20.0,15.0,10.0,5.0,0.0])$/;"	v
+count	c/c_lattice.c	/^    int count;$/;"	m	struct:__Pyx_CodeObjectCache	file:
+count	examples/alloy_discovery/alloy_discovery.py	/^            count = 0$/;"	v
+count	examples/alloy_discovery/collect_alloy_final.py	/^        count = 0$/;"	v
+count	examples/alloy_discovery/make_alloy_final.py	/^        count = 0$/;"	v
+count	examples/alloy_discovery/make_alloy_inputs.py	/^        count = 0$/;"	v
+create_atconf	emtoinputs/kgrn.py	/^    def create_atconf(self):$/;"	m	class:Kgrn
+create_atomblock	emtoinputs/kgrn.py	/^    def create_atomblock(self):$/;"	m	class:Kgrn
+create_df	emto_parser/emtoparser.py	/^    def create_df(self):$/;"	m	class:EMTOPARSER
+create_jobname	system.py	/^    def create_jobname(self, jobname=None):$/;"	m	class:System
+create_submit_all_script	examples/alloy_discovery/create_submit_all_script.py	/^def create_submit_all_script():$/;"	f
+create_submit_all_script	examples/alloy_discovery/create_submit_final_script.py	/^def create_submit_all_script():$/;"	f
+curve_fit	EOS/EOS.py	/^def curve_fit(f, x, y, p0):$/;"	f
+data	c/c_lattice.c	/^  char *data;$/;"	m	struct:__anon13	file:
+debye_func	free_energy/free_energy.py	/^def debye_func(x):$/;"	f
+debye_integrand	free_energy/free_energy.py	/^def debye_integrand(x):$/;"	f
+debye_integrand	utilities/utils.py	/^    def debye_integrand(x):$/;"	f	function:extrapolate_0k
+debye_temp	free_energy/free_energy.py	/^def debye_temp(r,r0,B0,M,grun):$/;"	f
+diminfo	c/c_lattice.c	/^  __Pyx_Buf_DimInfo diminfo[8];$/;"	m	struct:__anon13	file:
+dirac_niter	examples/CoCrFeMnNi_fcc.py	/^                    dirac_niter=500) # Dirac equation parameters$/;"	v
+dirac_np	examples/CoCrFeMnNi_fcc.py	/^                    dirac_np=1001,   # Dirac equation parameters$/;"	v
+distort	utilities/utils.py	/^def distort(dist_mat, mat):$/;"	f
+distortion	latticeinputs/latticeinputs.py	/^    def distortion(self, lat=None, dist=None, ca=None, index=None, deltas=None, dmaxs=None,$/;"	m	class:Latticeinputs
+distortion_fit	EOS/EOS.py	/^    def distortion_fit(self, x, y, num=2, title='', ascii_art=False):$/;"	m	class:EOS
+distortion_poly1	EOS/EOS.py	/^    def distortion_poly1(self, x, a2):$/;"	m	class:EOS
+distortion_poly2	EOS/EOS.py	/^    def distortion_poly2(self, x, a2, a0):$/;"	m	class:EOS
+distortion_poly3	EOS/EOS.py	/^    def distortion_poly3(self, x, a2, a1, a0):$/;"	m	class:EOS
+dmax	examples/alloy_discovery/alloy_discovery.py	/^                                         dmax=2.2)$/;"	v
+dmax	examples/alloy_discovery/make_alloy_final.py	/^                                         dmax=2.2)$/;"	v
+dos_parser	free_energy/free_energy.py	/^def dos_parser(filename):$/;"	f
+dos_total	examples/alloy_discovery/alloy_discovery.py	/^            dos_total = alloy.get_fdos()$/;"	v
+draw_structure	examples/emto_input_generator.py	/^    def draw_structure(self, which='input'):$/;"	m	class:EMTO
+dx	examples/CoCrFeMnNi_fcc.py	/^                    dx=0.015,        # Dirac equation parameters$/;"	v
+e_dft	examples/alloy_discovery/alloy_discovery.py	/^                e_dft = 0.0$/;"	v
+e_dft	examples/alloy_discovery/alloy_discovery.py	/^            e_dft = alloy.get_energy()$/;"	v
+e_dft	examples/alloy_discovery/collect_alloy_final.py	/^        e_dft = alloy.get_energy()$/;"	v
+efmix	examples/CoCrFeMnNi_fcc.py	/^                    efmix=0.9,$/;"	v
+efmix	examples/alloy_discovery/alloy_discovery.py	/^                       efmix=0.9,$/;"	v
+efmix	examples/alloy_discovery/make_alloy_final.py	/^                   efmix=0.9,$/;"	v
+efmix	examples/alloy_discovery/make_alloy_inputs.py	/^                   efmix=0.9,$/;"	v
+efmix	examples/ti_hcp.py	/^            efmix=0.9,$/;"	v
+el_ent_parser	free_energy/free_energy.py	/^def el_ent_parser(filename):$/;"	f
+elastic_constants_analyze	system.py	/^    def elastic_constants_analyze($/;"	m	class:System
+elastic_constants_batch_calculate	system.py	/^    def elastic_constants_batch_calculate($/;"	m	class:System
+elastic_constants_batch_generate	system.py	/^    def elastic_constants_batch_generate(self, sws=None, ca=None, relax=True):$/;"	m	class:System
+elastic_constants_serial_calculate	system.py	/^    def elastic_constants_serial_calculate(self, sws=None, bmod=None, ca=None, R=None, cs=None):$/;"	m	class:System
+emtopath	examples/B2_Cr.py	/^emtopath = folder+"\/Cr_B2_antiferro"  # Folder where the calculations will be performed.$/;"	v
+emtopath	examples/CoCrFeMnNi_fcc.py	/^emtopath = folder+"\/cocrfemnni_fcc"  # Folder where the calculations will be performed.$/;"	v
+emtopath	examples/L11_CuPt.py	/^emtopath = folder+"\/L11_CuPt"  # Folder where the calculations will be performed.$/;"	v
+emtopath	examples/alloy_discovery/make_lattices.py	/^emtopath = folder$/;"	v
+emtopath	examples/create_L11.py	/^emtopath = folder + "\/L11_CuPt"$/;"	v
+emtopath	examples/fe.py	/^emtopath = os.getcwd() + "\/fe" # Define a folder for our KGRN and KFCD input and output files.$/;"	v
+emtopath	examples/fe_elastic_constants.py	/^emtopath = os.getcwd() + "\/fe_elastic_constants" # Define a folder for our KGRN and KFCD input and output files.$/;"	v
+emtopath	examples/generate_bcc_fcc_ssos.py	/^emtopath = folder+"\/bcc_fcc_ssos"  # Folder where the calculations will be performed.$/;"	v
+emtopath	examples/structures.py	/^emtopath = folder$/;"	v
+emtopath	examples/ti_hcp.py	/^emtopath = folder+"\/ti_hcp"         # Folder where the calculation take place.$/;"	v
+enc_count	c/c_lattice.c	/^  size_t new_count, enc_count;$/;"	m	struct:__anon6	file:
+enc_packmode	c/c_lattice.c	/^  char enc_packmode;$/;"	m	struct:__anon6	file:
+enc_type	c/c_lattice.c	/^  char enc_type;$/;"	m	struct:__anon6	file:
+encoding	c/c_lattice.c	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon3	file:
+entries	c/c_lattice.c	/^    __Pyx_CodeObjectCacheEntry* entries;$/;"	m	struct:__Pyx_CodeObjectCache	file:
+eos_output	EOS/EOS.py	/^    def eos_output(self):$/;"	m	class:EOS
+expan	examples/CoCrFeMnNi_fcc.py	/^                    expan='M',$/;"	v
+expan	examples/alloy_discovery/alloy_discovery.py	/^                       expan='M',$/;"	v
+expan	examples/alloy_discovery/make_alloy_final.py	/^                   expan='M',$/;"	v
+expan	examples/alloy_discovery/make_alloy_inputs.py	/^                   expan='M',$/;"	v
+expan	examples/fe.py	/^        expan   = 'M',     # We want to use the double-Taylor expansion.$/;"	v
+expan	examples/fe_elastic_constants.py	/^        expan   = 'M',     # We want to use the double-Taylor expansion.$/;"	v
+expan	examples/ti_hcp.py	/^            expan='M',$/;"	v
+extrapolate_0k	utilities/utils.py	/^def extrapolate_0k($/;"	f
+fcc	examples/alloy_discovery/alloy_discovery.py	/^        fcc = r[1][1]$/;"	v
+fcc	examples/alloy_discovery/collect_alloy_final.py	/^    fcc = r[1][1]$/;"	v
+fcc	examples/alloy_discovery/make_alloy_final.py	/^    fcc = r[1][1]$/;"	v
+fcc_lc	examples/alloy_discovery/alloy_discovery.py	/^        fcc_lc = wsrad_to_latparam(fcc[1],'fcc')$/;"	v
+fcc_lc	examples/alloy_discovery/collect_alloy_final.py	/^    fcc_lc = utils.wsrad_to_latparam(fcc[1],'fcc')$/;"	v
+fe	examples/fe.py	/^fe = pyemto.System(folder=emtopath)  # Create a new instance of the pyemto System-class.$/;"	v
+fe	examples/fe_elastic_constants.py	/^fe = pyemto.System(folder=emtopath)  # Create a new instance of the pyemto System-class.$/;"	v
+field	c/c_lattice.c	/^  __Pyx_StructField* field;$/;"	m	struct:__anon5	file:
+fields	c/c_lattice.c	/^  struct __Pyx_StructField_* fields;$/;"	m	struct:__anon4	typeref:struct:__anon4::__Pyx_StructField_	file:
+file	space_group/generate_space_group_dics.py	/^file = open('space_groups.txt','r')$/;"	v
+file_lines	space_group/generate_space_group_dics.py	/^file_lines = file.readlines()$/;"	v
+finalize	latticeinputs/kstr.py	/^    def finalize(self):$/;"	m	class:Kstr
+finalname	examples/alloy_discovery/alloy_discovery.py	/^            finalname = jobname + "_final"$/;"	v
+finalname	examples/alloy_discovery/collect_alloy_final.py	/^        finalname = jobname + "_final"$/;"	v
+finalname	examples/alloy_discovery/make_alloy_final.py	/^        finalname = jobname + "_final"$/;"	v
+find_lc	system.py	/^    def find_lc(self, delta=0.01, prn=True, xc='PBE'):$/;"	m	class:System
+find_lc_hcp	system.py	/^    def find_lc_hcp(self, delta=0.01, prn=True, xc='PBE'):$/;"	m	class:System
+fit	EOS/EOS.py	/^    def fit(self, swses, energies, shift=False, show_plot=False, show_output=True, pressure=False):$/;"	m	class:EOS
+fit_eval	EOS/EOS.py	/^    def fit_eval(self, sws):$/;"	m	class:EOS
+flags	c/c_lattice.c	/^  int flags;$/;"	m	struct:__anon4	file:
+fmt_offset	c/c_lattice.c	/^  size_t fmt_offset;$/;"	m	struct:__anon6	file:
+folder	examples/B2_Cr.py	/^folder = os.getcwd()           # Get current working directory.$/;"	v
+folder	examples/CoCrFeMnNi_fcc.py	/^folder = os.getcwd()                 # Get current working directory.$/;"	v
+folder	examples/L11_CuPt.py	/^folder = os.getcwd()           # Get current working directory.$/;"	v
+folder	examples/alloy_discovery/make_lattices.py	/^folder = os.getcwd()$/;"	v
+folder	examples/create_L11.py	/^folder = os.getcwd()$/;"	v
+folder	examples/generate_bcc_fcc_ssos.py	/^folder = os.getcwd()               # Get current working directory.$/;"	v
+folder	examples/structures.py	/^folder = os.getcwd()$/;"	v
+folder	examples/ti_hcp.py	/^folder = os.getcwd()                # Get current working directory.$/;"	v
+generate_prims	latticeinputs/kstr.py	/^    def generate_prims(self,angles):$/;"	m	class:Kstr
+get_COA	emto_parser/emtoparser.py	/^    def get_COA(self):$/;"	m	class:EMTOPARSER
+get_Formula_and_Mav	emto_parser/emtoparser.py	/^    def get_Formula_and_Mav(self):$/;"	m	class:EMTOPARSER
+get_NQ	emto_parser/emtoparser.py	/^    def get_NQ(self):$/;"	m	class:EMTOPARSER
+get_Status	emto_parser/emtoparser.py	/^    def get_Status(self):$/;"	m	class:EMTOPARSER
+get_energy	system.py	/^    def get_energy(self, jobname=None, func="PBE", folder=None):$/;"	m	class:System
+get_equivalent_sites	examples/emto_input_generator.py	/^    def get_equivalent_sites(self):$/;"	m	class:EMTO
+get_fdos	system.py	/^    def get_fdos(self, jobname = None,folder=None):$/;"	m	class:System
+get_jobs_status	system.py	/^    def get_jobs_status(self, jobids=None, toplevel=True):$/;"	m	class:System
+get_moments	system.py	/^    def get_moments(self, jobname=None, func="PBE", folder=None):$/;"	m	class:System
+get_status_counts	system.py	/^    def get_status_counts(self, jobids=None):$/;"	m	class:System
+guess_jumps	EOS/asturfit.py	/^def guess_jumps(vols, ens, deltaE=0.0, LOG=0):$/;"	f
+hcp	examples/alloy_discovery/alloy_discovery.py	/^        hcp = r[1][2]$/;"	v
+hcp	examples/alloy_discovery/collect_alloy_final.py	/^    hcp = r[1][2]$/;"	v
+hcp	examples/alloy_discovery/make_alloy_final.py	/^    hcp = r[1][2]$/;"	v
+hcp_lc	examples/alloy_discovery/alloy_discovery.py	/^        hcp_lc = wsrad_to_latparam(hcp[1],'hcp',ca=hcp[8])$/;"	v
+hcp_lc	examples/alloy_discovery/collect_alloy_final.py	/^    hcp_lc = utils.wsrad_to_latparam(hcp[1],'hcp',ca=hcp[4])$/;"	v
+hcpname	examples/alloy_discovery/alloy_discovery.py	/^            hcpname ="hcp_"+str(ca) # Structure name$/;"	v
+hcpname	examples/alloy_discovery/collect_alloy_final.py	/^        hcpname ="hcp_"+str(ca) # Structure name$/;"	v
+hcpname	examples/alloy_discovery/make_alloy_final.py	/^        hcpname ="hcp_"+str(ca) # Structure name$/;"	v
+head	c/c_lattice.c	/^  __Pyx_BufFmt_StackElem* head;$/;"	m	struct:__anon6	file:
+hybohr3togpa	EOS/asturfit.py	/^hybohr3togpa = 2*14710.50498740275538944426$/;"	v
+ibz_list	space_group/generate_space_group_dics.py	/^ibz_list = []$/;"	v
+ibz_to_lat	common/common.py	/^def ibz_to_lat(lat):$/;"	f
+iex	examples/CoCrFeMnNi_fcc.py	/^                    iex=7,           # We want to use self-consistent GGA (PBE).$/;"	v
+imag	c/c_lattice.c	/^    typedef struct { double real, imag; } __pyx_t_double_complex;$/;"	m	struct:__anon8	file:
+imag	c/c_lattice.c	/^    typedef struct { float real, imag; } __pyx_t_float_complex;$/;"	m	struct:__anon7	file:
+initc_lattice	c/c_lattice.c	/^__Pyx_PyMODINIT_FUNC initc_lattice(void)$/;"	f
+initial_latpar	examples/alloy_discovery/make_alloy_inputs.py	/^initial_latpar = 2.86$/;"	v
+initial_sws	examples/alloy_discovery/alloy_discovery.py	/^    initial_sws = [initial_sws for x in range(3)]$/;"	v
+initial_sws	examples/alloy_discovery/alloy_discovery.py	/^initial_sws = 2.61$/;"	v
+initial_sws	examples/alloy_discovery/make_alloy_final.py	/^    initial_sws = [initial_sws for x in range(3)]$/;"	v
+initial_sws	examples/alloy_discovery/make_alloy_final.py	/^initial_sws = 3.0$/;"	v
+initial_sws	examples/alloy_discovery/make_alloy_inputs.py	/^initial_sws = []$/;"	v
+initialsws	examples/alloy_discovery/alloy_discovery.py	/^            initialsws = initial_sws[0]$/;"	v
+initialsws	examples/alloy_discovery/alloy_discovery.py	/^            initialsws = initial_sws[1]$/;"	v
+initialsws	examples/alloy_discovery/alloy_discovery.py	/^            initialsws = initial_sws[2]$/;"	v
+initialsws	examples/alloy_discovery/collect_alloy_final.py	/^        initialsws = 3.0 # We need some clever way to get this$/;"	v
+initialsws	examples/alloy_discovery/make_alloy_final.py	/^        initialsws = initial_sws[0] # We need some clever way to get this$/;"	v
+initialsws	examples/alloy_discovery/make_alloy_final.py	/^        initialsws = initial_sws[1] # We need some clever way to get this$/;"	v
+initialsws	examples/alloy_discovery/make_alloy_final.py	/^        initialsws = initial_sws[2] # We need some clever way to get this$/;"	v
+initialsws	examples/alloy_discovery/make_alloy_inputs.py	/^        initialsws = initial_sws[0]$/;"	v
+initialsws	examples/alloy_discovery/make_alloy_inputs.py	/^        initialsws = initial_sws[1]$/;"	v
+initialsws	examples/alloy_discovery/make_alloy_inputs.py	/^        initialsws = initial_sws[2]$/;"	v
+input_creator	examples/B2_Cr.py	/^input_creator = EMTO(folder=emtopath)$/;"	v
+input_creator	examples/L11_CuPt.py	/^input_creator = EMTO(folder=emtopath)$/;"	v
+input_creator	examples/create_L11.py	/^input_creator = EMTO(folder=emtopath)$/;"	v
+input_creator	examples/generate_bcc_fcc_ssos.py	/^input_creator = EMTO(folder=emtopath)$/;"	v
+intern	c/c_lattice.c	/^                const char is_unicode; const char is_str; const char intern; } __Pyx_StringTabEntry;$/;"	m	struct:__anon3	file:
+interpolate_y	free_energy/free_energy.py	/^def interpolate_y(x,y,x0):$/;"	f
+is_complex	c/c_lattice.c	/^  int is_complex;$/;"	m	struct:__anon6	file:
+is_str	c/c_lattice.c	/^                const char is_unicode; const char is_str; const char intern; } __Pyx_StringTabEntry;$/;"	m	struct:__anon3	file:
+is_unicode	c/c_lattice.c	/^                const char is_unicode; const char is_str; const char intern; } __Pyx_StringTabEntry;$/;"	m	struct:__anon3	file:
+is_unsigned	c/c_lattice.c	/^  char is_unsigned;$/;"	m	struct:__anon4	file:
+is_valid_array	c/c_lattice.c	/^  char is_valid_array;$/;"	m	struct:__anon6	file:
+jobname	examples/CoCrFeMnNi_fcc.py	/^                    jobname='cocrfemnni',$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^                       jobname=finalname+"_bcc",$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^                       jobname=finalname+"_fcc",$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^                       jobname=finalname+"_hcp",$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^                       jobname=jobname+"_bcc",$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^                       jobname=jobname+"_fcc",$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^                       jobname=jobname, # hcp add automatically hcp string to jobname$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^                    jobname = jobname + "_"$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^                jobname = jobname + nlist[i].lower() + "%4.2f" % (clist[i])$/;"	v
+jobname	examples/alloy_discovery/alloy_discovery.py	/^            jobname = ""$/;"	v
+jobname	examples/alloy_discovery/collect_alloy_final.py	/^                   jobname=jobname, # hcp add automatically hcp string to jobname$/;"	v
+jobname	examples/alloy_discovery/collect_alloy_final.py	/^                jobname = jobname + "_"$/;"	v
+jobname	examples/alloy_discovery/collect_alloy_final.py	/^            jobname = jobname + nlist[i].lower() + "%4.2f" % (clist[i])$/;"	v
+jobname	examples/alloy_discovery/collect_alloy_final.py	/^        jobname = ""$/;"	v
+jobname	examples/alloy_discovery/make_alloy_final.py	/^                   jobname=finalname+"_fcc",$/;"	v
+jobname	examples/alloy_discovery/make_alloy_final.py	/^                   jobname=finalname+"_hcp",$/;"	v
+jobname	examples/alloy_discovery/make_alloy_final.py	/^                  jobname=finalname+"_bcc",$/;"	v
+jobname	examples/alloy_discovery/make_alloy_final.py	/^                jobname = jobname + "_"$/;"	v
+jobname	examples/alloy_discovery/make_alloy_final.py	/^            jobname = jobname + nlist[i].lower() + "%4.2f" % (clist[i])$/;"	v
+jobname	examples/alloy_discovery/make_alloy_final.py	/^        jobname = ""$/;"	v
+jobname	examples/alloy_discovery/make_alloy_inputs.py	/^                   jobname=jobname+"_bcc",$/;"	v
+jobname	examples/alloy_discovery/make_alloy_inputs.py	/^                   jobname=jobname+"_fcc",$/;"	v
+jobname	examples/alloy_discovery/make_alloy_inputs.py	/^                   jobname=jobname, # hcp add automatically hcp string to jobname$/;"	v
+jobname	examples/alloy_discovery/make_alloy_inputs.py	/^                jobname = jobname + "_"$/;"	v
+jobname	examples/alloy_discovery/make_alloy_inputs.py	/^            jobname = jobname + nlist[i].lower() + "%4.2f" % (clist[i])$/;"	v
+jobname	examples/alloy_discovery/make_alloy_inputs.py	/^        jobname = ""$/;"	v
+kb	emto_parser/emtoparser.py	/^kb = 8.6173324E-5\/ry2ev #Ry\/K$/;"	v
+kb	free_energy/free_energy.py	/^kb = 8.6173324E-5\/ry2ev #Ry\/K$/;"	v
+lat_to_ibz	common/common.py	/^def lat_to_ibz(lat):$/;"	f
+latname	examples/B2_Cr.py	/^                             latname='B2')$/;"	v
+latname	examples/L11_CuPt.py	/^                             latname='L11')$/;"	v
+latname	examples/alloy_discovery/alloy_discovery.py	/^                       latname=hcpname,$/;"	v
+latname	examples/alloy_discovery/make_alloy_final.py	/^                   latname=hcpname,$/;"	v
+latname	examples/create_L11.py	/^                             latname='L11')$/;"	v
+latname	examples/generate_bcc_fcc_ssos.py	/^                             latname='ssos_bcc_1')$/;"	v
+latnames	examples/structures.py	/^latnames = ['hcp_ca1','hcp_ca2','hcp_ca3','hcp_ca4','hcp_ca5','hcp_ca6','hcp_ca7']$/;"	v
+latparam_to_wsrad	utilities/utils.py	/^def latparam_to_wsrad(a=None, lat=None, ca=None, c=None):$/;"	f
+latpath	examples/B2_Cr.py	/^latpath = emtopath$/;"	v
+latpath	examples/CoCrFeMnNi_fcc.py	/^                    latpath=latpath,$/;"	v
+latpath	examples/CoCrFeMnNi_fcc.py	/^latpath = "\/wrk\/hpleva\/structures"   # Folder where the structure output files are.$/;"	v
+latpath	examples/L11_CuPt.py	/^latpath = emtopath$/;"	v
+latpath	examples/alloy_discovery/alloy_discovery.py	/^                       latpath=latpath,$/;"	v
+latpath	examples/alloy_discovery/alloy_discovery.py	/^latpath = "\/home\/hpleva\/structures" # Path to bmdl, kstr and shape directories$/;"	v
+latpath	examples/alloy_discovery/collect_alloy_final.py	/^latpath = "..\/..\/..\/" # Path do bmdl, kstr and shape directories$/;"	v
+latpath	examples/alloy_discovery/make_alloy_final.py	/^                   latpath=latpath,$/;"	v
+latpath	examples/alloy_discovery/make_alloy_final.py	/^latpath = "..\/..\/..\/..\/" # Path do bmdl, kstr and shape directories$/;"	v
+latpath	examples/alloy_discovery/make_alloy_inputs.py	/^                   latpath=latpath,$/;"	v
+latpath	examples/alloy_discovery/make_alloy_inputs.py	/^latpath = "..\/..\/..\/" # Path do bmdl, kstr and shape directories$/;"	v
+latpath	examples/alloy_discovery/make_lattices.py	/^latpath = folder$/;"	v
+latpath	examples/create_L11.py	/^latpath = emtopath$/;"	v
+latpath	examples/fe.py	/^        latpath = latpath, # Path to the folder where the structure files are located.$/;"	v
+latpath	examples/fe.py	/^latpath  = os.getcwd() + "\/fe" # Define a folder where the BMDL, KSTR and KFCD input and output files$/;"	v
+latpath	examples/fe_elastic_constants.py	/^        latpath = latpath, # Path to the folder where the structure files are located.$/;"	v
+latpath	examples/fe_elastic_constants.py	/^latpath  = os.getcwd() + "\/fe_elastic_constants" # Define a folder where the BMDL, KSTR and KFCD input and output files$/;"	v
+latpath	examples/generate_bcc_fcc_ssos.py	/^latpath = emtopath$/;"	v
+latpath	examples/structures.py	/^latpath = folder$/;"	v
+latpath	examples/ti_hcp.py	/^            latpath=latpath,$/;"	v
+latpath	examples/ti_hcp.py	/^latpath = "\/wrk\/hpleva\/structures"  # Folder where the structure files are located.$/;"	v
+lattice_constants_analyze	system.py	/^    def lattice_constants_analyze(self, sws=None, ca=None,prn=True,debug=False,method='morse',return_error=False):$/;"	m	class:System
+lattice_constants_batch_calculate	system.py	/^    def lattice_constants_batch_calculate(self, sws=None, ca=None):$/;"	m	class:System
+lattice_constants_batch_generate	system.py	/^    def lattice_constants_batch_generate(self, sws=None, ca=None):$/;"	m	class:System
+lattice_constants_serial_calculate	system.py	/^    def lattice_constants_serial_calculate(self, sws=None, stype="simple", rerun=False, skip=False,$/;"	m	class:System
+lcdict	examples/alloy_discovery/make_alloy_inputs.py	/^lcdict = {'Al':4.0495,'Fe':2.8665}$/;"	v
+likely	c/c_lattice.c	820;"	d	file:
+likely	c/c_lattice.c	823;"	d	file:
+line_split	space_group/generate_space_group_dics.py	/^    line_split = file_lines[i].split()$/;"	v
+magn	examples/alloy_discovery/alloy_discovery.py	/^magn = "DLM" $/;"	v
+magn	examples/alloy_discovery/collect_alloy_final.py	/^magn = "NM" # Possible values DLM, FM and NM$/;"	v
+magn	examples/alloy_discovery/make_alloy_final.py	/^magn = "NM" # Possible NM (Non-magnetic), FM (ferromagnetic) and $/;"	v
+magn	examples/alloy_discovery/make_alloy_inputs.py	/^magn = "FM" # Possible NM (Non-magnetic), FM (ferromagnetic) and $/;"	v
+magn_moms	examples/alloy_discovery/alloy_discovery.py	/^                magn_moms = [0 for i in range(len(concs))]$/;"	v
+magn_moms	examples/alloy_discovery/alloy_discovery.py	/^            magn_moms = alloy.get_moments()$/;"	v
+make_basis_array	examples/emto_input_generator.py	/^    def make_basis_array(self, struct):$/;"	m	class:EMTO
+make_cpa_sites_array	examples/emto_input_generator.py	/^    def make_cpa_sites_array(self, struct):$/;"	m	class:EMTO
+make_sites_array	examples/emto_input_generator.py	/^    def make_sites_array(self, struct):$/;"	m	class:EMTO
+max_count	c/c_lattice.c	/^    int max_count;$/;"	m	struct:__Pyx_CodeObjectCache	file:
+minimum	EOS/asturfit.py	/^class minimum:$/;"	c
+mode	examples/alloy_discovery/alloy_discovery.py	/^mode = 'create_inputs'$/;"	v
+morse	EOS/EOS.py	/^    def morse(self, sws, a0, b0, c0, l0):$/;"	m	class:EOS
+msgl	examples/alloy_discovery/alloy_discovery.py	/^                       msgl = 0,$/;"	v
+msgl	examples/alloy_discovery/alloy_discovery.py	/^                       msgl=0,$/;"	v
+murnaghan	EOS/EOS.py	/^    def murnaghan(self, V, E0, B0, BP, V0):$/;"	m	class:EOS
+n	c/c_lattice.c	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon3	file:
+name	c/c_lattice.c	/^  const char* name;$/;"	m	struct:__Pyx_StructField_	file:
+name	c/c_lattice.c	/^  const char* name;$/;"	m	struct:__anon4	file:
+ncpa	examples/CoCrFeMnNi_fcc.py	/^                    ncpa=10,$/;"	v
+ndim	c/c_lattice.c	/^  int ndim;$/;"	m	struct:__anon4	file:
+nes	examples/CoCrFeMnNi_fcc.py	/^                    nes=50,          # Dirac equation parameters$/;"	v
+new_count	c/c_lattice.c	/^  size_t new_count, enc_count;$/;"	m	struct:__anon6	file:
+new_packmode	c/c_lattice.c	/^  char new_packmode;$/;"	m	struct:__anon6	file:
+newc	examples/alloy_discovery/alloy_discovery.py	/^        newc = []$/;"	v
+newc	examples/alloy_discovery/collect_alloy_final.py	/^        newc = []$/;"	v
+newc	examples/alloy_discovery/make_alloy_final.py	/^        newc = []$/;"	v
+newc	examples/alloy_discovery/make_alloy_inputs.py	/^        newc = []$/;"	v
+newconcs	examples/alloy_discovery/alloy_discovery.py	/^    newconcs = []$/;"	v
+newconcs	examples/alloy_discovery/collect_alloy_final.py	/^    newconcs = []$/;"	v
+newconcs	examples/alloy_discovery/make_alloy_final.py	/^    newconcs = []$/;"	v
+newconcs	examples/alloy_discovery/make_alloy_inputs.py	/^    newconcs = []$/;"	v
+news	examples/alloy_discovery/alloy_discovery.py	/^        news = []$/;"	v
+news	examples/alloy_discovery/collect_alloy_final.py	/^        news = []$/;"	v
+news	examples/alloy_discovery/make_alloy_final.py	/^        news = []$/;"	v
+news	examples/alloy_discovery/make_alloy_inputs.py	/^        news = []$/;"	v
+newsystems	examples/alloy_discovery/alloy_discovery.py	/^    newsystems = []$/;"	v
+newsystems	examples/alloy_discovery/collect_alloy_final.py	/^    newsystems = []$/;"	v
+newsystems	examples/alloy_discovery/make_alloy_final.py	/^    newsystems = []$/;"	v
+newsystems	examples/alloy_discovery/make_alloy_inputs.py	/^    newsystems = []$/;"	v
+niter	examples/alloy_discovery/alloy_discovery.py	/^                       niter=300,$/;"	v
+nky	examples/CoCrFeMnNi_fcc.py	/^                    nky=21,$/;"	v
+nky	examples/alloy_discovery/alloy_discovery.py	/^                       nky=11,$/;"	v
+nky	examples/alloy_discovery/alloy_discovery.py	/^                       nky=21,$/;"	v
+nky	examples/alloy_discovery/alloy_discovery.py	/^                       nky=25,$/;"	v
+nky	examples/alloy_discovery/alloy_discovery.py	/^                       nky=31,$/;"	v
+nky	examples/alloy_discovery/make_alloy_final.py	/^                   nky=21)        $/;"	v
+nky	examples/alloy_discovery/make_alloy_final.py	/^                   nky=21)$/;"	v
+nky	examples/alloy_discovery/make_alloy_final.py	/^                   nky=21,$/;"	v
+nky	examples/alloy_discovery/make_alloy_inputs.py	/^                   nky=21)$/;"	v
+nky	examples/alloy_discovery/make_alloy_inputs.py	/^                   nky=21,$/;"	v
+nky	examples/fe.py	/^        nky     = 21)      # Number of k-points.$/;"	v
+nky	examples/ti_hcp.py	/^            nky=31,             # k-points$/;"	v
+nkz	examples/alloy_discovery/alloy_discovery.py	/^                       nkz=13,$/;"	v
+nkz	examples/alloy_discovery/alloy_discovery.py	/^                       nkz=7,$/;"	v
+nkz	examples/alloy_discovery/make_alloy_final.py	/^                   nkz=17)$/;"	v
+nkz	examples/alloy_discovery/make_alloy_inputs.py	/^                   nkz=17)$/;"	v
+nkz	examples/ti_hcp.py	/^            nkz=19,             # k-points$/;"	v
+nlist	examples/alloy_discovery/alloy_discovery.py	/^            nlist = [s[i] for i in range(0,len(s),2)]            $/;"	v
+nlist	examples/alloy_discovery/alloy_discovery.py	/^            nlist = s$/;"	v
+nlist	examples/alloy_discovery/collect_alloy_final.py	/^        nlist = [s[i] for i in range(0,len(s),2)]            $/;"	v
+nlist	examples/alloy_discovery/collect_alloy_final.py	/^        nlist = s$/;"	v
+nlist	examples/alloy_discovery/make_alloy_final.py	/^        nlist = [s[i] for i in range(0,len(s),2)]            $/;"	v
+nlist	examples/alloy_discovery/make_alloy_final.py	/^        nlist = s$/;"	v
+nlist	examples/alloy_discovery/make_alloy_inputs.py	/^        nlist = [s[i] for i in range(0,len(s),2)]            $/;"	v
+nlist	examples/alloy_discovery/make_alloy_inputs.py	/^        nlist = s$/;"	v
+number	space_group/generate_space_group_dics.py	/^number = number_symbol[::2]$/;"	v
+number_symbol	space_group/generate_space_group_dics.py	/^number_symbol = []$/;"	v
+nz2	examples/CoCrFeMnNi_fcc.py	/^                    nz2=16,$/;"	v
+offset	c/c_lattice.c	/^  size_t offset;$/;"	m	struct:__Pyx_StructField_	file:
+offsetof	c/c_lattice.c	34;"	d	file:
+oldpoly	EOS/EOS.py	/^    def oldpoly(self, V, c0, c1, c2, c3):$/;"	m	class:EOS
+optimize_dmax	latticeinputs/kstr.py	/^    def optimize_dmax(self,prims,basis):$/;"	m	class:Kstr
+output	emtoinputs/batch.py	/^    def output(self):$/;"	m	class:Batch
+output	emtoinputs/kfcd.py	/^    def output(self):$/;"	m	class:Kfcd
+output	emtoinputs/kgrn.py	/^    def output(self):$/;"	m	class:Kgrn
+output	examples/alloy_discovery/alloy_discovery.py	/^            output = output + " {0:9.6f}".format(bcc[7][i])$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^            output = output + " {0:9.6f}".format(fcc[7][i])$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^            output = output + " {0:9.6f}".format(hcp[7][i])$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = "  System: "+sname+"\\n"$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "     bcc: {0:13.6f} {1:9.6f} {2:9.6f} {3:11.6f} {4:8.6f} {5:10.6f} {6:13.6f} {7:12.10f} {8:8.6f}\\n".format(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3],bcc[4],bcc[5],bcc[6],1.0)$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "     fcc: {0:13.6f} {1:9.6f} {2:9.6f} {3:11.6f} {4:8.6f} {5:10.6f} {6:13.6f} {7:12.10f} {8:8.6f}\\n".format(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3],fcc[4],fcc[5],fcc[6],1.0)$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "    Conc: " + conc_line + "\\n"$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "    Magn: " + magn + "\\n"$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "#  Struc.   dft E(Ry)    lc(AA)    sws(bohr) B(GPa)     grun       DOSEf(1\/eV)    fit E(Ry)   fit err      (c\/a)\\n"$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "\\n"$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "bcc_moms:"$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "fcc_moms:"$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output + "hcp_moms:"$/;"	v
+output	examples/alloy_discovery/alloy_discovery.py	/^        output = output +"     hpc: {0:13.6f} {1:9.6f} {2:9.6f} {3:11.6f} {4:8.6f} {5:10.6f} {6:13.6f} {7:12.10f} {8:8.6f}\\n".format(hcp[0],hcp_lc,hcp[1],hcp[2],hcp[3],hcp[4],hcp[5],hcp[6],hcp[8])$/;"	v
+output	examples/alloy_discovery/collect_alloy_final.py	/^    output = "System: "+sname+"\\n"$/;"	v
+output	examples/alloy_discovery/collect_alloy_final.py	/^    output = output + "   fcc: %f %f %f %f %f\\n" %(fcc[0],fcc_lc,fcc[1],fcc[2],fcc[3])$/;"	v
+output	examples/alloy_discovery/collect_alloy_final.py	/^    output = output + "  Magn: " +magn+"\\n"$/;"	v
+output	examples/alloy_discovery/collect_alloy_final.py	/^    output = output +"   hpc: %f %f %f %f %f %f\\n" %(hcp[0],hcp_lc,hcp[1],hcp[2],hcp[3],hcp[4])$/;"	v
+output	examples/alloy_discovery/collect_alloy_final.py	/^    output = output+"   bcc: %f %f %f %f %f\\n" %(bcc[0],bcc_lc,bcc[1],bcc[2],bcc[3])$/;"	v
+output	examples/alloy_discovery/collect_alloy_final.py	/^    output = output+"# Strc.   dft E      lc       sws       B         fit E     (c\/a)\\n"$/;"	v
+output	examples/alloy_discovery/make_alloy_final.py	/^    output = "System: "+sname+"\\n"$/;"	v
+output	examples/alloy_discovery/make_alloy_final.py	/^    output = output + "   fcc: %f %f %f\\n" %(fcc[0],fcc[1],fcc[2])$/;"	v
+output	examples/alloy_discovery/make_alloy_final.py	/^    output = output + "  Magn: " +magn+"\\n"$/;"	v
+output	examples/alloy_discovery/make_alloy_final.py	/^    output = output +"   hpc: %f %f %f %f\\n" %(hcp[0],hcp[1],hcp[2],hcp[3])$/;"	v
+output	examples/alloy_discovery/make_alloy_final.py	/^    output = output+"   bcc: %f %f %f\\n" %(bcc[0],bcc[1],bcc[2])$/;"	v
+output	examples/alloy_discovery/make_alloy_final.py	/^    output = output+"# Strc.     E         sws      B        (c\/a)\\n"$/;"	v
+output	latticeinputs/batch.py	/^    def output(self):$/;"	m	class:Batch
+output	latticeinputs/bmdl.py	/^    def output(self):$/;"	m	class:Bmdl
+output	latticeinputs/kstr.py	/^    def output(self, index):$/;"	m	class:Kstr
+output	latticeinputs/shape.py	/^    def output(self):$/;"	m	class:Shape
+output_all	examples/alloy_discovery/alloy_discovery.py	/^    output_all = ""$/;"	v
+output_file	examples/alloy_discovery/alloy_discovery.py	/^    output_file = open('results','w')$/;"	v
+p	c/c_lattice.c	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon3	file:
+parabola	EOS/EOS.py	/^    def parabola(self, x, a, b, c):$/;"	m	class:EOS
+parent_offset	c/c_lattice.c	/^  size_t parent_offset;$/;"	m	struct:__anon5	file:
+periodic_table	emto_parser/emtoparser.py	/^    periodic_table = pd.read_json(f)$/;"	v
+plot	EOS/EOS.py	/^    def plot(self, filename=None, show=True):$/;"	m	class:EOS
+polyfit	EOS/EOS.py	/^    def polyfit(x,y,n):$/;"	m	class:EOS
+polynomial	EOS/asturfit.py	/^class polynomial:$/;"	c
+pouriertarantola	EOS/EOS.py	/^    def pouriertarantola(self, V, E0, B0, BP, V0):$/;"	m	class:EOS
+predict_next_sws	system.py	/^    def predict_next_sws(self, swses, en, maxdelta=0.05):$/;"	m	class:System
+predicted	EOS/EOS.py	/^    def predicted(self):$/;"	m	class:EOS
+prepare_input_files	examples/emto_input_generator.py	/^    def prepare_input_files(self, prims=None, basis=None, latpath=None,$/;"	m	class:EMTO
+pressure	EOS/EOS.py	/^    def pressure(self, sws):$/;"	m	class:EOS
+prims	examples/B2_Cr.py	/^                             prims=prims,$/;"	v
+prims	examples/B2_Cr.py	/^prims = np.array([[1.0,0.0,0.0],$/;"	v
+prims	examples/L11_CuPt.py	/^                             prims=prims,$/;"	v
+prims	examples/L11_CuPt.py	/^prims = np.array([[1.0,0.5,0.5],$/;"	v
+prims	examples/create_L11.py	/^                             prims=prims,$/;"	v
+prims	examples/create_L11.py	/^prims = np.array([[1.0, 0.5, 0.5],$/;"	v
+prims	examples/generate_bcc_fcc_ssos.py	/^                             prims=prims,$/;"	v
+prims	examples/generate_bcc_fcc_ssos.py	/^prims = np.array([[0.0,2.0,3.0],$/;"	v
+print_eos_output	EOS/EOS.py	/^    def print_eos_output(self):$/;"	m	class:EOS
+print_file	emto_parser/dos_parser.py	/^    def print_file(self):$/;"	m	class:Get_DOS
+print_sws_ens	system.py	/^    def print_sws_ens(self, string, swses, energies):$/;"	m	class:System
+print_sws_ens_hcp	system.py	/^    def print_sws_ens_hcp(self, string, swses, energies, cas):$/;"	m	class:System
+pybuffer	c/c_lattice.c	/^  Py_buffer pybuffer;$/;"	m	struct:__anon12	file:
+rcbuffer	c/c_lattice.c	/^  __Pyx_Buffer *rcbuffer;$/;"	m	struct:__anon13	file:
+real	c/c_lattice.c	/^    typedef struct { double real, imag; } __pyx_t_double_complex;$/;"	m	struct:__anon8	file:
+real	c/c_lattice.c	/^    typedef struct { float real, imag; } __pyx_t_float_complex;$/;"	m	struct:__anon7	file:
+refcount	c/c_lattice.c	/^  size_t refcount;$/;"	m	struct:__anon12	file:
+refine_lc	system.py	/^    def refine_lc(self, sws, delta=0.01, prn=True, xc='PBE'):$/;"	m	class:System
+refine_lc_hcp	system.py	/^    def refine_lc_hcp(self, sws, ca0, delta=0.01, prn=True, xc='PBE'):$/;"	m	class:System
+relax_fit	EOS/EOS.py	/^    def relax_fit(self, x, y, n, debug=False,title=''):$/;"	m	class:EOS
+results	examples/alloy_discovery/alloy_discovery.py	/^    results = []$/;"	v
+results	examples/alloy_discovery/collect_alloy_final.py	/^results = []        $/;"	v
+results	examples/alloy_discovery/make_alloy_final.py	/^results = []$/;"	v
+root	c/c_lattice.c	/^  __Pyx_StructField root;$/;"	m	struct:__anon6	file:
+rotation_matrix	utilities/utils.py	/^def rotation_matrix(axis, theta):$/;"	f
+run_bash	examples/alloy_discovery/create_submit_all_script.py	/^    def run_bash(cmd):$/;"	f	function:create_submit_all_script
+run_bash	examples/alloy_discovery/create_submit_final_script.py	/^    def run_bash(cmd):$/;"	f	function:create_submit_all_script
+run_bash	utilities/utils.py	/^def run_bash(cmd):$/;"	f
+run_emto	utilities/utils.py	/^def run_emto(name, folder=".\/"):$/;"	f
+runemto	system.py	/^    def runemto(self, jobname, folder=".\/", EMTODIR=None, onlyKFCD=False):$/;"	m	class:System
+runlattice	system.py	/^    def runlattice(self, jobname=None, folder=".\/", EMTODIR=None):$/;"	m	class:System
+runtime	examples/alloy_discovery/alloy_discovery.py	/^                       runtime="12:00:00",$/;"	v
+runtime	examples/alloy_discovery/alloy_discovery.py	/^                       runtime='24:00:00',$/;"	v
+runtime	examples/ti_hcp.py	/^            runtime='24:00:00') # Allow large enough timelimit for SLURM   $/;"	v
+ry2ev	emto_parser/emtoparser.py	/^ry2ev = 13.605698066 #eV$/;"	v
+ry2ev	free_energy/free_energy.py	/^ry2ev = 13.605698066$/;"	v
+s	c/c_lattice.c	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon3	file:
+s	examples/alloy_discovery/alloy_discovery.py	/^        s = systems[si]$/;"	v
+s	examples/alloy_discovery/collect_alloy_final.py	/^    s = systems[si]$/;"	v
+s	examples/alloy_discovery/make_alloy_final.py	/^    s = systems[si]$/;"	v
+s	examples/alloy_discovery/make_alloy_inputs.py	/^    s = systems[si]$/;"	v
+savg_class	EOS/asturfit.py	/^class savg_class:$/;"	c
+sb_class	EOS/asturfit.py	/^class sb_class:$/;"	c
+sc_res	examples/alloy_discovery/alloy_discovery.py	/^            sc_res = []$/;"	v
+sc_res	examples/alloy_discovery/collect_alloy_final.py	/^        sc_res = []$/;"	v
+sc_res	examples/alloy_discovery/make_alloy_final.py	/^        sc_res = []$/;"	v
+set_values	emtoinputs/batch.py	/^    def set_values(self, key, value):$/;"	m	class:Batch
+set_values	emtoinputs/emtoinputs.py	/^    def set_values(self, **kwargs):$/;"	m	class:Emtoinputs
+set_values	emtoinputs/kfcd.py	/^    def set_values(self, key, value):$/;"	m	class:Kfcd
+set_values	emtoinputs/kgrn.py	/^    def set_values(self, key, value):$/;"	m	class:Kgrn
+set_values	latticeinputs/batch.py	/^    def set_values(self, key, value):$/;"	m	class:Batch
+set_values	latticeinputs/bmdl.py	/^    def set_values(self, key, value):$/;"	m	class:Bmdl
+set_values	latticeinputs/kstr.py	/^    def set_values(self, key, value):$/;"	m	class:Kstr
+set_values	latticeinputs/latticeinputs.py	/^    def set_values(self, **kwargs):$/;"	m	class:Latticeinputs
+set_values	latticeinputs/shape.py	/^    def set_values(self, key, value):$/;"	m	class:Shape
+shape	c/c_lattice.c	/^  Py_ssize_t shape, strides, suboffsets;$/;"	m	struct:__anon11	file:
+size	c/c_lattice.c	/^  size_t size;$/;"	m	struct:__anon4	file:
+sjeos	EOS/EOS.py	/^    def sjeos(self, V, a, b, c, d):$/;"	m	class:EOS
+sname	examples/alloy_discovery/alloy_discovery.py	/^            sname = sname + atom$/;"	v
+sname	examples/alloy_discovery/alloy_discovery.py	/^            sname = sname + r[0][0][i] + '{0:07.4f}_'.format(100*r[0][1][i])$/;"	v
+sname	examples/alloy_discovery/alloy_discovery.py	/^        sname = ""$/;"	v
+sname	examples/alloy_discovery/alloy_discovery.py	/^        sname = sname[:-1]$/;"	v
+sname	examples/alloy_discovery/collect_alloy_final.py	/^        sname = sname + atom$/;"	v
+sname	examples/alloy_discovery/collect_alloy_final.py	/^        sname=sname+r[0][0][i]+str(r[0][1][i])$/;"	v
+sname	examples/alloy_discovery/collect_alloy_final.py	/^    sname = ""$/;"	v
+sname	examples/alloy_discovery/make_alloy_final.py	/^        sname = sname + atom$/;"	v
+sname	examples/alloy_discovery/make_alloy_final.py	/^        sname=sname+r[0][0][i]+str(r[0][1][i])$/;"	v
+sname	examples/alloy_discovery/make_alloy_final.py	/^    sname = ""$/;"	v
+sname	examples/alloy_discovery/make_alloy_inputs.py	/^        sname = sname + atom$/;"	v
+sname	examples/alloy_discovery/make_alloy_inputs.py	/^    sname = ""$/;"	v
+sofc	examples/CoCrFeMnNi_fcc.py	/^                    sofc='Y',$/;"	v
+sofc	examples/alloy_discovery/alloy_discovery.py	/^                       sofc='Y',$/;"	v
+sofc	examples/alloy_discovery/make_alloy_final.py	/^                   sofc='Y',$/;"	v
+sofc	examples/alloy_discovery/make_alloy_inputs.py	/^                   sofc='Y',$/;"	v
+sofc	examples/fe.py	/^        sofc    = 'Y',     # We want to use soft-core approximation.$/;"	v
+sofc	examples/fe_elastic_constants.py	/^        sofc    = 'Y',     # We want to use soft-core approximation.$/;"	v
+sofc	examples/ti_hcp.py	/^            sofc='Y',$/;"	v
+species	examples/B2_Cr.py	/^                             species=species,$/;"	v
+species	examples/B2_Cr.py	/^species = ["Cr2-","Cr2+"]$/;"	v
+species	examples/L11_CuPt.py	/^                             species=species,$/;"	v
+species	examples/L11_CuPt.py	/^species = ["Cu","Pt"]$/;"	v
+species	examples/create_L11.py	/^                             species=species,$/;"	v
+species	examples/create_L11.py	/^species = ["Cu", "Pt"]$/;"	v
+species_cpa	examples/B2_Cr.py	/^species_cpa = ["Cr","Cr"]$/;"	v
+species_cpa	examples/L11_CuPt.py	/^species_cpa = [["cu","pt"],["cu","pt"]]$/;"	v
+species_cpa	examples/create_L11.py	/^species_cpa = species$/;"	v
+species_cpa	examples/generate_bcc_fcc_ssos.py	/^species_cpa = ["Co","Cr","Fe","Mn","Ni"]$/;"	v
+split	examples/alloy_discovery/alloy_discovery.py	/^        split = splits[si]$/;"	v
+split	examples/alloy_discovery/make_alloy_final.py	/^    split = splits[si]$/;"	v
+split	examples/alloy_discovery/make_alloy_inputs.py	/^    split = splits[si]$/;"	v
+splits	examples/alloy_discovery/alloy_discovery.py	/^splits = []$/;"	v
+splits	examples/alloy_discovery/collect_alloy_final.py	/^splits = []$/;"	v
+splits	examples/alloy_discovery/make_alloy_final.py	/^splits = []$/;"	v
+splits	examples/alloy_discovery/make_alloy_inputs.py	/^splits = []$/;"	v
+splt	examples/alloy_discovery/alloy_discovery.py	/^        splt = []$/;"	v
+splt	examples/alloy_discovery/collect_alloy_final.py	/^        splt = []$/;"	v
+splt	examples/alloy_discovery/make_alloy_final.py	/^        splt = []$/;"	v
+splt	examples/alloy_discovery/make_alloy_inputs.py	/^        splt = []$/;"	v
+splts	examples/B2_Cr.py	/^                        splts=[-2,2])$/;"	v
+splts	examples/CoCrFeMnNi_fcc.py	/^                    splts=[-1.0,1.0,-1.0,1.0,-1.0,1.0,-1.0,1.0,-1.0,1.0],$/;"	v
+splts	examples/alloy_discovery/alloy_discovery.py	/^                       splts = split,$/;"	v
+splts	examples/alloy_discovery/make_alloy_final.py	/^                   splts = split,$/;"	v
+splts	examples/alloy_discovery/make_alloy_inputs.py	/^                   splts = split,$/;"	v
+splts	examples/fe.py	/^        splts   = [2.0],   # A list of magnetic splittings.$/;"	v
+splts	examples/fe_elastic_constants.py	/^        splts   = [2.0],   # A list of magnetic splittings.$/;"	v
+stmp	examples/alloy_discovery/alloy_discovery.py	/^                       stmp='A',$/;"	v
+str2num	emto_parser/emtoparser.py	/^def str2num(string):$/;"	f
+strain2volume	EOS/asturfit.py	/^def strain2volume(f, V0, strain='eulerian'):$/;"	f
+strainbootstrap	EOS/asturfit.py	/^def strainbootstrap(V, E, V0, ndeg=12, nsample=100, strain='eulerian', LOG=0, nargout=1):$/;"	f
+straineval	EOS/asturfit.py	/^def straineval(c, V0, V, strain='eulerian'):$/;"	f
+strainevalE	EOS/asturfit.py	/^def strainevalE(c, V0, V, strain='eulerian'):$/;"	f
+straineval_class	EOS/asturfit.py	/^class straineval_class:$/;"	c
+strainfit	EOS/asturfit.py	/^def strainfit(V, E, V0, ndeg=4, strain='eulerian', LOG=0, nargout=1):$/;"	f
+strainmin	EOS/asturfit.py	/^def strainmin(c, V0, Vrange, strain='eulerian'):$/;"	f
+strides	c/c_lattice.c	/^  Py_ssize_t shape, strides, suboffsets;$/;"	m	struct:__anon11	file:
+strucpath	examples/alloy_discovery/make_alloy_final.py	/^        strucpath = "..\/"$/;"	v
+struct_alignment	c/c_lattice.c	/^  size_t struct_alignment;$/;"	m	struct:__anon6	file:
+structpath	examples/alloy_discovery/alloy_discovery.py	/^            structpath = "..\/"$/;"	v
+structure	examples/alloy_discovery/make_lattices.py	/^structure=pyemto.System(folder=emtopath)$/;"	v
+structure	examples/structures.py	/^structure=pyemto.System(folder=emtopath)$/;"	v
+submit_jobs	system.py	/^    def submit_jobs(self, jobnames, folder=None):$/;"	m	class:System
+submit_to_batch	utilities/utils.py	/^def submit_to_batch(folder, jobname, system='slurm'):$/;"	f
+suboffsets	c/c_lattice.c	/^  Py_ssize_t shape, strides, suboffsets;$/;"	m	struct:__anon11	file:
+sws	examples/CoCrFeMnNi_fcc.py	/^                    sws=sws[i],$/;"	v
+sws	examples/CoCrFeMnNi_fcc.py	/^sws = np.linspace(2.50,2.70,11) # 11 different volumes from 2.5 Bohr to 2.7 Bohr$/;"	v
+sws	examples/alloy_discovery/alloy_discovery.py	/^                       sws=initialsws,$/;"	v
+sws	examples/alloy_discovery/alloy_discovery.py	/^                       sws=sws0,$/;"	v
+sws	examples/alloy_discovery/make_alloy_final.py	/^                   sws=sws0,$/;"	v
+sws	examples/alloy_discovery/make_alloy_inputs.py	/^                   sws=initialsws,$/;"	v
+sws	examples/fe.py	/^sws = [2.6,2.62,2.64,2.66,2.68,2.70] # A list of Wigner-Seitz radii$/;"	v
+sws	examples/ti_hcp.py	/^            sws=3.0,$/;"	v
+sws	examples/ti_hcp.py	/^sws = np.linspace(2.9,3.1,7) # A list of 7 different volumes from 2.9 to 3.1 $/;"	v
+sws0	examples/fe_elastic_constants.py	/^sws0 = 2.64 # Eq. WS-radius that we computed previously.$/;"	v
+sws_range	examples/B2_Cr.py	/^sws_range = np.linspace(2,3,6)$/;"	v
+sws_range	examples/L11_CuPt.py	/^sws_range = np.linspace(2,3,6)$/;"	v
+sws_range	examples/create_L11.py	/^sws_range = np.linspace(2,3,6)$/;"	v
+sws_range	examples/generate_bcc_fcc_ssos.py	/^sws_range = np.linspace(2, 3, 6)$/;"	v
+swsrange	examples/alloy_discovery/alloy_discovery.py	/^            swsrange = np.linspace(2.40,2.80,20)$/;"	v
+swsrange	examples/alloy_discovery/alloy_discovery.py	/^            swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes$/;"	v
+swsrange	examples/alloy_discovery/collect_alloy_final.py	/^        swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes$/;"	v
+swsrange	examples/alloy_discovery/make_alloy_final.py	/^        swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes$/;"	v
+swsrange	examples/alloy_discovery/make_alloy_inputs.py	/^        swsrange = np.linspace(initialsws-0.1,initialsws+0.1,7) # A list of 7 different volumes$/;"	v
+symbol	space_group/generate_space_group_dics.py	/^symbol = number_symbol[1::2]$/;"	v
+systems	examples/alloy_discovery/alloy_discovery.py	/^    systems = newsystems$/;"	v
+systems	examples/alloy_discovery/alloy_discovery.py	/^systems = [['Co','Cr','Fe','Mn','Ni']]$/;"	v
+systems	examples/alloy_discovery/collect_alloy_final.py	/^    systems = newsystems$/;"	v
+systems	examples/alloy_discovery/collect_alloy_final.py	/^systems = [['Al']]$/;"	v
+systems	examples/alloy_discovery/collect_alloy_final.py	/^systems = [['Fe'],['Al']]$/;"	v
+systems	examples/alloy_discovery/make_alloy_final.py	/^    systems = newsystems$/;"	v
+systems	examples/alloy_discovery/make_alloy_final.py	/^systems = [['Al']]$/;"	v
+systems	examples/alloy_discovery/make_alloy_inputs.py	/^    systems = newsystems$/;"	v
+systems	examples/alloy_discovery/make_alloy_inputs.py	/^systems = [['Fe'],['Al']]$/;"	v
+taylor	EOS/EOS.py	/^    def taylor(self, V, E0, beta, alpha, V0):$/;"	m	class:EOS
+test	emto_parser/emtoparser.py	/^    test = EMTOPARSER("kfcd_output\/al0.20_co0.20_cr0.20_fe0.20_ni0.20_bcc_2.550000",suffix='prn')$/;"	v	class:EMTOPARSER
+tfermi	examples/CoCrFeMnNi_fcc.py	/^                    tfermi=5000,$/;"	v
+ti_hcp	examples/ti_hcp.py	/^ti_hcp=pyemto.System(folder=emtopath)$/;"	v
+tole	examples/CoCrFeMnNi_fcc.py	/^                    tole=1.0E-8,$/;"	v
+tole	examples/alloy_discovery/alloy_discovery.py	/^                       tole=1.0e-8,$/;"	v
+type	c/c_lattice.c	/^  __Pyx_TypeInfo* type;$/;"	m	struct:__Pyx_StructField_	file:
+typegroup	c/c_lattice.c	/^  char typegroup;$/;"	m	struct:__anon4	file:
+uint32_t	c/c_lattice.c	/^           typedef unsigned __int32  uint32_t;$/;"	t	file:
+uint32_t	c/c_lattice.c	/^           typedef unsigned int      uint32_t;$/;"	t	file:
+uint8_t	c/c_lattice.c	/^           typedef unsigned __int8   uint8_t;$/;"	t	file:
+uint8_t	c/c_lattice.c	/^           typedef unsigned char     uint8_t;$/;"	t	file:
+unlikely	c/c_lattice.c	821;"	d	file:
+unlikely	c/c_lattice.c	824;"	d	file:
+vinet	EOS/EOS.py	/^    def vinet(self, V, E0, B0, BP, V0):$/;"	m	class:EOS
+vol2wsrad	EOS/EOS.py	/^    def vol2wsrad(self, V):$/;"	m	class:EOS
+volume2strain	EOS/asturfit.py	/^def volume2strain(V, V0, strain='eulerian'):$/;"	f
+wait_for_jobs	system.py	/^    def wait_for_jobs(self, jobsdict, restart_partition='general', sleeptime=60, restart_z=None,$/;"	m	class:System
+which_error	system.py	/^    def which_error(self, jobname, folder=".\/"):$/;"	m	class:System
+write_batch	utilities/utils.py	/^def write_batch(folder, jobname):$/;"	f
+write_bmdl_kstr_shape_input	examples/emto_input_generator.py	/^    def write_bmdl_kstr_shape_input(self):$/;"	m	class:EMTO
+write_input_file	emtoinputs/batch.py	/^    def write_input_file(self, folder=None):$/;"	m	class:Batch
+write_input_file	emtoinputs/kfcd.py	/^    def write_input_file(self, folder=None):$/;"	m	class:Kfcd
+write_input_file	emtoinputs/kgrn.py	/^    def write_input_file(self, folder=None):$/;"	m	class:Kgrn
+write_input_file	latticeinputs/batch.py	/^    def write_input_file(self, folder=None):$/;"	m	class:Batch
+write_input_file	latticeinputs/bmdl.py	/^    def write_input_file(self, folder=None):$/;"	m	class:Bmdl
+write_input_file	latticeinputs/kstr.py	/^    def write_input_file(self, folder=None):$/;"	m	class:Kstr
+write_input_file	latticeinputs/shape.py	/^    def write_input_file(self, folder=None):$/;"	m	class:Shape
+write_inputs	system.py	/^    def write_inputs(self,folder=None, batch=True):$/;"	m	class:System
+write_jij_input_file	jij/create_jij_input	/^def write_jij_input_file(kstr_input=None, ref_site=0, shifts=[2,2,2], output_folder='.\/', jobname='jobname',$/;"	f
+write_job	utilities/utils.py	/^def write_job(folder, jobname, atom, conc, sws):$/;"	f
+write_kgrn_kfcd_input	examples/emto_input_generator.py	/^    def write_kgrn_kfcd_input(self):$/;"	m	class:EMTO
+write_kgrn_kfcd_swsrange	examples/emto_input_generator.py	/^    def write_kgrn_kfcd_swsrange(self, sws=None):$/;"	m	class:EMTO
+write_structure_input_files	latticeinputs/latticeinputs.py	/^    def write_structure_input_files(self, jobname_lat=None, lat=None, folder=None, **kwargs):$/;"	m	class:Latticeinputs
+wsrad2vol	EOS/EOS.py	/^    def wsrad2vol(self, WSrad):$/;"	m	class:EOS
+wsrad_to_latparam	utilities/utils.py	/^def wsrad_to_latparam(sws, lat, ca=None, c=None):$/;"	f
+x	c/c_lattice.c	/^typedef struct { PY_LONG_LONG x; char c; } __Pyx_pad_longlong;$/;"	m	struct:__anon29	file:
+x	c/c_lattice.c	/^typedef struct { char c; PY_LONG_LONG x; } __Pyx_st_longlong;$/;"	m	struct:__anon21	file:
+x	c/c_lattice.c	/^typedef struct { char c; double x; } __Pyx_st_double;$/;"	m	struct:__anon18	file:
+x	c/c_lattice.c	/^typedef struct { char c; float x; } __Pyx_st_float;$/;"	m	struct:__anon17	file:
+x	c/c_lattice.c	/^typedef struct { char c; int x; } __Pyx_st_int;$/;"	m	struct:__anon15	file:
+x	c/c_lattice.c	/^typedef struct { char c; long double x; } __Pyx_st_longdouble;$/;"	m	struct:__anon19	file:
+x	c/c_lattice.c	/^typedef struct { char c; long x; } __Pyx_st_long;$/;"	m	struct:__anon16	file:
+x	c/c_lattice.c	/^typedef struct { char c; short x; } __Pyx_st_short;$/;"	m	struct:__anon14	file:
+x	c/c_lattice.c	/^typedef struct { char c; void *x; } __Pyx_st_void_p;$/;"	m	struct:__anon20	file:
+x	c/c_lattice.c	/^typedef struct { double x; char c; } __Pyx_pad_double;$/;"	m	struct:__anon26	file:
+x	c/c_lattice.c	/^typedef struct { float x; char c; } __Pyx_pad_float;$/;"	m	struct:__anon25	file:
+x	c/c_lattice.c	/^typedef struct { int x; char c; } __Pyx_pad_int;$/;"	m	struct:__anon23	file:
+x	c/c_lattice.c	/^typedef struct { long double x; char c; } __Pyx_pad_longdouble;$/;"	m	struct:__anon27	file:
+x	c/c_lattice.c	/^typedef struct { long x; char c; } __Pyx_pad_long;$/;"	m	struct:__anon24	file:
+x	c/c_lattice.c	/^typedef struct { short x; char c; } __Pyx_pad_short;$/;"	m	struct:__anon22	file:
+x	c/c_lattice.c	/^typedef struct { void *x; char c; } __Pyx_pad_void_p;$/;"	m	struct:__anon28	file:
+xc	examples/alloy_discovery/alloy_discovery.py	/^                       xc='PBE')$/;"	v
+xc	examples/alloy_discovery/alloy_discovery.py	/^                       xc='PBE',$/;"	v
+xc	examples/alloy_discovery/make_alloy_final.py	/^                   xc='PBE',$/;"	v
+xc	examples/alloy_discovery/make_alloy_inputs.py	/^                   xc='PBE',$/;"	v
+xc	examples/fe.py	/^        xc      = 'PBE',   # We want to use the PBE functional.$/;"	v
+xc	examples/fe_elastic_constants.py	/^        xc      = 'PBE',   # We want to use the PBE functional.$/;"	v
+xc	examples/ti_hcp.py	/^            xc='P07',           # Use PBEsol$/;"	v

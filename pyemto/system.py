@@ -638,67 +638,63 @@ class System:
 
         jobnames = []
 
-        if self.lat == 'bcc' or self.lat == 'fcc':
-            for j in range(len(self.lc_batch_sws_range)):
-                self.sws = self.lc_batch_sws_range[j]
-                job = self.create_jobname(self.jobname)
-                jobnames.append(job)
-                self.emto.set_values(sws=self.sws, jobname=job)
+        # if self.lat == 'bcc' or self.lat == 'fcc' or self.lat == 'hcp':
+        for j in range(len(self.lc_batch_sws_range)):
+            self.sws = self.lc_batch_sws_range[j]
+            job = self.create_jobname(self.jobname)
+            jobnames.append(job)
+            self.emto.set_values(sws=self.sws, jobname=job)
 
-                common.check_folders(
-                    self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                common.check_folders(self.folder + "/kfcd")
-                common.check_folders(self.folder + "/fit")
+            common.check_folders(
+                self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
+            common.check_folders(self.folder + "/kfcd")
+            common.check_folders(self.folder + "/fit")
 
-                self.emto.kgrn.write_input_file(folder=self.folder)
-                self.emto.kfcd.write_input_file(folder=self.folder)
-                self.emto.batch.write_input_file(folder=self.folder)
+            self.emto.kgrn.write_input_file(folder=self.folder)
+            self.emto.kfcd.write_input_file(folder=self.folder)
+            self.emto.batch.write_input_file(folder=self.folder)
 
-            return jobnames
+        return jobnames
 
-        elif self.lat == 'hcp':
-            #latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
-            #            'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
+        # elif self.lat == 'hcp':
+            # for i in range(len(self.lc_batch_ca_range)):
+                # for j in range(len(self.lc_batch_sws_range)):
 
-            for i in range(len(self.lc_batch_ca_range)):
-                for j in range(len(self.lc_batch_sws_range)):
+                    # caname = "hcp_ca"+str(i+1)
+                    # self.sws = self.lc_batch_sws_range[j]
+                    # job = self.create_jobname(self.jobname + "_" + caname)
+                    # jobnames.append(job)
+                    # self.emto.set_values(sws=self.sws, jobname=job)
+                    # self.emto.set_values(latname=caname)
 
-                    caname = "hcp_ca"+str(i+1)
-                    self.sws = self.lc_batch_sws_range[j]
-                    job = self.create_jobname(self.jobname + "_" + caname)
-                    jobnames.append(job)
-                    self.emto.set_values(sws=self.sws, jobname=job)
-                    self.emto.set_values(latname=caname)
+                    # common.check_folders(
+                        # self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
+                    # common.check_folders(self.folder + "/kfcd")
+                    # common.check_folders(self.folder + "/fit")
 
-                    common.check_folders(
-                        self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                    common.check_folders(self.folder + "/kfcd")
-                    common.check_folders(self.folder + "/fit")
+                    # self.emto.kgrn.write_input_file(folder=self.folder)
+                    # self.emto.kfcd.write_input_file(folder=self.folder)
+                    # self.emto.batch.write_input_file(folder=self.folder)
 
-                    self.emto.kgrn.write_input_file(folder=self.folder)
-                    self.emto.kfcd.write_input_file(folder=self.folder)
-                    self.emto.batch.write_input_file(folder=self.folder)
+            # return jobnames
 
-            return jobnames
+        # else:
+            # for j in range(len(self.lc_batch_sws_range)):
+                # self.sws = self.lc_batch_sws_range[j]
+                # job = self.create_jobname(self.jobname)
+                # jobnames.append(job)
+                # self.emto.set_values(sws=self.sws, jobname=job)
 
-        #elif self.lat == 'trig' or self.lat == 'stric':
-        else:
-            for j in range(len(self.lc_batch_sws_range)):
-                self.sws = self.lc_batch_sws_range[j]
-                job = self.create_jobname(self.jobname)
-                jobnames.append(job)
-                self.emto.set_values(sws=self.sws, jobname=job)
+                # common.check_folders(
+                    # self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
+                # common.check_folders(self.folder + "/kfcd")
+                # common.check_folders(self.folder + "/fit")
 
-                common.check_folders(
-                    self.folder, self.folder + "/kgrn", self.folder + "/kgrn/tmp")
-                common.check_folders(self.folder + "/kfcd")
-                common.check_folders(self.folder + "/fit")
+                # self.emto.kgrn.write_input_file(folder=self.folder)
+                # self.emto.kfcd.write_input_file(folder=self.folder)
+                # self.emto.batch.write_input_file(folder=self.folder)
 
-                self.emto.kgrn.write_input_file(folder=self.folder)
-                self.emto.kfcd.write_input_file(folder=self.folder)
-                self.emto.batch.write_input_file(folder=self.folder)
-
-            return jobnames
+            # return jobnames
 
 
     def lattice_constants_batch_calculate(self, sws=None, ca=None):
