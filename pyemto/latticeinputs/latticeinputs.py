@@ -213,7 +213,7 @@ class Latticeinputs:
 
         # With hcp elastic constants, due to the two-atom basis, we have to
         # relax the position of the second atom in order to get accurate results.
-        elif relax is True and relax_index is None:
+        if relax is True and relax_index is None:
             sys.exit(
                 'latticeinputs.distortion(): \'relax_index\' has to be given, when relax=True!')
 
@@ -226,7 +226,7 @@ class Latticeinputs:
         # Details can be found in Vitos' book pages 104-110.
 
         if lat == 'bcc' and dist == 'ortho':
-            self.set_values(jobname='bcco{0}'.format(index))
+            self.set_values(jobname_lat='bcco{0}'.format(index))
             self.set_values(lat='bco', dmax=dmax)
 
             latparams = [
@@ -238,7 +238,7 @@ class Latticeinputs:
                 latparams=latparams, latvectors=latvectors, basis=basis)
 
         elif lat == 'bcc' and dist == 'mono':
-            self.set_values(jobname='bccm{0}'.format(index))
+            self.set_values(jobname_lat='bccm{0}'.format(index))
             self.set_values(lat='fco', dmax=dmax)
 
             latparams = [1.0, (1.0 - delta) / (1.0 + delta),
@@ -250,7 +250,7 @@ class Latticeinputs:
                 latparams=latparams, latvectors=latvectors, basis=basis)
 
         elif lat == 'fcc' and dist == 'ortho':
-            self.set_values(jobname='fcco{0}'.format(index))
+            self.set_values(jobname_lat='fcco{0}'.format(index))
             self.set_values(lat='fco', dmax=dmax)
 
             latparams = [
@@ -262,7 +262,7 @@ class Latticeinputs:
                 latparams=latparams, latvectors=latvectors, basis=basis)
 
         elif lat == 'fcc' and dist == 'mono':
-            self.set_values(jobname='fccm{0}'.format(index))
+            self.set_values(jobname_lat='fccm{0}'.format(index))
             self.set_values(lat='bco', dmax=dmax)
 
             latparams = [1.0, (1.0 - delta) / (1.0 + delta),
@@ -273,7 +273,7 @@ class Latticeinputs:
             self.set_values(latparams=latparams, latvectors=latvectors, basis=basis)
 
         elif lat == 'hcp' and dist == 'ortho':
-            self.set_values(jobname='hcpo{0}'.format(index))
+            self.set_values(jobname_lat='hcpo{0}'.format(index))
             self.set_values(lat='baco',dmax=dmax)
 
             bao = np.sqrt(3.0)*(1.0-delta)/(1.0+delta)
@@ -292,7 +292,7 @@ class Latticeinputs:
             self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
 
         elif lat == 'hcp' and dist == 'mono':
-            self.set_values(jobname='hcpm{0}'.format(index))
+            self.set_values(jobname_lat='hcpm{0}'.format(index))
 
             # The following out-commented lines are valid when
             # on wants to describe the distorted structure
@@ -350,7 +350,7 @@ class Latticeinputs:
             self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
 
         elif lat == 'sc' and dist == 'ortho':
-            self.set_values(jobname='sco{0}'.format(index))
+            self.set_values(jobname_lat='sco{0}'.format(index))
             self.set_values(lat='so',dmax=dmax)
 
             bs1 = [1.0+delta,0.0,0.0]
@@ -373,7 +373,7 @@ class Latticeinputs:
             self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
 
         elif lat == 'sc' and dist == 'mono':
-            self.set_values(jobname='scm{0}'.format(index))
+            self.set_values(jobname_lat='scm{0}'.format(index))
             self.set_values(lat='baco',dmax=dmax)
 
             latparams = [1.0,(1.0-delta)/(1.0+delta),1.0/(1.0+delta)/(1.0-delta**2)]
@@ -397,7 +397,7 @@ class Latticeinputs:
             self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
 
         elif lat == 'B2' and dist == 'ortho':
-            self.set_values(jobname='B2o{0}'.format(index))
+            self.set_values(jobname_lat='B2o{0}'.format(index))
             self.set_values(lat='so',dmax=dmax)
 
             bs1 = [1.0+delta,0.0,0.0]
@@ -420,7 +420,7 @@ class Latticeinputs:
             self.set_values(latparams=latparams,latvectors=latvectors,basis=basis)
 
         elif lat == 'B2' and dist == 'mono':
-            self.set_values(jobname='B2m{0}'.format(index))
+            self.set_values(jobname_lat='B2m{0}'.format(index))
             self.set_values(lat='baco',dmax=dmax)
 
             latparams = [1.0,(1.0-delta)/(1.0+delta),1.0/(1.0+delta)/(1.0-delta**2)]
