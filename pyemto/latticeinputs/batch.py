@@ -103,7 +103,8 @@ class Batch:
                     line += so + "\n"
         line += "\n"
 
-        elapsed_time = "/usr/bin/time "
+        #elapsed_time = "/usr/bin/time "
+        elapsed_time = ""
 
         if not self.use_module:
             BMDL_path = self.EMTOdir + "/bmdl/source/bmdl"
