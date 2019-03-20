@@ -237,6 +237,10 @@ class System:
                                  concs=self.concs, splts=self.splts, ibz=self.ibz,
                                  latname=self.latname, latpath=self.latpath, emtopath=self.emtopath,
                                  EMTOdir=self.EMTOdir, **kwargs)
+
+        # Make sure that structure files also receive the new input options,
+        # such as slurm_options.
+        self.lattice.set_values(**kwargs)
         return
 
     def bulk_new(self, jobname=None, lat=None, atoms=None, concs=None, splts=None, sws=None,
