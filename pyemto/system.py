@@ -13,6 +13,7 @@ import sys
 import numpy as np
 import pyemto.common.common as common
 
+
 class System:
     """The main class which provides the basis for the pyEMTO scripts.
 
@@ -80,6 +81,7 @@ class System:
     def bulk(self, jobname=None, lat=None, atoms=None, concs=None, splts=None, sws=None,
              latname=None, latpath=None, emtopath=None, ibz=None, bmod=None, xc=None, ca=None,
              **kwargs):
+
         """Initializes the basic parameters for bulk systems.
 
         Basic information concerning the system,

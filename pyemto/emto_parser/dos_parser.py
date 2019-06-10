@@ -24,7 +24,7 @@ class Atom(object):
         self.pnos = arr2[:,3]
         self.dnos = arr2[:,4]
         self.fnos = arr2[:,5]
-        
+
 class Element(object):
     def __init__(self, e, dos, nos, sdos, pdos, ddos, fdos, snos, pnos, dnos, fnos):
         self.e = e
@@ -38,7 +38,7 @@ class Element(object):
         self.pnos = pnos
         self.dnos = dnos
         self.fnos = fnos
-        
+
 class Get_DOS(object):
     def __init__(self, fn):
         self.fn = fn
