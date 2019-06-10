@@ -8,6 +8,7 @@ Atom	emto_parser/dos_parser.py	/^class Atom(object):$/;"	c
 AtomOutput	emtoinputs/kgrn.py	/^    def AtomOutput(self):$/;"	m	class:Kgrn
 Atomline	emtoinputs/kgrn.py	/^    def Atomline($/;"	m	class:Kgrn
 B0	examples/fe_elastic_constants.py	/^B0   = 195  # Eq. bulk modulus.$/;"	v
+B0	examples/ti_hcp.py	/^B0   =    115.952318$/;"	v
 BASE	c/c_lattice.c	217;"	d	file:
 Batch	emtoinputs/batch.py	/^class Batch:$/;"	c
 Batch	latticeinputs/batch.py	/^class Batch:$/;"	c
@@ -150,6 +151,7 @@ DL_EXPORT	c/c_lattice.c	51;"	d	file:
 DL_IMPORT	c/c_lattice.c	48;"	d	file:
 DOSEF	emto_parser/emtoparser.py	/^    def DOSEF(self):$/;"	m	class:EMTOPARSER
 Df	emto_parser/emtoparser.py	/^    def Df(self,list,col,colname):$/;"	m	class:EMTOPARSER
+E0	examples/ti_hcp.py	/^E0   =  -1705.738844$/;"	v
 EFx	emto_parser/dos_parser.py	/^    def EFx(self):$/;"	m	class:Get_DOS
 EFy	emto_parser/dos_parser.py	/^    def EFy(self):$/;"	m	class:Get_DOS
 EMTO	examples/emto_input_generator.py	/^class EMTO:$/;"	c
@@ -171,6 +173,8 @@ Get_DOS	emto_parser/dos_parser.py	/^class Get_DOS(object):$/;"	c
 HAVE_LONG_LONG	c/c_lattice.c	56;"	d	file:
 INCREF	c/c_lattice.c	/^    void (*INCREF)(void*, PyObject*, int);$/;"	m	struct:__anon9	file:
 IS_UNSIGNED	c/c_lattice.c	869;"	d	file:
+KFCD_file_type	examples/ti_hcp.py	/^            KFCD_file_type='fcd',$/;"	v
+KGRN_file_type	examples/ti_hcp.py	/^            KGRN_file_type='scf',$/;"	v
 Kfcd	emtoinputs/kfcd.py	/^class Kfcd:$/;"	c
 Kgrn	emtoinputs/kgrn.py	/^class Kgrn:$/;"	c
 Kstr	latticeinputs/kstr.py	/^class Kstr:$/;"	c
@@ -235,6 +239,7 @@ Py_TPFLAGS_HAVE_NEWBUFFER	c/c_lattice.c	343;"	d	file:
 Py_hash_t	c/c_lattice.c	/^  typedef long Py_hash_t;$/;"	t	file:
 Py_tss_NEEDS_INIT	c/c_lattice.c	416;"	d	file:
 Py_tss_t	c/c_lattice.c	/^typedef int Py_tss_t;$/;"	t	file:
+R0	examples/ti_hcp.py	/^R0   =      0.019532$/;"	v
 SHIFT	c/c_lattice.c	216;"	d	file:
 S_conf	free_energy/free_energy.py	/^def S_conf(concs):$/;"	f
 S_elec	free_energy/free_energy.py	/^def S_elec(dos,T):$/;"	f
@@ -939,9 +944,12 @@ ca	examples/alloy_discovery/alloy_discovery.py	/^            ca = round(c_over_a
 ca	examples/alloy_discovery/collect_alloy_final.py	/^        ca = round(c_over_a0,3)$/;"	v
 ca	examples/alloy_discovery/make_alloy_final.py	/^                   ca= ca,$/;"	v
 ca	examples/alloy_discovery/make_alloy_final.py	/^        ca = round(c_over_a0,3)$/;"	v
+ca	examples/ti_hcp.py	/^                                     ca=cas[i])$/;"	v
+ca0	examples/ti_hcp.py	/^ca0  =      1.610122$/;"	v
 ca_fit	EOS/EOS.py	/^    def ca_fit(self, x, y, n, debug=False,title='',find_best_fit=False):$/;"	m	class:EOS
 calc_ws_radius	examples/emto_input_generator.py	/^    def calc_ws_radius(self, struct):$/;"	m	class:EMTO
 cas	examples/structures.py	/^cas = np.linspace(1.50,1.7,7) # 7 different equally spaced c\/a values from 1.5 to 1.7$/;"	v
+cas	examples/ti_hcp.py	/^    cas = np.linspace(1.50,1.7,7) # 7 different equally spaced c\/a values from 1.5 to 1.7$/;"	v
 check_conv	system.py	/^    def check_conv(self, jobname, folder=".\/"):$/;"	m	class:System
 check_folders	common/common.py	/^def check_folders(*args):$/;"	f
 check_input_file	emtoinputs/batch.py	/^    def check_input_file(self):$/;"	m	class:Batch
@@ -1010,6 +1018,7 @@ create_df	emto_parser/emtoparser.py	/^    def create_df(self):$/;"	m	class:EMTOP
 create_jobname	system.py	/^    def create_jobname(self, jobname=None):$/;"	m	class:System
 create_submit_all_script	examples/alloy_discovery/create_submit_all_script.py	/^def create_submit_all_script():$/;"	f
 create_submit_all_script	examples/alloy_discovery/create_submit_final_script.py	/^def create_submit_all_script():$/;"	f
+cs0	examples/ti_hcp.py	/^cs0  =    498.360422$/;"	v
 curve_fit	EOS/EOS.py	/^def curve_fit(f, x, y, p0):$/;"	f
 data	c/c_lattice.c	/^  char *data;$/;"	m	struct:__anon13	file:
 debye_func	free_energy/free_energy.py	/^def debye_func(x):$/;"	f
@@ -1053,7 +1062,7 @@ emtopath	examples/fe.py	/^emtopath = os.getcwd() + "\/fe" # Define a folder for 
 emtopath	examples/fe_elastic_constants.py	/^emtopath = os.getcwd() + "\/fe_elastic_constants" # Define a folder for our KGRN and KFCD input and output files.$/;"	v
 emtopath	examples/generate_bcc_fcc_ssos.py	/^emtopath = folder+"\/bcc_fcc_ssos"  # Folder where the calculations will be performed.$/;"	v
 emtopath	examples/structures.py	/^emtopath = folder$/;"	v
-emtopath	examples/ti_hcp.py	/^emtopath = folder+"\/ti_hcp"         # Folder where the calculation take place.$/;"	v
+emtopath	examples/ti_hcp.py	/^emtopath = folder + "\/ti_hcp"         # Folder where the calculation take place.$/;"	v
 enc_count	c/c_lattice.c	/^  size_t new_count, enc_count;$/;"	m	struct:__anon6	file:
 enc_packmode	c/c_lattice.c	/^  char enc_packmode;$/;"	m	struct:__anon6	file:
 enc_type	c/c_lattice.c	/^  char enc_type;$/;"	m	struct:__anon6	file:
@@ -1066,7 +1075,6 @@ expan	examples/alloy_discovery/make_alloy_final.py	/^                   expan='M
 expan	examples/alloy_discovery/make_alloy_inputs.py	/^                   expan='M',$/;"	v
 expan	examples/fe.py	/^        expan   = 'M',     # We want to use the double-Taylor expansion.$/;"	v
 expan	examples/fe_elastic_constants.py	/^        expan   = 'M',     # We want to use the double-Taylor expansion.$/;"	v
-expan	examples/ti_hcp.py	/^            expan='M',$/;"	v
 extrapolate_0k	utilities/utils.py	/^def extrapolate_0k($/;"	f
 fcc	examples/alloy_discovery/alloy_discovery.py	/^        fcc = r[1][1]$/;"	v
 fcc	examples/alloy_discovery/collect_alloy_final.py	/^    fcc = r[1][1]$/;"	v
@@ -1180,6 +1188,7 @@ jobname	examples/alloy_discovery/make_alloy_inputs.py	/^            jobname = jo
 jobname	examples/alloy_discovery/make_alloy_inputs.py	/^        jobname = ""$/;"	v
 kb	emto_parser/emtoparser.py	/^kb = 8.6173324E-5\/ry2ev #Ry\/K$/;"	v
 kb	free_energy/free_energy.py	/^kb = 8.6173324E-5\/ry2ev #Ry\/K$/;"	v
+lat	examples/ti_hcp.py	/^                                     lat='hcp',$/;"	v
 lat_to_ibz	common/common.py	/^def lat_to_ibz(lat):$/;"	f
 latname	examples/B2_Cr.py	/^                             latname='B2')$/;"	v
 latname	examples/L11_CuPt.py	/^                             latname='L11')$/;"	v
@@ -1188,6 +1197,7 @@ latname	examples/alloy_discovery/make_alloy_final.py	/^                   latnam
 latname	examples/create_L11.py	/^                             latname='L11')$/;"	v
 latname	examples/generate_bcc_fcc_ssos.py	/^                             latname='ssos_bcc_1')$/;"	v
 latnames	examples/structures.py	/^latnames = ['hcp_ca1','hcp_ca2','hcp_ca3','hcp_ca4','hcp_ca5','hcp_ca6','hcp_ca7']$/;"	v
+latnames	examples/ti_hcp.py	/^    latnames = ['hcp_ca1','hcp_ca2','hcp_ca3','hcp_ca4','hcp_ca5','hcp_ca6','hcp_ca7']$/;"	v
 latparam_to_wsrad	utilities/utils.py	/^def latparam_to_wsrad(a=None, lat=None, ca=None, c=None):$/;"	f
 latpath	examples/B2_Cr.py	/^latpath = emtopath$/;"	v
 latpath	examples/CoCrFeMnNi_fcc.py	/^                    latpath=latpath,$/;"	v
@@ -1208,11 +1218,12 @@ latpath	examples/fe_elastic_constants.py	/^        latpath = latpath, # Path to 
 latpath	examples/fe_elastic_constants.py	/^latpath  = os.getcwd() + "\/fe_elastic_constants" # Define a folder where the BMDL, KSTR and KFCD input and output files$/;"	v
 latpath	examples/generate_bcc_fcc_ssos.py	/^latpath = emtopath$/;"	v
 latpath	examples/structures.py	/^latpath = folder$/;"	v
+latpath	examples/ti_hcp.py	/^                                     latpath=latpath,$/;"	v
 latpath	examples/ti_hcp.py	/^            latpath=latpath,$/;"	v
-latpath	examples/ti_hcp.py	/^latpath = "\/wrk\/hpleva\/structures"  # Folder where the structure files are located.$/;"	v
+latpath	examples/ti_hcp.py	/^latpath = emtopath                  # Folder where the structure files are located.$/;"	v
 lattice_constants_analyze	system.py	/^    def lattice_constants_analyze(self, sws=None, ca=None,prn=True,debug=False,method='morse',return_error=False):$/;"	m	class:System
 lattice_constants_batch_calculate	system.py	/^    def lattice_constants_batch_calculate(self, sws=None, ca=None):$/;"	m	class:System
-lattice_constants_batch_generate	system.py	/^    def lattice_constants_batch_generate(self, sws=None, ca=None):$/;"	m	class:System
+lattice_constants_batch_generate	system.py	/^    def lattice_constants_batch_generate(self, sws=None, ca=None, auto_ca=False):$/;"	m	class:System
 lattice_constants_serial_calculate	system.py	/^    def lattice_constants_serial_calculate(self, sws=None, stype="simple", rerun=False, skip=False,$/;"	m	class:System
 lcdict	examples/alloy_discovery/make_alloy_inputs.py	/^lcdict = {'Al':4.0495,'Fe':2.8665}$/;"	v
 likely	c/c_lattice.c	820;"	d	file:
@@ -1233,11 +1244,14 @@ mode	examples/alloy_discovery/alloy_discovery.py	/^mode = 'create_inputs'$/;"	v
 morse	EOS/EOS.py	/^    def morse(self, sws, a0, b0, c0, l0):$/;"	m	class:EOS
 msgl	examples/alloy_discovery/alloy_discovery.py	/^                       msgl = 0,$/;"	v
 msgl	examples/alloy_discovery/alloy_discovery.py	/^                       msgl=0,$/;"	v
+msgl	examples/ti_hcp.py	/^                                     msgl=0,$/;"	v
 murnaghan	EOS/EOS.py	/^    def murnaghan(self, V, E0, B0, BP, V0):$/;"	m	class:EOS
 n	c/c_lattice.c	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon3	file:
 name	c/c_lattice.c	/^  const char* name;$/;"	m	struct:__Pyx_StructField_	file:
 name	c/c_lattice.c	/^  const char* name;$/;"	m	struct:__anon4	file:
 ncpa	examples/CoCrFeMnNi_fcc.py	/^                    ncpa=10,$/;"	v
+ncpu	examples/ti_hcp.py	/^            ncpu=ncpu,$/;"	v
+ncpu	examples/ti_hcp.py	/^ncpu = 16$/;"	v
 ndim	c/c_lattice.c	/^  int ndim;$/;"	m	struct:__anon4	file:
 nes	examples/CoCrFeMnNi_fcc.py	/^                    nes=50,          # Dirac equation parameters$/;"	v
 new_count	c/c_lattice.c	/^  size_t new_count, enc_count;$/;"	m	struct:__anon6	file:
@@ -1371,7 +1385,7 @@ runemto	system.py	/^    def runemto(self, jobname, folder=".\/", EMTODIR=None, o
 runlattice	system.py	/^    def runlattice(self, jobname=None, folder=".\/", EMTODIR=None):$/;"	m	class:System
 runtime	examples/alloy_discovery/alloy_discovery.py	/^                       runtime="12:00:00",$/;"	v
 runtime	examples/alloy_discovery/alloy_discovery.py	/^                       runtime='24:00:00',$/;"	v
-runtime	examples/ti_hcp.py	/^            runtime='24:00:00') # Allow large enough timelimit for SLURM   $/;"	v
+runtime	examples/ti_hcp.py	/^            runtime='24:00:00', # Allow large enough timelimit for SLURM$/;"	v
 ry2ev	emto_parser/emtoparser.py	/^ry2ev = 13.605698066 #eV$/;"	v
 ry2ev	free_energy/free_energy.py	/^ry2ev = 13.605698066$/;"	v
 s	c/c_lattice.c	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon3	file:
@@ -1396,6 +1410,8 @@ set_values	latticeinputs/shape.py	/^    def set_values(self, key, value):$/;"	m	
 shape	c/c_lattice.c	/^  Py_ssize_t shape, strides, suboffsets;$/;"	m	struct:__anon11	file:
 size	c/c_lattice.c	/^  size_t size;$/;"	m	struct:__anon4	file:
 sjeos	EOS/EOS.py	/^    def sjeos(self, V, a, b, c, d):$/;"	m	class:EOS
+slurm_options	examples/ti_hcp.py	/^            slurm_options=slurm_options,$/;"	v
+slurm_options	examples/ti_hcp.py	/^slurm_options=['#SBATCH -n {0}'.format(ncpu),$/;"	v
 sname	examples/alloy_discovery/alloy_discovery.py	/^            sname = sname + atom$/;"	v
 sname	examples/alloy_discovery/alloy_discovery.py	/^            sname = sname + r[0][0][i] + '{0:07.4f}_'.format(100*r[0][1][i])$/;"	v
 sname	examples/alloy_discovery/alloy_discovery.py	/^        sname = ""$/;"	v
@@ -1458,6 +1474,7 @@ struct_alignment	c/c_lattice.c	/^  size_t struct_alignment;$/;"	m	struct:__anon6
 structpath	examples/alloy_discovery/alloy_discovery.py	/^            structpath = "..\/"$/;"	v
 structure	examples/alloy_discovery/make_lattices.py	/^structure=pyemto.System(folder=emtopath)$/;"	v
 structure	examples/structures.py	/^structure=pyemto.System(folder=emtopath)$/;"	v
+structure	examples/ti_hcp.py	/^    structure = pyemto.System(folder=emtopath)$/;"	v
 submit_jobs	system.py	/^    def submit_jobs(self, jobnames, folder=None):$/;"	m	class:System
 submit_to_batch	utilities/utils.py	/^def submit_to_batch(folder, jobname, system='slurm'):$/;"	f
 suboffsets	c/c_lattice.c	/^  Py_ssize_t shape, strides, suboffsets;$/;"	m	struct:__anon11	file:
@@ -1469,8 +1486,9 @@ sws	examples/alloy_discovery/make_alloy_final.py	/^                   sws=sws0,$
 sws	examples/alloy_discovery/make_alloy_inputs.py	/^                   sws=initialsws,$/;"	v
 sws	examples/fe.py	/^sws = [2.6,2.62,2.64,2.66,2.68,2.70] # A list of Wigner-Seitz radii$/;"	v
 sws	examples/ti_hcp.py	/^            sws=3.0,$/;"	v
-sws	examples/ti_hcp.py	/^sws = np.linspace(2.9,3.1,7) # A list of 7 different volumes from 2.9 to 3.1 $/;"	v
+sws	examples/ti_hcp.py	/^sws = np.linspace(2.9,3.1,7) # A list of 7 different volumes from 2.9 to 3.1$/;"	v
 sws0	examples/fe_elastic_constants.py	/^sws0 = 2.64 # Eq. WS-radius that we computed previously.$/;"	v
+sws0	examples/ti_hcp.py	/^sws0 =      3.002260$/;"	v
 sws_range	examples/B2_Cr.py	/^sws_range = np.linspace(2,3,6)$/;"	v
 sws_range	examples/L11_CuPt.py	/^sws_range = np.linspace(2,3,6)$/;"	v
 sws_range	examples/create_L11.py	/^sws_range = np.linspace(2,3,6)$/;"	v
@@ -1493,7 +1511,7 @@ systems	examples/alloy_discovery/make_alloy_inputs.py	/^systems = [['Fe'],['Al']
 taylor	EOS/EOS.py	/^    def taylor(self, V, E0, beta, alpha, V0):$/;"	m	class:EOS
 test	emto_parser/emtoparser.py	/^    test = EMTOPARSER("kfcd_output\/al0.20_co0.20_cr0.20_fe0.20_ni0.20_bcc_2.550000",suffix='prn')$/;"	v	class:EMTOPARSER
 tfermi	examples/CoCrFeMnNi_fcc.py	/^                    tfermi=5000,$/;"	v
-ti_hcp	examples/ti_hcp.py	/^ti_hcp=pyemto.System(folder=emtopath)$/;"	v
+ti_hcp	examples/ti_hcp.py	/^ti_hcp=pyemto.System(folder=emtopath, EMTOdir='\/home\/minds\/jianwang\/vasptool\/EMTO\/5.8.1\/build')$/;"	v
 tole	examples/CoCrFeMnNi_fcc.py	/^                    tole=1.0E-8,$/;"	v
 tole	examples/alloy_discovery/alloy_discovery.py	/^                       tole=1.0e-8,$/;"	v
 type	c/c_lattice.c	/^  __Pyx_TypeInfo* type;$/;"	m	struct:__Pyx_StructField_	file:
@@ -1508,7 +1526,9 @@ vinet	EOS/EOS.py	/^    def vinet(self, V, E0, B0, BP, V0):$/;"	m	class:EOS
 vol2wsrad	EOS/EOS.py	/^    def vol2wsrad(self, V):$/;"	m	class:EOS
 volume2strain	EOS/asturfit.py	/^def volume2strain(V, V0, strain='eulerian'):$/;"	f
 wait_for_jobs	system.py	/^    def wait_for_jobs(self, jobsdict, restart_partition='general', sleeptime=60, restart_z=None,$/;"	m	class:System
+which_calculation	examples/ti_hcp.py	/^which_calculation = 'volume'$/;"	v
 which_error	system.py	/^    def which_error(self, jobname, folder=".\/"):$/;"	m	class:System
+which_mode	examples/ti_hcp.py	/^which_mode = 'generate'$/;"	v
 write_batch	utilities/utils.py	/^def write_batch(folder, jobname):$/;"	f
 write_bmdl_kstr_shape_input	examples/emto_input_generator.py	/^    def write_bmdl_kstr_shape_input(self):$/;"	m	class:EMTO
 write_input_file	emtoinputs/batch.py	/^    def write_input_file(self, folder=None):$/;"	m	class:Batch
