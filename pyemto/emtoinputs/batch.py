@@ -96,7 +96,8 @@ class Batch:
                 line += so + "\n"
         line += "\n"
 
-        elapsed_time = "/usr/bin/time "
+        #elapsed_time = "/usr/bin/time "
+        elapsed_time = ""
         if self.parallel is True:
             kgrn_exe = 'kgrn_omp'
             kfcd_exe = 'kfcd_cpa'

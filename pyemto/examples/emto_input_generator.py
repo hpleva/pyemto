@@ -213,6 +213,7 @@ class EMTO:
         self.atoms_cpa = []
         self.concs_cpa = []
         self.splts_cpa = []
+        self.fixs_cpa = []
         for i in range(len_basis):
             atom_number = struct.sites[i].specie.number
             for j in range(len(self.pmg_species)):
@@ -220,6 +221,7 @@ class EMTO:
                     self.atoms_cpa.append(self.species[j])
                     self.concs_cpa.append(self.concs[j])
                     self.splts_cpa.append(self.splts[j])
+                    self.fixs_cpa.append(self.fixs[j])
                     break
 
     def get_equivalent_sites(self):
@@ -280,7 +282,7 @@ class EMTO:
                             coords_are_cartesian=False, latname=None,
                             species=None, find_primitive=True,
                             concs=None, splts=None, its=None, ws_wsts=None,
-                            make_supercell=None,
+                            make_supercell=None, fixs=None,
                             **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
@@ -334,6 +336,29 @@ class EMTO:
                 else:
                     self.splts.append([splts[i]])
 
+        if fixs is None:
+            # Assume a zero moments array
+            self.fixs = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append('N')
+                    self.fixs.append(tmp)
+                else:
+                    self.fixs.append(['N'])
+        else:
+            self.fixs = []
+            for i in range(len(fixs)):
+                if isinstance(fixs[i], list):
+                    tmp = []
+                    for j in range(len(fixs[i])):
+                        tmp.append(fixs[i][j])
+                    self.fixs.append(tmp)
+                else:
+                    self.fixs.append([fixs[i]])
+
+
         if concs is None:
             # Assume a zero moments array
             self.concs = []
@@ -366,12 +391,12 @@ class EMTO:
                     self.concs.append([concs[i]])
 
         # Check that all species, concs, and splts arrays have the same dimensions
-        for a, b in combinations([self.basis, self.species, self.concs, self.splts], 2):
+        for a, b in combinations([self.basis, self.species, self.concs, self.splts, self.fixs], 2):
             if len(a) != len(b):
                 print(a, 'len = ', len(a))
                 print(b, 'len = ', len(b))
                 sys.exit('The above input arrays have inconsistent lengths!!!')
-        for a, b in combinations([self.species, self.concs, self.splts], 2):
+        for a, b in combinations([self.species, self.concs, self.splts, self.fixs], 2):
             for sublist1, sublist2 in zip(a, b):
                 if len(sublist1) != len(sublist2):
                     print(sublist1, 'len = ', len(sublist1))
@@ -978,6 +1003,7 @@ class EMTO:
                 else:
                     atoms_flat.append(self.atoms_cpa[i])
             self.KGRN_atoms = np.array(atoms_flat)
+
         if self.splts_cpa is None:
             sys.exit('EMTO.init_bulk(): \'self.splts_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
@@ -989,6 +1015,19 @@ class EMTO:
                 else:
                     splts_flat.append(self.splts_cpa[i])
             self.KGRN_splts = np.array(splts_flat)
+
+        if self.fixs_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.fixs_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            fixs_flat = []
+            for i in range(len(self.fixs_cpa)):
+                if isinstance(self.fixs_cpa[i], list):
+                    for j in range(len(self.fixs_cpa[i])):
+                        fixs_flat.append(self.fixs_cpa[i][j])
+                else:
+                    fixs_flat.append(self.fixs_cpa[i])
+            self.KGRN_fixs = np.array(fixs_flat)
+
         if self.concs_cpa is None:
             sys.exit('EMTO.init_bulk(): \'self.concs_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
@@ -1063,6 +1102,7 @@ class EMTO:
                                    atoms=self.KGRN_atoms,
                                    concs=self.KGRN_concs,
                                    splts=self.KGRN_splts,
+                                   fixs=self.KGRN_fixs,
                                    iqs=self.KGRN_iqs,
                                    its=self.KGRN_its,
                                    itas=self.KGRN_itas,
