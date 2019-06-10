@@ -36,3 +36,4 @@ setup(name='pyemto',
       ext_modules = cythonize(extensions),
       scripts=['pyemto/jij/create_jij_input']
       )
+

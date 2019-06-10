@@ -14,3 +14,9 @@ pyemto.egg-info/
 
 # Do not track Cython generated C code
 pyemto/c/c_lattice.c
+
+# Do not track VIM backup files
+\#*\#
+
+# Do not track VIM swap files
+*.swp

@@ -232,14 +232,15 @@ class System:
                                  splts=self.splts, ibz=self.ibz, latname=self.latname, latpath=self.latpath,
                                  emtopath=self.emtopath, EMTOdir=self.EMTOdir, **kwargs)
 
-        #elif self.lat == 'L10':
-
-
         else:
             self.emto.set_values(jobname=self.fulljobname, sws=self.sws, atoms=self.atoms,
                                  concs=self.concs, splts=self.splts, ibz=self.ibz,
                                  latname=self.latname, latpath=self.latpath, emtopath=self.emtopath,
                                  EMTOdir=self.EMTOdir, **kwargs)
+
+        # Make sure that structure files also receive the new input options,
+        # such as slurm_options.
+        self.lattice.set_values(**kwargs)
         return
 
     def bulk_new(self, jobname=None, lat=None, atoms=None, concs=None, splts=None, sws=None,
@@ -611,7 +612,7 @@ class System:
             else:
                 return sws0, c_over_a0, B0, e0, R0, cs0, grun
 
-    def lattice_constants_batch_generate(self, sws=None, ca=None):
+    def lattice_constants_batch_generate(self, sws=None, ca=None, auto_ca=False):
         """Generates input files and writes them to disk.
 
         Based on the input *sws* and *ca* lists jobnames are created and
@@ -654,12 +655,7 @@ class System:
                 self.emto.kfcd.write_input_file(folder=self.folder)
                 self.emto.batch.write_input_file(folder=self.folder)
 
-            return jobnames
-
-        elif self.lat == 'hcp':
-            #latnames = ['hcp_ca1', 'hcp_ca2', 'hcp_ca3', 'hcp_ca4', 'hcp_ca5', 'hcp_ca6',
-            #            'hcp_ca7', 'hcp_ca8', 'hcp_ca9', 'hcp_ca10', 'hcp_ca11', 'hcp_ca12']
-
+        elif self.lat == 'hcp' and auto_ca is True:
             for i in range(len(self.lc_batch_ca_range)):
                 for j in range(len(self.lc_batch_sws_range)):
 
@@ -679,9 +675,6 @@ class System:
                     self.emto.kfcd.write_input_file(folder=self.folder)
                     self.emto.batch.write_input_file(folder=self.folder)
 
-            return jobnames
-
-        #elif self.lat == 'trig' or self.lat == 'stric':
         else:
             for j in range(len(self.lc_batch_sws_range)):
                 self.sws = self.lc_batch_sws_range[j]
@@ -698,7 +691,7 @@ class System:
                 self.emto.kfcd.write_input_file(folder=self.folder)
                 self.emto.batch.write_input_file(folder=self.folder)
 
-            return jobnames
+        return jobnames
 
 
     def lattice_constants_batch_calculate(self, sws=None, ca=None):
@@ -1491,7 +1484,7 @@ class System:
                                                 deltas=self.elastic_constants_deltas,
                                                 relax=do_i_relax,relax_index=j)
 
-                        self.lattice.set_values(jobname=latname_dist[i][j],latpath=self.folder)
+                        self.lattice.set_values(jobname_lat=latname_dist[i][j],latpath=self.folder)
                         self.lattice.bmdl.write_input_file(folder=self.folder)
                         self.lattice.kstr.write_input_file(folder=self.folder)
                         self.lattice.shape.write_input_file(folder=self.folder)
@@ -1503,7 +1496,7 @@ class System:
                                             deltas=self.elastic_constants_deltas,
                                             relax=False)
 
-                    self.lattice.set_values(jobname=latname_dist[i],latpath=self.folder)
+                    self.lattice.set_values(jobname_lat=latname_dist[i],latpath=self.folder)
                     self.lattice.bmdl.write_input_file(folder=self.folder)
                     self.lattice.kstr.write_input_file(folder=self.folder)
                     self.lattice.shape.write_input_file(folder=self.folder)
@@ -1599,7 +1592,7 @@ class System:
                                                 deltas=self.elastic_constants_deltas,
                                                 relax=do_i_relax,relax_index=j)
 
-                        self.lattice.set_values(jobname=latname_dist[i][j],latpath=self.folder)
+                        self.lattice.set_values(jobname_lat=latname_dist[i][j],latpath=self.folder)
                         self.lattice.bmdl.write_input_file(folder=self.folder)
                         self.lattice.kstr.write_input_file(folder=self.folder)
                         self.lattice.shape.write_input_file(folder=self.folder)
@@ -1611,7 +1604,7 @@ class System:
                                             deltas=self.elastic_constants_deltas,
                                             relax=False)
 
-                    self.lattice.set_values(jobname=latname_dist[i],latpath=self.folder)
+                    self.lattice.set_values(jobname_lat=latname_dist[i],latpath=self.folder)
                     self.lattice.bmdl.write_input_file(folder=self.folder)
                     self.lattice.kstr.write_input_file(folder=self.folder)
                     self.lattice.shape.write_input_file(folder=self.folder)
@@ -1682,7 +1675,7 @@ class System:
                                         deltas=self.elastic_constants_deltas)
 
                 self.lattice.set_values(
-                    jobname=latname_dist[i], latpath=self.folder)
+                    jobname_lat=latname_dist[i], latpath=self.folder)
                 self.lattice.bmdl.write_input_file(folder=self.folder)
                 self.lattice.kstr.write_input_file(folder=self.folder)
                 self.lattice.shape.write_input_file(folder=self.folder)
@@ -2088,7 +2081,7 @@ class System:
                                         deltas=self.elastic_constants_deltas)
 
                 self.lattice.set_values(
-                    jobname=latname_dist[i], latpath=self.folder)
+                    jobname_lat=latname_dist[i], latpath=self.folder)
                 self.runlattice(jobname=latname_dist[i], folder=self.folder)
 
                 already = False
@@ -2144,7 +2137,7 @@ class System:
                                         deltas=self.elastic_constants_deltas)
 
                 self.lattice.set_values(
-                    jobname=latname_dist[i], latpath=self.folder)
+                    jobname_lat=latname_dist[i], latpath=self.folder)
                 self.runlattice(jobname=latname_dist[i], folder=self.folder)
 
                 ###############################################################
