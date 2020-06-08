@@ -21,4 +21,6 @@ pyemto/c/c_lattice.c
 # Do not track VIM swap files
 *.swp
 
+# (neo)vim files
+.vim
 *.nvimlog
