@@ -1197,29 +1197,29 @@ class EOS:
 
         gnuplot = subprocess.Popen(["/usr/bin/gnuplot"],stdin=subprocess.PIPE)
 
-        gnuplot.stdin.write("set term dumb 70 20\n")
+        gnuplot.stdin.write(b"set term dumb 70 20\n")
 
         # Adjust the legend location
-        gnuplot.stdin.write("set key left top\n")
+        gnuplot.stdin.write(b"set key left top\n")
 
         #gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with lines\n".format(title))
         #gnuplot.stdin.write("plot '-' using 1:2 title 'fit' with points\n")
-        gnuplot.stdin.write("plot '-' using 1:2 title '{0}' with points, ".format(title) +\
-                            "'-' using 1:2 title 'fit' with lines\n")
+        gnuplot.stdin.write(f"plot '-' using 1:2 title '{title}' with points, ".encode() +\
+                            b"'-' using 1:2 title 'fit' with lines\n")
 
         for i,j in zip(x,y):
-            gnuplot.stdin.write("%f %f\n" % (i,j))
-        gnuplot.stdin.write("e\n")
+            gnuplot.stdin.write(b"%f %f\n" % (i,j))
+        gnuplot.stdin.write(b"e\n")
 
         for i,j in zip(x,z):
-            gnuplot.stdin.write("%f %f\n" % (i,j))
-        gnuplot.stdin.write("e\n")
+            gnuplot.stdin.write(b"%f %f\n" % (i,j))
+        gnuplot.stdin.write(b"e\n")
 
         #for i,j,k in zip(x,y,z):
         #    gnuplot.stdin.write("%f %f %f\n" % (i,j,k))
         #gnuplot.stdin.write("e\n")
 
-        gnuplot.stdin.write("quit")
+        gnuplot.stdin.write(b"quit")
         gnuplot.stdin.flush()
 
         # Allow some time to pass so that the gnuplot process finishes before

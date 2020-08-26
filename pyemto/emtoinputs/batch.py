@@ -85,7 +85,7 @@ class Batch:
                 self.emtopath + "/" + self.jobname) + ".error" + "\n"
         if self.account is not None:
             line += "#SBATCH -A {0}".format(self.account) + "\n"
-        
+
         self.use_module = False
         if self.slurm_options is not None:
             for tmp in self.slurm_options:
@@ -106,8 +106,10 @@ class Batch:
             kfcd_exe = 'kfcd_cpa'
 
         if not self.use_module:
-            KGRN_path = self.EMTOdir + "/kgrn/source/"
-            KFCD_path = self.EMTOdir + "/kfcd/source/"
+            # KGRN_path = self.EMTOdir + "/kgrn/source/"
+            # KFCD_path = self.EMTOdir + "/kfcd/source/"
+            KGRN_path = self.EMTOdir + "/kgrn/"
+            KFCD_path = self.EMTOdir + "/kfcd/"
         else:
             KGRN_path = ""
             KFCD_path = ""

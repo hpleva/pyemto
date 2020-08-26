@@ -107,9 +107,12 @@ class Batch:
         elapsed_time = ""
 
         if not self.use_module:
-            BMDL_path = self.EMTOdir + "/bmdl/source/bmdl"
-            KSTR_path = self.EMTOdir + "/kstr/source/kstr"
-            SHAPE_path = self.EMTOdir + "/shape/source/shape"
+            # BMDL_path = self.EMTOdir + "/bmdl/source/bmdl"
+            # KSTR_path = self.EMTOdir + "/kstr/source/kstr"
+            # SHAPE_path = self.EMTOdir + "/shape/source/shape"
+            BMDL_path = self.EMTOdir + "/bmdl/bmdl"
+            KSTR_path = self.EMTOdir + "/kstr/kstr"
+            SHAPE_path = self.EMTOdir + "/shape/shape"
         else:
             BMDL_path = "bmdl"
             KSTR_path = "kstr"
