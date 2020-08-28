@@ -214,6 +214,7 @@ class EMTO:
         self.concs_cpa = []
         self.splts_cpa = []
         self.fixs_cpa = []
+        self.s_wss_cpa = []
         for i in range(len_basis):
             atom_number = struct.sites[i].specie.number
             for j in range(len(self.pmg_species)):
@@ -222,6 +223,7 @@ class EMTO:
                     self.concs_cpa.append(self.concs[j])
                     self.splts_cpa.append(self.splts[j])
                     self.fixs_cpa.append(self.fixs[j])
+                    self.s_wss_cpa.append(self.s_wss[j])
                     break
 
     def get_equivalent_sites(self):
@@ -282,7 +284,7 @@ class EMTO:
                             coords_are_cartesian=False, latname=None,
                             species=None, find_primitive=True,
                             concs=None, splts=None, its=None, ws_wsts=None,
-                            make_supercell=None, fixs=None,
+                            s_wss=None, make_supercell=None, fixs=None,
                             **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
@@ -358,6 +360,32 @@ class EMTO:
                 else:
                     self.fixs.append([fixs[i]])
 
+        if s_wss is None:
+            self.s_wss = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(1.0)
+                    self.s_wss.append(tmp)
+                else:
+                    self.s_wss.append([1.0])
+        else:
+            self.s_wss = []
+            for i in range(len(s_wss)):
+                if isinstance(s_wss[i], list):
+                    tmp = []
+                    for j in range(len(s_wss[i])):
+                        tmp.append(s_wss[i][j])
+                    self.s_wss.append(tmp)
+                else:
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(s_wss[i])
+                    self.s_wss.append(tmp)
+
+        print(self.fixs)
+        print(self.s_wss)
 
         if concs is None:
             # Assume a zero moments array
@@ -391,12 +419,14 @@ class EMTO:
                     self.concs.append([concs[i]])
 
         # Check that all species, concs, and splts arrays have the same dimensions
-        for a, b in combinations([self.basis, self.species, self.concs, self.splts, self.fixs], 2):
+        for a, b in combinations([self.basis, self.species, self.concs,
+            self.splts, self.fixs, self.s_wss], 2):
             if len(a) != len(b):
                 print(a, 'len = ', len(a))
                 print(b, 'len = ', len(b))
                 sys.exit('The above input arrays have inconsistent lengths!!!')
-        for a, b in combinations([self.species, self.concs, self.splts, self.fixs], 2):
+        for a, b in combinations([self.species, self.concs, self.splts,
+            self.fixs, self.s_wss], 2):
             for sublist1, sublist2 in zip(a, b):
                 if len(sublist1) != len(sublist2):
                     print(sublist1, 'len = ', len(sublist1))
@@ -1039,6 +1069,20 @@ class EMTO:
                 else:
                     concs_flat.append(self.concs_cpa[i])
             self.KGRN_concs = np.array(concs_flat)
+
+        # S_wss
+        if self.s_wss_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.s_wss_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            s_wss_flat = []
+            for i in range(len(self.s_wss_cpa)):
+                if isinstance(self.s_wss_cpa[i], list):
+                    for j in range(len(self.s_wss_cpa[i])):
+                        s_wss_flat.append(self.s_wss_cpa[i][j])
+                else:
+                    s_wss_flat.append(self.s_wss_cpa[i])
+            self.KGRN_s_wss = np.array(s_wss_flat)
+
         # ws_wsts
         if ws_wsts is not None:
             ws_wsts_flat = []
@@ -1107,6 +1151,7 @@ class EMTO:
                                    its=self.KGRN_its,
                                    itas=self.KGRN_itas,
                                    sws=self.sws,
+                                   s_wss=self.KGRN_s_wss,
                                    ws_wsts=self.KGRN_ws_wsts,
                                    **kwargs)
 
