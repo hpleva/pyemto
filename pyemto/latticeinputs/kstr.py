@@ -167,9 +167,14 @@ class Kstr:
             #line = line + "QX.......={0:10.7f} QY......={1:10.7f} QZ(...={2:10.7f}"\
                 line = line + "QX({3:03})..={0:10.7f} QY({3:03}).={1:10.7f} QZ({3:03}).={2:10.7f}"\
                 .format(self.basis[i,0], self.basis[i,1], self.basis[i,2], i+1) + "\n"
+        aw_template = "a/w(IQ)..="
+        for i in range(self.kstr_nl):
+            aw_template += f" {{{i}:4.2f}}"
+        print(aw_template)
         for i in range(self.nq):
-            line = line + "a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}"\
-                .format(*self.awIQ[i, :]) + "\n"
+            # line = line + "a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}"\
+                # .format(*self.awIQ[i, :]) + "\n"
+            line = line + aw_template.format(*self.awIQ[i, :]) + "\n"
         line = line + "LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}"\
             .format(self.lamda, self.amax, self.bmax) + "\n"
 
@@ -357,7 +362,7 @@ class Kstr:
         if self.rwats is None:
             self.rwats = 0.1
         if self.awIQ is None:
-            self.awIQ = np.ones((self.nq, 4)) * 0.7
+            self.awIQ = np.ones((self.nq, self.kstr_nl)) * 0.7
         return
 
 

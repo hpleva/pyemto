@@ -215,6 +215,8 @@ class EMTO:
         self.splts_cpa = []
         self.fixs_cpa = []
         self.s_wss_cpa = []
+        self.ws_wsts_cpa = []
+        self.qtrs_cpa = []
         for i in range(len_basis):
             atom_number = struct.sites[i].specie.number
             for j in range(len(self.pmg_species)):
@@ -224,6 +226,8 @@ class EMTO:
                     self.splts_cpa.append(self.splts[j])
                     self.fixs_cpa.append(self.fixs[j])
                     self.s_wss_cpa.append(self.s_wss[j])
+                    self.ws_wsts_cpa.append(self.ws_wsts[j])
+                    self.qtrs_cpa.append(self.qtrs[j])
                     break
 
     def get_equivalent_sites(self):
@@ -285,6 +289,7 @@ class EMTO:
                             species=None, find_primitive=True,
                             concs=None, splts=None, its=None, ws_wsts=None,
                             s_wss=None, make_supercell=None, fixs=None,
+                            qtrs=None,
                             **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
@@ -384,8 +389,53 @@ class EMTO:
                         tmp.append(s_wss[i])
                     self.s_wss.append(tmp)
 
-        print(self.fixs)
-        print(self.s_wss)
+        if ws_wsts is None:
+            self.ws_wsts = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(1.0)
+                    self.ws_wsts.append(tmp)
+                else:
+                    self.ws_wsts.append([1.0])
+        else:
+            self.ws_wsts = []
+            for i in range(len(ws_wsts)):
+                if isinstance(ws_wsts[i], list):
+                    tmp = []
+                    for j in range(len(ws_wsts[i])):
+                        tmp.append(ws_wsts[i][j])
+                    self.ws_wsts.append(tmp)
+                else:
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(ws_wsts[i])
+                    self.ws_wsts.append(tmp)
+
+        if qtrs is None:
+            self.qtrs = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(0.0)
+                    self.qtrs.append(tmp)
+                else:
+                    self.qtrs.append([0.0])
+        else:
+            self.qtrs = []
+            for i in range(len(qtrs)):
+                if isinstance(qtrs[i], list):
+                    tmp = []
+                    for j in range(len(qtrs[i])):
+                        tmp.append(qtrs[i][j])
+                    self.qtrs.append(tmp)
+                else:
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(qtrs[i])
+                    self.qtrs.append(tmp)
 
         if concs is None:
             # Assume a zero moments array
@@ -407,7 +457,6 @@ class EMTO:
                     for j in range(len(concs[i])):
                         tmp.append(concs[i][j])
                         tmp_sum += concs[i][j]
-                    print(tmp_sum)
                     if tmp_sum < 1.1:
                         if np.abs(tmp_sum - 1.0) > 1.e-6:
                             sys.exit('Concentrations {0} for site {1} do not add up to 1.0!!!'.format(concs[i], i+1))
@@ -420,13 +469,14 @@ class EMTO:
 
         # Check that all species, concs, and splts arrays have the same dimensions
         for a, b in combinations([self.basis, self.species, self.concs,
-            self.splts, self.fixs, self.s_wss], 2):
+            self.splts, self.fixs, self.s_wss, self.ws_wsts,
+            self.qtrs], 2):
             if len(a) != len(b):
                 print(a, 'len = ', len(a))
                 print(b, 'len = ', len(b))
                 sys.exit('The above input arrays have inconsistent lengths!!!')
         for a, b in combinations([self.species, self.concs, self.splts,
-            self.fixs, self.s_wss], 2):
+            self.fixs, self.s_wss, self.ws_wsts, self.qtrs], 2):
             for sublist1, sublist2 in zip(a, b):
                 if len(sublist1) != len(sublist2):
                     print(sublist1, 'len = ', len(sublist1))
@@ -1084,17 +1134,30 @@ class EMTO:
             self.KGRN_s_wss = np.array(s_wss_flat)
 
         # ws_wsts
-        if ws_wsts is not None:
-            ws_wsts_flat = []
-            for i in range(len(ws_wsts)):
-                if isinstance(ws_wsts[i], list):
-                    for j in range(len(ws_wsts[i])):
-                        ws_wsts_flat.append(ws_wsts[i][j])
-                else:
-                    ws_wsts_flat.append(ws_wsts[i])
-            self.KGRN_ws_wsts = np.array(ws_wsts_flat)
+        if self.ws_wsts_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.ws_wsts_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
-            self.KGRN_ws_wsts = np.ones_like(self.KGRN_concs)
+            ws_wsts_flat = []
+            for i in range(len(self.ws_wsts_cpa)):
+                if isinstance(self.ws_wsts_cpa[i], list):
+                    for j in range(len(self.ws_wsts_cpa[i])):
+                        ws_wsts_flat.append(self.ws_wsts_cpa[i][j])
+                else:
+                    ws_wsts_flat.append(self.ws_wsts_cpa[i])
+            self.KGRN_ws_wsts = np.array(ws_wsts_flat)
+
+        if self.qtrs_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.qtrs_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            qtrs_flat = []
+            for i in range(len(self.qtrs_cpa)):
+                if isinstance(self.qtrs_cpa[i], list):
+                    for j in range(len(self.qtrs_cpa[i])):
+                        qtrs_flat.append(self.qtrs_cpa[i][j])
+                else:
+                    qtrs_flat.append(self.qtrs_cpa[i])
+            self.KGRN_qtrs = np.array(qtrs_flat)
+
         ###
         # Construct iqs, its, and itas arrays (for the KGRN atomblock).
         self.KGRN_iqs = np.zeros(index_len, dtype='int32')
@@ -1153,6 +1216,7 @@ class EMTO:
                                    sws=self.sws,
                                    s_wss=self.KGRN_s_wss,
                                    ws_wsts=self.KGRN_ws_wsts,
+                                   qtrs=self.KGRN_qtrs,
                                    **kwargs)
 
     def write_bmdl_kstr_shape_input(self):
