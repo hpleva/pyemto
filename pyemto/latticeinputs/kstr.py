@@ -170,7 +170,6 @@ class Kstr:
         aw_template = "a/w(IQ)..="
         for i in range(self.kstr_nl):
             aw_template += f" {{{i}:4.2f}}"
-        print(aw_template)
         for i in range(self.nq):
             # line = line + "a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}"\
                 # .format(*self.awIQ[i, :]) + "\n"
