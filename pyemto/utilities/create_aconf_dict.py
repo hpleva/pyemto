@@ -197,6 +197,13 @@ aconf_dict = {
                 + "Occup  2  2  2  4  2  2  4  3  2\n" \
                 + "Valen  0  0  0  0  0  0  0  1  1\n",
 
+    "V_3p3d4s": "V\n" \
+                + "Iz=  23 Norb=  9 Ion=  0 Config= 3d3_4s2\n" \
+                + "n      1  2  2  2  3  3  3  3  4\n" \
+                + "Kappa -1 -1  1 -2 -1  1 -2  2 -1\n" \
+                + "Occup  2  2  2  4  2  2  4  3  2\n" \
+                + "Valen  0  0  0  0  0  1  1  1  1\n",
+
     "V_3s3p3d4s": "V\n" \
                 + "Iz=  23 Norb=  9 Ion=  0 Config= 3d3_4s2\n" \
                 + "n      1  2  2  2  3  3  3  3  4\n" \
