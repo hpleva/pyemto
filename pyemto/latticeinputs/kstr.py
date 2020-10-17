@@ -77,7 +77,8 @@ class Kstr:
                  msgl=None, nprn=None, lamda=None, amax=None,
                  bmax=None, nqr2=None, mode=None, store=None, high=None,
                  kstr_nl=None, nlh=None, nlw=None, nder=None, itrans=None,
-                 rwats=None, nghbp=None, awIQ=None, numvec_target=None):
+                 rwats=None, nghbp=None, awIQ=None, numvec_target=None,
+                 nl_mdl=None):
 
         # Argument checking and default values
 
@@ -110,6 +111,7 @@ class Kstr:
         self.ca = ca  # hcp's c/a ratio
         self.awIQ = awIQ
         self.numvec_target = numvec_target
+        self.nl_mdl = nl_mdl
 
     def output(self, index):
         """Outputs KSTR input file as a formatted string.
@@ -154,7 +156,7 @@ class Kstr:
         line = line + "A........={0:10.8f} B.......={1:10.8f} C.......={2:10.8f}"\
             .format(self.latparams[0], self.latparams[1], self.latparams[2]) + "\n"
         if self.iprim == 1:
-            line = line + "ALPHA....={0:10.6f} BETA....={1:10.6f} GAMMA...={2:10.6f}"\
+            line = line + "Alpha....={0:10.6f} Beta....={1:10.6f} Gamma...={2:10.6f}"\
                 .format(self.latvectors[0], self.latvectors[1], self.latvectors[2]) + "\n"
         elif self.iprim == 0:
             line = line + "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
@@ -174,6 +176,7 @@ class Kstr:
             # line = line + "a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}"\
                 # .format(*self.awIQ[i, :]) + "\n"
             line = line + aw_template.format(*self.awIQ[i, :]) + "\n"
+        line = line + "NL_mdl.={0:2}\n".format(self.nl_mdl)
         line = line + "LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}"\
             .format(self.lamda, self.amax, self.bmax) + "\n"
 
@@ -362,6 +365,8 @@ class Kstr:
             self.rwats = 0.1
         if self.awIQ is None:
             self.awIQ = np.ones((self.nq, self.kstr_nl)) * 0.7
+        if self.nl_mdl is None:
+            self.nl_mdl = 7
         return
 
 

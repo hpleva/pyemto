@@ -10,6 +10,7 @@ Created on Wed Dec  3 15:10:00 2014
 from __future__ import print_function
 import sys
 import datetime
+import numpy as np
 import pyemto.common.common as common
 
 
@@ -38,7 +39,7 @@ class Shape:
     """
 
     def __init__(self, jobname_lat=None, lat=None, lmax=None, nsr=None, nfi=None,
-                 ivef=None, msgl=None, nprn=None):
+                 ivef=None, msgl=None, nprn=None, basis=None, asr=None):
 
         self.jobname_lat = jobname_lat
         self.lat = lat
@@ -48,6 +49,11 @@ class Shape:
         self.ivef = ivef
         self.msgl = msgl
         self.nprn = nprn
+        if basis is None:
+            self.basis = None
+        else:
+            self.basis = np.asarray(basis)
+        self.asr = asr
 
     def output(self):
         """Output SHAPE input file in formatted string.
@@ -73,7 +79,9 @@ class Shape:
             .format(self.lmax, self.nsr, self.nfi) + "\n"
         line = line + "NPRN..={0:3d} IVEF.={1:3d}"\
             .format(self.nprn, self.ivef) + "\n"
-
+        line = line + "****** Relative atomic sphere radii ASR(1:NQ) ******\n"
+        for i in range(self.nq):
+            line += "ASR({0}).= {1:6.4f}\n".format(i+1, self.asr[i])
         return line
 
     def write_input_file(self, folder=None):
@@ -144,4 +152,24 @@ class Shape:
             self.msgl = 1
         if self.nprn is None:
             self.nprn = 0
+
+        if self.basis is None:
+            if self.lat == 'hcp':
+                self.basis = np.asarray([
+                    [0.0, 0.0, 0.0], [0.0, 0.57735027, self.ca / 2.0]])
+            else:
+                self.basis = np.asarray([0.0, 0.0, 0.0])
+
+        # Make sure basis is a numpy array of shape np.array([[xxx], [xxx]])
+        if isinstance(self.basis, list):
+            self.basis = np.asarray(self.basis)
+        elif isinstance(self.basis, np.ndarray):
+            pass
+        if len(self.basis.shape) == 1:
+            self.basis = np.asarray([self.basis])
+        self.nq = self.basis.shape[0]
+
+        if self.asr is None:
+            self.asr = np.ones(self.nq, dtype=float)
+
         return

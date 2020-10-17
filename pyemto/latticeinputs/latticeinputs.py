@@ -22,12 +22,12 @@ class Latticeinputs:
     def __init__(self):
 
         # Import necessary packages
-        from pyemto.latticeinputs.bmdl import Bmdl
+        # from pyemto.latticeinputs.bmdl import Bmdl
         from pyemto.latticeinputs.kstr import Kstr
         from pyemto.latticeinputs.shape import Shape
         from pyemto.latticeinputs.batch import Batch
 
-        self.bmdl = Bmdl()
+        # self.bmdl = Bmdl()
         self.kstr = Kstr()
         self.shape = Shape()
         self.batch = Batch()
@@ -45,9 +45,9 @@ class Latticeinputs:
 
         for key in kwargs:
             attr_found = False
-            if hasattr(self.bmdl, key):
-                self.bmdl.set_values(key, kwargs[key])
-                attr_found = True
+            # if hasattr(self.bmdl, key):
+                # self.bmdl.set_values(key, kwargs[key])
+                # attr_found = True
             if hasattr(self.kstr, key):
                 self.kstr.set_values(key, kwargs[key])
                 attr_found = True
@@ -483,7 +483,7 @@ class Latticeinputs:
         if folder is None:
             folder = "./"
         else:
-            common.check_folders(folder,folder+'/bmdl',folder+'/kstr',folder+'/shape')
+            common.check_folders(folder,folder+'/kstr',folder+'/shape')
 
         #if lat is None:
         #    sys.exit('Latticeinputs.write_structure_input_files: \'lat\' has to be given!')
@@ -500,7 +500,7 @@ class Latticeinputs:
 
         # Call the write functions of each subprogram
         self.batch.write_input_file(folder=folder)
-        self.bmdl.write_input_file(folder=folder)
+        # self.bmdl.write_input_file(folder=folder)
         self.kstr.write_input_file(folder=folder)
         self.shape.write_input_file(folder=folder)
 
