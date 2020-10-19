@@ -213,10 +213,15 @@ class EMTO:
         self.atoms_cpa = []
         self.concs_cpa = []
         self.splts_cpa = []
-        self.fixs_cpa = []
+        self.fxms_cpa = []
         self.s_wss_cpa = []
         self.ws_wsts_cpa = []
         self.qtrs_cpa = []
+        self.nrms_cpa = []
+        self.a_scrs_cpa = []
+        self.b_scrs_cpa = []
+        self.tetas_cpa = []
+        self.phis_cpa = []
         for i in range(len_basis):
             atom_number = struct.sites[i].specie.number
             for j in range(len(self.pmg_species)):
@@ -224,10 +229,15 @@ class EMTO:
                     self.atoms_cpa.append(self.species[j])
                     self.concs_cpa.append(self.concs[j])
                     self.splts_cpa.append(self.splts[j])
-                    self.fixs_cpa.append(self.fixs[j])
+                    self.fxms_cpa.append(self.fxms[j])
                     self.s_wss_cpa.append(self.s_wss[j])
                     self.ws_wsts_cpa.append(self.ws_wsts[j])
                     self.qtrs_cpa.append(self.qtrs[j])
+                    self.nrms_cpa.append(self.nrms[j])
+                    self.a_scrs_cpa.append(self.a_scrs[j])
+                    self.b_scrs_cpa.append(self.b_scrs[j])
+                    self.tetas_cpa.append(self.tetas[j])
+                    self.phis_cpa.append(self.phis[j])
                     break
 
     def get_equivalent_sites(self):
@@ -288,8 +298,9 @@ class EMTO:
                             coords_are_cartesian=False, latname=None,
                             species=None, find_primitive=True,
                             concs=None, splts=None, its=None, ws_wsts=None,
-                            s_wss=None, make_supercell=None, fixs=None,
-                            qtrs=None,
+                            s_wss=None, make_supercell=None, fxms=None,
+                            qtrs=None, nrms=None, a_scrs=None, b_scrs=None,
+                            tetas=None, phis=None,
                             **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
@@ -343,27 +354,140 @@ class EMTO:
                 else:
                     self.splts.append([splts[i]])
 
-        if fixs is None:
+        if fxms is None:
             # Assume a zero moments array
-            self.fixs = []
+            self.fxms = []
             for i in range(len(self.species)):
                 if isinstance(self.species[i], list):
                     tmp = []
                     for j in range(len(self.species[i])):
                         tmp.append('N')
-                    self.fixs.append(tmp)
+                    self.fxms.append(tmp)
                 else:
-                    self.fixs.append(['N'])
+                    self.fxms.append(['N'])
         else:
-            self.fixs = []
-            for i in range(len(fixs)):
-                if isinstance(fixs[i], list):
+            self.fxms = []
+            for i in range(len(fxms)):
+                if isinstance(fxms[i], list):
                     tmp = []
-                    for j in range(len(fixs[i])):
-                        tmp.append(fixs[i][j])
-                    self.fixs.append(tmp)
+                    for j in range(len(fxms[i])):
+                        tmp.append(fxms[i][j])
+                    self.fxms.append(tmp)
                 else:
-                    self.fixs.append([fixs[i]])
+                    self.fxms.append([fxms[i]])
+
+        if nrms is None:
+            # Assume a zero moments array
+            self.nrms = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(1)
+                    self.nrms.append(tmp)
+                else:
+                    self.nrms.append([1])
+        else:
+            self.nrms = []
+            for i in range(len(nrms)):
+                if isinstance(nrms[i], list):
+                    tmp = []
+                    for j in range(len(nrms[i])):
+                        tmp.append(nrms[i][j])
+                    self.nrms.append(tmp)
+                else:
+                    self.nrms.append([nrms[i]])
+
+        if a_scrs is None:
+            # Assume a zero moments array
+            self.a_scrs = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(0.67)
+                    self.a_scrs.append(tmp)
+                else:
+                    self.a_scrs.append([0.67])
+        else:
+            self.a_scrs = []
+            for i in range(len(a_scrs)):
+                if isinstance(a_scrs[i], list):
+                    tmp = []
+                    for j in range(len(a_scrs[i])):
+                        tmp.append(a_scrs[i][j])
+                    self.a_scrs.append(tmp)
+                else:
+                    self.a_scrs.append([a_scrs[i]])
+
+        if b_scrs is None:
+            # Assume a zero moments array
+            self.b_scrs = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(1.05)
+                    self.b_scrs.append(tmp)
+                else:
+                    self.b_scrs.append([1.05])
+        else:
+            self.b_scrs = []
+            for i in range(len(b_scrs)):
+                if isinstance(b_scrs[i], list):
+                    tmp = []
+                    for j in range(len(b_scrs[i])):
+                        tmp.append(b_scrs[i][j])
+                    self.b_scrs.append(tmp)
+                else:
+                    self.b_scrs.append([b_scrs[i]])
+
+        if tetas is None:
+            # Assume a zero moments array
+            self.tetas = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(0.0)
+                    self.tetas.append(tmp)
+                else:
+                    self.tetas.append([0.0])
+        else:
+            self.tetas = []
+            for i in range(len(tetas)):
+                if isinstance(tetas[i], list):
+                    tmp = []
+                    for j in range(len(tetas[i])):
+                        tmp.append(tetas[i][j])
+                    self.tetas.append(tmp)
+                else:
+                    self.tetas.append([tetas[i]])
+
+        if phis is None:
+            # Assume a zero moments array
+            self.phis = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(0.0)
+                    self.phis.append(tmp)
+                else:
+                    self.phis.append([0.0])
+        else:
+            self.phis = []
+            for i in range(len(phis)):
+                if isinstance(phis[i], list):
+                    tmp = []
+                    for j in range(len(phis[i])):
+                        tmp.append(phis[i][j])
+                    self.phis.append(tmp)
+                else:
+                    self.phis.append([phis[i]])
+
+
+
 
         if s_wss is None:
             self.s_wss = []
@@ -469,14 +593,16 @@ class EMTO:
 
         # Check that all species, concs, and splts arrays have the same dimensions
         for a, b in combinations([self.basis, self.species, self.concs,
-            self.splts, self.fixs, self.s_wss, self.ws_wsts,
-            self.qtrs], 2):
+            self.splts, self.fxms, self.s_wss, self.ws_wsts,
+            self.qtrs, self.nrms, self.a_scrs, self.b_scrs,
+            self.tetas, self.phis], 2):
             if len(a) != len(b):
                 print(a, 'len = ', len(a))
                 print(b, 'len = ', len(b))
                 sys.exit('The above input arrays have inconsistent lengths!!!')
         for a, b in combinations([self.species, self.concs, self.splts,
-            self.fixs, self.s_wss, self.ws_wsts, self.qtrs], 2):
+            self.fxms, self.s_wss, self.ws_wsts, self.qtrs,
+            self.nrms, self.a_scrs, self.b_scrs, self.tetas, self.phis], 2):
             for sublist1, sublist2 in zip(a, b):
                 if len(sublist1) != len(sublist2):
                     print(sublist1, 'len = ', len(sublist1))
@@ -1096,17 +1222,77 @@ class EMTO:
                     splts_flat.append(self.splts_cpa[i])
             self.KGRN_splts = np.array(splts_flat)
 
-        if self.fixs_cpa is None:
-            sys.exit('EMTO.init_bulk(): \'self.fixs_cpa\' does not exist!!! (Did you run init_structure?)')
+        if self.fxms_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.fxms_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
-            fixs_flat = []
-            for i in range(len(self.fixs_cpa)):
-                if isinstance(self.fixs_cpa[i], list):
-                    for j in range(len(self.fixs_cpa[i])):
-                        fixs_flat.append(self.fixs_cpa[i][j])
+            fxms_flat = []
+            for i in range(len(self.fxms_cpa)):
+                if isinstance(self.fxms_cpa[i], list):
+                    for j in range(len(self.fxms_cpa[i])):
+                        fxms_flat.append(self.fxms_cpa[i][j])
                 else:
-                    fixs_flat.append(self.fixs_cpa[i])
-            self.KGRN_fixs = np.array(fixs_flat)
+                    fxms_flat.append(self.fxms_cpa[i])
+            self.KGRN_fxms = np.array(fxms_flat)
+
+        if self.nrms_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.nrms_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            nrms_flat = []
+            for i in range(len(self.nrms_cpa)):
+                if isinstance(self.nrms_cpa[i], list):
+                    for j in range(len(self.nrms_cpa[i])):
+                        nrms_flat.append(self.nrms_cpa[i][j])
+                else:
+                    nrms_flat.append(self.nrms_cpa[i])
+            self.KGRN_nrms = np.array(nrms_flat)
+
+        if self.a_scrs_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.a_scrs_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            a_scrs_flat = []
+            for i in range(len(self.a_scrs_cpa)):
+                if isinstance(self.a_scrs_cpa[i], list):
+                    for j in range(len(self.a_scrs_cpa[i])):
+                        a_scrs_flat.append(self.a_scrs_cpa[i][j])
+                else:
+                    a_scrs_flat.append(self.a_scrs_cpa[i])
+            self.KGRN_a_scrs = np.array(a_scrs_flat)
+
+        if self.b_scrs_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.b_scrs_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            b_scrs_flat = []
+            for i in range(len(self.b_scrs_cpa)):
+                if isinstance(self.b_scrs_cpa[i], list):
+                    for j in range(len(self.b_scrs_cpa[i])):
+                        b_scrs_flat.append(self.b_scrs_cpa[i][j])
+                else:
+                    b_scrs_flat.append(self.b_scrs_cpa[i])
+            self.KGRN_b_scrs = np.array(b_scrs_flat)
+
+        if self.tetas_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.tetas_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            tetas_flat = []
+            for i in range(len(self.tetas_cpa)):
+                if isinstance(self.tetas_cpa[i], list):
+                    for j in range(len(self.tetas_cpa[i])):
+                        tetas_flat.append(self.tetas_cpa[i][j])
+                else:
+                    tetas_flat.append(self.tetas_cpa[i])
+            self.KGRN_tetas = np.array(tetas_flat)
+
+        if self.phis_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.phis_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            phis_flat = []
+            for i in range(len(self.phis_cpa)):
+                if isinstance(self.phis_cpa[i], list):
+                    for j in range(len(self.phis_cpa[i])):
+                        phis_flat.append(self.phis_cpa[i][j])
+                else:
+                    phis_flat.append(self.phis_cpa[i])
+            self.KGRN_phis = np.array(phis_flat)
 
         if self.concs_cpa is None:
             sys.exit('EMTO.init_bulk(): \'self.concs_cpa\' does not exist!!! (Did you run init_structure?)')
@@ -1209,7 +1395,7 @@ class EMTO:
                                    atoms=self.KGRN_atoms,
                                    concs=self.KGRN_concs,
                                    splts=self.KGRN_splts,
-                                   fixs=self.KGRN_fixs,
+                                   fxms=self.KGRN_fxms,
                                    iqs=self.KGRN_iqs,
                                    its=self.KGRN_its,
                                    itas=self.KGRN_itas,
@@ -1217,6 +1403,11 @@ class EMTO:
                                    s_wss=self.KGRN_s_wss,
                                    ws_wsts=self.KGRN_ws_wsts,
                                    qtrs=self.KGRN_qtrs,
+                                   nrms=self.KGRN_nrms,
+                                   a_scrs=self.KGRN_a_scrs,
+                                   b_scrs=self.KGRN_b_scrs,
+                                   tetas=self.KGRN_tetas,
+                                   phis=self.KGRN_phis,
                                    **kwargs)
 
     def write_bmdl_kstr_shape_input(self):

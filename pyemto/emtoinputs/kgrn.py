@@ -41,8 +41,8 @@ class Kgrn:
     :type qtrs:
     :param splts:  (Default value = None)
     :type splts:
-    :param fixs:  (Default value = None)
-    :type fixs:
+    :param fxms:  (Default value = None)
+    :type fxms:
     :param sm_ss:  (Default value = None)
     :type sm_ss:
     :param s_wss:  (Default value = None)
@@ -203,8 +203,8 @@ class Kgrn:
     :type DIR002:
     :param DIR003:  (Default value = None)
     :type DIR003:
-    :param FOR004:  (Default value = None)
-    :type FOR004:
+    :param FOR002:  (Default value = None)
+    :type FOR002:
     :param DIR006:  (Default value = None)
     :type DIR006:
     :param DIR009:  (Default value = None)
@@ -218,7 +218,7 @@ class Kgrn:
     """
 
     def __init__(self, jobname=None, latname=None, latpath=None, ibz=None, atoms=None,
-                 concs=None, iqs=None, its=None, itas=None, qtrs=None, splts=None, fixs=None,
+                 concs=None, iqs=None, its=None, itas=None, qtrs=None, splts=None, fxms=None,
                  sm_ss=None, s_wss=None, ws_wsts=None,
                  atconf=None, sws=None, strt=None, msgl=None, expan=None, fcd=None, func=None,
                  niter=None, nlin=None, nprn=None, ncpa=None, mode=None, frc=None,
@@ -232,9 +232,12 @@ class Kgrn:
                  hx=None, nx=None, nz0=None, stmp=None, iex=None, dirac_np=None, nes=None,
                  dirac_niter=None, iwat=None, nprna=None, vmix=None, rwat=None, rmax=None,
                  dx=None, dr1=None, test=None, teste=None, testy=None, testv=None,
-                 FOR001=None, DIR002=None, DIR003=None, FOR004=None, DIR006=None, DIR009=None,
+                 FOR001=None, DIR002=None, DIR003=None, FOR002=None, DIR006=None, DIR009=None,
                  DIR010=None, DIR011=None,ncpu=None,CQNA=None,KGRN_file_type=None,
-                 setups=None):
+                 setups=None, gpm='N', fsm='N', DIR021='', FOR098='./ATOM.cfg',
+                 DIR022=None, vmixatm=None, kpole=None,
+                 nrms=None, a_scrs=None, b_scrs=None, tetas=None, phis=None,
+                 qx=None, qy=None, qz=None):
 
         self.jobname = jobname
         self.latname = latname
@@ -247,7 +250,7 @@ class Kgrn:
         self.itas = itas
         self.qtrs = qtrs
         self.splts = splts
-        self.fixs = fixs
+        self.fxms = fxms
         self.sm_ss = sm_ss
         self.s_wss = s_wss
         self.ws_wsts = ws_wsts
@@ -326,9 +329,9 @@ class Kgrn:
         self.testy = testy
         self.testv = testv
         self.FOR001 = FOR001
+        self.FOR002 = FOR002
         self.DIR002 = DIR002
         self.DIR003 = DIR003
-        self.FOR004 = FOR004
         self.DIR006 = DIR006
         self.DIR009 = DIR009
         self.DIR010 = DIR010
@@ -337,7 +340,33 @@ class Kgrn:
         self.CQNA = CQNA
         self.KGRN_file_type = KGRN_file_type
         self.setups = setups
+        self.gpm = gpm
+        self.fsm = fsm
+        self.DIR021 = DIR021
+        self.DIR022 = DIR022
+        self.FOR098 = FOR098
+        self.vmixatm = vmixatm
+        self.kpole = kpole
+        self.qx = qx
+        self.qy = qy
+        self.qz = qz
 
+        if a_scrs is None:
+            self.a_scrs = np.ones(50) * 0.67
+        else:
+            self.a_scrs = a_scrs
+        if b_scrs is None:
+            self.b_scrs = np.ones(50) * 1.05
+        else:
+            self.b_scrs = b_scrs
+        if tetas is None:
+            self.tetas = np.zeros(50)
+        else:
+            self.tetas = tetas
+        if phis is None:
+            self.phis = np.zeros(50)
+        else:
+            self.phis = phis
         if iqs is None:
             self.iqs = np.ones(50, dtype='int32')
         else:
@@ -350,6 +379,10 @@ class Kgrn:
             self.itas = np.arange(1, 50, dtype='int32')
         else:
             self.itas = itas
+        if nrms is None:
+            self.nrms = np.ones(50)
+        else:
+            self.nrms = nrms
         if qtrs is None:
             self.qtrs = np.zeros(50)
         else:
@@ -358,11 +391,11 @@ class Kgrn:
             self.splts = np.zeros(50)
         else:
             self.splts = splts
-        if fixs is None:
-            self.fixs = np.empty([50], dtype='S1')
-            self.fixs[:] = 'N'
+        if fxms is None:
+            self.fxms = np.empty([50], dtype='S1')
+            self.fxms[:] = 'N'
         else:
-            self.fixs = fixs
+            self.fxms = fxms
         if sm_ss is None:
             self.sm_ss = np.ones(50)
         else:
@@ -380,7 +413,7 @@ class Kgrn:
 
 
         self.atconfKeys = ['atoms', 'concs', 'iqs', 'its', 'itas', 'qtrs', 'splts',
-                           'fixs', 'sm_ss', 's_wss', 'ws_wsts']
+                           'fxms', 'sm_ss', 's_wss', 'ws_wsts']
 
         self.symtonum = {"Va": 0, "Em": 0, "H": 1, "He": 2, "Li": 3, "Be": 4, "B": 5,
                          "C": 6, "N": 7, "O": 8, "O-2": 8, "F": 9, "Ne": 10, "Na": 11,
@@ -398,9 +431,14 @@ class Kgrn:
 
         self.atomblock = None
 
-        self.Confdtype = [('elem', 'U4'), ('iq', int), ('it', int), ('ita', int),
-                          ('conc', float), ('Sm_s', float), ('S_ws',float), ('WS_wst', float),
-                          ('qtr', float), ('mmom', float), ('fix', 'U1')]
+        # self.Confdtype = [('elem', 'U4'), ('iq', int), ('it', int), ('ita', int),
+                          # ('conc', float), ('Sm_s', float), ('S_ws',float), ('WS_wst', float),
+                          # ('qtr', float), ('mmom', float), ('fix', 'U1')]
+
+        self.Confdtype = [('elem', 'U4'), ('iq', int), ('it', int),
+                ('ita', int), ('nrm', int), ('conc', float),
+                ('a_scr', float), ('b_scr', float), ('teta', float),
+                ('phi', float), ('fxm', 'U1'), ('m_split', float)]
 
         self.default_setups = {
             "Va": "1s", "Em": "1s", "H": "1s", "He": "1s", "Li": "2s",
@@ -431,8 +469,7 @@ class Kgrn:
         # Try creating the atomblock
         self.create_atomblock()
 
-    def Atomline(
-            self, atom, iq, it, ita, conc, Sm_s, S_ws, WS_wst, qtr, splt, fix):
+    def Atomline(self, inp):
         """Prints atomic line in kgrn format
 
         :param atom:
@@ -460,12 +497,16 @@ class Kgrn:
         :returns:
         :rtype:
         """
+        atom, iq, it, ita, nrm, conc, a_scr, b_scr, teta, phi, fxm, m_split = inp
+
         if np.round(conc, decimals=3) >= 10:
-            line = "%-2s    %3i %2i %2i  %2i  %5.2f  %5.3f  %5.3f  %5.3f %4.1f%5.2f  %s" \
-                   % (atom, iq, it, ita, self.symtonum[atom], conc, Sm_s, S_ws, WS_wst, qtr, splt, fix)
+            line = "%-2s    %2i  %2i  %2i   %1i  %8.5f  %5.3f %5.3f  %6.4f  %6.4f  %s   %6.4f" \
+                   % (atom, iq, it, ita, nrm, conc, a_scr, b_scr, teta, phi,
+                      fxm, m_split)
         else:
-            line = "%-2s    %3i %2i %2i  %2i  %5.3f  %5.3f  %5.3f  %5.3f %4.1f%5.2f  %s" \
-                   % (atom, iq, it, ita, self.symtonum[atom], conc, Sm_s, S_ws, WS_wst, qtr, splt, fix)
+            line = "%-2s    %2i  %2i  %2i   %1i  %8.6f  %5.3f %5.3f  %6.4f  %6.4f  %s   %6.4f" \
+                   % (atom, iq, it, ita, nrm, conc, a_scr, b_scr, teta, phi,
+                      fxm, m_split)
 
         return line
 
@@ -516,73 +557,85 @@ class Kgrn:
         """
 
         now = datetime.datetime.now()
-        line = "KGRN                                              "\
+        line = "KGRN      HP..= 0                                 "\
             + str(now.day) + "." + str(now.month) + "." + str(now.year) + "\n"
-        line = line + "JOBNAM=" + self.jobname + "\n"
-        line = line + "STRT..=  " + self.strt + " MSGL.=  " + str(self.msgl) \
-            + " EXPAN.= " + self.expan + " FCD..=  " + self.fcd \
-            + " FUNC..= " + self.func + " CQNA=" + self.CQNA + "\n"
-        line = line + "FOR001=" + self.FOR001 + "\n"
-        line = line + "FOR001=" + self.FOR001_2 + "\n"
-        line = line + "DIR002=" + self.DIR002 + "\n"
-        line = line + "DIR003=" + self.DIR003 + "\n"
-        line = line + "FOR004=" + self.FOR004 + "\n"
-        line = line + "DIR006=" + self.DIR006 + "\n"
-        line = line + "DIR009=" + self.DIR009 + "\n"
-        line = line + "DIR010=" + self.DIR010 + "\n"
-        line = line + "DIR011=" + self.DIR011 + "\n"
-        line = line + "Self-consistent KKR Calc for %s.\n" % (self.jobname)
-        line = line + "Band: 10 lines\n"
-        line = line + "NITER.=%3i NLIN.=%3i NPRN.=  %1i NCPA.=%3i " \
-            % (self.niter, self.nlin, self.nprn, self.ncpa) \
-            + "NT...= %2i MNTA.= %2i\n" % (self.nt, self.mnta)
-        line = line + "MODE..= %2s FRC..=  %1s DOS..=  %1s OPS..=  %1s " \
-            % (self.mode, self.frc, self.dos, self.ops) + \
-            "AFM..=  " + self.afm + " CRT..=  " + self.crt + "\n"
-        line = line + "Lmaxh.= %2i Lmaxt= %2i NFI..=%3i " \
+        line += "JOBNAM...=" + self.jobname + "\n"
+        line += "MSGL.=" + str(self.msgl) + " STRT.=" + self.strt  \
+            + " FUNC.=" + self.func + " EXPAN=" + str(self.expan) + \
+            " FCD.=" + self.fcd + " GPM.=" + self.gpm + \
+            " FSM.=" + self.fsm + "\n"
+        line += "FOR001=" + self.FOR001 + "\n"
+        line += "FOR002=" + self.FOR002 + "\n"
+        line += "DIR003=" + self.DIR003 + "\n"
+        line += "DIR006=" + self.DIR006 + "\n"
+        line += "DIR010=" + self.DIR010 + "\n"
+        line += "DIR011=" + self.DIR011 + "\n"
+        line += "DIR021=" + self.DIR021 + "\n"
+        line += "DIR022=" + self.DIR022 + "\n"
+        line += "FOR098=" + self.FOR098 + "\n"
+        line += "Self-consistent KKR calculation for: %s\n" % (self.jobname)
+        line += "**********************************************************************\n"
+        line += "SCFP:  information for self-consistency procedure:                   *\n"
+        line += "**********************************************************************\n"
+        line += "NITER.=%3i NLIN.=%3i NCPA.=%3i NPRN....=%08i\n" \
+            % (self.niter, self.nlin, self.ncpa, self.nprn )
+        # line += "NT...= %2i MNTA.= %2i\n" % (self.nt, self.mnta)
+        line += "FRC...=  %1s DOS..=  %1s OPS..=  %1s " \
+            % (self.frc, self.dos, self.ops) + \
+            "AFM..=  " + self.afm + " CRT..=  " + self.crt + " STMP..= " + self.stmp + "\n"
+        line += "Lmaxh.= %2i Lmaxt= %2i NFI..=%3i " \
             % (self.lmaxh, self.lmaxt, self.kgrn_nfi) \
             + "FIXG.= %2i SHF..=  %1i SOFC.=  %1s" \
             % (self.fixg, self.shf, self.sofc) + "\n"
-        line = line + "KMSH...= %1s IBZ..= %2i NKX..= %2i " \
+        line += "KMSH...= %1s IBZ..= %2i NKX..= %2i " \
             % (self.kmsh, self.ibz, self.nkx) \
             + "NKY..= %2i NKZ..= %2i FBZ..=  %1s\n" \
             % (self.nky, self.nkz, self.fbz)
-        line = line + "KMSH2..= %1s IBZ2.=%3i NKX2.=%3i NKY2.=%3i NKZ2.=%3i NCPU.=%03i"\
-            % (self.kmsh2, self.ibz2, self.nkx2, self.nky2, self.nkz2, self.ncpu) + "\n"
-        line = line + "ZMSH...= %1s NZ1..= %2i " % (self.zmsh, self.nz1) \
-            + "NZ2..=%3i NZ3..=%3i NRES.=%3i NZD.=%4i" \
+        #line += "KMSH2..= %1s IBZ2.=%3i NKX2.=%3i NKY2.=%3i NKZ2.=%3i NCPU.=%03i"\
+        #    % (self.kmsh2, self.ibz2, self.nkx2, self.nky2, self.nkz2, self.ncpu) + "\n"
+        line += "ZMSH...= %1s NZ1..= %2i " % (self.zmsh, self.nz1) \
+            + "NZ2..=%3i NZ3..=%3i NRES.=%3i NZD..=%3i" \
             % (self.nz2, self.nz3, self.nres, self.nzd) + "\n"
-        line = line + "DEPTH..= %6.3f IMAGZ.= %6.3f " \
+        line += "DEPTH..= %6.3f IMAGZ.= %6.4f " \
             % (self.depth, self.imagz) \
             + "EPS...=  %5.3f ELIM..= %6.3f" \
             % (self.eps, self.elim) + "\n"
-        line = line + "AMIX...= %6.3f EFMIX.= %6.3f " % (self.amix, self.efmix) \
-            + "VMTZ..=%7.3f MMOM..=%7.3f" \
-            % (self.vmtz, self.mmom) + "\n"
-        line = line + "TOLE...=%7.1e TOLEF.=%7.1e " % (self.tole, self.tolef) \
-            + "TOLCPA=%7.1e TFERMI= %6.1f\n" % (self.tolcpa, self.tfermi)
-        line = line + "SWS......=%10.7f NSWS.=%3i " % (self.sws, self.nsws) \
-            + "DSWS..=   %4.2f ALPCPA= %6.4f\n" % (self.dsws, self.alpcpa)
-        line = line + "Setup: 2 + NQ*NS lines\n"
-        line = line + "EFGS...= %6.3f HX....= %6.3f " % (self.efgs, self.hx) \
-            + "NX...= %2i NZ0..= %2i " % (self.nx, self.nz0) \
-            + "STMP..= " + self.stmp + "\n"
-        line = line + "Symb   IQ IT ITA NZ  CONC   "\
-            + "Sm(s)  S(ws) WS(wst) QTR SPLT Fix\n"
-        line = line + self.AtomOutput()
-        line = line + "Atom:  4 lines + NT*6 lines\n"
-        line = line + "IEX...= %2i NP..=%4i " % (self.iex, self.dirac_np) \
+        line += "AMIX...= %6.3f VMIX..= %6.4f EFMIX.= %6.3f " % (self.amix,
+                self.vmix, self.efmix) + "VMTZ..=%7.3f" \
+            % (self.vmtz) + "\n"
+        line += "TOLE...=%7.1e TOLEF.=%7.1e " % (self.tole, self.tolef) \
+            + "TOLCPA=%7.1e TFERMI= %6.1f (K)\n" % (self.tolcpa, self.tfermi)
+        line += "SWS....= %6.4f MMOM..= %6.3f\n" % (self.sws, self.mmom)
+            # NSWS.=%3i " % (self.sws, self.nsws) \
+            # + "DSWS..=   %4.2f ALPCPA= %6.4f\n" % (self.dsws, self.alpcpa)
+        # line += "Setup: 2 + NQ*NS lines\n"
+        line += "EFGS...= %6.3f HX....= %6.3f " % (self.efgs, self.hx) \
+            + "NX...= %2i NZ0..= %2i" % (self.nx, self.nz0) \
+            + " KPOLE=  " + str(self.kpole) + "\n"
+        line += "**********************************************************************\n"
+        line += "Sort:  information for alloy:                                        *\n"
+        line += "******************************SS-screening**|***Magnetic structure ***\n"
+        line += "Symb  IQ  IT ITA NRM  CONC      a_scr b_scr |Teta    Phi    FXM  m(split)\n"
+        line += self.AtomOutput()
+        line += "**********************************************************************\n"
+        line += "Spin-spiral wave vector:\n"
+        line += "qx....={0:9.6f} qy....={1:9.6f} qz....={2:9.6f}\n".format(
+                self.qx, self.qy, self.qz)
+        line += "**********************************************************************\n"
+        line += "Atom:  information for atomic calculation:                           *\n"
+        line += "**********************************************************************\n"
+        line += "IEX...= %2i " % (self.iex) \
             + "NES..=%3i NITER=%3i IWAT.=%3i NPRNA=%3i" \
             % (self.nes, self.dirac_niter, self.iwat, self.nprna) + "\n"
-        line = line + "VMIX.....=  %8.6f RWAT....=  %8.6f RMAX....=%10.6f" \
-            % (self.vmix, self.rwat, self.rmax) + "\n"
-        line = line + "DX.......=  %8.6f DR1.....=  %8.6f TEST....=  %8.2e" \
+        line += "VMIXATM..=  %8.6f RWAT....=  %8.6f RMAX....=%10.6f" \
+            % (self.vmixatm, self.rwat, self.rmax) + "\n"
+        line += "DX.......=  %8.6f DR1.....=  %8.6f TEST....=  %8.2e" \
             % (self.dx, self.dr1, self.test) + "\n"
-        line = line + "TESTE....=  %8.2e TESTY...=  %8.2e TESTV...=  %8.2e" \
+        line += "TESTE....=  %8.2e TESTY...=  %8.2e TESTV...=  %8.2e" \
             % (self.teste, self.testy, self.testv) + "\n"
 
-        for i in self.confidx:
-            line = line + self.aconflines(self.conforder[i][0])
+        # for i in self.confidx:
+            # line += self.aconflines(self.conforder[i][0])
 
         return(line)
 
@@ -643,8 +696,8 @@ class Kgrn:
                     '/kstr/' + self.latname + 'M.tfh'
                 self.FOR001 = common.cleanup_path(self.FOR001)
                 self.FOR001_2 = common.cleanup_path(self.FOR001_2)
-                self.FOR004 = self.latpath + '/bmdl/' + self.latname + '.mdl'
-                self.FOR004 = common.cleanup_path(self.FOR004)
+                self.FOR002 = self.latpath + '/kstr/' + self.latname + '.mdl'
+                self.FOR002 = common.cleanup_path(self.FOR002)
 
         else:
             setattr(self, key, value)
@@ -661,10 +714,14 @@ class Kgrn:
         self.atconf = []
         try:
             for i in range(len(self.atoms)):
-                self.atconf.append([self.atoms[i], self.iqs[i], self.its[i], self.itas[i],
-                                    self.concs[i], self.sm_ss[i],
-                                    self.s_wss[i], self.ws_wsts[i],
-                                    self.qtrs[i], self.splts[i], self.fixs[i]])
+                # self.atconf.append([self.atoms[i], self.iqs[i], self.its[i], self.itas[i],
+                                    # self.concs[i], self.sm_ss[i],
+                                    # self.s_wss[i], self.ws_wsts[i],
+                                    # self.qtrs[i], self.splts[i], self.fxms[i]])
+                self.atconf.append([self.atoms[i], self.iqs[i], self.its[i],
+                    self.itas[i], self.nrms[i], self.concs[i],
+                    self.a_scrs[i], self.b_scrs[i], self.tetas[i],
+                    self.phis[i], self.fxms[i], self.splts[i]])
         except:
             pass
 
@@ -702,12 +759,13 @@ class Kgrn:
         self.aconfig = np.empty(ln, dtype=self.Confdtype)
 
         for i in range(ln):
-            self.aconfig[i] = (self.atconf[i][0], self.atconf[i][1], self.atconf[i][2],
-                               self.atconf[i][3], self.atconf[
-                                   i][4], self.atconf[i][5],
-                               self.atconf[i][6], self.atconf[
-                                   i][7], self.atconf[i][8],
-                               self.atconf[i][9], self.atconf[i][10])
+            self.aconfig[i] = (self.atconf[i][0], self.atconf[i][1],
+                                self.atconf[i][2], self.atconf[i][3],
+                                self.atconf[i][4], self.atconf[i][5],
+                               self.atconf[i][6], self.atconf[i][7],
+                               self.atconf[i][8], self.atconf[i][9],
+                               self.atconf[i][10], self.atconf[i][11])
+            # self.aconfig[i] = self.atconf[i]
 
         # Sort list so that figuring out the first appearances
         # of unique [it,ita]-pairs is easy.
@@ -731,13 +789,14 @@ class Kgrn:
         # in which the lines appear in the final input file.
         self.aconfig = np.sort(self.aconfig, order=['iq', 'it', 'ita'])
         for i in range(ln):
-            self.atomblock.append(
-                self.Atomline(self.aconfig[i][0], self.aconfig[i][1], self.aconfig[i][2],
-                              self.aconfig[i][3], self.aconfig[
-                                  i][4], self.aconfig[i][5],
-                              self.aconfig[i][6], self.aconfig[
-                                  i][7], self.aconfig[i][8],
-                              self.aconfig[i][9], self.aconfig[i][10]))
+            self.atomblock.append(self.Atomline(self.aconfig[i]))
+                # self.Atomline(self.aconfig[i][0], self.aconfig[i][1], self.aconfig[i][2],
+                              # self.aconfig[i][3], self.aconfig[
+                                  # i][4], self.aconfig[i][5],
+                              # self.aconfig[i][6], self.aconfig[
+                                  # i][7], self.aconfig[i][8],
+                              # self.aconfig[i][9], self.aconfig[i][10],
+                              # self.aconfig[i][11]))
 
     def check_input_file(self):
         """Perform various checks on the class data
@@ -782,7 +841,7 @@ class Kgrn:
         if self.msgl is None:
             self.msgl = 1
         if self.expan is None:
-            self.expan = 'S'
+            self.expan = 1
         if self.fcd is None:
             self.fcd = 'Y'
         if self.func is None:
@@ -824,7 +883,7 @@ class Kgrn:
         if self.sofc is None:
             self.sofc = 'N'
         if self.kmsh is None:
-            self.kmsh = 'G'
+            self.kmsh = 'S'
         if self.nkx is None:
             self.nkx = 0
         if self.nky is None:
@@ -862,7 +921,7 @@ class Kgrn:
         if self.nres is None:
             self.nres = 4
         if self.nzd is None:
-            self.nzd = 1500
+            self.nzd = 100
         if self.depth is None:
             self.depth = 1.0
         if self.imagz is None:
@@ -872,9 +931,9 @@ class Kgrn:
         if self.elim is None:
             self.elim = -1.0
         if self.amix is None:
-            self.amix = 0.05
+            self.amix = 0.02
         if self.efmix is None:
-            self.efmix = 1.0
+            self.efmix = 0.9
         if self.vmtz is None:
             self.vmtz = 0.0
         if self.mmom is None:
@@ -900,7 +959,7 @@ class Kgrn:
         if self.nx is None:
             self.nx = 5
         if self.nz0 is None:
-            self.nz0 = 6
+            self.nz0 = self.nz1
         if self.stmp is None:
             self.stmp = 'N'
         if self.iex is None:
@@ -916,7 +975,9 @@ class Kgrn:
         if self.nprna is None:
             self.nprna = 0
         if self.vmix is None:
-            self.vmix = 0.3
+            self.vmix = 0.7
+        if self.vmixatm is None:
+            self.vmixatm = 0.3
         if self.rwat is None:
             self.rwat = 3.5
         if self.rmax is None:
@@ -924,7 +985,7 @@ class Kgrn:
         if self.dx is None:
             self.dx = 0.03
         if self.dr1 is None:
-            self.dr1 = 0.002
+            self.dr1 = 0.001
         if self.test is None:
             self.test = 1.0e-12
         if self.teste is None:
@@ -942,9 +1003,9 @@ class Kgrn:
             self.DIR002 = 'kgrn/'
         if self.DIR003 is None:
             self.DIR003 = 'kgrn/'
-        if self.FOR004 is None:
-            self.FOR004 = self.latpath + '/bmdl/' + self.latname + '.mdl'
-            self.FOR004 = common.cleanup_path(self.FOR004)
+        if self.FOR002 is None:
+            self.FOR002 = self.latpath + '/bmdl/' + self.latname + '.mdl'
+            self.FOR002 = common.cleanup_path(self.FOR002)
         if self.DIR006 is None:
             self.DIR006 = 'kgrn/'
         if self.DIR009 is None:
@@ -957,3 +1018,14 @@ class Kgrn:
             self.CQNA = 'N'
         if self.ncpu is None:
             self.ncpu = 1
+        if self.DIR022 is None:
+            self.DIR022 = self.latpath + '/shape/' + self.latname + '.shp'
+            self.DIR022 = common.cleanup_path(self.DIR022)
+        if self.kpole is None:
+            self.kpole = 0
+        if self.qx is None:
+            self.qx = 0.0
+        if self.qy is None:
+            self.qy = 0.0
+        if self.qz is None:
+            self.qz = 0.0
