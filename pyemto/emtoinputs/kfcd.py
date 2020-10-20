@@ -59,7 +59,8 @@ class Kfcd:
     def __init__(self, jobname=None, latname=None, latpath=None, msgl=None, nprn=None,
                  lmaxs=None, nth=None, kfcd_nfi=None, fpot=None, ovcor=None,
                  ubg=None, DIR001=None, DIR002=None, DIR003=None, DIR004=None,
-                 DIR006=None, sws=None, CQNA=None, KFCD_file_type=None):
+                 DIR006=None, sws=None, CQNA=None, KFCD_file_type=None,
+                 nrm=None, sno=None):
 
         self.jobname = jobname
         self.latname = latname
@@ -81,7 +82,9 @@ class Kfcd:
         self.KFCD_file_type = KFCD_file_type
         if KFCD_file_type is None:
             self.KFCD_file_type = 'kfcd'
-        
+        self.nrm = nrm
+        self.sno = sno
+
     def output(self):
         """Outputs KFCD input file as a formatted string.
 
@@ -93,19 +96,19 @@ class Kfcd:
 
         now = datetime.datetime.now()
         #line = "KFCD      MSGL..=  %1i                        " % (self.msgl) +\        
-        line = "KFCD      MSGL..=  {0:1}".format(self.msgl) + " CQNA=  {0}      ".format(self.CQNA) +\
+        line = "KFCD      HP......=N sno..=%3i" % self.sno + " "*20 +\
                str(now.day) + "." + str(now.month) + "." + str(now.year) + "\n"
-        line = line + "JOBNAM...=" + self.jobname + "\n"
-        line = line + "STRNAM...=" + self.latname + "\n"
-        line = line + "DIR001=" + self.DIR001 + "\n"
-        line = line + "DIR002=" + self.DIR002 + "\n"
-        line = line + "DIR003=" + self.DIR003 + "\n"
-        line = line + "DIR004=" + self.DIR004 + "\n"
-        line = line + "DIR006=" + self.DIR006 + "\n"
-        line = line + "Lmaxs.=%3i NTH..=%3i NFI..=%3i FPOT..= %1s"\
-            % (self.lmaxs, self.nth, self.kfcd_nfi, self.fpot) + "\n"
-        line = line + "OVCOR.=  %1s UBG..=  %1s NPRN.=  %1s"\
-            % (self.ovcor, self.ubg, self.nprn) + "\n"
+        line += "JOBNAM...=" + self.jobname + "\n"
+        line += "STRNAM...=" + self.latname + "\n"
+        line += "DIR001=" + self.DIR001 + "\n"
+        line += "DIR002=" + self.DIR002 + "\n"
+        line += "DIR003=" + self.DIR003 + "\n"
+        line += "DIR004=" + self.DIR004 + "\n"
+        line += "DIR006=" + self.DIR006 + "\n"
+        line += "Lmaxs.=%3i NTH..=%3i NFI..=%3i MSGL.=%3i"\
+            % (self.lmaxs, self.nth, self.kfcd_nfi, self.msgl) + "\n"
+        line += "OVCOR.=  %1s UBG..=  %1s NPRN.=%3i NRM..=%3i"\
+            % (self.ovcor, self.ubg, self.nprn, self.nrm) + "\n"
 
         return line
 
@@ -154,9 +157,9 @@ class Kfcd:
             setattr(self, key, value)
             self.DIR001 = self.latpath + '/kstr/'
             self.DIR001 = common.cleanup_path(self.DIR001)
-            self.DIR003 = self.latpath + '/shape/'
+            self.DIR003 = self.latpath + '/shape/' + self.latname + '.shp'
             self.DIR003 = common.cleanup_path(self.DIR003)
-            self.DIR004 = self.latpath + '/bmdl/'
+            self.DIR004 = self.latpath + '/kstr/'
             self.DIR004 = common.cleanup_path(self.DIR004)
 
         else:
@@ -202,15 +205,19 @@ class Kfcd:
             self.DIR002 = 'kgrn/'
             self.DIR002 = common.cleanup_path(self.DIR002)
         if self.DIR003 is None:
-            self.DIR003 = self.latpath + '/shape/'
+            self.DIR003 = self.latpath + '/shape/' + self.latname + ".shp"
             self.DIR003 = common.cleanup_path(self.DIR003)
         if self.DIR004 is None:
-            self.DIR004 = self.latpath + '/bmdl/'
+            self.DIR004 = self.latpath + '/kstr/'
             self.DIR004 = common.cleanup_path(self.DIR004)
         if self.DIR006 is None:
             self.DIR006 = 'kfcd/'
             self.DIR006 = common.cleanup_path(self.DIR006)
         if self.CQNA is None:
             self.CQNA = 'N'
+        if self.nrm is None:
+            self.nrm = 0
+        if self.sno is None:
+            self.sno = 0
         return
 
