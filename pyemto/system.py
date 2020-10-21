@@ -245,7 +245,7 @@ class System:
         self.lattice.set_values(**kwargs)
         return
 
-    def bulk_new(self, jobname=None, lat=None, atoms=None, concs=None, splts=None, sws=None,
+    def bulk_new(self, jobname=None, lat=None, atoms=None, concs=None, m_splits=None, sws=None,
                  latname=None, latpath=None, emtopath=None, ibz=None, bmod=None, xc=None, ca=None,
                  iqs=None, its=None, itas=None,
                  **kwargs):
@@ -267,9 +267,9 @@ class System:
                       'atoms' list. This information is only used in CPA
                       calculations (Default value = None)
         :type concs:
-        :param splts: List of initial magnetic moments of the elements in the
+        :param m_splits: List of initial magnetic moments of the elements in the
                       'atoms' list (Default value = None)
-        :type splts:
+        :type m_splits:
         :param sws: The Wigner-Seitz radius of the system (Default value = None)
         :type sws: float
         :param latname: The 'jobname' of the BMDL, KSTR and SHAPE output files. These
@@ -331,10 +331,10 @@ class System:
             self.concs[:] = 1.0 / float(len(atoms))
         else:
             self.concs = concs
-        if splts is None:
-            self.splts = np.zeros(len(atoms))
+        if m_splits is None:
+            self.m_splits = np.zeros(len(atoms))
         else:
-            self.splts = np.asarray(splts)
+            self.m_splits = np.asarray(m_splits)
         if sws is None:
             self.sws = 0.0
             #sys.exit('System.bulk(): \'sws\' has to be given!')
@@ -373,7 +373,8 @@ class System:
 
         self.emto.set_values(jobname=self.fulljobname, sws=self.sws, atoms=self.atoms,
                              iqs=self.iqs, its=self.its, itas=self.itas, concs=self.concs,
-                             splts=self.splts, ibz=self.ibz, latname=self.latname, latpath=self.latpath,
+                             m_splits=self.m_splits, ibz=self.ibz, latname=self.latname,
+                             latpath=self.latpath,
                              emtopath=self.emtopath, EMTOdir=self.EMTOdir, **kwargs)
         return
 

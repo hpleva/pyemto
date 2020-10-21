@@ -212,7 +212,7 @@ class EMTO:
         len_basis = struct.num_sites
         self.atoms_cpa = []
         self.concs_cpa = []
-        self.splts_cpa = []
+        self.m_splits_cpa = []
         self.fxms_cpa = []
         self.s_wss_cpa = []
         self.ws_wsts_cpa = []
@@ -228,7 +228,7 @@ class EMTO:
                 if atom_number == self.pmg_species[j]:
                     self.atoms_cpa.append(self.species[j])
                     self.concs_cpa.append(self.concs[j])
-                    self.splts_cpa.append(self.splts[j])
+                    self.m_splits_cpa.append(self.m_splits[j])
                     self.fxms_cpa.append(self.fxms[j])
                     self.s_wss_cpa.append(self.s_wss[j])
                     self.ws_wsts_cpa.append(self.ws_wsts[j])
@@ -246,7 +246,7 @@ class EMTO:
         splt_tol = 1e-6
         conc_tol = 1e-6
         species_sorted = []
-        splts_sorted = []
+        m_splits_sorted = []
         concs_sorted = []
         for i in range(len(self.species)):
             tmp1 = []
@@ -255,10 +255,10 @@ class EMTO:
             ind_sorted = np.argsort(self.species[i])
             for ind in ind_sorted:
                 tmp1.append(self.species[i][ind])
-                tmp2.append(self.splts[i][ind])
+                tmp2.append(self.m_splits[i][ind])
                 tmp3.append(self.concs[i][ind])
             species_sorted.append(tmp1)
-            splts_sorted.append(tmp2)
+            m_splits_sorted.append(tmp2)
             concs_sorted.append(tmp3)
 
         eqv_sites = np.zeros((len(species_sorted), len(species_sorted)), dtype=np.int) + 9999
@@ -275,7 +275,7 @@ class EMTO:
                     eqv_sites[i, j] = 0
                 else:
                     for a1, a2, splt1, splt2, conc1, conc2 in zip(species_sorted[i], species_sorted[j],
-                            splts_sorted[i], splts_sorted[j], concs_sorted[i], concs_sorted[j]):
+                            m_splits_sorted[i], m_splits_sorted[j], concs_sorted[i], concs_sorted[j]):
                         if a1 != a2 or np.abs(splt1 - splt2) > splt_tol or np.abs(conc1 - conc2) > conc_tol:
                             # Some pair of atoms (in the sorted lists) were not
                             # the same => sites i and j are not equivalent.
@@ -294,10 +294,105 @@ class EMTO:
             output_sites[-1] = next_available
         return output_sites
 
+    def get_crystal_system(self, n):
+        """n = space group number"""
+        def f(i, j):
+            return i <= n <= j
+
+        cs = {"triclinic": (1, 2), "monoclinic": (3, 15),
+              "orthorhombic": (16, 74), "tetragonal": (75, 142),
+              "trigonal": (143, 167), "hexagonal": (168, 194),
+              "cubic": (195, 230)}
+
+        crystal_system = None
+        for k, v in cs.items():
+            if f(*v):
+                crystal_system = k
+                break
+        return crystal_system
+
+    def get_space_group_number(self, sg):
+        return int(sg.split()[-1].lstrip('(').rstrip(')'))
+
+    def get_ibz_from_crystal_system(self, cs, lat):
+        spg_cell = (
+            lat,
+            [[0.0, 0.0, 0.0]],
+            [1]
+        )
+        space_group = spg.get_spacegroup(spg_cell)
+        space_group_number = self.get_space_group_number(space_group)
+        ibz = self.sg2ibz[space_group_number]
+
+        ibz_out = None
+        if cs == 'cubic':
+            if ibz in (1,2,3):
+                ibz_out = ibz
+        elif cs == 'hexagonal':
+            if ibz == 4:
+                ibz_out = ibz
+        elif cs == 'tetragonal':
+            if ibz in (5,6):
+                ibz_out = ibz
+            elif ibz == 1:
+                ibz_out = 5
+            elif ibz == 3:
+                ibz_out = 6
+        elif  cs == 'trigonal':
+            if ibz in (1,7):
+                ibz_out = ibz
+        elif cs == 'orthorhombic':
+            if ibz in (8,9,10,11):
+                ibz_out = ibz
+            elif ibz in (1,5):
+                # Base-centered orthorhombic without basis can
+                # look like simple cubic or simple tetragonal.
+                # Check the angles of the input lattice to
+                # see whether the lattice vectors are those of
+                # simple or base-centered.
+                angles = np.array([get_angle(lat[0,:], lat[1,:]),
+                                   get_angle(lat[0,:], lat[2,:]),
+                                   get_angle(lat[1,:], lat[2,:])])
+                if not all(np.abs(angles-90) < 1e-4):
+                    ibz_out = 9
+                else:
+                    ibz_out = 8
+            elif ibz == 2:
+                ibz_out = 11
+            elif ibz in (3,6):
+                ibz_out = 10
+        elif cs == 'monoclinic':
+            if ibz in (12,13):
+                ibz_out = ibz
+            elif ibz in (1,5,8):
+                num_angle_is_90 = 0
+                angles = np.array([get_angle(lat[0,:], lat[1,:]),
+                                   get_angle(lat[0,:], lat[2,:]),
+                                   get_angle(lat[1,:], lat[2,:])])
+                for angle in angles:
+                    if np.abs(angle-90) < 1e-4:
+                        num_angle_is_90 += 1
+                if num_angle_is_90 < 2:
+                    ibz_out = 13
+                else:
+                    ibz_out = 12
+        elif cs == 'triclinic':
+            if ibz == 14:
+                ibz_out = 14
+            elif ibz in (1,5,8,12):
+                ibz_out = 14
+
+        if ibz_out is None:
+            raise ValueError(f"Cannot fit crystal system \'{cs}\'" +
+                f" and IBZ of the lattice vectors \'{ibz}\' together!")
+        else:
+            return ibz_out
+
     def prepare_input_files(self, prims=None, basis=None, latpath=None,
                             coords_are_cartesian=False, latname=None,
                             species=None, find_primitive=True,
-                            concs=None, splts=None, its=None, ws_wsts=None,
+                            use_sublattices=True,
+                            concs=None, m_splits=None, its=None, ws_wsts=None,
                             s_wss=None, make_supercell=None, fxms=None,
                             qtrs=None, nrms=None, a_scrs=None, b_scrs=None,
                             tetas=None, phis=None,
@@ -332,27 +427,27 @@ class EMTO:
                 else:
                     self.species.append([species[i]])
 
-        if splts is None:
+        if m_splits is None:
             # Assume a zero moments array
-            self.splts = []
+            self.m_splits = []
             for i in range(len(self.species)):
                 if isinstance(self.species[i], list):
                     tmp = []
                     for j in range(len(self.species[i])):
                         tmp.append(0.0)
-                    self.splts.append(tmp)
+                    self.m_splits.append(tmp)
                 else:
-                    self.splts.append([0.0])
+                    self.m_splits.append([0.0])
         else:
-            self.splts = []
-            for i in range(len(splts)):
-                if isinstance(splts[i], list):
+            self.m_splits = []
+            for i in range(len(m_splits)):
+                if isinstance(m_splits[i], list):
                     tmp = []
-                    for j in range(len(splts[i])):
-                        tmp.append(splts[i][j])
-                    self.splts.append(tmp)
+                    for j in range(len(m_splits[i])):
+                        tmp.append(m_splits[i][j])
+                    self.m_splits.append(tmp)
                 else:
-                    self.splts.append([splts[i]])
+                    self.m_splits.append([m_splits[i]])
 
         if fxms is None:
             # Assume a zero moments array
@@ -591,18 +686,16 @@ class EMTO:
                 else:
                     self.concs.append([concs[i]])
 
-        # Check that all species, concs, and splts arrays have the same dimensions
+        # Check that all species, concs, and m_splits arrays have the same dimensions
         for a, b in combinations([self.basis, self.species, self.concs,
-            self.splts, self.fxms, self.s_wss, self.ws_wsts,
-            self.qtrs, self.nrms, self.a_scrs, self.b_scrs,
+            self.m_splits, self.fxms, self.nrms, self.a_scrs, self.b_scrs,
             self.tetas, self.phis], 2):
             if len(a) != len(b):
                 print(a, 'len = ', len(a))
                 print(b, 'len = ', len(b))
                 sys.exit('The above input arrays have inconsistent lengths!!!')
-        for a, b in combinations([self.species, self.concs, self.splts,
-            self.fxms, self.s_wss, self.ws_wsts, self.qtrs,
-            self.nrms, self.a_scrs, self.b_scrs, self.tetas, self.phis], 2):
+        for a, b in combinations([self.species, self.concs, self.m_splits,
+            self.fxms, self.nrms, self.a_scrs, self.b_scrs, self.tetas, self.phis], 2):
             for sublist1, sublist2 in zip(a, b):
                 if len(sublist1) != len(sublist2):
                     print(sublist1, 'len = ', len(sublist1))
@@ -610,10 +703,7 @@ class EMTO:
                     sys.exit('The above input array elements have inconsistent lengths!!!')
 
         self.find_primitive = find_primitive
-        if self.find_primitive:
-            self.pmg_species = self.get_equivalent_sites()
-        else:
-            self.pmg_species = np.linspace(1, len(self.species), len(self.species), dtype=np.int)
+        self.pmg_species = self.get_equivalent_sites()
         #
         self.coords_are_cartesian = coords_are_cartesian
         self.ibz = None
@@ -623,13 +713,15 @@ class EMTO:
         self.pmg_input_struct = Structure(self.pmg_input_lattice, self.pmg_species, self.basis,
                                           coords_are_cartesian=self.coords_are_cartesian)
         #
-        if self.make_supercell is not None:
-            self.pmg_input_struct.make_supercell(self.make_supercell)
+        # if self.make_supercell is not None:
+            # self.pmg_input_struct.make_supercell(self.make_supercell)
         #
         self.sws = self.calc_ws_radius(self.pmg_input_struct)
         #
-        self.finder = SpacegroupAnalyzer(self.pmg_input_struct, symprec=0.0001, angle_tolerance=0.0001)
-        self.stm = StructureMatcher(ltol=0.001, stol=0.001, angle_tol=0.001, attempt_supercell=True)
+        self.finder = SpacegroupAnalyzer(self.pmg_input_struct, symprec=0.0001,
+            angle_tolerance=0.0001)
+        self.stm = StructureMatcher(ltol=0.001, stol=0.001, angle_tol=0.001,
+            attempt_supercell=True)
         #
         print("Input structure information:")
         print(self.pmg_input_struct)
@@ -640,52 +732,66 @@ class EMTO:
         #
         # spglib
         spg_cell = (
-        self.pmg_input_lattice.matrix,
-        self.pmg_input_struct.frac_coords,
-        self.pmg_species
+            self.pmg_input_lattice.matrix,
+            self.pmg_input_struct.frac_coords,
+            self.pmg_species
         )
-        self.spg_space_group = spg.get_spacegroup(spg_cell)
-        self.spg_space_group_number = int(self.spg_space_group.split()[-1].lstrip('(').rstrip(')'))
-        self.spg_space_group_symbol = self.spg_space_group
-        self.spg_prim_lat, self.spg_prim_pos, self.spg_prim_species = spg.standardize_cell(spg_cell,
-                                                                                           to_primitive=True)
-        self.prim_struct = Structure(Lattice(self.spg_prim_lat), self.spg_prim_species, self.spg_prim_pos)
-        self.spg_ibz = self.sg2ibz[self.spg_space_group_number]
-        self.ibz = self.spg_ibz
+    
+        if not self.find_primitive:
+            space_group = spg.get_spacegroup(spg_cell)
+            space_group_number = self.get_space_group_number(space_group)
+            crystal_system = self.get_crystal_system(space_group_number)
+            self.spg_ibz = self.get_ibz_from_crystal_system(crystal_system,
+                self.pmg_input_lattice.matrix)
+            self.ibz = self.spg_ibz
 
-        mesh = [kwargs['nkx'], kwargs['nky'], kwargs['nkz']]
-        #print()
-        #print('#'*60)
-        mapping, grid = spg.get_ir_reciprocal_mesh(mesh, spg_cell, is_time_reversal=True, is_shift=(0, 0, 0))
-        uniques, counts = np.unique(mapping, return_counts=True)
-        all_weights = []
-        kpoints = []
-        weights = []
-        for xx in mapping:
-            all_weights.append(counts[np.argwhere(uniques == xx).flatten()[0]])
-        for xx, yy in zip(uniques, counts):
-            kpoints.append(grid[np.argwhere(mapping == xx).flatten()[0]])
-            weights.append(yy)
-        #for xx, yy, zz in zip(mapping, grid, all_weights):
-        #    print(xx, yy, zz)
-        #print()
-        #for kp, ww in zip(kpoints, weights):
-        #    print(kp, ww)
-        #print()
-        #print('NKVEC = ', len(kpoints))
-        #print('#'*60)
-        #print()
-        
-        #print(spg_prim_pos)
-        #print(spg_prim_species)
-        #
-        #print("Detected standard conventional structure:")
-        #print(self.conv_struct)
-        #print("Volume: ",self.conv_struct.volume)
-        #print("Lattice vectors:")
-        #print(self.conv_struct.lattice.matrix)
-        #print("")
-        print("Detected standardized structure:")
+            self.equivalent_atoms = spg.get_symmetry(spg_cell)['equivalent_atoms']
+
+            # Leaving only unique symmetrically equivalent atoms in the
+            # structure does not work.
+            # unique_atoms = []
+            # include_atoms = []
+            # for i in range(len(eq_atoms)):
+                # if eq_atoms[i] not in unique_atoms:
+                    # include_atoms.append(i)
+                    # unique_atoms.append(eq_atoms[i])
+            # pmg_eq_unique_species = []
+            # pmg_eq_unique_basis = []
+            # for ind in include_atoms:
+                # pmg_eq_unique_species.append(self.pmg_species[ind])
+                # pmg_eq_unique_basis.append(self.pmg_input_struct.frac_coords[ind])
+            # spg_cell = (
+                # self.pmg_input_lattice.matrix,
+                # pmg_eq_unique_basis,
+                # pmg_eq_unique_species
+                # )
+
+            self.spg_space_group = spg.get_spacegroup(spg_cell)
+            self.spg_space_group_number = self.get_space_group_number(self.spg_space_group)
+            self.spg_space_group_symbol = self.spg_space_group
+            self.spg_prim_lat = self.pmg_input_lattice.matrix
+            self.spg_prim_pos = self.pmg_input_struct.frac_coords
+            self.spg_prim_species = self.pmg_species
+        else:
+            self.spg_prim_lat, self.spg_prim_pos, self.spg_prim_species = \
+            spg.standardize_cell(spg_cell, to_primitive=True)
+            self.spg_space_group = spg.get_spacegroup((
+                self.spg_prim_lat, self.spg_prim_pos, self.spg_prim_species
+                ))
+            tmp = spg.get_symmetry((
+                self.spg_prim_lat, self.spg_prim_pos, self.spg_prim_species
+                ))
+            self.equivalent_atoms = tmp['equivalent_atoms']
+
+            self.spg_space_group_number = self.get_space_group_number(self.spg_space_group)
+            self.spg_space_group_symbol = self.spg_space_group
+            self.spg_ibz = self.sg2ibz[self.spg_space_group_number]
+            self.ibz = self.spg_ibz
+
+        self.prim_struct = Structure(Lattice(self.spg_prim_lat),
+            self.spg_prim_species, self.spg_prim_pos)
+
+        print("Output structure information:")
         print(self.prim_struct)
         print("Volume: ", self.prim_struct.volume)
         print("Lattice vectors:")
@@ -1130,18 +1236,18 @@ class EMTO:
         print("EMTO IBZ                                : {}".format(self.emto_ibz))
         print("")
 
-        print(self.prim_struct)
-        print(self.emto_struct)
+        # print(self.prim_struct)
+        # print(self.emto_struct)
         
-        should_exit = False
-        if (self.spg_space_group != self.emto_space_group):
-            print("Input and output spacegroups are different!!!")
-            should_exit = True
-        if (self.spg_ibz != self.emto_ibz):
-            print("Input and output IBZ are different!!!")
-            should_exit = True
-        if should_exit:
-            sys.exit("Structure conversion went wrong! Check the symmetry information above.")
+        # should_exit = False
+        # if (self.spg_space_group != self.emto_space_group):
+            # print("Input and output spacegroups are different!!!")
+            # should_exit = True
+        # if (self.spg_ibz != self.emto_ibz):
+            # print("Input and output IBZ are different!!!")
+            # should_exit = True
+        # if should_exit:
+            # sys.exit("Structure conversion went wrong! Check the symmetry information above.")
         #
         fitted_angles = [get_angle(self.output_prima, self.emto_prima),
             get_angle(self.output_primb, self.emto_primb),
@@ -1183,7 +1289,9 @@ class EMTO:
                                              basis=self.output_basis,
                                              EMTOdir=self.EMTOdir,
                                              **kwargs)
-        # Finally, save atoms, splts, and concs of the output structure to be read by init_bulk function.
+        # Finally, save atoms, m_splits, and concs of the output structure
+        # to be read by init_bulk function.
+        # EMTOx needs ASR in the shape.
         self.make_cpa_sites_array(self.output_struct)
         #
         # Prepare KGRN, KFCD, and SLURM input files next.
@@ -1210,17 +1318,17 @@ class EMTO:
                     atoms_flat.append(self.atoms_cpa[i])
             self.KGRN_atoms = np.array(atoms_flat)
 
-        if self.splts_cpa is None:
-            sys.exit('EMTO.init_bulk(): \'self.splts_cpa\' does not exist!!! (Did you run init_structure?)')
+        if self.m_splits_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.m_splits_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
-            splts_flat = []
-            for i in range(len(self.splts_cpa)):
-                if isinstance(self.splts_cpa[i], list):
-                    for j in range(len(self.splts_cpa[i])):
-                        splts_flat.append(self.splts_cpa[i][j])
+            m_splits_flat = []
+            for i in range(len(self.m_splits_cpa)):
+                if isinstance(self.m_splits_cpa[i], list):
+                    for j in range(len(self.m_splits_cpa[i])):
+                        m_splits_flat.append(self.m_splits_cpa[i][j])
                 else:
-                    splts_flat.append(self.splts_cpa[i])
-            self.KGRN_splts = np.array(splts_flat)
+                    m_splits_flat.append(self.m_splits_cpa[i])
+            self.KGRN_m_splits = np.array(m_splits_flat)
 
         if self.fxms_cpa is None:
             sys.exit('EMTO.init_bulk(): \'self.fxms_cpa\' does not exist!!! (Did you run init_structure?)')
@@ -1368,16 +1476,37 @@ class EMTO:
         # instance and then copy the information to the other lattice site.
         self.KGRN_its = np.zeros(index_len, dtype='int32')
         #
+        self.use_sublattices = use_sublattices
         if its is None:
-            # Assume distinct sublattices (for safety, not speed!??)
-            self.KGRN_its = np.zeros(index_len, dtype='int32')
-            running_index = 0
-            for i in range(len(index_array)):
-                for j in range(index_array[i]):
-                    self.KGRN_its[running_index] = i+1
-                    running_index += 1
-        elif its == 'all_same':
-            self.KGRN_its = np.ones(index_len, dtype='int32')
+            if self.use_sublattices:
+                # Use spglib calculated equivalent_atoms to assign sites
+                # to sublattices.
+                self.equivalent_its = np.array(self.equivalent_atoms) + 9000
+                eq_dict = {}
+                running_index = 0
+                for i in range(len(self.equivalent_its)):
+                    tmp = self.equivalent_its[i]
+                    if tmp not in eq_dict.keys():
+                        eq_dict[tmp] = running_index+1
+                        running_index += 1
+
+                for i in range(len(self.equivalent_its)):
+                    self.equivalent_its[i] = eq_dict[self.equivalent_its[i]]
+
+                # print(self.equivalent_its)
+
+                self.KGRN_its = np.zeros(index_len, dtype='int32')
+                running_index = 0
+                for i in range(len(index_array)):
+                    for j in range(index_array[i]):
+                        self.KGRN_its[running_index] = self.equivalent_its[i]
+                        running_index += 1
+            else:
+                running_index = 0
+                for i in range(len(index_array)):
+                    for j in range(index_array[i]):
+                        self.KGRN_its[running_index] = i+1
+                        running_index += 1
         else:
             its_flat = []
             for i in range(len(its)):
@@ -1394,7 +1523,7 @@ class EMTO:
                                    latpath=self.latpath,
                                    atoms=self.KGRN_atoms,
                                    concs=self.KGRN_concs,
-                                   splts=self.KGRN_splts,
+                                   m_splits=self.KGRN_m_splits,
                                    fxms=self.KGRN_fxms,
                                    iqs=self.KGRN_iqs,
                                    its=self.KGRN_its,

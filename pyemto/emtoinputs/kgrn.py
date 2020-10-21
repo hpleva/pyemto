@@ -39,8 +39,8 @@ class Kgrn:
     :type itas:
     :param qtrs:  (Default value = None)
     :type qtrs:
-    :param splts:  (Default value = None)
-    :type splts:
+    :param m_splits:  (Default value = None)
+    :type m_splits:
     :param fxms:  (Default value = None)
     :type fxms:
     :param sm_ss:  (Default value = None)
@@ -218,7 +218,7 @@ class Kgrn:
     """
 
     def __init__(self, jobname=None, latname=None, latpath=None, ibz=None, atoms=None,
-                 concs=None, iqs=None, its=None, itas=None, qtrs=None, splts=None, fxms=None,
+                 concs=None, iqs=None, its=None, itas=None, qtrs=None, m_splits=None, fxms=None,
                  sm_ss=None, s_wss=None, ws_wsts=None,
                  atconf=None, sws=None, strt=None, msgl=None, expan=None, fcd=None, func=None,
                  niter=None, nlin=None, nprn=None, ncpa=None, mode=None, frc=None,
@@ -249,7 +249,7 @@ class Kgrn:
         self.its = its
         self.itas = itas
         self.qtrs = qtrs
-        self.splts = splts
+        self.m_splits = m_splits
         self.fxms = fxms
         self.sm_ss = sm_ss
         self.s_wss = s_wss
@@ -387,10 +387,10 @@ class Kgrn:
             self.qtrs = np.zeros(50)
         else:
             self.qtrs = qtrs
-        if splts is None:
-            self.splts = np.zeros(50)
+        if m_splits is None:
+            self.m_splits = np.zeros(50)
         else:
-            self.splts = splts
+            self.m_splits = m_splits
         if fxms is None:
             self.fxms = np.empty([50], dtype='S1')
             self.fxms[:] = 'N'
@@ -412,8 +412,9 @@ class Kgrn:
             self.KGRN_file_type = 'kgrn'
 
 
-        self.atconfKeys = ['atoms', 'concs', 'iqs', 'its', 'itas', 'qtrs', 'splts',
-                           'fxms', 'sm_ss', 's_wss', 'ws_wsts']
+        self.atconfKeys = ['atoms', 'iqs', 'its', 'itas', 'nrms', 'concs',
+                           'a_scrs', 'b_scrs', 'tetas', 'phis', 'fxms',
+                           'm_splits']
 
         self.symtonum = {"Va": 0, "Em": 0, "H": 1, "He": 2, "Li": 3, "Be": 4, "B": 5,
                          "C": 6, "N": 7, "O": 8, "O-2": 8, "F": 9, "Ne": 10, "Na": 11,
@@ -717,11 +718,11 @@ class Kgrn:
                 # self.atconf.append([self.atoms[i], self.iqs[i], self.its[i], self.itas[i],
                                     # self.concs[i], self.sm_ss[i],
                                     # self.s_wss[i], self.ws_wsts[i],
-                                    # self.qtrs[i], self.splts[i], self.fxms[i]])
+                                    # self.qtrs[i], self.m_splits[i], self.fxms[i]])
                 self.atconf.append([self.atoms[i], self.iqs[i], self.its[i],
                     self.itas[i], self.nrms[i], self.concs[i],
                     self.a_scrs[i], self.b_scrs[i], self.tetas[i],
-                    self.phis[i], self.fxms[i], self.splts[i]])
+                    self.phis[i], self.fxms[i], self.m_splits[i]])
         except:
             pass
 
@@ -864,8 +865,8 @@ class Kgrn:
             self.ops = 'N'
         if self.afm is None:
             self.afm = 'P'
-            for i in range(len(self.splts)):
-                if not self.splts[i] == 0.0:
+            for i in range(len(self.m_splits)):
+                if not self.m_splits[i] == 0.0:
                     self.afm = 'F'
                     break
         if self.crt is None:
