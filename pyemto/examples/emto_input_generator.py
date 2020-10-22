@@ -222,6 +222,7 @@ class EMTO:
         self.b_scrs_cpa = []
         self.tetas_cpa = []
         self.phis_cpa = []
+        self.asrs_cpa = []
         for i in range(len_basis):
             atom_number = struct.sites[i].specie.number
             for j in range(len(self.pmg_species)):
@@ -238,6 +239,7 @@ class EMTO:
                     self.b_scrs_cpa.append(self.b_scrs[j])
                     self.tetas_cpa.append(self.tetas[j])
                     self.phis_cpa.append(self.phis[j])
+                    self.asrs_cpa.append(self.asrs[j])
                     break
 
     def get_equivalent_sites(self):
@@ -395,7 +397,7 @@ class EMTO:
                             concs=None, m_splits=None, its=None, ws_wsts=None,
                             s_wss=None, make_supercell=None, fxms=None,
                             qtrs=None, nrms=None, a_scrs=None, b_scrs=None,
-                            tetas=None, phis=None,
+                            tetas=None, phis=None, asrs=None,
                             **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
@@ -581,9 +583,29 @@ class EMTO:
                 else:
                     self.phis.append([phis[i]])
 
+        if asrs is None:
+            # Assume a zero moments array
+            self.asrs = []
+            for i in range(len(self.species)):
+                if isinstance(self.species[i], list):
+                    tmp = []
+                    for j in range(len(self.species[i])):
+                        tmp.append(1.0)
+                    self.asrs.append(tmp)
+                else:
+                    self.asrs.append([1.0])
+        else:
+            self.asrs = []
+            for i in range(len(asrs)):
+                if isinstance(asrs[i], list):
+                    tmp = []
+                    for j in range(len(asrs[i])):
+                        tmp.append(asrs[i][j])
+                    self.asrs.append(tmp)
+                else:
+                    self.asrs.append([asrs[i]])
 
-
-
+        # EMTOx does not use s_wss, ws_wsts, qtrs
         if s_wss is None:
             self.s_wss = []
             for i in range(len(self.species)):
@@ -689,13 +711,14 @@ class EMTO:
         # Check that all species, concs, and m_splits arrays have the same dimensions
         for a, b in combinations([self.basis, self.species, self.concs,
             self.m_splits, self.fxms, self.nrms, self.a_scrs, self.b_scrs,
-            self.tetas, self.phis], 2):
+            self.tetas, self.phis, self.asrs], 2):
             if len(a) != len(b):
                 print(a, 'len = ', len(a))
                 print(b, 'len = ', len(b))
                 sys.exit('The above input arrays have inconsistent lengths!!!')
         for a, b in combinations([self.species, self.concs, self.m_splits,
-            self.fxms, self.nrms, self.a_scrs, self.b_scrs, self.tetas, self.phis], 2):
+            self.fxms, self.nrms, self.a_scrs, self.b_scrs, self.tetas,
+            self.phis, self.asrs], 2):
             for sublist1, sublist2 in zip(a, b):
                 if len(sublist1) != len(sublist2):
                     print(sublist1, 'len = ', len(sublist1))
@@ -1280,15 +1303,8 @@ class EMTO:
         
         if not all([fit1, fit2, fit3, fit4, fit5, fit6]):
             sys.exit('Some structures are not identical (check for False above) !!!')
-        # Generate EMTO structure input files
-        self.input_system.lattice.set_values(jobname_lat=self.latname,
-                                             latpath=self.latpath,
-                                             lat=common.ibz_to_lat(self.ibz),
-                                             latparams=[1.0, self.output_boa, self.output_coa],
-                                             latvectors=[self.output_alpha, self.output_beta, self.output_gamma],
-                                             basis=self.output_basis,
-                                             EMTOdir=self.EMTOdir,
-                                             **kwargs)
+
+
         # Finally, save atoms, m_splits, and concs of the output structure
         # to be read by init_bulk function.
         # EMTOx needs ASR in the shape.
@@ -1401,6 +1417,18 @@ class EMTO:
                 else:
                     phis_flat.append(self.phis_cpa[i])
             self.KGRN_phis = np.array(phis_flat)
+
+        if self.asrs_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.asrs_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            asrs_flat = []
+            for i in range(len(self.asrs_cpa)):
+                if isinstance(self.asrs_cpa[i], list):
+                    for j in range(len(self.asrs_cpa[i])):
+                        asrs_flat.append(self.asrs_cpa[i][j])
+                else:
+                    asrs_flat.append(self.asrs_cpa[i])
+            self.SHAPE_asrs = np.array(asrs_flat)
 
         if self.concs_cpa is None:
             sys.exit('EMTO.init_bulk(): \'self.concs_cpa\' does not exist!!! (Did you run init_structure?)')
@@ -1516,7 +1544,20 @@ class EMTO:
                 else:
                     its_flat.append(its[i])
             self.KGRN_its = np.array(its_flat, dtype='int32')
-        #
+
+        # Pass structure related input settings to KSTR and SHAPE
+        self.input_system.lattice.set_values(
+            jobname_lat=self.latname,
+            latpath=self.latpath,
+            lat=common.ibz_to_lat(self.ibz),
+            latparams=[1.0, self.output_boa, self.output_coa],
+            latvectors=[self.output_alpha, self.output_beta, self.output_gamma],
+            basis=self.output_basis,
+            EMTOdir=self.EMTOdir,
+            asrs=self.SHAPE_asrs,
+            **kwargs)
+
+        # Pass input settings to KGRN and KFCD
         self.input_system.bulk_new(lat=common.ibz_to_lat(self.ibz),
                                    ibz=self.ibz,
                                    latname=self.latname,

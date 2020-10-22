@@ -39,7 +39,7 @@ class Shape:
     """
 
     def __init__(self, jobname_lat=None, lat=None, lmax=None, nsr=None, nfi=None,
-                 ivef=None, msgl=None, nprn=None, basis=None, asr=None):
+                 ivef=None, msgl=None, nprn=None, basis=None, asrs=None):
 
         self.jobname_lat = jobname_lat
         self.lat = lat
@@ -53,7 +53,7 @@ class Shape:
             self.basis = None
         else:
             self.basis = np.asarray(basis)
-        self.asr = asr
+        self.asrs = asrs
 
     def output(self):
         """Output SHAPE input file in formatted string.
@@ -81,7 +81,7 @@ class Shape:
             .format(self.nprn, self.ivef) + "\n"
         line = line + "****** Relative atomic sphere radii ASR(1:NQ) ******\n"
         for i in range(self.nq):
-            line += "ASR({0}).= {1:6.4f}\n".format(i+1, self.asr[i])
+            line += "ASR({0:2})={1:7.4f}\n".format(i+1, self.asrs[i])
         return line
 
     def write_input_file(self, folder=None):
@@ -169,7 +169,7 @@ class Shape:
             self.basis = np.asarray([self.basis])
         self.nq = self.basis.shape[0]
 
-        if self.asr is None:
-            self.asr = np.ones(self.nq, dtype=float)
+        if self.asrs is None:
+            self.asrs = np.ones(self.nq, dtype=float)
 
         return
