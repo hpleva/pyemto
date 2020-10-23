@@ -117,11 +117,11 @@ class Batch:
             BMDL_path = "bmdl"
             KSTR_path = "kstr"
             SHAPE_path = "shape"
-        if self.runBMDL:
-            line += elapsed_time + common.cleanup_path(BMDL_path + " < ") +\
-                common.cleanup_path(self.latpath + "/" + self.jobname_lat) + ".bmdl > " +\
-                common.cleanup_path(
-                    self.latpath + "/" + self.jobname_lat) + "_bmdl.output" + "\n"
+        # if self.runBMDL:
+            # line += elapsed_time + common.cleanup_path(BMDL_path + " < ") +\
+                # common.cleanup_path(self.latpath + "/" + self.jobname_lat) + ".bmdl > " +\
+                # common.cleanup_path(
+                    # self.latpath + "/" + self.jobname_lat) + "_bmdl.output" + "\n"
         if self.runKSTR:
             line += elapsed_time + common.cleanup_path(KSTR_path + " < ") +\
                 common.cleanup_path(self.latpath + "/" + self.jobname_lat) + ".kstr > " +\
@@ -131,7 +131,7 @@ class Batch:
             line += elapsed_time + common.cleanup_path(KSTR_path + " < ") +\
                 common.cleanup_path(self.latpath + "/" + self.jobname_lat) + 'M' + ".kstr > " +\
                 common.cleanup_path(
-                    self.latpath + "/" + self.jobname_lat) + 'M' + "_kstr.output" + "\n"
+                    self.latpath + "/" + self.jobname_lat) + '_2' + "_kstr.output" + "\n"
         if self.runSHAPE:
             line += elapsed_time + common.cleanup_path(SHAPE_path + " < ") +\
                 common.cleanup_path(self.latpath + "/" + self.jobname_lat) + ".shape > " +\

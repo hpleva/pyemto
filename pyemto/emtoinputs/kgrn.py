@@ -566,6 +566,8 @@ class Kgrn:
             " FCD.=" + self.fcd + " GPM.=" + self.gpm + \
             " FSM.=" + self.fsm + "\n"
         line += "FOR001=" + self.FOR001 + "\n"
+        if self.expan == 2:
+            line += "FOR001=" + self.FOR001_2 + "\n"
         line += "FOR002=" + self.FOR002 + "\n"
         line += "DIR003=" + self.DIR003 + "\n"
         line += "DIR006=" + self.DIR006 + "\n"
@@ -694,7 +696,7 @@ class Kgrn:
             if self.latname is not None and self.latpath is not None:
                 self.FOR001 = self.latpath + '/kstr/' + self.latname + '.tfh'
                 self.FOR001_2 = self.latpath + \
-                    '/kstr/' + self.latname + 'M.tfh'
+                    '/kstr/' + self.latname + '_2.tfh'
                 self.FOR001 = common.cleanup_path(self.FOR001)
                 self.FOR001_2 = common.cleanup_path(self.FOR001_2)
                 self.FOR002 = self.latpath + '/kstr/' + self.latname + '.mdl'
@@ -997,7 +999,7 @@ class Kgrn:
             self.testv = 1.0e-12
         if self.FOR001 is None:
             self.FOR001 = self.latpath + '/kstr/' + self.latname + '.tfh'
-            self.FOR001_2 = self.latpath + '/kstr/' + self.latname + '2.tfh'
+            self.FOR001_2 = self.latpath + '/kstr/' + self.latname + '_2.tfh'
             self.FOR001 = common.cleanup_path(self.FOR001)
             self.FOR001_2 = common.cleanup_path(self.FOR001_2)
         if self.DIR002 is None:

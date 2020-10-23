@@ -136,48 +136,46 @@ class Kstr:
         now = datetime.datetime.now()
         line = "KSTR      HP......=N                              "\
             + str(now.day) + "." + str(now.month) + "." + str(now.year) + "\n"
-        JOBNAMline = "JOBNAM...=" + jobname_lat
-        MSGLline = "MSGL.=  " + str(self.msgl)
-        line = line + "{0:21s}{1:9s}".format(JOBNAMline, MSGLline) +\
-            " MODE...={0} STORE..={1} HIGH...={2}"\
-            .format(self.mode, self.store, self.high) + "\n"
-        line = line + "DIR001=" + slope + "\n"
-        line = line + "DIR006=" + prn + "\n"
-        line = line + "Slope matrices, {0:10}, (kappa*w)^2= {1:5.1f}"\
+        line += "JOBNAM...=" + jobname_lat + "\n"
+        line += "MSGL..={0:3d} MODE...={1:1s} STORE..={2:1s} HIGH...={3:1s}\n".format(
+            self.msgl, self.mode, self.store, self.high)
+        line += "DIR001=" + slope + "\n"
+        line += "DIR006=" + prn + "\n"
+        line += "Slope matrices, {0:10}, (kappa*w)^2= {1:5.1f}"\
             .format(jobname_lat, kappaw) + "\n"
-        line = line + "NL.....={0:2d} NLH...={1:2d} NLW...={2:2d} "\
+        line += "NL.....={0:2d} NLH...={1:2d} NLW...={2:2d} "\
             .format(self.kstr_nl, self.nlh, self.nlw) +\
             "NDER..={0:2d} ITRANS={1:2d} NPRN..={2:2d}"\
             .format(self.nder, self.itrans, self.nprn) + "\n"
-        line = line + "(K*W)^2..={0:10.6f} DMAX....={1:10.4f} RWATS...={2:10.2f}"\
+        line += "(K*W)^2..={0:10.6f} DMAX....={1:10.4f} RWATS...={2:10.2f}"\
             .format(kappaw, self.dmax, self.rwats) + "\n"
-        line = line + "NQ3...={0:3d} LAT...={1:2d} IPRIM.={2:2d} NGHBP.={3:2d} NQR2..={4:2d}"\
+        line += "NQ3...={0:3d} LAT...={1:2d} IPRIM.={2:2d} NGHBP.={3:2d} NQR2..={4:2d}"\
             .format(self.nq, common.lat_to_ibz(self.lat), self.iprim, self.nghbp, self.nqr2) + "\n"
-        line = line + "A........={0:10.8f} B.......={1:10.8f} C.......={2:10.8f}"\
+        line += "A........={0:10.8f} B.......={1:10.8f} C.......={2:10.8f}"\
             .format(self.latparams[0], self.latparams[1], self.latparams[2]) + "\n"
         if self.iprim == 1:
-            line = line + "Alpha....={0:10.6f} Beta....={1:10.6f} Gamma...={2:10.6f}"\
+            line += "Alpha....={0:10.6f} Beta....={1:10.6f} Gamma...={2:10.6f}"\
                 .format(self.latvectors[0], self.latvectors[1], self.latvectors[2]) + "\n"
         elif self.iprim == 0:
-            line = line + "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
+            line += "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
                 .format(self.latvectors[0][0], self.latvectors[0][1], self.latvectors[0][2]) + "\n"
-            line = line + "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
+            line += "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
                 .format(self.latvectors[1][0], self.latvectors[1][1], self.latvectors[1][2]) + "\n"
-            line = line + "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
+            line += "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
                 .format(self.latvectors[2][0], self.latvectors[2][1], self.latvectors[2][2]) + "\n"
         for i in range(self.nq):
-            #line = line + "QX.......={0:10.7f} QY......={1:10.7f} QZ(...={2:10.7f}"\
-                line = line + "QX({3:03})..={0:10.7f} QY({3:03}).={1:10.7f} QZ({3:03}).={2:10.7f}"\
+            #line += "QX.......={0:10.7f} QY......={1:10.7f} QZ(...={2:10.7f}"\
+            line += "QX({3:03})..={0:10.7f} QY({3:03}).={1:10.7f} QZ({3:03}).={2:10.7f}"\
                 .format(self.basis[i,0], self.basis[i,1], self.basis[i,2], i+1) + "\n"
         aw_template = "a/w(IQ)..="
         for i in range(self.kstr_nl):
             aw_template += f" {{{i}:4.2f}}"
         for i in range(self.nq):
-            # line = line + "a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}"\
+            # line += "a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}"\
                 # .format(*self.awIQ[i, :]) + "\n"
-            line = line + aw_template.format(*self.awIQ[i, :]) + "\n"
-        line = line + "NL_mdl.={0:2}\n".format(self.nl_mdl)
-        line = line + "LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}"\
+            line += aw_template.format(*self.awIQ[i, :]) + "\n"
+        line += "NL_mdl.={0:2}\n".format(self.nl_mdl)
+        line += "LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}"\
             .format(self.lamda, self.amax, self.bmax) + "\n"
 
         return line
@@ -315,7 +313,7 @@ class Kstr:
             print("Kappa does not have correct number of values, please correct! : %s" % (str(self.kappaw)))
             exit()
         if self.twocenter:
-            self.jobname_lat2 = self.jobname_lat + 'M'
+            self.jobname_lat2 = self.jobname_lat + '_2'
 
         # Optimize dmax
         if self.nghbp is None:
