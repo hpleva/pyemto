@@ -223,6 +223,7 @@ class EMTO:
         self.tetas_cpa = []
         self.phis_cpa = []
         self.asrs_cpa = []
+        self.awIQ_cpa = []
         for i in range(len_basis):
             atom_number = struct.sites[i].specie.number
             for j in range(len(self.pmg_species)):
@@ -240,6 +241,7 @@ class EMTO:
                     self.tetas_cpa.append(self.tetas[j])
                     self.phis_cpa.append(self.phis[j])
                     self.asrs_cpa.append(self.asrs[j])
+                    self.awIQ_cpa.append(self.awIQ[j])
                     break
 
     def get_equivalent_sites(self):
@@ -397,8 +399,8 @@ class EMTO:
                             concs=None, m_splits=None, its=None, ws_wsts=None,
                             s_wss=None, make_supercell=None, fxms=None,
                             qtrs=None, nrms=None, a_scrs=None, b_scrs=None,
-                            tetas=None, phis=None, asrs=None,
-                            **kwargs):
+                            tetas=None, phis=None, asrs=None, awIQ=None,
+                            kstr_nl=None, **kwargs):
         if prims is None:
             sys.exit('EMTO.init_structure(): \'prims\' has to be given!')
         if basis is None:
@@ -605,6 +607,29 @@ class EMTO:
                 else:
                     self.asrs.append([asrs[i]])
 
+        if kstr_nl is None:
+            self.kstr_nl = 4
+        else:
+            self.kstr_nl = kstr_nl
+        if awIQ is None:
+            # Assume a zero moments array
+            self.awIQ = []
+            for i in range(len(self.species)):
+                tmp = []
+                for j in range(self.kstr_nl):
+                    tmp.append(0.7)
+                self.awIQ.append(tmp)
+        else:
+            self.awIQ = []
+            for i in range(len(awIQ)):
+                if isinstance(awIQ[i], list):
+                    tmp = []
+                    for j in range(len(awIQ[i])):
+                        tmp.append(awIQ[i][j])
+                    self.awIQ.append(tmp)
+                else:
+                    self.awIQ.append([awIQ[i]])
+
         # EMTOx does not use s_wss, ws_wsts, qtrs
         if s_wss is None:
             self.s_wss = []
@@ -711,7 +736,7 @@ class EMTO:
         # Check that all species, concs, and m_splits arrays have the same dimensions
         for a, b in combinations([self.basis, self.species, self.concs,
             self.m_splits, self.fxms, self.nrms, self.a_scrs, self.b_scrs,
-            self.tetas, self.phis, self.asrs], 2):
+            self.tetas, self.phis, self.asrs, self.awIQ], 2):
             if len(a) != len(b):
                 print(a, 'len = ', len(a))
                 print(b, 'len = ', len(b))
@@ -1430,6 +1455,18 @@ class EMTO:
                     asrs_flat.append(self.asrs_cpa[i])
             self.SHAPE_asrs = np.array(asrs_flat)
 
+        if self.awIQ_cpa is None:
+            sys.exit('EMTO.init_bulk(): \'self.awIQ_cpa\' does not exist!!! (Did you run init_structure?)')
+        else:
+            # awIQ_flat = []
+            # for i in range(len(self.awIQ_cpa)):
+                # if isinstance(self.awIQ_cpa[i], list):
+                    # for j in range(len(self.awIQ_cpa[i])):
+                        # awIQ_flat.append(self.awIQ_cpa[i][j])
+                # else:
+                    # awIQ_flat.append(self.awIQ_cpa[i])
+            self.KSTR_awIQ = np.array(self.awIQ_cpa)
+
         if self.concs_cpa is None:
             sys.exit('EMTO.init_bulk(): \'self.concs_cpa\' does not exist!!! (Did you run init_structure?)')
         else:
@@ -1555,6 +1592,8 @@ class EMTO:
             basis=self.output_basis,
             EMTOdir=self.EMTOdir,
             asrs=self.SHAPE_asrs,
+            awIQ=self.KSTR_awIQ,
+            kstr_nl=self.kstr_nl,
             **kwargs)
 
         # Pass input settings to KGRN and KFCD

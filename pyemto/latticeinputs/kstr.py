@@ -171,9 +171,7 @@ class Kstr:
         for i in range(self.kstr_nl):
             aw_template += f" {{{i}:4.2f}}"
         for i in range(self.nq):
-            # line += "a/w(IQ)..= {0:4.2f} {1:4.2f} {2:4.2f} {3:4.2f}"\
-                # .format(*self.awIQ[i, :]) + "\n"
-            line += aw_template.format(*self.awIQ[i, :]) + "\n"
+            line += aw_template.format(*self.awIQ[i, :self.kstr_nl]) + "\n"
         line += "NL_mdl.={0:2}\n".format(self.nl_mdl)
         line += "LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}"\
             .format(self.lamda, self.amax, self.bmax) + "\n"
