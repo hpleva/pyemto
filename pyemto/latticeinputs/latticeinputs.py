@@ -57,10 +57,10 @@ class Latticeinputs:
             if hasattr(self.batch, key):
                 self.batch.set_values(key, kwargs[key])
                 attr_found = True
-            if attr_found is False:
-                print(
-                    'WARNING: Neither Bmdl(), Kstr(), Shape() nor Batch_lattice()' +\
-                    ' classes have the attribute \'{0}\''.format(key))
+            # if attr_found is False:
+                # print(
+                    # 'WARNING: Neither Bmdl(), Kstr(), Shape() nor Batch_lattice()' +\
+                    # ' classes have the attribute \'{0}\''.format(key))
         return
 
     def distortion(self, lat=None, dist=None, ca=None, index=None, deltas=None, dmaxs=None,

@@ -49,7 +49,7 @@ class Emtoinputs:
             if hasattr(self.batch, key):
                 self.batch.set_values(key, kwargs[key])
                 attr_found = True
-            if attr_found == False:
-                print('WARNING: Neither Kgrn(), Kfcd() nor Batch_emto() classes' +
-                      ' have the attribute \'{0}\''.format(key))
+            # if attr_found == False:
+                # print('WARNING: Neither Kgrn(), Kfcd() nor Batch_emto() classes' +
+                      # ' have the attribute \'{0}\''.format(key))
         return

@@ -290,7 +290,7 @@ class Kstr:
             self.basis = np.asarray([self.basis])
         self.nq = self.basis.shape[0]
 
-        if isinstance(self.latvectors[0], list):
+        if isinstance(self.latvectors[0], (list, np.ndarray)):
             if len(self.latvectors) == 1:
                 self.iprim = 1
             else:
@@ -478,8 +478,8 @@ class Kstr:
         dmax_mid = np.round((dmax_max + dmax_min)/2,4)
         f_closest = 1000
         #
-        print('Latticeinputs.Kstr.optimize_dmax(): Optimizing dmax (target = {0:3d}) for {1}...'
-              .format(ncrq_target,self.jobname_lat))
+        # print('Latticeinputs.Kstr.optimize_dmax(): Optimizing dmax (target = {0:3d}) for {1}...'
+              # .format(ncrq_target,self.jobname_lat))
         #
         while np.abs(dmax_mid_old - dmax_mid) > tol_target:
             # Compute the number of vectors that
@@ -515,7 +515,7 @@ class Kstr:
             dmax_mid_old = dmax_mid
             dmax_mid = np.round((dmax_max + dmax_min)/2,4)
             #print('dmax, Number of vectors: {0:6.4f}, {1}'.format(dmax_mid_old,f_mid))
-        print('dmax, Number of vectors: {0:6.4f}, {1}'.format(dmax_closest,f_closest))
+        # print('dmax, Number of vectors: {0:6.4f}, {1}'.format(dmax_closest,f_closest))
         return dmax_closest, f_closest
 
     def finalize(self):
