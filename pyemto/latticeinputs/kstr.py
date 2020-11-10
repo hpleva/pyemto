@@ -151,30 +151,25 @@ class Kstr:
             .format(kappaw, self.dmax, self.rwats) + "\n"
         line += "NQ3...={0:3d} LAT...={1:2d} IPRIM.={2:2d} NGHBP.={3:2d} NQR2..={4:2d}"\
             .format(self.nq, common.lat_to_ibz(self.lat), self.iprim, self.nghbp, self.nqr2) + "\n"
-        line += "A........={0:10.8f} B.......={1:10.8f} C.......={2:10.8f}"\
-            .format(self.latparams[0], self.latparams[1], self.latparams[2]) + "\n"
+        line += "A........={0:17.12f}{1:17.12f}{2:17.12f}\n"\
+            .format(self.latparams[0], self.latparams[1], self.latparams[2])
         if self.iprim == 1:
-            line += "Alpha....={0:10.6f} Beta....={1:10.6f} Gamma...={2:10.6f}"\
-                .format(self.latvectors[0], self.latvectors[1], self.latvectors[2]) + "\n"
+            line += f"Alpha....={self.latvectors[0]:17.12f}{self.latvectors[1]:17.12f}{self.latvectors[2]:17.12f}\n"
         elif self.iprim == 0:
-            line += "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
-                .format(self.latvectors[0][0], self.latvectors[0][1], self.latvectors[0][2]) + "\n"
-            line += "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
-                .format(self.latvectors[1][0], self.latvectors[1][1], self.latvectors[1][2]) + "\n"
-            line += "BSX......={0:10.7f} BSY.....={1:10.7f} BSZ.....={2:10.7f}"\
-                .format(self.latvectors[2][0], self.latvectors[2][1], self.latvectors[2][2]) + "\n"
+            for i in range(3):
+                line += "BSX......={0:17.12f}{1:17.12f}{2:17.12f}\n"\
+                    .format(self.latvectors[i][0], self.latvectors[i][1], self.latvectors[i][2])
         for i in range(self.nq):
-            #line += "QX.......={0:10.7f} QY......={1:10.7f} QZ(...={2:10.7f}"\
-            line += "QX({3:03})..={0:10.7f} QY({3:03}).={1:10.7f} QZ({3:03}).={2:10.7f}"\
-                .format(self.basis[i,0], self.basis[i,1], self.basis[i,2], i+1) + "\n"
+            line += "QX({3:03})..={0:17.12f}{1:17.12f}{2:17.12f}\n"\
+                .format(self.basis[i,0], self.basis[i,1], self.basis[i,2], i+1)
         aw_template = "a/w(IQ)..="
         for i in range(self.kstr_nl):
             aw_template += f" {{{i}:4.2f}}"
         for i in range(self.nq):
             line += aw_template.format(*self.awIQ[i, :self.kstr_nl]) + "\n"
         line += "NL_mdl.={0:2}\n".format(self.nl_mdl)
-        line += "LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}"\
-            .format(self.lamda, self.amax, self.bmax) + "\n"
+        line += "LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}\n"\
+            .format(self.lamda, self.amax, self.bmax)
 
         return line
 
