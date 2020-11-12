@@ -1,4 +1,5 @@
 import sys
+import shutil
 import numpy as np
 from itertools import combinations, product
 from collections import defaultdict
@@ -858,6 +859,7 @@ class EMTO:
         )
 
         if not self.find_primitive:
+            """
             # First we want to know which lattice type the input cell
             # represents
             cell_ibz = None
@@ -912,27 +914,13 @@ class EMTO:
                 print('hex')
 
             # Simple tetragonal
-            # elif (len(lc) == 2 and len(ac[90.0]) == 3 and lens[])
+            elif len(lc) == 2 and len(ac[90.0]) == 3:
+                cell_ibz = 5
+                print('simple tetragonal')
 
+            sys.exit("Not yet implemented!")
+            """
 
-
-
-
-
-            # First, keep transforming the lattice vectors, until all angles
-            # are 90 degrees or less:
-            # for coeffs in product([1,-1], repeat=3):
-                # for i, c in enumerate(coeffs):
-                    # cell[i,:] *= c
-                # lens, angles = self.get_lengths_and_angles(cell)
-                # print(lens)
-                # print(angles)
-                # print()
-            sys.exit()
-
-
-            tmp = spg.get_symmetry_dataset(spg_cell, hall_number=0)
-            print(tmp)
             space_group = spg.get_spacegroup(spg_cell)
             space_group_number = self.get_space_group_number(space_group)
             self.crystal_system = self.get_crystal_system(space_group_number)
@@ -947,14 +935,12 @@ class EMTO:
             self.spg_space_group_symbol = self.spg_space_group
 
             # Create standardized unit cell of the correct IBZ:
-            if self.ibz in (1,2,3,4,5):
+            if 1:#self.ibz in (1,2,3,4,5):
                 spg_cell_tmp = (self.pmg_input_lattice.matrix,
                                 [[0.0, 0.0, 0.0]],
                                 [1])
                 spg_cell_tmp = spg.standardize_cell(spg_cell_tmp, to_primitive=True)
                 self.spg_prim_lat = spg_cell_tmp[0]
-            # elif self.ibz in (5,):
-
 
             else:
                 self.spg_prim_lat = spg_cell[0]
@@ -977,7 +963,13 @@ class EMTO:
 
             self.spg_space_group_number = self.get_space_group_number(self.spg_space_group)
             self.spg_space_group_symbol = self.spg_space_group
-            self.spg_ibz = self.sg2ibz[self.spg_space_group_number]
+            self.crystal_system = self.get_crystal_system(self.spg_space_group_number)
+            if self.find_primitive:
+                self.spg_ibz = self.sg2ibz[self.spg_space_group_number]
+            else:
+                self.spg_ibz = self.get_ibz_from_crystal_system(self.crystal_system,
+                    self.pmg_input_lattice.matrix)
+
             self.ibz = self.spg_ibz
 
             self.prim_struct = Structure(Lattice(self.spg_prim_lat),
@@ -1805,6 +1797,9 @@ class EMTO:
         self.input_system.emto.kgrn.write_input_file(folder=self.folder)
         self.input_system.emto.kfcd.write_input_file(folder=self.folder)
         self.input_system.emto.batch.write_input_file(folder=self.folder)
+        # Copy the atomic config file to KGRN execution folder
+        atomcfg = os.path.join(os.path.dirname(__file__), "../emtoinputs/ATOM.cfg")
+        shutil.copyfile(atomcfg, os.path.join(self.folder, "ATOM.cfg"))
         return
 
     def write_kgrn_kfcd_swsrange(self, sws=None):

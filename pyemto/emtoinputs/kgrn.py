@@ -501,11 +501,11 @@ class Kgrn:
         atom, iq, it, ita, nrm, conc, a_scr, b_scr, teta, phi, fxm, m_split = inp
 
         if np.round(conc, decimals=3) >= 10:
-            line = "%-2s    %2i  %2i  %2i   %1i  %8.5f  %5.3f %5.3f  %6.4f  %6.4f  %s   %6.4f" \
+            line = "%-4s  %2i  %2i  %2i   %1i  %8.5f  %5.3f %5.3f  %6.4f  %6.4f  %s   %6.4f" \
                    % (atom, iq, it, ita, nrm, conc, a_scr, b_scr, teta, phi,
                       fxm, m_split)
         else:
-            line = "%-2s    %2i  %2i  %2i   %1i  %8.6f  %5.3f %5.3f  %6.4f  %6.4f  %s   %6.4f" \
+            line = "%-4s  %2i  %2i  %2i   %1i  %8.6f  %5.3f %5.3f  %6.4f  %6.4f  %s   %6.4f" \
                    % (atom, iq, it, ita, nrm, conc, a_scr, b_scr, teta, phi,
                       fxm, m_split)
 
@@ -683,9 +683,9 @@ class Kgrn:
         if key in self.atconfKeys:
             setattr(self, key, value)
             # Make sure the element symbols are in the proper format
-            if key == 'atoms':
-                for i in range(len(self.atoms)):
-                    self.atoms[i] = self.atoms[i].lower().capitalize()
+            # if key == 'atoms':
+                # for i in range(len(self.atoms)):
+                    # self.atoms[i] = self.atoms[i].lower().capitalize()
             # Try creating the atomblock
             self.create_atomblock()
 

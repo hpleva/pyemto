@@ -10,6 +10,7 @@ from __future__ import print_function
 import time
 import os
 import sys
+import shutil
 import numpy as np
 import pyemto.common.common as common
 
@@ -694,6 +695,9 @@ class System:
                 self.emto.kfcd.write_input_file(folder=self.folder)
                 self.emto.batch.write_input_file(folder=self.folder)
 
+        # Copy the atomic config file to KGRN execution folder
+        atomcfg = os.path.join(os.path.dirname(__file__), "emtoinputs/ATOM.cfg")
+        shutil.copyfile(atomcfg, os.path.join(self.folder, "ATOM.cfg"))
         return jobnames
 
 

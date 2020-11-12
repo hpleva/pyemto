@@ -1,5 +1,6 @@
 # Do not track pyc files
 *.pyc
+*.so
 
 # Do not track emacs backupfiles
 *~
