@@ -237,7 +237,7 @@ class Kgrn:
                  setups=None, gpm='N', fsm='N', DIR021='', FOR098='./ATOM.cfg',
                  DIR022=None, vmixatm=None, kpole=None,
                  nrms=None, a_scrs=None, b_scrs=None, tetas=None, phis=None,
-                 qx=None, qy=None, qz=None):
+                 qx=None, qy=None, qz=None, relative_paths=True):
 
         self.jobname = jobname
         self.latname = latname
@@ -350,6 +350,7 @@ class Kgrn:
         self.qx = qx
         self.qy = qy
         self.qz = qz
+        self.relative_paths = relative_paths
 
         if a_scrs is None:
             self.a_scrs = np.ones(50) * 0.67
@@ -654,7 +655,7 @@ class Kgrn:
         """
 
         # Check data integrity before anything is written on disk or run
-        self.check_input_file()
+        self.check_input_file(folder=folder)
 
         if folder is None:
             #sys.exit('Kgrn.create_input_file: \'folder\' has to be given!')
@@ -693,14 +694,16 @@ class Kgrn:
         # information
         elif key == 'latname' or key == 'latpath':
             setattr(self, key, value)
-            if self.latname is not None and self.latpath is not None:
-                self.FOR001 = self.latpath + '/kstr/' + self.latname + '.tfh'
-                self.FOR001_2 = self.latpath + \
-                    '/kstr/' + self.latname + '_2.tfh'
-                self.FOR001 = common.cleanup_path(self.FOR001)
-                self.FOR001_2 = common.cleanup_path(self.FOR001_2)
-                self.FOR002 = self.latpath + '/kstr/' + self.latname + '.mdl'
-                self.FOR002 = common.cleanup_path(self.FOR002)
+            # if self.latname is not None and self.latpath is not None:
+                # if self.relative_paths:
+                    # self.latpath = os.path.relpath(self.latpath, folder)
+                # self.FOR001 = self.latpath + '/kstr/' + self.latname + '.tfh'
+                # self.FOR001_2 = self.latpath + \
+                    # '/kstr/' + self.latname + '_2.tfh'
+                # self.FOR001 = common.cleanup_path(self.FOR001)
+                # self.FOR001_2 = common.cleanup_path(self.FOR001_2)
+                # self.FOR002 = self.latpath + '/kstr/' + self.latname + '.mdl'
+                # self.FOR002 = common.cleanup_path(self.FOR002)
 
         else:
             setattr(self, key, value)
@@ -763,8 +766,8 @@ class Kgrn:
 
         for i in range(ln):
             self.aconfig[i] = (self.atconf[i][0], self.atconf[i][1],
-                                self.atconf[i][2], self.atconf[i][3],
-                                self.atconf[i][4], self.atconf[i][5],
+                               self.atconf[i][2], self.atconf[i][3],
+                               self.atconf[i][4], self.atconf[i][5],
                                self.atconf[i][6], self.atconf[i][7],
                                self.atconf[i][8], self.atconf[i][9],
                                self.atconf[i][10], self.atconf[i][11])
@@ -801,7 +804,7 @@ class Kgrn:
                               # self.aconfig[i][9], self.aconfig[i][10],
                               # self.aconfig[i][11]))
 
-    def check_input_file(self):
+    def check_input_file(self, folder):
         """Perform various checks on the class data
 
         Makes sure that all necessary data exists
@@ -837,6 +840,11 @@ class Kgrn:
                 pass
             else:
                 self.atconf = [self.atconf]
+
+        if self.relative_paths:
+            lat_path = os.path.relpath(self.latpath, folder)
+        else:
+            lat_path = self.latpath
 
         # Arguments for which reasonable default values exist
         if self.strt is None:
@@ -997,17 +1005,17 @@ class Kgrn:
             self.testy = 1.0e-12
         if self.testv is None:
             self.testv = 1.0e-12
-        if self.FOR001 is None:
-            self.FOR001 = self.latpath + '/kstr/' + self.latname + '.tfh'
-            self.FOR001_2 = self.latpath + '/kstr/' + self.latname + '_2.tfh'
+        if 1:#self.FOR001 is None:
+            self.FOR001 = lat_path + '/kstr/' + self.latname + '.tfh'
+            self.FOR001_2 = lat_path + '/kstr/' + self.latname + '_2.tfh'
             self.FOR001 = common.cleanup_path(self.FOR001)
             self.FOR001_2 = common.cleanup_path(self.FOR001_2)
         if self.DIR002 is None:
             self.DIR002 = 'kgrn/'
         if self.DIR003 is None:
             self.DIR003 = 'kgrn/'
-        if self.FOR002 is None:
-            self.FOR002 = self.latpath + '/bmdl/' + self.latname + '.mdl'
+        if 1:#self.FOR002 is None:
+            self.FOR002 = lat_path + '/kstr/' + self.latname + '.mdl'
             self.FOR002 = common.cleanup_path(self.FOR002)
         if self.DIR006 is None:
             self.DIR006 = 'kgrn/'
@@ -1021,8 +1029,8 @@ class Kgrn:
             self.CQNA = 'N'
         if self.ncpu is None:
             self.ncpu = 1
-        if self.DIR022 is None:
-            self.DIR022 = self.latpath + '/shape/' + self.latname + '.shp'
+        if 1:#self.DIR022 is None:
+            self.DIR022 = lat_path + '/shape/' + self.latname + '.shp'
             self.DIR022 = common.cleanup_path(self.DIR022)
         if self.kpole is None:
             self.kpole = 0

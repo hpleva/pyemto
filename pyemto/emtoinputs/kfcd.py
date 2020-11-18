@@ -60,7 +60,7 @@ class Kfcd:
                  lmaxs=None, nth=None, kfcd_nfi=None, fpot=None, ovcor=None,
                  ubg=None, DIR001=None, DIR002=None, DIR003=None, DIR004=None,
                  DIR006=None, sws=None, CQNA=None, KFCD_file_type=None,
-                 nrm=None, sno=None):
+                 nrm=None, sno=None, relative_paths=True):
 
         self.jobname = jobname
         self.latname = latname
@@ -84,6 +84,7 @@ class Kfcd:
             self.KFCD_file_type = 'kfcd'
         self.nrm = nrm
         self.sno = sno
+        self.relative_paths = relative_paths
 
     def output(self):
         """Outputs KFCD input file as a formatted string.
@@ -124,7 +125,7 @@ class Kfcd:
         """
 
         # Check data integrity before anything is written on disk or run
-        self.check_input_file()
+        self.check_input_file(folder)
 
         if folder is None:
             #sys.exit('Kfcd.create_input_file: \'folder\' has to be given!')
@@ -155,18 +156,18 @@ class Kfcd:
         # information
         elif key == 'latpath':
             setattr(self, key, value)
-            self.DIR001 = self.latpath + '/kstr/'
-            self.DIR001 = common.cleanup_path(self.DIR001)
-            self.DIR003 = self.latpath + '/shape/' + self.latname + '.shp'
-            self.DIR003 = common.cleanup_path(self.DIR003)
-            self.DIR004 = self.latpath + '/kstr/'
-            self.DIR004 = common.cleanup_path(self.DIR004)
+            # self.DIR001 = self.latpath + '/kstr/'
+            # self.DIR001 = common.cleanup_path(self.DIR001)
+            # self.DIR003 = self.latpath + '/shape/' + self.latname + '.shp'
+            # self.DIR003 = common.cleanup_path(self.DIR003)
+            # self.DIR004 = self.latpath + '/kstr/'
+            # self.DIR004 = common.cleanup_path(self.DIR004)
 
         else:
             setattr(self, key, value)
         return
 
-    def check_input_file(self):
+    def check_input_file(self, folder):
         """Perform various checks on the class data.
 
         Makes sure that all necessary data exists
@@ -182,6 +183,12 @@ class Kfcd:
             sys.exit('Kfcd: \'latname\' has to be given!')
         if self.latpath is None:
             self.latpath = './'
+
+        if self.relative_paths:
+            lat_path = os.path.relpath(self.latpath, folder)
+        else:
+            lat_path = self.latpath
+
         if self.msgl is None:
             self.msgl = 0
         if self.nprn is None:
@@ -199,16 +206,16 @@ class Kfcd:
         if self.ubg is None:
             self.ubg = 'N'
         if self.DIR001 is None:
-            self.DIR001 = self.latpath + '/kstr/'
+            self.DIR001 = lat_path + '/kstr/'
             self.DIR001 = common.cleanup_path(self.DIR001)
         if self.DIR002 is None:
             self.DIR002 = 'kgrn/'
             self.DIR002 = common.cleanup_path(self.DIR002)
         if self.DIR003 is None:
-            self.DIR003 = self.latpath + '/shape/' + self.latname + ".shp"
+            self.DIR003 = lat_path + '/shape/' + self.latname + ".shp"
             self.DIR003 = common.cleanup_path(self.DIR003)
         if self.DIR004 is None:
-            self.DIR004 = self.latpath + '/kstr/'
+            self.DIR004 = lat_path + '/kstr/'
             self.DIR004 = common.cleanup_path(self.DIR004)
         if self.DIR006 is None:
             self.DIR006 = 'kfcd/'
