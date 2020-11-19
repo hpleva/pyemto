@@ -817,7 +817,7 @@ class EMTO:
                 sys.exit('The above input arrays have inconsistent lengths!!!')
         for a, b in combinations([self.species, self.concs, self.m_splits,
             self.fxms, self.nrms, self.a_scrs, self.b_scrs, self.tetas,
-            self.phis, self.asrs], 2):
+            self.phis], 2):
             for sublist1, sublist2 in zip(a, b):
                 if len(sublist1) != len(sublist2):
                     print(sublist1, 'len = ', len(sublist1))

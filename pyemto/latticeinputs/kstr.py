@@ -163,10 +163,16 @@ class Kstr:
             line += "QX({3:03})..={0:17.12f}{1:17.12f}{2:17.12f}\n"\
                 .format(self.basis[i,0], self.basis[i,1], self.basis[i,2], i+1)
         aw_template = "a/w(IQ)..="
-        for i in range(self.kstr_nl):
+        # EMTO is hard-coded to read six hard-sphere radii per s, p, d, f etc. orbital.
+        # Only up to kstr_nl of them will actually be used.
+        # for i in range(self.kstr_nl):
+        for i in range(6):
             aw_template += f" {{{i}:4.2f}}"
+        aw_dummy = []
+        for _ in range(self.kstr_nl, 6):
+            aw_dummy.append(0.0)
         for i in range(self.nq):
-            line += aw_template.format(*self.awIQ[i, :self.kstr_nl]) + "\n"
+            line += aw_template.format(*self.awIQ[i, :self.kstr_nl], *aw_dummy) + "\n"
         line += "NL_mdl.={0:2}\n".format(self.nl_mdl)
         line += "LAMDA....={0:10.7f} AMAX....={1:10.7f} BMAX....={2:10.7f}\n"\
             .format(self.lamda, self.amax, self.bmax)
