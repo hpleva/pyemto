@@ -69,17 +69,16 @@ class Shape:
 
         line = "SHAPE     HP......=N                            "\
             + str(now.day) + "." + str(now.month) + "." + str(now.year) + "\n"
-        JOBNAMline = "JOBNAM...=" + self.jobname_lat
-        MSGLline = "MSGL.=  " + str(self.msgl)
-        line = line + "{0:21s}{1:9s}".format(JOBNAMline, MSGLline) + "\n"
-        line = line + "FOR001=" + slope + "\n"
-        line = line + "DIR002=" + shapef + "\n"
-        line = line + "DIR006=" + prn + "\n"
-        line = line + "Lmax..={0:3d} NSR..={1:3d} NFI..={2:3d}"\
+        line += f"JOBNAM...={self.jobname_lat}\n"
+        line += f"MSGL.={self.msgl:3}\n"
+        line += "FOR001=" + slope + "\n"
+        line += "DIR002=" + shapef + "\n"
+        line += "DIR006=" + prn + "\n"
+        line += "Lmax..={0:3d} NSR..={1:3d} NFI..={2:3d}"\
             .format(self.lmax, self.nsr, self.nfi) + "\n"
-        line = line + "NPRN..={0:3d} IVEF.={1:3d}"\
+        line += "NPRN..={0:3d} IVEF.={1:3d}"\
             .format(self.nprn, self.ivef) + "\n"
-        line = line + "****** Relative atomic sphere radii ASR(1:NQ) ******\n"
+        line += "****** Relative atomic sphere radii ASR(1:NQ) ******\n"
         for i in range(self.nq):
             line += "ASR({0:2})={1:7.4f}\n".format(i+1, self.asrs[i])
         return line
