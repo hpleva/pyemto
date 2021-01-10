@@ -55,7 +55,7 @@ def curve_fit(f, x, y, p0):
     func = _general_function
     args = (x, y, f)
     popt, pcov, infodict, mesg, ier = leastsq(
-        func, p0, args=args, full_output=1, maxfev=200000, ftol=1.0e-15, xtol=1.0e-15)
+        func, p0, args=args, full_output=1, maxfev=500_000, ftol=1.0e-15, xtol=1.0e-15)
 
     if ier not in [1, 2, 3, 4]:
         raise RuntimeError("Optimal parameters not found: " + mesg)

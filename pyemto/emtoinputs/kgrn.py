@@ -896,19 +896,20 @@ class Kgrn:
         if self.kmsh is None:
             self.kmsh = 'S'
         if self.nkx is None:
-            self.nkx = 0
+            self.nkx = 19
         if self.nky is None:
-            if self.ibz == 2:
-                self.nky = 13
-            elif self.ibz == 3:
-                self.nky = 17
-            elif self.ibz == 4:
-                self.nky = 13
-                self.nkz = 9
-            else:
-                self.nky = 13
+            self.nky = 19
+            # if self.ibz == 2:
+                # self.nky = 13
+            # elif self.ibz == 3:
+                # self.nky = 17
+            # elif self.ibz == 4:
+                # self.nky = 13
+                # self.nkz = 9
+            # else:
+                # self.nky = 13
         if self.nkz is None:
-            self.nkz = 0
+            self.nkz = 19
         if self.fbz is None:
             self.fbz = 'N'
         if self.kmsh2 is None:
